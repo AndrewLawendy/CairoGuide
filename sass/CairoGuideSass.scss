@@ -76,10 +76,11 @@ h6{font-size: 1.15em}
     h6{letter-spacing: 0.15em}
   }
 
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 460px){
     footer{
+      padding: 45px 15px;
       .footer-container{
-        width: 96%
+        text-align: center
       }
     }
   }
