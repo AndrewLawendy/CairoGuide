@@ -51,7 +51,7 @@ h6,p{font-family: "Lato-Regular"}
 h2{font-size: 3.6em}
 h3{font-size: 2.9em}
 h6{font-size: 1.15em}
-.half-width{width:50%}
+.half-width{width:50%;float: left}
 .full-width{width:100%}
 .Clear{clear: both}
 *[class$="container"]::after{
