@@ -120,12 +120,12 @@ a{cursor: pointer}
         ul{
           li{
             list-style-type: none;
-            position: relative;
             margin: 5px 0;
             a{
               text-decoration: none;
               color: #fff;
               padding: 5px;
+              position: relative;
               &::after{
                 content: attr(title);
                 position: absolute;
@@ -189,7 +189,7 @@ a{cursor: pointer}
       padding: 45px 15px;
       .footer-container{
         text-align: center;
-        h6,.rights{
+        h6{
           line-height: 1.5em;
         }
         .mag-info{
@@ -199,6 +199,11 @@ a{cursor: pointer}
           text-align: center;
           margin-top: 30px
           }
+      }
+      .rights{
+        line-height: 1.5em;
+        text-align: center;
+        margin-top: 20px
       }
     }
   }
