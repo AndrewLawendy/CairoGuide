@@ -5,7 +5,14 @@ $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
 $header-footer-secondary-text-color:#fff;
 
+$logo-pink:#db2b4a;
+$logo-yellow:#f3a41e;
+$logo-green:#5daa46;
+
 /*Mixins*/
+@mixin apply-color($prop,$color){
+    #{$prop}:$color;
+}
 
 
 /*Fonts*/
@@ -115,6 +122,10 @@ a {
     cursor: pointer
 }
 
+.container{
+    padding: 0 30px;
+    box-sizing:border-box;
+}
 .half-width {
     width: 50%;
     float: left
@@ -181,6 +192,34 @@ a {
     clear: both;
 }
 
+.section-title{
+    width:400px;
+    height:110px;
+    padding: 25px 0;
+    box-sizing: border-box;
+    margin-bottom:50px;
+
+    h2{
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-left: 24%;
+        width: 100%;
+        text-align: right;
+    }
+}
+
+.logo-pink-title{
+    @include apply-color(background-color,$logo-pink);
+}
+
+.logo-yellow-title{
+    @include apply-color('background-color',$logo-yellow);
+}
+
+.logo-green-title{
+    @include apply-color('background-color',$logo-green);
+}
+
 
 /*Header*/
 
@@ -195,9 +234,17 @@ footer {
 
 header {
     text-transform: uppercase;
+
+    ul{
+        li:last-child{
+            margin-right:0!important;
+        }
+    }
+    
     .top-header,
     .bottom-header {
-        padding: 10px 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         box-sizing: border-box;
         ul {
             li {
@@ -209,6 +256,7 @@ header {
             }
         }
     }
+
     .top-header {
         .logo {
             width: 68px;
@@ -219,6 +267,19 @@ header {
         }
         .main-nav {
             ul {
+                &.header-account-menu{
+                    li{
+                        margin-right:30px
+                    }
+
+                    .header-social-menu{
+                        margin-top:0;
+                        [class^="icon-"],
+                        [class*=" icon-"] {
+                            font-size:1.14em;
+                        }
+                    }
+                }
                 margin-top: 15px;
                 li {
                     margin-right: 50px;
