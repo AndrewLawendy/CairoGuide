@@ -246,7 +246,7 @@ header {
                         position: absolute;
                         top: -5px;
                         left: -5px;
-                        padding:5px;
+                        padding: 5px;
                         background-color: $header-footer-secondary-background-color;
                         color: $header-footer-primary-text-color;
                         clip: rect(0px, 0px, 200px, 0px);
@@ -259,6 +259,53 @@ header {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+
+/*Carousel*/
+
+.carousel-container {
+    width: 100%;
+    height: 540px;
+    overflow: hidden;
+    .carousel-body{
+        height: 100%;
+        .carousel-item{
+            width: 100vw;
+            height: 100%;
+            color: #fff;
+            position: relative;
+            float: left;
+            img{
+                width: 100%;height: auto;
+            }
+            .carousel-title{
+                position: absolute;
+                left: 30px;
+                top: 210px;
+                width: 405px;
+                height: 110px;
+                background-color: #fcb062;
+                h2{
+                    text-align: right;
+                    padding-top: 25px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2em;
+                    line-height: 1.2em;
+                    transform: translateX(110px);
+                }
+            }
+            .carousel-description{
+                position: absolute;
+                top:368px;
+                left:30px;
+                width: 615px;
+                text-align: justify;
+                font: 1.43em 'Lato-Bold';
+
             }
         }
     }
@@ -289,15 +336,16 @@ footer {
                     a:visited {
                         text-decoration: none;
                         color: $header-footer-secondary-text-color;
-                        padding: 5px;
                         position: relative;
+                        padding: 6px 0;
                     }
                     a {
                         &::after {
                             content: attr(title);
                             position: absolute;
                             top: 0;
-                            left: 5px;
+                            left:-5px;
+                            padding: 0 5px;
                             background-color: $header-footer-secondary-background-color;
                             color: $header-footer-primary-text-color;
                             clip: rect(0px, 0px, 200px, 0px);
@@ -322,7 +370,7 @@ footer {
             .info-title {
                 background-color: $header-footer-secondary-background-color;
                 color: $header-footer-primary-text-color;
-                padding: 2px
+                padding: 2px;
             }
         }
         .mag-social {
