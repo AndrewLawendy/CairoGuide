@@ -4,8 +4,15 @@ $header-footer-primary-background-color:#131313;
 $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
 $header-footer-secondary-text-color:#fff;
+$logo-pink:#db2b4a;
+$logo-yellow:#f3a41e;
+$logo-green:#5daa46;
 
 /*Mixins*/
+
+@mixin apply-color($prop, $color) {
+    #{$prop}: $color;
+}
 
 
 /*Fonts*/
@@ -115,6 +122,11 @@ a {
     cursor: pointer
 }
 
+.container {
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
 .half-width {
     width: 50%;
     float: left
@@ -181,6 +193,36 @@ a {
     clear: both;
 }
 
+.section-title {
+    width: 400px;
+    height: 110px;
+    padding: 25px 0;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-left: 24%;
+        width: 100%;
+        text-align: right;
+    }
+}
+
+.logo-pink-title {
+    @include apply-color(background-color,
+    $logo-pink);
+}
+
+.logo-yellow-title {
+    @include apply-color('background-color',
+    $logo-yellow);
+}
+
+.logo-green-title {
+    @include apply-color('background-color',
+    $logo-green);
+}
+
 
 /*Header*/
 
@@ -193,11 +235,26 @@ footer {
     }
 }
 
+header,
+footer {
+    a,
+    a:visited,
+    a:hover {
+        text-decoration: none;
+    }
+}
+
 header {
     text-transform: uppercase;
+    ul {
+        li:last-child {
+            margin-right: 0!important;
+        }
+    }
     .top-header,
     .bottom-header {
-        padding: 10px 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         box-sizing: border-box;
         ul {
             li {
@@ -219,6 +276,18 @@ header {
         }
         .main-nav {
             ul {
+                &.header-account-menu {
+                    li {
+                        margin-right: 30px
+                    }
+                    .header-social-menu {
+                        margin-top: 0;
+                        [class^="icon-"],
+                        [class*=" icon-"] {
+                            font-size: 1.14em;
+                        }
+                    }
+                }
                 margin-top: 15px;
                 li {
                     margin-right: 50px;
@@ -271,25 +340,26 @@ header {
     width: 100%;
     height: 540px;
     overflow: hidden;
-    .carousel-body{
+    .carousel-body {
         height: 100%;
-        .carousel-item{
+        .carousel-item {
             width: 100vw;
             height: 100%;
             color: #fff;
             position: relative;
             float: left;
-            img{
-                width: 100%;height: auto;
+            img {
+                width: 100%;
+                height: auto;
             }
-            .carousel-title{
+            .carousel-title {
                 position: absolute;
                 left: 30px;
                 top: 210px;
                 width: 405px;
                 height: 110px;
                 background-color: #fcb062;
-                h2{
+                h2 {
                     text-align: right;
                     padding-top: 25px;
                     text-transform: uppercase;
@@ -298,14 +368,13 @@ header {
                     transform: translateX(110px);
                 }
             }
-            .carousel-description{
+            .carousel-description {
                 position: absolute;
-                top:368px;
-                left:30px;
+                top: 368px;
+                left: 30px;
                 width: 615px;
                 text-align: justify;
                 font: 1.43em 'Lato-Bold';
-
             }
         }
     }
@@ -344,7 +413,7 @@ footer {
                             content: attr(title);
                             position: absolute;
                             top: 0;
-                            left:-5px;
+                            left: -5px;
                             padding: 0 5px;
                             background-color: $header-footer-secondary-background-color;
                             color: $header-footer-primary-text-color;
