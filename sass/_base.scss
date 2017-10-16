@@ -172,7 +172,7 @@ a {
     text-transform: uppercase;
 }
 
-*[class$="container"]::after {
+*[class*="container"]::after {
     content: '';
     display: block;
     width: 100%;
