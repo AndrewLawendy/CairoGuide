@@ -351,30 +351,28 @@ header {
             img {
                 width: 100%;
                 height: auto;
+                pointer-events: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
             }
-            .carousel-title {
+            .carousel-data {
                 position: absolute;
                 left: 30px;
                 top: 210px;
                 width: 405px;
                 height: 110px;
-                background-color: #fcb062;
-                h2 {
-                    text-align: right;
-                    padding-top: 25px;
-                    text-transform: uppercase;
-                    letter-spacing: 0.2em;
-                    line-height: 1.2em;
-                    transform: translateX(110px);
+                .section-title {
+                    background-color: #fcb062;
+                    margin-bottom: 5px;
+                    .carousel-description {
+                        width: 615px;
+                        padding-top: 30px;
+                        text-align: justify;
+                        font: 1.43em 'Lato-Bold';
+                    }
                 }
-            }
-            .carousel-description {
-                position: absolute;
-                top: 368px;
-                left: 30px;
-                width: 615px;
-                text-align: justify;
-                font: 1.43em 'Lato-Bold';
             }
         }
     }
