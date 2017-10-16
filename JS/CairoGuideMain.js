@@ -9,6 +9,7 @@ $(document).ready(function () {
         $('.carousel-body').css('width', carouselItemCount + '00vw');
         $('.carousel-container').on('mousedown', function (e) {
             carouselDrag = true;
+            var carouselItemTarget = $(e.target).closest('.carousel-item');
             var _this = $(this);
             carouselBasePos = e.pageX;
             carouselScrollLeft = $(this).scrollLeft();
@@ -17,6 +18,7 @@ $(document).ready(function () {
             if (carouselDrag) {
                 carouselPosDiff = carouselBasePos - e.pageX;
                 $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
+                //carouselItemTarget.find('.carousel-data').css({transform:'translateX('+(carouselPosDiff*-1.5)+'px)'})
             }
         });
     }
