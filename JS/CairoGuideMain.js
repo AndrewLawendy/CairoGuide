@@ -8,11 +8,13 @@ $(document).ready(function () {
     if (carouselItemCount > 1) {
         $('.carousel-body').css('width', carouselItemCount + '00vw');
         $('.carousel-container').on('mousedown', function (e) {
-            carouselDrag = true;
-            var carouselItemTarget = $(e.target).closest('.carousel-item');
-            var _this = $(this);
-            carouselBasePos = e.pageX;
-            carouselScrollLeft = $(this).scrollLeft();
+            if (e.which == 1) {
+                carouselDrag = true;
+                var carouselItemTarget = $(e.target).closest('.carousel-item');
+                var _this = $(this);
+                carouselBasePos = e.pageX;
+                carouselScrollLeft = $(this).scrollLeft();
+            }
         });
         $('.carousel-container').on('mousemove', function (e) {
             if (carouselDrag) {
@@ -23,30 +25,32 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('mouseup', function () {
-        //Carousel Autocomplete
-        if (carouselItemCount > 1 && carouselPosDiff != undefined) {
-            carouselDrag = false;
-            carouselScrollLeft = $('.carousel-container').scrollLeft();
-            var fullScroll = $('.carousel-item:first-child').width();
-            var scrollRemaining = fullScroll - (carouselPosDiff % fullScroll);
-            if (Math.abs(carouselPosDiff) > 50) {
-                if (carouselPosDiff > 0) {
-                    $('.carousel-container').animate({
-                        scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                    }, 800);
+    $(document).on('mouseup', function (e) {
+        if (e.which == 1) {
+            //Carousel Autocomplete
+            if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
+                carouselDrag = false;
+                carouselScrollLeft = $('.carousel-container').scrollLeft();
+                var fullScroll = $('.carousel-item:first-child').width();
+                var scrollRemaining = fullScroll - (Math.abs(carouselPosDiff) % fullScroll);
+                if (Math.abs(carouselPosDiff) > 50) {
+                    if (carouselPosDiff > 0) {
+                        $('.carousel-container').animate({
+                            scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
+                        }, 800);
+                    } else {
+                        $('.carousel-container').animate({
+                            scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
+                        }, 800);
+                    }
+
                 } else {
                     $('.carousel-container').animate({
-                        scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                    }, 800);
+                        scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
+                    });
                 }
-
-            } else {
-                $('.carousel-container').animate({
-                    scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
-                });
+                carouselPosDiff = undefined
             }
-            carouselPosDiff = undefined
         }
     });
 });
