@@ -21,10 +21,10 @@ $(document).ready(function () {
                 carouselPosDiff = carouselBasePos - e.pageX;
                 $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
                 carouselItemTarget.find('.carousel-data').css({transform:'translateX('+(carouselPosDiff*-1.2)+'px)'})
-                // if(carouselPosDiff>0){
-                //     carouselItemTarget.next().find('.section-title').addClass('titleEnter-left');
-                //     carouselItemTarget.next().find('.section-title').css({transform:'translateX('+(carouselPosDiff*-0.2)+'px)'})
-                // }
+                if(carouselPosDiff>0){
+                    carouselItemTarget.next().find('.carousel-data').addClass('titleEnter-left');
+                    $('.titleEnter-left').css({transform:'translateX('+(1000-(carouselPosDiff*.5))+'px)'})
+                }
             }
         });
         var moveNext = function(){
@@ -37,9 +37,9 @@ $(document).ready(function () {
                     break;
                 }
             }
-            activeScrollItem.find('.section-title').addClass('titleLeave-left');
-            activeScrollItem.next().find('.section-title').addClass('titleEnter-left').delay(300).queue(function(){
-                $(this).removeClass("titleEnter-left").dequeue();
+            activeScrollItem.find('.carousel-data').animate({transform:'translateX(-650px)'},1200)
+            activeScrollItem.next().find('.carousel-data').css('transform','translateX(1000px)').delay(300).queue(function(){
+                $(this).animate({transform:'translateX(0)'}).dequeue();
             });;
             $('.carousel-container').stop().animate({scrollLeft:fullScroll * Math.round((actualScroll+fullScroll)/fullScroll)},1600);
             //$('.section-title').css({transform:'translateX(0px)'});
