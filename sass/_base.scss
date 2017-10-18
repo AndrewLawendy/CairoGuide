@@ -362,24 +362,16 @@ header {
                 top: 210px;
                 width: 405px;
                 height: 110px;
+                transform: translateX(0);
                 .section-title {
                     background-color: #fcb062;
                     margin-bottom: 5px;
-                    transform: translateX(0);
-                    transition: transform 1.2s;
                     .carousel-description {
                         width: 615px;
                         padding-top: 30px;
                         text-align: justify;
                         font: 1.43em 'Lato-Bold';
                     }
-                }
-                .section-title.titleLeave-left{
-                    transform: translateX(-650px);
-                }
-                .section-title.titleEnter-left{
-                    transform: translateX(1000px);
-                    transition: all .1s;
                 }
             }
         }
