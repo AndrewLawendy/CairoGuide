@@ -21,6 +21,10 @@ $(document).ready(function () {
                 carouselPosDiff = carouselBasePos - e.pageX;
                 $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
                 carouselItemTarget.find('.carousel-data').css({transform:'translateX('+(carouselPosDiff*-1.2)+'px)'})
+                // if(carouselPosDiff>0){
+                //     carouselItemTarget.next().find('.section-title').addClass('titleEnter-left');
+                //     carouselItemTarget.next().find('.section-title').css({transform:'translateX('+(carouselPosDiff*-0.2)+'px)'})
+                // }
             }
         });
         var moveNext = function(){
