@@ -96,7 +96,7 @@ $(document).ready(function () {
 
         $('#previous').on('click',movePrevious);
 
-        Automatic Scroll
+        //Automatic Scroll
         var carouselAuto = setInterval(moveNext,4000);
         $('.carousel-container').on('mouseenter',function(){
             clearInterval(carouselAuto);
