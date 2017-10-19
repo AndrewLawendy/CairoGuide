@@ -13,6 +13,10 @@ $(document).ready(function () {
         $('.carousel-item:nth-child(2)').clone().appendTo('.carousel-body');
         fullScroll = $('.carousel-item:first-child').width();
         $('.carousel-container').scrollLeft(fullScroll);
+        for (var i = 0; i < carouselItemCount - 2; i++) {
+            $('.carousel-indexes').append('<div></div>');
+        }
+        $('.carousel-indexes div:first').addClass('selected');
         $('.carousel-container').on('mousedown', function (e) {
             if (e.which == 1) {
                 carouselDrag = true;
@@ -70,6 +74,12 @@ $(document).ready(function () {
             }, 1600, function () {
                 $('.carousel-data').css('left', '30px');
             });
+            selectedIndexControl = activeItemIndex;
+            if (selectedIndexControl == carouselItemCount - 1) {
+                selectedIndexControl = 1;
+            }
+            $('.carousel-indexes div').removeClass('selected');
+            $('.carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
             activeItemIndex++;
         }
 
@@ -93,6 +103,13 @@ $(document).ready(function () {
             }, 1600, function () {
                 $('.carousel-data').css('left', '30px');
             });
+            selectedIndexControl = activeItemIndex - 2;
+            if (selectedIndexControl == 0) {
+                var indexControlMax = $('.carousel-indexes div').length;
+                selectedIndexControl = indexControlMax;
+            }
+            $('.carousel-indexes div').removeClass('selected');
+            $('.carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
             activeItemIndex--;
         }
 
@@ -102,10 +119,10 @@ $(document).ready(function () {
 
         //Automatic Scroll
         var carouselAuto = setInterval(moveNext, 4000);
-        $('.carousel-container').on('mouseenter', function () {
+        $('.carousel-controls').on('mouseenter', function () {
             clearInterval(carouselAuto);
         });
-        $('.carousel-container').on('mouseleave', function () {
+        $('.carousel-controls').on('mouseleave', function () {
             carouselAuto = setInterval(moveNext, 4000);
         });
     }
@@ -156,6 +173,8 @@ $(document).ready(function () {
         var fullScroll = $('.carousel-item:first-child').width();
         var actualScroll = $('.carousel-container').scrollLeft();
         var adjustedScrollValue = fullScroll * Math.round(actualScroll / fullScroll);
-        $('.carousel-container').stop().animate({scrollLeft:adjustedScrollValue});
+        $('.carousel-container').stop().animate({
+            scrollLeft: adjustedScrollValue
+        });
     });
 });
