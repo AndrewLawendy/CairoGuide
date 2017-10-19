@@ -392,13 +392,20 @@ main {
                 div[class^=wtd] {
                     float: left;
                     width: 33.3333%;
+                    height: 100%;
                     overflow: hidden;
                     position: relative;
+                    transform: skewX(-30deg);
+                    a{
+                        display: block;
+                        transform: skew(30deg);
+                        width: 100%;
+                        height: 100%;
+                    }
                     img {
                         position: relative;
                     }
                     h2 {
-                        transform: skewX(30deg);
                         font: 7.857em Lato-Black;
                         color: #fff;
                         position: absolute;
@@ -406,34 +413,31 @@ main {
                     }
                 }
                 .wtd-today {
-                    transform: skewX(-30deg) translateX(-100%);
                     img {
                         top: -860px;
-                        left: 0;
-                        transform: skewX(30deg) scale(1.5) translateX(5%);
+                        left: 0; 
                     }
-                    h2{
-                        top:110px;
-                        left:245px;
+                    h2 {
+                        top: 110px;
+                        left: 245px;
                     }
                 }
                 .wtd-weekend {
-                    transform: skewX(-30deg) translateX(-30%);
                     img {
                         top: 0;
-                        left: 0;
-                        transform: skewX(30deg) translateX(-40px) scale(1.2);
+                        left: 0; 
                     }
-                    h2{
-                        top:215px;
+                    h2 {
+                        top: 215px;
                     }
                 }
                 .wtd-monthly {
-                    transform: skewX(-30deg) translateX(-126px) scale(1.5);
                     img {
-                        transform: skewX(30deg) translate(-334px,-115px) scale(.8);
                         top: 0;
                         left: 0;
+                    }
+                    h2 {
+                        top: 110px;
                     }
                 }
             }
