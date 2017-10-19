@@ -5,3 +5,126 @@ Contains all styles
 
 @import 'reset'; //Reset file import
 @import 'base'; //Base file import
+
+/*Main*/
+
+main {
+    /*Carousel*/
+    .carousel-container {
+        width: 100%;
+        height: 540px;
+        overflow: hidden;
+        .carousel-body {
+            height: 100%;
+            .carousel-item {
+                width: 100vw;
+                height: 100%;
+                color: #fff;
+                position: relative;
+                float: left;
+                img {
+                    width: 100%;
+                    height: auto;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+                .carousel-data {
+                    position: absolute;
+                    left: 30px;
+                    top: 210px;
+                    width: 405px;
+                    height: 110px;
+                    transform: translateX(0);
+                    .section-title {
+                        background-color: #fcb062;
+                        margin-bottom: 5px;
+                        -webkit-user-select: none;
+                        /* Chrome all / Safari all */
+                        -moz-user-select: none;
+                        /* Firefox all */
+                        -ms-user-select: none;
+                        /* IE 10+ */
+                        user-select: none;
+                        .carousel-description {
+                            width: 615px;
+                            padding-top: 30px;
+                            text-align: justify;
+                            font: 1.43em 'Lato-Bold';
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*What to Do*/
+    article {
+        section {
+            .wtd-container {
+                margin: 0 -30px;
+                height: 388px;
+                overflow: hidden;
+                position: relative;
+                div[class^=wtd] {
+                    float: left;
+                    height: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    transform: skewX(-30deg);
+                    a {
+                        display: block;
+                        transform: skew(30deg);
+                        width: 100%;
+                        height: 100%;
+                    }
+                    img {
+                        position: relative;
+                    }
+                    h2 {
+                        font: 7.857em Lato-Black;
+                        color: #fff;
+                        position: absolute;
+                        text-transform: uppercase;
+                    }
+                }
+                .wtd-today {
+                    width: calc(33% + 112px);
+                    margin-left: -112px;
+                    img {
+                        top: -860px;
+                        left: 100px;
+                    }
+                    h2 {
+                        top: 110px;
+                        left: 245px;
+                    }
+                }
+                .wtd-weekend {
+                    width: 35%;
+                    img {
+                        top: -95px;
+                        left: 0;
+                        transform: scale(1.5);
+                    }
+                    h2 {
+                        top: 215px;
+                    }
+                }
+                .wtd-monthly {
+                    width: calc(32% + 224px);
+                    margin-right: -224px;
+                    img {
+                        top: -218px;
+                        left: -375px;
+                    }
+                    h2 {
+                        top: 110px;
+                    }
+                }
+            }
+        }
+    }
+}
