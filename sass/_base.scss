@@ -366,6 +366,10 @@ header {
                 .section-title {
                     background-color: #fcb062;
                     margin-bottom: 5px;
+                    -webkit-user-select: none;  /* Chrome all / Safari all */
+                    -moz-user-select: none;     /* Firefox all */
+                    -ms-user-select: none;      /* IE 10+ */
+                    user-select: none; 
                     .carousel-description {
                         width: 615px;
                         padding-top: 30px;
