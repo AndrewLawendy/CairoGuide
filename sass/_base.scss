@@ -1,5 +1,5 @@
 /*Variable Declaration*/
-
+/*Main Colors*/
 $header-footer-primary-background-color:#131313;
 $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
@@ -7,6 +7,17 @@ $header-footer-secondary-text-color:#fff;
 $logo-pink:#db2b4a;
 $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
+
+/*Category Colors*/
+$cat-nightlife-color:#f90000;
+$cat-tourism-color:#35b8b2;
+$cat-shopping-color:#01acca;
+$cat-beauty-color:#e67cae;
+$cat-dinning-color:#fcb062;
+$cat-services-color:#00a6ec;
+$cat-accomodation-color:#c683b8;
+$cat-fitness-color:#fff100;
+$cat-entertainment-color:#ffc72a;
 
 /*Mixins*/
 
@@ -234,15 +245,6 @@ footer {
     }
 }
 
-header,
-footer {
-    a,
-    a:visited,
-    a:hover {
-        text-decoration: none;
-    }
-}
-
 header {
     text-transform: uppercase;
     ul {
@@ -250,6 +252,7 @@ header {
             margin-right: 0!important;
         }
     }
+
     .top-header,
     .bottom-header {
         padding-top: 10px;
@@ -275,6 +278,15 @@ header {
         }
         .main-nav {
             ul {
+                a,
+                a:visited {
+                    opacity:1;
+                    transition:all 0.3s ease;
+                }
+                a:hover{
+                    opacity:0.6;
+                    transition: all 0.3s ease;
+                }
                 &.header-account-menu {
                     li {
                         margin-right: 30px

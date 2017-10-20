@@ -128,6 +128,28 @@ $(document).ready(function () {
     }
     // End of Carousel
 
+    //Start of What to Do
+    $('.wtd-container div[class^=wtd]').each(function () {
+        $(this).on('mouseenter', function (e) {
+            $(this).addClass('selected');
+            $(this).siblings().addClass('shadow');
+            $(this).on('mouseleave', function () {
+                $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
+            });
+            $(this).on('mousemove', function (e) {
+                var posX = e.pageX;
+                var posY = e.pageY;
+                var middleVerLine = $(this).width()/2;
+                var middleHorLine = $(this).height()/2;
+                var actualImgTop = parseInt($(this).find('img').css('top'),10);
+                var actualImgLeft = parseInt($(this).find('img').css('left'),10);
+                var newXValue = ((posX -middleVerLine)/40);
+                var newYValue = ((posY - middleHorLine)/20);
+                $(this).find('img').css({'top':actualImgTop + newYValue,'left':actualImgLeft + newXValue});
+            });
+        });
+    });
+
 
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
@@ -169,7 +191,7 @@ $(document).ready(function () {
         }
     });
     $(window).resize(function () {
-        //Scroll Adjustment
+        //Carousel Scroll Adjustment
         var fullScroll = $('.carousel-item:first-child').width();
         var actualScroll = $('.carousel-container').scrollLeft();
         var adjustedScrollValue = fullScroll * Math.round(actualScroll / fullScroll);
