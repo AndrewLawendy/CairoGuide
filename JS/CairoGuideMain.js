@@ -65,13 +65,13 @@ $(document).ready(function () {
             fullScroll = $('.carousel-item:first-child').width();
             activeScrollItem.find('.carousel-data').animate({
                 left: '-650'
-            }, 1200);
+            }, 800);
             activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').animate({
                 left: 30
-            }, 1600);
+            }, 1000);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex;
@@ -95,12 +95,12 @@ $(document).ready(function () {
             activeScrollItem.find('.carousel-data').animate({
                 left: fullScroll
             }, 1000);
-            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(500).animate({
+            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).animate({
                 left: 30
-            }, 1200);
+            }, 800);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex - 2;
@@ -129,7 +129,7 @@ $(document).ready(function () {
     // End of Carousel
 
     //Start of What to Do
-    $('.wtd-container div[class^=wtd]').each(function () {
+    $('#wtd div[class^=wtd]').each(function () {
         $(this).on('mouseenter', function (e) {
             $(this).addClass('selected');
             $(this).siblings().addClass('shadow');
@@ -152,15 +152,15 @@ $(document).ready(function () {
                     if (carouselPosDiff > 0) {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         activeItemIndex += 2;
                     } else {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         carouselItemTarget.find('.carousel-data').animate({
                             left: (fullScroll * 3) / 4
-                        }, 800);
+                        }, 600);
                         activeItemIndex = carouselItemTarget.index() + 1;
                         activeItemIndex--;
                     }
