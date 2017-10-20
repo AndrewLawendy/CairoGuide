@@ -114,7 +114,8 @@ main {
                     overflow: hidden;
                     position: relative;
                     transform: skewX(-30deg);
-                    transition: all .5s ease-in;
+                    transition: all .5s ease-in-out;
+                    transition-delay: .3s;
                     a {
                         display: block;
                         transform: skew(30deg);
@@ -123,17 +124,23 @@ main {
                     }
                     img {
                         position: relative;
+                        transition: all .5s;
+                        transition-delay: .5s;
                     }
                     h2 {
                         font: 7.857em Lato-Black;
                         color: #fff;
                         position: absolute;
                         text-transform: uppercase;
+                        width: 100%;
+                        text-align: center;
+                        transform: translateY(0);
+                        transition: all 3s;
                     }
                 }
                 .selected,
                 .shadow {
-                    transition: all .3s ease-out;
+                    transition: all .1s ease-in-out;
                 }
                 .wtd-today {
                     width: calc(33% + 112px);
@@ -150,6 +157,14 @@ main {
                 }
                 .wtd-today.selected {
                     width: 70%;
+                    img{
+                        left:70px;
+                        transition: all .3s;
+                    }
+                    h2{
+                        transform: translate(-50%,100%);
+                        transition: all 50s;
+                    }
                 }
                 .wtd-today.shadow {
                     width: 25%;
@@ -160,7 +175,6 @@ main {
                         top: -415px;
                         left: -575px;
                         transform: scale(.7);
-                        transition: all .5s;
                     }
                     h2 {
                         top: 215px;
@@ -173,7 +187,11 @@ main {
                     width: 55%;
                     img {
                         left: -425px;
-                        transition: all .5s;
+                        transition: all .3s;
+                    }
+                    h2{
+                        transform: translate(50%,-100%);
+                        transition: all 50s;
                     }
                 }
                 .wtd-monthly {
@@ -183,7 +201,6 @@ main {
                         top: -218px;
                         left: -375px;
                         transform: scale(1.1);
-                        transition: all .5s;
                     }
                     h2 {
                         top: 110px;
@@ -198,7 +215,11 @@ main {
                     margin-right: -50%;
                     img{
                         left:-60px;
-                        transition: all .5s;
+                        transition: all .3s;
+                    }
+                    h2{
+                        transform: translate(50%,100%);
+                        transition: all 50s;
                     }
                 }
             }
