@@ -65,13 +65,13 @@ $(document).ready(function () {
             fullScroll = $('.carousel-item:first-child').width();
             activeScrollItem.find('.carousel-data').animate({
                 left: '-650'
-            }, 1200);
+            }, 800);
             activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').animate({
                 left: 30
-            }, 1600);
+            }, 1000);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex;
@@ -95,12 +95,12 @@ $(document).ready(function () {
             activeScrollItem.find('.carousel-data').animate({
                 left: fullScroll
             }, 1000);
-            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(500).animate({
+            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).animate({
                 left: 30
-            }, 1200);
+            }, 800);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex - 2;
@@ -129,27 +129,52 @@ $(document).ready(function () {
     // End of Carousel
 
     //Start of What to Do
-    $('.wtd-container div[class^=wtd]').each(function () {
+    $('#wtd div[class^=wtd]').each(function () {
         $(this).on('mouseenter', function (e) {
             $(this).addClass('selected');
             $(this).siblings().addClass('shadow');
             $(this).on('mouseleave', function () {
                 $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
             });
-            $(this).on('mousemove', function (e) {
-                var posX = e.pageX;
-                var posY = e.pageY;
-                var middleVerLine = $(this).width()/2;
-                var middleHorLine = $(this).height()/2;
-                var actualImgTop = parseInt($(this).find('img').css('top'),10);
-                var actualImgLeft = parseInt($(this).find('img').css('left'),10);
-                var newXValue = ((posX -middleVerLine)/40);
-                var newYValue = ((posY - middleHorLine)/20);
-                $(this).find('img').css({'top':actualImgTop + newYValue,'left':actualImgLeft + newXValue});
-            });
         });
     });
+    //End of What to Do
 
+    //Start of Attractions
+    var anchorPos = $('#attractions a:first').position().left;
+    var titlePos = $('#attractions a:first').find('p').position();
+    var titleWidth = $('#attractions a:first').find('p').width();
+    var activeTitleIndex = 1;
+    // var indexNewScale = (titleWidth+40)/100;
+    // $('.attractions-index').css('transform','scaleX('+indexNewScale+')');
+    $('.attractions-body img:first').show();
+    $('.attractions-index').css({
+        'top': titlePos.top + 10,
+        'left': titlePos.left + anchorPos - 10
+    });
+    $('#attractions a').on('mouseenter', function () {
+        var titleIndex = $(this).index() + 1;
+        if (activeTitleIndex != titleIndex) {
+            $('.attractions-body img:nth-child(' + activeTitleIndex + ')').css('z-index', 1);
+            var anchorPos = $(this).position().left;
+            var titlePos = $(this).find('p').position();
+            var titleWidth = $(this).find('p').width();
+            // var indexNewScale = (titleWidth+40)/100;
+            // $('.attractions-index').css('transform','scaleX('+indexNewScale+')');
+            $('.attractions-body img:nth-child(' + titleIndex + ')').css('z-index', 2).fadeIn(500);
+            $('.attractions-body img:nth-child(' + activeTitleIndex + ')').delay(500).fadeOut('1',function(){
+                $(this).removeAttr('style');
+            })
+            // $('.attractions-body img:nth-child(' + activeTitleIndex + ')').delay(400).queue(function () {
+            //     $(this).removeAttr('style');
+            // });
+            $('.attractions-index').stop().animate({
+                top: titlePos.top + 10,
+                left: titlePos.left + anchorPos - 10
+            });
+            activeTitleIndex = titleIndex;
+        }
+    });
 
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
@@ -163,15 +188,15 @@ $(document).ready(function () {
                     if (carouselPosDiff > 0) {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         activeItemIndex += 2;
                     } else {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         carouselItemTarget.find('.carousel-data').animate({
                             left: (fullScroll * 3) / 4
-                        }, 800);
+                        }, 600);
                         activeItemIndex = carouselItemTarget.index() + 1;
                         activeItemIndex--;
                     }
