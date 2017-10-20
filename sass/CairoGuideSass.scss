@@ -85,14 +85,14 @@ main {
                     border-color: #000;
                     border-radius: 100%;
                     position: absolute;
-                    top:0;
+                    top: 0;
                     left: 0;
                     transform: scale(0);
-                    transition: transform .15s;
+                    transition: transform .3s;
                 }
             }
             div.selected {
-                &::after{
+                &::after {
                     transform: scale(1.1);
                     transition: transform .3s;
                 }
@@ -113,6 +113,7 @@ main {
                     overflow: hidden;
                     position: relative;
                     transform: skewX(-30deg);
+                    transition: all .5s ease-in;
                     a {
                         display: block;
                         transform: skew(30deg);
@@ -129,27 +130,49 @@ main {
                         text-transform: uppercase;
                     }
                 }
+                .selected,
+                .shadow {
+                    transition: all .3s ease-out;
+                }
                 .wtd-today {
                     width: calc(33% + 112px);
                     margin-left: -112px;
                     img {
                         top: -860px;
-                        left: 100px;
+                        left: 160px;
+                        transform: scale(1.2);
                     }
                     h2 {
                         top: 110px;
                         left: 245px;
                     }
                 }
+                .wtd-today.selected {
+                    width: 70%;
+                }
+                .wtd-today.shadow {
+                    width: 25%;
+                }
                 .wtd-weekend {
                     width: 35%;
                     img {
                         top: -415px;
                         left: -575px;
-                        transform: scale(.6);
+                        transform: scale(.7);
+                        transition: all .5s;
                     }
                     h2 {
                         top: 215px;
+                    }
+                }
+                .wtd-weekend.shadow {
+                    width: 17%;
+                }
+                .wtd-weekend.selected {
+                    width: 55%;
+                    img {
+                        left: -425px;
+                        transition: all .5s;
                     }
                 }
                 .wtd-monthly {
@@ -158,9 +181,23 @@ main {
                     img {
                         top: -218px;
                         left: -375px;
+                        transform: scale(1.1);
+                        transition: all .5s;
                     }
                     h2 {
                         top: 110px;
+                    }
+                }
+                .wtd-monthly.shadow {
+                    width: 35%;
+                    margin-right: -50%;
+                }
+                .wtd-monthly.selected{
+                    width: 75%;
+                    margin-right: -50%;
+                    img{
+                        left:-60px;
+                        transition: all .5s;
                     }
                 }
             }
