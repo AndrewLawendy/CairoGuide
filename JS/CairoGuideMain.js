@@ -8,20 +8,20 @@ var ResetTrendingSlides = function (trendItem) {
     trendItem.find('.trend-slide').eq(0).addClass('active');
 }
 
-var SetTrendingInterval = function (trendItem,randomIntervalTime) {
+var SetTrendingInterval = function (trendItem, randomIntervalTime) {
     var interval = setInterval(function () {
         trendItem.find('.trend-slide').each(function () {
             var trendSlide = $(this);
             if (trendSlide.index() == 1) {
                 trendSlide.addClass('active');
-            }else{
+            } else {
                 trendSlide.removeClass('active');
             }
             trendSlide.stop().animate({
                 left: ((trendSlide.index() - 1) * trendItem.innerWidth())
             }, 1000);
         });
-        setTimeout(function(){
+        setTimeout(function () {
             trendItem.find('.trend-slide').eq(0).insertBefore($(trendItem).children('a')).css('left', ((trendItem.find('.trend-slide').length - 1) * trendItem.innerWidth()));
         }, 1100)
     }, randomIntervalTime);
@@ -35,16 +35,16 @@ $(document).ready(function () {
             if (trendItem.find('.trend-slide').length > 1) {
                 var randomIntervalTime = Math.floor((Math.random() * 6000) + 4500);
                 ResetTrendingSlides(trendItem);
-                var interval = SetTrendingInterval(trendItem,randomIntervalTime);
+                var interval = SetTrendingInterval(trendItem, randomIntervalTime);
                 trendItem.data('trend-interval', interval);
 
                 trendItem.on('mouseenter', function () {
                     var hoveredIndex = trendItem.index();
                     clearInterval(trendItem.data('trend-interval'));
                 });
-    
-                trendItem.on('mouseleave',function(){
-                    var interval = SetTrendingInterval(trendItem,randomIntervalTime);
+
+                trendItem.on('mouseleave', function () {
+                    var interval = SetTrendingInterval(trendItem, randomIntervalTime);
                     trendItem.data('trend-interval', interval);
                 });
             };
@@ -221,25 +221,24 @@ $(document).ready(function () {
         'left': titlePos.left + anchorPos - 10
     });
     $('#attractions a').on('mouseenter', function () {
-        console.log('entered');
         var titleIndex = $(this).index() + 1;
-        var titlePos = $(this).find('p').position();
         if (activeTitleIndex != titleIndex) {
+            var titlePos = $(this).find('p').position();
+            var anchorPos = $(this).position().left;
+            var titleWidth = $(this).find('p').width();
+            $('.attractions-index').stop().animate({
+                top: titlePos.top + 10,
+                left: titlePos.left + anchorPos - 10
+            });
             if (attractionOut) {
                 attractionOut = false;
                 $('.attractions-body img:nth-child(' + activeTitleIndex + ')').css('z-index', 1);
-                var anchorPos = $(this).position().left;
-                var titleWidth = $(this).find('p').width();
                 $('.attractions-body img:nth-child(' + titleIndex + ')').css('z-index', 2).fadeIn(500);
                 $('.attractions-body img:nth-child(' + activeTitleIndex + ')').delay(500).fadeOut('1', function () {
                     $(this).removeAttr('style');
                     attractionOut = true;
                 });
             }
-            $('.attractions-index').stop().animate({
-                top: titlePos.top + 10,
-                left: titlePos.left + anchorPos - 10
-            });
             activeTitleIndex = titleIndex;
         }
     });
