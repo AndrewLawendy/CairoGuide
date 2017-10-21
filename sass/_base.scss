@@ -9,6 +9,18 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 
 /*Category Colors*/
+$colorList:
+"nightlife" #f90000,
+"tourism" #35b8b2,
+"shopping" #01acca,
+"beauty" #e67cae,
+"dinning" #fcb062,
+"services" #00a6ec,
+"accomodation" #c683b8,
+"fitness" #fff100,
+"entertainment" #ffc72a
+;
+
 $cat-nightlife-color:#f90000;
 $cat-tourism-color:#35b8b2;
 $cat-shopping-color:#01acca;
@@ -23,6 +35,33 @@ $cat-entertainment-color:#ffc72a;
 
 @mixin apply-color($prop, $color) {
     #{$prop}: $color;
+}
+
+@mixin transition($transition...){
+    -webkit-transition:$transition;
+    -moz-transition:$transition;
+    -ms-transition:$transition;
+    -o-transition:$transition;
+    transition:$transition;
+}
+
+@mixin transform($transform...){
+    -webkit-transform:$transform;
+    -moz-transform:$transform;
+    -ms-transform:$transform;
+    -o-transform:$transform;
+    transform:$transform;
+}
+
+/*Functions*/
+@each $i in $colorList {
+.#{nth($i,1)}-text {
+     color: nth($i,2);
+}
+
+.#{nth($i,1)}-bg {
+    background-color: nth($i,2);
+}
 }
 
 
@@ -183,6 +222,10 @@ a {
     display: block;
 }
 
+.display-none{
+    display:none;
+}
+
 .float-left {
     float: left;
 }
@@ -233,6 +276,127 @@ a {
     $logo-green);
 }
 
+/*Popup Base*/
+.popup-base{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 200;
+    padding: 50px 30px;
+    box-sizing: border-box;
+    display:none;
+
+    .close-btn{
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        background-color: #fff;
+        border-radius: 100%;
+        position: relative;
+        overflow: hidden;
+        @include transform(rotate(66deg));
+    
+        &:before,&:after{
+            content: '';
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            background-color: #000;
+            left: 0;
+        }
+    
+        &:after{
+            bottom: 0;
+            clip: rect(0,0px,20px,0);
+            @include transform(rotate(180deg));
+            @include transition(clip 0.2s ease 0.6s);
+        }
+    
+        &:before{
+            top: 0;
+            clip: rect(0,0px,20px,0);
+            @include transition(clip 0.2s ease 0.4s);
+        }
+    
+        .fill{
+            width: 38px;
+            height: 38px;
+            margin-top: 1px;
+            margin-left: 1px;
+            background-color: #fff;
+            border-radius: 100%;
+            position: relative;
+            z-index: 100;
+            @include transform(rotate(-66deg));
+    
+            &:before,&:after{
+                content: '';
+                display: block;
+                width: 2px;
+                height: 0;
+                background-color: #000;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 4px auto;
+            }
+    
+            &:before{
+                @include transform(rotate(-45deg));
+                @include transition(height 0.2s ease 0.2s);
+            }
+    
+            &:after{
+                @include transform(rotate(45deg));
+                outline: 2px solid #fff;
+                @include transition(height 0.2s ease);
+            }
+        }
+    
+        &/*:hover*/{
+            &:before{
+                clip: rect(0,33px,20px,0);
+                @include transition(clip 0.2s linear 0.2s);
+            }
+        
+            &:after{
+                clip: rect(0,40px,20px,0);
+                @include transition(clip 0.2s ease);
+            }
+    
+            .fill{
+                &:before{
+                    height: 30px;
+                    @include transition(height 0.2s ease 0.4s);
+                }
+        
+                &:after{
+                    height: 30px;
+                    @include transition(height 0.2s ease 0.6s);
+                }   
+            }
+        }
+    }   
+    
+    .popup-logo-wrp{
+        margin-left:280px;
+
+        img{
+            width:68px;
+            display:inline-block;
+            margin-right:20px;
+        }
+    }
+}
+
+
+
+
+
+
 
 /*Header*/
 
@@ -281,11 +445,11 @@ header {
                 a,
                 a:visited {
                     opacity:1;
-                    transition:all 0.3s ease;
+                    @include transition(all 0.3s ease);
                 }
                 a:hover{
                     opacity:0.6;
-                    transition: all 0.3s ease;
+                    @include transition(all 0.3s ease);
                 }
                 &.header-account-menu {
                     li {
