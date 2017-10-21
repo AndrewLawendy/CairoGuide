@@ -100,6 +100,154 @@ main {
             }
         }
     }
+
+    /*Trending*/
+    .trend-collection-wrp{
+        height: 550px;
+        overflow: hidden;
+        width: 100%;
+
+        & > div{
+            height: 100%;
+            width: 25%;
+
+            .trend-item img, .ad-item img{
+             width:100%;
+             height:100%;
+             object-fit:cover;
+             object-position: center;
+            }
+
+            .trend-item{
+                position:relative;
+                overflow:hidden;
+                height:100%;
+
+                img{
+                    transform:scale(1);
+                    @include transition(transform 0s linear 1s);   
+                }
+
+                &.offers-item{
+                    height:53%;
+                }
+
+                &.live-item{
+                    height:47%;
+                }
+
+                .trend-slide{
+                    height:100%;
+                    width:100%;
+                    position:absolute;
+                    top:0;
+
+                    .trend-info{
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        padding: 25px 10px 0;
+                        box-sizing: border-box;
+                        color: #fff;
+                        @include transition(all 0.2s ease 0.2s);
+
+                        p,a,a:visited{
+                            color:#fff;
+                            //font:1.14em "Lato-Bold";
+                        }
+
+                        h3,p{
+                            margin-left:-110%;
+                            @include transition(margin-left 0.2s ease);
+                        }
+
+                        h3{
+                            margin-bottom: 15px;
+                            //max-height: 150px;
+                            overflow: hidden;
+                        }
+
+                        p{
+                            //max-height: 65px;
+                            margin-bottom: 15px;
+                        }
+
+                        a,a:visited{
+                            text-decoration: none;
+                            padding: 10px;
+                            box-sizing: border-box;
+                            border: 1px solid #fff;
+                            margin-left:-110%;
+                            display:inline-block;
+                        }
+
+                        a:hover{
+                            background-color:#fff;
+                            @include transition(background-color 0.3s ease,color 0.3s ease);
+                        }
+
+                        @each $i in $colorList {
+                            &.#{nth($i,1)}-bg{
+                                background:rgba(nth($i,2), 0.8);
+                            
+                                a:hover{
+                                    color:nth($i,2);
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover{
+                        .trend-info{
+                            top:0;
+                            @include transition(all 0.2s ease);
+
+                            h3{
+                                margin-left:0;
+                                @include transition(margin-left 0.2s ease 0.2s);
+                            }
+
+                            p{
+                                margin-left:0;
+                                @include transition(margin-left 0.2s ease 0.3s);
+                            }
+
+                            a{
+                                margin-left:0;
+                                @include transition(margin-left 0.2s ease 0.5s,background-color 0.3s ease,color 0.3s ease);
+                            }
+                        }
+                    }
+
+                    &.active{
+                        img{
+                            transform:scale(1.05);
+                            @include transition(transform 6s linear);   
+                        }
+                    }
+                }
+
+                & > a,& > a:visited{
+                    position:absolute;
+                    bottom:15px;
+                    left:15px;
+                    color:#fff;
+                    text-decoration: underline;
+                }
+
+                & > a:hover{
+                    text-decoration: none;
+                }
+            }
+
+            .ad-item{
+                height:50%;
+            }
+        }
+    }
+
     /*What to Do*/
     article {
         section {

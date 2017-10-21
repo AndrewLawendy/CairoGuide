@@ -9,6 +9,18 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 
 /*Category Colors*/
+$colorList:
+"nightlife" #f90000,
+"tourism" #35b8b2,
+"shopping" #01acca,
+"beauty" #e67cae,
+"dinning" #fcb062,
+"services" #00a6ec,
+"accomodation" #c683b8,
+"fitness" #fff100,
+"entertainment" #ffc72a
+;
+
 $cat-nightlife-color:#f90000;
 $cat-tourism-color:#35b8b2;
 $cat-shopping-color:#01acca;
@@ -23,6 +35,25 @@ $cat-entertainment-color:#ffc72a;
 
 @mixin apply-color($prop, $color) {
     #{$prop}: $color;
+}
+
+@mixin transition($transition...){
+    -webkit-transition:$transition;
+    -moz-transition:$transition;
+    -ms-transition:$transition;
+    -o-transition:$transition;
+    transition:$transition;
+}
+
+/*Functions*/
+@each $i in $colorList {
+.#{nth($i,1)}-text {
+     color: nth($i,2);
+}
+
+.#{nth($i,1)}-bg {
+    background-color: nth($i,2);
+}
 }
 
 
@@ -183,6 +214,10 @@ a {
     display: block;
 }
 
+.display-none{
+    display:none;
+}
+
 .float-left {
     float: left;
 }
@@ -281,11 +316,11 @@ header {
                 a,
                 a:visited {
                     opacity:1;
-                    transition:all 0.3s ease;
+                    @include transition(all 0.3s ease);
                 }
                 a:hover{
                     opacity:0.6;
-                    transition: all 0.3s ease;
+                    @include transition(all 0.3s ease);
                 }
                 &.header-account-menu {
                     li {

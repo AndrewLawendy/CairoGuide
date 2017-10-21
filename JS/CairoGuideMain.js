@@ -1,4 +1,56 @@
+var TrendingSliderIntervals = [];
+
+var ResetTrendingSlides = function (trendItem) {
+    trendItem.find('.trend-slide').each(function () {
+        var trendSlide = $(this);
+        trendSlide.css('left', (trendSlide.index() * trendItem.innerWidth()));
+    });
+    trendItem.find('.trend-slide').eq(0).addClass('active');
+}
+
+var SetTrendingInterval = function (trendItem,randomIntervalTime) {
+    var interval = setInterval(function () {
+        trendItem.find('.trend-slide').each(function () {
+            var trendSlide = $(this);
+            if (trendSlide.index() == 1) {
+                trendSlide.addClass('active');
+            }else{
+                trendSlide.removeClass('active');
+            }
+            trendSlide.stop().animate({
+                left: ((trendSlide.index() - 1) * trendItem.innerWidth())
+            }, 1000);
+        });
+        setTimeout(function(){
+            trendItem.find('.trend-slide').eq(0).insertBefore($(trendItem).children('a')).css('left', ((trendItem.find('.trend-slide').length - 1) * trendItem.innerWidth()));
+        }, 1100)
+    }, randomIntervalTime);
+    return interval;
+}
+
 $(document).ready(function () {
+    if ($('.trend-item').length) {
+        $('.trend-item').each(function () {
+            var trendItem = $(this);
+            if (trendItem.find('.trend-slide').length > 1) {
+                var randomIntervalTime = Math.floor((Math.random() * 6000) + 4500);
+                ResetTrendingSlides(trendItem);
+                var interval = SetTrendingInterval(trendItem,randomIntervalTime);
+                trendItem.data('trend-interval', interval);
+
+                trendItem.on('mouseenter', function () {
+                    var hoveredIndex = trendItem.index();
+                    clearInterval(trendItem.data('trend-interval'));
+                });
+    
+                trendItem.on('mouseleave',function(){
+                    var interval = SetTrendingInterval(trendItem,randomIntervalTime);
+                    trendItem.data('trend-interval', interval);
+                });
+            };
+        });
+    }
+
     //Carousel
     var carouselItemCount = $('.carousel-item').length;
     var carouselDrag = false;
@@ -128,6 +180,8 @@ $(document).ready(function () {
     }
     // End of Carousel
 
+
+
     //Start of What to Do
     $('.wtd-container div[class^=wtd]').each(function () {
         $(this).on('mouseenter', function (e) {
@@ -136,7 +190,7 @@ $(document).ready(function () {
             $(this).on('mouseleave', function () {
                 $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
             });
-            $(this).on('mousemove', function (e) {
+            /*$(this).on('mousemove', function (e) {
                 var posX = e.pageX;
                 var posY = e.pageY;
                 var middleVerLine = $(this).width()/2;
@@ -146,7 +200,7 @@ $(document).ready(function () {
                 var newXValue = ((posX -middleVerLine)/40);
                 var newYValue = ((posY - middleHorLine)/20);
                 $(this).find('img').css({'top':actualImgTop + newYValue,'left':actualImgLeft + newXValue});
-            });
+            });*/
         });
     });
 
