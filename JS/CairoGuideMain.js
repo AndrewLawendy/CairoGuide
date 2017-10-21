@@ -117,13 +117,13 @@ $(document).ready(function () {
             fullScroll = $('.carousel-item:first-child').width();
             activeScrollItem.find('.carousel-data').animate({
                 left: '-650'
-            }, 1200);
+            }, 800);
             activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').animate({
                 left: 30
-            }, 1600);
+            }, 1000);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex;
@@ -147,12 +147,12 @@ $(document).ready(function () {
             activeScrollItem.find('.carousel-data').animate({
                 left: fullScroll
             }, 1000);
-            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(500).animate({
+            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).animate({
                 left: 30
-            }, 1200);
+            }, 800);
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-            }, 1600, function () {
+            }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex - 2;
@@ -169,6 +169,21 @@ $(document).ready(function () {
 
         $('#previous').on('click', movePrevious);
 
+        $('.carousel-indexes div').on('click', function () {
+            var indexValue = $(this).index() + 2;
+            var fullScroll = $('.carousel-item:first-child').width();
+            var targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
+            var actualScroll = $('.carousel-container').scrollLeft();
+            $('.carousel-indexes div').removeClass('selected');
+            $(this).addClass('selected');
+            $('.carousel-container').stop().animate({
+                scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
+            }, 1000, function () {
+                $('.carousel-data').css('left', '30px');
+            });
+            activeItemIndex = indexValue;
+        });
+
         //Automatic Scroll
         var carouselAuto = setInterval(moveNext, 4000);
         $('.carousel-controls').on('mouseenter', function () {
@@ -183,13 +198,14 @@ $(document).ready(function () {
 
 
     //Start of What to Do
-    $('.wtd-container div[class^=wtd]').each(function () {
+    $('#wtd div[class^=wtd]').each(function () {
         $(this).on('mouseenter', function (e) {
             $(this).addClass('selected');
             $(this).siblings().addClass('shadow');
             $(this).on('mouseleave', function () {
                 $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
             });
+<<<<<<< HEAD
             /*$(this).on('mousemove', function (e) {
                 var posX = e.pageX;
                 var posY = e.pageY;
@@ -201,9 +217,46 @@ $(document).ready(function () {
                 var newYValue = ((posY - middleHorLine)/20);
                 $(this).find('img').css({'top':actualImgTop + newYValue,'left':actualImgLeft + newXValue});
             });*/
+=======
+>>>>>>> e786a9be8a67c14ce58fe8b0c7d9514b2b3b0afa
         });
     });
+    //End of What to Do
 
+    //Start of Attractions
+    var anchorPos = $('#attractions a:first').position().left;
+    var titlePos = $('#attractions a:first').find('p').position();
+    var titleWidth = $('#attractions a:first').find('p').width();
+    var activeTitleIndex = 1;
+    var attractionOut = true;
+    $('.attractions-body img:first').show();
+    $('.attractions-index').css({
+        'top': titlePos.top + 10,
+        'left': titlePos.left + anchorPos - 10
+    });
+    $('#attractions a').on('mouseenter', function () {
+        console.log('entered');
+        var titleIndex = $(this).index() + 1;
+        var titlePos = $(this).find('p').position();
+        if (activeTitleIndex != titleIndex) {
+            if (attractionOut) {
+                attractionOut = false;
+                $('.attractions-body img:nth-child(' + activeTitleIndex + ')').css('z-index', 1);
+                var anchorPos = $(this).position().left;
+                var titleWidth = $(this).find('p').width();
+                $('.attractions-body img:nth-child(' + titleIndex + ')').css('z-index', 2).fadeIn(500);
+                $('.attractions-body img:nth-child(' + activeTitleIndex + ')').delay(500).fadeOut('1', function () {
+                    $(this).removeAttr('style');
+                    attractionOut = true;
+                });
+            }
+            $('.attractions-index').stop().animate({
+                top: titlePos.top + 10,
+                left: titlePos.left + anchorPos - 10
+            });
+            activeTitleIndex = titleIndex;
+        }
+    });
 
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
@@ -217,15 +270,15 @@ $(document).ready(function () {
                     if (carouselPosDiff > 0) {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         activeItemIndex += 2;
                     } else {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                        }, 800);
+                        }, 600);
                         carouselItemTarget.find('.carousel-data').animate({
                             left: (fullScroll * 3) / 4
-                        }, 800);
+                        }, 600);
                         activeItemIndex = carouselItemTarget.index() + 1;
                         activeItemIndex--;
                     }
