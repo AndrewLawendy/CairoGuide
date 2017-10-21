@@ -205,7 +205,6 @@ $(document).ready(function () {
             $(this).on('mouseleave', function () {
                 $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
             });
-<<<<<<< HEAD
             /*$(this).on('mousemove', function (e) {
                 var posX = e.pageX;
                 var posY = e.pageY;
@@ -217,8 +216,6 @@ $(document).ready(function () {
                 var newYValue = ((posY - middleHorLine)/20);
                 $(this).find('img').css({'top':actualImgTop + newYValue,'left':actualImgLeft + newXValue});
             });*/
-=======
->>>>>>> e786a9be8a67c14ce58fe8b0c7d9514b2b3b0afa
         });
     });
     //End of What to Do
