@@ -176,6 +176,29 @@ $(document).ready(function () {
             var actualScroll = $('.carousel-container').scrollLeft();
             $('.carousel-indexes div').removeClass('selected');
             $(this).addClass('selected');
+            if (indexValue == carouselItemCount - 1) {
+                var totalItemsPos = [];
+                var basicItemPOs = $('.carousel-item:nth-last-child(2)').position().left;
+                var clonedItemPos = $('.carousel-item:first-child').position().left;
+                totalItemsPos.push.apply(totalItemsPos, [Math.abs(basicItemPOs), Math.abs(clonedItemPos)]);
+                var minScroll = totalItemsPos.indexOf(Math.min(...totalItemsPos));
+                if (minScroll == 0) {
+                    targetItemPos = basicItemPOs;
+                } else {
+                    targetItemPos = clonedItemPos;
+                }
+            } else if (indexValue == 2) {
+                var totalItemsPos = [];
+                var basicItemPOs = $('.carousel-item:nth-child(2)').position().left;
+                var clonedItemPos = $('.carousel-item:last-child').position().left;
+                totalItemsPos.push.apply(totalItemsPos, [Math.abs(basicItemPOs), Math.abs(clonedItemPos)]);
+                var minScroll = totalItemsPos.indexOf(Math.min(...totalItemsPos));
+                if (minScroll == 0) {
+                    targetItemPos = basicItemPOs;
+                } else {
+                    targetItemPos = clonedItemPos;
+                }
+            }
             $('.carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
             }, 1000, function () {
@@ -256,6 +279,12 @@ $(document).ready(function () {
                         $('.carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                         }, 600);
+                        var controlsIndex = activeItemIndex;
+                        if (controlsIndex == carouselItemCount - 2) {
+                            controlsIndex = 0;
+                        }
+                        $('.carousel-indexes div').removeClass('selected');
+                        $('.carousel-indexes div:nth-child(' + (controlsIndex + 1) + ')').addClass('selected');
                         activeItemIndex += 2;
                     } else {
                         $('.carousel-container').animate({
@@ -265,6 +294,12 @@ $(document).ready(function () {
                             left: (fullScroll * 3) / 4
                         }, 600);
                         activeItemIndex = carouselItemTarget.index() + 1;
+                        var controlsIndex = activeItemIndex - 1;
+                        if (controlsIndex == 1) {
+                            controlsIndex = carouselItemCount - 1;
+                        }
+                        $('.carousel-indexes div').removeClass('selected');
+                        $('.carousel-indexes div:nth-child(' + (controlsIndex - 1) + ')').addClass('selected');
                         activeItemIndex--;
                     }
 
