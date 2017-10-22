@@ -52,7 +52,7 @@ $(document).ready(function () {
     }
 
     //Carousel
-    var carouselItemCount = $('.carousel-item').length;
+    var carouselItemCount = $('#main-carousel .carousel-item').length;
     var carouselDrag = false;
     var carouselBasePos = 0;
     var carouselPosDiff = 0;
@@ -60,27 +60,27 @@ $(document).ready(function () {
     var activeItemIndex = 2;
     if (carouselItemCount > 1) {
         carouselItemCount += 2;
-        $('.carousel-body').css('width', carouselItemCount + '00vw');
-        $('.carousel-item:last').clone().prependTo('.carousel-body');
-        $('.carousel-item:nth-child(2)').clone().appendTo('.carousel-body');
-        fullScroll = $('.carousel-item:first-child').width();
-        $('.carousel-container').scrollLeft(fullScroll);
+        $('#main-carousel .carousel-body').css('width', carouselItemCount + '00vw');
+        $('#main-carousel .carousel-item:last').clone().prependTo('#main-carousel .carousel-body');
+        $('#main-carousel .carousel-item:nth-child(2)').clone().appendTo('#main-carousel .carousel-body');
+        fullScroll = $('#main-carousel .carousel-item:first-child').width();
+        $('#main-carousel .carousel-container').scrollLeft(fullScroll);
         for (var i = 0; i < carouselItemCount - 2; i++) {
-            $('.carousel-indexes').append('<div></div>');
+            $('#main-carousel .carousel-indexes').append('<div></div>');
         }
-        $('.carousel-indexes div:first').addClass('selected');
-        $('.carousel-container').on('mousedown', function (e) {
+        $('#main-carousel .carousel-indexes div:first').addClass('selected');
+        $('#main-carousel .carousel-container').on('mousedown', function (e) {
             if (e.which == 1) {
                 carouselDrag = true;
-                fullScroll = $('.carousel-item:first-child').width();
+                fullScroll = $('#main-carousel .carousel-item:first-child').width();
                 carouselItemTarget = $(e.target).closest('.carousel-item');
                 activeItemIndex = carouselItemTarget.index() + 1;
-                var test = $('.carousel-data').not($(carouselItemTarget).find('.carousel-data'));
+                var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
                 carouselBasePos = e.pageX;
                 carouselScrollLeft = $(this).scrollLeft();
             }
         });
-        $('.carousel-container').on('mousemove', function (e) {
+        $('#main-carousel .carousel-container').on('mousemove', function (e) {
             if (carouselDrag) {
                 entered = false;
                 activeItemIndex = carouselItemTarget.index();
@@ -88,16 +88,16 @@ $(document).ready(function () {
                 carouselItemTarget.find('.carousel-data').css('left', 30 + (carouselPosDiff * -1.2) + 'px');
                 if (carouselPosDiff > 0) {
                     if (activeItemIndex == (carouselItemCount - 1) && !entered) {
-                        $('.carousel-container').scrollLeft(fullScroll);
+                        $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                         carouselScrollLeft = fullScroll;
-                        carouselItemTarget = $('.carousel-item:nth-child(2)')
+                        carouselItemTarget = $('#main-carousel .carousel-item:nth-child(2)')
                         entered = true;
                     }
                     carouselItemTarget.next().find('.carousel-data').stop().css('left', fullScroll - (carouselPosDiff * .5) + 'px');
                 } else {
                     if (activeItemIndex == 0 && !entered) {
-                        $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                        carouselItemTarget = $('.carousel-item:nth-last-child(2)')
+                        $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                        carouselItemTarget = $('#main-carousel .carousel-item:nth-last-child(2)')
                         carouselScrollLeft = (carouselItemCount - 2) * fullScroll;
                         entered = true;
                     }
@@ -107,14 +107,14 @@ $(document).ready(function () {
             }
         });
         var moveNext = function () {
-            activeScrollItem = $('.carousel-item:nth-child(' + activeItemIndex + ')');
+            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
             if (activeItemIndex == carouselItemCount) {
-                $('.carousel-container').scrollLeft(fullScroll);
-                activeScrollItem = $('.carousel-item:nth-child(2)');
+                $('#main-carousel .carousel-container').scrollLeft(fullScroll);
+                activeScrollItem = $('#main-carousel .carousel-item:nth-child(2)');
                 activeItemIndex = 2;
             }
-            var actualScroll = $('.carousel-container').scrollLeft();
-            fullScroll = $('.carousel-item:first-child').width();
+            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+            fullScroll = $('#main-carousel .carousel-item:first-child').width();
             activeScrollItem.find('.carousel-data').animate({
                 left: '-650'
             }, 800);
@@ -130,38 +130,38 @@ $(document).ready(function () {
             if (selectedIndexControl == carouselItemCount - 1) {
                 selectedIndexControl = 1;
             }
-            $('.carousel-indexes div').removeClass('selected');
-            $('.carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
+            $('#main-carousel .carousel-indexes div').removeClass('selected');
+            $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
             activeItemIndex++;
         }
 
         var movePrevious = function () {
-            activeScrollItem = $('.carousel-item:nth-child(' + activeItemIndex + ')');
+            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
             if (activeItemIndex <= 1) {
-                $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                activeScrollItem = $('.carousel-item:nth-last-child(2)');
+                $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                activeScrollItem = $('#main-carousel .carousel-item:nth-last-child(2)');
                 activeItemIndex = carouselItemCount - 1;
             }
-            var actualScroll = $('.carousel-container').scrollLeft();
-            fullScroll = $('.carousel-item:first-child').width();
+            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+            fullScroll = $('#main-carousel .carousel-item:first-child').width();
             activeScrollItem.find('.carousel-data').animate({
                 left: fullScroll
             }, 1000);
             activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).animate({
                 left: 30
             }, 800);
-            $('.carousel-container').stop().animate({
+            $('#main-carousel .carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
             }, 1000, function () {
-                $('.carousel-data').css('left', '30px');
+                $('#main-carousel .carousel-data').css('left', '30px');
             });
             selectedIndexControl = activeItemIndex - 2;
             if (selectedIndexControl == 0) {
-                var indexControlMax = $('.carousel-indexes div').length;
+                var indexControlMax = $('#main-carousel .carousel-indexes div').length;
                 selectedIndexControl = indexControlMax;
             }
-            $('.carousel-indexes div').removeClass('selected');
-            $('.carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
+            $('#main-carousel .carousel-indexes div').removeClass('selected');
+            $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
             activeItemIndex--;
         }
 
@@ -169,31 +169,31 @@ $(document).ready(function () {
 
         $('#previous').on('click', movePrevious);
 
-        $('.carousel-indexes div').on('click', function () {
+        $('#main-carousel .carousel-indexes div').on('click', function () {
             var indexValue = $(this).index() + 2;
-            var fullScroll = $('.carousel-item:first-child').width();
-            var targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
-            var actualScroll = $('.carousel-container').scrollLeft();
-            $('.carousel-indexes div').removeClass('selected');
+            var fullScroll = $('#main-carousel .carousel-item:first-child').width();
+            var targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+            $('#main-carousel .carousel-indexes div').removeClass('selected');
             $(this).addClass('selected');
             if (indexValue == carouselItemCount - 1 && activeItemIndex == 1) {
-                $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
                 return;
             } else if (indexValue == 2 && activeItemIndex == carouselItemCount) {
-                $('.carousel-container').scrollLeft(fullScroll);
+                $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                 return;
             }else{
                 if(activeItemIndex == 1){
-                    $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                    actualScroll = $('.carousel-container').scrollLeft();
-                    targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
+                    $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
                 }else if(activeItemIndex == carouselItemCount){
-                    $('.carousel-container').scrollLeft(fullScroll);
-                    actualScroll = $('.carousel-container').scrollLeft();
-                    targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
+                    $('#main-carousel .carousel-container').scrollLeft(fullScroll);
+                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
                 }
             }
-            $('.carousel-container').stop().animate({
+            $('#main-carousel .carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
             }, 1000, function () {
                 $('.carousel-data').css('left', '30px');
@@ -203,10 +203,10 @@ $(document).ready(function () {
 
         //Automatic Scroll
         var carouselAuto = setInterval(moveNext, 4000);
-        $('.carousel-controls').on('mouseenter', function () {
+        $('#main-carousel').on('mouseenter', function () {
             clearInterval(carouselAuto);
         });
-        $('.carousel-controls').on('mouseleave', function () {
+        $('#main-carousel').on('mouseleave', function () {
             carouselAuto = setInterval(moveNext, 4000);
         });
     }
@@ -258,23 +258,23 @@ $(document).ready(function () {
             //Carousel Autocomplete
             if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
                 carouselDrag = false;
-                carouselScrollLeft = $('.carousel-container').scrollLeft();
-                var fullScroll = $('.carousel-item:first-child').width();
+                carouselScrollLeft = $('#main-carousel .carousel-container').scrollLeft();
+                var fullScroll = $('#main-carousel .carousel-item:first-child').width();
                 var scrollRemaining = fullScroll - (Math.abs(carouselPosDiff) % fullScroll);
                 if (Math.abs(carouselPosDiff) > 50) {
                     if (carouselPosDiff > 0) {
-                        $('.carousel-container').animate({
+                        $('#main-carousel .carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                         }, 600);
                         var controlsIndex = activeItemIndex;
                         if (controlsIndex == carouselItemCount - 2) {
                             controlsIndex = 0;
                         }
-                        $('.carousel-indexes div').removeClass('selected');
-                        $('.carousel-indexes div:nth-child(' + (controlsIndex + 1) + ')').addClass('selected');
+                        $('#main-carousel .carousel-indexes div').removeClass('selected');
+                        $('#main-carousel .carousel-indexes div:nth-child(' + (controlsIndex + 1) + ')').addClass('selected');
                         activeItemIndex += 2;
                     } else {
-                        $('.carousel-container').animate({
+                        $('#main-carousel .carousel-container').animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
                         }, 600);
                         carouselItemTarget.find('.carousel-data').animate({
@@ -285,19 +285,19 @@ $(document).ready(function () {
                         if (controlsIndex == 1) {
                             controlsIndex = carouselItemCount - 1;
                         }
-                        $('.carousel-indexes div').removeClass('selected');
-                        $('.carousel-indexes div:nth-child(' + (controlsIndex - 1) + ')').addClass('selected');
+                        $('#main-carousel .carousel-indexes div').removeClass('selected');
+                        $('#main-carousel .carousel-indexes div:nth-child(' + (controlsIndex - 1) + ')').addClass('selected');
                         activeItemIndex--;
                     }
 
                 } else {
-                    $('.carousel-container').animate({
+                    $('#main-carousel .carousel-container').animate({
                         scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
                     });
                 }
                 carouselPosDiff = undefined;
                 entered = false;
-                $('.carousel-data').animate({
+                $('#main-carousel .carousel-data').animate({
                     left: 30
                 }, 800);
             }
