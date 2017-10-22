@@ -176,27 +176,21 @@ $(document).ready(function () {
             var actualScroll = $('.carousel-container').scrollLeft();
             $('.carousel-indexes div').removeClass('selected');
             $(this).addClass('selected');
-            if (indexValue == carouselItemCount - 1) {
-                var totalItemsPos = [];
-                var basicItemPOs = $('.carousel-item:nth-last-child(2)').position().left;
-                var clonedItemPos = $('.carousel-item:first-child').position().left;
-                totalItemsPos.push.apply(totalItemsPos, [Math.abs(basicItemPOs), Math.abs(clonedItemPos)]);
-                var minScroll = totalItemsPos.indexOf(Math.min(...totalItemsPos));
-                if (minScroll == 0) {
-                    targetItemPos = basicItemPOs;
-                } else {
-                    targetItemPos = clonedItemPos;
-                }
-            } else if (indexValue == 2) {
-                var totalItemsPos = [];
-                var basicItemPOs = $('.carousel-item:nth-child(2)').position().left;
-                var clonedItemPos = $('.carousel-item:last-child').position().left;
-                totalItemsPos.push.apply(totalItemsPos, [Math.abs(basicItemPOs), Math.abs(clonedItemPos)]);
-                var minScroll = totalItemsPos.indexOf(Math.min(...totalItemsPos));
-                if (minScroll == 0) {
-                    targetItemPos = basicItemPOs;
-                } else {
-                    targetItemPos = clonedItemPos;
+            if (indexValue == carouselItemCount - 1 && activeItemIndex == 1) {
+                $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                return;
+            } else if (indexValue == 2 && activeItemIndex == carouselItemCount) {
+                $('.carousel-container').scrollLeft(fullScroll);
+                return;
+            }else{
+                if(activeItemIndex == 1){
+                    $('.carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                    actualScroll = $('.carousel-container').scrollLeft();
+                    targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
+                }else if(activeItemIndex == carouselItemCount){
+                    $('.carousel-container').scrollLeft(fullScroll);
+                    actualScroll = $('.carousel-container').scrollLeft();
+                    targetItemPos = $('.carousel-item:nth-child(' + indexValue + ')').position().left;
                 }
             }
             $('.carousel-container').stop().animate({
@@ -236,15 +230,15 @@ $(document).ready(function () {
     var anchorPos = $('#attractions a:first').position().left;
     var titlePos = $('#attractions a:first').find('p').position();
     var titleWidth = $('#attractions a:first').find('p').width();
-    var activeTitleIndex = 1;
+    var activeTitleIndex = 0;
     var attractionOut = true;
-    $('.attractions-body img:first').show();
+    $('.attractions-body').find('img').eq(activeTitleIndex).addClass('active');
     $('.attractions-index').css({
         'top': titlePos.top + 10,
         'left': titlePos.left + anchorPos - 10
     });
     $('#attractions a').on('mouseenter', function () {
-        var titleIndex = $(this).index() + 1;
+        var titleIndex = $(this).index();
         if (activeTitleIndex != titleIndex) {
             var titlePos = $(this).find('p').position();
             var anchorPos = $(this).position().left;
@@ -253,15 +247,8 @@ $(document).ready(function () {
                 top: titlePos.top + 10,
                 left: titlePos.left + anchorPos - 10
             });
-            if (attractionOut) {
-                attractionOut = false;
-                $('.attractions-body img:nth-child(' + activeTitleIndex + ')').css('z-index', 1);
-                $('.attractions-body img:nth-child(' + titleIndex + ')').css('z-index', 2).fadeIn(500);
-                $('.attractions-body img:nth-child(' + activeTitleIndex + ')').delay(500).fadeOut('1', function () {
-                    $(this).removeAttr('style');
-                    attractionOut = true;
-                });
-            }
+            $('.attractions-body').find('img').removeClass('active');
+            $('.attractions-body').find('img').eq(titleIndex).addClass('active');
             activeTitleIndex = titleIndex;
         }
     });

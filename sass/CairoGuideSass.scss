@@ -13,6 +13,7 @@ main {
     .carousel-controls {
         height: 540px;
         margin: 0 -30px;
+        position: relative;
         .carousel-container {
             width: 100%;
             height: 100%;
@@ -66,8 +67,8 @@ main {
             width: 100%;
             height: 15px;
             text-align: center;
-            position: relative;
-            top: -35px;
+            position: absolute;
+            bottom: 35px;
             div {
                 display: inline-block;
                 margin: 0 7px;
@@ -382,7 +383,13 @@ main {
             height: auto;
             transform: translateY(-30%);
             position: absolute;
-            display: none;
+            opacity:0;
+            @include transition(opacity 0.5s ease 0.3s);
+
+            &.active{
+                opacity:1;
+                @include transition(opacity 0.5s ease);
+            }
         }
         .attractions-titles {
             width: 100%;
