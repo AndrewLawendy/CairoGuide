@@ -354,41 +354,261 @@ main {
     #best-spots {
         margin-right: -30px;
         position: relative;
-        .best-spots-body{
+        .best-spots-body {
             position: relative;
+            overflow: hidden;
             width: 100%;
             height: 662px;
             margin-top: -160px;
             .title-bg {
                 width: 100%;
                 height: 100%;
-                h2{
+                h2 {
                     position: absolute;
                     top: 110px;
                     left: 0;
                     font-size: 13.57em;
                     opacity: 0;
                     padding-left: 150px;
+                    transition: all .3s;
+                    transform: translateX(50%);
+                    &.active {
+                        transform: translateX(0);
+                        opacity: .1;
+                        transition: all .5s;
+                    }
                 }
             }
-            .best-spots-details{
+            .best-spots-details {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                .text-area{
+                .text-area {
                     position: absolute;
-                    top:0;
+                    top: 0;
                     left: 0;
                     padding-top: 218px;
-                    width:600px;
-                    h6{
-                        font:1.786em "Lato-Bold";
+                    width: 600px;
+                    opacity: 0;
+                    transition: all .3s;
+                    transform: translateX(50%);
+                    &.active {
+                        transition-delay: .5s;
+                        transform: translateX(0);
+                        opacity: 1;
+                        transition: all .8s ease;
+                    }
+                    h6 {
+                        font: 1.786em "Lato-Bold";
                         margin-bottom: 25px;
                     }
-                    p{
-                        
+                    .item-description {
+                        line-height: 1.3em;
+                    }
+                    .item-contacts {
+                        margin-top: 28px;
+                    }
+                }
+            }
+            .best-spots-image-container {
+                .image-container {
+                    width: 350px;
+                    height: 350px;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    position: absolute;
+                    cursor: pointer;
+                    transform: rotate(45deg);
+                    transition: all .3s ease;
+                    img {
+                        height: 100%;
+                        position: relative;
+                    }
+                    .item-bg {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: #db2b4a;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 1;
+                        transition: all .5s;
+                        p {
+                            color: #fff;
+                            position: absolute;
+                            font: 5.14em "Lato-Black";
+                            white-space: nowrap;
+                            text-transform: uppercase;
+                            transition: all 3s;
+                        }
+                    }
+                    &.active {
+                        transition: all .5s ease;
+                        .item-bg {
+                            opacity: 0;
+                            transition: all .15s;
+                        }
+                    }
+                    &:nth-child(3n+1) {
+                        top: -195px;
+                        right: 100px;
+                        img {
+                            transform: rotate(-45deg) scale(1.4);
+                            top: -45px;
+                            left: -25px;
+                        }
+                        .item-bg {
+                            p {
+                                transform: rotate(-45deg) translateY(0);
+                                right: -40px;
+                                bottom: 50px;
+                            }
+                        }
+                        &:hover {
+                            .item-bg {
+                                p {
+                                    transform: rotate(-45deg) translateY(-30%);
+                                    transition: all 2s;
+                                }
+                            }
+                        }
+                        &.active {
+                            width: 680px;
+                            height: 680px;
+                            top: -350px;
+                            right: 190px;
+                        }
+                        &.shadow {
+                            right: 515px;
+                            transition: all .5s ease;
+                        }
+                    }
+                    &:nth-child(3n+2) {
+                        top: 80px;
+                        right: -240px;
+                        width: 440px;
+                        height: 430px;
+                        img {
+                            transform: rotate(-45deg) scale(1.3);
+                        }
+                        .item-bg {
+                            p {
+                                transform: rotate(-45deg) translateX(0);
+                                top: 50px;
+                                left: -85px;
+                            }
+                        }
+                        &:hover {
+                            .item-bg {
+                                p {
+                                    transform: rotate(-45deg) translateX(-75%);
+                                    transition: all 4s;
+                                }
+                            }
+                        }
+                        &.active {
+                            width: 800px;
+                            height: 800px;
+                            top: -80px;
+                        }
+                    }
+                    &:nth-child(3n+3) {
+                        bottom: -235px;
+                        right: 65px;
+                        width: 450px;
+                        height: 450px;
+                        img {
+                            transform: rotate(-45deg) scale(1.2);
+                            top: -95px;
+                            left: -220px;
+                        }
+                        .item-bg {
+                            p {
+                                transform: rotate(-45deg) translateY(0);
+                                top: 125px;
+                                right: -5px;
+                            }
+                        }
+                        &:hover {
+                            .item-bg {
+                                p {
+                                    transform: rotate(-45deg) translateY(30%);
+                                    transition: all 2s;
+                                }
+                            }
+                        }
+                        &.active {
+                            width: 760px;
+                            height: 760px;
+                            bottom: -410px;
+                            right: 120px;
+                        }
+                        &.shadow {
+                            right: 515px;
+                            transition: all .5s ease;
+                        }
+                    }
+                }
+            }
+            .best-controls {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: left;
+                padding-left: 5px;
+                >span {
+                    display: inline-block;
+                    cursor: pointer;
+                    text-align: center;
+                    margin-right: 15px;
+                    i {
+                        display: block;
+                        margin-bottom: 15px;
+                        font-size: 2.6em;
+                        &::before {
+                            display: block;
+                            transform: rotate(0);
+                            transition: all .3s;
+                        }
+                    }
+                    span{
+                        font-size: 1.42em;
+                    }
+                    &.best-previous {
+                        &:hover {
+                            i::before {
+                                transform: rotate(-45deg);
+                                transition: all .3s;
+                            }
+                        }
+                        &:active{
+                            i::before{
+                                transform: rotate(-400deg);
+                                transition: all .3s;
+                            }
+                        }
+                    }
+                    &.best-next {
+                        &:hover {
+                            i::before {
+                                transform: rotate(45deg);
+                                transition: all .3s;
+                            }
+                        }
+                        &:active{
+                            i::before{
+                                transform: rotate(400deg);
+                                transition: all .3s;
+                            }
+                        }
+                    }
+                    &.last{
+                        opacity:0.3;
+                        cursor: not-allowed;
+                        transition:all .15s;
                     }
                 }
             }

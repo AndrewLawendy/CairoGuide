@@ -182,12 +182,12 @@ $(document).ready(function () {
             } else if (indexValue == 2 && activeItemIndex == carouselItemCount) {
                 $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                 return;
-            }else{
-                if(activeItemIndex == 1){
+            } else {
+                if (activeItemIndex == 1) {
                     $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
                     actualScroll = $('#main-carousel .carousel-container').scrollLeft();
                     targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-                }else if(activeItemIndex == carouselItemCount){
+                } else if (activeItemIndex == carouselItemCount) {
                     $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                     actualScroll = $('#main-carousel .carousel-container').scrollLeft();
                     targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
@@ -215,16 +215,29 @@ $(document).ready(function () {
 
 
     //Start of What to Do
-    $('#wtd div[class^=wtd]').each(function () {
-        $(this).on('mouseenter', function (e) {
-            $(this).addClass('selected');
-            $(this).siblings().addClass('shadow');
-            $(this).on('mouseleave', function () {
-                $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
-            });
+    $('#wtd div[class^=wtd]').on('mouseenter', function (e) {
+        $(this).addClass('selected');
+        $(this).siblings().addClass('shadow');
+        $(this).on('mouseleave', function () {
+            $('.wtd-container div[class^=wtd]').removeClass('selected shadow');
         });
     });
     //End of What to Do
+
+    //Start of Best Spots
+    $('#best-spots .best-spots-image-container .image-container').on('click', function () {
+        var bestContentFrame = $('.section-frame-content').index();
+        //var bestImagesFrame = $('.section-frame-images').index();
+        var bestIndex = $(this).index();
+        $('.best-spots-image-container .image-container').removeClass('active shadow');
+        $('.best-spots-details .text-area').removeClass('active')
+        $('.title-bg .section-frame-title h2').removeClass('active');
+        if (bestIndex == 1)
+            $(this).siblings().addClass('shadow');
+        $(this).addClass('active');
+        $('.best-spots-details .section-frame-content').eq(bestContentFrame).find('.text-area').eq(bestIndex).addClass('active');
+        $('.title-bg .section-frame-title').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
+    });
 
     //Start of Attractions
     var anchorPos = $('#attractions a:first').position().left;
@@ -252,6 +265,7 @@ $(document).ready(function () {
             activeTitleIndex = titleIndex;
         }
     });
+    //End of Attractions
 
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
