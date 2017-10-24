@@ -225,38 +225,38 @@ $(document).ready(function () {
     //End of What to Do
 
     //Start of Best Spots
-    var actualFrameIndex = 0;
-    $('#best-spots .best-spots-image-container .image-container:first').addClass('active');
-    $('.best-spots-details .section-frame-content:first').find('.text-area').eq(0).addClass('active');
-    $('.title-bg .section-frame-title:first').find('h2').eq(0).addClass('active');
-    $('.section-frame-images:first').addClass('active');
-    $('#best-spots .best-spots-image-container .image-container').on('click', function () {
-        var bestContentFrame = $('.section-frame-content').index();
+    var actualFrameIndex = 1;
+    $('#best-spots .best-frame:first').addClass('active');
+    $('#best-spots .best-frame:first .best-image-frame:first').addClass('active');
+    $('#best-spots .best-frame:first h2:first').addClass('active');
+    $('#best-spots .best-frame:first .best-description-frame:first').addClass('active');
+    $('#best-spots .best-frame .best-image-frame').on('click', function () {
+        var bestContentFrame = $('.best-frame').index();
         var bestIndex = $(this).index();
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
+        $('#best-spots .best-frame .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame h2').removeClass('active');
         if (bestIndex == 1)
             $(this).siblings().addClass('shadow');
         $(this).addClass('active');
-        $('.best-spots-details .section-frame-content').eq(bestContentFrame).find('.text-area').eq(bestIndex).addClass('active');
-        $('.title-bg .section-frame-title').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame').eq(bestContentFrame).find('.best-description-frame').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
     });
     $('.best-controls .best-previous').on('click', function () {
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
-        $('.section-frame-images').eq(actualFrameIndex).addClass('prev-leaving').delay(2300).queue(function(){
+        $('#best-spots .best-frame .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame h2').removeClass('active');
+        $('#best-spots .best-frame:nth-of-type('+actualFrameIndex+')').addClass('prev-leaving').delay(2200).queue(function(){
             $(this).removeClass('active prev-leaving');
         });
         actualFrameIndex--;
     });
     $('.best-controls .best-next').on('click', function () {
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
-        $('.section-frame-images').eq(actualFrameIndex).addClass('next-leaving').delay(2300).queue(function(){
-            $(this).removeClass('active next-leaving');
+        $('#best-spots .best-frame .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame h2').removeClass('active');
+        $('#best-spots .best-frame:nth-of-type('+actualFrameIndex+')').addClass('next-leaving').delay(2200).queue(function(){
+            $(this).removeClass('active prev-leaving');
         });
         actualFrameIndex++;
     });
