@@ -198,21 +198,24 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-social-facebook:before {
-    content: "\e900";
-}
-
-.icon-social-instagram:before {
-    content: "\e901";
-}
-
-.icon-social-twitter:before {
-    content: "\e902";
-}
-
-.icon-search:before {
+.icon-best-spots-prev:before {
+    content: "\e904";
+  }
+  .icon-best-spots-next:before {
+    content: "\e905";
+  }
+  .icon-search:before {
     content: "\e903";
-}
+  }
+  .icon-social-facebook:before {
+    content: "\e900";
+  }
+  .icon-social-instagram:before {
+    content: "\e901";
+  }
+  .icon-social-twitter:before {
+    content: "\e902";
+  }
 
 
 /*General Declarations*/
