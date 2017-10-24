@@ -17,25 +17,25 @@
     </div>
 
     <!--Popup-->
-    <div class="popup-base">
+    <div id="popup-base" class="popup-base">
         <div class="popup-header display-inline-block full-width">
-            <a href="javascript:void(0);" title="Close" class="close-btn float-left">
+            <a id="popup-close-btn" href="javascript:void(0);" title="Close" class="close-btn float-left">
                 <div class="fill"></div>
             </a>
             <div class="popup-logo-wrp float-left">
-                <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" />
-                <span>Simply the best</span>
+                <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" class="float-left" />
+                <span class="float-left">Simply the best</span>
             </div>
             <h2>Cairo guide</h2>
         </div>
         <div class="popup-body">
             <div class="search-container">
-                <div class="search-title">
+                <div class="search-title popup-title">
                     <span>Search</span>
                 </div>
                 <div class="search-input">
-                    <label>Search in cairo guide ...</label>
                     <input type="text" />
+                    <label>Search in cairo guide ...</label>
                     <a href="javascript:void(0);" title="Search">
                         <i class="icon-search"></i>
                     </a>
@@ -46,7 +46,7 @@
 
     <!--Header-->
     <header>
-        <div class="top-header display-inline-block full-width container">
+        <div class="top-header full-width container">
             <div class="logo float-left">
                 <a href="#">
                     <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" />
@@ -74,7 +74,7 @@
                     <li>
                         <ul class="display-inline-block header-social-menu">
                             <li>
-                                <a href="#" title="Search">
+                                <a id="nav-search-btn" href="javascript:void(0);" title="Search">
                                     <i class="icon-search"></i>
                                 </a>
                             </li>

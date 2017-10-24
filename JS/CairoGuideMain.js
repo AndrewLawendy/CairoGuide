@@ -29,6 +29,24 @@ var SetTrendingInterval = function (trendItem, randomIntervalTime) {
 }
 
 $(document).ready(function () {
+    $('#nav-search-btn').on('click',function(){
+        $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
+    });
+
+    $('#popup-close-btn').on('click',function(){
+        $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
+    });
+
+    $('input[type="text"],input[type="password"],input[type="email"],input[type="number"],textarea').on('focus', function () {
+        var field = $(this);
+        field.addClass("field-focus");
+    }).on('blur', function () {
+        var field = $(this);
+        if (field.val() == null || field.val() == '' || field.val() == undefined) {
+            field.removeClass("field-focus");
+        }
+    });
+
     if ($('.trend-item').length) {
         $('.trend-item').each(function () {
             var trendItem = $(this);

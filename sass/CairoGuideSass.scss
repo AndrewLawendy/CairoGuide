@@ -106,7 +106,9 @@ main {
         height: 550px;
         overflow: hidden;
         width: 100%;
-
+        @include media("(min-width: 1200px)") {
+            height: get-vw(550px);
+        }
         & > div{
             height: 100%;
             width: 25%;
@@ -152,10 +154,11 @@ main {
                         box-sizing: border-box;
                         color: #fff;
                         @include transition(all 0.2s ease 0.2s);
-
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(25px) get-vw(10px) 0;
+                        }
                         p,a,a:visited{
                             color:#fff;
-                            //font:1.14em "Lato-Bold";
                         }
 
                         h3,p{
@@ -167,11 +170,17 @@ main {
                             margin-bottom: 15px;
                             //max-height: 150px;
                             overflow: hidden;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(15px);
+                            }
                         }
 
                         p{
                             //max-height: 65px;
                             margin-bottom: 15px;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(15px);
+                            }
                         }
 
                         a,a:visited{
@@ -181,6 +190,9 @@ main {
                             border: 1px solid #fff;
                             margin-left:-110%;
                             display:inline-block;
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(10px);
+                            }
                         }
 
                         a:hover{
@@ -203,19 +215,18 @@ main {
                         .trend-info{
                             top:0;
                             @include transition(all 0.2s ease);
-
-                            h3{
+                            h3,p,a{
                                 margin-left:0;
+                            }
+                            h3{
                                 @include transition(margin-left 0.2s ease 0.2s);
                             }
 
                             p{
-                                margin-left:0;
                                 @include transition(margin-left 0.2s ease 0.3s);
                             }
 
                             a{
-                                margin-left:0;
                                 @include transition(margin-left 0.2s ease 0.5s,background-color 0.3s ease,color 0.3s ease);
                             }
                         }
@@ -235,6 +246,10 @@ main {
                     left:15px;
                     color:#fff;
                     text-decoration: underline;
+                    @include media("(min-width: 1200px)") {
+                        bottom: get-vw(15px);
+                        left:get-vw(15px);
+                    }
                 }
 
                 & > a:hover{
