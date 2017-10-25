@@ -22,7 +22,8 @@ $colorList: "nightlife" #f90000,
 "accomodation" #c683b8,
 "fitness" #fff100,
 "entertainment" #ffc72a;
-$cat-nightlife-color:#f90000;
+
+/*$cat-nightlife-color:#f90000;
 $cat-tourism-color:#35b8b2;
 $cat-shopping-color:#01acca;
 $cat-beauty-color:#e67cae;
@@ -30,7 +31,7 @@ $cat-dinning-color:#fcb062;
 $cat-services-color:#00a6ec;
 $cat-accomodation-color:#c683b8;
 $cat-fitness-color:#fff100;
-$cat-entertainment-color:#ffc72a;
+$cat-entertainment-color:#ffc72a;*/
 
 /*Mixins*/
 
@@ -156,27 +157,33 @@ body {
 
 /*Key Frames*/
 
+
+/*Pop elements in*/
+
 @include key-frame(pop-in) {
     0% {
-        transform:scale(0);
+        transform: scale(0);
     }
     50% {
-        transform:scale(1.4);
+        transform: scale(1.4);
     }
     100% {
-        transform:scale(1);
+        transform: scale(1);
     }
 }
 
+
+/*Pop elements out*/
+
 @include key-frame(pop-out) {
     0% {
-        transform:scale(1);
+        transform: scale(1);
     }
     50% {
-        transform:scale(1.4);
+        transform: scale(1.4);
     }
     100% {
-        transform:scale(0);
+        transform: scale(0);
     }
 }
 
@@ -200,22 +207,35 @@ body {
 
 .icon-best-spots-prev:before {
     content: "\e904";
-  }
-  .icon-best-spots-next:before {
+}
+
+.icon-best-spots-next:before {
     content: "\e905";
-  }
-  .icon-search:before {
+}
+
+.icon-search:before {
     content: "\e903";
-  }
-  .icon-social-facebook:before {
+}
+
+.icon-social-facebook:before {
     content: "\e900";
-  }
-  .icon-social-instagram:before {
+}
+
+.icon-social-instagram:before {
     content: "\e901";
-  }
-  .icon-social-twitter:before {
+}
+
+.icon-social-twitter:before {
     content: "\e902";
-  }
+}
+
+.icon-highlights-next:before {
+    content: "\e907";
+}
+
+.icon-highlights-prev:before {
+    content: "\e906";
+}
 
 
 /*General Declarations*/
@@ -360,9 +380,9 @@ a {
     margin: 50px 0;
     @include media("(min-width: 1200px)") {
         width: get-vw(400px);
-        height:get-vw(110px);
-        padding:get-vw(25px) 0;
-        margin:get-vw(50px) 0;
+        height: get-vw(110px);
+        padding: get-vw(25px) 0;
+        margin: get-vw(50px) 0;
     }
     h2 {
         text-transform: uppercase;
@@ -371,7 +391,7 @@ a {
         text-align: right;
         @include media("(min-width: 1200px)") {
             letter-spacing: get-vw(10px);
-            width:get-vw(500px);
+            width: get-vw(500px);
         }
     }
 }
@@ -436,13 +456,14 @@ a {
         margin-left: 150px;
         border-right: 2px solid #000;
         position: relative;
-        margin-top:-50px;
-        opacity:0;
-        @include transition(margin-top 0.3s ease,opacity 0.3s ease);
+        margin-top: -50px;
+        opacity: 0;
+        @include transition(margin-top 0.3s ease,
+        opacity 0.3s ease);
         @include media("(min-width: 1200px)") {
             margin-left: get-vw(150px);
             border-right-width: get-vw(2px);
-            margin-top:get-vw(-50px);
+            margin-top: get-vw(-50px);
         }
         span {
             position: absolute;
@@ -474,15 +495,14 @@ a {
             background-color: #000;
             border-radius: 100%;
             position: relative;
-            overflow: hidden;
-            //@include transform(scale(0));
+            overflow: hidden; //@include transform(scale(0));
             @include animation(pop-out 0.4s ease 0.4s);
             animation-fill-mode: forwards;
             @include media("(min-width: 1200px)") {
                 width: get-vw(40px);
                 height: get-vw(40px);
             }
-            &.init{
+            &.init {
                 @include transform(scale(0));
             }
             .fill {
@@ -564,7 +584,8 @@ a {
             line-height: 1em;
             opacity: 0;
             z-index: 100;
-            @include transition(left 70s linear,opacity 0.3s ease);
+            @include transition(left 70s linear,
+            opacity 0.3s ease);
             @include media("(min-width: 1200px)") {
                 left: get-vw(500px);
             }
@@ -662,11 +683,12 @@ a {
             @include transition(width 0.5s ease);
         }*/
         .popup-title {
-            margin-top:0;
-            opacity:1;
-            @include transition(margin-top 0.3s ease 1s,opacity 0.3s ease 1s);
+            margin-top: 0;
+            opacity: 1;
+            @include transition(margin-top 0.3s ease 1s,
+            opacity 0.3s ease 1s);
             @include media("(min-width: 1200px)") {
-                margin-top:get-vw(0px);
+                margin-top: get-vw(0px);
             }
         }
         .popup-header {
@@ -700,7 +722,8 @@ a {
             h2 {
                 left: 70px;
                 opacity: 0.1;
-                @include transition(left 70s linear,opacity 0.3s ease);
+                @include transition(left 70s linear,
+                opacity 0.3s ease);
                 @include media("(min-width: 1200px)") {
                     left: get-vw(70px);
                 }
@@ -718,8 +741,7 @@ a {
                     a,
                     a:visited {
                         @include animation(pop-in 0.4s ease 1.6s);
-                        animation-fill-mode: forwards;
-                        //@include transform(scale(1));
+                        animation-fill-mode: forwards; //@include transform(scale(1));
                         @include transition(background-color 0.3s ease);
                     }
                 }
@@ -750,11 +772,11 @@ header {
     .top-header,
     .bottom-header {
         padding-bottom: 10px;
-        padding-top:10px;
+        padding-top: 10px;
         box-sizing: border-box;
         @include media("(min-width: 1200px)") {
             padding-bottom: get-vw(10px);
-            padding-top:get-vw(10px);
+            padding-top: get-vw(10px);
         }
         ul {
             li {
@@ -773,7 +795,7 @@ header {
             margin-right: 50px;
             @include media("(min-width: 1200px)") {
                 width: get-vw(68px);
-                margin-right:get-vw(50px);
+                margin-right: get-vw(50px);
             }
             img {
                 width: 100%;
@@ -781,7 +803,7 @@ header {
         }
         .main-nav {
             ul {
-                margin-top:15px;
+                margin-top: 15px;
                 @include media("(min-width: 1200px)") {
                     margin-top: get-vw(15px);
                 }
@@ -848,9 +870,9 @@ header {
                         transition: clip .3s;
                         @include media("(min-width: 1200px)") {
                             top: get-vw(-5px);
-                            left:get-vw(-5px);
-                            padding:get-vw(-5px);
-                            clip:rect(0,0,get-vw(200px),0);
+                            left: get-vw(-5px);
+                            padding: get-vw(5px);
+                            clip: rect(0, 0, get-vw(200px), 0);
                         }
                     }
                     &:hover {
@@ -858,7 +880,7 @@ header {
                             clip: rect(0px, 200px, 200px, 0);
                             transition: all 1s;
                             @include media("(min-width: 1200px)") {
-                                clip: rect(0,get-vw(200px),get-vw(200px),0);
+                                clip: rect(0, get-vw(200px), get-vw(200px), 0);
                             }
                         }
                     }
@@ -928,8 +950,8 @@ footer {
                             transition: clip .3s;
                             @include media("(min-width: 1200px)") {
                                 left: get-vw(-5px);
-                                padding:0 get-vw(5px);
-                                clip:rect(0,0,get-vw(200px),0);
+                                padding: 0 get-vw(5px);
+                                clip: rect(0, 0, get-vw(200px), 0);
                             }
                         }
                         &:hover {
@@ -937,7 +959,7 @@ footer {
                                 clip: rect(0px, 200px, 200px, 0);
                                 transition: all 1s;
                                 @include media("(min-width: 1200px)") {
-                                    clip: rect(0,get-vw(200px),get-vw(200px),0);
+                                    clip: rect(0, get-vw(200px), get-vw(200px), 0);
                                 }
                             }
                         }
@@ -971,7 +993,7 @@ footer {
                 margin: 0 5px;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(10px);
-                    margin:0 get-vw(5px);
+                    margin: 0 get-vw(5px);
                 }
                 &:last-child {
                     margin-right: 0;
