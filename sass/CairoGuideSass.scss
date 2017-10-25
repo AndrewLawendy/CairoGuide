@@ -41,7 +41,7 @@ main {
                         top: 210px;
                         width: 405px;
                         height: 110px;
-                        transform: translateX(0);
+                        @include transform(translateX(0));
                         .section-title {
                             background-color: #fcb062;
                             margin-bottom: 5px;
@@ -63,41 +63,55 @@ main {
                 }
             }
         }
-        .carousel-indexes {
-            width: 100%;
-            height: 15px;
+        .carousel-indexes-container {
+            height: 100%;
             text-align: center;
             position: absolute;
-            bottom: 35px;
-            div {
-                display: inline-block;
-                margin: 0 7px;
-                width: 15px;
-                height: 15px;
-                background: #000;
-                border-radius: 100%;
-                border: 1px solid #fff;
-                cursor: pointer;
-                position: relative;
-                &::after {
-                    content: '';
+            top:0;
+            right: 0;
+            display: table;
+            padding: 0 15px 0 30px;
+            @include linear-gradient(left,#fff,0,0,#131313,1,100);
+            .carousel-indexes {
+                display: table-cell;
+                vertical-align: middle;
+                div {
+                    margin: 7px;
                     width: 15px;
                     height: 15px;
-                    background: #fff;
-                    border-color: #000;
-                    border-radius: 100%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    transform: scale(0);
-                    transition: transform .3s;
+                    border-bottom: 1px solid #fff;
+                    cursor: pointer;
+                    position: relative;
+                    color: #fff;
+                    padding:6px 0 11px;
+                    opacity: .5;
+                    @include transition(all .3s);
+                    @include transform(scale(1));
+                    &.selected,&:hover{
+                        opacity: 1;
+                        @include transform(scale(1.3));
+                        @include transition(all .3s);
+                    }
+                    &:last-child{
+                        border: none;
+                    }
                 }
             }
-            div.selected {
-                &::after {
-                    transform: scale(1.1);
-                    transition: transform .3s;
-                }
+        }
+        .carousel-controls{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: right;
+            p{
+                padding: 5px 10px;
+                background: #131313;
+                color:#fff;
+                font-size: 1.2em;
+                float: right;
+                cursor: pointer;
+                margin-right: 10px;
+                margin-bottom: 10px;
             }
         }
     }
@@ -121,7 +135,7 @@ main {
                 overflow: hidden;
                 height: 100%;
                 img {
-                    transform: scale(1);
+                    @include transform(scale(1));
                     @include transition(transform 0s linear 1s);
                 }
                 &.offers-item {
@@ -205,7 +219,7 @@ main {
                     }
                     &.active {
                         img {
-                            transform: scale(1.05);
+                            @include transform(scale(1.05));
                             @include transition(transform 6s linear);
                         }
                     }
@@ -239,19 +253,17 @@ main {
                 height: 100%;
                 overflow: hidden;
                 position: relative;
-                transform: skewX(-30deg);
-                transition: all .5s ease-in-out;
-                transition-delay: .3s;
+                @include transform(skewX(-30deg));
+                @include transition(all .5s ease-in-out .3s);
                 a {
                     display: block;
-                    transform: skew(30deg);
+                    @include transform(skew(30deg));
                     width: 100%;
                     height: 100%;
                 }
                 img {
                     position: relative;
-                    transition: all .5s;
-                    transition-delay: .5s;
+                    @include transition(all .5s ease .5s);
                 }
                 h2 {
                     font: 7.857em Lato-Black;
@@ -260,13 +272,13 @@ main {
                     text-transform: uppercase;
                     width: 100%;
                     text-align: center;
-                    transform: translateY(0);
-                    transition: all 3s;
+                    @include transform(translateY(0));
+                    @include transition(all 3s);
                 }
             }
             .selected,
             .shadow {
-                transition: all .1s ease-in-out;
+                @include transition(all .1s ease-in-out);
             }
             .wtd-today {
                 width: calc(33% + 112px);
@@ -274,7 +286,7 @@ main {
                 img {
                     top: -860px;
                     left: 160px;
-                    transform: scale(1.2);
+                    @include transform(scale(1.2));
                 }
                 h2 {
                     top: 110px;
@@ -284,11 +296,11 @@ main {
                     width: 70%;
                     img {
                         left: 70px;
-                        transition: all .3s;
+                        @include transition(all .3s);
                     }
                     h2 {
-                        transform: translate(-25%, 100%);
-                        transition: all 50s;
+                        @include transform(translate(-25%, 100%));
+                        @include transition(all 50s);
                     }
                 }
                 &.shadow {
@@ -300,7 +312,7 @@ main {
                 img {
                     top: -415px;
                     left: -575px;
-                    transform: scale(.7);
+                    @include transform(scale(.7));
                 }
                 h2 {
                     top: 215px;
@@ -309,11 +321,11 @@ main {
                     width: 55%;
                     img {
                         left: -425px;
-                        transition: all .3s;
+                        @include transition(all .3s)
                     }
                     h2 {
-                        transform: translate(25%, -100%);
-                        transition: all 50s;
+                        @include transform(translate(25%, -100%));
+                        @include transition(all 50s);
                     }
                 }
                 &.shadow {
@@ -326,7 +338,7 @@ main {
                 img {
                     top: -218px;
                     left: -375px;
-                    transform: scale(1.1);
+                    @include transform(scale(1.1));
                 }
                 h2 {
                     top: 110px;
@@ -336,11 +348,11 @@ main {
                     margin-right: -50%;
                     img {
                         left: -60px;
-                        transition: all .3s;
+                        @include transition(all .3s);
                     }
                     h2 {
-                        transform: translate(25%, 100%);
-                        transition: all 50s;
+                        @include transform(translate(25%, 100%));
+                        @include transition(all 50s);
                     }
                 }
                 &.shadow {
@@ -354,7 +366,7 @@ main {
     #best-spots {
         margin-right: -30px;
         position: relative;
-        .section-title{
+        .section-title {
             position: relative;
             z-index: 4;
         }
@@ -364,17 +376,17 @@ main {
             width: 100%;
             height: 662px;
             margin-top: -160px;
-            .best-frame{
+            .best-frame-container {
                 opacity: 0;
-                .best-image-frame{
+                .best-image-frame {
                     width: 350px;
                     height: 350px;
                     border-radius: 20px;
                     overflow: hidden;
                     position: absolute;
                     cursor: pointer;
-                    transform: rotate(45deg);
-                    transition: all .3s ease;
+                    @include transform(rotate(45deg));
+                    @include transition(all .3s ease);
                     z-index: 3;
                     img {
                         height: 100%;
@@ -388,34 +400,34 @@ main {
                         width: 100%;
                         height: 100%;
                         opacity: 1;
-                        transition: all .5s;
+                        @include transition(all .5s);
                         p {
                             color: #fff;
                             position: absolute;
                             font: 5.14em "Lato-Black";
                             white-space: nowrap;
                             text-transform: uppercase;
-                            transition: all 3s;
+                            @include transition(all 3s);
                         }
                     }
                     &.active {
-                        transition: all .5s ease;
+                        @include transition(all .5s ease);
                         .item-bg {
                             opacity: 0;
-                            transition: all .15s;
+                            @include transition(all .15s);
                         }
                     }
                     &:nth-of-type(1) {
                         top: -195px;
                         right: 100px;
                         img {
-                            transform: rotate(-45deg) scale(1.4);
+                            @include transform(rotate(-45deg) scale(1.4));
                             top: -45px;
                             left: -25px;
                         }
                         .item-bg {
                             p {
-                                transform: rotate(-45deg) translateY(0);
+                                @include transform(rotate(-45deg) translateY(0));
                                 right: -40px;
                                 bottom: 50px;
                             }
@@ -423,8 +435,8 @@ main {
                         &:hover {
                             .item-bg {
                                 p {
-                                    transform: rotate(-45deg) translateY(-30%);
-                                    transition: all 2s;
+                                    @include transform(rotate(-45deg) translateY(-30%));
+                                    @include transition(all 2s);
                                 }
                             }
                         }
@@ -436,7 +448,7 @@ main {
                         }
                         &.shadow {
                             right: 515px;
-                            transition: all .5s ease;
+                            @include transition(all .5s ease);                            
                         }
                     }
                     &:nth-of-type(2) {
@@ -445,11 +457,11 @@ main {
                         width: 440px;
                         height: 430px;
                         img {
-                            transform: rotate(-45deg) scale(1.3);
+                            @include transform(rotate(-45deg) scale(1.3));
                         }
                         .item-bg {
                             p {
-                                transform: rotate(-45deg) translateX(0);
+                                @include transform(rotate(-45deg) translateX(0));
                                 top: 50px;
                                 left: -85px;
                             }
@@ -457,8 +469,8 @@ main {
                         &:hover {
                             .item-bg {
                                 p {
-                                    transform: rotate(-45deg) translateX(-75%);
-                                    transition: all 4s;
+                                    @include transform(rotate(-45deg) translateX(-75%));
+                                    @include transition(all 4s);
                                 }
                             }
                         }
@@ -474,13 +486,13 @@ main {
                         width: 450px;
                         height: 450px;
                         img {
-                            transform: rotate(-45deg) scale(1.2);
+                            @include transform(rotate(-45deg) scale(1.2));
                             top: -95px;
                             left: -220px;
                         }
                         .item-bg {
                             p {
-                                transform: rotate(-45deg) translateY(0);
+                                @include transform(rotate(-45deg) translateY(0));
                                 top: 125px;
                                 right: -5px;
                             }
@@ -488,8 +500,8 @@ main {
                         &:hover {
                             .item-bg {
                                 p {
-                                    transform: rotate(-45deg) translateY(30%);
-                                    transition: all 2s;
+                                    @include transform(rotate(-45deg) translateY(30%));
+                                    @include transition(all 2s);
                                 }
                             }
                         }
@@ -501,7 +513,7 @@ main {
                         }
                         &.shadow {
                             right: 515px;
-                            transition: all .5s ease;
+                            @include transition(all .5s ease);
                         }
                     }
                 }
@@ -512,30 +524,29 @@ main {
                     font-size: 13.57em;
                     opacity: 0;
                     padding-left: 150px;
-                    transition: all .3s;
-                    transform: translateX(50%);
+                    @include transition(all .3s);
+                    @include transform(translateX(50%));
                     z-index: 2;
                     &.active {
-                        transform: translateX(0);
+                        @include transform(translateX(0));
                         opacity: .1;
-                        transition: all .5s;
+                        @include transition(all .5s);
                     }
                 }
-                .best-description-frame{
+                .best-description-frame {
                     position: absolute;
                     top: 0;
                     left: 0;
                     padding-top: 218px;
                     width: 600px;
                     opacity: 0;
-                    transition: all .3s;
-                    transform: translateX(50%);
+                    @include transition(all .3s);
+                    @include transform(translateX(50%));
                     z-index: 1;
                     &.active {
-                        transition-delay: .5s;
-                        transform: translateX(0);
+                        @include transform(translateX(0));
                         opacity: 1;
-                        transition: all .8s ease;
+                        @include transition(all .8s ease .5s);
                     }
                 }
                 &.next-leaving {
@@ -547,13 +558,13 @@ main {
                     }
                     .best-image-frame:nth-child(3) {
                         right: 150%;
-                        transition: all 2.1s ease;
+                        @include transition(all 2.1s ease);
                     }
                 }
                 &.prev-leaving {
                     .best-image-frame:first-child {
                         right: 150%;
-                        transition: all 2.1s ease;
+                        @include transition(all 2.1s ease);
                     }
                     .best-image-frame:nth-child(2) {
                         animation: bestPrevLeavingTwo 2.8s;
@@ -562,7 +573,7 @@ main {
                         animation: bestPrevLeavingThree 2.3s;
                     }
                 }
-                &.active{
+                &.active {
                     opacity: 1;
                 }
             }
@@ -585,8 +596,8 @@ main {
                         font-size: 2.6em;
                         &::before {
                             display: block;
-                            transform: rotate(0);
-                            transition: all .3s;
+                            @include transform(rotate(0));
+                            @include transition(all .3s);
                         }
                     }
                     span {
@@ -595,35 +606,35 @@ main {
                     &.best-previous {
                         &:hover {
                             i::before {
-                                transform: rotate(-45deg);
-                                transition: all .3s;
+                                @include transform(rotate(-45deg));
+                                @include transition(all .3s);
                             }
                         }
                         &:active {
                             i::before {
-                                transform: rotate(-400deg);
-                                transition: all .3s;
+                                @include transform(rotate(-400deg));
+                                @include transition(all .3s);
                             }
                         }
                     }
                     &.best-next {
                         &:hover {
                             i::before {
-                                transform: rotate(45deg);
-                                transition: all .3s;
+                                @include transform(rotate(45deg));
+                                @include transition(all .3s);
                             }
                         }
                         &:active {
                             i::before {
-                                transform: rotate(400deg);
-                                transition: all .3s;
+                                @include transform(rotate(400deg));
+                                @include transition(all .3s);
                             }
                         }
                     }
                     &.last {
                         opacity: 0.3;
                         cursor: not-allowed;
-                        transition: all .15s;
+                        @include transition(all .15s);
                     }
                 }
             }
@@ -684,7 +695,7 @@ main {
         img {
             width: 100%;
             height: auto;
-            transform: translateY(-30%);
+            @include transform(translateY(-30%));
             position: absolute;
             opacity: 0;
             @include transition(opacity 0.5s ease 0.3s);
@@ -734,7 +745,7 @@ main {
                     position: absolute;
                     top: -20px;
                     left: -1px;
-                    transform: rotate(-8deg) skewX(-11deg);
+                    @include transform(rotate(-8deg) skewX(-11deg));
                     transform-origin: top right;
                 }
             }
