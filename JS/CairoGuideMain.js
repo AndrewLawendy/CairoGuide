@@ -145,7 +145,7 @@ $(document).ready(function () {
         fullScroll = $('#main-carousel .carousel-item:first-child').width();
         $('#main-carousel .carousel-container').scrollLeft(fullScroll);
         for (var i = 0; i < carouselItemCount - 2; i++) {
-            $('#main-carousel .carousel-indexes').append('<div></div>');
+            $('#main-carousel .carousel-indexes').append('<div>' + (i + 1) + '</div>');
         }
         $('#main-carousel .carousel-indexes div:first').addClass('selected');
         $('#main-carousel .carousel-container').on('mousedown', function (e) {
@@ -194,10 +194,10 @@ $(document).ready(function () {
             }
             var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
             fullScroll = $('#main-carousel .carousel-item:first-child').width();
-            activeScrollItem.find('.carousel-data').animate({
+            activeScrollItem.find('.carousel-data').stop().animate({
                 left: '-650'
             }, 800);
-            activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').animate({
+            activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                 left: 30
             }, 1000);
             $('.carousel-container').stop().animate({
@@ -223,12 +223,14 @@ $(document).ready(function () {
             }
             var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
             fullScroll = $('#main-carousel .carousel-item:first-child').width();
-            activeScrollItem.find('.carousel-data').animate({
+            activeScrollItem.find('.carousel-data').stop().animate({
                 left: fullScroll
             }, 1000);
-            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).animate({
-                left: 30
-            }, 800);
+            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                $(this).stop().animate({
+                    left: 30
+                }, 800);
+            })
             $('#main-carousel .carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
             }, 1000, function () {
@@ -244,33 +246,46 @@ $(document).ready(function () {
             activeItemIndex--;
         }
 
-        $('#next').on('click', moveNext);
+        $('#main-carousel .carousel-controls .next').on('click', moveNext);
 
-        $('#previous').on('click', movePrevious);
+        $('#main-carousel .carousel-controls .previous').on('click', movePrevious);
 
         $('#main-carousel .carousel-indexes div').on('click', function () {
             var indexValue = $(this).index() + 2;
+            if (indexValue == activeItemIndex)
+                return;
             var fullScroll = $('#main-carousel .carousel-item:first-child').width();
             var targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
             var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+            var newActiveScrollItem = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')');
+            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
             $('#main-carousel .carousel-indexes div').removeClass('selected');
             $(this).addClass('selected');
-            if (indexValue == carouselItemCount - 1 && activeItemIndex == 1) {
+            if (activeItemIndex == 1) {
                 $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                return;
-            } else if (indexValue == 2 && activeItemIndex == carouselItemCount) {
+                actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+            } else if (activeItemIndex == carouselItemCount) {
                 $('#main-carousel .carousel-container').scrollLeft(fullScroll);
-                return;
+                actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+            }
+            if (indexValue > activeItemIndex) {
+                activeScrollItem.find('.carousel-data').stop().animate({
+                    left: '-650'
+                }, 800);
+                newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
+                    left: 30
+                }, 1000);
             } else {
-                if (activeItemIndex == 1) {
-                    $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-                } else if (activeItemIndex == carouselItemCount) {
-                    $('#main-carousel .carousel-container').scrollLeft(fullScroll);
-                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-                }
+                activeScrollItem.find('.carousel-data').stop().animate({
+                    left: fullScroll
+                }, 1000);
+                newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                    $(this).stop().animate({
+                        left: 30
+                    }, 800);
+                })
             }
             $('#main-carousel .carousel-container').stop().animate({
                 scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
@@ -304,38 +319,38 @@ $(document).ready(function () {
     //End of What to Do
 
     //Start of Best Spots
-    var actualFrameIndex = 0;
-    $('#best-spots .best-spots-image-container .image-container:first').addClass('active');
-    $('.best-spots-details .section-frame-content:first').find('.text-area').eq(0).addClass('active');
-    $('.title-bg .section-frame-title:first').find('h2').eq(0).addClass('active');
-    $('.section-frame-images:first').addClass('active');
-    $('#best-spots .best-spots-image-container .image-container').on('click', function () {
-        var bestContentFrame = $('.section-frame-content').index();
+    var actualFrameIndex = 1;
+    $('#best-spots .best-frame-container:first').addClass('active');
+    $('#best-spots .best-frame-container:first .best-image-frame:first').addClass('active');
+    $('#best-spots .best-frame-container:first h2:first').addClass('active');
+    $('#best-spots .best-frame-container:first .best-description-frame:first').addClass('active');
+    $('#best-spots .best-frame-container .best-image-frame').on('click', function () {
+        var bestContentFrame = $('.best-frame').index();
         var bestIndex = $(this).index();
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
+        $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame-container h2').removeClass('active');
         if (bestIndex == 1)
             $(this).siblings().addClass('shadow');
         $(this).addClass('active');
-        $('.best-spots-details .section-frame-content').eq(bestContentFrame).find('.text-area').eq(bestIndex).addClass('active');
-        $('.title-bg .section-frame-title').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame-container').eq(bestContentFrame).find('.best-description-frame').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame-container').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
     });
     $('.best-controls .best-previous').on('click', function () {
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
-        $('.section-frame-images').eq(actualFrameIndex).addClass('prev-leaving').delay(2300).queue(function () {
+        $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame-container h2').removeClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('prev-leaving').delay(2200).queue(function () {
             $(this).removeClass('active prev-leaving');
         });
         actualFrameIndex--;
     });
     $('.best-controls .best-next').on('click', function () {
-        $('.best-spots-image-container .image-container').removeClass('active shadow');
-        $('.best-spots-details .text-area').removeClass('active')
-        $('.title-bg .section-frame-title h2').removeClass('active');
-        $('.section-frame-images').eq(actualFrameIndex).addClass('next-leaving').delay(2300).queue(function () {
-            $(this).removeClass('active next-leaving');
+        $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
+        $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
+        $('#best-spots .best-frame-container h2').removeClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('next-leaving').delay(2200).queue(function () {
+            $(this).removeClass('active prev-leaving');
         });
         actualFrameIndex++;
     });
@@ -378,7 +393,7 @@ $(document).ready(function () {
                 var scrollRemaining = fullScroll - (Math.abs(carouselPosDiff) % fullScroll);
                 if (Math.abs(carouselPosDiff) > 50) {
                     if (carouselPosDiff > 0) {
-                        $('#main-carousel .carousel-container').animate({
+                        $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                         }, 600);
                         var controlsIndex = activeItemIndex;
@@ -389,10 +404,10 @@ $(document).ready(function () {
                         $('#main-carousel .carousel-indexes div:nth-child(' + (controlsIndex + 1) + ')').addClass('selected');
                         activeItemIndex += 2;
                     } else {
-                        $('#main-carousel .carousel-container').animate({
+                        $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
                         }, 600);
-                        carouselItemTarget.find('.carousel-data').animate({
+                        carouselItemTarget.find('.carousel-data').stop().animate({
                             left: (fullScroll * 3) / 4
                         }, 600);
                         activeItemIndex = carouselItemTarget.index() + 1;
@@ -406,13 +421,13 @@ $(document).ready(function () {
                     }
 
                 } else {
-                    $('#main-carousel .carousel-container').animate({
+                    $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
                     });
                 }
                 carouselPosDiff = undefined;
                 entered = false;
-                $('#main-carousel .carousel-data').animate({
+                $('#main-carousel .carousel-data').stop().animate({
                     left: 30
                 }, 800);
             }

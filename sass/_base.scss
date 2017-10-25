@@ -91,6 +91,12 @@ $cat-entertainment-color:#ffc72a;*/
     }
 }
 
+@mixin linear-gradient($direction, $first-color,$first-opacity,$start-position,$last-color,$last-opacity,$end-position){
+    background: -moz-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position, rgba($last-color,$last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position,rgba($last-color,$last-opacity) ($end-position*1%));  
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color,$first-opacity) 0%,rgba($last-color,$last-opacity) ($end-position*1%));
+    }
+
 
 /*Functions*/
 
@@ -111,6 +117,21 @@ $cat-entertainment-color:#ffc72a;*/
 
 @function get-vw($value) {
     @return (($value * 100) / 1200px) * 1vw;
+}
+
+@function opposite-direction($directions) {
+    $opposite-directions: ();
+    $direction-map: ( 'top': 'bottom', 'right': 'left', 'bottom': 'top', 'left': 'right', 'center': 'center', 'ltr': 'rtl', 'rtl': 'ltr');
+    @each $direction in $directions {
+        $direction: to-lower-case($direction);
+        @if map-has-key($direction-map, $direction) {
+            $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
+        }
+        @else {
+            @warn "No opposite direction can be found for `#{$direction}`. Direction omitted.";
+        }
+    }
+    @return $opposite-directions;
 }
 
 
@@ -205,7 +226,19 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-best-spots-prev:before {
+.icon-down-chevron:before {
+    content: "\e906";
+  }
+  .icon-left-chevron:before {
+    content: "\e907";
+  }
+  .icon-right-chevron:before {
+    content: "\e908";
+  }
+  .icon-up-chevron:before {
+    content: "\e909";
+  }
+  .icon-best-spots-prev:before {
     content: "\e904";
 }
 
