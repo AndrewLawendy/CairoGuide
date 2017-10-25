@@ -1,5 +1,8 @@
 /*Variable Declaration*/
+
+
 /*Main Colors*/
+
 $header-footer-primary-background-color:#131313;
 $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
@@ -9,8 +12,8 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 
 /*Category Colors*/
-$colorList:
-"nightlife" #f90000,
+
+$colorList: "nightlife" #f90000,
 "tourism" #35b8b2,
 "shopping" #01acca,
 "beauty" #e67cae,
@@ -18,9 +21,7 @@ $colorList:
 "services" #00a6ec,
 "accomodation" #c683b8,
 "fitness" #fff100,
-"entertainment" #ffc72a
-;
-
+"entertainment" #ffc72a;
 $cat-nightlife-color:#f90000;
 $cat-tourism-color:#35b8b2;
 $cat-shopping-color:#01acca;
@@ -37,31 +38,53 @@ $cat-entertainment-color:#ffc72a;
     #{$prop}: $color;
 }
 
-@mixin transition($transition...){
-    -webkit-transition:$transition;
-    -moz-transition:$transition;
-    -ms-transition:$transition;
-    -o-transition:$transition;
-    transition:$transition;
+@mixin transition($transition...) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
 }
 
-@mixin transform($transform...){
-    -webkit-transform:$transform;
-    -moz-transform:$transform;
-    -ms-transform:$transform;
-    -o-transform:$transform;
-    transform:$transform;
+@mixin transform($transform...) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
 }
+
+@mixin linear-gradient($direction, $first-color,$first-opacity,$start-position,$last-color,$last-opacity,$end-position){
+    background: -moz-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position, rgba($last-color,$last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position,rgba($last-color,$last-opacity) ($end-position*1%));  
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color,$first-opacity) 0%,rgba($last-color,$last-opacity) ($end-position*1%));
+    }
+
 
 /*Functions*/
+
 @each $i in $colorList {
-.#{nth($i,1)}-text {
-     color: nth($i,2);
+    .#{nth($i,1)}-text {
+        color: nth($i, 2);
+    }
+    .#{nth($i,1)}-bg {
+        background-color: nth($i, 2);
+    }
 }
 
-.#{nth($i,1)}-bg {
-    background-color: nth($i,2);
-}
+@function opposite-direction($directions) {
+    $opposite-directions: ();
+    $direction-map: ( 'top': 'bottom', 'right': 'left', 'bottom': 'top', 'left': 'right', 'center': 'center', 'ltr': 'rtl', 'rtl': 'ltr');
+    @each $direction in $directions {
+        $direction: to-lower-case($direction);
+        @if map-has-key($direction-map, $direction) {
+            $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
+        }
+        @else {
+            @warn "No opposite direction can be found for `#{$direction}`. Direction omitted.";
+        }
+    }
+    @return $opposite-directions;
 }
 
 
@@ -117,7 +140,19 @@ $cat-entertainment-color:#ffc72a;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-best-spots-prev:before {
+.icon-down-chevron:before {
+    content: "\e906";
+  }
+  .icon-left-chevron:before {
+    content: "\e907";
+  }
+  .icon-right-chevron:before {
+    content: "\e908";
+  }
+  .icon-up-chevron:before {
+    content: "\e909";
+  }
+  .icon-best-spots-prev:before {
     content: "\e904";
   }
   .icon-best-spots-next:before {
@@ -225,8 +260,8 @@ a {
     display: block;
 }
 
-.display-none{
-    display:none;
+.display-none {
+    display: none;
 }
 
 .float-left {
@@ -279,8 +314,10 @@ a {
     $logo-green);
 }
 
+
 /*Popup Base*/
-.popup-base{
+
+.popup-base {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -290,9 +327,8 @@ a {
     z-index: 200;
     padding: 50px 30px;
     box-sizing: border-box;
-    display:none;
-
-    .close-btn{
+    display: none;
+    .close-btn {
         width: 40px;
         height: 40px;
         display: inline-block;
@@ -301,8 +337,8 @@ a {
         position: relative;
         overflow: hidden;
         @include transform(rotate(66deg));
-    
-        &:before,&:after{
+        &:before,
+        &:after {
             content: '';
             position: absolute;
             height: 50%;
@@ -310,21 +346,18 @@ a {
             background-color: #000;
             left: 0;
         }
-    
-        &:after{
+        &:after {
             bottom: 0;
-            clip: rect(0,0px,20px,0);
+            clip: rect(0, 0px, 20px, 0);
             @include transform(rotate(180deg));
             @include transition(clip 0.2s ease 0.6s);
         }
-    
-        &:before{
+        &:before {
             top: 0;
-            clip: rect(0,0px,20px,0);
+            clip: rect(0, 0px, 20px, 0);
             @include transition(clip 0.2s ease 0.4s);
         }
-    
-        .fill{
+        .fill {
             width: 38px;
             height: 38px;
             margin-top: 1px;
@@ -334,8 +367,8 @@ a {
             position: relative;
             z-index: 100;
             @include transform(rotate(-66deg));
-    
-            &:before,&:after{
+            &:before,
+            &:after {
                 content: '';
                 display: block;
                 width: 2px;
@@ -346,59 +379,47 @@ a {
                 right: 0;
                 margin: 4px auto;
             }
-    
-            &:before{
+            &:before {
                 @include transform(rotate(-45deg));
                 @include transition(height 0.2s ease 0.2s);
             }
-    
-            &:after{
+            &:after {
                 @include transform(rotate(45deg));
                 outline: 2px solid #fff;
                 @include transition(height 0.2s ease);
             }
         }
-    
-        &/*:hover*/{
-            &:before{
-                clip: rect(0,33px,20px,0);
+        &/*:hover*/
+        {
+            &:before {
+                clip: rect(0, 33px, 20px, 0);
                 @include transition(clip 0.2s linear 0.2s);
             }
-        
-            &:after{
-                clip: rect(0,40px,20px,0);
+            &:after {
+                clip: rect(0, 40px, 20px, 0);
                 @include transition(clip 0.2s ease);
             }
-    
-            .fill{
-                &:before{
+            .fill {
+                &:before {
                     height: 30px;
                     @include transition(height 0.2s ease 0.4s);
                 }
-        
-                &:after{
+                &:after {
                     height: 30px;
                     @include transition(height 0.2s ease 0.6s);
-                }   
+                }
             }
         }
-    }   
-    
-    .popup-logo-wrp{
-        margin-left:280px;
-
-        img{
-            width:68px;
-            display:inline-block;
-            margin-right:20px;
+    }
+    .popup-logo-wrp {
+        margin-left: 280px;
+        img {
+            width: 68px;
+            display: inline-block;
+            margin-right: 20px;
         }
     }
 }
-
-
-
-
-
 
 
 /*Header*/
@@ -419,7 +440,6 @@ header {
             margin-right: 0!important;
         }
     }
-
     .top-header,
     .bottom-header {
         padding-top: 10px;
@@ -447,11 +467,11 @@ header {
             ul {
                 a,
                 a:visited {
-                    opacity:1;
+                    opacity: 1;
                     @include transition(all 0.3s ease);
                 }
-                a:hover{
-                    opacity:0.6;
+                a:hover {
+                    opacity: 0.6;
                     @include transition(all 0.3s ease);
                 }
                 &.header-account-menu {
@@ -510,6 +530,7 @@ header {
         }
     }
 }
+
 
 /*Footer*/
 
