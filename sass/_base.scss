@@ -33,6 +33,7 @@ $cat-accomodation-color:#c683b8;
 $cat-fitness-color:#fff100;
 $cat-entertainment-color:#ffc72a;*/
 
+
 /*Mixins*/
 
 @mixin apply-color($prop, $color) {
@@ -91,11 +92,11 @@ $cat-entertainment-color:#ffc72a;*/
     }
 }
 
-@mixin linear-gradient($direction, $first-color,$first-opacity,$start-position,$last-color,$last-opacity,$end-position){
-    background: -moz-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position, rgba($last-color,$last-opacity) ($end-position*1%));
-    background: -webkit-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position,rgba($last-color,$last-opacity) ($end-position*1%));  
-    background: linear-gradient(to opposite-direction($direction), rgba($first-color,$first-opacity) 0%,rgba($last-color,$last-opacity) ($end-position*1%));
-    }
+@mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
+    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) 0%, rgba($last-color, $last-opacity) ($end-position*1%));
+}
 
 
 /*Functions*/
@@ -228,17 +229,21 @@ body {
 
 .icon-down-chevron:before {
     content: "\e906";
-  }
-  .icon-left-chevron:before {
+}
+
+.icon-left-chevron:before {
     content: "\e907";
-  }
-  .icon-right-chevron:before {
+}
+
+.icon-right-chevron:before {
     content: "\e908";
-  }
-  .icon-up-chevron:before {
+}
+
+.icon-up-chevron:before {
     content: "\e909";
-  }
-  .icon-best-spots-prev:before {
+}
+
+.icon-best-spots-prev:before {
     content: "\e904";
 }
 

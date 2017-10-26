@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     $(document).on({
         'mousemove': function (e) {
-            console.log('clicked = '+clicked+', clickX = '+clickX+', e.pageX = '+e.pageX);
+            //console.log('clicked = ' + clicked + ', clickX = ' + clickX + ', e.pageX = ' + e.pageX);
             if (clicked) {
                 //DragHighlights(highlightsItemWidth, clickX, e.pageX);
             }

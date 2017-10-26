@@ -67,11 +67,11 @@ main {
             height: 100%;
             text-align: center;
             position: absolute;
-            top:0;
+            top: 0;
             right: 0;
             display: table;
             padding: 0 15px 0 30px;
-            @include linear-gradient(left,#fff,0,0,#131313,1,100);
+            @include linear-gradient(left, #fff, 0, 0, #131313, 1, 100);
             .carousel-indexes {
                 display: table-cell;
                 vertical-align: middle;
@@ -83,30 +83,31 @@ main {
                     cursor: pointer;
                     position: relative;
                     color: #fff;
-                    padding:6px 0 11px;
+                    padding: 6px 0 11px;
                     opacity: .5;
                     @include transition(all .3s);
                     @include transform(scale(1));
-                    &.selected,&:hover{
+                    &.selected,
+                    &:hover {
                         opacity: 1;
                         @include transform(scale(1.3));
                         @include transition(all .3s);
                     }
-                    &:last-child{
+                    &:last-child {
                         border: none;
                     }
                 }
             }
         }
-        .carousel-controls{
+        .carousel-controls {
             position: absolute;
             bottom: 0;
             width: 100%;
             text-align: right;
-            p{
+            p {
                 padding: 5px 10px;
                 background: #131313;
-                color:#fff;
+                color: #fff;
                 font-size: 1.2em;
                 float: right;
                 cursor: pointer;
@@ -389,7 +390,7 @@ main {
             overflow: hidden;
             .highlights-wrp {
                 width: 500vw;
-                margin-left:0;
+                margin-left: 0;
                 @include transition(margin-left 0.3s ease);
                 .hightlights-item {
                     position: relative;
@@ -416,14 +417,12 @@ main {
                             -moz-user-select: none;
                             -ms-user-select: none;
                             user-select: none;
-                            
-                            user-drag: none; 
+                            user-drag: none;
                             user-select: none;
                             -moz-user-select: none;
                             -webkit-user-drag: none;
                             -webkit-user-select: none;
                             -ms-user-select: none;
-
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
@@ -450,14 +449,12 @@ main {
                                 -moz-user-select: none;
                                 -ms-user-select: none;
                                 user-select: none;
-
-                                user-drag: none; 
+                                user-drag: none;
                                 user-select: none;
                                 -moz-user-select: none;
                                 -webkit-user-drag: none;
                                 -webkit-user-select: none;
                                 -ms-user-select: none;
-
                                 font: 1.5em "Lato-Light";
                                 color: #fff;
                                 text-transform: uppercase; //white-space: nowrap;
@@ -543,6 +540,141 @@ main {
                         @include media("(min-width: 1200px)") {
                             margin-left: get-vw(-20px);
                         }
+                    }
+                }
+            }
+        }
+    }
+    /*Latest News*/
+    #latest-news {
+        .news-item {
+            width: get-vw(((1200px - 60px) / 4) - 20px);
+            height: get-vw(((1200px - 60px) / 4) - 20px);
+            margin: get-vw(10px);
+            float: left;
+            position: relative;
+            overflow: hidden;
+            &.wide-news-item {
+                width: get-vw(((1200px - 60px) / 2) - 20px);
+            }
+            &:nth-child(3n-2) {
+                margin-left: 0;
+                clear: left;
+            }
+            &:nth-child(3n) {
+                margin-right: 0;
+                clear: right;
+            }
+            &:nth-child(even) {
+                .news-info:before {
+                    border-right: 50px solid transparent;
+                    border-left: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
+                    @include media("(min-width: 1200px)") {
+                        border-right-width: get-vw(50px);
+                    }
+                }
+                &.wide-news-item .news-info:before {
+                    border-right: 100px solid transparent;
+                    border-left: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
+                    @include media("(min-width: 1200px)") {
+                        border-right-width: get-vw(100px);
+                    }
+                }
+            }
+            &:nth-child(odd) {
+                .news-info:before {
+                    border-left: 50px solid transparent;
+                    border-right: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
+                    @include media("(min-width: 1200px)") {
+                        border-left-width: get-vw(50px);
+                    }
+                }
+                &.wide-news-item .news-info:before {
+                    border-left: 100px solid transparent;
+                    border-right: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
+                    @include media("(min-width: 1200px)") {
+                        border-left-width: get-vw(100px);
+                    }
+                }
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 0;
+            }
+            .img-dark-overlay {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+0,000000+100&0+0,0.5+100 */
+                background: -moz-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#80000000', GradientType=0);
+                /* IE6-9 */
+            }
+            .news-info {
+                position: absolute;
+                bottom: 0;
+                height: 35%;
+                padding: 0 15px 15px 15px;
+                box-sizing: border-box;
+                @include media("(min-width: 1200px)") {
+                    padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
+                }
+                &:before {
+                    content: '';
+                    border-bottom: 35px solid;
+                    position: absolute;
+                    top: -35px;
+                    left: 0;
+                    @include media("(min-width: 1200px)") {
+                        border-bottom-width: get-vw(35px);
+                        top: get-vw(-35px);
+                    }
+                }
+                h3 {
+                    font: 1.4em "Lato-Black";
+                    color: #fff;
+                    margin: -35px 0 15px;
+                    position: relative;
+                    @include media("(min-width: 1200px)") {
+                        margin: get-vw(-35px) 0 get-vw(15px);
+                    }
+                }
+                p {
+                    color: #fff;
+                    font: 1em "Lato-Light";
+                }
+            }
+            @each $i in $colorList {
+                &.#{nth($i,1)}-news-item {
+                    .news-info {
+                        background-color: nth($i, 2);
+                        &:before {
+                            border-bottom-color: nth($i, 2);
+                        }
+                    }
+                }
+            }
+            &:not(.ad-item) {
+                a,
+                a:visited {
+                    img {
+                        @include transform(scale(1));
+                        @include transition(transform 1s linear);
+                    }
+                }
+                a:hover {
+                    img {
+                        @include transform(scale(1.05));
+                        @include transition(transform 6s linear);
                     }
                 }
             }
@@ -634,7 +766,7 @@ main {
                         }
                         &.shadow {
                             right: 515px;
-                            @include transition(all .5s ease);                            
+                            @include transition(all .5s ease);
                         }
                     }
                     &:nth-of-type(2) {
