@@ -1,5 +1,6 @@
-var TrendingSliderIntervals = [];
+var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
+//Initiate trending sliders
 var ResetTrendingSlides = function (trendItem) {
     trendItem.find('.trend-slide').each(function () {
         var trendSlide = $(this);
@@ -8,6 +9,7 @@ var ResetTrendingSlides = function (trendItem) {
     trendItem.find('.trend-slide').eq(0).addClass('active');
 }
 
+//Setting trending sliders intervals
 var SetTrendingInterval = function (trendItem, randomIntervalTime) {
     var interval = setInterval(function () {
         trendItem.find('.trend-slide').each(function () {
@@ -28,7 +30,43 @@ var SetTrendingInterval = function (trendItem, randomIntervalTime) {
     return interval;
 }
 
+//scroll highlights
+var ScrollHighlights = function (highlightsItemWidth, direction) {
+    var highlightsWrpPos = parseFloat($('.highlights-wrp').css('margin-left'), 10);
+    if (direction == 'next') {
+        var calculatedMargin = highlightsItemWidth * Math.round((highlightsWrpPos - highlightsItemWidth) / highlightsItemWidth);
+    } else {
+        var calculatedMargin = highlightsItemWidth * Math.round((highlightsWrpPos + highlightsItemWidth) / highlightsItemWidth);
+    }
+    $('.highlights-wrp').css('margin-left', calculatedMargin);
+}
+
+var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
+    var highlightsWrpPos = parseFloat($('.highlights-wrp').css('margin-left'), 10);
+    var calculatedMargin = highlightsItemWidth * Math.round((clickX - pageX) / highlightsItemWidth);
+    $('.highlights-wrp').css('margin-left', calculatedMargin);
+}
+
+//document ready
 $(document).ready(function () {
+    $('#nav-search-btn').on('click', function () {
+        $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
+    });
+
+    $('#popup-close-btn').on('click', function () {
+        $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
+    });
+
+    $('input[type="text"],input[type="password"],input[type="email"],input[type="number"],textarea').on('focus', function () {
+        var field = $(this);
+        field.addClass("field-focus");
+    }).on('blur', function () {
+        var field = $(this);
+        if (field.val() == null || field.val() == '' || field.val() == undefined) {
+            field.removeClass("field-focus");
+        }
+    });
+
     if ($('.trend-item').length) {
         $('.trend-item').each(function () {
             var trendItem = $(this);
@@ -50,6 +88,47 @@ $(document).ready(function () {
             };
         });
     }
+
+    //Highlights
+    var highlightsCount = $('.highlights-carousel-wrp').find('.hightlights-item').length,
+        shownFrameHighlightIndex = 5,
+        lastShownHighlightIndex = 5,
+        highlightsItemWidth = $('.highlights-carousel-wrp').find('.hightlights-item').width() + (parseFloat($('.highlights-carousel-wrp').find('.hightlights-item').css('margin-right'), 10) * 2),
+        highlightsWrp = $('.highlights-wrp'),
+        highlightsNextBtn = $('.highlights-controls').find('.next-btn'),
+        highlightsPrevBtn = $('.highlights-controls').find('.prev-btn'),
+        clicked = false,
+        clickX;
+
+    highlightsNextBtn.on('click', function () {
+        if (shownFrameHighlightIndex < highlightsCount) {
+            ScrollHighlights(highlightsItemWidth, 'next');
+            shownFrameHighlightIndex++;
+        }
+    });
+
+    highlightsPrevBtn.on('click', function () {
+        if (shownFrameHighlightIndex > lastShownHighlightIndex) {
+            ScrollHighlights(highlightsItemWidth, 'prev');
+            shownFrameHighlightIndex--;
+        }
+    });
+
+    $(document).on({
+        'mousemove': function (e) {
+            console.log('clicked = '+clicked+', clickX = '+clickX+', e.pageX = '+e.pageX);
+            if (clicked) {
+                //DragHighlights(highlightsItemWidth, clickX, e.pageX);
+            }
+        },
+        'mousedown': function (e) {
+            clicked = true;
+            clickX = e.pageX;
+        },
+        'mouseup': function () {
+            clicked = false;
+        }
+    });
 
     //Carousel
     var carouselItemCount = $('#main-carousel .carousel-item').length;

@@ -17,25 +17,25 @@
     </div>
 
     <!--Popup-->
-    <div class="popup-base">
+    <div id="popup-base" class="popup-base">
         <div class="popup-header display-inline-block full-width">
-            <a href="javascript:void(0);" title="Close" class="close-btn float-left">
+            <a id="popup-close-btn" href="javascript:void(0);" title="Close" class="close-btn float-left">
                 <div class="fill"></div>
             </a>
             <div class="popup-logo-wrp float-left">
-                <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" />
-                <span>Simply the best</span>
+                <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" class="float-left" />
+                <span class="float-left">Simply the best</span>
             </div>
             <h2>Cairo guide</h2>
         </div>
         <div class="popup-body">
             <div class="search-container">
-                <div class="search-title">
+                <div class="search-title popup-title">
                     <span>Search</span>
                 </div>
                 <div class="search-input">
-                    <label>Search in cairo guide ...</label>
                     <input type="text" />
+                    <label>Search in cairo guide ...</label>
                     <a href="javascript:void(0);" title="Search">
                         <i class="icon-search"></i>
                     </a>
@@ -46,7 +46,7 @@
 
     <!--Header-->
     <header>
-        <div class="top-header display-inline-block full-width container">
+        <div class="top-header full-width container">
             <div class="logo float-left">
                 <a href="#">
                     <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" />
@@ -74,7 +74,7 @@
                     <li>
                         <ul class="display-inline-block header-social-menu">
                             <li>
-                                <a href="#" title="Search">
+                                <a id="nav-search-btn" href="javascript:void(0);" title="Search">
                                     <i class="icon-search"></i>
                                 </a>
                             </li>
@@ -323,6 +323,89 @@
                             <h2>Monthly</h2>
                         </a>
                     </div>
+                </div>
+            </section>
+
+            <!--Highlights-->
+            <section id="highlights">
+                <div class="section-title logo-yellow-title display-inline-block">
+                    <h2>Highlights</h2>
+                </div>
+                <div class="full-width highlights-carousel-wrp">
+                    <div class="display-inline-block highlights-wrp">
+                        <div class="hightlights-item">
+                            <a href="#" title="View accomodation highlights">
+                                <img src="../images/highlights-test-1.jpeg" alt="Accomodation Highlights" />
+                                <div class="title-wrp accomodation-title">
+                                    <h3>Accomodation</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View dinning highlights">
+                                <img src="../images/highlights-test-2.jpeg" alt="Dinning Highlights" />
+                                <div class="title-wrp dinning-title">
+                                    <h3>Dinning</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View pubs and bars highlights">
+                                <img src="../images/highlights-test-3.jpeg" alt="Pubs and Bars Highlights" />
+                                <div class="title-wrp entertainment-title">
+                                    <h3>Pubs and bars</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View nightlife highlights">
+                                <img src="../images/highlights-test-4.jpeg" alt="Nightlife Highlights" />
+                                <div class="title-wrp nightlife-title">
+                                    <h3>Nightlife</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View accomodation highlights">
+                                <img src="../images/highlights-test-1.jpeg" alt="Accomodation Highlights" />
+                                <div class="title-wrp accomodation-title">
+                                    <h3>Accomodation</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View dinning highlights">
+                                <img src="../images/highlights-test-2.jpeg" alt="Dinning Highlights" />
+                                <div class="title-wrp dinning-title">
+                                    <h3>Dinning</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View pubs and bars highlights">
+                                <img src="../images/highlights-test-3.jpeg" alt="Pubs and Bars Highlights" />
+                                <div class="title-wrp entertainment-title">
+                                    <h3>Pubs and bars</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hightlights-item">
+                            <a href="#" title="View nightlife highlights">
+                                <img src="../images/highlights-test-4.jpeg" alt="Nightlife Highlights" />
+                                <div class="title-wrp nightlife-title">
+                                    <h3>Nightlife</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-inline-block full-width marg-t20 highlights-controls">
+                    <a href="javascript:void(0);" title="Next" class="next-btn float-right">
+                        <i class="icon-highlights-next"></i>
+                    </a>
+                    <a href="javascript:void(0);" title="Previous" class="prev-btn float-right">
+                        <i class="icon-highlights-prev"></i>
+                    </a>
                 </div>
             </section>
 
