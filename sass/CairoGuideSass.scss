@@ -1024,8 +1024,17 @@ main {
                         @include animation(bestPrevLeavingThree 2.3s);
                     }
                 }
-                &.next-enter{
-                    
+                &.next-enter {
+                    .best-image-frame:first-child {
+                        right: 150%;
+                        @include transition(all 1s ease);
+                    }
+                    .best-image-frame:nth-child(2) {
+                        @include animation(bestNextEnterTwo 2s .5s);
+                    }
+                    .best-image-frame:nth-child(3) {
+                        @include animation(bestNextEnterThree 2s);
+                    }
                 }
                 &.active {
                     opacity: 1;
@@ -1149,6 +1158,45 @@ main {
             right: 150%;
         }
     }
+    @include key-frame(bestNextEnterTwo) {
+        0% {
+            transform: rotate(-45eg);
+            top: -175px;
+            right: 150%;
+        }
+        40% {
+            transform: rotate(-45deg);
+            top: -175px;
+            right: -180px;
+        }
+        100% {
+            transform: rotate(45deg);
+            right: -180px;
+            top:60px;
+        }
+    }
+    @include key-frame(bestNextEnterThree) {
+        0% {
+            transform: rotate(-135deg);
+            bottom: 365px;
+            right: 150%;
+        }
+        40% {
+            transform: rotate(-135deg);
+            bottom: 365px;
+            right: 20px;
+        }
+        80% {
+            transform: rotate(-45deg);
+            bottom: -185px;
+            right: -200px;
+        }
+        100% {
+            transform: rotate(45deg);
+            bottom: -195px;
+            right: 20px;
+        }
+    }
     @include media("(min-width: 1200px)") {
         @include key-frame(bestNextLeavingOne) {
             20% {
@@ -1196,8 +1244,48 @@ main {
                 right: 150%;
             }
         }
-    }
 
+        @include key-frame(bestNextEnterTwo) {
+            0% {
+                transform: rotate(-45eg);
+                top: get-vw(-175px);
+                right: 150%;
+            }
+            40% {
+                transform: rotate(-45deg);
+                top: get-vw(-175px);
+                right: get-vw(-180px);
+            }
+            100% {
+                transform: rotate(45deg);
+                right: get-vw(-180px);
+                top:get-vw(60px);
+            }
+        }
+
+        @include key-frame(bestNextEnterThree) {
+            0% {
+                transform: rotate(-135deg);
+                bottom: get-vw(365px);
+                right: 150%;
+            }
+            40% {
+                transform: rotate(-135deg);
+                bottom: get-vw(365px);
+                right: get-vw(20px);
+            }
+            80% {
+                transform: rotate(-45deg);
+                bottom: get-vw(-185px);
+                right: get-vw(-200px);
+            }
+            100% {
+                transform: rotate(45deg);
+                bottom: get-vw(-195px);
+                right: get-vw(20px);
+            }
+        }
+    }
     /*Attraction*/
     .attractions-body {
         height: 500px;
@@ -1245,7 +1333,7 @@ main {
                 }
                 h3 {
                     display: inline;
-                    font:1.2em "Lato-Bold";
+                    font: 1.2em "Lato-Bold";
                 }
             }
             .attractions-index {
