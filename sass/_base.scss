@@ -33,6 +33,7 @@ $cat-accomodation-color:#c683b8;
 $cat-fitness-color:#fff100;
 $cat-entertainment-color:#ffc72a;*/
 
+
 /*Mixins*/
 
 @mixin apply-color($prop, $color) {
@@ -91,11 +92,11 @@ $cat-entertainment-color:#ffc72a;*/
     }
 }
 
-@mixin linear-gradient($direction, $first-color,$first-opacity,$start-position,$last-color,$last-opacity,$end-position){
-    background: -moz-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position, rgba($last-color,$last-opacity) ($end-position*1%));
-    background: -webkit-linear-gradient($direction, rgba($first-color,$first-opacity) $start-position,rgba($last-color,$last-opacity) ($end-position*1%));  
-    background: linear-gradient(to opposite-direction($direction), rgba($first-color,$first-opacity) 0%,rgba($last-color,$last-opacity) ($end-position*1%));
-    }
+@mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
+    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) 0%, rgba($last-color, $last-opacity) ($end-position*1%));
+}
 
 
 /*Functions*/
@@ -228,17 +229,21 @@ body {
 
 .icon-down-chevron:before {
     content: "\e906";
-  }
-  .icon-left-chevron:before {
+}
+
+.icon-left-chevron:before {
     content: "\e907";
-  }
-  .icon-right-chevron:before {
+}
+
+.icon-right-chevron:before {
     content: "\e908";
-  }
-  .icon-up-chevron:before {
+}
+
+.icon-up-chevron:before {
     content: "\e909";
-  }
-  .icon-best-spots-prev:before {
+}
+
+.icon-best-spots-prev:before {
     content: "\e904";
 }
 
@@ -406,25 +411,28 @@ a {
 }
 
 .section-title {
-    width: 400px;
-    height: 110px;
-    padding: 25px 0;
+    width: 300px;
+    height: 60px;
+    padding: 10px 0;
     box-sizing: border-box;
     margin: 50px 0;
     @include media("(min-width: 1200px)") {
-        width: get-vw(400px);
-        height: get-vw(110px);
-        padding: get-vw(25px) 0;
+        width: get-vw(300px);
+        height: get-vw(60px);
+        padding: get-vw(10px) 0;
         margin: get-vw(50px) 0;
     }
     h2 {
         text-transform: uppercase;
         letter-spacing: 10px;
-        width: 500px;
+        width: 400px;
         text-align: right;
+        font-size: 2em;
+        line-height: 35px;
         @include media("(min-width: 1200px)") {
             letter-spacing: get-vw(10px);
-            width: get-vw(500px);
+            width: get-vw(400px);
+            line-height: get-vw(35px);
         }
     }
 }

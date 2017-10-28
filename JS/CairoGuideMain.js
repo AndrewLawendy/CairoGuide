@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     $(document).on({
         'mousemove': function (e) {
-            console.log('clicked = '+clicked+', clickX = '+clickX+', e.pageX = '+e.pageX);
+            //console.log('clicked = ' + clicked + ', clickX = ' + clickX + ', e.pageX = ' + e.pageX);
             if (clicked) {
                 //DragHighlights(highlightsItemWidth, clickX, e.pageX);
             }
@@ -325,24 +325,30 @@ $(document).ready(function () {
     $('#best-spots .best-frame-container:first h2:first').addClass('active');
     $('#best-spots .best-frame-container:first .best-description-frame:first').addClass('active');
     $('#best-spots .best-frame-container .best-image-frame').on('click', function () {
-        var bestContentFrame = $('.best-frame').index();
+        var bestFrameIndex = $(this).closest('.best-frame-container').index();
         var bestIndex = $(this).index();
         $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
         $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
         $('#best-spots .best-frame-container h2').removeClass('active');
         if (bestIndex == 1)
-            $(this).siblings().addClass('shadow');
+            $(this).siblings().not('.best-description-frame, h2').addClass('shadow');
         $(this).addClass('active');
-        $('#best-spots .best-frame-container').eq(bestContentFrame).find('.best-description-frame').eq(bestIndex).addClass('active');
-        $('#best-spots .best-frame-container').eq(bestContentFrame).find('h2').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame-container').eq(bestFrameIndex).find('.best-description-frame').eq(bestIndex).addClass('active');
+        $('#best-spots .best-frame-container').eq(bestFrameIndex).find('h2').eq(bestIndex).addClass('active');
     });
     $('.best-controls .best-previous').on('click', function () {
         $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
         $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
         $('#best-spots .best-frame-container h2').removeClass('active');
         $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('prev-leaving').delay(2200).queue(function () {
-            $(this).removeClass('active prev-leaving');
+            $(this).removeClass('active prev-leaving prev-enter');
         });
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ')').addClass('active prev-enter').delay(2200).queue(function () {
+            $(this).removeClass('prev-enter');
+        });
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
         actualFrameIndex--;
     });
     $('.best-controls .best-next').on('click', function () {
@@ -350,15 +356,21 @@ $(document).ready(function () {
         $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
         $('#best-spots .best-frame-container h2').removeClass('active');
         $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('next-leaving').delay(2200).queue(function () {
-            $(this).removeClass('active prev-leaving');
+            $(this).removeClass('active next-leaving next-enter');
         });
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ')').addClass('active next-enter').delay(2200).queue(function () {
+            $(this).removeClass('next-enter');
+        });
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
+        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
         actualFrameIndex++;
     });
 
     //Start of Attractions
     var anchorPos = $('#attractions a:first').position().left;
-    var titlePos = $('#attractions a:first').find('p').position();
-    var titleWidth = $('#attractions a:first').find('p').width();
+    var titlePos = $('#attractions a:first').find('h3').position();
+    var titleWidth = $('#attractions a:first').find('h3').width();
     var activeTitleIndex = 0;
     var attractionOut = true;
     $('.attractions-body').find('img').eq(activeTitleIndex).addClass('active');
@@ -369,9 +381,9 @@ $(document).ready(function () {
     $('#attractions a').on('mouseenter', function () {
         var titleIndex = $(this).index();
         if (activeTitleIndex != titleIndex) {
-            var titlePos = $(this).find('p').position();
+            var titlePos = $(this).find('h3').position();
             var anchorPos = $(this).position().left;
-            var titleWidth = $(this).find('p').width();
+            var titleWidth = $(this).find('h3').width();
             $('.attractions-index').stop().animate({
                 top: titlePos.top + 10,
                 left: titlePos.left + anchorPos - 10
