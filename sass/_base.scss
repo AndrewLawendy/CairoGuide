@@ -411,25 +411,28 @@ a {
 }
 
 .section-title {
-    width: 400px;
-    height: 110px;
-    padding: 25px 0;
+    width: 300px;
+    height: 60px;
+    padding: 10px 0;
     box-sizing: border-box;
     margin: 50px 0;
     @include media("(min-width: 1200px)") {
-        width: get-vw(400px);
-        height: get-vw(110px);
-        padding: get-vw(25px) 0;
+        width: get-vw(300px);
+        height: get-vw(60px);
+        padding: get-vw(10px) 0;
         margin: get-vw(50px) 0;
     }
     h2 {
         text-transform: uppercase;
         letter-spacing: 10px;
-        width: 500px;
+        width: 400px;
         text-align: right;
+        font-size: 2em;
+        line-height: 35px;
         @include media("(min-width: 1200px)") {
             letter-spacing: get-vw(10px);
-            width: get-vw(500px);
+            width: get-vw(400px);
+            line-height: get-vw(35px);
         }
     }
 }
