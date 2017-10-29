@@ -1026,11 +1026,10 @@ main {
                 }
                 &.next-enter {
                     .best-image-frame:first-child {
-                        right: 150%;
-                        @include transition(all 1s ease);
+                        @include animation(bestNextEnterOne 2s .15s);
                     }
                     .best-image-frame:nth-child(2) {
-                        @include animation(bestNextEnterTwo 2s .5s);
+                        @include animation(bestNextEnterTwo 2s);
                     }
                     .best-image-frame:nth-child(3) {
                         @include animation(bestNextEnterThree 2s);
@@ -1082,7 +1081,7 @@ main {
                                 @include transition(all .3s);
                             }
                         }
-                        &:active {
+                        &.clicked {
                             i::before {
                                 @include transform(rotate(-400deg));
                                 @include transition(all .3s);
@@ -1096,7 +1095,7 @@ main {
                                 @include transition(all .3s);
                             }
                         }
-                        &:active {
+                        &.clicked {
                             i::before {
                                 @include transform(rotate(400deg));
                                 @include transition(all .3s);
@@ -1158,9 +1157,17 @@ main {
             right: 150%;
         }
     }
+    @include key-frame(bestNextEnterOne) {
+        0% {
+            right: 150%;
+        }
+        100% {
+            right: 110px;
+        }
+    }
     @include key-frame(bestNextEnterTwo) {
         0% {
-            transform: rotate(-45eg);
+            transform: rotate(-45deg);
             top: -175px;
             right: 150%;
         }
@@ -1172,7 +1179,7 @@ main {
         100% {
             transform: rotate(45deg);
             right: -180px;
-            top:60px;
+            top: 60px;
         }
     }
     @include key-frame(bestNextEnterThree) {
@@ -1244,10 +1251,17 @@ main {
                 right: 150%;
             }
         }
-
+        @include key-frame(bestNextEnterOne) {
+            0% {
+                right: 150%;
+            }
+            100% {
+                right: get-vw(110px);
+            }
+        }
         @include key-frame(bestNextEnterTwo) {
             0% {
-                transform: rotate(-45eg);
+                transform: rotate(-45deg);
                 top: get-vw(-175px);
                 right: 150%;
             }
@@ -1259,10 +1273,9 @@ main {
             100% {
                 transform: rotate(45deg);
                 right: get-vw(-180px);
-                top:get-vw(60px);
+                top: get-vw(60px);
             }
         }
-
         @include key-frame(bestNextEnterThree) {
             0% {
                 transform: rotate(-135deg);
