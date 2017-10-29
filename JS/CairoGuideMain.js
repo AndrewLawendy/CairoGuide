@@ -137,6 +137,7 @@ $(document).ready(function () {
     var carouselPosDiff = 0;
     var carouselScrollLeft = 0;
     var activeItemIndex = 2;
+    var carouselAnimation = false;
     if (carouselItemCount > 1) {
         carouselItemCount += 2;
         $('#main-carousel .carousel-body').css('width', carouselItemCount + '00vw');
@@ -186,64 +187,72 @@ $(document).ready(function () {
             }
         });
         var moveNext = function () {
-            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
-            if (activeItemIndex == carouselItemCount) {
-                $('#main-carousel .carousel-container').scrollLeft(fullScroll);
-                activeScrollItem = $('#main-carousel .carousel-item:nth-child(2)');
-                activeItemIndex = 2;
+            if (!carouselAnimation) {
+                carouselAnimation = true;
+                activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
+                if (activeItemIndex == carouselItemCount) {
+                    $('#main-carousel .carousel-container').scrollLeft(fullScroll);
+                    activeScrollItem = $('#main-carousel .carousel-item:nth-child(2)');
+                    activeItemIndex = 2;
+                }
+                var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                fullScroll = $('#main-carousel .carousel-item:first-child').width();
+                activeScrollItem.find('.carousel-data').stop().animate({
+                    left: '-650'
+                }, 800);
+                activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
+                    left: 30
+                }, 1000);
+                $('.carousel-container').stop().animate({
+                    scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
+                }, 1000, function () {
+                    $('.carousel-data').css('left', '30px');
+                    carouselAnimation = false;
+                });
+                selectedIndexControl = activeItemIndex;
+                if (selectedIndexControl == carouselItemCount - 1) {
+                    selectedIndexControl = 1;
+                }
+                $('#main-carousel .carousel-indexes div').removeClass('selected');
+                $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
+                activeItemIndex++;
             }
-            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-            fullScroll = $('#main-carousel .carousel-item:first-child').width();
-            activeScrollItem.find('.carousel-data').stop().animate({
-                left: '-650'
-            }, 800);
-            activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
-                left: 30
-            }, 1000);
-            $('.carousel-container').stop().animate({
-                scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-            }, 1000, function () {
-                $('.carousel-data').css('left', '30px');
-            });
-            selectedIndexControl = activeItemIndex;
-            if (selectedIndexControl == carouselItemCount - 1) {
-                selectedIndexControl = 1;
-            }
-            $('#main-carousel .carousel-indexes div').removeClass('selected');
-            $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
-            activeItemIndex++;
         }
 
         var movePrevious = function () {
-            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
-            if (activeItemIndex <= 1) {
-                $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                activeScrollItem = $('#main-carousel .carousel-item:nth-last-child(2)');
-                activeItemIndex = carouselItemCount - 1;
+            if (!carouselAnimation) {
+                carouselAnimation = true;
+                activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
+                if (activeItemIndex <= 1) {
+                    $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                    activeScrollItem = $('#main-carousel .carousel-item:nth-last-child(2)');
+                    activeItemIndex = carouselItemCount - 1;
+                }
+                var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                fullScroll = $('#main-carousel .carousel-item:first-child').width();
+                activeScrollItem.find('.carousel-data').stop().animate({
+                    left: fullScroll
+                }, 1000);
+                activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                    $(this).stop().animate({
+                        left: 30
+                    }, 800);
+                })
+                $('#main-carousel .carousel-container').stop().animate({
+                    scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
+                }, 1000, function () {
+                    $('#main-carousel .carousel-data').css('left', '30px');
+                    carouselAnimation = false;
+                });
+                selectedIndexControl = activeItemIndex - 2;
+                if (selectedIndexControl == 0) {
+                    var indexControlMax = $('#main-carousel .carousel-indexes div').length;
+                    selectedIndexControl = indexControlMax;
+                }
+                $('#main-carousel .carousel-indexes div').removeClass('selected');
+                $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
+                activeItemIndex--;
             }
-            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-            fullScroll = $('#main-carousel .carousel-item:first-child').width();
-            activeScrollItem.find('.carousel-data').stop().animate({
-                left: fullScroll
-            }, 1000);
-            activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
-                $(this).stop().animate({
-                    left: 30
-                }, 800);
-            })
-            $('#main-carousel .carousel-container').stop().animate({
-                scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-            }, 1000, function () {
-                $('#main-carousel .carousel-data').css('left', '30px');
-            });
-            selectedIndexControl = activeItemIndex - 2;
-            if (selectedIndexControl == 0) {
-                var indexControlMax = $('#main-carousel .carousel-indexes div').length;
-                selectedIndexControl = indexControlMax;
-            }
-            $('#main-carousel .carousel-indexes div').removeClass('selected');
-            $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
-            activeItemIndex--;
         }
 
         $('#main-carousel .carousel-controls .next').on('click', moveNext);
@@ -251,48 +260,52 @@ $(document).ready(function () {
         $('#main-carousel .carousel-controls .previous').on('click', movePrevious);
 
         $('#main-carousel .carousel-indexes div').on('click', function () {
-            var indexValue = $(this).index() + 2;
-            if (indexValue == activeItemIndex)
-                return;
-            var fullScroll = $('#main-carousel .carousel-item:first-child').width();
-            var targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-            var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-            var newActiveScrollItem = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')');
-            activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
-            $('#main-carousel .carousel-indexes div').removeClass('selected');
-            $(this).addClass('selected');
-            if (activeItemIndex == 1) {
-                $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-                targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-            } else if (activeItemIndex == carouselItemCount) {
-                $('#main-carousel .carousel-container').scrollLeft(fullScroll);
-                actualScroll = $('#main-carousel .carousel-container').scrollLeft();
-                targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
-            }
-            if (indexValue > activeItemIndex) {
-                activeScrollItem.find('.carousel-data').stop().animate({
-                    left: '-650'
-                }, 800);
-                newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
-                    left: 30
-                }, 1000);
-            } else {
-                activeScrollItem.find('.carousel-data').stop().animate({
-                    left: fullScroll
-                }, 1000);
-                newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
-                    $(this).stop().animate({
-                        left: 30
+            if (!carouselAnimation) {
+                carouselAnimation = true;
+                var indexValue = $(this).index() + 2;
+                if (indexValue == activeItemIndex)
+                    return;
+                var fullScroll = $('#main-carousel .carousel-item:first-child').width();
+                var targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+                var actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                var newActiveScrollItem = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')');
+                activeScrollItem = $('#main-carousel .carousel-item:nth-child(' + activeItemIndex + ')');
+                $('#main-carousel .carousel-indexes div').removeClass('selected');
+                $(this).addClass('selected');
+                if (activeItemIndex == 1) {
+                    $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
+                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+                } else if (activeItemIndex == carouselItemCount) {
+                    $('#main-carousel .carousel-container').scrollLeft(fullScroll);
+                    actualScroll = $('#main-carousel .carousel-container').scrollLeft();
+                    targetItemPos = $('#main-carousel .carousel-item:nth-child(' + indexValue + ')').position().left;
+                }
+                if (indexValue > activeItemIndex) {
+                    activeScrollItem.find('.carousel-data').stop().animate({
+                        left: '-650'
                     }, 800);
-                })
+                    newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
+                        left: 30
+                    }, 1000);
+                } else {
+                    activeScrollItem.find('.carousel-data').stop().animate({
+                        left: fullScroll
+                    }, 1000);
+                    newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                        $(this).stop().animate({
+                            left: 30
+                        }, 800);
+                    })
+                }
+                $('#main-carousel .carousel-container').stop().animate({
+                    scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
+                }, 1000, function () {
+                    $('.carousel-data').css('left', '30px');
+                    carouselAnimation = false;
+                });
+                activeItemIndex = indexValue;
             }
-            $('#main-carousel .carousel-container').stop().animate({
-                scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
-            }, 1000, function () {
-                $('.carousel-data').css('left', '30px');
-            });
-            activeItemIndex = indexValue;
         });
 
         //Automatic Scroll
@@ -320,6 +333,8 @@ $(document).ready(function () {
 
     //Start of Best Spots
     var actualFrameIndex = 1;
+    var bestFrameCount = $('#best-spots .best-frame-container').length;
+    var bestAnimaion = false;
     $('#best-spots .best-frame-container:first').addClass('active');
     $('#best-spots .best-frame-container:first .best-image-frame:first').addClass('active');
     $('#best-spots .best-frame-container:first h2:first').addClass('active');
@@ -337,34 +352,61 @@ $(document).ready(function () {
         $('#best-spots .best-frame-container').eq(bestFrameIndex).find('h2').eq(bestIndex).addClass('active');
     });
     $('.best-controls .best-previous').on('click', function () {
-        $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-        $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
-        $('#best-spots .best-frame-container h2').removeClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('prev-leaving').delay(2200).queue(function () {
-            $(this).removeClass('active prev-leaving prev-enter');
-        });
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ')').addClass('active prev-enter').delay(2200).queue(function () {
-            $(this).removeClass('prev-enter');
-        });
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
-        actualFrameIndex--;
+        if (!bestAnimaion) {
+            var _this = $(this);
+            _this.addClass('clicked');
+            bestAnimaion = true;
+            if (actualFrameIndex == 0)
+                actualFrameIndex = bestFrameCount;
+            $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(530).queue(function () {
+                $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
+                $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
+                $('#best-spots .best-frame-container h2').removeClass('active');
+                $(this).removeClass('active leaving').dequeue();
+            });
+            if (actualFrameIndex == 1)
+                actualFrameIndex = bestFrameCount + 1;
+            setTimeout(function () {
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ')').addClass('active enter').delay(700).queue(function () {
+                    bestAnimaion = false;
+                    _this.removeClass('clicked');
+                    $(this).removeClass('enter').dequeue();
+                });
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
+                actualFrameIndex--;
+            }, 530);
+        }
     });
     $('.best-controls .best-next').on('click', function () {
-        $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-        $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
-        $('#best-spots .best-frame-container h2').removeClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('next-leaving').delay(2200).queue(function () {
-            $(this).removeClass('active next-leaving next-enter');
-        });
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ')').addClass('active next-enter').delay(2200).queue(function () {
-            $(this).removeClass('next-enter');
-        });
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
-        $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
-        actualFrameIndex++;
+        if (!bestAnimaion) {
+            var _this = $(this);
+            _this.addClass('clicked');
+            bestAnimaion = true;
+            if (actualFrameIndex == (bestFrameCount + 1))
+                actualFrameIndex = 1;
+            $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(700).queue(function () {
+                $('#best-spots .best-frame-container .best-description-frame').removeClass('active');
+                $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
+                $('#best-spots .best-frame-container h2').removeClass('active');
+                $(this).removeClass('active leaving').dequeue();
+            });
+            if (actualFrameIndex == bestFrameCount)
+                actualFrameIndex = 0;
+            setTimeout(function () {
+                console.log('entered');
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ')').addClass('active enter').delay(700).queue(function () {
+                    bestAnimaion = false;
+                    _this.removeClass('clicked');
+                    $(this).removeClass('enter').dequeue();
+                });
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
+                $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
+                actualFrameIndex++;
+            }, 700);
+        }
     });
 
     //Start of Attractions
