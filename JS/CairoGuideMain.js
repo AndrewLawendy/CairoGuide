@@ -358,7 +358,7 @@ $(document).ready(function () {
             bestAnimaion = true;
             if (actualFrameIndex == 0)
                 actualFrameIndex = bestFrameCount;
-            $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(530).queue(function () {
+            $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(700).queue(function () {
                 $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
                 $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
                 $('#best-spots .best-frame-container h2').removeClass('active');
@@ -376,7 +376,7 @@ $(document).ready(function () {
                 $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
                 $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
                 actualFrameIndex--;
-            }, 530);
+            }, 700);
         }
     });
     $('.best-controls .best-next').on('click', function () {
@@ -395,7 +395,6 @@ $(document).ready(function () {
             if (actualFrameIndex == bestFrameCount)
                 actualFrameIndex = 0;
             setTimeout(function () {
-                console.log('entered');
                 $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ')').addClass('active enter').delay(700).queue(function () {
                     bestAnimaion = false;
                     _this.removeClass('clicked');
