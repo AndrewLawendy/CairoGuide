@@ -34,10 +34,16 @@ main {
                         width: 100%;
                         height: auto;
                         pointer-events: none;
-                        -webkit-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        user-select: none;
+                        @include user-select(none);
+                    }
+                    .carousel-gradient{
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 50%;
+                        opacity: .5;
+                        @include linear-gradient(top, #fff, 0, 0, #131313, 50, 100);
                     }
                     .carousel-data {
                         position: absolute;
@@ -55,13 +61,7 @@ main {
                         .section-title {
                             background-color: #fcb062;
                             margin-bottom: 5px;
-                            -webkit-user-select: none;
-                            /* Chrome all / Safari all */
-                            -moz-user-select: none;
-                            /* Firefox all */
-                            -ms-user-select: none;
-                            /* IE 10+ */
-                            user-select: none;
+                            @include user-select(none);
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(5px);
                             }
@@ -321,7 +321,8 @@ main {
                 }
                 img {
                     position: relative;
-                    @include transition(all .5s ease .5s);
+                    @include transition(all .5s ease);
+                    @include transform(translateX(0));
                 }
                 h2 {
                     font: 6em Lato-Black;
@@ -330,7 +331,7 @@ main {
                     text-transform: uppercase;
                     width: 100%;
                     text-align: center;
-                    @include transform(translateY(0));
+                    @include transform(translate(0));
                     @include transition(all 3s);
                 }
             }
@@ -361,11 +362,11 @@ main {
                 &.selected {
                     width: 70%;
                     img {
-                        left: 70px;
-                        @include transition(all .3s);
+                        @include transition(all 60s ease);
+                        @include transform(scale(1.2) translateX(-70px));
                     }
                     h2 {
-                        @include transform(translate(-25%, 100%));
+                        @include transform(translate(-25%));
                         @include transition(all 50s);
                     }
                 }
@@ -804,11 +805,12 @@ main {
                         }
                     }
                     &:nth-of-type(1) {
-                        top: -195px;
-                        right: 80px;
+                        transform-origin: top right;
+                        top: -15px;
+                        right: 5px;
                         @include media("(min-width: 1200px)") {
-                            top: get-vw(-195px);
-                            right: get-vw(100px);
+                            top: get-vw(-15px);
+                            right: get-vw(5px);
                         }
                         img {
                             @include transform(rotate(-45deg) scale(1.4));
@@ -817,19 +819,19 @@ main {
                         }
                         .item-bg {
                             p {
-                                @include transform(rotate(-45deg) translateY(0));
-                                right: -40px;
-                                bottom: 50px;
+                                @include transform(rotate(-45deg) translateX(0));
+                                right: -25px;
+                                bottom: 70px;
                                 @include media("(min-width: 1200px)") {
-                                    right: get-vw(-40px);
-                                    bottom: get-vw(50px);
+                                    right: get-vw(-25px);
+                                    bottom: get-vw(70px);
                                 }
                             }
                         }
                         &:hover {
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translateY(-30%));
+                                    @include transform(rotate(-45deg) translateX(-55%));
                                     @include transition(all 2s);
                                 }
                             }
@@ -837,31 +839,30 @@ main {
                         &.active {
                             width: 425px;
                             height: 425px;
-                            top: -240px;
-                            right: 110px;
+                            right: 12px;
                             @include media("(min-width: 1200px)") {
                                 width: get-vw(450px);
                                 height: get-vw(450px);
-                                top: get-vw(-240px);
-                                right: get-vw(110px);
+                                right: get-vw(12px);
                             }
                         }
                         &.shadow {
-                            right: 135px;
+                            right: 70px;
                             @include transition(all .5s ease);
                             @include media("(min-width: 1200px)") {
-                                right: get-vw(135px);
+                                right: get-vw(70px);
                             }
                         }
                     }
                     &:nth-of-type(2) {
-                        top: 60px;
-                        right: -180px;
+                        transform-origin: top left;
+                        top: -5px;
+                        right: -350px;
                         width: 340px;
                         height: 340px;
                         @include media("(min-width: 1200px)") {
-                            top: get-vw(60px);
-                            right: get-vw(-180px);
+                            top: get-vw(-5px);
+                            right: get-vw(-350px);
                             width: get-vw(340px);
                             height: get-vw(340px);
                         }
@@ -882,7 +883,7 @@ main {
                         &:hover {
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translateX(-75%));
+                                    @include transform(rotate(-45deg) translateX(-80%));
                                     @include transition(all 4s);
                                 }
                             }
@@ -890,24 +891,25 @@ main {
                         &.active {
                             width: 480px;
                             height: 480px;
-                            top: 36px;
-                            right: -250px;
+                            top: -65px;
+                            right: -480px;
                             @include media("(min-width: 1200px)") {
                                 width: get-vw(480px);
                                 height: get-vw(480px);
-                                top: get-vw(36px);
-                                right: get-vw(-250px);
+                                top: get-vw(-65px);
+                                right: get-vw(-480px);
                             }
                         }
                     }
                     &:nth-of-type(3) {
-                        bottom: -195px;
-                        right: 20px;
+                        transform-origin: top right;
+                        bottom: -390px;
+                        right: -55px;
                         width: 380px;
                         height: 380px;
                         @include media("(min-width: 1200px)") {
-                            bottom: get-vw(-195px);
-                            right: get-vw(20px);
+                            bottom: get-vw(-390px);
+                            right: get-vw(-55px);
                             width: get-vw(380px);
                             height: get-vw(380px);
                         }
@@ -922,19 +924,13 @@ main {
                         }
                         .item-bg {
                             p {
-                                @include transform(rotate(-45deg) translateY(0));
-                                top: 125px;
-                                right: -5px;
-                                @include media("(min-width: 1200px)") {
-                                    top: get-vw(125px);
-                                    right: get-vw(-5px);
-                                }
+                                @include transform(rotate(-45deg) translate(0,-15%));
                             }
                         }
                         &:hover {
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translateY(30%));
+                                    @include transform(rotate(-45deg) translate(-55%,-15%));
                                     @include transition(all 2s);
                                 }
                             }
@@ -942,20 +938,20 @@ main {
                         &.active {
                             width: 520px;
                             height: 520px;
-                            bottom: -265px;
-                            right: 85px;
+                            bottom: -530px;
+                            right: -50px;
                             @include media("(min-width: 1200px)") {
                                 width: get-vw(520px);
                                 height: get-vw(520px);
-                                bottom: get-vw(-265px);
-                                right: get-vw(85px);
+                                bottom: get-vw(-530px);
+                                right: get-vw(-50px);
                             }
                         }
                         &.shadow {
-                            right: 160px;
+                            right: 80px;
                             @include transition(all .5s ease);
                             @include media("(min-width: 1200px)") {
-                                right: get-vw(160px);
+                                right: get-vw(80px);
                             }
                         }
                     }
@@ -1000,51 +996,43 @@ main {
                         @include transition(all .8s ease .15s);
                     }
                 }
-                &.next-leaving {
+                &.leaving {
                     .best-image-frame:first-child {
-                        @include animation(bestNextLeavingOne 2.3s);
+                        @include animation(bestLeaveOne .3s forwards);
                     }
                     .best-image-frame:nth-child(2) {
-                        @include animation(bestNextLeavingTwo 2.8s);
+                        @include animation(bestLeaveTwo .3s .3s forwards);
                     }
                     .best-image-frame:nth-child(3) {
-                        right: 150%;
-                        @include transition(all 2.1s ease);
+                        @include animation(bestLeaveThree .3s .6s forwards);
+                    }
+                    h2,
+                    .best-description-frame {
+                        opacity: 0;
+                        @include transform(translateX(-150%));
+                        @include transition(all 1.5s);
                     }
                 }
-                &.prev-leaving {
+                &.enter {
                     .best-image-frame:first-child {
-                        right: 150%;
-                        @include transition(all 2.1s ease);
+                        @include animation(bestEnterOne .7s);
                     }
                     .best-image-frame:nth-child(2) {
-                        @include animation(bestPrevLeavingTwo 2.8s);
+                        @include animation(bestEnterTwo .65s);
                     }
                     .best-image-frame:nth-child(3) {
-                        @include animation(bestPrevLeavingThree 2.3s);
-                    }
-                }
-                &.next-enter {
-                    .best-image-frame:first-child {
-                        right: 150%;
-                        @include transition(all 1s ease);
-                    }
-                    .best-image-frame:nth-child(2) {
-                        @include animation(bestNextEnterTwo 2s .5s);
-                    }
-                    .best-image-frame:nth-child(3) {
-                        @include animation(bestNextEnterThree 2s);
+                        @include animation(bestEnterThree .5s);
                     }
                 }
                 &.active {
                     opacity: 1;
+                    @include transition(all .5s);
                 }
             }
             .best-controls {
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                width: 100%;
                 text-align: left;
                 padding-left: 5px;
                 z-index: 5;
@@ -1082,7 +1070,7 @@ main {
                                 @include transition(all .3s);
                             }
                         }
-                        &:active {
+                        &.clicked {
                             i::before {
                                 @include transform(rotate(-400deg));
                                 @include transition(all .3s);
@@ -1096,7 +1084,7 @@ main {
                                 @include transition(all .3s);
                             }
                         }
-                        &:active {
+                        &.clicked {
                             i::before {
                                 @include transform(rotate(400deg));
                                 @include transition(all .3s);
@@ -1112,177 +1100,98 @@ main {
             }
         }
     }
-    @include key-frame(bestNextLeavingOne) {
-        20% {
-            transform: rotate(225deg);
-            top: 500px;
-            right: -185px;
-        }
-        100% {
-            transform: rotate(225deg);
-            top: 500px;
-            right: 150%;
-        }
-    }
-    @include key-frame(bestNextLeavingTwo) {
-        20% {
-            transform: rotate(135deg);
-            top: 500px;
-        }
-        100% {
-            transform: rotate(135deg);
-            top: 500px;
-            right: 150%;
-        }
-    }
-    @include key-frame(bestPrevLeavingTwo) {
-        20% {
-            transform: rotate(-45deg);
-            top: -230px;
-        }
-        100% {
-            transform: rotate(-45deg);
-            top: -230px;
-            right: 150%;
-        }
-    }
-    @include key-frame(bestPrevLeavingThree) {
-        20% {
-            transform: rotate(-135deg);
-            bottom: 445px;
-            right: -50px;
-        }
-        100% {
-            transform: rotate(-135deg);
-            bottom: 445px;
-            right: 150%;
-        }
-    }
-    @include key-frame(bestNextEnterTwo) {
+    @include key-frame(bestLeaveOne) {
         0% {
-            transform: rotate(-45eg);
-            top: -175px;
-            right: 150%;
+            @include transform(rotate(45deg) translate(0, 0))
+        }
+        20% {
+            @include transform(rotate(45deg) translate(2%, 2%))
+        }
+        100% {
+            @include transform(rotate(45deg) translate(-50%, -50%))
+        }
+    }
+    @include key-frame(bestEnterOne) {
+        0% {
+            top: -315px;
         }
         40% {
-            transform: rotate(-45deg);
-            top: -175px;
-            right: -180px;
+            top: -315px;
         }
         100% {
-            transform: rotate(45deg);
-            right: -180px;
-            top:60px;
+            top: -15px;
         }
     }
-    @include key-frame(bestNextEnterThree) {
+    @include key-frame(bestLeaveTwo) {
         0% {
-            transform: rotate(-135deg);
-            bottom: 365px;
-            right: 150%;
+            @include transform(rotate(45deg) translate(0, 0))
         }
-        40% {
-            transform: rotate(-135deg);
-            bottom: 365px;
-            right: 20px;
-        }
-        80% {
-            transform: rotate(-45deg);
-            bottom: -185px;
-            right: -200px;
+        20% {
+            @include transform(rotate(45deg) translate(-3%, 3%))
         }
         100% {
-            transform: rotate(45deg);
-            bottom: -195px;
-            right: 20px;
+            @include transform(rotate(45deg) translate(50%, -50%))
+        }
+    }
+    @include key-frame(bestEnterTwo) {
+        0% {
+            right: -575px;
+        }
+        20% {
+            right: -575px;
+        }
+        100% {
+            right: -350px;
+        }
+    }
+    @include key-frame(bestLeaveThree) {
+        0% {
+            @include transform(rotate(45deg) translate(0, 0))
+        }
+        20% {
+            @include transform(rotate(45deg) translate(-2%, -2%))
+        }
+        100% {
+            @include transform(rotate(45deg) translate(25%, 25%))
+        }
+    }
+    @include key-frame(bestEnterThree) {
+        0% {
+            bottom: -645px;
+        }
+        100% {
+            bottom: -390px;
         }
     }
     @include media("(min-width: 1200px)") {
-        @include key-frame(bestNextLeavingOne) {
-            20% {
-                transform: rotate(225deg);
-                top: get-vw(500px);
-                right: get-vw(-185px);
-            }
-            100% {
-                transform: rotate(225deg);
-                top: get-vw(500px);
-                right: 150%;
-            }
-        }
-        @include key-frame(bestNextLeavingTwo) {
-            20% {
-                transform: rotate(135deg);
-                top: get-vw(500px);
-            }
-            100% {
-                transform: rotate(135deg);
-                top: get-vw(500px);
-                right: 150%;
-            }
-        }
-        @include key-frame(bestPrevLeavingTwo) {
-            20% {
-                transform: rotate(-45deg);
-                top: get-vw(-230px);
-            }
-            100% {
-                transform: rotate(-45deg);
-                top: get-vw(-230px);
-                right: 150%;
-            }
-        }
-        @include key-frame(bestPrevLeavingThree) {
-            20% {
-                transform: rotate(-135deg);
-                bottom: get-vw(445px);
-                right: get-vw(-50px);
-            }
-            100% {
-                transform: rotate(-135deg);
-                bottom: get-vw(445px);
-                right: 150%;
-            }
-        }
-
-        @include key-frame(bestNextEnterTwo) {
+        @include key-frame(bestEnterOne) {
             0% {
-                transform: rotate(-45eg);
-                top: get-vw(-175px);
-                right: 150%;
+                top: get-vw(-315px);
             }
             40% {
-                transform: rotate(-45deg);
-                top: get-vw(-175px);
-                right: get-vw(-180px);
+                top: get-vw(-315px);
             }
             100% {
-                transform: rotate(45deg);
-                right: get-vw(-180px);
-                top:get-vw(60px);
+                top: get-vw(-15px);
             }
         }
-
-        @include key-frame(bestNextEnterThree) {
+        @include key-frame(bestEnterTwo) {
             0% {
-                transform: rotate(-135deg);
-                bottom: get-vw(365px);
-                right: 150%;
+                right: get-vw(-575px);
             }
-            40% {
-                transform: rotate(-135deg);
-                bottom: get-vw(365px);
-                right: get-vw(20px);
-            }
-            80% {
-                transform: rotate(-45deg);
-                bottom: get-vw(-185px);
-                right: get-vw(-200px);
+            20% {
+                right: get-vw(-575px);
             }
             100% {
-                transform: rotate(45deg);
-                bottom: get-vw(-195px);
-                right: get-vw(20px);
+                right: get-vw(-350px);
+            }
+        }
+        @include key-frame(bestEnterThree) {
+            0% {
+                bottom: get-vw(-645px);
+            }
+            100% {
+                bottom: get-vw(-390px);
             }
         }
     }
@@ -1337,33 +1246,28 @@ main {
                 }
             }
             .attractions-index {
-                width: 0;
-                height: 0;
-                border-top: 20px solid $logo-yellow;
-                border-right: 100px solid transparent;
+                width: 100px;
+                height: 15px;
+                background: $logo-yellow;
+                overflow: visible!important;
                 position: absolute;
                 z-index: 3;
                 @include media("(min-width: 1200px)") {
-                    border-top: get-vw(20px) solid $logo-yellow;
-                    border-right: get-vw(100px) solid transparent;
+                    width: get-vw(100px);
+                    height: get-vw(15px);
                 }
-                &::after {
-                    content: '';
-                    content: '';
-                    display: block;
-                    width: 101px;
-                    height: 15px;
-                    background: $logo-yellow;
+                div {
+                    width: 0;
+                    height: 0;
+                    border-top: 15px solid $logo-yellow;
+                    border-right: 80px solid transparent;
                     position: absolute;
-                    top: -20px;
-                    left: -1px;
-                    @include transform(rotate(-8deg) skewX(-11deg));
-                    transform-origin: top right;
+                    top: 15px;
+                    left: 0;
                     @include media("(min-width: 1200px)") {
-                        width: get-vw(101px);
-                        height: get-vw(15px);
-                        top: get-vw(-20px);
-                        left: get-vw(-1px);
+                        border-top: get-vw(15px) solid $logo-yellow;
+                        border-right: get-vw(80px) solid transparent;
+                        top: get-vw(15px);
                     }
                 }
             }
