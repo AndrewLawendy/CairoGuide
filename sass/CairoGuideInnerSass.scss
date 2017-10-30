@@ -1,0 +1,122 @@
+/*----------------------------
+Inner Pages Styles File
+Contains all styles of inner pages
+----------------------------*/
+
+@import 'reset'; //Reset file import
+@import 'base'; //Base file import
+@mixin themify-inner-page($theme, $color) {
+    .category-banner {
+        background: #ccc url('../Images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
+        background-size: cover;
+    }
+}
+
+@each $i in $colorList {
+    body.#{nth($i,1)}-theme {
+        @include themify-inner-page(#{nth($i,1)},
+        nth($i, 2));
+    }
+}
+
+
+/*Main*/
+
+main {
+    .category-banner {
+        width: 100%;
+        height: 335px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        @include media("(min-width: 1200px)") {
+            height: get-vw(335px);
+            margin-bottom: get-vw(30px);
+        }
+        /*&:before {
+            content: '';
+            display: block;
+            background-color: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }*/
+        h1 {
+            text-align: center;
+            line-height: 335px;
+            font: 3.5em "Lato-Black";
+            color: #fff;
+            text-transform: uppercase;
+            position: relative;
+            @include media("(min-width: 1200px)") {
+                line-height: get-vw(335px);
+            }
+        }
+    }
+    .ad-below-banner-wrp {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 30px;
+        @include media("(min-width: 1200px)") {
+            height: get-vw(200px);
+            margin-bottom: get-vw(30px);
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 0;
+        }
+    }
+    .category-list-wrp {
+        .category-list-item {
+            $width: ((get-vw(1200px) - get-vw(60px)) / 2) - get-vw(15px);
+            width: $width;
+            height: ($width * 2) / 3;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: get-vw(20px);
+            &:nth-child(2n) {
+                float: right;
+                clear: right;
+            }
+            &:nth-child(2n-1) {
+                float: left;
+                clear: left;
+            }
+            a {
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+                img {
+                    width: 120%;
+                    height: 100%;
+                    object-fit: cover;
+                    @include transform(translateX(-5%));
+                    @include transition(transform 5s ease-out);
+                }
+                h2 {
+                    font: 4.5em "Lato-Black";
+                    color: #fff;
+                    text-transform: uppercase;
+                    text-align: center;
+                    position: absolute;
+                    width: 100%;
+                    line-height: 1em;
+                    top: 50%;
+                    @include transform(translateY(-50%));
+                }
+            }
+            a:hover{
+                img{
+                    @include transform(translateX(-15%));
+                    @include transition(transform 20s ease-out);
+                }
+            }
+        }
+    }
+}

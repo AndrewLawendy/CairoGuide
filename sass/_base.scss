@@ -17,17 +17,18 @@ $colorList: "nightlife" #f90000,
 "tourism" #35b8b2,
 "shopping" #01acca,
 "beauty" #e67cae,
-"dinning" #fcb062,
+"dining" #fcb062,
 "services" #00a6ec,
 "accomodation" #c683b8,
 "fitness" #fff100,
-"entertainment" #ffc72a;
+"entertainment" #ffc72a,
+"more" #ccc;
 
 /*$cat-nightlife-color:#f90000;
 $cat-tourism-color:#35b8b2;
 $cat-shopping-color:#01acca;
 $cat-beauty-color:#e67cae;
-$cat-dinning-color:#fcb062;
+$cat-dining-color:#fcb062;
 $cat-services-color:#00a6ec;
 $cat-accomodation-color:#c683b8;
 $cat-fitness-color:#fff100;
@@ -824,7 +825,7 @@ header {
                 float: left;
                 a,
                 a:visited {
-                    font-size: 1.14em;
+                    font-size: 1em;
                 }
             }
         }

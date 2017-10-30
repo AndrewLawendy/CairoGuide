@@ -47,8 +47,24 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
     $('.highlights-wrp').css('margin-left', calculatedMargin);
 }
 
+//For Demo
+var GetParameterByName = function(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var SetInnersCategory = function(){
+    var Category = GetParameterByName('category');
+    $('body').addClass(Category+'-theme').find('.category-banner h1').html(Category);
+}
 //document ready
 $(document).ready(function () {
+    SetInnersCategory();
     $('#nav-search-btn').on('click', function () {
         $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
     });
