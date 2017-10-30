@@ -70,6 +70,13 @@ $cat-entertainment-color:#ffc72a;*/
     border-radius: 0;
 }
 
+@mixin user-select($value){
+    -webkit-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+}
+
 @mixin key-frame($name) {
     @-webkit-keyframes #{$name} {
         @content;
@@ -93,9 +100,9 @@ $cat-entertainment-color:#ffc72a;*/
 }
 
 @mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
-    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
-    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) $start-position, rgba($last-color, $last-opacity) ($end-position*1%));
-    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) 0%, rgba($last-color, $last-opacity) ($end-position*1%));
+    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
 }
 
 

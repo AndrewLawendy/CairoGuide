@@ -322,7 +322,7 @@ $(document).ready(function () {
 
 
     //Start of What to Do
-    $('#wtd div[class^=wtd]').on('mouseenter', function (e) {
+    $('#wtd .wtd-container div[class^=wtd]').on('mouseenter', function () {
         $(this).addClass('selected');
         $(this).siblings().addClass('shadow');
         $(this).on('mouseleave', function () {
@@ -416,9 +416,11 @@ $(document).ready(function () {
     var attractionOut = true;
     $('.attractions-body').find('img').eq(activeTitleIndex).addClass('active');
     $('.attractions-index').css({
-        'top': titlePos.top + 10,
-        'left': titlePos.left + anchorPos - 10
+        'top': titlePos.top + 20,
+        'left': titlePos.left + anchorPos - 10,
+        'width': titleWidth + 10
     });
+    $('.attractions-index div').css('border-right-width', titleWidth);
     $('#attractions a').on('mouseenter', function () {
         var titleIndex = $(this).index();
         if (activeTitleIndex != titleIndex) {
@@ -426,8 +428,12 @@ $(document).ready(function () {
             var anchorPos = $(this).position().left;
             var titleWidth = $(this).find('h3').width();
             $('.attractions-index').stop().animate({
-                top: titlePos.top + 10,
-                left: titlePos.left + anchorPos - 10
+                top: titlePos.top + 20,
+                left: titlePos.left + anchorPos - 10,
+                width: titleWidth + 10
+            });
+            $('.attractions-index div').stop().animate({
+                borderRightWidth: titleWidth
             });
             $('.attractions-body').find('img').removeClass('active');
             $('.attractions-body').find('img').eq(titleIndex).addClass('active');
