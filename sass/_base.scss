@@ -71,7 +71,7 @@ $cat-entertainment-color:#ffc72a;*/
     border-radius: 0;
 }
 
-@mixin user-select($value){
+@mixin user-select($value) {
     -webkit-user-select: $value;
     -moz-user-select: $value;
     -ms-user-select: $value;
@@ -819,7 +819,7 @@ header {
         }
     }
     .top-header,
-    .bottom-header {
+    .sticky-header .bottom-header {
         padding-bottom: 10px;
         padding-top: 10px;
         box-sizing: border-box;
@@ -893,46 +893,156 @@ header {
             }
         }
     }
-    .bottom-header {
-        background-color: $header-footer-primary-background-color;
-        ul {
-            li {
-                margin: 15px 40px 15px 0;
-                @include media("(min-width: 1200px)") {
-                    margin: get-vw(15px) get-vw(40px) get-vw(15px) 0;
-                }
-                a,
-                a:visited {
-                    color: $header-footer-secondary-text-color;
-                    position: relative;
-                }
-                a {
-                    &::after {
-                        content: attr(title);
-                        position: absolute;
-                        top: -5px;
-                        left: -5px;
-                        padding: 5px;
-                        background-color: $header-footer-secondary-background-color;
-                        color: $header-footer-primary-text-color;
-                        clip: rect(0px, 0px, 200px, 0px);
-                        transition: clip .3s;
-                        @include media("(min-width: 1200px)") {
-                            top: get-vw(-5px);
-                            left: get-vw(-5px);
-                            padding: get-vw(5px);
-                            clip: rect(0, 0, get-vw(200px), 0);
-                        }
+    .sticky-header {
+        position:relative;
+        .bottom-header {
+            background-color: $header-footer-primary-background-color;
+            @include transition(all 0.3s ease 0.3s);
+            ul {
+                li {
+                    margin: 15px 40px 15px 0;
+                    @include media("(min-width: 1200px)") {
+                        margin: get-vw(15px) get-vw(40px) get-vw(15px) 0;
                     }
-                    &:hover {
+                    a,
+                    a:visited {
+                        color: $header-footer-secondary-text-color;
+                        position: relative;
+                    }
+                    a {
                         &::after {
-                            clip: rect(0px, 200px, 200px, 0);
-                            transition: all 1s;
+                            content: attr(title);
+                            position: absolute;
+                            top: -5px;
+                            left: -5px;
+                            padding: 5px;
+                            background-color: $header-footer-secondary-background-color;
+                            color: $header-footer-primary-text-color;
+                            clip: rect(0px, 0px, 200px, 0px);
+                            transition: clip .3s;
                             @include media("(min-width: 1200px)") {
-                                clip: rect(0, get-vw(200px), get-vw(200px), 0);
+                                top: get-vw(-5px);
+                                left: get-vw(-5px);
+                                padding: get-vw(5px);
+                                clip: rect(0, 0, get-vw(200px), 0);
+                            }
+                        }
+                        &:hover {
+                            &::after {
+                                clip: rect(0px, 200px, 200px, 0);
+                                transition: all 1s;
+                                @include media("(min-width: 1200px)") {
+                                    clip: rect(0, get-vw(200px), get-vw(200px), 0);
+                                }
                             }
                         }
                     }
+                }
+            }
+        }
+        .attached-menu {
+            float: right;
+            background: #131313;
+            position: absolute;
+            z-index: 100;
+            padding: 15px 25px;
+            box-sizing: border-box;
+            right: 0;
+            top:100%;
+            //opacity: 0;
+            @include transform(translateX(115%));
+            @include transition(all 0.3s ease);
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(15px) get-vw(25px);
+                //right: get-vw(-50px);
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                left: -30px;
+                top: 0;
+                height: 100%;
+                background: #131313;
+                width: 30px;
+                clip-path: polygon(0 0, 100% 100%, 100% 0);
+                @include media("(min-width: 1200px)") {
+                    width: get-vw(30px);
+                    left: get-vw(-30px);
+                }
+            }
+            ul {
+                li {
+                    float: right;
+                    margin-left: 20px;
+                    @include media("(min-width: 1200px)") {
+                        margin-left: get-vw(20px);
+                    }
+                    &:last-child{
+                        margin-left: 0;
+                        @include media("(min-width: 1200px)") {
+                            margin-left: 0;
+                        }
+                    }
+                    a,
+                    a:visited,
+                    & {
+                        color: $header-footer-secondary-text-color;
+                        position: relative;
+                    }
+                    a.word-link {
+                        &::after {
+                            content: attr(title);
+                            position: absolute;
+                            top: -5px;
+                            left: -5px;
+                            padding: 5px;
+                            background-color: $header-footer-secondary-background-color;
+                            color: $header-footer-primary-text-color;
+                            clip: rect(0px, 0px, 200px, 0px);
+                            transition: clip .3s;
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(-5px);
+                                left: get-vw(-5px);
+                                padding: get-vw(5px);
+                                clip: rect(0, 0, get-vw(200px), 0);
+                            }
+                        }
+                        &:hover {
+                            &::after {
+                                clip: rect(0px, 200px, 200px, 0);
+                                transition: all 1s;
+                                @include media("(min-width: 1200px)") {
+                                    clip: rect(0, get-vw(200px), get-vw(200px), 0);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.fixed {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            
+            .bottom-header{
+                padding-top:0;
+                padding-bottom:0;
+                @include transition(all 0.3s ease);
+                @include media("(min-width: 1200px)") {
+                    padding-top:0;
+                    padding-bottom:0;
+                }
+            }
+            .attached-menu {
+                //right: 0;
+                //opacity: 1;
+                @include transform(translateX(0));
+                @include transition(all 0.3s ease 0.3s);
+                @include media("(min-width: 1200px)") {
+                    //right: 0;
                 }
             }
         }

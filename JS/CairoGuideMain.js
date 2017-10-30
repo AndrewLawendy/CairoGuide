@@ -41,10 +41,25 @@ var ScrollHighlights = function (highlightsItemWidth, direction) {
     $('.highlights-wrp').css('margin-left', calculatedMargin);
 }
 
+//Drag highlights with Mouse
 var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
     var highlightsWrpPos = parseFloat($('.highlights-wrp').css('margin-left'), 10);
     var calculatedMargin = highlightsItemWidth * Math.round((clickX - pageX) / highlightsItemWidth);
     $('.highlights-wrp').css('margin-left', calculatedMargin);
+}
+
+//Transform header during document scroll
+var TransformHeader = function(scrollPos){
+    var topHeader = $('.top-header'),
+    stickyHeader = $('.sticky-header'),
+    breakPos = topHeader.height();
+    if(scrollPos >= breakPos){
+        stickyHeader.addClass('fixed');
+        //attachedMenu.css('top',scrollPos + bottomHeader.height());
+    }else{
+        stickyHeader.removeClass('fixed');
+        //attachedMenu.removeAttr('style');
+    }
 }
 
 //For Demo
@@ -65,7 +80,7 @@ var SetInnersCategory = function(){
 //document ready
 $(document).ready(function () {
     SetInnersCategory();
-    $('#nav-search-btn').on('click', function () {
+    $('.nav-search-btn').on('click', function () {
         $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
     });
 
@@ -518,4 +533,9 @@ $(document).ready(function () {
             scrollLeft: adjustedScrollValue
         });
     });
+});
+
+$(document).scroll(function () {
+    var scrollPos = $(this).scrollTop();
+    TransformHeader(scrollPos);
 });
