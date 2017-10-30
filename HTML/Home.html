@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/CairoGuideSass.css" />
 </head>
 
-<body>
+<body data-category="null">
     <div id="hidden-title">
         <h1>Cairo Guide</h1>
     </div>
@@ -48,14 +48,14 @@
     <header>
         <div class="top-header full-width container">
             <div class="logo float-left">
-                <a href="#">
+                <a href="Home.html">
                     <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" />
                 </a>
             </div>
             <nav class="main-nav">
                 <ul class="float-left">
                     <li>
-                        <a href="#" title="Home">Home</a>
+                        <a href="Home.html" title="Home">Home</a>
                     </li>
                     <li>
                         <a href="#" title="About">About</a>
@@ -74,7 +74,7 @@
                     <li>
                         <ul class="display-inline-block header-social-menu">
                             <li>
-                                <a id="nav-search-btn" href="javascript:void(0);" title="Search">
+                                <a class="nav-search-btn" href="javascript:void(0);" title="Search">
                                     <i class="icon-search"></i>
                                 </a>
                             </li>
@@ -98,38 +98,60 @@
                 </ul>
             </nav>
         </div>
-        <div class="bottom-header container">
-            <nav>
-                <ul class="display-inline-block full-width">
-                    <li>
-                        <a href="#" title="Accomodation">Accomodation</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Dining">Dining</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Nightlife">Nightlife</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Beauty">Beauty</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Shopping">Shopping</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Fun/Entertainment">Fun/Entertainment</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Sports/Fitness">Sports/Fitness</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Services/Utilities">Services/Utilities</a>
-                    </li>
-                    <li>
-                        <a href="#" title="More">More</a>
-                    </li>
-                </ul>
-            </nav>
+        <div class="sticky-header">
+            <div class="bottom-header container">
+                <nav>
+                    <ul class="display-inline-block full-width">
+                        <li>
+                            <a href="Category.html?category=accomodation" title="Accomodation">Accomodation</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=dining" title="Dining">Dining</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=nightlife" title="Nightlife">Nightlife</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=beauty" title="Beauty">Beauty</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=shopping" title="Shopping">Shopping</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=entertainment" title="Fun/Entertainment">Fun/Entertainment</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=fitness" title="Sports/Fitness">Sports/Fitness</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=services" title="Services/Utilities">Services/Utilities</a>
+                        </li>
+                        <li>
+                            <a href="Category.html?category=more" title="More">More</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="attached-menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" title="Back To Top">
+                                <i class="icon-search"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-search-btn" href="javascript:void(0);" title="Search">
+                                <i class="icon-search"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="word-link" href="#" title="Login">Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+                            <a class="word-link" href="#" title="Register">Register</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -141,6 +163,7 @@
                     <div class="carousel-body">
                         <div class="carousel-item">
                             <img src="../images/carousel-test.jpg" alt="Cairo Blue Lounge" title="Cairo Blue Lounge" />
+                            <div class="carousel-gradient"></div>
                             <div class="carousel-data">
                                 <div class="section-title">
                                     <h2>Cairo Blue Lounge</h2>
@@ -151,6 +174,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="../images/carousel-test.jpg" alt="Cairo Blue Lounge" title="Cairo Blue Lounge" />
+                            <div class="carousel-gradient"></div>
                             <div class="carousel-data">
                                 <div class="section-title">
                                     <h2>2 Cairo Blue Lounge</h2>
@@ -161,6 +185,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="../images/carousel-test.jpg" alt="Cairo Blue Lounge" title="Cairo Blue Lounge" />
+                            <div class="carousel-gradient"></div>
                             <div class="carousel-data">
                                 <div class="section-title">
                                     <h2>3 Cairo Blue Lounge</h2>
@@ -171,6 +196,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="../images/carousel-test.jpg" alt="Cairo Blue Lounge" title="Cairo Blue Lounge" />
+                            <div class="carousel-gradient"></div>
                             <div class="carousel-data">
                                 <div class="section-title">
                                     <h2>4 Cairo Blue Lounge</h2>
@@ -181,6 +207,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="../images/carousel-test.jpg" alt="Cairo Blue Lounge" title="Cairo Blue Lounge" />
+                            <div class="carousel-gradient"></div>
                             <div class="carousel-data">
                                 <div class="section-title">
                                     <h2>5 Cairo Blue Lounge</h2>
@@ -210,7 +237,7 @@
                         <div class="trend-item olis-choice-item">
                             <div class="trend-slide">
                                 <img src="../images/trending-test-1.jpg" alt="Oli's Choice Image" />
-                                <div class="trend-info dinning-bg">
+                                <div class="trend-info dining-bg">
                                     <h3>Trend Title</h3>
                                     <p>Trend Description goes here ...</p>
                                     <a href="#" title="#">Read More</a>
@@ -342,10 +369,10 @@
                             </a>
                         </div>
                         <div class="hightlights-item">
-                            <a href="#" title="View dinning highlights">
-                                <img src="../images/highlights-test-2.jpeg" alt="Dinning Highlights" />
-                                <div class="title-wrp dinning-title">
-                                    <h3>Dinning</h3>
+                            <a href="#" title="View dining highlights">
+                                <img src="../images/highlights-test-2.jpeg" alt="Dining Highlights" />
+                                <div class="title-wrp dining-title">
+                                    <h3>Dining</h3>
                                 </div>
                             </a>
                         </div>
@@ -374,10 +401,10 @@
                             </a>
                         </div>
                         <div class="hightlights-item">
-                            <a href="#" title="View dinning highlights">
-                                <img src="../images/highlights-test-2.jpeg" alt="Dinning Highlights" />
-                                <div class="title-wrp dinning-title">
-                                    <h3>Dinning</h3>
+                            <a href="#" title="View dining highlights">
+                                <img src="../images/highlights-test-2.jpeg" alt="Dining Highlights" />
+                                <div class="title-wrp dining-title">
+                                    <h3>Dining</h3>
                                 </div>
                             </a>
                         </div>
@@ -420,7 +447,7 @@
                             <img src="../images/news-test-1.jpg" alt="Ad 1" />
                         </a>
                     </div>
-                    <div class="news-item dinning-news-item">
+                    <div class="news-item dining-news-item">
                         <a href="#" title="Opening of a new bakery">
                             <img src="../images/news-test-3.jpeg" alt="Opening of a new bakery" />
                             <div class="img-dark-overlay"></div>
@@ -596,7 +623,9 @@
                         <a href="#" title="Opera &amp; Ballet">
                             <h3>Opera &amp; Ballet</h3>
                         </a>
-                        <div class="attractions-index"></div>
+                        <div class="attractions-index">
+                            <div></div>
+                        </div>
                     </div>
                 </div>
             </section>
