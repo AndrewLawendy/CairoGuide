@@ -7,7 +7,7 @@ Contains all styles of inner pages
 @import 'base'; //Base file import
 @mixin themify-inner-page($theme, $color) {
     .category-banner {
-        background: #ccc url('../Images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
+        background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
         background-size: cover;
     }
 }
