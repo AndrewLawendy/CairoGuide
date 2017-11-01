@@ -119,6 +119,24 @@ $cat-entertainment-color:#ffc72a;*/
 }
 
 
+/*Carousel*/
+
+@each $item in $colorList {
+    #main-carousel .#{nth($item,1)}-item {
+        .section-title {
+            background: nth($item, 2)!important;
+        }
+        .carousel-read-more {
+            &:hover {
+                background: nth($item, 2)!important;
+                border-color: nth($item, 2)!important;
+                @include transition(all .1s);
+            }
+        }
+    }
+}
+
+
 /*@function get-vw($value) {
     $vw-context: (1000 * .01) * 1px;
     @return ($value / $vw-context) * 1vw;
@@ -894,7 +912,7 @@ header {
         }
     }
     .sticky-header {
-        position:relative;
+        position: relative;
         .bottom-header {
             background-color: $header-footer-primary-background-color;
             @include transition(all 0.3s ease 0.3s);
@@ -948,13 +966,11 @@ header {
             padding: 15px 25px;
             box-sizing: border-box;
             right: 0;
-            top:100%;
-            //opacity: 0;
+            top: 100%; //opacity: 0;
             @include transform(translateX(115%));
             @include transition(all 0.3s ease);
             @include media("(min-width: 1200px)") {
-                padding: get-vw(15px) get-vw(25px);
-                //right: get-vw(-50px);
+                padding: get-vw(15px) get-vw(25px); //right: get-vw(-50px);
             }
             &:after {
                 content: '';
@@ -977,7 +993,7 @@ header {
                     @include media("(min-width: 1200px)") {
                         margin-left: get-vw(20px);
                     }
-                    &:last-child{
+                    &:last-child {
                         margin-left: 0;
                         @include media("(min-width: 1200px)") {
                             margin-left: 0;
@@ -1026,14 +1042,13 @@ header {
             top: 0;
             left: 0;
             z-index: 100;
-            
-            .bottom-header{
-                padding-top:0;
-                padding-bottom:0;
+            .bottom-header {
+                padding-top: 0;
+                padding-bottom: 0;
                 @include transition(all 0.3s ease);
                 @include media("(min-width: 1200px)") {
-                    padding-top:0;
-                    padding-bottom:0;
+                    padding-top: 0;
+                    padding-bottom: 0;
                 }
             }
             .attached-menu {

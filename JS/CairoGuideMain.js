@@ -493,7 +493,7 @@ $(document).ready(function () {
                     carouselScrollLeft = $('#main-carousel .carousel-container').scrollLeft();
                     var fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     var scrollRemaining = fullScroll - (Math.abs(carouselPosDiff) % fullScroll);
-                    if (Math.abs(carouselPosDiff) > 50) {
+                    if (Math.abs(carouselPosDiff) > 30) {
                         if (carouselPosDiff > 0) {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
