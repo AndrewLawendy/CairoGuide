@@ -49,16 +49,47 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
 }
 
 //Transform header during document scroll
-var TransformHeader = function(scrollPos){
+var TransformHeader = function (scrollPos) {
     var topHeader = $('.top-header'),
-    stickyHeader = $('.sticky-header'),
-    breakPos = topHeader.height();
-    if(scrollPos >= breakPos){
+        stickyHeader = $('.sticky-header'),
+        breakPos = topHeader.height();
+    if (scrollPos >= breakPos) {
         stickyHeader.addClass('fixed');
         //attachedMenu.css('top',scrollPos + bottomHeader.height());
-    }else{
+    } else {
         stickyHeader.removeClass('fixed');
         //attachedMenu.removeAttr('style');
+    }
+}
+
+//Main Carousel Parallax
+var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
+var MainBannerlParallax = function (scrollPos) {
+    if ($('#main-carousel').length) {
+        var breakPos = $('.top-header').height(),
+            carouselBodyHeight = $('#main-carousel .carousel-body').height(),
+            newTopValue = scrollPos / 2,
+            newPaddingValue = scrollPos / 3;
+        if (scrollPos >= breakPos) {
+            if (newPaddingValue <= carouselBodyHeight) {
+                $('#main-carousel .carousel-body').css('padding-top', newPaddingValue);
+                $('.carousel-data').css('top', carouselDataTop - newTopValue);
+            }
+        } else {
+            $('#main-carousel .carousel-body').css('padding-top', 0);
+            $('.carousel-data').css('top', carouselDataTop);
+        }
+    } else if ($('.category-banner').length) {
+        var breakPos = $('.top-header').height(),
+            categoryBannerHeight = $('.category-banner').height();
+        newBgPosition = scrollPos / 15;
+        if (scrollPos >= breakPos) {
+            if (newBgPosition <= categoryBannerHeight) {
+                $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
+            }
+        } else {
+            $('.category-banner').css('background-position-y', '50%')
+        }
     }
 }
 
@@ -553,7 +584,7 @@ $(document).ready(function () {
             if ($('#popup-base .search-input input').hasClass('field-focus')) {
                 console.log('Search Btn Clicked');
             }
-        }else if(e.keyCode == 9){
+        } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
             }
@@ -576,4 +607,5 @@ $(document).ready(function () {
 $(document).scroll(function () {
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos);
+    MainBannerlParallax(scrollPos);
 });

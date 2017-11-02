@@ -28,6 +28,7 @@ main {
         height: 335px;
         overflow: hidden;
         margin-bottom: 30px;
+        background-position-y: 50%;
         @include media("(min-width: 1200px)") {
             height: get-vw(335px);
             margin-bottom: get-vw(30px);
