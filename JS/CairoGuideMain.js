@@ -52,13 +52,16 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
 var TransformHeader = function (scrollPos) {
     var topHeader = $('.top-header'),
         stickyHeader = $('.sticky-header'),
-        breakPos = topHeader.height();
+        breakPos = topHeader.height(),
+        bottomHHeight = $('.bottom-header');
     if (scrollPos >= breakPos) {
+        var padd = parseFloat(bottomHHeight.css('padding-top'),10) * 2;
         stickyHeader.addClass('fixed');
-        //attachedMenu.css('top',scrollPos + bottomHeader.height());
+        // topHeader.css('margin-bottom',bottomHHeight.height());
+        // topHeader.animate({marginBottom:bottomHHeight.height() - (padd*2)},30);
     } else {
         stickyHeader.removeClass('fixed');
-        //attachedMenu.removeAttr('style');
+        topHeader.removeAttr('style');
     }
 }
 
