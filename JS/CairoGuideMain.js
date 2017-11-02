@@ -376,6 +376,7 @@ $(document).ready(function () {
         $('#best-spots .best-frame-container:first').addClass('active');
         $('#best-spots .best-frame-container:first .best-image-frame:first').addClass('active');
         $('#best-spots .best-frame-container:first h2:first').addClass('active');
+        $('#best-spots .best-frame-container:first h6:first').addClass('active');
         $('#best-spots .best-frame-container:first .best-description-frame:first').addClass('active');
         $('#best-spots .best-frame-container .best-image-frame').on('click', function () {
             var bestFrameIndex = $(this).closest('.best-frame-container').index();
@@ -383,11 +384,13 @@ $(document).ready(function () {
             $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
             $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
             $('#best-spots .best-frame-container h2').removeClass('active');
+            $('#best-spots .best-frame-container h6').removeClass('active');
             if (bestIndex == 1)
                 $(this).siblings().not('.best-description-frame, h2').addClass('shadow');
             $(this).addClass('active');
             $('#best-spots .best-frame-container').eq(bestFrameIndex).find('.best-description-frame').eq(bestIndex).addClass('active');
             $('#best-spots .best-frame-container').eq(bestFrameIndex).find('h2').eq(bestIndex).addClass('active');
+            $('#best-spots .best-frame-container').eq(bestFrameIndex).find('h6').eq(bestIndex).addClass('active');
         });
         $('.best-controls .best-previous').on('click', function () {
             if (!bestAnimaion) {
@@ -400,6 +403,7 @@ $(document).ready(function () {
                     $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
                     $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
                     $('#best-spots .best-frame-container h2').removeClass('active');
+                    $('#best-spots .best-frame-container h6').removeClass('active');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == 1)
@@ -412,6 +416,7 @@ $(document).ready(function () {
                     });
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h6:first').addClass('active');
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
                     actualFrameIndex--;
                 }, 700);
@@ -428,6 +433,7 @@ $(document).ready(function () {
                     $('#best-spots .best-frame-container .best-description-frame').removeClass('active');
                     $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
                     $('#best-spots .best-frame-container h2').removeClass('active');
+                    $('#best-spots .best-frame-container h6').removeClass('active');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == bestFrameCount)
@@ -440,6 +446,7 @@ $(document).ready(function () {
                     });
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h6:first').addClass('active');
                     $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
                     actualFrameIndex++;
                 }, 700);

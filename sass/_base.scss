@@ -57,6 +57,14 @@ $cat-entertainment-color:#ffc72a;*/
     transform: $transform;
 }
 
+@mixin transform-origin($transform-origin...){
+    -webkit-transform-origin: $transform-origin;
+    -moz-transform-origin: $transform-origin;
+    -ms-transform-origin: $transform-origin;
+    -o-transform-origin: $transform-origin;
+    transform-origin: $transform-origin;
+}
+
 @mixin animation($animation...) {
     -webkit-animation: $animation;
     -moz-animation: $animation;
@@ -118,23 +126,6 @@ $cat-entertainment-color:#ffc72a;*/
     }
 }
 
-
-/*Carousel*/
-
-@each $item in $colorList {
-    #main-carousel .#{nth($item,1)}-item {
-        .section-title {
-            background: nth($item, 2)!important;
-        }
-        .carousel-read-more {
-            &:hover {
-                background: nth($item, 2)!important;
-                border-color: nth($item, 2)!important;
-                @include transition(all .1s);
-            }
-        }
-    }
-}
 
 
 /*@function get-vw($value) {
