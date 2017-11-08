@@ -49,28 +49,33 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
 }
 
 //Transform header during document scroll
-var TransformHeader = function (scrollPos) {
+var TransformHeader = function (scrollPos,breakPos) {
     var topHeader = $('.top-header'),
         stickyHeader = $('.sticky-header'),
-        breakPos = topHeader.height(),
-        bottomHHeight = $('.bottom-header');
+        bottomHeader = $('.bottom-header'),
+        mainContent = $('main');
     if (scrollPos >= breakPos) {
-        var padd = parseFloat(bottomHHeight.css('padding-top'),10) * 2;
+        //var padd = parseFloat(bottomHeader.css('padding-top'),10) * 2;
         stickyHeader.addClass('fixed');
-        // topHeader.css('margin-bottom',bottomHHeight.height());
-        // topHeader.animate({marginBottom:bottomHHeight.height() - (padd*2)},30);
+        //mainContent.css('margin-top',header.height());   
+        //mainContent.css('margin-top',bottomHeader.height());
+        // topHeader.css('margin-bottom',bottomHeader.height());
+        // topHeader.animate({marginBottom:bottomHeader.height() - (padd*2)},30);
     } else {
         stickyHeader.removeClass('fixed');
         topHeader.removeAttr('style');
+        //mainContent.css('margin-top','0px');   
     }
+    mainContent.css('margin-top',breakPos+'px');   
+    /*var headerNewHeight = topHeader.height() + bottomHeader.height();
+    $('header').css('height',headerNewHeight);*/
 }
 
 //Main Carousel Parallax
 var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
-var MainBannerlParallax = function (scrollPos) {
+var MainBannerlParallax = function (scrollPos,breakPos) {
     if ($('#main-carousel').length) {
-        var breakPos = $('.top-header').height(),
-            carouselBodyHeight = $('#main-carousel .carousel-body').height(),
+        var carouselBodyHeight = $('#main-carousel .carousel-body').height(),
             newTopValue = scrollPos / 2,
             newPaddingValue = scrollPos / 3;
         if (scrollPos >= breakPos) {
@@ -91,7 +96,8 @@ var MainBannerlParallax = function (scrollPos) {
                 $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
             }
         } else {
-            $('.category-banner').css('background-position-y', '50%')
+            //$('.category-banner').css('background-position-y', '50%')
+            $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
         }
     }
 }
@@ -113,6 +119,13 @@ var SetInnersCategory = function () {
 }
 //document ready
 $(document).ready(function () {
+    //Header
+    var header = $('header'),
+        breakPos = header.height();
+    var scrollPos = $(this).scrollTop();
+    TransformHeader(scrollPos,breakPos);
+    MainBannerlParallax(scrollPos,breakPos);
+
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
         $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
@@ -608,7 +621,9 @@ $(document).ready(function () {
 });
 
 $(document).scroll(function () {
+    var header = $('header'),
+    breakPos = header.height();
     var scrollPos = $(this).scrollTop();
-    TransformHeader(scrollPos);
-    MainBannerlParallax(scrollPos);
+    TransformHeader(scrollPos,breakPos);
+    MainBannerlParallax(scrollPos,breakPos);
 });
