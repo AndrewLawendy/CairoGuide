@@ -71,6 +71,13 @@ var TransformHeader = function (scrollPos,breakPos) {
     $('header').css('height',headerNewHeight);*/
 }
 
+//Scroll back to top function
+var BackToTop = function(){
+    $("html, body").animate({
+        scrollTop: 0
+    },700);
+}
+
 //Main Carousel Parallax
 var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
 var MainBannerlParallax = function (scrollPos,breakPos) {

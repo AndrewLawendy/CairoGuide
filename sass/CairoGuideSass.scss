@@ -205,6 +205,10 @@ main {
                 }
                 &.live-item {
                     height: 47%;
+
+                    iframe{
+                        background-color:#000;
+                    }
                 }
                 .trend-slide {
                     height: 100%;

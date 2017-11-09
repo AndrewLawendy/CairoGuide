@@ -296,6 +296,10 @@ body {
     content: "\e90c";
 }
 
+.icon-map-location:before{
+    content: "\e90d";
+}
+
 
 /*General Declarations*/
 
@@ -1060,7 +1064,7 @@ header {
             right: 0;
             top: 100%; //opacity: 0;
             @include transform(translateX(115%));
-            @include transition(all 0.3s ease 0.3s);
+            @include transition(all 0.3s ease 0.2s);
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px) get-vw(25px); //right: get-vw(-50px);
             }
@@ -1143,7 +1147,7 @@ header {
                 .category-nav {
                     &>li {
                         padding: 15px 35px 15px 0;
-                        @include transition(all 0.3s ease);
+                        @include transition(all 0.2s ease);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(15px) get-vw(35px) get-vw(15px) 0;
                         }
@@ -1154,7 +1158,7 @@ header {
                 //right: 0;
                 //opacity: 1;
                 @include transform(translateX(0));
-                @include transition(all 0.3s ease 0.3s);
+                @include transition(all 0.3s ease 0.2s);
                 @include media("(min-width: 1200px)") {
                     //right: 0;
                 }
