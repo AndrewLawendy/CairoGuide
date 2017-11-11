@@ -86,6 +86,13 @@ $cat-entertainment-color:#ffc72a;*/
     user-select: $value;
 }
 
+@mixin placeholder{
+    input::-webkit-input-placeholder{@content}
+    input::-moz-placeholder{@content}
+    input:-ms-input-placeholder{@content}
+    input:-moz-placeholder{@content}
+}
+
 @mixin key-frame($name) {
     @-webkit-keyframes #{$name} {
         @content;
@@ -244,61 +251,54 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-down-chevron:before {
-    content: "\e906";
-}
-
-.icon-left-chevron:before {
-    content: "\e907";
-}
-
-.icon-right-chevron:before {
-    content: "\e908";
-}
-
-.icon-up-chevron:before {
-    content: "\e909";
-}
-
-.icon-best-spots-prev:before {
-    content: "\e904";
-}
-
-.icon-best-spots-next:before {
-    content: "\e905";
-}
-
-.icon-search:before {
-    content: "\e903";
-}
-
 .icon-social-facebook:before {
     content: "\e900";
-}
-
-.icon-social-instagram:before {
+  }
+  .icon-social-instagram:before {
     content: "\e901";
-}
-
-.icon-social-twitter:before {
+  }
+  .icon-social-twitter:before {
     content: "\e902";
-}
-
-.icon-highlights-next:before {
-    content: "\e907";
-}
-
-.icon-highlights-prev:before {
+  }
+  .icon-search:before {
+    content: "\e903";
+  }
+  .icon-best-spots-prev:before {
+    content: "\e904";
+  }
+  .icon-best-spots-next:before {
+    content: "\e905";
+  }
+  .icon-left-arrow:before {
     content: "\e906";
-}
-
-.icon-back-to-top:before {
+  }
+  .icon-right-arrow:before {
+    content: "\e907";
+  }
+  .icon-down-chevron:before {
+    content: "\e908";
+  }
+  .icon-left-chevron:before {
+    content: "\e909";
+  }
+  .icon-right-chevron:before {
+    content: "\e90a";
+  }
+  .icon-up-chevron:before {
+    content: "\e90b";
+  }
+  .icon-back-to-top:before {
     content: "\e90c";
-}
-
-.icon-map-location:before{
+  }
+  .icon-map-location:before {
     content: "\e90d";
-}
+  }
+  .icon-filter-sort:before {
+    content: "\e90e";
+  }
+  .icon-triangular-arrow:before {
+    content: "\e90f";
+  }
 
 
 /*General Declarations*/
@@ -426,7 +426,7 @@ a {
     text-transform: uppercase;
 }
 
-*[class*="container"]::after {
+*[class*="container"]::after,*[class*="wrp"]::after {
     content: '';
     display: block;
     width: 100%;

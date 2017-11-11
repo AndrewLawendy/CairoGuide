@@ -16,6 +16,31 @@ Contains all styles of inner pages
         body.#{nth($i,1)}-theme {
             @include themify-inner-page(#{nth($i,1)},
             nth($i, 2));
+            .advanced-search-filters-wrp {
+                background: nth($i, 2);
+                .column-index {
+                    background: nth($i, 2);
+                }
+                .filter-field-input,
+                input {
+                    color: nth($i, 2);
+                    .dropdown-options {
+                        border-color: nth($i, 2);
+                        li {
+                            color: nth($i, 2);
+                            &:hover,
+                            &.selected {
+                                color: #fff;
+                                background: nth($i, 2);
+                                @include transition(all .3s);
+                            }
+                        }
+                    }
+                }
+                @include placeholder {
+                    color: nth($i, 2);
+                }
+            }
         }
     }
     /*Main*/
@@ -56,6 +81,184 @@ Contains all styles of inner pages
                 height: 100%;
                 object-fit: cover;
                 object-position: 0;
+            }
+        }
+        .advanced-search-filters-wrp {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(10px);
+                margin-bottom: get-vw(30px);
+            }
+            .dynamic-settings-wrp {
+                margin-right: 20px;
+                margin-top: 10px;
+                float: left;
+                cursor: pointer;
+                @include media("(min-width: 1200px)") {
+                    margin-right: get-vw(20px);
+                    margin-top: get-vw(10px);
+                }
+                .settings-column {
+                    height: 25px;
+                    width: 1px;
+                    background: #fff;
+                    position: relative;
+                    float: left;
+                    @include media("(min-width: 1200px)") {
+                        height: get-vw(25px);
+                        width: get-vw(1px);
+                    }
+                    &:first-child {
+                        .column-index {
+                            top: 13%;
+                        }
+                    }
+                    &:nth-child(2) {
+                        margin: 0 8px;
+                        @include media("(min-width: 1200px)") {
+                            margin: 0 get-vw(8px);
+                        }
+                        .column-index {
+                            top: 40%;
+                        }
+                    }
+                    &:last-child {
+                        .column-index {
+                            top: 63%;
+                        }
+                    }
+                    .column-index {
+                        position: absolute;
+                        box-sizing: border-box;
+                        left: -2px;
+                        width: 5px;
+                        height: 6px;
+                        border: 1px solid #fff;
+                        @include transition(all .3s);
+                        @include media("(min-width: 1200px)") {
+                            left: get-vw(-2px);
+                            width: get-vw(5px);
+                            height: get-vw(6px);
+                            border: get-vw(1px) solid #fff;
+                        }
+                    }
+                }
+            }
+            .filter-result-wrp {
+                float: left;
+                color: #fff;
+                margin: 10px -15px 0;
+                line-height: 25px;
+                .filter-result-item {
+                    float: left;
+                    padding: 0 15px;
+                    border-right: 1px solid #fff;
+                    &:last-child {
+                        border: none;
+                    }
+                    [class$="value"] {
+                        span {
+                            &::after {
+                                content: ',';
+                            }
+                            &:last-child {
+                                &::after {
+                                    content: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .filter-field-input,
+            input {
+                position: relative;
+                box-sizing: border-box;
+                background: #fff;
+                width: 100%;
+                height: 40px;
+                border-radius: 3px;
+                padding: 0 10px;
+                overflow: hidden;
+                border: none;
+                span {
+                    line-height: 42px;
+                }
+                i {
+                    float: right;
+                    line-height: 42px;
+                    @include transform(rotate(0));
+                    @include transition(all .15s);
+                }
+                .dropdown-options {
+                    opacity: 0;
+                    background: #fff;
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: calc(100% + 1px);
+                    border-bottom: 2px solid;
+                    z-index: 2;
+                    @include transform(translateY(20px));
+                    @include transition(all .5s);
+                    li {
+                        margin: 5px 0;
+                        padding: 10px;
+                        background: #fff;
+                        cursor: pointer;
+                        @include transition(all .15s);
+                    }
+                }
+                &.dropdown-input {
+                    cursor: pointer;
+                    &.active {
+                        overflow: visible;
+                        i {
+                            @include transform(rotate(180deg));
+                            @include transition(all .3s);
+                        }
+                        .dropdown-options {
+                            opacity: 1;
+                            @include transform(translateY(0));
+                            @include transition(all .3s);
+                        }
+                    }
+                }
+            }
+            .filter-sorting-wrp {
+                float: right;
+                width: calc(25% + 14px);
+                box-sizing: border-box;
+                .filter-field-input {
+                    width: calc(100% - 28px);
+                }
+                .icon-filter-sort {
+                    color: #fff;
+                    margin-right: 10px;
+                    line-height: 40px;
+                }
+                .filter-field-input {
+                    float: right;
+                }
+            }
+            .collapsable-filter-wrp {
+                margin: 0 -10px;
+                .filter-set-item {
+                    float: left;
+                    box-sizing: border-box;
+                    width: 25%;
+                    padding: 0 10px;
+                    margin-top: 20px;
+                    label {
+                        color: #fff;
+                        margin-bottom: 10px;
+                        display: block;
+                    }
+                }
             }
         }
         .category-list-wrp {
@@ -125,84 +328,75 @@ Contains all styles of inner pages
                 }
             }
         }
-        .items-list-wrp{
-            .items-list-container{
-                .item-wrp{
+        .items-list-wrp {
+            .items-list-container {
+                .item-wrp {
                     position: relative;
                     margin-bottom: 20px;
-
-                    &:after{
-                        content:'';
-                        display:block;
-                        position:absolute;
-                        bottom:3px;
-                        right:0;
-                        width:70%;
-                        height:3px;
-                        background-color:red;
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        bottom: 3px;
+                        right: 0;
+                        width: 70%;
+                        height: 3px;
+                        background-color: red;
                     }
-
-                    .item-rating{
+                    .item-rating {
                         position: absolute;
                         top: 0;
                         right: 0;
                     }
-
-                    .item-info{
+                    .item-info {
                         display: inline-block;
                         width: 100%;
-
-                        .item-img{
+                        .item-img {
                             width: 30%;
                             height: 200px;
                             overflow: hidden;
                             float: left;
                             padding-right: 20px;
                             box-sizing: border-box;
-
-                            img{
+                            img {
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
                             }
                         }
-
-                        .item-data{
+                        .item-data {
                             float: left;
                             width: 70%;
                             padding-bottom: 34px;
-
-                            h2{
+                            h2 {
                                 color: #000;
                                 font: 2.14em 'Lato-Black';
                                 margin-bottom: 10px;
                             }
-
-                            .item-location{
+                            .item-location {
                                 margin-bottom: 20px;
                                 color: red;
                                 display: inline-block;
                                 width: 100%;
-
-                                i,a,a:visited{
+                                i,
+                                a,
+                                a:visited {
                                     float: left;
                                 }
-
-                                i{
+                                i {
                                     margin-right: 5px;
                                 }
-
-                                a,a:visited{
+                                a,
+                                a:visited {
                                     color: red;
                                 }
                             }
-
-                            .item-links{
+                            .item-links {
                                 position: absolute;
                                 bottom: 23px;
                                 right: 0;
-
-                                a,a:visited{
+                                a,
+                                a:visited {
                                     float: right;
                                     margin-left: 15px;
                                     color: red;

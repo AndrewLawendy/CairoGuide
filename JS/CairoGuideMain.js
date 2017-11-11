@@ -49,7 +49,7 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
 }
 
 //Transform header during document scroll
-var TransformHeader = function (scrollPos,breakPos) {
+var TransformHeader = function (scrollPos, breakPos) {
     var topHeader = $('.top-header'),
         stickyHeader = $('.sticky-header'),
         bottomHeader = $('.bottom-header'),
@@ -66,21 +66,21 @@ var TransformHeader = function (scrollPos,breakPos) {
         topHeader.removeAttr('style');
         //mainContent.css('margin-top','0px');   
     }
-    mainContent.css('margin-top',breakPos+'px');   
+    mainContent.css('margin-top', breakPos + 'px');
     /*var headerNewHeight = topHeader.height() + bottomHeader.height();
     $('header').css('height',headerNewHeight);*/
 }
 
 //Scroll back to top function
-var BackToTop = function(){
+var BackToTop = function () {
     $("html, body").animate({
         scrollTop: 0
-    },700);
+    }, 700);
 }
 
 //Main Carousel Parallax
 var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
-var MainBannerlParallax = function (scrollPos,breakPos) {
+var MainBannerlParallax = function (scrollPos, breakPos) {
     if ($('#main-carousel').length) {
         var carouselBodyHeight = $('#main-carousel .carousel-body').height(),
             newTopValue = scrollPos / 2,
@@ -103,10 +103,16 @@ var MainBannerlParallax = function (scrollPos,breakPos) {
                 $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
             }
         } else {
-            //$('.category-banner').css('background-position-y', '50%')
             $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
         }
     }
+}
+
+//Random Number Generator
+var randomLimit = function (min, max) {
+    var random = Math.random();
+    var result = Math.round(random * (max - min) + min);
+    return result;
 }
 
 //For Demo
@@ -130,8 +136,8 @@ $(document).ready(function () {
     var header = $('header'),
         breakPos = header.height();
     var scrollPos = $(this).scrollTop();
-    TransformHeader(scrollPos,breakPos);
-    MainBannerlParallax(scrollPos,breakPos);
+    TransformHeader(scrollPos, breakPos);
+    MainBannerlParallax(scrollPos, breakPos);
 
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
@@ -545,6 +551,52 @@ $(document).ready(function () {
     }
     //End of Attractions
 
+    //Start of Advanced Search
+    if ($('.advanced-search-filters-wrp').length) {
+        $('.dropdown-input').on('click', function () {
+            var _this = $(this);
+            _this.toggleClass('active');
+            $(document).on('click', function (e) {
+                if (!_this.is(e.target) && _this.has(e.target).length == 0) {
+                    _this.removeClass('active');
+                }
+            });
+            _this.find('.dropdown-options li').on('click', function () {
+                if (!_this.hasClass('multiple-choice')) {
+                    var dropDownChoice = $(this).text();
+                    _this.find('.selected-value').text(dropDownChoice);
+                } else {
+                    var filterValueText = _this.find('.selected-value').text();
+                    var baseText = 'Please choose';
+                    if (filterValueText == baseText) {
+                        console.log('We can start');
+                    }
+                }
+            });
+        });
+        $('.dynamic-settings-wrp').on('click', function () {
+            var parentFilterWrapper = $(this).closest('.advanced-search-filters-wrp');
+            var siblingCollapsable = $(this).siblings('.collapsable-filter-wrp');
+            siblingCollapsable.toggleClass('open');
+            $(document).on('click', function (e) {
+                if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
+                    siblingCollapsable.removeClass('open');
+                }
+            });
+        });
+        $('.advanced-search-filters-wrp').on('click', function () {
+            var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
+            var childColumnHeight = childDynamicSettings.find('.settings-column').height();
+            var randomPercentage = randomLimit(3, childColumnHeight - 9);
+            childDynamicSettings.find('.settings-column').eq(0).find('.column-index').css('top', randomPercentage);
+            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            childDynamicSettings.find('.settings-column').eq(1).find('.column-index').css('top', randomPercentage);
+            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            childDynamicSettings.find('.settings-column').eq(2).find('.column-index').css('top', randomPercentage);
+        });
+    }
+    //End of Advanced Search
+
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
             //Carousel Autocomplete
@@ -629,8 +681,8 @@ $(document).ready(function () {
 
 $(document).scroll(function () {
     var header = $('header'),
-    breakPos = header.height();
+        breakPos = header.height();
     var scrollPos = $(this).scrollTop();
-    TransformHeader(scrollPos,breakPos);
-    MainBannerlParallax(scrollPos,breakPos);
+    TransformHeader(scrollPos, breakPos);
+    MainBannerlParallax(scrollPos, breakPos);
 });
