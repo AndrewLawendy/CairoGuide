@@ -57,7 +57,7 @@ $cat-entertainment-color:#ffc72a;*/
     transform: $transform;
 }
 
-@mixin transform-origin($transform-origin...){
+@mixin transform-origin($transform-origin...) {
     -webkit-transform-origin: $transform-origin;
     -moz-transform-origin: $transform-origin;
     -ms-transform-origin: $transform-origin;
@@ -84,6 +84,13 @@ $cat-entertainment-color:#ffc72a;*/
     -moz-user-select: $value;
     -ms-user-select: $value;
     user-select: $value;
+}
+
+@mixin placeholder{
+    input::-webkit-input-placeholder{@content}
+    input::-moz-placeholder{@content}
+    input:-ms-input-placeholder{@content}
+    input:-moz-placeholder{@content}
 }
 
 @mixin key-frame($name) {
@@ -125,7 +132,6 @@ $cat-entertainment-color:#ffc72a;*/
         background-color: nth($i, 2);
     }
 }
-
 
 
 /*@function get-vw($value) {
@@ -188,6 +194,7 @@ $cat-entertainment-color:#ffc72a;*/
 }
 
 body {
+    overflow-x: hidden;
     @include media("(min-width: 1200px)") {
         font-size: get-vw(14px);
     }
@@ -244,53 +251,54 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-down-chevron:before {
-    content: "\e906";
-}
-
-.icon-left-chevron:before {
-    content: "\e907";
-}
-
-.icon-right-chevron:before {
-    content: "\e908";
-}
-
-.icon-up-chevron:before {
-    content: "\e909";
-}
-
-.icon-best-spots-prev:before {
-    content: "\e904";
-}
-
-.icon-best-spots-next:before {
-    content: "\e905";
-}
-
-.icon-search:before {
-    content: "\e903";
-}
-
 .icon-social-facebook:before {
     content: "\e900";
-}
-
-.icon-social-instagram:before {
+  }
+  .icon-social-instagram:before {
     content: "\e901";
-}
-
-.icon-social-twitter:before {
+  }
+  .icon-social-twitter:before {
     content: "\e902";
-}
-
-.icon-highlights-next:before {
-    content: "\e907";
-}
-
-.icon-highlights-prev:before {
+  }
+  .icon-search:before {
+    content: "\e903";
+  }
+  .icon-best-spots-prev:before {
+    content: "\e904";
+  }
+  .icon-best-spots-next:before {
+    content: "\e905";
+  }
+  .icon-left-arrow:before {
     content: "\e906";
-}
+  }
+  .icon-right-arrow:before {
+    content: "\e907";
+  }
+  .icon-down-chevron:before {
+    content: "\e908";
+  }
+  .icon-left-chevron:before {
+    content: "\e909";
+  }
+  .icon-right-chevron:before {
+    content: "\e90a";
+  }
+  .icon-up-chevron:before {
+    content: "\e90b";
+  }
+  .icon-back-to-top:before {
+    content: "\e90c";
+  }
+  .icon-map-location:before {
+    content: "\e90d";
+  }
+  .icon-filter-sort:before {
+    content: "\e90e";
+  }
+  .icon-triangular-arrow:before {
+    content: "\e90f";
+  }
 
 
 /*General Declarations*/
@@ -418,7 +426,7 @@ a {
     text-transform: uppercase;
 }
 
-*[class*="container"]::after {
+*[class*="container"]::after,*[class*="wrp"]::after {
     content: '';
     display: block;
     width: 100%;
@@ -821,6 +829,7 @@ footer {
 }
 
 header {
+    position: relative;
     text-transform: uppercase;
     ul {
         li:last-child {
@@ -829,13 +838,6 @@ header {
     }
     .top-header,
     .sticky-header .bottom-header {
-        padding-bottom: 10px;
-        padding-top: 10px;
-        box-sizing: border-box;
-        @include media("(min-width: 1200px)") {
-            padding-bottom: get-vw(10px);
-            padding-top: get-vw(10px);
-        }
         ul {
             li {
                 float: left;
@@ -847,7 +849,14 @@ header {
         }
     }
     .top-header {
-        background-color: #fff;
+        background-color: $header-footer-secondary-background-color;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        box-sizing: border-box;
+        @include media("(min-width: 1200px)") {
+            padding-bottom: get-vw(10px);
+            padding-top: get-vw(10px);
+        }
         .logo {
             width: 68px;
             margin-right: 50px;
@@ -903,22 +912,31 @@ header {
         }
     }
     .sticky-header {
-        position: relative;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        top: 100%;
         .bottom-header {
             background-color: $header-footer-primary-background-color;
-            @include transition(all 0.3s ease 0.3s);
-            ul {
-                li {
-                    margin: 15px 40px 15px 0;
-                    @include media("(min-width: 1200px)") {
-                        margin: get-vw(15px) get-vw(40px) get-vw(15px) 0;
+            .category-nav {
+                &>li {
+                    @each $i in $colorList {
+                        &.#{nth($i,1)}-menu-item ul {
+                            border-left: 2px solid nth($i, 2);
+                            a:hover {
+                                background-color: nth($i, 2);
+                            }
+                        }
                     }
-                    a,
-                    a:visited {
-                        color: $header-footer-secondary-text-color;
-                        position: relative;
+                    &>ul {
+                        @include transform(translate(-5px,
+                        20px)!important);
+                        @include media("(min-width: 1200px)") {
+                            @include transform(translate(get-vw(-5px),
+                            get-vw(20px))!important);
+                        }
                     }
-                    a {
+                    &>a {
                         &::after {
                             content: attr(title);
                             position: absolute;
@@ -928,7 +946,7 @@ header {
                             background-color: $header-footer-secondary-background-color;
                             color: $header-footer-primary-text-color;
                             clip: rect(0px, 0px, 200px, 0px);
-                            transition: clip .3s;
+                            @include transition(clip .3s);
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(-5px);
                                 left: get-vw(-5px);
@@ -939,10 +957,97 @@ header {
                         &:hover {
                             &::after {
                                 clip: rect(0px, 200px, 200px, 0);
-                                transition: all 1s;
+                                @include transition(all 1s);
                                 @include media("(min-width: 1200px)") {
                                     clip: rect(0, get-vw(200px), get-vw(200px), 0);
                                 }
+                            }
+                        }
+                    }
+                    &:hover {
+                        &>a::after {
+                            clip: rect(0px, 200px, 200px, 0);
+                            @include transition(all 1s);
+                            @include media("(min-width: 1200px)") {
+                                clip: rect(0, get-vw(200px), get-vw(200px), 0);
+                            }
+                        }
+                        &>ul {
+                            @include transform(translate(-5px,
+                            0px)!important);
+                            @include media("(min-width: 1200px)") {
+                                @include transform(translate(get-vw(-5px),
+                                get-vw(0px))!important);
+                            }
+                        }
+                    }
+                }
+                li {
+                    padding: 25px 35px 25px 0;
+                    box-sizing: border-box;
+                    position: relative;
+                    overflow: hidden;
+                    @include transition(all 0.2s ease);
+                    @include media("(min-width: 1200px)") {
+                        padding: get-vw(25px) get-vw(35px) get-vw(25px) 0;
+                    }
+                    a,
+                    a:visited {
+                        color: $header-footer-secondary-text-color;
+                        position: relative;
+                    }
+                    &:hover {
+                        overflow: visible;
+                        &>ul {
+                            opacity: 1;
+                            @include transform(translateY(0));
+                            @include transition(all 0.3s ease);
+                            /*display: block;*/
+                        }
+                    }
+                    ul {
+                        position: absolute;
+                        min-width: 100%;
+                        top: 100%;
+                        z-index:300;
+                        white-space: nowrap;
+                        opacity: 0;
+                        @include transform(translateY(20px));
+                        @include transition(opacity 0.3s ease,
+                        transform 0.3s ease);
+                        /*display: none;*/
+                        @include media("(min-width: 1200px)") {
+                            border-left-width: get-vw(2px);
+                        }
+                        li {
+                            margin: 0;
+                            text-align: center;
+                            /*line-height: 1.5em;*/
+                            padding: 0;
+                            float: none;
+                            a,
+                            a:visited {
+                                padding: 10px 5px;
+                                box-sizing: border-box;
+                                display: block;
+                                background: $header-footer-secondary-background-color;
+                                color: $header-footer-primary-text-color;
+                                @include transition(all 0.3s ease);
+                                @include media("(min-width: 1200px)") {
+                                    padding: get-vw(10px) get-vw(5px);
+                                }
+                                &:after {
+                                    display: none;
+                                }
+                            }
+                            a:hover {
+                                /*background: $header-footer-primary-background-color;*/
+                                color: $header-footer-secondary-text-color;
+                                @include transition(all 0.3s ease);
+                            }
+                            ul {
+                                left: 100%;
+                                top: 0;
                             }
                         }
                     }
@@ -951,17 +1056,17 @@ header {
         }
         .attached-menu {
             float: right;
-            background: #131313;
+            background: $header-footer-primary-background-color;
             position: absolute;
             z-index: 100;
-            padding: 15px 25px;
+            padding: 10px 25px;
             box-sizing: border-box;
             right: 0;
             top: 100%; //opacity: 0;
             @include transform(translateX(115%));
-            @include transition(all 0.3s ease);
+            @include transition(all 0.3s ease 0.2s);
             @include media("(min-width: 1200px)") {
-                padding: get-vw(15px) get-vw(25px); //right: get-vw(-50px);
+                padding: get-vw(10px) get-vw(25px); //right: get-vw(-50px);
             }
             &:after {
                 content: '';
@@ -1024,6 +1129,11 @@ header {
                             }
                         }
                     }
+                    .icon-back-to-top{
+                        display: block;
+                        font-size: 1.9em;
+                        line-height: 0.6em;
+                    }
                 }
             }
         }
@@ -1034,19 +1144,21 @@ header {
             left: 0;
             z-index: 100;
             .bottom-header {
-                padding-top: 0;
-                padding-bottom: 0;
-                @include transition(all 0.3s ease);
-                @include media("(min-width: 1200px)") {
-                    padding-top: 0;
-                    padding-bottom: 0;
+                .category-nav {
+                    &>li {
+                        padding: 15px 35px 15px 0;
+                        @include transition(all 0.2s ease);
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(15px) get-vw(35px) get-vw(15px) 0;
+                        }
+                    }
                 }
             }
             .attached-menu {
                 //right: 0;
                 //opacity: 1;
                 @include transform(translateX(0));
-                @include transition(all 0.3s ease 0.3s);
+                @include transition(all 0.3s ease 0.2s);
                 @include media("(min-width: 1200px)") {
                     //right: 0;
                 }

@@ -49,28 +49,40 @@ var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
 }
 
 //Transform header during document scroll
-var TransformHeader = function (scrollPos) {
+var TransformHeader = function (scrollPos, breakPos) {
     var topHeader = $('.top-header'),
         stickyHeader = $('.sticky-header'),
-        breakPos = topHeader.height(),
-        bottomHHeight = $('.bottom-header');
+        bottomHeader = $('.bottom-header'),
+        mainContent = $('main');
     if (scrollPos >= breakPos) {
-        var padd = parseFloat(bottomHHeight.css('padding-top'),10) * 2;
+        //var padd = parseFloat(bottomHeader.css('padding-top'),10) * 2;
         stickyHeader.addClass('fixed');
-        // topHeader.css('margin-bottom',bottomHHeight.height());
-        // topHeader.animate({marginBottom:bottomHHeight.height() - (padd*2)},30);
+        //mainContent.css('margin-top',header.height());   
+        //mainContent.css('margin-top',bottomHeader.height());
+        // topHeader.css('margin-bottom',bottomHeader.height());
+        // topHeader.animate({marginBottom:bottomHeader.height() - (padd*2)},30);
     } else {
         stickyHeader.removeClass('fixed');
         topHeader.removeAttr('style');
+        //mainContent.css('margin-top','0px');   
     }
+    mainContent.css('margin-top', breakPos + 'px');
+    /*var headerNewHeight = topHeader.height() + bottomHeader.height();
+    $('header').css('height',headerNewHeight);*/
+}
+
+//Scroll back to top function
+var BackToTop = function () {
+    $("html, body").animate({
+        scrollTop: 0
+    }, 700);
 }
 
 //Main Carousel Parallax
 var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
-var MainBannerlParallax = function (scrollPos) {
+var MainBannerlParallax = function (scrollPos, breakPos) {
     if ($('#main-carousel').length) {
-        var breakPos = $('.top-header').height(),
-            carouselBodyHeight = $('#main-carousel .carousel-body').height(),
+        var carouselBodyHeight = $('#main-carousel .carousel-body').height(),
             newTopValue = scrollPos / 2,
             newPaddingValue = scrollPos / 3;
         if (scrollPos >= breakPos) {
@@ -91,9 +103,16 @@ var MainBannerlParallax = function (scrollPos) {
                 $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
             }
         } else {
-            $('.category-banner').css('background-position-y', '50%')
+            $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
         }
     }
+}
+
+//Random Number Generator
+var randomLimit = function (min, max) {
+    var random = Math.random();
+    var result = Math.round(random * (max - min) + min);
+    return result;
 }
 
 //For Demo
@@ -113,6 +132,13 @@ var SetInnersCategory = function () {
 }
 //document ready
 $(document).ready(function () {
+    //Header
+    var header = $('header'),
+        breakPos = header.height();
+    var scrollPos = $(this).scrollTop();
+    TransformHeader(scrollPos, breakPos);
+    MainBannerlParallax(scrollPos, breakPos);
+
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
         $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
@@ -525,6 +551,76 @@ $(document).ready(function () {
     }
     //End of Attractions
 
+    //Start of Advanced Search
+    if ($('.advanced-search-filters-wrp').length) {
+        $('.dropdown-input').on('click', function () {
+            var _this = $(this);
+            _this.toggleClass('active');
+            $(document).on('click', function (e) {
+                if (!_this.is(e.target) && _this.has(e.target).length == 0) {
+                    _this.removeClass('active');
+                }
+            });
+        });
+        $('.dropdown-options li').on('click', function () {
+            var parentDropDown = $(this).closest('.dropdown-input');
+            if (!parentDropDown.hasClass('multiple-choice')) {
+                var dropDownChoice = $(this).text();
+                parentDropDown.find('.selected-value').text(dropDownChoice);
+                console.log('dropdown updated');
+            }
+        });
+        $('.dropdown-options li input').on('change', function () {
+            var checkboxStatus = $(this).is(':checked');
+            var filterLabel = $(this).next('label').find('.filter-label').text();
+            var filterValue = $(this).closest('.multiple-choice').find('.selected-value');
+            var baseText = 'Please choose';
+            var spanModel = '<span class="entering">' + filterLabel + '</span>';
+            if (checkboxStatus) {
+                if (filterValue.text() == baseText) {
+                    filterValue.text('');
+                }
+                filterValue.append(spanModel);
+                setTimeout(function () {
+                    filterValue.find('.entering').removeClass('entering');
+                });
+            } else {
+                var falseCheckbox = filterValue.find('span:contains(' + filterLabel + ')');
+                falseCheckbox.animate({
+                    width: 0
+                }, 50);
+                setTimeout(function () {
+                    falseCheckbox.remove();
+                    if (filterValue.children().length == 0) {
+                        filterValue.text(baseText);
+                    }
+                }, 400);
+            }
+        });
+
+        $('.dynamic-settings-wrp').on('click', function () {
+            var parentFilterWrapper = $(this).closest('.advanced-search-filters-wrp');
+            var siblingCollapsable = $(this).siblings('.collapsable-filter-wrp');
+            siblingCollapsable.toggleClass('open').slideToggle('fast');
+            $(document).on('click', function (e) {
+                if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
+                    siblingCollapsable.removeClass('open').slideUp('fast');
+                }
+            });
+        });
+        $('.advanced-search-filters-wrp').on('click', function () {
+            var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
+            var childColumnHeight = childDynamicSettings.find('.settings-column').height();
+            var randomPercentage = randomLimit(12, 65) + '%';
+            childDynamicSettings.find('.settings-column').eq(0).find('.column-index').css('top', randomPercentage);
+            var randomPercentage = randomLimit(12, 65) + '%';
+            childDynamicSettings.find('.settings-column').eq(1).find('.column-index').css('top', randomPercentage);
+            var randomPercentage = randomLimit(12, 65) + '%';
+            childDynamicSettings.find('.settings-column').eq(2).find('.column-index').css('top', randomPercentage);
+        });
+    }
+    //End of Advanced Search
+
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
             //Carousel Autocomplete
@@ -608,7 +704,9 @@ $(document).ready(function () {
 });
 
 $(document).scroll(function () {
+    var header = $('header'),
+        breakPos = header.height();
     var scrollPos = $(this).scrollTop();
-    TransformHeader(scrollPos);
-    MainBannerlParallax(scrollPos);
+    TransformHeader(scrollPos, breakPos);
+    MainBannerlParallax(scrollPos, breakPos);
 });

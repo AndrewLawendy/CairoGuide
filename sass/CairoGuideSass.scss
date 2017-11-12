@@ -205,6 +205,10 @@ main {
                 }
                 &.live-item {
                     height: 47%;
+
+                    iframe{
+                        background-color:#000;
+                    }
                 }
                 .trend-slide {
                     height: 100%;
@@ -799,6 +803,7 @@ main {
                         height: auto;
                         min-height: 150%;
                         position: relative;
+                        object-fit: cover;
                     }
                     .item-bg {
                         position: absolute;
