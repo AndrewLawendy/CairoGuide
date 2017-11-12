@@ -79,7 +79,7 @@ Contains all styles of inner pages
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                object-position: 0;
+                object-position: center;
             }
         }
         .advanced-search-filters-wrp {
@@ -520,6 +520,7 @@ Contains all styles of inner pages
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
+                                object-position: center;
                             }
                         }
                         .item-data {
