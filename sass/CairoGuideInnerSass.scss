@@ -28,8 +28,7 @@ Contains all styles of inner pages
                         border-color: nth($i, 2);
                         li {
                             color: nth($i, 2);
-                            &:hover,
-                            &.selected {
+                            &:hover {
                                 color: #fff;
                                 background: nth($i, 2);
                                 @include transition(all .3s);
@@ -89,9 +88,12 @@ Contains all styles of inner pages
             margin-bottom: 30px;
             position: relative;
             z-index: 1;
+            box-sizing: border-box;
+            border-radius: 7px;
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px);
                 margin-bottom: get-vw(30px);
+                border-radius: get-vw(7px);
             }
             .dynamic-settings-wrp {
                 margin-right: 20px;
@@ -148,35 +150,44 @@ Contains all styles of inner pages
                     }
                 }
             }
+            [class$="value"] {
+                span {
+                    &::after {
+                        content: ',';
+                    }
+                    &:last-child {
+                        &::after {
+                            content: none;
+                        }
+                    }
+                }
+            }
             .filter-result-wrp {
                 float: left;
                 color: #fff;
                 margin: 10px -15px 0;
                 line-height: 25px;
+                @include media("(min-width: 1200px)") {
+                    margin: get-vw(10px) get-vw(-15px) 0;
+                    line-height: get-vw(25px);
+                }
                 .filter-result-item {
                     float: left;
                     padding: 0 15px;
                     border-right: 1px solid #fff;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(15px);
+                        border-right: get-vw(1px) solid #fff;
+                    }
                     &:last-child {
                         border: none;
-                    }
-                    [class$="value"] {
-                        span {
-                            &::after {
-                                content: ',';
-                            }
-                            &:last-child {
-                                &::after {
-                                    content: none;
-                                }
-                            }
-                        }
                     }
                 }
             }
             .filter-field-input,
             input {
                 position: relative;
+                @include user-select(none);
                 box-sizing: border-box;
                 background: #fff;
                 width: 100%;
@@ -185,14 +196,47 @@ Contains all styles of inner pages
                 padding: 0 10px;
                 overflow: hidden;
                 border: none;
-                span {
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(40px);
+                    border-radius: get-vw(3px);
+                    padding: 0 get-vw(10px);
+                }
+                .selected-value {
+                    display: inline-block;
                     line-height: 42px;
+                    width: calc(100% - 24px);
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    @include media("(min-width: 1200px)") {
+                        line-height: get-vw(42px);
+                        width: calc(100% - 2vw);
+                    }
+                    >span {
+                        position: relative;
+                        top: 0;
+                        opacity: 1;
+                        float: left;
+                        overflow: hidden;
+                        @include transition(all .3s);
+                        &.entering {
+                            top: -20px;
+                            opacity: 0;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(-20px);
+                            }
+                        }
+                    }
                 }
                 i {
                     float: right;
                     line-height: 42px;
                     @include transform(rotate(0));
                     @include transition(all .15s);
+                    @include media("(min-width: 1200px)") {
+                        line-height: get-vw(42px);
+                    }
                 }
                 .dropdown-options {
                     opacity: 0;
@@ -205,12 +249,98 @@ Contains all styles of inner pages
                     z-index: 2;
                     @include transform(translateY(20px));
                     @include transition(all .5s);
+                    @include media("(min-width: 1200px)") {
+                        border-bottom: get-vw(2px) solid;
+                    }
                     li {
-                        margin: 5px 0;
-                        padding: 10px;
                         background: #fff;
                         cursor: pointer;
                         @include transition(all .15s);
+                        input {
+                            display: none;
+                            &:checked {
+                                +label::after {
+                                    top: 10px;
+                                    opacity: 1;
+                                    @include transition(all .15s);
+                                    @include media("(min-width: 1200px)") {
+                                        top: get-vw(10px);
+                                    }
+                                }
+                            }
+                        }
+                        label {
+                            display: inline-block;
+                            cursor: pointer;
+                            position: relative;
+                            padding: 10px;
+                            width: 100%;
+                            height: 100%;
+                            box-sizing: border-box;
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(10px);
+                            }
+                            .filter-label {
+                                float: left;
+                            }
+                            .filter-rating-count {
+                                float: right;
+                            }
+                            .filter-label,
+                            .filter-rating-count {
+                                line-height: 16px;
+                                @include media("(min-width: 1200px)") {
+                                    line-height: get-vw(16px);
+                                }
+                            }
+                            &::before {
+                                content: '';
+                                display: block;
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 3px;
+                                margin-right: 10px;
+                                border: 2px solid;
+                                float: left;
+                                box-sizing: border-box;
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(16px);
+                                    height: get-vw(16px);
+                                    border: get-vw(2px) solid;
+                                    margin-right: get-vw(10px);
+                                }
+                            }
+                            &::after {
+                                content: '';
+                                display: block;
+                                width: 4px;
+                                height: 10px;
+                                border-right: 2px solid;
+                                border-bottom: 2px solid;
+                                position: absolute;
+                                opacity: 0;
+                                top: 5px;
+                                left: 16px;
+                                @include transform(rotate(45deg));
+                                @include transition(all .1s);
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(4px);
+                                    height: get-vw(10px);
+                                    border-right: get-vw(2px) solid;
+                                    border-bottom: get-vw(2px) solid;
+                                    top: get-vw(5px);
+                                    left: get-vw(16px);
+                                }
+                            }
+                        }
+                    }
+                }
+                &:not(.multiple-choice){
+                    li{
+                        padding: 10px;
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(10px);
+                        }
                     }
                 }
                 &.dropdown-input {
@@ -231,15 +361,26 @@ Contains all styles of inner pages
             }
             .filter-sorting-wrp {
                 float: right;
-                width: calc(25% + 14px);
+                width: calc(25% + 13px);
                 box-sizing: border-box;
+                @include media("(min-width: 1200px)") {
+                    width: calc(25% + 1.1vw);
+                }
                 .filter-field-input {
                     width: calc(100% - 28px);
+                    @include media("(min-width: 1200px)") {
+                        width: calc(100% - 2.333vw);
+                    }
                 }
                 .icon-filter-sort {
                     color: #fff;
                     margin-right: 10px;
                     line-height: 40px;
+                    float: right;
+                    @include media("(min-width: 1200px)") {
+                        margin-right: get-vw(10px);
+                        line-height: get-vw(40px);
+                    }
                 }
                 .filter-field-input {
                     float: right;
@@ -247,16 +388,32 @@ Contains all styles of inner pages
             }
             .collapsable-filter-wrp {
                 margin: 0 -10px;
+                @include media("(min-width: 1200px)") {
+                    margin: 0 get-vw(-10px);
+                }
                 .filter-set-item {
                     float: left;
                     box-sizing: border-box;
                     width: 25%;
                     padding: 0 10px;
                     margin-top: 20px;
-                    label {
+                    &:nth-child(4n+1) {
+                        clear: left;
+                    }
+                    &:nth-child(4n+4) {
+                        clear: right;
+                    }
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(10px);
+                        margin-top: get-vw(20px);
+                    }
+                    p {
                         color: #fff;
                         margin-bottom: 10px;
                         display: block;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(10px);
+                        }
                     }
                 }
             }
@@ -302,6 +459,7 @@ Contains all styles of inner pages
                         width: 120%;
                         height: 100%;
                         object-fit: cover;
+                        object-position: center;
                         @include transform(translateX(-5%));
                         @include transition(transform 5s ease-out);
                     }

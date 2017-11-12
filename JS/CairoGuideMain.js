@@ -561,37 +561,61 @@ $(document).ready(function () {
                     _this.removeClass('active');
                 }
             });
-            _this.find('.dropdown-options li').on('click', function () {
-                if (!_this.hasClass('multiple-choice')) {
-                    var dropDownChoice = $(this).text();
-                    _this.find('.selected-value').text(dropDownChoice);
-                } else {
-                    var filterValueText = _this.find('.selected-value').text();
-                    var baseText = 'Please choose';
-                    if (filterValueText == baseText) {
-                        console.log('We can start');
-                    }
-                }
-            });
         });
+        $('.dropdown-options li').on('click', function () {
+            var parentDropDown = $(this).closest('.dropdown-input');
+            if (!parentDropDown.hasClass('multiple-choice')) {
+                var dropDownChoice = $(this).text();
+                parentDropDown.find('.selected-value').text(dropDownChoice);
+                console.log('dropdown updated');
+            }
+        });
+        $('.dropdown-options li input').on('change', function () {
+            var checkboxStatus = $(this).is(':checked');
+            var filterLabel = $(this).next('label').find('.filter-label').text();
+            var filterValue = $(this).closest('.multiple-choice').find('.selected-value');
+            var baseText = 'Please choose';
+            var spanModel = '<span class="entering">' + filterLabel + '</span>';
+            if (checkboxStatus) {
+                if (filterValue.text() == baseText) {
+                    filterValue.text('');
+                }
+                filterValue.append(spanModel);
+                setTimeout(function () {
+                    filterValue.find('.entering').removeClass('entering');
+                });
+            } else {
+                var falseCheckbox = filterValue.find('span:contains(' + filterLabel + ')');
+                falseCheckbox.animate({
+                    width: 0
+                }, 50);
+                setTimeout(function () {
+                    falseCheckbox.remove();
+                    if (filterValue.children().length == 0) {
+                        filterValue.text(baseText);
+                    }
+                }, 400);
+            }
+        });
+
         $('.dynamic-settings-wrp').on('click', function () {
             var parentFilterWrapper = $(this).closest('.advanced-search-filters-wrp');
             var siblingCollapsable = $(this).siblings('.collapsable-filter-wrp');
-            siblingCollapsable.toggleClass('open');
+            siblingCollapsable.toggleClass('open').slideToggle('fast');
             $(document).on('click', function (e) {
                 if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
-                    siblingCollapsable.removeClass('open');
+                    siblingCollapsable.removeClass('open').slideUp('fast');
                 }
             });
         });
         $('.advanced-search-filters-wrp').on('click', function () {
             var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
             var childColumnHeight = childDynamicSettings.find('.settings-column').height();
-            var randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(0).find('.column-index').css('top', randomPercentage);
-            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(1).find('.column-index').css('top', randomPercentage);
-            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(2).find('.column-index').css('top', randomPercentage);
         });
     }
