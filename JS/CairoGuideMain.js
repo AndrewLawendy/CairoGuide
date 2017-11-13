@@ -654,7 +654,7 @@ $(document).ready(function () {
                 parentSearchFilter.find('.rating-value').empty();
                 for (var i = 0; i < ratingCount; i++) {
                     var ratingResult = ratingChoices.find('span').eq(i).text();
-                    parentSearchFilter.find('.rating-value').append('<span>'+ratingResult+'</span>');
+                    parentSearchFilter.find('.rating-value').append('<span>' + ratingResult + '</span>');
                 }
             }
             if (facilitiesChoices.children().length == 0) {
@@ -664,7 +664,7 @@ $(document).ready(function () {
                 parentSearchFilter.find('.facilities-value').empty();
                 for (var i = 0; i < facilitiesCount; i++) {
                     var ratingResult = facilitiesChoices.find('span').eq(i).text();
-                    parentSearchFilter.find('.facilities-value').append('<span>'+ratingResult+'</span>');
+                    parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
                 }
             }
             var facilities;
