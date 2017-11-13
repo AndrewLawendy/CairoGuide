@@ -647,6 +647,8 @@ $(document).ready(function () {
             var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/ EGP/, '');
             if (highestPrice == '')
                 highestPrice = 'The highest possible';
+            if (!isNaN(lowestPrice) && !isNaN(highestPrice) && lowestPrice > highestPrice)
+                console.log('highest must be higher than the lowest');
             if (ratingChoices.children().length == 0) {
                 parentSearchFilter.find('.rating-value').text('Any');
             } else {
@@ -667,7 +669,6 @@ $(document).ready(function () {
                     parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
                 }
             }
-            var facilities;
             var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
             parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
             parentSearchFilter.find('.highest-price-value').text(highestPrice);
