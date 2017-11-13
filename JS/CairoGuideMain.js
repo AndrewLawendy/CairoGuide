@@ -115,6 +115,23 @@ var randomLimit = function (min, max) {
     return result;
 }
 
+//Set Cursor Limit
+var setCursorLimit = function (input, charNumb, e) {
+    var limit = input.val().length - charNumb;
+    var cursorPos = input[0].selectionStart;
+    var cursorEnd = input[0].selectionEnd;
+    if (e) {
+        if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
+            e.preventDefault();
+        } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
+            e.preventDefault();
+        }
+    }
+    if (cursorPos > limit) {
+        input[0].setSelectionRange(limit, limit);
+    }
+}
+
 //For Demo
 var GetParameterByName = function (name, url) {
     if (!url) url = window.location.href;
@@ -596,6 +613,64 @@ $(document).ready(function () {
                     }
                 }, 400);
             }
+        });
+        $('.filter-set-item .simulate-number').on('keypress', function (e) {
+            if (e.which < 48 || e.which > 57) {
+                e.preventDefault();
+            }
+        });
+        $('.filter-set-item .simulate-number').on('keydown', function (e) {
+            var val = $(this).val();
+            var keys = [9, 13, 16, 17, 18, 19, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 91, 93, 106, 107, 109, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 187, 189, 192, 144, 145, 220];
+            if (val.indexOf('EGP') == -1 && $.inArray(e.keyCode, keys) == -1) {
+                $(this).val(val + ' EGP');
+            }
+            if (e.keyCode == 46 || e.keyCode == 8) {
+                valLength = val.length;
+                var selectionStart = $(this)[0].selectionStart;
+                var selectionEnd = $(this)[0].selectionEnd;
+                if (valLength < 6 || (selectionStart == 0 && selectionEnd == valLength - 4)) {
+                    $(this).val('');
+                }
+            }
+            setCursorLimit($(this), 4, e);
+        });
+
+        $('.search-go-event').on('click', function () {
+            var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
+            var parentSearchFilter = $(this).closest('.advanced-search-filters-wrp');
+            var ratingChoices = parentCollapsable.find('p:contains("Rating")').siblings('.multiple-choice').find('.selected-value');
+            var facilitiesChoices = parentCollapsable.find('p:contains("Facilities")').siblings('.multiple-choice').find('.selected-value');
+            var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/ EGP/, '');
+            if (lowestPrice == '')
+                lowestPrice = 'The lowest possible';
+            var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/ EGP/, '');
+            if (highestPrice == '')
+                highestPrice = 'The highest possible';
+            if (ratingChoices.children().length == 0) {
+                parentSearchFilter.find('.rating-value').text('Any');
+            } else {
+                var ratingCount = ratingChoices.children().length;
+                parentSearchFilter.find('.rating-value').empty();
+                for (var i = 0; i < ratingCount; i++) {
+                    var ratingResult = ratingChoices.find('span').eq(i).text();
+                    parentSearchFilter.find('.rating-value').append('<span>' + ratingResult + '</span>');
+                }
+            }
+            if (facilitiesChoices.children().length == 0) {
+                parentSearchFilter.find('.facilities-value').text('Any');
+            } else {
+                var facilitiesCount = facilitiesChoices.children().length;
+                parentSearchFilter.find('.facilities-value').empty();
+                for (var i = 0; i < facilitiesCount; i++) {
+                    var ratingResult = facilitiesChoices.find('span').eq(i).text();
+                    parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
+                }
+            }
+            var facilities;
+            var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
+            parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
+            parentSearchFilter.find('.highest-price-value').text(highestPrice);
         });
 
         $('.dynamic-settings-wrp').on('click', function () {

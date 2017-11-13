@@ -31,8 +31,27 @@ Contains all styles of inner pages
                             &:hover {
                                 color: #fff;
                                 background: nth($i, 2);
-                                @include transition(all .3s);
+                                * {
+                                    color: #fff;
+                                }
                             }
+                        }
+                    }
+                }
+                .inline-radio {
+                    label::after {
+                        background: nth($i, 2);
+                    }
+                }
+                .search-go-event{
+                    span{
+                        color: nth($i, 2);
+                    }
+                    &:hover{
+                        background: nth($i, 2);
+                        @include transition(all .15s);
+                        span{
+                            color:#fff;
                         }
                     }
                 }
@@ -79,7 +98,7 @@ Contains all styles of inner pages
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                object-position: 0;
+                object-position: center;
             }
         }
         .advanced-search-filters-wrp {
@@ -152,6 +171,10 @@ Contains all styles of inner pages
             }
             [class$="value"] {
                 span {
+                    margin-right: 2px;
+                    @include media("(min-width: 1200px)") {
+                        margin-right: get-vw(2px);
+                    }
                     &::after {
                         content: ',';
                     }
@@ -196,6 +219,10 @@ Contains all styles of inner pages
                 padding: 0 10px;
                 overflow: hidden;
                 border: none;
+                font-size: 1em;
+                &:focus {
+                    outline: none;
+                }
                 @include media("(min-width: 1200px)") {
                     height: get-vw(40px);
                     border-radius: get-vw(3px);
@@ -255,9 +282,7 @@ Contains all styles of inner pages
                     li {
                         background: #fff;
                         cursor: pointer;
-                        @include transition(all .15s);
                         input {
-                            display: none;
                             &:checked {
                                 +label::after {
                                     top: 10px;
@@ -285,6 +310,7 @@ Contains all styles of inner pages
                             }
                             .filter-rating-count {
                                 float: right;
+                                color: #777;
                             }
                             .filter-label,
                             .filter-rating-count {
@@ -335,8 +361,8 @@ Contains all styles of inner pages
                         }
                     }
                 }
-                &:not(.multiple-choice){
-                    li{
+                &:not(.multiple-choice) {
+                    li {
                         padding: 10px;
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(10px);
@@ -357,6 +383,11 @@ Contains all styles of inner pages
                             @include transition(all .3s);
                         }
                     }
+                }
+            }
+            .filter-radio-container {
+                .inline-radio {
+                    width: 33.333%;
                 }
             }
             .filter-sorting-wrp {
@@ -387,6 +418,7 @@ Contains all styles of inner pages
                 }
             }
             .collapsable-filter-wrp {
+                display: none;
                 margin: 0 -10px;
                 @include media("(min-width: 1200px)") {
                     margin: 0 get-vw(-10px);
@@ -397,6 +429,9 @@ Contains all styles of inner pages
                     width: 25%;
                     padding: 0 10px;
                     margin-top: 20px;
+                    &.float-right{
+                        float: right;
+                    }
                     &:nth-child(4n+1) {
                         clear: left;
                     }
@@ -414,6 +449,26 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             margin-bottom: get-vw(10px);
                         }
+                    }
+                }
+                .search-go-event{
+                    cursor: pointer;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 100%;
+                    line-height: 60px;
+                    background: #fff;
+                    border:1px solid #fff;
+                    box-sizing: border-box;
+                    text-align: center;
+                    float: right;
+                    font: 1.43em 'Lato-Black';
+                    @include transition(background .3s);
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(60px);
+                        height: get-vw(60px);
+                        line-height: get-vw(60px);
+                        border:get-vw(1px) solid #fff;
                     }
                 }
             }
@@ -520,6 +575,7 @@ Contains all styles of inner pages
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
+                                object-position: center;
                             }
                         }
                         .item-data {
