@@ -425,13 +425,15 @@ a {
     }
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
-.text-right{
+
+.text-right {
     text-align: right;
 }
-.text-left{
+
+.text-left {
     text-align: left;
 }
 
@@ -475,9 +477,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-input[type="checkbox"],input[type="radio"]{
+input[type="checkbox"],
+input[type="radio"] {
     display: none;
 }
+
 .filter-radio-container {
     .inline-radio {
         float: left;
@@ -522,26 +526,69 @@ input[type="checkbox"],input[type="radio"]{
     }
 }
 
-@include key-frame(radio-leaving){
-    0%{
+.validation-msg {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    box-sizing: border-box;
+    display: none;
+    z-index: 1;
+    span {
+        display: inline-block;
+        background: #131313;
+        color: #fff;
+        font-size: .7em;
+        padding: 7px;
+        border-radius: 7px;
+        box-sizing: border-box;
+        @include media("(min-width: 1200px)") {
+            padding: get-vw(7px);
+            border-radius: get-vw(7px);
+        }
+    }
+    @include transform(translateY(150%));
+    @include transition(transform .3s);
+    &::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #131313;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        @include transform(translate(-50%,-90%));
+    }
+    &.entering{
+        @include transform(translateY(130%));
+        @include transition(transform .3s);
+    }
+}
+
+@include key-frame(radio-leaving) {
+    0% {
         @include transform(scale(.6))
     }
-    50%{
+    50% {
         @include transform(scale(.8))
     }
-    100%{
+    100% {
         @include transform(scale(0))
     }
 }
 
-@include key-frame(radio-entering){
-    0%{
+@include key-frame(radio-entering) {
+    0% {
         @include transform(scale(0))
     }
-    50%{
+    50% {
         @include transform(scale(.8))
     }
-    100%{
+    100% {
         @include transform(scale(.6))
     }
 }

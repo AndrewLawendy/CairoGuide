@@ -333,11 +333,17 @@
                     <div class="collapsable-filter-wrp">
                         <div class="filter-set-item">
                             <p>Lowest price</p>
-                            <input class="simulate-number" type="text" placeholder="Please choose" />
+                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp" />
+                            <div class="validation-msg">
+                                <span>This value must be lower than the higher price</span>
+                            </div>
                         </div>
                         <div class="filter-set-item">
                             <p>Highest price</p>
-                            <input class="simulate-number" type="text" placeholder="Please choose" />
+                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp"  />
+                            <div class="validation-msg">
+                                <span>This value must be higher than the lowest price</span>
+                            </div>
                         </div>
                         <div class="filter-set-item">
                             <p>Rating</p>

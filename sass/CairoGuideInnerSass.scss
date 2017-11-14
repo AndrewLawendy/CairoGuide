@@ -43,15 +43,15 @@ Contains all styles of inner pages
                         background: nth($i, 2);
                     }
                 }
-                .search-go-event{
-                    span{
+                .search-go-event {
+                    span {
                         color: nth($i, 2);
                     }
-                    &:hover{
+                    &:hover {
                         background: nth($i, 2);
                         @include transition(all .15s);
-                        span{
-                            color:#fff;
+                        span {
+                            color: #fff;
                         }
                     }
                 }
@@ -425,11 +425,12 @@ Contains all styles of inner pages
                 }
                 .filter-set-item {
                     float: left;
+                    position: relative;
                     box-sizing: border-box;
                     width: 25%;
                     padding: 0 10px;
                     margin-top: 20px;
-                    &.float-right{
+                    &.float-right {
                         float: right;
                     }
                     &:nth-child(4n+1) {
@@ -450,15 +451,20 @@ Contains all styles of inner pages
                             margin-bottom: get-vw(10px);
                         }
                     }
+                    .validation-msg {
+                        padding: 0 10px;
+                        @include media("(min-width: 1200px)") {
+                            padding: 0 get-vw(10px);
+                        }
+                    }
                 }
-                .search-go-event{
+                .search-go-event {
                     cursor: pointer;
                     width: 60px;
                     height: 60px;
                     border-radius: 100%;
-                    line-height: 60px;
                     background: #fff;
-                    border:1px solid #fff;
+                    border: 1px solid #fff;
                     box-sizing: border-box;
                     text-align: center;
                     float: right;
@@ -467,8 +473,13 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         width: get-vw(60px);
                         height: get-vw(60px);
-                        line-height: get-vw(60px);
-                        border:get-vw(1px) solid #fff;
+                        border: get-vw(1px) solid #fff;
+                    }
+                    span {
+                        line-height: 60px;
+                        @include media("(min-width: 1200px)") {
+                            line-height: get-vw(60px);
+                        }
                     }
                 }
             }
