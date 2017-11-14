@@ -55,20 +55,12 @@ var TransformHeader = function (scrollPos, breakPos) {
         bottomHeader = $('.bottom-header'),
         mainContent = $('main');
     if (scrollPos >= breakPos) {
-        //var padd = parseFloat(bottomHeader.css('padding-top'),10) * 2;
         stickyHeader.addClass('fixed');
-        //mainContent.css('margin-top',header.height());   
-        //mainContent.css('margin-top',bottomHeader.height());
-        // topHeader.css('margin-bottom',bottomHeader.height());
-        // topHeader.animate({marginBottom:bottomHeader.height() - (padd*2)},30);
     } else {
         stickyHeader.removeClass('fixed');
         topHeader.removeAttr('style');
-        //mainContent.css('margin-top','0px');   
     }
     mainContent.css('margin-top', breakPos + 'px');
-    /*var headerNewHeight = topHeader.height() + bottomHeader.height();
-    $('header').css('height',headerNewHeight);*/
 }
 
 //Scroll back to top function
@@ -143,10 +135,35 @@ var GetParameterByName = function (name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+//Category names to inner pages
 var SetInnersCategory = function () {
     var Category = GetParameterByName('category');
-    $('body').addClass(Category + '-theme').find('.category-banner h1').html(Category);
+    var SubCategory = GetParameterByName('subcategory');
+    $('body').addClass(Category + '-theme');
+    if ($('.category-banner').length) {
+        $('.category-banner h1').html(Category);
+        if (SubCategory != null) {
+            $('.category-banner h1').html(SubCategory);
+        }
+    }
+    if ($('.category-best-wrp').length) {
+        $('.category-best-wrp h2 .category-name').html(Category);
+        if (SubCategory != null) {
+            $('.category-best-wrp h2 .category-name').html(SubCategory);
+        }
+    }
 }
+
+//Move items listing page advert during scroll
+var MoveAd = function (scrollPos, breakPos) {
+    var adContainer = $('.items-list-ads-wrp');
+    if (scrollPos >= breakPos) {
+        adContainer.addClass('fixed');
+    } else {
+        adContainer.removeClass('fixed');
+    }
+}
+
 //document ready
 $(document).ready(function () {
     //Header
@@ -155,6 +172,10 @@ $(document).ready(function () {
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
+    if ($('.items-list-ads-container').length) {
+        adBreakPos = $('.advanced-search-filters-wrp').offset().top - ($('.advanced-search-filters-wrp').css('margin-bottom') + $('.bottom-header').height() + $('.attached-menu').height());
+        MoveAd(scrollPos, adBreakPos);
+    }
 
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
@@ -431,8 +452,6 @@ $(document).ready(function () {
     }
     // End of Carousel
 
-
-
     //Start of What to Do
     if ($('#wtd').length) {
         $('#wtd .wtd-container div[class^=wtd]').on('mouseenter', function () {
@@ -569,6 +588,7 @@ $(document).ready(function () {
     //End of Attractions
 
     //Start of Advanced Search
+    higherLowerValidation = false;
     if ($('.advanced-search-filters-wrp').length) {
         $('.dropdown-input').on('click', function () {
             var _this = $(this);
@@ -621,9 +641,10 @@ $(document).ready(function () {
         });
         $('.filter-set-item .simulate-number').on('keydown', function (e) {
             var val = $(this).val();
+            var valUnit = $(this).data('unit').toUpperCase();
             var keys = [9, 13, 16, 17, 18, 19, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 91, 93, 106, 107, 109, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 187, 189, 192, 144, 145, 220];
-            if (val.indexOf('EGP') == -1 && $.inArray(e.keyCode, keys) == -1) {
-                $(this).val(val + ' EGP');
+            if (val.indexOf(valUnit) == -1 && $.inArray(e.keyCode, keys) == -1) {
+                $(this).val(val + ' ' + valUnit);
             }
             if (e.keyCode == 46 || e.keyCode == 8) {
                 valLength = val.length;
@@ -633,7 +654,21 @@ $(document).ready(function () {
                     $(this).val('');
                 }
             }
-            setCursorLimit($(this), 4, e);
+            setCursorLimit($(this), (valUnit.length + 1), e);
+            if (higherLowerValidation) {
+                var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
+                console.log('validate');
+            }
+        });
+
+        $('.filter-set-item .simulate-number').on('blur', function () {
+            var valUnit = $(this).data('unit').toUpperCase();
+            var regNumUbit = new RegExp("[^0-9\\" + valUnit + "]", 'g');
+            var val = $(this).val();
+            val = val.replace(regNumUbit, '');
+            var valUnitIndex = val.indexOf(valUnit);
+            val = val.slice(0, valUnitIndex) + ' ' + valUnit;
+            $(this).val(val);
         });
 
         $('.search-go-event').on('click', function () {
@@ -641,12 +676,19 @@ $(document).ready(function () {
             var parentSearchFilter = $(this).closest('.advanced-search-filters-wrp');
             var ratingChoices = parentCollapsable.find('p:contains("Rating")').siblings('.multiple-choice').find('.selected-value');
             var facilitiesChoices = parentCollapsable.find('p:contains("Facilities")').siblings('.multiple-choice').find('.selected-value');
-            var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/ EGP/, '');
+            var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/\D/g, '');
             if (lowestPrice == '')
                 lowestPrice = 'The lowest possible';
-            var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/ EGP/, '');
+            var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/\D/g, '');
             if (highestPrice == '')
                 highestPrice = 'The highest possible';
+            if (!isNaN(lowestPrice) && !isNaN(highestPrice) && Number(lowestPrice) >= Number(highestPrice)) {
+                parentCollapsable.find('p:contains("Lowest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+                parentCollapsable.find('p:contains("Highest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+                higherLowerValidation = true;
+                return;
+            }
+
             if (ratingChoices.children().length == 0) {
                 parentSearchFilter.find('.rating-value').text('Any');
             } else {
@@ -667,10 +709,10 @@ $(document).ready(function () {
                     parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
                 }
             }
-            var facilities;
             var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
             parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
             parentSearchFilter.find('.highest-price-value').text(highestPrice);
+            higherLowerValidation = false;
         });
 
         $('.dynamic-settings-wrp').on('click', function () {
@@ -784,4 +826,9 @@ $(document).scroll(function () {
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
+    if ($('.items-list-ads-container').length) {
+        adBreakPos = $('.advanced-search-filters-wrp').offset().top - (parseFloat($('.advanced-search-filters-wrp').css('margin-bottom')) + $('.bottom-header').height() + $('.attached-menu').height());
+        console.log(scrollPos + ',' + adBreakPos);
+        MoveAd(scrollPos, adBreakPos);
+    }
 });
