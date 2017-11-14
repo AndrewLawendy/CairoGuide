@@ -100,6 +100,16 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
     }
 }
 
+//ifArabic
+var ifArabic = function (input, strInput) {
+    var arregex = /[\u0600-\u06FF]/;
+    if (arregex.test(strInput)) {
+        input.css('font-family', 'Adobe-Arabic');
+    } else {
+        input.removeAttr('style');
+    }
+}
+
 //Random Number Generator
 var randomLimit = function (min, max) {
     var random = Math.random();
@@ -661,6 +671,10 @@ $(document).ready(function () {
             }
         });
 
+        $('.filter-set-item .simulate-number').on('cut', function (e) {
+            e.preventDefault();
+        });
+
         $('.filter-set-item .simulate-number').on('blur', function () {
             var valUnit = $(this).data('unit').toUpperCase();
             var regNumUbit = new RegExp("[^0-9\\" + valUnit + "]", 'g');
@@ -737,6 +751,36 @@ $(document).ready(function () {
         });
     }
     //End of Advanced Search
+
+    //Start of Comment Section
+    if ($('.comment-section-container').length) {
+        var heartsCount = 0;
+        $('.multilanguage').on('keyup paste', function () {
+            var val = $(this).val();
+            ifArabic($(this), val);
+        })
+        $('.review-satisfaction-wrp i').on('mouseenter', function () {
+            $(this).addClass('selected');
+            $(this).prevAll().addClass('selected');
+            $(this).nextAll().removeClass('selected');
+        });
+        $('.review-satisfaction-wrp i').on('click', function () {
+            $(this).addClass('selected');
+            $(this).prevAll().addClass('selected');
+            $(this).nextAll().removeClass('selected');
+            $(this).parent().data('rated',$(this).index());
+        });
+        $('.review-satisfaction-wrp').on('mouseleave', function () {
+            $(this).find('i').removeClass('selected');
+            heartsCount = $(this).data('rated')+1;
+            if (heartsCount!=undefined) {
+                for (var i = 0; i < heartsCount; i++) {
+                    $(this).find('i').eq(i).addClass('selected');
+                }
+            }
+        });
+    }
+    //End of Comment Section
 
     $(document).on('mouseup', function (e) {
         if (e.which == 1) {
