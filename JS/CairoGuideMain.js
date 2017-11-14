@@ -107,6 +107,23 @@ var randomLimit = function (min, max) {
     return result;
 }
 
+//Set Cursor Limit
+var setCursorLimit = function (input, charNumb, e) {
+    var limit = input.val().length - charNumb;
+    var cursorPos = input[0].selectionStart;
+    var cursorEnd = input[0].selectionEnd;
+    if (e) {
+        if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
+            e.preventDefault();
+        } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
+            e.preventDefault();
+        }
+    }
+    if (cursorPos > limit) {
+        input[0].setSelectionRange(limit, limit);
+    }
+}
+
 //For Demo
 var GetParameterByName = function (name, url) {
     if (!url) url = window.location.href;
@@ -569,6 +586,7 @@ $(document).ready(function () {
     //End of Attractions
 
     //Start of Advanced Search
+    higherLowerValidation = false;
     if ($('.advanced-search-filters-wrp').length) {
         $('.dropdown-input').on('click', function () {
             var _this = $(this);
@@ -578,37 +596,141 @@ $(document).ready(function () {
                     _this.removeClass('active');
                 }
             });
-            _this.find('.dropdown-options li').on('click', function () {
-                if (!_this.hasClass('multiple-choice')) {
-                    var dropDownChoice = $(this).text();
-                    _this.find('.selected-value').text(dropDownChoice);
-                } else {
-                    var filterValueText = _this.find('.selected-value').text();
-                    var baseText = 'Please choose';
-                    if (filterValueText == baseText) {
-                        console.log('We can start');
-                    }
-                }
-            });
         });
+        $('.dropdown-options li').on('click', function () {
+            var parentDropDown = $(this).closest('.dropdown-input');
+            if (!parentDropDown.hasClass('multiple-choice')) {
+                var dropDownChoice = $(this).text();
+                parentDropDown.find('.selected-value').text(dropDownChoice);
+                console.log('dropdown updated');
+            }
+        });
+        $('.dropdown-options li input').on('change', function () {
+            var checkboxStatus = $(this).is(':checked');
+            var filterLabel = $(this).next('label').find('.filter-label').text();
+            var filterValue = $(this).closest('.multiple-choice').find('.selected-value');
+            var baseText = 'Please choose';
+            var spanModel = '<span class="entering">' + filterLabel + '</span>';
+            if (checkboxStatus) {
+                if (filterValue.text() == baseText) {
+                    filterValue.text('');
+                }
+                filterValue.append(spanModel);
+                setTimeout(function () {
+                    filterValue.find('.entering').removeClass('entering');
+                });
+            } else {
+                var falseCheckbox = filterValue.find('span:contains(' + filterLabel + ')');
+                falseCheckbox.animate({
+                    width: 0
+                }, 50);
+                setTimeout(function () {
+                    falseCheckbox.remove();
+                    if (filterValue.children().length == 0) {
+                        filterValue.text(baseText);
+                    }
+                }, 400);
+            }
+        });
+        $('.filter-set-item .simulate-number').on('keypress', function (e) {
+            if (e.which < 48 || e.which > 57) {
+                e.preventDefault();
+            }
+        });
+        $('.filter-set-item .simulate-number').on('keydown', function (e) {
+            var val = $(this).val();
+            var valUnit = $(this).data('unit').toUpperCase();
+            var keys = [9, 13, 16, 17, 18, 19, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 91, 93, 106, 107, 109, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 187, 189, 192, 144, 145, 220];
+            if (val.indexOf(valUnit) == -1 && $.inArray(e.keyCode, keys) == -1) {
+                $(this).val(val + ' ' + valUnit);
+            }
+            if (e.keyCode == 46 || e.keyCode == 8) {
+                valLength = val.length;
+                var selectionStart = $(this)[0].selectionStart;
+                var selectionEnd = $(this)[0].selectionEnd;
+                if (valLength < 6 || (selectionStart == 0 && selectionEnd == valLength - 4)) {
+                    $(this).val('');
+                }
+            }
+            setCursorLimit($(this), (valUnit.length + 1), e);
+            if(higherLowerValidation){
+                var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
+                console.log('validate');
+            }
+        });
+
+        $('.filter-set-item .simulate-number').on('blur', function () {
+            var valUnit = $(this).data('unit').toUpperCase();
+            var regNumUbit = new RegExp("[^0-9\\" + valUnit + "]", 'g');
+            var val = $(this).val();
+            val = val.replace(regNumUbit, '');
+            var valUnitIndex = val.indexOf(valUnit);
+            val = val.slice(0, valUnitIndex) + ' ' + valUnit;
+            $(this).val(val);
+        });
+
+        $('.search-go-event').on('click', function () {
+            var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
+            var parentSearchFilter = $(this).closest('.advanced-search-filters-wrp');
+            var ratingChoices = parentCollapsable.find('p:contains("Rating")').siblings('.multiple-choice').find('.selected-value');
+            var facilitiesChoices = parentCollapsable.find('p:contains("Facilities")').siblings('.multiple-choice').find('.selected-value');
+            var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/\D/g, '');
+            if (lowestPrice == '')
+                lowestPrice = 'The lowest possible';
+            var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/\D/g, '');
+            if (highestPrice == '')
+                highestPrice = 'The highest possible';
+            if (!isNaN(lowestPrice) && !isNaN(highestPrice) && Number(lowestPrice) >= Number(highestPrice)) {
+                parentCollapsable.find('p:contains("Lowest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+                parentCollapsable.find('p:contains("Highest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+                higherLowerValidation = true;
+                return;
+            }
+
+            if (ratingChoices.children().length == 0) {
+                parentSearchFilter.find('.rating-value').text('Any');
+            } else {
+                var ratingCount = ratingChoices.children().length;
+                parentSearchFilter.find('.rating-value').empty();
+                for (var i = 0; i < ratingCount; i++) {
+                    var ratingResult = ratingChoices.find('span').eq(i).text();
+                    parentSearchFilter.find('.rating-value').append('<span>' + ratingResult + '</span>');
+                }
+            }
+            if (facilitiesChoices.children().length == 0) {
+                parentSearchFilter.find('.facilities-value').text('Any');
+            } else {
+                var facilitiesCount = facilitiesChoices.children().length;
+                parentSearchFilter.find('.facilities-value').empty();
+                for (var i = 0; i < facilitiesCount; i++) {
+                    var ratingResult = facilitiesChoices.find('span').eq(i).text();
+                    parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
+                }
+            }
+            var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
+            parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
+            parentSearchFilter.find('.highest-price-value').text(highestPrice);
+            higherLowerValidation = false;
+        });
+
         $('.dynamic-settings-wrp').on('click', function () {
             var parentFilterWrapper = $(this).closest('.advanced-search-filters-wrp');
             var siblingCollapsable = $(this).siblings('.collapsable-filter-wrp');
-            siblingCollapsable.toggleClass('open');
+            siblingCollapsable.toggleClass('open').slideToggle('fast');
             $(document).on('click', function (e) {
                 if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
-                    siblingCollapsable.removeClass('open');
+                    siblingCollapsable.removeClass('open').slideUp('fast');
                 }
             });
         });
         $('.advanced-search-filters-wrp').on('click', function () {
             var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
             var childColumnHeight = childDynamicSettings.find('.settings-column').height();
-            var randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(0).find('.column-index').css('top', randomPercentage);
-            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(1).find('.column-index').css('top', randomPercentage);
-            randomPercentage = randomLimit(3, childColumnHeight - 9);
+            var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(2).find('.column-index').css('top', randomPercentage);
         });
     }

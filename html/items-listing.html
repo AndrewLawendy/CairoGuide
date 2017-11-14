@@ -656,24 +656,24 @@
                         </div>
                     </div>
                     <div class="filter-result-wrp">
-                        <div class="filter-result-item">
+                        <div class="filter-result-item" title="Lowest price">
                             <span>Lowest price : </span>
                             <span class="lowest-price-value">325</span>
                             <span class="unit">EGP</span>
                         </div>
-                        <div class="filter-result-item">
+                        <div class="filter-result-item" title="Highest price">
                             <span>Highest price : </span>
                             <span class="highest-price-value">875</span>
                             <span class="unit">EGP</span>
                         </div>
-                        <div class="filter-result-item">
+                        <div class="filter-result-item" title="Rating">
                             <span>Rating : </span>
                             <span class="rating-value">
                                 <span>Excellent</span>
                                 <span>Good</span>
                             </span>
                         </div>
-                        <div class="filter-result-item">
+                        <div class="filter-result-item" title="Facilities">
                             <span>Facilities : </span>
                             <span class="facilities-value">
                                 <span>Parking</span>
@@ -683,14 +683,14 @@
                         </div>
                     </div>
                     <div class="filter-sorting-wrp">
-                        <div class="filter-field-input dropdown-input">
+                        <div class="filter-field-input dropdown-input" title="Please choose among options">
                             <span class="selected-value">Price (Low to High)</span>
                             <i class="icon-triangular-arrow"></i>
                             <ul class="dropdown-options">
-                                <li>Price (Low to High)</li>
-                                <li>Price (High to Low)</li>
-                                <li>Rating</li>
-                                <li>Price and rating</li>
+                                <li title="Price (Low to High)">Price (Low to High)</li>
+                                <li title="Price (High to Low)">Price (High to Low)</li>
+                                <li title="Rating">Rating</li>
+                                <li title="Price and rating">Price and rating</li>
                             </ul>
                         </div>
                         <i class="icon-filter-sort"></i>
@@ -698,69 +698,131 @@
                     <div class="clear"></div>
                     <div class="collapsable-filter-wrp">
                         <div class="filter-set-item">
+<<<<<<< HEAD
                             <label>Lowest price</label>
                             <input type="number" placeholder="Please choose" />
                         </div>
                         <div class="filter-set-item">
                             <label>Highest price</label>
                             <input type="number" placeholder="Please choose" />
+=======
+                            <p>Lowest price</p>
+                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp" />
+                            <div class="validation-msg">
+                                <span>This value must be lower than the higher price</span>
+                            </div>
                         </div>
                         <div class="filter-set-item">
-                            <label>Rating</label>
-                            <div class="filter-field-input dropdown-input multiple-choice">
+                            <p>Highest price</p>
+                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp"  />
+                            <div class="validation-msg">
+                                <span>This value must be higher than the lowest price</span>
+                            </div>
+>>>>>>> dfff64f66c15afb154048bc4ae0bff5f7de56db7
+                        </div>
+                        <div class="filter-set-item">
+                            <p>Rating</p>
+                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
                                 <span class="selected-value">Please choose</span>
                                 <i class="icon-triangular-arrow"></i>
                                 <ul class="dropdown-options">
                                     <li>
-                                        <span>Excellent</span>
-                                        <span class="filter-rating-number">190</span>
+                                        <input id="filter1-excellent" type="checkbox" />
+                                        <label for="filter1-excellent" title="Excellent">
+                                            <span class="filter-label">Excellent</span>
+                                            <span class="filter-rating-count">190</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Good</span>
-                                        <span class="filter-rating-number">100</span>
+                                        <input id="filter1-good" type="checkbox">
+                                        <label for="filter1-good" title="Good">
+                                            <span class="filter-label">Good</span>
+                                            <span class="filter-rating-count">100</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Pleasant</span>
-                                        <span class="filter-rating-number">40</span>
+                                        <input type="checkbox" id="filter1-pleasant">
+                                        <label for="filter1-pleasant" title="Pleasant">
+                                            <span class="filter-label">Pleasant</span>
+                                            <span class="filter-rating-count">40</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Not rated</span>
-                                        <span class="filter-rating-number">3</span>
+                                        <input type="checkbox" id="filter1-not-rated">
+                                        <label for="filter1-not-rated" title="Not rated">
+                                            <span class="filter-label">Not rated</span>
+                                            <span class="filter-rating-count">3</span>
+                                        </label>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="filter-set-item">
-                            <label>Facilities</label>
-                            <div class="filter-field-input dropdown-input multiple-choice">
+                            <p>Facilities</p>
+                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
                                 <span class="selected-value">Please choose</span>
                                 <i class="icon-triangular-arrow"></i>
                                 <ul class="dropdown-options">
                                     <li>
-                                        <span>Parking</span>
+                                        <input type="checkbox" id="filter1-parking" />
+                                        <label for="filter1-parking" title="Parking">
+                                            <span class="filter-label">Parking</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Music</span>
+                                        <input type="checkbox" id="filter1-music" />
+                                        <label for="filter1-music" title="Music">
+                                            <span class="filter-label">Music</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Car</span>
+                                        <input type="checkbox" id="filter1-car" />
+                                        <label for="filter1-car" title="Car">
+                                            <span class="filter-label">Car</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>WiFi</span>
+                                        <input type="checkbox" id="filter1-wifi" />
+                                        <label for="filter1-wifi" title="WiFi">
+                                            <span class="filter-label">WiFi</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Food</span>
+                                        <input type="checkbox" id="filter1-food" />
+                                        <label for="filter1-food" title="Food">
+                                            <span class="filter-label">Food</span>
+                                        </label>
                                     </li>
                                     <li>
-                                        <span>Beverages</span>
+                                        <input type="checkbox" id="filter1-beverages" />
+                                        <label for="filter1-beverages" title="Beverages">
+                                            <span class="filter-label">Beverages</span>
+                                        </label>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="filter-set-item">
-                            <label>Offers</label>
+                            <p>Offers</p>
+                            <div class="filter-radio-container">
+                                <div class="inline-radio">
+                                    <input type="radio" name="filter1-offers" id="filter1-both" checked>
+                                    <label for="filter1-both" title="Both">Both</label>
+                                </div>
+                                <div class="inline-radio text-center">
+                                    <input type="radio" name="filter1-offers" id="filter1-yes">
+                                    <label for="filter1-yes" title="Yes">Yes</label>
+                                </div>
+                                <div class="inline-radio text-right">
+                                    <input type="radio" name="filter1-offers" id="filter1-no">
+                                    <label for="filter1-no" title="No">No</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="filter-set-item">
+                        <div class="filter-set-item float-right" title="Go">
+                            <div class="search-go-event">
+                                <span>Go</span>
+                            </div>
                         </div>
                     </div>
                 </div>

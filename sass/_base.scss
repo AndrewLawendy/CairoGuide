@@ -75,11 +75,19 @@ $colorList: "nightlife" #f90000,
     user-select: $value;
 }
 
-@mixin placeholder{
-    input::-webkit-input-placeholder{@content}
-    input::-moz-placeholder{@content}
-    input:-ms-input-placeholder{@content}
-    input:-moz-placeholder{@content}
+@mixin placeholder {
+    input::-webkit-input-placeholder {
+        @content
+    }
+    input::-moz-placeholder {
+        @content
+    }
+    input:-ms-input-placeholder {
+        @content
+    }
+    input:-moz-placeholder {
+        @content
+    }
 }
 
 @mixin key-frame($name) {
@@ -286,52 +294,67 @@ body {
 
 .icon-social-facebook:before {
     content: "\e900";
-  }
-  .icon-social-instagram:before {
+}
+
+.icon-social-instagram:before {
     content: "\e901";
-  }
-  .icon-social-twitter:before {
+}
+
+.icon-social-twitter:before {
     content: "\e902";
-  }
-  .icon-search:before {
+}
+
+.icon-search:before {
     content: "\e903";
-  }
-  .icon-best-spots-prev:before {
+}
+
+.icon-best-spots-prev:before {
     content: "\e904";
-  }
-  .icon-best-spots-next:before {
+}
+
+.icon-best-spots-next:before {
     content: "\e905";
-  }
-  .icon-left-arrow:before {
+}
+
+.icon-left-arrow:before {
     content: "\e906";
-  }
-  .icon-right-arrow:before {
+}
+
+.icon-right-arrow:before {
     content: "\e907";
-  }
-  .icon-down-chevron:before {
+}
+
+.icon-down-chevron:before {
     content: "\e908";
-  }
-  .icon-left-chevron:before {
+}
+
+.icon-left-chevron:before {
     content: "\e909";
-  }
-  .icon-right-chevron:before {
+}
+
+.icon-right-chevron:before {
     content: "\e90a";
-  }
-  .icon-up-chevron:before {
+}
+
+.icon-up-chevron:before {
     content: "\e90b";
-  }
-  .icon-back-to-top:before {
+}
+
+.icon-back-to-top:before {
     content: "\e90c";
-  }
-  .icon-map-location:before {
+}
+
+.icon-map-location:before {
     content: "\e90d";
-  }
-  .icon-filter-sort:before {
+}
+
+.icon-filter-sort:before {
     content: "\e90e";
-  }
-  .icon-triangular-arrow:before {
+}
+
+.icon-triangular-arrow:before {
     content: "\e90f";
-  }
+}
 
 
 /*General Declarations*/
@@ -435,6 +458,18 @@ a {
     }
 }
 
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
 .display-inline-block {
     display: inline-block;
 }
@@ -459,13 +494,136 @@ a {
     text-transform: uppercase;
 }
 
-*[class*="container"]::after,*[class*="wrp"]::after {
+*[class*="container"]::after,
+*[class*="wrp"]::after {
     content: '';
     display: block;
     width: 100%;
     height: 0;
     visibility: hidden;
     clear: both;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: none;
+}
+
+.filter-radio-container {
+    .inline-radio {
+        float: left;
+        label {
+            cursor: pointer;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            line-height: 20px;
+            @include media("(min-width: 1200px)") {
+                line-height: get-vw(20px);
+            }
+            &::before,
+            &::after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                @include media("(min-width: 1200px)") {
+                    margin-right: get-vw(10px);
+                    width: get-vw(20px);
+                    height: get-vw(20px);
+                }
+            }
+            &::before {
+                float: left;
+                background: #fff;
+                margin-right: 10px;
+            }
+            &::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                @include transform(scale(0));
+                @include animation(radio-leaving .15s);
+            }
+        }
+        input:checked+label::after {
+            @include transform(scale(.6));
+            @include animation(radio-entering .15s);
+        }
+    }
+}
+
+.validation-msg {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    box-sizing: border-box;
+    display: none;
+    z-index: 1;
+    span {
+        display: inline-block;
+        background: #131313;
+        color: #fff;
+        font-size: .7em;
+        padding: 7px;
+        border-radius: 7px;
+        box-sizing: border-box;
+        @include media("(min-width: 1200px)") {
+            padding: get-vw(7px);
+            border-radius: get-vw(7px);
+        }
+    }
+    @include transform(translateY(150%));
+    @include transition(transform .3s);
+    &::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #131313;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        @include transform(translate(-50%,-90%));
+    }
+    &.entering{
+        @include transform(translateY(130%));
+        @include transition(transform .3s);
+    }
+}
+
+@include key-frame(radio-leaving) {
+    0% {
+        @include transform(scale(.6))
+    }
+    50% {
+        @include transform(scale(.8))
+    }
+    100% {
+        @include transform(scale(0))
+    }
+}
+
+@include key-frame(radio-entering) {
+    0% {
+        @include transform(scale(0))
+    }
+    50% {
+        @include transform(scale(.8))
+    }
+    100% {
+        @include transform(scale(.6))
+    }
 }
 
 .section-title {
@@ -1048,7 +1206,7 @@ header {
                         position: absolute;
                         min-width: 100%;
                         top: 100%;
-                        z-index:300;
+                        z-index: 300;
                         white-space: nowrap;
                         opacity: 0;
                         @include transform(translateY(20px));
@@ -1168,7 +1326,7 @@ header {
                             }
                         }
                     }
-                    .icon-back-to-top{
+                    .icon-back-to-top {
                         display: block;
                         font-size: 1.9em;
                         line-height: 0.6em;
