@@ -604,11 +604,10 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(30px);
             }*/
-            .items-list-ads-container {
+            .side-ads {
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: 30%;
                 padding-left: 20px;
                 box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
@@ -625,7 +624,6 @@ Contains all styles of inner pages
             }
             }
             .items-list-container {
-                width: 70%;
                 float: left;
                 .item-wrp {
                     position: relative;
@@ -645,6 +643,12 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             bottom: get-vw(3px);
                             height: get-vw(3px);
+                        }
+                    }
+                    &:last-child{
+                        margin-bottom: 0;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(0px);
                         }
                     }
                     .item-info {
