@@ -190,11 +190,13 @@ var SetInnersCategory = function () {
     }
 }
 
-//Move items listing page advert during scroll
-var MoveAd = function (scrollPos, breakPos, customTop) {
-    var adContainer = $('.items-list-ads-wrp');
-    if (scrollPos >= breakPos) {
-        adContainer.addClass('fixed').css('top', customTop);
+//Move advert during scroll
+var MoveAd = function (scrollPos, breakPos,stopPos,stopBreakPos, customTop) {
+    var adContainer = $('.ads-wrp');
+    if(scrollPos >= stopBreakPos){
+        adContainer.removeClass('fixed').parent().css('top', stopPos);
+    }else if (scrollPos >= breakPos) {
+        adContainer.addClass('fixed').css('top', customTop).parent().removeAttr('style');
     } else {
         adContainer.removeClass('fixed').removeAttr('style');
     }
@@ -209,10 +211,14 @@ $(document).ready(function () {
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
     if ($('.side-ads.thirty-width').length) {
-        adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight());
-        var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight();
+        var adMargin = 30;
+        adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
+        var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
+        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos, customTop);
+        console.log($('.side-ads.thirty-width').siblings('.seventy-width').offset().top +' + '+ $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight()+' - '+$('.side-ads.thirty-width .ads-wrp').outerHeight()+' = '+stopBreakPos+'--->'+scrollPos);
+        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
     }
 
     SetInnersCategory();
@@ -923,9 +929,13 @@ $(document).scroll(function () {
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
     if ($('.side-ads.thirty-width').length) {
-        adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight());
-        var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight();
+        var adMargin = 30;
+        adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
+        var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
+        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos, customTop);
+        console.log($('.side-ads.thirty-width').siblings('.seventy-width').offset().top +' + '+ $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight()+' - '+$('.side-ads.thirty-width .ads-wrp').outerHeight()+' = '+stopBreakPos+'--->'+scrollPos);
+        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
     }
 });

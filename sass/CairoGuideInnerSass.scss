@@ -636,7 +636,7 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     padding-left: get-vw(20px);
                 }
-                .items-list-ads-wrp {
+                .ads-wrp {
                     &.fixed {
                         position: fixed;
                         top: 0;
