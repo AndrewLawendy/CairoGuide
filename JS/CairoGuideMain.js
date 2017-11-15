@@ -816,18 +816,14 @@ $(document).ready(function () {
             var parentContainer = $(this).parent(),
                 paragraphContainer = parentContainer.find('.paragraph-container'),
                 paragraphHeight = parentContainer.find('p').height();
-            //parentContainer.toggleClass('opened');
-            //if (parentContainer.hasClass('opened')) {
-                //paragraphContainer.data('original-height', paragraphContainer.height());
-                paragraphContainer.css('height', paragraphHeight);
-                $(this).fadeOut('fast');
-                //$(this).text('Collapse comment...');
-            // } else {
-            //     var originalHeight = paragraphContainer.data('original-height');
-            //     paragraphContainer.css('height', originalHeight);
-            //     $(this).text('Continue reading...');
-            //}
+            paragraphContainer.css('height', paragraphHeight);
+            $(this).fadeOut('fast');
         })
+
+        $('.comment-container .translate-comment').on('click', function () {
+            $(this).siblings('.translation-container').slideDown('fast');
+            $(this).fadeOut('fast');
+        });
     }
     //End of Comment Section
 

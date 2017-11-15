@@ -860,9 +860,9 @@ Contains all styles of inner pages
                     }
                 }
                 .review-submit-wrp {
-                    margin: 10px -10px 0;
+                    margin: 35px -10px 0;
                     @include media("(min-width: 1200px)") {
-                        margin: get-vw(10px) get-vw(-10px) 0;
+                        margin: get-vw(35px) get-vw(-10px) 0;
                     }
                     .review-item {
                         box-sizing: border-box;
@@ -886,10 +886,10 @@ Contains all styles of inner pages
                     }
                 }
                 .comment-view-wrp {
-                    margin-top: 55px;
+                    margin-top: 40px;
                     padding-left: 20px;
                     @include media("(min-width: 1200px)") {
-                        margin-top: get-vw(55px);
+                        margin-top: get-vw(40px);
                         padding-left: get-vw(20px);
                     }
                     .comment-container {
@@ -927,12 +927,6 @@ Contains all styles of inner pages
                                     bottom: get-vw(40px);
                                     padding-right: get-vw(45px);
                                 }
-                            }
-                        }
-                        &.opened {
-                            padding-bottom: 40px;
-                            @include media("(min-width: 1200px)") {
-                                padding-bottom: get-vw(40px);
                             }
                         }
                         &:last-child {
@@ -977,35 +971,41 @@ Contains all styles of inner pages
                                 height: get-vw(80px);
                             }
                         }
-                        .continue-reading {
-                            display: none;
-                            position: absolute;
-                            right: 20px;
-                            bottom: 20px;
-                            padding-left: 45px;
-                            color: #888;
-                            cursor: pointer;
-                            @include linear-gradient(right,
-                            #f8f8f8,
-                            100,
-                            80,
-                            #f8f8f8,
-                            0,
-                            100);
+                        a {
+                            line-height: 20px;
                             @include media("(min-width: 1200px)") {
-                                right: get-vw(20px);
-                                bottom: get-vw(20px);
-                                padding-left: get-vw(45px);
+                                line-height: get-vw(20px);
                             }
-                            &.exceeds {
-                                display: block;
+                            &.continue-reading {
+                                display: none;
+                                position: absolute;
+                                right: 20px;
+                                bottom: 20px;
+                                padding-left: 45px;
+                                color: #888;
+                                cursor: pointer;
+                                @include linear-gradient(right,
+                                #f8f8f8,
+                                100,
+                                80,
+                                #f8f8f8,
+                                0,
+                                100);
+                                @include media("(min-width: 1200px)") {
+                                    right: get-vw(20px);
+                                    bottom: get-vw(20px);
+                                    padding-left: get-vw(45px);
+                                }
+                                &.exceeds {
+                                    display: block;
+                                }
                             }
-                        }
-                        .translate-comment {
-                            display: none;
-                            color: #777;
-                            float: right;
-                            font-size: .9em;
+                            &.translate-comment {
+                                display: none;
+                                color: #777;
+                                float: right;
+                                font-size: .9em;
+                            }
                         }
                         .translation-container {
                             display: none;
@@ -1018,6 +1018,12 @@ Contains all styles of inner pages
                                 margin-top: get-vw(25px);
                             }
                         }
+                    }
+                }
+                .pagination-container {
+                    margin-top: 25px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(25px);
                     }
                 }
             }
