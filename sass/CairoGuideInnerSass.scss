@@ -833,10 +833,38 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 margin-top: get-vw(30px);
             }
+            h2 {
+                font-size: 1.786em;
+            }
+            h6 {
+                font-size: 1.286em;
+            }
+            .overview-details {
+                .three-quarter-width {
+                    .item-description {
+                        p.overview-brief {
+                            text-align: justify;
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
+            .item-branches {
+                margin-top: 30px;
+                @include media("(min-width: 1200px)") {
+                    margin-top: get-vw(30px);
+                }
+                p{
+                    font:1em 'Lato-Bold';
+                }
+            }
         }
         .comment-section-container {
             width: 100%;
             margin-top: 30px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(30px);
+            }
             .interaction-section-container {
                 .comment-submit-wrp {
                     textarea {
