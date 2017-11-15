@@ -476,6 +476,26 @@ a {
     }
 }
 
+.side-ads {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 20px;
+    box-sizing: border-box;
+    @include media("(min-width: 1200px)") {
+        padding-left: get-vw(20px);
+    }
+    .ads-wrp {
+        &.fixed {
+            position: fixed;
+            top: 0;
+        }
+        img {
+            width: 100%;
+        }
+    }
+}
+
 .clear {
     clear: both
 }

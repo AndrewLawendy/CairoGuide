@@ -627,25 +627,6 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(30px);
             }*/
-            .side-ads {
-                position: absolute;
-                right: 0;
-                top: 0;
-                padding-left: 20px;
-                box-sizing: border-box;
-                @include media("(min-width: 1200px)") {
-                    padding-left: get-vw(20px);
-                }
-                .ads-wrp {
-                    &.fixed {
-                        position: fixed;
-                        top: 0;
-                    }
-                    img {
-                        width: 100%;
-                    }
-                }
-            }
             .items-list-container {
                 float: left;
                 .item-wrp {
@@ -946,6 +927,7 @@ Contains all styles of inner pages
             }
         }
         .comment-section-container {
+            position: relative;
             width: 100%;
             margin-top: 30px;
             @include media("(min-width: 1200px)") {
@@ -1141,18 +1123,18 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .ads-wrp {
-                height: 600px;
-                overflow: hidden;
-                @include media("(min-width: 1200px)") {
-                    height: get-vw(600px);
-                }
-                img {
-                    width: 100%;
-                    min-height: 100%;
-                    object-fit: cover;
-                }
-            }
+            // .side-ads {
+            //     height: 600px;
+            //     overflow: hidden;
+            //     @include media("(min-width: 1200px)") {
+            //         height: get-vw(600px);
+            //     }
+            //     img {
+            //         width: 100%;
+            //         min-height: 100%;
+            //         object-fit: cover;
+            //     }
+            // }
         }
     }
 

@@ -217,7 +217,6 @@ $(document).ready(function () {
         stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
         stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        console.log($('.side-ads.thirty-width').siblings('.seventy-width').offset().top +' + '+ $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight()+' - '+$('.side-ads.thirty-width .ads-wrp').outerHeight()+' = '+stopBreakPos+'--->'+scrollPos);
         MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
     }
 
@@ -648,7 +647,6 @@ $(document).ready(function () {
             if (!parentDropDown.hasClass('multiple-choice')) {
                 var dropDownChoice = $(this).text();
                 parentDropDown.find('.selected-value').text(dropDownChoice);
-                console.log('dropdown updated');
             }
         });
         $('.dropdown-options li input').on('change', function () {
@@ -701,7 +699,6 @@ $(document).ready(function () {
             setCursorLimit($(this), (valUnit.length + 1), e);
             if (higherLowerValidation) {
                 var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
-                console.log('validate');
             }
         });
 
@@ -895,7 +892,6 @@ $(document).ready(function () {
             }
         } else if (e.keyCode == 13) {
             if ($('#popup-base .search-input input').hasClass('field-focus')) {
-                console.log('Search Btn Clicked');
             }
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
@@ -935,7 +931,6 @@ $(document).scroll(function () {
         stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
         stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        console.log($('.side-ads.thirty-width').siblings('.seventy-width').offset().top +' + '+ $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight()+' - '+$('.side-ads.thirty-width .ads-wrp').outerHeight()+' = '+stopBreakPos+'--->'+scrollPos);
         MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
     }
 });
