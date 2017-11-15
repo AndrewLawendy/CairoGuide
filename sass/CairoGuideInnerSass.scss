@@ -59,8 +59,8 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                 }
             }
-            .comment-section-container{
-                .review-item{
+            .comment-section-container {
+                .review-item {
                     color: nth($i, 2);
                 }
             }
@@ -832,13 +832,13 @@ Contains all styles of inner pages
             margin-top: 30px;
             .interaction-section-container {
                 box-sizing: border-box;
-                width: 75%;
+                width: 70%;
                 float: left;
                 padding-right: 15px;
                 @include media("(min-width: 1200px)") {
                     padding-right: get-vw(15px);
                 }
-                .comment-submit-wrp{
+                .comment-submit-wrp {
                     textarea {
                         box-sizing: border-box;
                         font-family: 'Lato-Regular';
@@ -859,34 +859,171 @@ Contains all styles of inner pages
                         }
                     }
                 }
-                .review-submit-wrp{
+                .review-submit-wrp {
                     margin: 10px -10px 0;
                     @include media("(min-width: 1200px)") {
                         margin: get-vw(10px) get-vw(-10px) 0;
                     }
-                    .review-item{
+                    .review-item {
                         box-sizing: border-box;
                         padding: 0 10px;
-                        p{
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            padding: 0 get-vw(10px);
+                            margin-bottom: get-vw(10px);
+                        }
+                        p {
                             font: 1em 'Lato-Bold';
                             float: left;
                         }
-                        .review-satisfaction-wrp{
+                        .review-satisfaction-wrp {
                             float: right;
-                            .icon-review{
+                            .icon-review {
                                 cursor: pointer;
                                 font-weight: bold;
                             }
                         }
+                    }
+                }
+                .comment-view-wrp {
+                    margin-top: 55px;
+                    padding-left: 20px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(55px);
+                        padding-left: get-vw(20px);
+                    }
+                    .comment-container {
+                        background: #f8f8f8;
+                        border-radius: 3px;
+                        padding: 15px 20px 20px 65px;
+                        margin-bottom: 40px;
+                        position: relative;
+                        width: 100%;
+                        box-sizing: border-box;
+                        @include transition(height .15s);
                         @include media("(min-width: 1200px)") {
-                            padding: 0 get-vw(10px);
+                            padding: get-vw(15px) get-vw(20px) get-vw(20px) get-vw(65px);
+                            margin-bottom: get-vw(40px);
+                        }
+                        &.arabic {
+                            .translate-comment {
+                                display: block;
+                            }
+                            .continue-reading {
+                                right: auto;
+                                bottom: 40px;
+                                padding-left: 0;
+                                left: 65px;
+                                padding-right: 45px;
+                                @include linear-gradient(left,
+                                #f8f8f8,
+                                100,
+                                80,
+                                #f8f8f8,
+                                0,
+                                100);
+                                @include media("(min-width: 1200px)") {
+                                    left: get-vw(65px);
+                                    bottom: get-vw(40px);
+                                    padding-right: get-vw(45px);
+                                }
+                            }
+                        }
+                        &.opened {
+                            padding-bottom: 40px;
+                            @include media("(min-width: 1200px)") {
+                                padding-bottom: get-vw(40px);
+                            }
+                        }
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        .user-profile {
+                            width: 65px;
+                            height: 65px;
+                            border-radius: 100%;
+                            overflow: hidden;
+                            position: absolute;
+                            top: -20px;
+                            left: -20px;
+                            background: url(../images/user-avatar.png) no-repeat center center;
+                            background-size: cover;
+                            @include media("(min-width: 1200px)") {
+                                width: get-vw(65px);
+                                height: get-vw(65px);
+                                top: get-vw(-20px);
+                                left: get-vw(-20px);
+                            }
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        p {
+                            text-align: justify;
+                            color: #131313;
+                            font-size: 1.143em;
+                            line-height: 20px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(20px);
+                            }
+                        }
+                        .paragraph-container {
+                            width: 100%;
+                            height: 80px;
+                            overflow: hidden;
+                            @include transition(height .15s);
+                            @include media("(min-width: 1200px)") {
+                                height: get-vw(80px);
+                            }
+                        }
+                        .continue-reading {
+                            display: none;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 20px;
+                            padding-left: 45px;
+                            color: #888;
+                            cursor: pointer;
+                            @include linear-gradient(right,
+                            #f8f8f8,
+                            100,
+                            80,
+                            #f8f8f8,
+                            0,
+                            100);
+                            @include media("(min-width: 1200px)") {
+                                right: get-vw(20px);
+                                bottom: get-vw(20px);
+                                padding-left: get-vw(45px);
+                            }
+                            &.exceeds {
+                                display: block;
+                            }
+                        }
+                        .translate-comment {
+                            display: none;
+                            color: #777;
+                            float: right;
+                            font-size: .9em;
+                        }
+                        .translation-container {
+                            display: none;
+                            border-left: 2px solid #b3b3b3;
+                            padding-left: 10px;
+                            margin-top: 25px;
+                            @include media("(min-width: 1200px)") {
+                                border-left: get-vw(2px) solid #b3b3b3;
+                                padding-left: get-vw(10px);
+                                margin-top: get-vw(25px);
+                            }
                         }
                     }
                 }
             }
             .side-ads {
                 box-sizing: border-box;
-                width: 25%;
+                width: 30%;
                 height: 600px;
                 float: left;
                 padding-left: 15px;

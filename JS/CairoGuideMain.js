@@ -104,11 +104,37 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
 var ifArabic = function (input, strInput) {
     var arregex = /[\u0600-\u06FF]/;
     if (arregex.test(strInput)) {
-        input.css('font-family', 'Adobe-Arabic');
+        input.addClass('arabic-input');
+        return true;
     } else {
-        input.removeAttr('style');
+        input.removeClass('arabic-input');
+        return false;
     }
 }
+
+//ifParagraphExceeds
+var ifParagraphExceeds = function (input, limit) {
+    var inputHeight = input.height();
+    var lineHeight = parseInt(input.css('line-height'), 10);
+    var actualInputLines = inputHeight / lineHeight;
+    if (actualInputLines > limit) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//Continue Reading
+var ifContinueReading = function (input, limit) {
+    var exceeds = ifParagraphExceeds(input, limit);
+    if (exceeds) {
+        input.parent().siblings('.continue-reading').addClass('exceeds');
+    } else {
+        input.parent().siblings('.continue-reading').removeClass('exceeds');
+    }
+}
+
+
 
 //Random Number Generator
 var randomLimit = function (min, max) {
@@ -768,17 +794,40 @@ $(document).ready(function () {
             $(this).addClass('selected');
             $(this).prevAll().addClass('selected');
             $(this).nextAll().removeClass('selected');
-            $(this).parent().data('rated',$(this).index());
+            $(this).parent().data('rated', $(this).index());
         });
         $('.review-satisfaction-wrp').on('mouseleave', function () {
             $(this).find('i').removeClass('selected');
-            heartsCount = $(this).data('rated')+1;
-            if (heartsCount!=undefined) {
+            heartsCount = $(this).data('rated') + 1;
+            if (heartsCount != undefined) {
                 for (var i = 0; i < heartsCount; i++) {
                     $(this).find('i').eq(i).addClass('selected');
                 }
             }
         });
+
+        $('.comment-container .comment-text').each(function () {
+            ifContinueReading($(this), 4);
+            var arabic = ifArabic($(this), $(this).text());
+            if (arabic)
+                $(this).closest('.comment-container').addClass('arabic');
+        });
+        $('.comment-container .continue-reading.exceeds').on('click', function () {
+            var parentContainer = $(this).parent(),
+                paragraphContainer = parentContainer.find('.paragraph-container'),
+                paragraphHeight = parentContainer.find('p').height();
+            //parentContainer.toggleClass('opened');
+            //if (parentContainer.hasClass('opened')) {
+                //paragraphContainer.data('original-height', paragraphContainer.height());
+                paragraphContainer.css('height', paragraphHeight);
+                $(this).fadeOut('fast');
+                //$(this).text('Collapse comment...');
+            // } else {
+            //     var originalHeight = paragraphContainer.data('original-height');
+            //     paragraphContainer.css('height', originalHeight);
+            //     $(this).text('Continue reading...');
+            //}
+        })
     }
     //End of Comment Section
 
@@ -861,6 +910,11 @@ $(document).ready(function () {
                 scrollLeft: adjustedScrollValue
             });
         }
+
+        //Comment Container
+        $('.comment-container .comment-text').each(function () {
+            ifContinueReading($(this), 4);
+        });
     });
 });
 
