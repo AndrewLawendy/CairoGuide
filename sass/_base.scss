@@ -118,16 +118,15 @@ $colorList: "nightlife" #f90000,
     background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
 }
 
-@mixin link-hover(){
-    &{
+@mixin link-hover() {
+    & {
         text-decoration: none;
     }
-
-    &:after{
-        content:'';
-        display:block;
-        height:1px;
-        width:20%;
+    &:after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 20%;
         /*margin-top:2px;*/
         @include transition(all 0.3s ease);
         @include media("(min-width: 1200px)") {
@@ -135,31 +134,32 @@ $colorList: "nightlife" #f90000,
             /*margin-top: get-vw(2px);*/
         }
     }
-
-    &:hover:after{
-        width:100%;
+    &:hover:after {
+        width: 100%;
         @include transition(all 0.3s ease);
     }
 }
 
-@mixin theme-link-color($category-color){
-    &{
-        color:$category-color;
+@mixin theme-link-color($category-color) {
+    & {
+        color: $category-color;
     }
-
-    &:after{
-        background-color:$category-color;
+    &:after {
+        background-color: $category-color;
     }
 }
 
-@mixin limit-text-lines($number-of-lines,$line-height){
+@mixin limit-text-lines($number-of-lines, $line-height) {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: $number-of-lines; /* number of lines to show */
-    line-height: $line-height;        /* fallback */
-    max-height: $line-height*$number-of-lines;       /* fallback */
+    -webkit-line-clamp: $number-of-lines;
+    /* number of lines to show */
+    line-height: $line-height;
+    /* fallback */
+    max-height: $line-height*$number-of-lines;
+    /* fallback */
 }
 
 
@@ -224,6 +224,12 @@ $colorList: "nightlife" #f90000,
     font-family: 'Lato-Black';
     src: url('../Fonts/Lato/Lato-Black.eot');
     src: url('../Fonts/Lato/Lato-Black.eot?#iefix') format('embedded-opentype'), url('../Fonts/Lato/Lato-Black.woff') format('woff'), url('../Fonts/Lato/Lato-Black.woff2') format('woff2'), url('../Fonts/Lato/Lato-Black.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'Adobe-Arabic';
+    src: url('../Fonts/Adobe-Arabic/Adobe-Arabic.eot');
+    src: url('../Fonts/Adobe-Arabic/Adobe-Arabic.eot?#iefix') format('embedded-opentype'), url('../Fonts/Adobe-Arabic/Adobe-Arabic.woff') format('woff'), url('../Fonts/Adobe-Arabic/Adobe-Arabic.ttf') format('truetype')
 }
 
 @font-face {
@@ -294,67 +300,58 @@ body {
 
 .icon-social-facebook:before {
     content: "\e900";
-}
-
-.icon-social-instagram:before {
+  }
+  .icon-social-instagram:before {
     content: "\e901";
-}
-
-.icon-social-twitter:before {
+  }
+  .icon-social-twitter:before {
     content: "\e902";
-}
-
-.icon-search:before {
+  }
+  .icon-search:before {
     content: "\e903";
-}
-
-.icon-best-spots-prev:before {
+  }
+  .icon-best-spots-prev:before {
     content: "\e904";
-}
-
-.icon-best-spots-next:before {
+  }
+  .icon-best-spots-next:before {
     content: "\e905";
-}
-
-.icon-left-arrow:before {
+  }
+  .icon-left-arrow:before {
     content: "\e906";
-}
-
-.icon-right-arrow:before {
+  }
+  .icon-right-arrow:before {
     content: "\e907";
-}
-
-.icon-down-chevron:before {
+  }
+  .icon-down-chevron:before {
     content: "\e908";
-}
-
-.icon-left-chevron:before {
+  }
+  .icon-left-chevron:before {
     content: "\e909";
-}
-
-.icon-right-chevron:before {
+  }
+  .icon-right-chevron:before {
     content: "\e90a";
-}
-
-.icon-up-chevron:before {
+  }
+  .icon-up-chevron:before {
     content: "\e90b";
-}
-
-.icon-back-to-top:before {
+  }
+  .icon-back-to-top:before {
     content: "\e90c";
-}
-
-.icon-map-location:before {
+  }
+  .icon-map-location:before {
     content: "\e90d";
-}
-
-.icon-filter-sort:before {
+  }
+  .icon-filter-sort:before {
     content: "\e90e";
-}
-
-.icon-triangular-arrow:before {
+  }
+  .icon-triangular-arrow:before {
     content: "\e90f";
-}
+  }
+  .icon-review.selected:before {
+    content: "\e910";
+  }
+  .icon-review:before {
+    content: "\e911";
+  }
 
 
 /*General Declarations*/
@@ -403,13 +400,54 @@ a {
     }
 }
 
+.full-width {
+    width: 100%
+}
+
 .half-width {
     width: 50%;
     float: left
 }
 
-.full-width {
-    width: 100%
+.quarter-width{
+    width: 25%;
+    float: left
+}
+
+.third-width{
+    width: 33.3333%;
+    float: left;
+    &:nth-child(3n+1){
+        clear: left;
+    }
+    &:nth-child(3n+3){
+        clear: right;
+    }
+}
+
+.three-quarter-width{
+    width: 75%;
+    float: left
+}
+
+.seventy-width{
+    box-sizing: border-box;
+    width: 70%;
+    float: left;
+    padding-right: 15px;
+    @include media("(min-width: 1200px)") {
+        padding-right: get-vw(15px);
+    }
+}
+.thirty-width{
+    box-sizing: border-box;
+    width: 30%;
+    float: left;
+    padding-left: 15px;
+    overflow: hidden;
+    @include media("(min-width: 1200px)") {
+        padding-left: get-vw(15px);
+    }
 }
 
 .clear {
@@ -515,6 +553,11 @@ input[type="radio"] {
     display: none;
 }
 
+.arabic-input{
+    font-family: 'Adobe-Arabic'!important;
+    direction: rtl;
+}
+
 .filter-radio-container {
     .inline-radio {
         float: left;
@@ -594,11 +637,32 @@ input[type="radio"] {
         position: absolute;
         top: 0;
         left: 50%;
-        @include transform(translate(-50%,-90%));
+        @include transform(translate(-50%,
+        -90%));
     }
-    &.entering{
+    &.entering {
         @include transform(translateY(130%));
         @include transition(transform .3s);
+    }
+}
+.controls-btn-container{
+    margin-top:20px;
+    .control-btn {
+        float: right;
+        cursor: pointer;
+        margin-left:10px;
+        border-radius: 7px;
+        padding: 0 10px;
+        line-height: 40px;
+        color: #fff;
+        font-size: 1em;
+        border:0;
+        text-transform: uppercase;
+        @include media("(min-width: 1200px)") {
+            margin-left:get-vw(10px);
+            padding: 0 get-vw(10px);
+            line-height: get-vw(40px);
+        }
     }
 }
 
@@ -1127,10 +1191,10 @@ header {
                             get-vw(20px))!important);
                         }
                     }
-                    &:last-child{
-                        & ul{
-                            left:auto!important;
-                            right:0;
+                    &:last-child {
+                        & ul {
+                            left: auto!important;
+                            right: 0;
                         }
                     }
                     &>a {
