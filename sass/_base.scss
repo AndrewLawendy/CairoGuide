@@ -400,13 +400,18 @@ a {
     }
 }
 
+.full-width {
+    width: 100%
+}
+
 .half-width {
     width: 50%;
     float: left
 }
 
-.full-width {
-    width: 100%
+.quarter-width{
+    width: 25%;
+    float: left
 }
 
 .third-width{
@@ -417,6 +422,31 @@ a {
     }
     &:nth-child(3n+3){
         clear: right;
+    }
+}
+
+.three-quarter-width{
+    width: 75%;
+    float: left
+}
+
+.seventy-width{
+    box-sizing: border-box;
+    width: 70%;
+    float: left;
+    padding-right: 15px;
+    @include media("(min-width: 1200px)") {
+        padding-right: get-vw(15px);
+    }
+}
+.thirty-width{
+    box-sizing: border-box;
+    width: 30%;
+    float: left;
+    padding-left: 15px;
+    overflow: hidden;
+    @include media("(min-width: 1200px)") {
+        padding-left: get-vw(15px);
     }
 }
 
@@ -619,6 +649,7 @@ input[type="radio"] {
     margin-top:20px;
     .control-btn {
         float: right;
+        cursor: pointer;
         margin-left:10px;
         border-radius: 7px;
         padding: 0 10px;

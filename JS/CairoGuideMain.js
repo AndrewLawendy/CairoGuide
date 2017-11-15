@@ -925,4 +925,7 @@ $(document).scroll(function () {
         console.log(scrollPos + ',' + adBreakPos);
         MoveAd(scrollPos, adBreakPos);
     }
+    if ($('.comment-section-container').length) {
+        var pos = $('.side-ads').position().top;
+    }
 });

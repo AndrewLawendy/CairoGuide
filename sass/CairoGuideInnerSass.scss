@@ -827,17 +827,17 @@ Contains all styles of inner pages
             }
         }
         /*Details Page*/
+        .overview-section-container {
+            width: 100%;
+            margin-top: 30px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(30px);
+            }
+        }
         .comment-section-container {
             width: 100%;
             margin-top: 30px;
             .interaction-section-container {
-                box-sizing: border-box;
-                width: 70%;
-                float: left;
-                padding-right: 15px;
-                @include media("(min-width: 1200px)") {
-                    padding-right: get-vw(15px);
-                }
                 .comment-submit-wrp {
                     textarea {
                         box-sizing: border-box;
@@ -1009,11 +1009,11 @@ Contains all styles of inner pages
                         }
                         .translation-container {
                             display: none;
-                            border-left: 2px solid #b3b3b3;
+                            border-left: 1px solid #b3b3b3;
                             padding-left: 10px;
                             margin-top: 25px;
                             @include media("(min-width: 1200px)") {
-                                border-left: get-vw(2px) solid #b3b3b3;
+                                border-left: get-vw(1px) solid #b3b3b3;
                                 padding-left: get-vw(10px);
                                 margin-top: get-vw(25px);
                             }
@@ -1028,15 +1028,10 @@ Contains all styles of inner pages
                 }
             }
             .side-ads {
-                box-sizing: border-box;
-                width: 30%;
                 height: 600px;
-                float: left;
-                padding-left: 15px;
                 overflow: hidden;
                 @include media("(min-width: 1200px)") {
                     height: get-vw(600px);
-                    padding-left: get-vw(15px);
                 }
                 img {
                     width: 100%;
