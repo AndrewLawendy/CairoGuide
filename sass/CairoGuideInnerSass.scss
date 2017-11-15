@@ -59,8 +59,23 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                 }
             }
-            .comment-section-container{
-                .review-item{
+            .overview-section-container {
+                h2 {
+                    color: nth($i, 2);
+                }
+                .item-branches-container {
+                    i {
+                        color: nth($i, 2);
+                    }
+                }
+                .item-facilities-container {
+                    .facility-unit {
+                        background: nth($i, 2);
+                    }
+                }
+            }
+            .comment-section-container {
+                .review-item {
                     color: nth($i, 2);
                 }
             }
@@ -612,28 +627,7 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(30px);
             }*/
-            .items-list-ads-container {
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 30%;
-                padding-left: 20px;
-                box-sizing: border-box;
-                @include media("(min-width: 1200px)") {
-                    padding-left: get-vw(20px);
-                }
-                .items-list-ads-wrp {
-                    &.fixed {
-                        position: fixed;
-                        top: 0;
-                    }
-                    img {
-                        width: 100%;
-                    }
-                }
-            }
             .items-list-container {
-                width: 70%;
                 float: left;
                 .item-wrp {
                     position: relative;
@@ -653,6 +647,12 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             bottom: get-vw(3px);
                             height: get-vw(3px);
+                        }
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(0px);
                         }
                     }
                     .item-info {
@@ -827,18 +827,114 @@ Contains all styles of inner pages
             }
         }
         /*Details Page*/
-        .comment-section-container {
+        .overview-section-container {
             width: 100%;
             margin-top: 30px;
-            .interaction-section-container {
-                box-sizing: border-box;
-                width: 75%;
-                float: left;
-                padding-right: 15px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(30px);
+            }
+            h2 {
+                font-size: 1.786em;
+                margin-bottom: 15px;
                 @include media("(min-width: 1200px)") {
-                    padding-right: get-vw(15px);
+                    margin-bottom: get-vw(15px);
                 }
-                .comment-submit-wrp{
+            }
+            h6 {
+                font-size: 1.286em;
+                margin-bottom: 10px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(10px);
+                }
+            }
+            .overview-details {
+                .three-quarter-width {
+                    >div[class^='item'] {
+                        margin-top: 30px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(30px);
+                        }
+                        &:first-child {
+                            margin: 0;
+                        }
+                    }
+                    .item-description-container {
+                        p.overview-brief {
+                            text-align: justify;
+                            font-size: 1em;
+                        }
+                    }
+                    .item-facilities-container {
+                        .facilities-wrp {
+                            margin-right: -8px;
+                            margin-left: -8px;
+                            @include media("(min-width: 1200px)") {
+                                margin-right: get-vw(-8px);
+                                margin-left: get-vw(-8px);
+                            }
+                            .facility-unit {
+                                float: left;
+                                box-sizing: border-box;
+                                margin:0 8px 10px 8px;
+                                width: 44px;
+                                height: 44px;
+                                border-radius: 100%;
+                                @include media("(min-width: 1200px)") {
+                                    margin:0 get-vw(8px) get-vw(10px) get-vw(8px);
+                                    width: get-vw(44px);
+                                    height: get-vw(44px);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .item-branches-container {
+                margin-top: 30px;
+                @include media("(min-width: 1200px)") {
+                    margin-top: get-vw(30px);
+                }
+                p {
+                    font: 1em 'Lato-Bold';
+                    margin-bottom: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(10px);
+                    }
+                }
+                .icon-container {
+                    display: inline-block;
+                    width: 14px;
+                    margin-right: 5px;
+                    text-align: center;
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(14px);
+                        margin-right: get-vw(5px);
+                    }
+                }
+                .item-branche {
+                    box-sizing: border-box;
+                    padding-right: 15px;
+                    @include media("(min-width: 1200px)") {
+                        padding-right: get-vw(15px);
+                    }
+                    .branche-address {
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(10px);
+                        }
+                    }
+                }
+            }
+        }
+        .comment-section-container {
+            position: relative;
+            width: 100%;
+            margin-top: 30px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(30px);
+            }
+            .interaction-section-container {
+                .comment-submit-wrp {
                     textarea {
                         box-sizing: border-box;
                         font-family: 'Lato-Regular';
@@ -859,48 +955,186 @@ Contains all styles of inner pages
                         }
                     }
                 }
-                .review-submit-wrp{
-                    margin: 10px -10px 0;
+                .review-submit-wrp {
+                    margin: 35px -10px 0;
                     @include media("(min-width: 1200px)") {
-                        margin: get-vw(10px) get-vw(-10px) 0;
+                        margin: get-vw(35px) get-vw(-10px) 0;
                     }
-                    .review-item{
+                    .review-item {
                         box-sizing: border-box;
                         padding: 0 10px;
-                        p{
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            padding: 0 get-vw(10px);
+                            margin-bottom: get-vw(10px);
+                        }
+                        p {
                             font: 1em 'Lato-Bold';
                             float: left;
                         }
-                        .review-satisfaction-wrp{
+                        .review-satisfaction-wrp {
                             float: right;
-                            .icon-review{
+                            .icon-review {
                                 cursor: pointer;
                                 font-weight: bold;
                             }
                         }
+                    }
+                }
+                .comment-view-wrp {
+                    margin-top: 40px;
+                    padding-left: 20px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(40px);
+                        padding-left: get-vw(20px);
+                    }
+                    .comment-container {
+                        background: #f8f8f8;
+                        border-radius: 3px;
+                        padding: 15px 20px 20px 65px;
+                        margin-bottom: 40px;
+                        position: relative;
+                        width: 100%;
+                        box-sizing: border-box;
+                        @include transition(height .15s);
                         @include media("(min-width: 1200px)") {
-                            padding: 0 get-vw(10px);
+                            padding: get-vw(15px) get-vw(20px) get-vw(20px) get-vw(65px);
+                            margin-bottom: get-vw(40px);
+                        }
+                        &.arabic {
+                            .translate-comment {
+                                display: block;
+                            }
+                            .continue-reading {
+                                right: auto;
+                                bottom: 40px;
+                                padding-left: 0;
+                                left: 65px;
+                                padding-right: 45px;
+                                @include linear-gradient(left,
+                                #f8f8f8,
+                                100,
+                                80,
+                                #f8f8f8,
+                                0,
+                                100);
+                                @include media("(min-width: 1200px)") {
+                                    left: get-vw(65px);
+                                    bottom: get-vw(40px);
+                                    padding-right: get-vw(45px);
+                                }
+                            }
+                        }
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        .user-profile {
+                            width: 65px;
+                            height: 65px;
+                            border-radius: 100%;
+                            overflow: hidden;
+                            position: absolute;
+                            top: -20px;
+                            left: -20px;
+                            background: url(../images/user-avatar.png) no-repeat center center;
+                            background-size: cover;
+                            @include media("(min-width: 1200px)") {
+                                width: get-vw(65px);
+                                height: get-vw(65px);
+                                top: get-vw(-20px);
+                                left: get-vw(-20px);
+                            }
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        p {
+                            text-align: justify;
+                            color: #131313;
+                            font-size: 1.143em;
+                            line-height: 20px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(20px);
+                            }
+                        }
+                        .paragraph-container {
+                            width: 100%;
+                            height: 80px;
+                            overflow: hidden;
+                            @include transition(height .15s);
+                            @include media("(min-width: 1200px)") {
+                                height: get-vw(80px);
+                            }
+                        }
+                        a {
+                            line-height: 20px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(20px);
+                            }
+                            &.continue-reading {
+                                display: none;
+                                position: absolute;
+                                right: 20px;
+                                bottom: 20px;
+                                padding-left: 45px;
+                                color: #888;
+                                cursor: pointer;
+                                @include linear-gradient(right,
+                                #f8f8f8,
+                                100,
+                                80,
+                                #f8f8f8,
+                                0,
+                                100);
+                                @include media("(min-width: 1200px)") {
+                                    right: get-vw(20px);
+                                    bottom: get-vw(20px);
+                                    padding-left: get-vw(45px);
+                                }
+                                &.exceeds {
+                                    display: block;
+                                }
+                            }
+                            &.translate-comment {
+                                display: none;
+                                color: #777;
+                                float: right;
+                                font-size: .9em;
+                            }
+                        }
+                        .translation-container {
+                            display: none;
+                            border-left: 1px solid #b3b3b3;
+                            padding-left: 10px;
+                            margin-top: 25px;
+                            @include media("(min-width: 1200px)") {
+                                border-left: get-vw(1px) solid #b3b3b3;
+                                padding-left: get-vw(10px);
+                                margin-top: get-vw(25px);
+                            }
                         }
                     }
                 }
-            }
-            .side-ads {
-                box-sizing: border-box;
-                width: 25%;
-                height: 600px;
-                float: left;
-                padding-left: 15px;
-                overflow: hidden;
-                @include media("(min-width: 1200px)") {
-                    height: get-vw(600px);
-                    padding-left: get-vw(15px);
-                }
-                img {
-                    width: 100%;
-                    min-height: 100%;
-                    object-fit: cover;
+                .pagination-container {
+                    margin-top: 25px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(25px);
+                    }
                 }
             }
+            // .side-ads {
+            //     height: 600px;
+            //     overflow: hidden;
+            //     @include media("(min-width: 1200px)") {
+            //         height: get-vw(600px);
+            //     }
+            //     img {
+            //         width: 100%;
+            //         min-height: 100%;
+            //         object-fit: cover;
+            //     }
+            // }
         }
     }
 
