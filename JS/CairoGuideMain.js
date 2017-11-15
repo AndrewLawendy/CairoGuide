@@ -208,17 +208,11 @@ $(document).ready(function () {
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
-<<<<<<< HEAD
     if ($('.side-ads.thirty-width').length) {
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight());
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight();
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
         MoveAd(scrollPos, adBreakPos, customTop);
-=======
-    if ($('.items-list-ads-container').length) {
-        adBreakPos = $('.advanced-search-filters-wrp').offset().top - ($('.advanced-search-filters-wrp').css('margin-bottom') + $('.bottom-header').height() + $('.attached-menu').height());
-        MoveAd(scrollPos, adBreakPos);
->>>>>>> c5f70c8acc864b872f21936634159293351d5a75
     }
 
     SetInnersCategory();
@@ -928,20 +922,10 @@ $(document).scroll(function () {
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     MainBannerlParallax(scrollPos, breakPos);
-<<<<<<< HEAD
     if ($('.side-ads.thirty-width').length) {
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight());
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight();
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
         MoveAd(scrollPos, adBreakPos, customTop);
-=======
-    if ($('.items-list-ads-container').length) {
-        adBreakPos = $('.advanced-search-filters-wrp').offset().top - (parseFloat($('.advanced-search-filters-wrp').css('margin-bottom')) + $('.bottom-header').height() + $('.attached-menu').height());
-        console.log(scrollPos + ',' + adBreakPos);
-        MoveAd(scrollPos, adBreakPos);
-    }
-    if ($('.comment-section-container').length) {
-        var pos = $('.side-ads').position().top;
->>>>>>> c5f70c8acc864b872f21936634159293351d5a75
     }
 });
