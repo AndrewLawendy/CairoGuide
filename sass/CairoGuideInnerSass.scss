@@ -59,6 +59,21 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                 }
             }
+            .overview-section-container {
+                h2 {
+                    color: nth($i, 2);
+                }
+                .item-branches-container {
+                    i {
+                        color: nth($i, 2);
+                    }
+                }
+                .item-facilities-container {
+                    .facility-unit {
+                        background: nth($i, 2);
+                    }
+                }
+            }
             .comment-section-container {
                 .review-item {
                     color: nth($i, 2);
@@ -653,7 +668,7 @@ Contains all styles of inner pages
                             height: get-vw(3px);
                         }
                     }
-                    &:last-child{
+                    &:last-child {
                         margin-bottom: 0;
                         @include media("(min-width: 1200px)") {
                             margin-bottom: get-vw(0px);
@@ -839,27 +854,94 @@ Contains all styles of inner pages
             }
             h2 {
                 font-size: 1.786em;
+                margin-bottom: 15px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(15px);
+                }
             }
             h6 {
                 font-size: 1.286em;
+                margin-bottom: 10px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(10px);
+                }
             }
             .overview-details {
                 .three-quarter-width {
-                    .item-description {
+                    >div[class^='item'] {
+                        margin-top: 30px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(30px);
+                        }
+                        &:first-child {
+                            margin: 0;
+                        }
+                    }
+                    .item-description-container {
                         p.overview-brief {
                             text-align: justify;
                             font-size: 1em;
                         }
                     }
+                    .item-facilities-container {
+                        .facilities-wrp {
+                            margin-right: -8px;
+                            margin-left: -8px;
+                            @include media("(min-width: 1200px)") {
+                                margin-right: get-vw(-8px);
+                                margin-left: get-vw(-8px);
+                            }
+                            .facility-unit {
+                                float: left;
+                                box-sizing: border-box;
+                                margin:0 8px 10px 8px;
+                                width: 44px;
+                                height: 44px;
+                                border-radius: 100%;
+                                @include media("(min-width: 1200px)") {
+                                    margin:0 get-vw(8px) get-vw(10px) get-vw(8px);
+                                    width: get-vw(44px);
+                                    height: get-vw(44px);
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            .item-branches {
+            .item-branches-container {
                 margin-top: 30px;
                 @include media("(min-width: 1200px)") {
                     margin-top: get-vw(30px);
                 }
-                p{
-                    font:1em 'Lato-Bold';
+                p {
+                    font: 1em 'Lato-Bold';
+                    margin-bottom: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(10px);
+                    }
+                }
+                .icon-container {
+                    display: inline-block;
+                    width: 14px;
+                    margin-right: 5px;
+                    text-align: center;
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(14px);
+                        margin-right: get-vw(5px);
+                    }
+                }
+                .item-branche {
+                    box-sizing: border-box;
+                    padding-right: 15px;
+                    @include media("(min-width: 1200px)") {
+                        padding-right: get-vw(15px);
+                    }
+                    .branche-address {
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(10px);
+                        }
+                    }
                 }
             }
         }
@@ -1059,7 +1141,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .side-ads {
+            .ads-wrp {
                 height: 600px;
                 overflow: hidden;
                 @include media("(min-width: 1200px)") {
