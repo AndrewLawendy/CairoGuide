@@ -125,6 +125,30 @@ Contains all styles of inner pages
                     }
                 }
             }
+            .breadcrumb-section-container{
+                .title-rating-wrp{
+                    span{
+                        color:nth($i, 2);
+                    }
+                }
+                .category-location-wrp{
+                    color:nth($i, 2);
+                    .category-wrp,.location-wrp{
+                        a,a:visited{
+                            @include theme-link-color(nth($i, 2));
+                        }
+                    }
+                }
+            }
+            .gallery-section-container{
+                .main-slide-wrp{
+                    .gallery-nav{
+                        a:hover{
+                            color:nth($i, 2);
+                        }
+                    }
+                }
+            }
             .control-btn {
                 background: nth($i, 2);
             }
@@ -164,9 +188,7 @@ Contains all styles of inner pages
                 margin-bottom: get-vw(30px);
             }
             img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+                @include object-fit-img();
                 object-position: center;
             }
         }
@@ -670,9 +692,7 @@ Contains all styles of inner pages
                                 padding-right: get-vw(20px);
                             }
                             img {
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
+                                @include object-fit-img();
                                 object-position: center;
                             }
                         }
@@ -799,9 +819,7 @@ Contains all styles of inner pages
                             border-width: get-vw(2px);
                         }
                         img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
+                            @include object-fit-img();
                         }
                     }
                     .category-best-item-info {
@@ -827,6 +845,135 @@ Contains all styles of inner pages
             }
         }
         /*Details Page*/
+        .breadcrumb-section-container{
+            .title-rating-wrp{
+                h1,span{
+                    font-family:'Lato-Black';
+                    display:inline-block;
+                }
+
+                h1{
+                    font-size:2.57em;
+                    margin-right:15px;
+                    @include media("(min-width: 1200px)") {
+                        margin-right: get-vw(15px);
+                    }
+                }
+
+                span{
+                    font-size:1.42em;
+                }
+            }
+            .category-location-wrp{
+                *{
+                    float:left;
+                }
+                .category-wrp,.location-wrp{
+                    [class^="icon-"], [class*=" icon-"]{
+                        margin-right:10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-right: get-vw(10px);
+                        }
+                    }
+                    a{
+                        @include link-hover();
+                    }
+                }
+                .category-wrp{
+                    margin-right:15px;
+                    @include media("(min-width: 1200px)") {
+                        margin-right: get-vw(15px);
+                    }
+                }
+            }
+        }
+        .gallery-section-container{
+            $main-slide-wrp-height: 430px;
+            @include media("(min-width: 1200px)") {
+                $main-slide-wrp-height: get-vw(430px);
+            }
+            .main-slide-wrp,.side-slides-wrp{
+                img{
+                    @include object-fit-img();
+                    display:block;
+                }
+            }
+            .main-slide-wrp{
+                height: $main-slide-wrp-height;
+                position:relative;
+                .gallery-nav{
+                    position:absolute;
+                    width:100%;
+                    top:50%;
+                    @include transform(translateY(-50%));
+                    a,a:visited{
+                        color: #fff;
+                        text-decoration: none;
+                        font-size:3em;
+                        @include transition(all 0.3s ease);
+                    }
+                    a:hover{
+                        @include transition(all 0.3s ease);
+                    }
+                    .icon-right-chevron{
+                        margin-right:20px;
+                        @include media("(min-width: 1200px)") {
+                            margin-right: get-vw(20px);
+                        }
+                    }
+
+                    .icon-left-chevron{
+                        margin-left:20px;
+                        @include media("(min-width: 1200px)") {
+                            margin-left: get-vw(20px);
+                        }
+                    }
+                }
+            }
+            .side-slides-wrp{
+                .side-slide-item{
+                    height:$main-slide-wrp-height / 3;
+                    padding:7px 0;
+                    box-sizing:border-box;
+                    position:relative;
+                    cursor:pointer;
+                    @include media("(min-width: 1200px)") {
+                        padding: get-vw(7px) 0;
+                    }
+                    &:first-child{
+                        padding-top:0;
+                    }
+                    &:nth-of-type(3){
+                        padding-bottom:0;
+                    }
+                    .side-slides-count{
+                        background-color:rgba(0,0,0,0.7);
+                        margin-top:7px;
+                        text-align:center;
+                        font-size:3em;
+                        color:#fff;
+                        position: absolute;
+                        top:0;
+                        left:0;
+                        height:100%;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(7px);
+                        }
+
+                        &,span{
+                            width:100%;
+                        }
+
+                        span{
+                            display:block;
+                            position:absolute;
+                            top:50%;
+                            @include transform(translateY(-50%));
+                        }
+                    }
+                }
+            }
+        }
         .overview-section-container {
             width: 100%;
             margin-top: 30px;

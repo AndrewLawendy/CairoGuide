@@ -188,6 +188,18 @@ var SetInnersCategory = function () {
             $('.category-best-wrp h2 .category-name').html(SubCategory);
         }
     }
+    if($('.main-category-name').length){
+        $('.main-category-name').html(Category);
+        if($('.main-category-name').is('a')){
+            $('.main-category-name').attr('title',Category).attr('href','category.html?category='+Category);
+        }
+    }
+    if($('.sub-category-name').length){
+        $('.sub-category-name').html(SubCategory);
+        if($('.sub-category-name').is('a')){
+            $('.sub-category-name').attr('title',SubCategory).attr('href','items-listing.html?category='+Category+'&subcategory='+SubCategory);
+        }
+    }
 }
 
 //Move advert during scroll
@@ -200,6 +212,44 @@ var MoveAd = function (scrollPos, breakPos,stopPos,stopBreakPos, customTop) {
     } else {
         adContainer.removeClass('fixed').removeAttr('style');
     }
+}
+
+if($('gallery-section-container').length){
+    var mainSlideIndex = 0;
+}
+
+//Initialize gallery slider
+var detailsGallerySlidesSize = $('.slide-image').length;
+var InitDetailsGallerySlider = function(){
+    var counter = 0;
+    $('.slide-image').each(function(){
+        $(this).attr('data-index',counter);
+        counter++;
+    });
+}
+
+//Display clicked gallery slide
+var DisplayClickedDetailsGalleryItem = function(clickedSlide){
+    var mainImg = $('.main-slide-wrp').find('img');
+    var clickedImg = clickedSlide.find('img');
+    var temp = {
+        src: mainImg.attr('src'),
+        index: mainImg.attr('data-index')
+    };
+    mainImg.attr('src',clickedImg.attr('src')).attr('data-index',clickedImg.attr('data-index'));
+    clickedImg.attr('src',temp.src).attr('data-index',temp.index);
+}
+
+//Display next gallery slide
+var NextDetailsGalleryItem = function(){
+    var mainImgIndex = parseInt($('.main-slide-wrp').find('img').attr('data-index'));
+    var nextIndex = mainImgIndex+1;
+    DisplayClickedDetailsGalleryItem($('.slide-image[data-index="'+nextIndex+'"]').parent());
+}
+
+//Display prev gallery slide
+var PrevDetailsGalleryItem = function(){
+    
 }
 
 //document ready
@@ -782,6 +832,15 @@ $(document).ready(function () {
         });
     }
     //End of Advanced Search
+
+    //Item Details Gallery Functions
+    InitDetailsGallerySlider();
+    $('.side-slide-item:not(:last-child) a').on('click',function(){
+        DisplayClickedDetailsGalleryItem($(this));
+    })
+    $('.gallery-next').on('click',function(){
+        NextDetailsGalleryItem();
+    });
 
     //Start of Comment Section
     if ($('.comment-section-container').length) {
