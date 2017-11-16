@@ -191,11 +191,11 @@ var SetInnersCategory = function () {
 }
 
 //Move advert during scroll
-var MoveAd = function (scrollPos, breakPos,stopPos,stopBreakPos, customTop) {
+var MoveAd = function (scrollPos, breakPos, stopPos, stopBreakPos, customTop) {
     var adContainer = $('.ads-wrp');
-    if(scrollPos >= stopBreakPos){
+    if (scrollPos >= stopBreakPos) {
         adContainer.removeClass('fixed').parent().css('top', stopPos);
-    }else if (scrollPos >= breakPos) {
+    } else if (scrollPos >= breakPos) {
         adContainer.addClass('fixed').css('top', customTop).parent().removeAttr('style');
     } else {
         adContainer.removeClass('fixed').removeAttr('style');
@@ -214,10 +214,10 @@ $(document).ready(function () {
         var adMargin = 30;
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
-        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
-        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
+            stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+            stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
+        MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
 
     SetInnersCategory();
@@ -786,10 +786,27 @@ $(document).ready(function () {
     //Start of Comment Section
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
-        $('.multilanguage').on('keyup paste', function () {
-            var val = $(this).val();
-            ifArabic($(this), val);
-        })
+        var owlRatings = [{
+                src: 'bad-owl.svg',
+                title: 'Bad'
+            },
+            {
+                src: 'ihateit-owl.svg',
+                title: 'I hate it'
+            },
+            {
+                src: 'ok-owl.svg',
+                title: 'OK'
+            },
+            {
+                src: 'iloveit-owl.svg',
+                title: 'I love it'
+            },
+            {
+                src: 'wow-owl.svg',
+                title: 'Wow'
+            }
+        ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
             $(this).prevAll().addClass('selected');
@@ -811,6 +828,20 @@ $(document).ready(function () {
             }
         });
 
+        $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
+            var ratingValue = parseInt($(this).data('rating') / 20);
+            ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
+            $(this).find('img').attr({
+                'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
+                'title': owlRatings[ratingValue].title
+            })
+            $(this).find('span').text(owlRatings[ratingValue].title);
+        })
+
+        $('.multilanguage').on('keyup paste', function () {
+            var val = $(this).val();
+            ifArabic($(this), val);
+        })
         $('.comment-container .comment-text').each(function () {
             ifContinueReading($(this), 4);
             var arabic = ifArabic($(this), $(this).text());
@@ -891,8 +922,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) {
-            }
+            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
@@ -928,9 +958,9 @@ $(document).scroll(function () {
         var adMargin = 30;
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
-        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
-        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
+            stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+            stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
+        MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
 });
