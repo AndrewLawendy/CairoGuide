@@ -857,6 +857,7 @@ $(document).ready(function () {
         })
 
         $('.comment-container .translate-comment').on('click', function () {
+            $(this).siblings('.continue-reading').click();
             $(this).siblings('.translation-container').slideDown('fast');
             $(this).fadeOut('fast');
         });

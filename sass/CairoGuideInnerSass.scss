@@ -856,15 +856,6 @@ Contains all styles of inner pages
             }
             .overview-details {
                 .three-quarter-width {
-                    >div[class^='item'] {
-                        margin-top: 30px;
-                        @include media("(min-width: 1200px)") {
-                            margin-top: get-vw(30px);
-                        }
-                        &:first-child {
-                            margin: 0;
-                        }
-                    }
                     .item-description-container {
                         p.overview-brief {
                             text-align: justify;
@@ -939,10 +930,6 @@ Contains all styles of inner pages
                 }
             }
             .item-branches-container {
-                margin-top: 30px;
-                @include media("(min-width: 1200px)") {
-                    margin-top: get-vw(30px);
-                }
                 p {
                     font: 1em 'Lato-Bold';
                     margin-bottom: 10px;
