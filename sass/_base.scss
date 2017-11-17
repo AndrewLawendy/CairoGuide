@@ -127,11 +127,11 @@ $colorList: "nightlife" #f90000,
         display: block;
         height: 1px;
         width: 20%;
-        /*margin-top:2px;*/
+        margin-top:1px;
         @include transition(all 0.3s ease);
         @include media("(min-width: 1200px)") {
             height: get-vw(1px);
-            /*margin-top: get-vw(2px);*/
+            margin-top: get-vw(1px);
         }
     }
     &:hover:after {
@@ -160,6 +160,18 @@ $colorList: "nightlife" #f90000,
     /* fallback */
     max-height: $line-height*$number-of-lines;
     /* fallback */
+}
+
+//Mixing to give color opacity
+@mixin background-opacity($color, $opacity: 1) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+@mixin object-fit-img(){
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 
@@ -459,11 +471,12 @@ a {
     box-sizing: border-box;
     width: 70%;
     float: left;
-    padding-right: 15px;
+    /*padding-right: 15px;
     @include media("(min-width: 1200px)") {
         padding-right: get-vw(15px);
-    }
+    }*/
 }
+
 
 .thirty-width {
     box-sizing: border-box;
@@ -539,6 +552,48 @@ a {
     margin-top: 30px;
     @include media("(min-width: 1200px)") {
         margin-top: get-vw(30px);
+    }
+}
+
+.padd-b10 {
+    padding-bottom: 10px;
+    @include media("(min-width: 1200px)") {
+        padding-bottom: get-vw(10px);
+    }
+}
+
+.padd-b20 {
+    padding-bottom: 20px;
+    @include media("(min-width: 1200px)") {
+        padding-bottom: get-vw(20px);
+    }
+}
+
+.padd-b30 {
+    padding-bottom: 30px;
+    @include media("(min-width: 1200px)") {
+        padding-bottom: get-vw(30px);
+    }
+}
+
+.padd-t10 {
+    padding-top: 10px;
+    @include media("(min-width: 1200px)") {
+        padding-top: get-vw(10px);
+    }
+}
+
+.padd-t20 {
+    padding-top: 20px;
+    @include media("(min-width: 1200px)") {
+        padding-top: get-vw(20px);
+    }
+}
+
+.padd-t30 {
+    padding-top: 30px;
+    @include media("(min-width: 1200px)") {
+        padding-top: get-vw(30px);
     }
 }
 
@@ -1225,6 +1280,9 @@ header {
                     @each $i in $colorList {
                         &.#{nth($i,1)}-menu-item ul {
                             border-left: 2px solid nth($i, 2);
+                            li{
+                                @include background-opacity(nth($i, 2),0.1);
+                            }
                             a:hover {
                                 background-color: nth($i, 2);
                             }
@@ -1320,15 +1378,16 @@ header {
                         z-index: 300;
                         white-space: nowrap;
                         opacity: 0;
+                        background:$header-footer-secondary-background-color;
                         @include transform(translateY(20px));
                         @include transition(all 0.3s ease);
                         /*display: none;*/
                         @include media("(min-width: 1200px)") {
-                            border-left-width: get-vw(2px);
+                            border-left-width: get-vw(1px)!important;
                         }
                         li {
                             margin: 0;
-                            text-align: center;
+                            text-align: left;
                             /*line-height: 1.5em;*/
                             padding: 0;
                             float: none;
@@ -1338,7 +1397,7 @@ header {
                                 box-sizing: border-box;
                                 display: block;
                                 text-transform: capitalize;
-                                background: $header-footer-secondary-background-color;
+                                //background: $header-footer-secondary-background-color;
                                 color: $header-footer-primary-text-color;
                                 @include transition(all 0.3s ease);
                                 @include media("(min-width: 1200px)") {

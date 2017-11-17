@@ -32,20 +32,35 @@ var SetTrendingInterval = function (trendItem, randomIntervalTime) {
 
 //scroll highlights
 var ScrollHighlights = function (highlightsItemWidth, direction) {
-    var highlightsWrpPos = parseFloat($('.highlights-wrp').css('margin-left'), 10);
+    var highlightsCarouselWrpPos = $('.highlights-carousel-wrp').scrollLeft();
     if (direction == 'next') {
-        var calculatedMargin = highlightsItemWidth * Math.round((highlightsWrpPos - highlightsItemWidth) / highlightsItemWidth);
+        var calculatedScroll = highlightsItemWidth * Math.round((highlightsCarouselWrpPos + highlightsItemWidth) / highlightsItemWidth);
     } else {
-        var calculatedMargin = highlightsItemWidth * Math.round((highlightsWrpPos + highlightsItemWidth) / highlightsItemWidth);
+        var calculatedScroll = highlightsItemWidth * Math.round((highlightsCarouselWrpPos - highlightsItemWidth) / highlightsItemWidth);
     }
-    $('.highlights-wrp').css('margin-left', calculatedMargin);
+    $('.highlights-carousel-wrp').animate({
+        scrollLeft: calculatedScroll
+    },checkHighlightLimit);
 }
 
 //Drag highlights with Mouse
-var DragHighlights = function (highlightsItemWidth, clickX, pageX) {
-    var highlightsWrpPos = parseFloat($('.highlights-wrp').css('margin-left'), 10);
-    var calculatedMargin = highlightsItemWidth * Math.round((clickX - pageX) / highlightsItemWidth);
-    $('.highlights-wrp').css('margin-left', calculatedMargin);
+var DragHighlights = function (actualScroll, baseClick, newMousePos) {
+    HighlightDiff = newMousePos - baseClick;
+    $('.highlights-carousel-wrp').scrollLeft(actualScroll - HighlightDiff);
+}
+
+var checkHighlightLimit = function () {
+    highlightsCarouselWrpPos = $('.highlights-carousel-wrp').scrollLeft(),
+        maxScroll = $('.highlights-carousel-wrp')[0].scrollWidth - $('.highlights-carousel-wrp').width();
+    if (highlightsCarouselWrpPos == 0) {
+        $('.highlights-controls a').removeClass('disabled');
+        $('.highlights-controls .prev-btn').addClass('disabled');
+    } else if (highlightsCarouselWrpPos >= (maxScroll - 20)) {
+        $('.highlights-controls a').removeClass('disabled');
+        $('.highlights-controls .next-btn').addClass('disabled');
+    } else {
+        $('.highlights-controls a').removeClass('disabled');
+    }
 }
 
 //Transform header during document scroll
@@ -134,8 +149,6 @@ var ifContinueReading = function (input, limit) {
     }
 }
 
-
-
 //Random Number Generator
 var randomLimit = function (min, max) {
     var random = Math.random();
@@ -188,18 +201,68 @@ var SetInnersCategory = function () {
             $('.category-best-wrp h2 .category-name').html(SubCategory);
         }
     }
+    if ($('.main-category-name').length) {
+        $('.main-category-name').html(Category);
+        if ($('.main-category-name').is('a')) {
+            $('.main-category-name').attr('title', Category).attr('href', 'category.html?category=' + Category);
+        }
+    }
+    if ($('.sub-category-name').length) {
+        $('.sub-category-name').html(SubCategory);
+        if ($('.sub-category-name').is('a')) {
+            $('.sub-category-name').attr('title', SubCategory).attr('href', 'items-listing.html?category=' + Category + '&subcategory=' + SubCategory);
+        }
+    }
 }
 
 //Move advert during scroll
-var MoveAd = function (scrollPos, breakPos,stopPos,stopBreakPos, customTop) {
+var MoveAd = function (scrollPos, breakPos, stopPos, stopBreakPos, customTop) {
     var adContainer = $('.ads-wrp');
-    if(scrollPos >= stopBreakPos){
+    if (scrollPos >= stopBreakPos) {
         adContainer.removeClass('fixed').parent().css('top', stopPos);
-    }else if (scrollPos >= breakPos) {
+    } else if (scrollPos >= breakPos) {
         adContainer.addClass('fixed').css('top', customTop).parent().removeAttr('style');
     } else {
         adContainer.removeClass('fixed').removeAttr('style');
     }
+}
+
+if ($('gallery-section-container').length) {
+    var mainSlideIndex = 0;
+}
+
+//Initialize gallery slider
+var detailsGallerySlidesSize = $('.slide-image').length;
+var InitDetailsGallerySlider = function () {
+    var counter = 0;
+    $('.slide-image').each(function () {
+        $(this).attr('data-index', counter);
+        counter++;
+    });
+}
+
+//Display clicked gallery slide
+var DisplayClickedDetailsGalleryItem = function (clickedSlide) {
+    var mainImg = $('.main-slide-wrp').find('img');
+    var clickedImg = clickedSlide.find('img');
+    var temp = {
+        src: mainImg.attr('src'),
+        index: mainImg.attr('data-index')
+    };
+    mainImg.attr('src', clickedImg.attr('src')).attr('data-index', clickedImg.attr('data-index'));
+    clickedImg.attr('src', temp.src).attr('data-index', temp.index);
+}
+
+//Display next gallery slide
+var NextDetailsGalleryItem = function () {
+    var mainImgIndex = parseInt($('.main-slide-wrp').find('img').attr('data-index'));
+    var nextIndex = mainImgIndex + 1;
+    DisplayClickedDetailsGalleryItem($('.slide-image[data-index="' + nextIndex + '"]').parent());
+}
+
+//Display prev gallery slide
+var PrevDetailsGalleryItem = function () {
+
 }
 
 //document ready
@@ -214,10 +277,10 @@ $(document).ready(function () {
         var adMargin = 30;
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
-        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
-        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
+            stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+            stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
+        MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
 
     SetInnersCategory();
@@ -264,43 +327,31 @@ $(document).ready(function () {
     //Highlights
     if ($('#highlights').length) {
         var highlightsCount = $('.highlights-carousel-wrp').find('.hightlights-item').length,
-            shownFrameHighlightIndex = 5,
-            lastShownHighlightIndex = 5,
-            highlightsItemWidth = $('.highlights-carousel-wrp').find('.hightlights-item').width() + (parseFloat($('.highlights-carousel-wrp').find('.hightlights-item').css('margin-right'), 10) * 2),
-            highlightsWrp = $('.highlights-wrp'),
+            highlightsItemWidth = $('.highlights-carousel-wrp').find('.hightlights-item').width() + (parseFloat($('.highlights-carousel-wrp .hightlights-item').css('padding-right'), 10) * 2),
             highlightsNextBtn = $('.highlights-controls').find('.next-btn'),
             highlightsPrevBtn = $('.highlights-controls').find('.prev-btn'),
-            clicked = false,
-            clickX;
-
+            highlightClicked = false,
+            baseClick;
+        $('.highlights-wrp').width(highlightsCount * highlightsItemWidth);
         highlightsNextBtn.on('click', function () {
-            if (shownFrameHighlightIndex < highlightsCount) {
-                ScrollHighlights(highlightsItemWidth, 'next');
-                shownFrameHighlightIndex++;
-            }
+            ScrollHighlights(highlightsItemWidth, 'next');
+
         });
 
         highlightsPrevBtn.on('click', function () {
-            if (shownFrameHighlightIndex > lastShownHighlightIndex) {
-                ScrollHighlights(highlightsItemWidth, 'prev');
-                shownFrameHighlightIndex--;
-            }
+            ScrollHighlights(highlightsItemWidth, 'prev');
         });
 
-        $(document).on({
-            'mousemove': function (e) {
-                //console.log('clicked = ' + clicked + ', clickX = ' + clickX + ', e.pageX = ' + e.pageX);
-                if (clicked) {
-                    //DragHighlights(highlightsItemWidth, clickX, e.pageX);
+        $('.highlights-carousel-wrp').on('mousedown', function (e) {
+            baseClick = e.clientX;
+            highlightClicked = true;
+            var actualScroll = $(this).scrollLeft();
+            $(this).on('mousemove', function (e) {
+                if (highlightClicked) {
+                    DragHighlights(actualScroll, baseClick, e.clientX)
+                    checkHighlightLimit();
                 }
-            },
-            'mousedown': function (e) {
-                clicked = true;
-                clickX = e.pageX;
-            },
-            'mouseup': function () {
-                clicked = false;
-            }
+            });
         });
     }
 
@@ -783,13 +834,39 @@ $(document).ready(function () {
     }
     //End of Advanced Search
 
+    //Item Details Gallery Functions
+    InitDetailsGallerySlider();
+    $('.side-slide-item:not(:last-child) a').on('click', function () {
+        DisplayClickedDetailsGalleryItem($(this));
+    })
+    $('.gallery-next').on('click', function () {
+        NextDetailsGalleryItem();
+    });
+
     //Start of Comment Section
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
-        $('.multilanguage').on('keyup paste', function () {
-            var val = $(this).val();
-            ifArabic($(this), val);
-        })
+        var owlRatings = [{
+                src: 'bad-owl.svg',
+                title: 'Bad'
+            },
+            {
+                src: 'ihateit-owl.svg',
+                title: 'I hate it'
+            },
+            {
+                src: 'ok-owl.svg',
+                title: 'OK'
+            },
+            {
+                src: 'iloveit-owl.svg',
+                title: 'I love it'
+            },
+            {
+                src: 'wow-owl.svg',
+                title: 'Wow'
+            }
+        ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
             $(this).prevAll().addClass('selected');
@@ -811,6 +888,20 @@ $(document).ready(function () {
             }
         });
 
+        $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
+            var ratingValue = parseInt($(this).data('rating') / 20);
+            ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
+            $(this).find('img').attr({
+                'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
+                'title': owlRatings[ratingValue].title
+            })
+            $(this).find('span').text(owlRatings[ratingValue].title);
+        })
+
+        $('.multilanguage').on('keyup paste', function () {
+            var val = $(this).val();
+            ifArabic($(this), val);
+        })
         $('.comment-container .comment-text').each(function () {
             ifContinueReading($(this), 4);
             var arabic = ifArabic($(this), $(this).text());
@@ -826,6 +917,7 @@ $(document).ready(function () {
         })
 
         $('.comment-container .translate-comment').on('click', function () {
+            $(this).siblings('.continue-reading').click();
             $(this).siblings('.translation-container').slideDown('fast');
             $(this).fadeOut('fast');
         });
@@ -883,6 +975,31 @@ $(document).ready(function () {
                 }
             }
             //End of Carousel Autocomplete
+
+            //Start Highlight AutoComplete
+            if ($('#highlights').length) {
+                if (highlightClicked) {
+                    highlightClicked = false;
+                    var actualScroll = $('.highlights-carousel-wrp').scrollLeft();
+                    var scrollRemaining = highlightsItemWidth - (Math.abs(HighlightDiff) % highlightsItemWidth);
+                    if (Math.abs(HighlightDiff) > 30) {
+                        if (HighlightDiff > 0) {
+                            $('.highlights-carousel-wrp').stop().animate({
+                                scrollLeft: highlightsItemWidth * Math.round((actualScroll - scrollRemaining) / highlightsItemWidth)
+                            }, checkHighlightLimit);
+                        } else {
+                            $('.highlights-carousel-wrp').stop().animate({
+                                scrollLeft: highlightsItemWidth * Math.round((actualScroll + scrollRemaining) / highlightsItemWidth)
+                            }, checkHighlightLimit);
+                        }
+                    } else {
+                        $('.highlights-carousel-wrp').stop().animate({
+                            scrollLeft: highlightsItemWidth * Math.round((actualScroll - HighlightDiff) / highlightsItemWidth)
+                        });
+                    }
+                }
+            }
+            //End of Highlight Autocomplete
         }
     });
     $(document).on('keyup', function (e) {
@@ -891,8 +1008,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) {
-            }
+            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
@@ -928,9 +1044,9 @@ $(document).scroll(function () {
         var adMargin = 30;
         adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
         var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
-        stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
-        stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
+            stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+            stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos,stopPos, stopBreakPos,customTop);
+        MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
 });
