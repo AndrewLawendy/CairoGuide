@@ -40,7 +40,7 @@ var ScrollHighlights = function (highlightsItemWidth, direction) {
     }
     $('.highlights-carousel-wrp').animate({
         scrollLeft: calculatedScroll
-    },checkHighlightLimit);
+    }, checkHighlightLimit);
 }
 
 //Drag highlights with Mouse
@@ -324,7 +324,7 @@ $(document).ready(function () {
         });
     }
 
-    //Highlights
+    // Start of Highlight
     if ($('#highlights').length) {
         var highlightsCount = $('.highlights-carousel-wrp').find('.hightlights-item').length,
             highlightsItemWidth = $('.highlights-carousel-wrp').find('.hightlights-item').width() + (parseFloat($('.highlights-carousel-wrp .hightlights-item').css('padding-right'), 10) * 2),
@@ -344,18 +344,23 @@ $(document).ready(function () {
 
         $('.highlights-carousel-wrp').on('mousedown', function (e) {
             baseClick = e.clientX;
-            highlightClicked = true;
             var actualScroll = $(this).scrollLeft();
+            highlightClicked = true;
             $(this).on('mousemove', function (e) {
                 if (highlightClicked) {
+                    e.preventDefault();
+                    if (Math.abs(e.clientX - baseClick) > 30) {
+                        $(this).find('img').addClass('selecting');
+                    }
                     DragHighlights(actualScroll, baseClick, e.clientX)
                     checkHighlightLimit();
                 }
             });
         });
     }
+    // End of Highlight
 
-    //Carousel
+    //Start of Carousel
     if ($('#main-carousel').length) {
         var carouselItemCount = $('#main-carousel .carousel-item').length;
         var carouselDrag = false;
@@ -983,6 +988,7 @@ $(document).ready(function () {
                     var actualScroll = $('.highlights-carousel-wrp').scrollLeft();
                     var scrollRemaining = highlightsItemWidth - (Math.abs(HighlightDiff) % highlightsItemWidth);
                     if (Math.abs(HighlightDiff) > 30) {
+                        $('.highlights-carousel-wrp img').removeClass('selecting');
                         if (HighlightDiff > 0) {
                             $('.highlights-carousel-wrp').stop().animate({
                                 scrollLeft: highlightsItemWidth * Math.round((actualScroll - scrollRemaining) / highlightsItemWidth)
@@ -995,7 +1001,7 @@ $(document).ready(function () {
                     } else {
                         $('.highlights-carousel-wrp').stop().animate({
                             scrollLeft: highlightsItemWidth * Math.round((actualScroll - HighlightDiff) / highlightsItemWidth)
-                        },checkHighlightLimit);
+                        }, checkHighlightLimit);
                     }
                 }
             }
