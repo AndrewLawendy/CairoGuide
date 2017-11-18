@@ -325,136 +325,137 @@ main {
         }
     }
     /*What to Do*/
-    section {
-        .wtd-container {
-            margin: 0 -30px;
-            height: 388px;
+    .wtd-container {
+        margin: 0 -30px;
+        height: 388px;
+        overflow: hidden;
+        position: relative;
+        @include media("(min-width: 1200px)") {
+            margin: 0 get-vw(-30px);
+            height: get-vw(388px);
+        }
+        div[class^=wtd] {
+            float: left;
+            height: 100%;
             overflow: hidden;
             position: relative;
-            @include media("(min-width: 1200px)") {
-                margin: 0 get-vw(-30px);
-                height: get-vw(388px);
-            }
-            div[class^=wtd] {
-                float: left;
+            @include transform(skewX(-30deg));
+            @include transition(all .3s);
+            a {
+                display: block;
+                @include transform(skew(30deg));
+                width: 100%;
                 height: 100%;
-                overflow: hidden;
+            }
+            img {
                 position: relative;
-                @include transform(skewX(-30deg));
-                @include transition(all .3s);
-                a {
-                    display: block;
-                    @include transform(skew(30deg));
-                    width: 100%;
-                    height: 100%;
-                }
-                img {
-                    position: relative;
-                    @include transition(all .5s);
-                }
-                h2 {
-                    font: 8.5em Lato-Black;
-                    color: #fff;
-                    position: absolute;
-                    text-transform: uppercase;
-                    width: 100%;
-                    text-align: center;
-                    @include transform(translate(0));
-                    @include transition(all 3s);
-                }
+                @include transition(all .5s);
             }
-            .selected,
-            .shadow {
-                @include transition(all .1s ease-in-out);
+            h2 {
+                font: 8.5em Lato-Black;
+                color: #fff;
+                position: absolute;
+                text-transform: uppercase;
+                width: 100%;
+                text-align: center;
+                @include transform(translate(0));
+                @include transition(all 3s);
             }
-            .wtd-today {
-                width: calc(33% + 112px);
-                margin-left: -112px;
+        }
+        .selected,
+        .shadow {
+            @include transition(all .1s ease-in-out);
+        }
+        .wtd-today {
+            width: calc(33% + 112px);
+            margin-left: -112px;
+            @include media("(min-width: 1200px)") {
+                width: calc(33% + 10.1667vw);
+                margin-left: get-vw(-112px);
+            }
+            img {
+                top: -860px;
+                left: 160px;
+                width: 70vw;
+                @include transform(scale(1.3));
+            }
+            h2 {
+                top: 110px;
+                left: 110px;
                 @include media("(min-width: 1200px)") {
-                    width: calc(33% + 10.1667vw);
-                    margin-left: get-vw(-112px);
-                }
-                img {
-                    top: -860px;
-                    left: 160px;
-                    @include transform(scale(1.3));
-                }
-                h2 {
-                    top: 110px;
-                    left: 110px;
-                    @include media("(min-width: 1200px)") {
-                        top: get-vw(110px);
-                        left: get-vw(110px);
-                    }
-                }
-                &.selected {
-                    width: 70%;
-                    img {
-                        left: 70px;
-                        @include transform(scale(1.5));
-                        @include transition(left .35s .35s, transform 25s .75s);
-                    }
-                }
-                &.shadow {
-                    width: 25%;
+                    top: get-vw(110px);
+                    left: get-vw(110px);
                 }
             }
-            .wtd-weekend {
-                width: 35%;
+            &.selected {
+                width: 70%;
                 img {
-                    top: -415px;
-                    left: -350px;
-                    @include transform(scale(1));
-                }
-                h2 {
-                    top: 215px;
-                    @include media("(min-width: 1200px)") {
-                        top: get-vw(215px);
-                    }
-                }
-                &.selected {
-                    width: 65%;
-                    img {
-                        left: -260px;
-                        @include transform(scale(1.3));
-                        @include transition(left .35s .35s, transform 25s .75s);
-                    }
-                }
-                &.shadow {
-                    width: 17%;
+                    left: 70px;
+                    @include transform(scale(1.5));
+                    @include transition(left .35s .35s, transform 25s .75s);
                 }
             }
-            .wtd-monthly {
-                width: calc(32% + 224px);
-                margin-right: -250px;
+            &.shadow {
+                width: 25%;
+            }
+        }
+        .wtd-weekend {
+            width: 35%;
+            img {
+                top: -415px;
+                left: -650px;
+                width: 95vw;
+                @include transform(scale(1));
+            }
+            h2 {
+                top: 215px;
                 @include media("(min-width: 1200px)") {
-                    width: calc(32% + 18.6667vw);
-                    margin-right: get-vw(-250px);
+                    top: get-vw(215px);
                 }
+            }
+            &.selected {
+                width: 65%;
                 img {
-                    top: -218px;
-                    left: -200px;
+                    left: -550px;
                     @include transform(scale(1.3));
+                    @include transition(left .35s .35s, transform 25s .75s);
                 }
-                h2 {
-                    top: 110px;
-                    @include media("(min-width: 1200px)") {
-                        top: get-vw(110px);
-                    }
+            }
+            &.shadow {
+                width: 17%;
+            }
+        }
+        .wtd-monthly {
+            width: calc(32% + 224px);
+            margin-right: -250px;
+            @include media("(min-width: 1200px)") {
+                width: calc(32% + 18.6667vw);
+                margin-right: get-vw(-250px);
+            }
+            img {
+                top: -218px;
+                left: -200px;
+                width: 70vw;
+                @include transform(scale(1.3));
+            }
+            h2 {
+                top: 110px;
+                @include media("(min-width: 1200px)") {
+                    top: get-vw(110px);
                 }
-                &.selected {
-                    width: 80%;
-                    margin-right: -70%;
-                    img {
-                        left: -110px;
-                        @include transform(scale(1.6));
-                        @include transition(left .35s .35s, transform 25s .75s);
-                    }
+            }
+            &.selected {
+                width: 80%;
+                margin-right: -70%;
+                img {
+                    left: -110px;
+                    @include transform(scale(1.6));
+                    @include transition(left .35s .35s, transform 25s .75s);
                 }
-                &.shadow {
-                    width: 50%;
-                    margin-right: -75%;
-                }
+            }
+            &.shadow {
+                width: 50%;
+                margin-right: -75%;
             }
         }
     }
@@ -503,7 +504,7 @@ main {
                             object-position: center;
                             @include transform(scale(1));
                             @include transition(transform 1s linear);
-                            &.selecting{
+                            &.selecting {
                                 pointer-events: none;
                             }
                         }
@@ -575,6 +576,11 @@ main {
                 padding: 0 7px;
                 box-sizing: border-box;
                 opacity: 1;
+                &.disabled {
+                    cursor: not-allowed;
+                    opacity: .3;
+                    @include transition(all .3s)
+                }
                 @include transition(opacity .15s);
                 @include media("(min-width: 1200px)") {
                     margin-left: get-vw(10px);
@@ -582,11 +588,6 @@ main {
                     height: get-vw(40px);
                     border-width: get-vw(2px);
                     padding: 0 get-vw(7px);
-                    &.disabled {
-                        cursor: not-allowed;
-                        opacity: .3;
-                        @include transition(all .3s)
-                    }
                 }
                 i {
                     line-height: 36px;
