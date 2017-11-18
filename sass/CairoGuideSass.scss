@@ -467,7 +467,7 @@ main {
                 @include transition(margin-left 0.3s ease);
                 .hightlights-item {
                     position: relative;
-                    width: calc((( 100vw - 60px ) / 5 ) - 20px);
+                    width: calc((( 100vw - 60px) / 5) - 20px);
                     padding: 0 10px;
                     overflow: hidden;
                     float: left;
@@ -475,7 +475,7 @@ main {
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(10px);
                         height: get-vw(450px);
-                        width: calc((( 100vw - 5vw ) / 5 ) - 1.866667vw);
+                        width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
                     }
                     &:nth-child(2n) {
                         margin-top: 40px;
@@ -503,6 +503,9 @@ main {
                             object-position: center;
                             @include transform(scale(1));
                             @include transition(transform 1s linear);
+                            &.selecting{
+                                pointer-events: none;
+                            }
                         }
                         .title-wrp {
                             position: absolute;
@@ -517,18 +520,7 @@ main {
                                 padding: get-vw(10px);
                             }
                             h3 {
-                                -webkit-touch-callout: none;
-                                -webkit-user-select: none;
-                                -khtml-user-select: none;
-                                -moz-user-select: none;
-                                -ms-user-select: none;
-                                user-select: none;
-                                user-drag: none;
-                                user-select: none;
-                                -moz-user-select: none;
-                                -webkit-user-drag: none;
-                                -webkit-user-select: none;
-                                -ms-user-select: none;
+                                @include user-select(none);
                                 font: 1.5em "Lato-Light";
                                 color: #fff;
                                 text-transform: uppercase; //white-space: nowrap;
@@ -590,7 +582,7 @@ main {
                     height: get-vw(40px);
                     border-width: get-vw(2px);
                     padding: 0 get-vw(7px);
-                    &.disabled{
+                    &.disabled {
                         cursor: not-allowed;
                         opacity: .3;
                         @include transition(all .3s)
