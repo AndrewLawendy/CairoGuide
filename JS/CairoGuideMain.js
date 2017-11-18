@@ -995,7 +995,7 @@ $(document).ready(function () {
                     } else {
                         $('.highlights-carousel-wrp').stop().animate({
                             scrollLeft: highlightsItemWidth * Math.round((actualScroll - HighlightDiff) / highlightsItemWidth)
-                        });
+                        },checkHighlightLimit);
                     }
                 }
             }
