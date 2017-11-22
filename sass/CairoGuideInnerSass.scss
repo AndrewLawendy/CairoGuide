@@ -140,12 +140,9 @@ Contains all styles of inner pages
                 }
                 .category-location-wrp {
                     color: nth($i, 2);
-                    .category-wrp,
-                    .location-wrp {
-                        a,
-                        a:visited {
-                            @include theme-link-color(nth($i, 2));
-                        }
+                    a,
+                    a:visited {
+                        @include theme-link-color(nth($i, 2));
                     }
                 }
             }
@@ -876,20 +873,17 @@ Contains all styles of inner pages
                 * {
                     float: left;
                 }
-                .category-wrp,
-                .location-wrp {
-                    [class^="icon-"],
-                    [class*=" icon-"] {
-                        margin-right: 10px;
-                        @include media("(min-width: 1200px)") {
-                            margin-right: get-vw(10px);
-                        }
-                    }
-                    a {
-                        @include link-hover();
+                [class^="icon-"],
+                [class*=" icon-"] {
+                    margin-right: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-right: get-vw(10px);
                     }
                 }
-                .category-wrp {
+                a {
+                    @include link-hover();
+                }
+                >[class$="wrp"] {
                     margin-right: 15px;
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(15px);

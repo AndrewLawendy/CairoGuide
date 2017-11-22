@@ -312,83 +312,70 @@ body {
 
 .icon-social-facebook:before {
     content: "\e900";
-}
-
-.icon-social-instagram:before {
+  }
+  .icon-social-instagram:before {
     content: "\e901";
-}
-
-.icon-social-twitter:before {
+  }
+  .icon-social-twitter:before {
     content: "\e902";
-}
-
-.icon-search:before {
+  }
+  .icon-search:before {
     content: "\e903";
-}
-
-.icon-best-spots-prev:before {
+  }
+  .icon-best-spots-prev:before {
     content: "\e904";
-}
-
-.icon-best-spots-next:before {
+  }
+  .icon-best-spots-next:before {
     content: "\e905";
-}
-
-.icon-left-arrow:before {
+  }
+  .icon-left-arrow:before {
     content: "\e906";
-}
-
-.icon-right-arrow:before {
+  }
+  .icon-right-arrow:before {
     content: "\e907";
-}
-
-.icon-down-chevron:before {
+  }
+  .icon-down-chevron:before {
     content: "\e908";
-}
-
-.icon-left-chevron:before {
+  }
+  .icon-left-chevron:before {
     content: "\e909";
-}
-
-.icon-right-chevron:before {
+  }
+  .icon-right-chevron:before {
     content: "\e90a";
-}
-
-.icon-up-chevron:before {
+  }
+  .icon-up-chevron:before {
     content: "\e90b";
-}
-
-.icon-back-to-top:before {
+  }
+  .icon-back-to-top:before {
     content: "\e90c";
-}
-
-.icon-map-location:before {
+  }
+  .icon-map-location:before {
     content: "\e90d";
-}
-
-.icon-filter-sort:before {
+  }
+  .icon-filter-sort:before {
     content: "\e90e";
-}
-
-.icon-triangular-arrow:before {
+  }
+  .icon-triangular-arrow:before {
     content: "\e90f";
-}
-
-.icon-review.selected:before {
+  }
+  .icon-review.selected:before {
     content: "\e910";
-}
-
-.icon-review:before {
+  }
+  .icon-review:before {
     content: "\e911";
-}
-
-.icon-category:before {
+  }
+  .icon-category:before {
     content: "\e913";
-}
-
-.icon-phone:before {
+  }
+  .icon-phone:before {
     content: "\e912";
-}
+  }
+  .icon-globe:before {
+    content: "\e914";
+  }
+  .icon-phone-receiver:before {
+    content: "\e915";
+  }
 
 
 /*General Declarations*/
@@ -1320,7 +1307,7 @@ header {
                                 clip: rect(0, 0, get-vw(200px), 0);
                             }
                         }
-                        &:hover {
+                        &:hover,&.active {
                             &::after {
                                 clip: rect(0px, 200px, 200px, 0);
                                 @include transition(all 1s);
