@@ -348,11 +348,11 @@ $(document).ready(function () {
             ScrollHighlights(highlightsItemWidth, 'prev');
         });
 
-        $('.highlights-carousel-wrp').on('mousedown', function (e) {
+        $('.highlights-carousel-wrp').on('mousedown touchstart', function (e) {
             baseClick = e.clientX;
             var actualScroll = $(this).scrollLeft();
             highlightClicked = true;
-            $(this).on('mousemove', function (e) {
+            $(this).on('mousemove touchmove', function (e) {
                 if (highlightClicked) {
                     e.preventDefault();
                     if (Math.abs(e.clientX - baseClick) > 30) {
@@ -386,22 +386,22 @@ $(document).ready(function () {
                 $('#main-carousel .carousel-indexes').append('<div>' + (i + 1) + '</div>');
             }
             $('#main-carousel .carousel-indexes div:first').addClass('selected');
-            $('#main-carousel .carousel-container').on('mousedown', function (e) {
-                if (e.which == 1) {
+            $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {
+                //if (e.which == 1) {
                     carouselDrag = true;
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     carouselItemTarget = $(e.target).closest('.carousel-item');
                     activeItemIndex = carouselItemTarget.index() + 1;
                     var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
-                    carouselBasePos = e.pageX;
+                    carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
-                }
+                //}
             });
-            $('#main-carousel .carousel-container').on('mousemove', function (e) {
+            $('#main-carousel .carousel-container').on('mousemove touchmove', function (e) {
                 if (carouselDrag) {
                     entered = false;
                     activeItemIndex = carouselItemTarget.index();
-                    carouselPosDiff = carouselBasePos - e.pageX;
+                    carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.touches[0].pageX);
                     carouselItemTarget.find('.carousel-data').css('left', 30 + (carouselPosDiff * -1.2) + 'px');
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
@@ -547,10 +547,10 @@ $(document).ready(function () {
 
             //Automatic Scroll
             var carouselAuto = setInterval(moveNext, 4000);
-            $('#main-carousel').on('mouseenter', function () {
+            $('#main-carousel').on('mouseenter touchstart', function () {
                 clearInterval(carouselAuto);
             });
-            $('#main-carousel').on('mouseleave', function () {
+            $('#main-carousel').on('mouseleave touchend', function () {
                 carouselAuto = setInterval(moveNext, 4000);
             });
         }
@@ -935,8 +935,8 @@ $(document).ready(function () {
     }
     //End of Comment Section
 
-    $(document).on('mouseup', function (e) {
-        if (e.which == 1) {
+    $(document).on('mouseup touchend', function (e) {
+        //if (e.which == 1) {
             //Carousel Autocomplete
             if ($('#main-carousel').length) {
                 if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
@@ -1012,7 +1012,7 @@ $(document).ready(function () {
                 }
             }
             //End of Highlight Autocomplete
-        }
+        //}
     });
     $(document).on('keyup', function (e) {
         if (e.keyCode == 27) {
