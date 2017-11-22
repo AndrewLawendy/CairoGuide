@@ -504,7 +504,7 @@ main {
                             object-position: center;
                             @include transform(scale(1));
                             @include transition(transform 1s linear);
-                            &.selecting {
+                            &.scrolling {
                                 pointer-events: none;
                             }
                         }
