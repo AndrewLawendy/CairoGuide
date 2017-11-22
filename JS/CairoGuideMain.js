@@ -387,7 +387,7 @@ $(document).ready(function () {
             }
             $('#main-carousel .carousel-indexes div:first').addClass('selected');
             $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {
-                //if (e.which == 1) {
+                if (e.which == 1 || e.which == 0) {
                     carouselDrag = true;
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     carouselItemTarget = $(e.target).closest('.carousel-item');
@@ -395,7 +395,7 @@ $(document).ready(function () {
                     var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
                     carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
-                //}
+                }
             });
             $('#main-carousel .carousel-container').on('mousemove touchmove', function (e) {
                 if (carouselDrag) {
@@ -936,7 +936,7 @@ $(document).ready(function () {
     //End of Comment Section
 
     $(document).on('mouseup touchend', function (e) {
-        //if (e.which == 1) {
+        if (e.which == 1 || e.which == 0) {
             //Carousel Autocomplete
             if ($('#main-carousel').length) {
                 if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
@@ -1012,7 +1012,7 @@ $(document).ready(function () {
                 }
             }
             //End of Highlight Autocomplete
-        //}
+        }
     });
     $(document).on('keyup', function (e) {
         if (e.keyCode == 27) {
