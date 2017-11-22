@@ -349,16 +349,16 @@ $(document).ready(function () {
         });
 
         $('.highlights-carousel-wrp').on('mousedown touchstart', function (e) {
-            baseClick = e.clientX;
+            baseClick = e.clientX  || e.originalEvent.touches[0].pageX;
             var actualScroll = $(this).scrollLeft();
             highlightClicked = true;
             $(this).on('mousemove touchmove', function (e) {
                 if (highlightClicked) {
                     e.preventDefault();
-                    if (Math.abs(e.clientX - baseClick) > 30) {
+                    if (Math.abs((e.clientX || e.originalEvent.touches[0].pageX) - baseClick) > 30) {
                         $(this).find('img').addClass('scrolling');
                     }
-                    DragHighlights(actualScroll, baseClick, e.clientX)
+                    DragHighlights(actualScroll, baseClick, (e.clientX || e.originalEvent.touches[0].pageX))
                     checkHighlightLimit();
                 }
             });
