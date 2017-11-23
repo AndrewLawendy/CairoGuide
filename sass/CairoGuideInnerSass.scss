@@ -118,15 +118,20 @@ Contains all styles of inner pages
                 }
             }
             .category-best-wrp {
+                .section-title {
+                    background-color: nth($i, 2);
+                }
+            }
+            .olis-choice-wrp {
                 /*h2 {
                     color: nth($i, 2);
                 }*/
                 .section-title {
                     background-color: nth($i, 2);
                 }
-                .category-best-items-container {
-                    .category-best-item {
-                        .category-best-item-image {
+                .olis-choice-items-container {
+                    .olis-choice-item {
+                        .olis-choice-item-image {
                             border-bottom-color: nth($i, 2);
                         }
                     }
@@ -650,6 +655,21 @@ Contains all styles of inner pages
                 }
             }
         }
+        #highlights {
+            .category-highlights-carousel-wrp {
+                .highlights-wrp {
+                    .hightlights-item {
+                        width: 25%;
+                        &:nth-child(2n) {
+                            margin-top: 0;
+                            @include media("(min-width: 1200px)") {
+                                margin-top: get-vw(0px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .items-list-wrp {
             position: relative;
             /*margin-bottom: 30px;
@@ -787,7 +807,7 @@ Contains all styles of inner pages
                 }
             }
         }
-        .category-best-wrp {
+        .olis-choice-wrp {
             /*h2 {
                 font: 1.7em 'Lato-Black';
                 text-transform: capitalize;
@@ -796,15 +816,15 @@ Contains all styles of inner pages
                     margin-bottom: get-vw(20px);
                 }
             }*/
-            .category-best-items-container {
-                .category-best-item {
-                    $category-best-item-width: ((1200px - 60px) / 4) - (60px / 3);
+            .olis-choice-items-container {
+                .olis-choice-item {
+                    $olis-choice-item-width: ((1200px - 60px) / 4) - (60px / 3);
                     padding: 0 10px;
                     @include media("(min-width: 1200px)") {
-                        $category-best-item-width: get-vw($category-best-item-width);
+                        $olis-choice-item-width: get-vw($olis-choice-item-width);
                         padding: 0 get-vw(10px);
                     }
-                    width: $category-best-item-width;
+                    width: $olis-choice-item-width;
                     float: left;
                     &:first-child {
                         padding-left: 0;
@@ -817,7 +837,7 @@ Contains all styles of inner pages
                         text-decoration: none;
                         color: #fff;
                     }
-                    .category-best-item-image {
+                    .olis-choice-item-image {
                         height: 200px;
                         overflow: hidden;
                         border-bottom: 2px solid;
@@ -829,7 +849,7 @@ Contains all styles of inner pages
                             @include object-fit-img();
                         }
                     }
-                    .category-best-item-info {
+                    .olis-choice-item-info {
                         padding-top: 15px;
                         box-sizing: border-box;
                         @include media("(min-width: 1200px)") {

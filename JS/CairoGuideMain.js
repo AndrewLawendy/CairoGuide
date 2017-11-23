@@ -265,6 +265,15 @@ var PrevDetailsGalleryItem = function () {
 
 }
 
+//Populate Popup
+var PopulatePopup = function (type, title, hasBg = false) {
+    var bgClass = '';
+    hasBg ? bgClass = ' popup-with-bg' : '';
+    $('#popup-base .popup-title span').html(title);
+    $('#popup-base').find('.' + type + '-container').fadeIn(0);
+    $('#popup-base').addClass('popup-active ' + type + '-popup-active' + bgClass).find('.close-btn').addClass('init');
+}
+
 //document ready
 $(document).ready(function () {
     //Header
@@ -285,11 +294,23 @@ $(document).ready(function () {
 
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
-        $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
+        PopulatePopup('search', 'Search');
+    });
+
+    $('.login-btn').on('click', function () {
+        PopulatePopup('login', 'Login', true);
+    });
+
+    $('.register-btn').on('click', function () {
+        PopulatePopup('register', 'Register', true);
     });
 
     $('#popup-close-btn').on('click', function () {
-        $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
+        $('#popup-base').removeClass('popup-active search-popup-active login-popup-active register-popup-active').find('.close-btn').removeClass('init');
+        $('#popup-base').find('.popup-body-container').fadeOut(0);
+        setTimeout(function () {
+            $('#popup-base').removeClass('popup-with-bg');
+        }, 1000);
     });
 
     $('input[type="text"],input[type="password"],input[type="email"],input[type="number"],textarea').on('focus', function () {
@@ -852,25 +873,25 @@ $(document).ready(function () {
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
         var owlRatings = [{
-                src: 'bad-owl.svg',
-                title: 'Bad'
-            },
-            {
-                src: 'ihateit-owl.svg',
-                title: 'I hate it'
-            },
-            {
-                src: 'ok-owl.svg',
-                title: 'OK'
-            },
-            {
-                src: 'iloveit-owl.svg',
-                title: 'I love it'
-            },
-            {
-                src: 'wow-owl.svg',
-                title: 'Wow'
-            }
+            src: 'bad-owl.svg',
+            title: 'Bad'
+        },
+        {
+            src: 'ihateit-owl.svg',
+            title: 'I hate it'
+        },
+        {
+            src: 'ok-owl.svg',
+            title: 'OK'
+        },
+        {
+            src: 'iloveit-owl.svg',
+            title: 'I love it'
+        },
+        {
+            src: 'wow-owl.svg',
+            title: 'Wow'
+        }
         ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -1014,7 +1035,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
+            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();

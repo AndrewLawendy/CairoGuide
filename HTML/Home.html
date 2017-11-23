@@ -18,6 +18,12 @@
 
     <!--Popup-->
     <div id="popup-base" class="popup-base">
+        <div class="popup-bg-img">
+            <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
+            <div class="popup-clear-img">
+                    <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
+            </div>
+        </div>
         <div class="popup-header display-inline-block full-width">
             <a id="popup-close-btn" href="javascript:void(0);" title="Close" class="close-btn float-left">
                 <div class="fill"></div>
@@ -28,11 +34,11 @@
             </div>
             <h2>Cairo guide</h2>
         </div>
+        <div class="popup-title">
+            <span></span>
+        </div>
         <div class="popup-body">
-            <div class="search-container">
-                <div class="search-title popup-title">
-                    <span>Search</span>
-                </div>
+            <div class="search-container popup-body-container">
                 <div class="search-input">
                     <input type="text" />
                     <label>Search in cairo guide ...</label>
@@ -40,6 +46,12 @@
                         <i class="icon-search"></i>
                     </a>
                 </div>
+            </div>
+            <div class="login-container popup-body-container">
+                <a href="#" title="#">Log in with facebook</a>
+            </div>
+            <div class="register-container popup-body-container">
+                <a href="#" title="#">Register with facebook</a>
             </div>
         </div>
     </div>
@@ -67,8 +79,8 @@
                 <ul class="float-right header-account-menu">
                     <li>
                         <span>
-                            <a href="#" title="Login">Login</a>&nbsp;/&nbsp;
-                            <a href="#" title="Register">Register</a>
+                            <a href="javascript:void(0);" title="Login" class="login-btn">Login</a>&nbsp;/&nbsp;
+                            <a href="javascript:void(0);" title="Register" class="register-btn">Register</a>
                         </span>
                     </li>
                     <li>
@@ -624,8 +636,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="word-link" href="#" title="Login">Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-                            <a class="word-link" href="#" title="Register">Register</a>
+                            <a class="word-link login-btn" href="javascript:void(0);" title="Login">Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+                            <a class="word-link register-btn" href="javascript:void(0);" title="Register">Register</a>
                         </li>
                     </ul>
                 </nav>
