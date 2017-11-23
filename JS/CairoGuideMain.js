@@ -185,9 +185,9 @@ var GetParameterByName = function (name, url) {
 }
 
 //Set Active Category
-var SetActiveCategory = function(){
+var SetActiveCategory = function () {
     var cat = GetParameterByName('category');
-    $('.sticky-header .category-nav li a:contains('+cat+')').addClass('active');
+    $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
 }
 
 //Category names to inner pages
@@ -273,6 +273,31 @@ var PrevDetailsGalleryItem = function () {
 
 //document ready
 $(document).ready(function () {
+    //Ripple Effect
+    if ($('.ripple').length) {
+        var circle = '<span class="circle"></span>'
+        $('.ripple').on('click', function (e) {
+            var height = $(this).height(),
+                width = $(this).width(),
+                posTop = $(this).position().top,
+                posLeft = $(this).position().left,
+                max = Math.max(height, width);
+            $(this).prepend(circle);
+            var newCircle = $(this).find('.circle:first');
+            if ($(this).hasClass('pos')) {
+                newCircle.css({
+                    'top': e.clientY - posTop - (max / 2),
+                    'left': e.clientX - posLeft - (max / 2)
+                })
+            }
+            newCircle.width(max).height(max);
+            console.log('posTop ', posTop, ' posLeft ', posLeft, ' clickY ', newCircle.css('top'), ' clickX ', newCircle.css('left'));
+            setTimeout(function () {
+                newCircle.remove();
+            }, 500);
+        });
+    }
+
     //Header
     var header = $('header'),
         breakPos = header.height();
@@ -349,7 +374,7 @@ $(document).ready(function () {
         });
 
         $('.highlights-carousel-wrp').on('mousedown touchstart', function (e) {
-            baseClick = e.clientX  || e.originalEvent.touches[0].pageX;
+            baseClick = e.clientX || e.originalEvent.touches[0].pageX;
             var actualScroll = $(this).scrollLeft();
             highlightClicked = true;
             $(this).on('mousemove touchmove', function (e) {

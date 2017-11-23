@@ -127,7 +127,7 @@ $colorList: "nightlife" #f90000,
         display: block;
         height: 1px;
         width: 20%;
-        margin-top:1px;
+        margin-top: 1px;
         @include transition(all 0.3s ease);
         @include media("(min-width: 1200px)") {
             height: get-vw(1px);
@@ -164,14 +164,15 @@ $colorList: "nightlife" #f90000,
 
 //Mixing to give color opacity
 @mixin background-opacity($color, $opacity: 1) {
-    background: $color; /* The Fallback */
+    background: $color;
+    /* The Fallback */
     background: rgba($color, $opacity);
 }
 
-@mixin object-fit-img(){
-    width:100%;
-    height:100%;
-    object-fit:cover;
+@mixin object-fit-img() {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -312,70 +313,91 @@ body {
 
 .icon-social-facebook:before {
     content: "\e900";
-  }
-  .icon-social-instagram:before {
+}
+
+.icon-social-instagram:before {
     content: "\e901";
-  }
-  .icon-social-twitter:before {
+}
+
+.icon-social-twitter:before {
     content: "\e902";
-  }
-  .icon-search:before {
+}
+
+.icon-search:before {
     content: "\e903";
-  }
-  .icon-best-spots-prev:before {
+}
+
+.icon-best-spots-prev:before {
     content: "\e904";
-  }
-  .icon-best-spots-next:before {
+}
+
+.icon-best-spots-next:before {
     content: "\e905";
-  }
-  .icon-left-arrow:before {
+}
+
+.icon-left-arrow:before {
     content: "\e906";
-  }
-  .icon-right-arrow:before {
+}
+
+.icon-right-arrow:before {
     content: "\e907";
-  }
-  .icon-down-chevron:before {
+}
+
+.icon-down-chevron:before {
     content: "\e908";
-  }
-  .icon-left-chevron:before {
+}
+
+.icon-left-chevron:before {
     content: "\e909";
-  }
-  .icon-right-chevron:before {
+}
+
+.icon-right-chevron:before {
     content: "\e90a";
-  }
-  .icon-up-chevron:before {
+}
+
+.icon-up-chevron:before {
     content: "\e90b";
-  }
-  .icon-back-to-top:before {
+}
+
+.icon-back-to-top:before {
     content: "\e90c";
-  }
-  .icon-map-location:before {
+}
+
+.icon-map-location:before {
     content: "\e90d";
-  }
-  .icon-filter-sort:before {
+}
+
+.icon-filter-sort:before {
     content: "\e90e";
-  }
-  .icon-triangular-arrow:before {
+}
+
+.icon-triangular-arrow:before {
     content: "\e90f";
-  }
-  .icon-review.selected:before {
+}
+
+.icon-review.selected:before {
     content: "\e910";
-  }
-  .icon-review:before {
+}
+
+.icon-review:before {
     content: "\e911";
-  }
-  .icon-category:before {
+}
+
+.icon-category:before {
     content: "\e913";
-  }
-  .icon-phone:before {
+}
+
+.icon-phone:before {
     content: "\e912";
-  }
-  .icon-globe:before {
+}
+
+.icon-globe:before {
     content: "\e914";
-  }
-  .icon-phone-receiver:before {
+}
+
+.icon-phone-receiver:before {
     content: "\e915";
-  }
+}
 
 
 /*General Declarations*/
@@ -463,7 +485,6 @@ a {
         padding-right: get-vw(15px);
     }*/
 }
-
 
 .thirty-width {
     box-sizing: border-box;
@@ -646,6 +667,45 @@ input[type="radio"] {
     direction: rtl;
 }
 
+.ripple,
+.pos {
+    position: relative;
+    .circle {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        border-radius: 100%;
+        background: red;
+        @include animation(ripple .8s ease-out)
+    }
+}
+
+.ripple.pos {
+    overflow: hidden;
+    &.black {
+        .circle {
+            background: rgba(0,0,0,.6);
+        }
+    }
+    &.white{
+        .circle{
+            background:rgba(255,255,255,.6);
+        }
+    }
+}
+
+@include key-frame (ripple) {
+    0% {
+        opacity: 1;
+        @include transform(scale(0))
+    }
+    100% {
+        opacity: 0;
+        @include transform(scale(2.5))
+    }
+}
+
 .filter-radio-container {
     .inline-radio {
         float: left;
@@ -751,6 +811,9 @@ input[type="radio"] {
             margin-left: get-vw(10px);
             padding: 0 get-vw(10px);
             line-height: get-vw(40px);
+        }
+        &:focus,&:active{
+            outline: none;
         }
     }
 }
@@ -1267,8 +1330,10 @@ header {
                     @each $i in $colorList {
                         &.#{nth($i,1)}-menu-item ul {
                             border-left: 2px solid nth($i, 2);
-                            li{
-                                @include background-opacity(nth($i, 2),0.1);
+                            li {
+                                @include background-opacity(nth($i,
+                                2),
+                                0.1);
                             }
                             a:hover {
                                 background-color: nth($i, 2);
@@ -1307,7 +1372,8 @@ header {
                                 clip: rect(0, 0, get-vw(200px), 0);
                             }
                         }
-                        &:hover,&.active {
+                        &:hover,
+                        &.active {
                             &::after {
                                 clip: rect(0px, 200px, 200px, 0);
                                 @include transition(all 1s);
@@ -1365,7 +1431,7 @@ header {
                         z-index: 300;
                         white-space: nowrap;
                         opacity: 0;
-                        background:$header-footer-secondary-background-color;
+                        background: $header-footer-secondary-background-color;
                         @include transform(translateY(20px));
                         @include transition(all 0.3s ease);
                         /*display: none;*/
@@ -1383,8 +1449,7 @@ header {
                                 padding: 10px 5px;
                                 box-sizing: border-box;
                                 display: block;
-                                text-transform: capitalize;
-                                //background: $header-footer-secondary-background-color;
+                                text-transform: capitalize; //background: $header-footer-secondary-background-color;
                                 color: $header-footer-primary-text-color;
                                 @include transition(all 0.3s ease);
                                 @include media("(min-width: 1200px)") {
