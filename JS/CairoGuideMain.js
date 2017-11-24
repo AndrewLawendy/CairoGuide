@@ -386,12 +386,13 @@ $(document).ready(function () {
             baseClick;
         $('.highlights-wrp').width(highlightsCount * highlightsItemWidth);
         highlightsNextBtn.on('click', function () {
-            ScrollHighlights(highlightsItemWidth, 'next');
-
+            if (!$(this).hasClass('disabled'))
+                ScrollHighlights(highlightsItemWidth, 'next');
         });
 
         highlightsPrevBtn.on('click', function () {
-            ScrollHighlights(highlightsItemWidth, 'prev');
+            if (!$(this).hasClass('disabled'))
+                ScrollHighlights(highlightsItemWidth, 'prev');
         });
 
         $('.highlights-carousel-wrp').on('mousedown touchstart', function (e) {
@@ -773,7 +774,8 @@ $(document).ready(function () {
             } else {
                 var falseCheckbox = filterValue.find('span:contains(' + filterLabel + ')');
                 falseCheckbox.animate({
-                    width: 0
+                    width: 0,
+                    margin: 0
                 }, 50);
                 setTimeout(function () {
                     falseCheckbox.remove();
@@ -903,25 +905,25 @@ $(document).ready(function () {
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
         var owlRatings = [{
-            src: 'bad-owl.svg',
-            title: 'Bad'
-        },
-        {
-            src: 'ihateit-owl.svg',
-            title: 'I hate it'
-        },
-        {
-            src: 'ok-owl.svg',
-            title: 'OK'
-        },
-        {
-            src: 'iloveit-owl.svg',
-            title: 'I love it'
-        },
-        {
-            src: 'wow-owl.svg',
-            title: 'Wow'
-        }
+                src: 'bad-owl.svg',
+                title: 'Bad'
+            },
+            {
+                src: 'ihateit-owl.svg',
+                title: 'I hate it'
+            },
+            {
+                src: 'ok-owl.svg',
+                title: 'OK'
+            },
+            {
+                src: 'iloveit-owl.svg',
+                title: 'I love it'
+            },
+            {
+                src: 'wow-owl.svg',
+                title: 'Wow'
+            }
         ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -1065,7 +1067,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
+            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();

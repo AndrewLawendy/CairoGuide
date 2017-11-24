@@ -1454,11 +1454,9 @@ header {
                         }
                     }
                     &>ul {
-                        @include transform(translate(-5px,
-                        20px)!important);
+                        @include transform(translateY(20px)!important);
                         @include media("(min-width: 1200px)") {
-                            @include transform(translate(get-vw(-5px),
-                            get-vw(20px))!important);
+                            @include transform(translateY(get-vw(20px))!important);
                         }
                     }
                     &:last-child {
@@ -1468,26 +1466,29 @@ header {
                         }
                     }
                     &>a {
-                        &::after {
-                            content: attr(title);
-                            position: absolute;
-                            top: -5px;
-                            left: -5px;
-                            padding: 5px;
-                            background-color: $header-footer-secondary-background-color;
-                            color: $header-footer-primary-text-color;
-                            clip: rect(0px, 0px, 200px, 0px);
-                            @include transition(clip .3s);
-                            @include media("(min-width: 1200px)") {
-                                top: get-vw(-5px);
-                                left: get-vw(-5px);
-                                padding: get-vw(5px);
-                                clip: rect(0, 0, get-vw(200px), 0);
+                        span{
+                            position: relative;
+                            &::after {
+                                content: attr(title);
+                                position: absolute;
+                                top: -5px;
+                                left: -5px;
+                                padding: 5px;
+                                background-color: $header-footer-secondary-background-color;
+                                color: $header-footer-primary-text-color;
+                                clip: rect(0px, 0px, 200px, 0px);
+                                @include transition(clip .3s);
+                                @include media("(min-width: 1200px)") {
+                                    top: get-vw(-5px);
+                                    left: get-vw(-5px);
+                                    padding: get-vw(5px);
+                                    clip: rect(0, 0, get-vw(200px), 0);
+                                }
                             }
                         }
                         &:hover,
                         &.active {
-                            &::after {
+                            span::after {
                                 clip: rect(0px, 200px, 200px, 0);
                                 @include transition(all 1s);
                                 @include media("(min-width: 1200px)") {
@@ -1505,28 +1506,26 @@ header {
                             }
                         }
                         &>ul {
-                            @include transform(translate(-5px,
-                            0px)!important);
+                            @include transform(translateY(0px)!important);
                             @include media("(min-width: 1200px)") {
-                                @include transform(translate(get-vw(-5px),
-                                get-vw(0px))!important);
+                                @include transform(translateY(get-vw(0px))!important);
                             }
                         }
                     }
                 }
                 li {
-                    padding: 25px 35px 25px 0;
-                    box-sizing: border-box;
                     position: relative;
                     overflow: hidden;
                     @include transition(all 0.2s ease);
-                    @include media("(min-width: 1200px)") {
-                        padding: get-vw(25px) get-vw(35px) get-vw(25px) 0;
-                    }
                     a,
                     a:visited {
+                        padding: 25px 30px 25px 5px;
+                        display: inline-block;
                         color: $header-footer-secondary-text-color;
                         position: relative;
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(25px) get-vw(30px) get-vw(25px) get-vw(5px);
+                        }
                     }
                     &:hover {
                         overflow: visible;
@@ -1677,11 +1676,11 @@ header {
             z-index: 100;
             .bottom-header {
                 .category-nav {
-                    &>li {
-                        padding: 15px 35px 15px 0;
+                    &>li>a {
+                        padding: 15px 30px 15px 5px;
                         @include transition(all 0.2s ease);
                         @include media("(min-width: 1200px)") {
-                            padding: get-vw(15px) get-vw(35px) get-vw(15px) 0;
+                            padding: get-vw(15px) get-vw(30px) get-vw(15px) get-vw(5px);
                         }
                     }
                 }

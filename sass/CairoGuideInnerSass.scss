@@ -659,6 +659,7 @@ Contains all styles of inner pages
                 .highlights-wrp {
                     .hightlights-item {
                         width: 25%;
+                        box-sizing: border-box;
                         &:nth-child(2n) {
                             margin-top: 0;
                             @include media("(min-width: 1200px)") {
