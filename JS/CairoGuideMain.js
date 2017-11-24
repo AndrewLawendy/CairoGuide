@@ -184,6 +184,12 @@ var GetParameterByName = function (name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+//Set Active Category
+var SetActiveCategory = function () {
+    var cat = GetParameterByName('category');
+    $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
+}
+
 //Category names to inner pages
 var SetInnersCategory = function () {
     var Category = GetParameterByName('category');
@@ -265,8 +271,42 @@ var PrevDetailsGalleryItem = function () {
 
 }
 
+//Populate Popup
+var PopulatePopup = function (type, title, hasBg = false) {
+    var bgClass = '';
+    hasBg ? bgClass = ' popup-with-bg' : '';
+    $('#popup-base .popup-title span').html(title);
+    $('#popup-base').find('.' + type + '-container').fadeIn(0);
+    $('#popup-base').addClass('popup-active ' + type + '-popup-active' + bgClass).find('.close-btn').addClass('init');
+}
+
 //document ready
 $(document).ready(function () {
+    //Ripple Effect
+    if ($('.ripple').length) {
+        var circle = '<span class="circle"></span>'
+        $('.ripple').on('click', function (e) {
+            var height = $(this).height(),
+                width = $(this).width(),
+                posTop = $(this).position().top,
+                posLeft = $(this).position().left,
+                max = Math.max(height, width);
+            $(this).prepend(circle);
+            var newCircle = $(this).find('.circle:first');
+            if ($(this).hasClass('pos')) {
+                newCircle.css({
+                    'top': e.clientY - posTop - (max / 2),
+                    'left': e.clientX - posLeft - (max / 2)
+                })
+            }
+            newCircle.width(max).height(max);
+            console.log('posTop ', posTop, ' posLeft ', posLeft, ' clickY ', newCircle.css('top'), ' clickX ', newCircle.css('left'));
+            setTimeout(function () {
+                newCircle.remove();
+            }, 500);
+        });
+    }
+
     //Header
     var header = $('header'),
         breakPos = header.height();
@@ -282,14 +322,26 @@ $(document).ready(function () {
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
         MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
-
+    SetActiveCategory();
     SetInnersCategory();
     $('.nav-search-btn').on('click', function () {
-        $('#popup-base').addClass('popup-active search-popup-active').find('.close-btn').addClass('init');
+        PopulatePopup('search', 'Search');
+    });
+
+    $('.login-btn').on('click', function () {
+        PopulatePopup('login', 'Login', true);
+    });
+
+    $('.register-btn').on('click', function () {
+        PopulatePopup('register', 'Register', true);
     });
 
     $('#popup-close-btn').on('click', function () {
-        $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
+        $('#popup-base').removeClass('popup-active search-popup-active login-popup-active register-popup-active').find('.close-btn').removeClass('init');
+        $('#popup-base').find('.popup-body-container').fadeOut(0);
+        setTimeout(function () {
+            $('#popup-base').removeClass('popup-with-bg');
+        }, 1000);
     });
 
     $('input[type="text"],input[type="password"],input[type="email"],input[type="number"],textarea').on('focus', function () {
@@ -342,17 +394,16 @@ $(document).ready(function () {
             ScrollHighlights(highlightsItemWidth, 'prev');
         });
 
-        $('.highlights-carousel-wrp').on('mousedown', function (e) {
-            baseClick = e.clientX;
+        $('.highlights-carousel-wrp').on('mousedown touchstart', function (e) {
+            baseClick = e.clientX || e.originalEvent.touches[0].pageX;
             var actualScroll = $(this).scrollLeft();
             highlightClicked = true;
-            $(this).on('mousemove', function (e) {
+            $(this).on('mousemove touchmove', function (e) {
                 if (highlightClicked) {
-                    e.preventDefault();
-                    if (Math.abs(e.clientX - baseClick) > 30) {
-                        $(this).find('img').addClass('selecting');
+                    if (Math.abs((e.clientX || e.originalEvent.touches[0].pageX) - baseClick) > 30) {
+                        $(this).find('a').addClass('scrolling');
                     }
-                    DragHighlights(actualScroll, baseClick, e.clientX)
+                    DragHighlights(actualScroll, baseClick, (e.clientX || e.originalEvent.touches[0].pageX))
                     checkHighlightLimit();
                 }
             });
@@ -380,22 +431,22 @@ $(document).ready(function () {
                 $('#main-carousel .carousel-indexes').append('<div>' + (i + 1) + '</div>');
             }
             $('#main-carousel .carousel-indexes div:first').addClass('selected');
-            $('#main-carousel .carousel-container').on('mousedown', function (e) {
-                if (e.which == 1) {
+            $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {
+                if (e.which == 1 || e.which == 0) {
                     carouselDrag = true;
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     carouselItemTarget = $(e.target).closest('.carousel-item');
                     activeItemIndex = carouselItemTarget.index() + 1;
                     var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
-                    carouselBasePos = e.pageX;
+                    carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
                 }
             });
-            $('#main-carousel .carousel-container').on('mousemove', function (e) {
+            $('#main-carousel .carousel-container').on('mousemove touchmove', function (e) {
                 if (carouselDrag) {
                     entered = false;
                     activeItemIndex = carouselItemTarget.index();
-                    carouselPosDiff = carouselBasePos - e.pageX;
+                    carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.touches[0].pageX);
                     carouselItemTarget.find('.carousel-data').css('left', 30 + (carouselPosDiff * -1.2) + 'px');
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
@@ -541,17 +592,17 @@ $(document).ready(function () {
 
             //Automatic Scroll
             var carouselAuto = setInterval(moveNext, 4000);
-            $('#main-carousel').on('mouseenter', function () {
+            $('#main-carousel').on('mouseenter touchstart', function () {
                 clearInterval(carouselAuto);
             });
-            $('#main-carousel').on('mouseleave', function () {
+            $('#main-carousel').on('mouseleave touchend', function () {
                 carouselAuto = setInterval(moveNext, 4000);
             });
         }
     }
     // End of Carousel
 
-    //Start of What to Do
+    //Start of Things to Do
     if ($('#wtd').length) {
         $('#wtd .wtd-container div[class^=wtd]').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -561,7 +612,7 @@ $(document).ready(function () {
             });
         });
     }
-    //End of What to Do
+    //End of Things to Do
 
     //Start of Best Spots
     if ($('#best-spots').length) {
@@ -852,25 +903,25 @@ $(document).ready(function () {
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
         var owlRatings = [{
-                src: 'bad-owl.svg',
-                title: 'Bad'
-            },
-            {
-                src: 'ihateit-owl.svg',
-                title: 'I hate it'
-            },
-            {
-                src: 'ok-owl.svg',
-                title: 'OK'
-            },
-            {
-                src: 'iloveit-owl.svg',
-                title: 'I love it'
-            },
-            {
-                src: 'wow-owl.svg',
-                title: 'Wow'
-            }
+            src: 'bad-owl.svg',
+            title: 'Bad'
+        },
+        {
+            src: 'ihateit-owl.svg',
+            title: 'I hate it'
+        },
+        {
+            src: 'ok-owl.svg',
+            title: 'OK'
+        },
+        {
+            src: 'iloveit-owl.svg',
+            title: 'I love it'
+        },
+        {
+            src: 'wow-owl.svg',
+            title: 'Wow'
+        }
         ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -929,8 +980,8 @@ $(document).ready(function () {
     }
     //End of Comment Section
 
-    $(document).on('mouseup', function (e) {
-        if (e.which == 1) {
+    $(document).on('mouseup touchend', function (e) {
+        if (e.which == 1 || e.which == 0) {
             //Carousel Autocomplete
             if ($('#main-carousel').length) {
                 if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
@@ -988,7 +1039,6 @@ $(document).ready(function () {
                     var actualScroll = $('.highlights-carousel-wrp').scrollLeft();
                     var scrollRemaining = highlightsItemWidth - (Math.abs(HighlightDiff) % highlightsItemWidth);
                     if (Math.abs(HighlightDiff) > 30) {
-                        $('.highlights-carousel-wrp img').removeClass('selecting');
                         if (HighlightDiff > 0) {
                             $('.highlights-carousel-wrp').stop().animate({
                                 scrollLeft: highlightsItemWidth * Math.round((actualScroll - scrollRemaining) / highlightsItemWidth)
@@ -1003,6 +1053,7 @@ $(document).ready(function () {
                             scrollLeft: highlightsItemWidth * Math.round((actualScroll - HighlightDiff) / highlightsItemWidth)
                         }, checkHighlightLimit);
                     }
+                    $('.highlights-carousel-wrp a').removeClass('scrolling');
                 }
             }
             //End of Highlight Autocomplete
@@ -1014,7 +1065,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
+            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
