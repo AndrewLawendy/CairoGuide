@@ -69,10 +69,18 @@ $colorList: "nightlife" #f90000,
 }
 
 @mixin user-select($value) {
+    -webkit-touch-callout: $value;
     -webkit-user-select: $value;
+    -khtml-user-select: $value;
     -moz-user-select: $value;
     -ms-user-select: $value;
     user-select: $value;
+    user-drag: $value;
+    user-select: $value;
+    -moz-user-select: $value;
+    -webkit-user-drag: $value;
+    -webkit-user-select: $value;
+    -ms-user-select: $value;
 }
 
 @mixin placeholder {
@@ -1730,26 +1738,16 @@ main {
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
+                        @include user-select(none);
                         img {
-                            -webkit-touch-callout: none;
-                            -webkit-user-select: none;
-                            -khtml-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
-                            user-drag: none;
-                            user-select: none;
-                            -moz-user-select: none;
-                            -webkit-user-drag: none;
-                            -webkit-user-select: none;
-                            -ms-user-select: none;
+                            @include user-select(none);
                             @include object-fit-img();
                             object-position: center;
                             @include transform(scale(1));
                             @include transition(transform 1s linear);
-                            &.selecting {
-                                pointer-events: none;
-                            }
+                        }
+                        &.scrolling {
+                            pointer-events: none;
                         }
                         .title-wrp {
                             position: absolute;

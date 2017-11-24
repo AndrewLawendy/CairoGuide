@@ -400,9 +400,8 @@ $(document).ready(function () {
             highlightClicked = true;
             $(this).on('mousemove touchmove', function (e) {
                 if (highlightClicked) {
-                    e.preventDefault();
                     if (Math.abs((e.clientX || e.originalEvent.touches[0].pageX) - baseClick) > 30) {
-                        $(this).find('img').addClass('scrolling');
+                        $(this).find('a').addClass('scrolling');
                     }
                     DragHighlights(actualScroll, baseClick, (e.clientX || e.originalEvent.touches[0].pageX))
                     checkHighlightLimit();
@@ -1054,7 +1053,7 @@ $(document).ready(function () {
                             scrollLeft: highlightsItemWidth * Math.round((actualScroll - HighlightDiff) / highlightsItemWidth)
                         }, checkHighlightLimit);
                     }
-                    $('.highlights-carousel-wrp img').removeClass('scrolling');
+                    $('.highlights-carousel-wrp a').removeClass('scrolling');
                 }
             }
             //End of Highlight Autocomplete
