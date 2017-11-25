@@ -1,5 +1,5 @@
 /*Variable Declaration*/
-
+$bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
 /*Main Colors*/
 
@@ -508,10 +508,6 @@ a {
     box-sizing: border-box;
     width: 70%;
     float: left;
-    /*padding-right: 15px;
-    @include media("(min-width: 1200px)") {
-        padding-right: get-vw(15px);
-    }*/
 }
 
 .thirty-width {
@@ -519,7 +515,6 @@ a {
     width: 30%;
     float: left;
     padding-left: 15px;
-    overflow: hidden;
     @include media("(min-width: 1200px)") {
         padding-left: get-vw(15px);
     }
@@ -773,8 +768,38 @@ input[type="radio"] {
         }
         input:checked+label::after {
             @include transform(scale(.6));
-            @include animation(radio-entering .15s);
+            @include animation(radio-entering .3s);
         }
+    }
+}
+
+@include key-frame(radio-leaving) {
+    0% {
+        @include transform(scale(.6))
+    }
+    50% {
+        @include transform(scale(.8))
+    }
+    100% {
+        @include transform(scale(0))
+    }
+}
+
+@include key-frame(radio-entering) {
+    0%{
+        @include transform(scale(0))
+    }
+    40%{
+        @include transform(scale(.8))
+    }
+    60%{
+        @include transform(scale(.5))
+    }
+    80%{
+        @include transform(scale(.7))
+    }
+    100%{
+        @include transform(scale(.6))
     }
 }
 
@@ -843,30 +868,6 @@ input[type="radio"] {
         &:focus,&:active{
             outline: none;
         }
-    }
-}
-
-@include key-frame(radio-leaving) {
-    0% {
-        @include transform(scale(.6))
-    }
-    50% {
-        @include transform(scale(.8))
-    }
-    100% {
-        @include transform(scale(0))
-    }
-}
-
-@include key-frame(radio-entering) {
-    0% {
-        @include transform(scale(0))
-    }
-    50% {
-        @include transform(scale(.8))
-    }
-    100% {
-        @include transform(scale(.6))
     }
 }
 

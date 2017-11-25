@@ -274,6 +274,7 @@ Contains all styles of inner pages
             [class$="value"] {
                 span {
                     margin-right: 2px;
+                    display: inline-block;
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(2px);
                     }
@@ -290,19 +291,28 @@ Contains all styles of inner pages
             .filter-result-wrp {
                 float: left;
                 color: #fff;
-                margin: 10px -15px 0;
+                margin-top: 10px;
                 line-height: 25px;
+                width: calc(100% - 40px);
+                box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
-                    margin: get-vw(10px) get-vw(-15px) 0;
+                    margin-top: get-vw(10px);
                     line-height: get-vw(25px);
+                    width: calc(100% - 3.3333vw);
                 }
                 .filter-result-item {
-                    float: left;
+                    display: inline;
                     padding: 0 15px;
                     border-right: 1px solid #fff;
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(15px);
                         border-right: get-vw(1px) solid #fff;
+                    }
+                    &:first-child {
+                        padding-left: 0
+                    }
+                    &:last-child {
+                        padding-right: 0
                     }
                     &:last-child {
                         border: none;
@@ -494,11 +504,8 @@ Contains all styles of inner pages
             }
             .filter-sorting-wrp {
                 float: right;
-                width: calc(25% + 13px);
+                width: 100%;
                 box-sizing: border-box;
-                @include media("(min-width: 1200px)") {
-                    width: calc(25% + 1.1vw);
-                }
                 .filter-field-input {
                     width: calc(100% - 28px);
                     @include media("(min-width: 1200px)") {
