@@ -1,4 +1,5 @@
 /*Variable Declaration*/
+
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
 /*Main Colors*/
@@ -13,16 +14,16 @@ $logo-green:#5daa46;
 
 /*Category Colors*/
 
-$colorList: "nightlife" #f90000,
-"tourism" #00a79d,
-"shopping" #ec008c,
-"beauty" #154a93,
-"dining" #e31b23,
-"services" #f57f2a,
-"accomodation" #069347,
-"fitness" #0f82b7,
-"entertainment" #7f3f98,
-"more" #9a1c52;
+$colorList: "nightlife" desaturate(lighten(#f90000,10%),30%),
+"tourism" desaturate(lighten(#00a79d,10%),30%),
+"shopping" desaturate(lighten(#ec008c,10%),30%),
+"beauty" desaturate(lighten(#154a93,10%),30%),
+"dining" desaturate(lighten(#e31b23,10%),30%),
+"services" desaturate(lighten(#f57f2a,10%),30%),
+"accomodation" desaturate(lighten(#069347,10%),30%),
+"fitness" desaturate(lighten(#0f82b7,10%),30%),
+"entertainment" desaturate(lighten(#7f3f98,10%),30%),
+"more" desaturate(lighten(#9a1c52,10%),30%);
 
 /*Mixins*/
 
@@ -81,6 +82,11 @@ $colorList: "nightlife" #f90000,
     -webkit-user-drag: $value;
     -webkit-user-select: $value;
     -ms-user-select: $value;
+}
+
+@mixin image-filter($filter){
+    -webkit-filter: #{$filter}; /* Safari 6.0 - 9.0 */
+    filter: #{$filter};
 }
 
 @mixin placeholder {
@@ -172,9 +178,9 @@ $colorList: "nightlife" #f90000,
 
 //Mixing to give color opacity
 @mixin background-opacity($color, $opacity: 1) {
-    background: $color;
+    background-color: $color;
     /* The Fallback */
-    background: rgba($color, $opacity);
+    background-color: rgba($color, $opacity);
 }
 
 @mixin object-fit-img() {
@@ -325,7 +331,8 @@ body {
 /*Icons*/
 
 [class^="icon-"],
-[class*=" icon-"] {
+[class*=" icon-"],
+.facebook-btn:before {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
     speak: none;
@@ -699,7 +706,7 @@ input[type="radio"] {
         top: 0;
         left: 0;
         border-radius: 100%;
-        background: red;
+        background-color: red;
         @include animation(ripple .8s ease-out)
     }
 }
@@ -708,14 +715,59 @@ input[type="radio"] {
     overflow: hidden;
     &.black {
         .circle {
-            background: rgba(0,0,0,.6);
+            background-color: rgba(0, 0, 0, .6);
         }
     }
-    &.white{
-        .circle{
-            background:rgba(255,255,255,.6);
+    &.white {
+        .circle {
+            background-color: rgba(255, 255, 255, .6);
         }
     }
+}
+
+.facebook-btn {
+    $facebook-color: #3B5998;
+    text-decoration: none;
+    color: #fff;
+    background-color: $facebook-color;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px 0 70px;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: inline-block;
+    position: relative;
+    text-transform: capitalize;
+    font-family: 'Lato-Light';
+    @include transition(all 0.3s ease);
+    &:before {
+        content: "\e900";
+        position: absolute;
+        width: 55px;
+        height: 55px;
+        display: block;
+        background-color: darken( $facebook-color, 6%);
+        text-align: center;
+        line-height: 55px;
+        bottom: 0;
+        left: 0;
+        @include transition(all 0.3s ease);
+    }
+    &:hover {
+        $facebook-hover-color: darken( $facebook-color, 6%);
+        background-color: $facebook-hover-color;
+        @include transition(all 0.3s ease);
+        &:before {
+            background-color: darken( $facebook-hover-color, 6%);;
+            @include transition(all 0.3s ease);
+        }
+    }
+}
+
+.default-link {
+    display: inline-block;
+    @include link-hover();
+    @include theme-link-color(#000);
 }
 
 @include key-frame (ripple) {
@@ -755,7 +807,7 @@ input[type="radio"] {
             }
             &::before {
                 float: left;
-                background: #fff;
+                background-color: #fff;
                 margin-right: 10px;
             }
             &::after {
@@ -786,19 +838,19 @@ input[type="radio"] {
 }
 
 @include key-frame(radio-entering) {
-    0%{
+    0% {
         @include transform(scale(0))
     }
-    40%{
+    40% {
         @include transform(scale(.8))
     }
-    60%{
+    60% {
         @include transform(scale(.5))
     }
-    80%{
+    80% {
         @include transform(scale(.7))
     }
-    100%{
+    100% {
         @include transform(scale(.6))
     }
 }
@@ -814,7 +866,7 @@ input[type="radio"] {
     z-index: 1;
     span {
         display: inline-block;
-        background: #131313;
+        background-color: #131313;
         color: #fff;
         font-size: .7em;
         padding: 7px;
@@ -865,7 +917,8 @@ input[type="radio"] {
             padding: 0 get-vw(10px);
             line-height: get-vw(40px);
         }
-        &:focus,&:active{
+        &:focus,
+        &:active {
             outline: none;
         }
     }
@@ -898,6 +951,29 @@ input[type="radio"] {
     }
 }
 
+.article-with-bg {
+    overflow: hidden;
+    position: relative;
+    &>* {
+        position: relative;
+        &.article-bg {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            //@include image-filter(blur(2px));
+            @include transform(scale(1.2));
+            @include media("(min-width: 1200px)") {
+                //@include image-filter(blur(get-vw(2px)));
+            }
+        }
+    }
+}
+
 .logo-pink-title {
     @include apply-color(background-color,
     $logo-pink);
@@ -923,7 +999,7 @@ input[type="radio"] {
     top: -100vh;
     left: 50px;
     opacity: 0;
-    background: #fff;
+    background-color: #fff;
     z-index: 200;
     padding: 50px 30px;
     box-sizing: border-box;
@@ -941,7 +1017,7 @@ input[type="radio"] {
         position: absolute;
         top: 0;
         right: 0;
-        background: #000;
+        background-color: #000;
         z-index: -1;
         display: none;
         img {
@@ -978,7 +1054,7 @@ input[type="radio"] {
             word-break: break-all;
             text-transform: uppercase;
             display: block;
-            background: #fff;
+            background-color: #fff;
             padding: 10px;
             left: -15px;
             font-family: "Lato-Regular";
@@ -1108,13 +1184,13 @@ input[type="radio"] {
             margin: 21vh 0 0 get-vw(190px);
         }
     }
-    &.popup-with-bg {
+    /*&.popup-with-bg {
         .popup-bg-img {
             display: block;
         }
         .popup-title {
             span {
-                background: #000;
+                background-color: #000;
                 color: #fff;
             }
         }
@@ -1135,7 +1211,7 @@ input[type="radio"] {
                 display: none;
             }
         }
-    }
+    }*/
     .popup-body {
         .search-container {
             .search-input {
@@ -1207,7 +1283,7 @@ input[type="radio"] {
                 }
             }
         }
-        .login-container,
+        /*.login-container,
         .register-container {
             a,
             a:visited,
@@ -1216,13 +1292,13 @@ input[type="radio"] {
             button {
                 text-decoration: none;
                 color: #fff;
-                background: #4267b2;
+                background-color: #4267b2;
                 padding: 20px;
                 box-sizing: border-box;
                 border-radius: 0;
                 position: static;
             }
-        }
+        }*/
     }
     &.popup-active {
         left: 0;
@@ -1288,8 +1364,8 @@ input[type="radio"] {
                 }
             }
         }
-        @include active-popup(login);
-        @include active-popup(register);
+        /*@include active-popup(login);
+        @include active-popup(register);*/
         /*&.search-popup-active {
             .popup-body {
                 .popup-body-container.search-container {
@@ -1467,7 +1543,7 @@ header {
                         }
                     }
                     &>a {
-                        span{
+                        span {
                             position: relative;
                             &::after {
                                 content: attr(title);
@@ -1544,7 +1620,7 @@ header {
                         z-index: 300;
                         white-space: nowrap;
                         opacity: 0;
-                        background: $header-footer-secondary-background-color;
+                        background-color: $header-footer-secondary-background-color;
                         @include transform(translateY(20px));
                         @include transition(all 0.3s ease);
                         /*display: none;*/
@@ -1562,7 +1638,7 @@ header {
                                 padding: 10px 5px;
                                 box-sizing: border-box;
                                 display: block;
-                                text-transform: capitalize; //background: $header-footer-secondary-background-color;
+                                text-transform: capitalize; //background-color: $header-footer-secondary-background-color;
                                 color: $header-footer-primary-text-color;
                                 @include transition(all 0.3s ease);
                                 @include media("(min-width: 1200px)") {
@@ -1573,7 +1649,7 @@ header {
                                 }
                             }
                             a:hover {
-                                /*background: $header-footer-primary-background-color;*/
+                                /*background-color: $header-footer-primary-background-color;*/
                                 color: $header-footer-secondary-text-color;
                                 @include transition(all 0.3s ease);
                             }
@@ -1588,7 +1664,7 @@ header {
         }
         .attached-menu {
             float: right;
-            background: $header-footer-primary-background-color;
+            background-color: $header-footer-primary-background-color;
             position: absolute;
             z-index: 100;
             padding: 10px 25px;
@@ -1606,7 +1682,7 @@ header {
                 left: -30px;
                 top: 0;
                 height: 100%;
-                background: #131313;
+                background-color: #131313;
                 width: 30px;
                 clip-path: polygon(0 0, 100% 100%, 100% 0);
                 @include media("(min-width: 1200px)") {
