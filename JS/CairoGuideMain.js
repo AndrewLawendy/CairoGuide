@@ -272,12 +272,12 @@ var PrevDetailsGalleryItem = function () {
 }
 
 //Populate Popup
-var PopulatePopup = function (type, title, hasBg = false) {
-    var bgClass = '';
-    hasBg ? bgClass = ' popup-with-bg' : '';
+var PopulatePopup = function (type, title) {
+    /*var bgClass = '';
+    hasBg ? bgClass = ' popup-with-bg' : '';*/
     $('#popup-base .popup-title span').html(title);
     $('#popup-base').find('.' + type + '-container').fadeIn(0);
-    $('#popup-base').addClass('popup-active ' + type + '-popup-active' + bgClass).find('.close-btn').addClass('init');
+    $('#popup-base').addClass('popup-active ' + type + '-popup-active').find('.close-btn').addClass('init');
 }
 
 //document ready
@@ -331,20 +331,20 @@ $(document).ready(function () {
         PopulatePopup('search', 'Search');
     });
 
-    $('.login-btn').on('click', function () {
+    /*$('.login-btn').on('click', function () {
         PopulatePopup('login', 'Login', true);
     });
 
     $('.register-btn').on('click', function () {
         PopulatePopup('register', 'Register', true);
-    });
+    });*/
 
     $('#popup-close-btn').on('click', function () {
-        $('#popup-base').removeClass('popup-active search-popup-active login-popup-active register-popup-active').find('.close-btn').removeClass('init');
+        $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
         $('#popup-base').find('.popup-body-container').fadeOut(0);
-        setTimeout(function () {
+        /*setTimeout(function () {
             $('#popup-base').removeClass('popup-with-bg');
-        }, 1000);
+        }, 1000);*/
     });
 
     $('input[type="text"],input[type="password"],input[type="email"],input[type="number"],textarea').on('focus', function () {

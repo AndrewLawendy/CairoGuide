@@ -1352,6 +1352,66 @@ Contains all styles of inner pages
             //     }
             // }
         }
+        /*Login Page*/
+        .login-wrp {
+            margin-bottom: -30px;
+            min-height:100vh;
+            display: table;
+            width: 100%;
+            padding: 60px 0;
+            box-sizing: border-box;
+            @include media("(min-width: 1200px)") {
+                margin-bottom: get-vw(-30px);
+                padding: get-vw(60px) 0;
+            }
+            .login-container {
+                margin: 60px auto;
+                width: 768px;
+                background:#fff;
+                display: table-cell;
+                vertical-align: middle;
+                padding:30px;
+                box-sizing:border-box;
+                @include media("(min-width: 1200px)") {
+                    margin: get-vw(60px) auto;
+                    width: get-vw(768px);
+                    padding:get-vw(30px);
+                }
+                &>* {
+                    display: block;
+                    margin-bottom: 30px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(30px);
+                    }
+                    &:last-child{
+                        margin-bottom:0!important;
+                    }
+                }
+                .login-logo {
+                    img {
+                        width: 200px;
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(200px);
+                        }
+                    }
+                }
+                .login-links {
+                    text-align: center;
+                    &>div {
+                        margin-bottom: 20px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(20px);
+                        }
+                        &:last-child {
+                            margin-bottom: 0!important;
+                        }
+                    }
+                    .default-link {
+                        font-size: 0.8em;
+                    }
+                }
+            }
+        }
     }
 
     footer {
