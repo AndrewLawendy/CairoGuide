@@ -1002,7 +1002,7 @@ input[type="radio"] {
                     0deg));
                 }
                 &::before {
-                    width: 150vw;
+                    width: 200vw;
                     @include transform(translateX(-50%));
                     @include transition(all 1s .3s);
                 }

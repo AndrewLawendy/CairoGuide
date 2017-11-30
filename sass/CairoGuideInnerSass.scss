@@ -1115,41 +1115,48 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .item-branches-container {
-                p {
-                    font: 1em 'Lato-Bold';
+        }
+        .item-branches-container {
+            h6{
+                font-size: 1.286em;
+                margin-bottom: 10px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(10px);
+                }
+            }
+            p {
+                font: 1em 'Lato-Bold';
+                margin-bottom: 10px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(10px);
+                }
+            }
+            .icon-container {
+                display: inline-block;
+                width: 14px;
+                margin-right: 5px;
+                text-align: center;
+                @include media("(min-width: 1200px)") {
+                    width: get-vw(14px);
+                    margin-right: get-vw(5px);
+                }
+            }
+            .item-branche {
+                box-sizing: border-box;
+                padding-right: 15px;
+                @include media("(min-width: 1200px)") {
+                    padding-right: get-vw(15px);
+                }
+                .branche-address {
                     margin-bottom: 10px;
                     @include media("(min-width: 1200px)") {
                         margin-bottom: get-vw(10px);
                     }
                 }
-                .icon-container {
-                    display: inline-block;
-                    width: 14px;
-                    margin-right: 5px;
-                    text-align: center;
+                &:nth-of-type(1n+4){
+                    margin-top:20px;
                     @include media("(min-width: 1200px)") {
-                        width: get-vw(14px);
-                        margin-right: get-vw(5px);
-                    }
-                }
-                .item-branche {
-                    box-sizing: border-box;
-                    padding-right: 15px;
-                    @include media("(min-width: 1200px)") {
-                        padding-right: get-vw(15px);
-                    }
-                    .branche-address {
-                        margin-bottom: 10px;
-                        @include media("(min-width: 1200px)") {
-                            margin-bottom: get-vw(10px);
-                        }
-                    }
-                    &:nth-of-type(1n+4){
-                        margin-top:20px;
-                        @include media("(min-width: 1200px)") {
-                            margin-top:get-vw(20px);
-                        }
+                        margin-top:get-vw(20px);
                     }
                 }
             }
