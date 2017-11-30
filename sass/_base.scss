@@ -1,4 +1,5 @@
 /*Variable Declaration*/
+
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
 /*Main Colors*/
@@ -708,12 +709,12 @@ input[type="radio"] {
     overflow: hidden;
     &.black {
         .circle {
-            background: rgba(0,0,0,.6);
+            background: rgba(0, 0, 0, .6);
         }
     }
-    &.white{
-        .circle{
-            background:rgba(255,255,255,.6);
+    &.white {
+        .circle {
+            background: rgba(255, 255, 255, .6);
         }
     }
 }
@@ -786,19 +787,19 @@ input[type="radio"] {
 }
 
 @include key-frame(radio-entering) {
-    0%{
+    0% {
         @include transform(scale(0))
     }
-    40%{
+    40% {
         @include transform(scale(.8))
     }
-    60%{
+    60% {
         @include transform(scale(.5))
     }
-    80%{
+    80% {
         @include transform(scale(.7))
     }
-    100%{
+    100% {
         @include transform(scale(.6))
     }
 }
@@ -865,7 +866,8 @@ input[type="radio"] {
             padding: 0 get-vw(10px);
             line-height: get-vw(40px);
         }
-        &:focus,&:active{
+        &:focus,
+        &:active {
             outline: none;
         }
     }
@@ -1448,9 +1450,13 @@ header {
                                 @include background-opacity(nth($i,
                                 2),
                                 0.1);
-                            }
-                            a:hover {
-                                background-color: nth($i, 2);
+                                &:hover {
+                                    background-color: nth($i, 2);
+                                    >a,>i{
+                                        color: $header-footer-secondary-text-color;
+                                        @include transition(all 0.3s);
+                                    }
+                                }
                             }
                         }
                     }
@@ -1467,7 +1473,7 @@ header {
                         }
                     }
                     &>a {
-                        span{
+                        span {
                             position: relative;
                             &::after {
                                 content: attr(title);
@@ -1487,7 +1493,6 @@ header {
                                 }
                             }
                         }
-                        &:hover,
                         &.active {
                             span::after {
                                 clip: rect(0px, 200px, 200px, 0);
@@ -1499,7 +1504,7 @@ header {
                         }
                     }
                     &:hover {
-                        &>a::after {
+                        &>a>span::after {
                             clip: rect(0px, 200px, 200px, 0);
                             @include transition(all 1s);
                             @include media("(min-width: 1200px)") {
@@ -1557,25 +1562,29 @@ header {
                             /*line-height: 1.5em;*/
                             padding: 0;
                             float: none;
+                            i {
+                                position: absolute;
+                                top: 35%;
+                                right: 5px;
+                                font-size: .7em;
+                                color: #000;
+                                @include transform(rotate(-90deg));
+                                @include transition(all 0.3s);
+                            }
                             a,
                             a:visited {
-                                padding: 10px 5px;
+                                padding: 10px 15px 10px 5px;
                                 box-sizing: border-box;
                                 display: block;
                                 text-transform: capitalize; //background: $header-footer-secondary-background-color;
                                 color: $header-footer-primary-text-color;
-                                @include transition(all 0.3s ease);
+                                @include transition(all 0.3s);
                                 @include media("(min-width: 1200px)") {
-                                    padding: get-vw(10px) get-vw(5px);
+                                    padding: get-vw(10px) get-vw(15px) get-vw(10px) get-vw(5px);
                                 }
                                 &:after {
                                     display: none;
                                 }
-                            }
-                            a:hover {
-                                /*background: $header-footer-primary-background-color;*/
-                                color: $header-footer-secondary-text-color;
-                                @include transition(all 0.3s ease);
                             }
                             ul {
                                 left: 100%;
