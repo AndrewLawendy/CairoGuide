@@ -905,6 +905,21 @@ $(document).ready(function () {
         NextDetailsGalleryItem();
     });
 
+    //Tabs component
+    if($('.tabs-global-container ul.tabs-items li').length>1){
+        $('.tabs-global-container ul.tabs-content-container li:not(".active")').hide();
+        $('.tabs-global-container ul.tabs-items li').on('click',function(){
+            var index = $(this).index();
+            $('.tabs-global-container ul.tabs-items li').removeClass('active');
+            $('.tabs-global-container ul.tabs-content-container li.active').slideUp('slow');
+            $('.tabs-global-container ul.tabs-content-container li').removeClass('active');
+            $(this).addClass('active');
+            $('.tabs-global-container ul.tabs-content-container li').eq(index).slideDown('slow',function(){
+                $(this).addClass('active');
+            });
+        })
+    }
+
     //Start of Comment Section
     if ($('.comment-section-container').length) {
         var heartsCount = 0;

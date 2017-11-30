@@ -160,8 +160,13 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .control-btn {
+            .control-btn,.circle {
                 background: nth($i, 2);
+            }
+            ul.tabs-items li{
+                &::before,&::after{
+                    background: nth($i, 2);
+                }
             }
         }
     }
@@ -497,7 +502,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .filter-radio-container {
+            .radio-container {
                 .inline-radio {
                     width: 33.333%;
                 }
@@ -1138,6 +1143,12 @@ Contains all styles of inner pages
                         margin-bottom: 10px;
                         @include media("(min-width: 1200px)") {
                             margin-bottom: get-vw(10px);
+                        }
+                    }
+                    &:nth-of-type(1n+4){
+                        margin-top:20px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top:get-vw(20px);
                         }
                     }
                 }

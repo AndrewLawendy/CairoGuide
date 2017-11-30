@@ -14,16 +14,16 @@ $logo-green:#5daa46;
 
 /*Category Colors*/
 
-$colorList: "nightlife" desaturate(lighten(#f90000,10%),30%),
-"tourism" desaturate(lighten(#00a79d,10%),30%),
-"shopping" desaturate(lighten(#ec008c,10%),30%),
-"beauty" desaturate(lighten(#154a93,10%),30%),
-"dining" desaturate(lighten(#e31b23,10%),30%),
-"services" desaturate(lighten(#f57f2a,10%),30%),
-"accomodation" desaturate(lighten(#069347,10%),30%),
-"fitness" desaturate(lighten(#0f82b7,10%),30%),
-"entertainment" desaturate(lighten(#7f3f98,10%),30%),
-"more" desaturate(lighten(#9a1c52,10%),30%);
+$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
+"tourism" desaturate(lighten(#00a79d, 10%), 30%),
+"shopping" desaturate(lighten(#ec008c, 10%), 30%),
+"beauty" desaturate(lighten(#154a93, 10%), 30%),
+"dining" desaturate(lighten(#e31b23, 10%), 30%),
+"services" desaturate(lighten(#f57f2a, 10%), 30%),
+"accomodation" desaturate(lighten(#069347, 10%), 30%),
+"fitness" desaturate(lighten(#0f82b7, 10%), 30%),
+"entertainment" desaturate(lighten(#7f3f98, 10%), 30%),
+"more" desaturate(lighten(#9a1c52, 10%), 30%);
 
 /*Mixins*/
 
@@ -84,8 +84,9 @@ $colorList: "nightlife" desaturate(lighten(#f90000,10%),30%),
     -ms-user-select: $value;
 }
 
-@mixin image-filter($filter){
-    -webkit-filter: #{$filter}; /* Safari 6.0 - 9.0 */
+@mixin image-filter($filter) {
+    -webkit-filter: #{$filter};
+    /* Safari 6.0 - 9.0 */
     filter: #{$filter};
 }
 
@@ -706,7 +707,6 @@ input[type="radio"] {
         top: 0;
         left: 0;
         border-radius: 100%;
-        background-color: red;
         @include animation(ripple .8s ease-out)
     }
 }
@@ -758,7 +758,8 @@ input[type="radio"] {
         background-color: $facebook-hover-color;
         @include transition(all 0.3s ease);
         &:before {
-            background-color: darken( $facebook-hover-color, 6%);;
+            background-color: darken( $facebook-hover-color, 6%);
+            ;
             @include transition(all 0.3s ease);
         }
     }
@@ -781,7 +782,7 @@ input[type="radio"] {
     }
 }
 
-.filter-radio-container {
+.radio-container {
     .inline-radio {
         float: left;
         label {
@@ -924,6 +925,126 @@ input[type="radio"] {
     }
 }
 
+.tabs-global-container {
+    ul.tabs-items {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        overflow:hidden;
+        li {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding: 15px 5px;
+            position: relative;
+            cursor: pointer;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(15px) get-vw(5px);
+            }
+            span {
+                position: relative;
+                overflow: hidden;
+                display: inline-block;
+                z-index: 1;
+                color: #bbb;
+                &::after {
+                    content: attr(title);
+                    color: #000;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    background: #fff;
+                    @include transform(translateX(-100%));
+                    @include transition(opacity .15s,
+                    transform .3s .15s)
+                }
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                @include transform-origin(bottom);
+                @include transform(perspective(900px) rotate3d(1,
+                0,
+                0,
+                90deg));
+                perspective-origin: 50%, 100%;
+                opacity: 0;
+                @include transition(all .3s);
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                width: 0;
+                @include transform(translateX(0));
+                @include transition(all .3s);
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(2px);
+                }
+            }
+            &.active {
+                span {
+                    color: #fff;
+                    @include transition(all .15s);
+                }
+                &::after {
+                    opacity: 1;
+                    @include transform(perspective(900px) rotate3d(1,
+                    0,
+                    0,
+                    0deg));
+                }
+                &::before {
+                    width: 150vw;
+                    @include transform(translateX(-50%));
+                    @include transition(all 1s .3s);
+                }
+            }
+            &:not(.active):hover {
+                span {
+                    &::after {
+                        opacity: 1;
+                        @include transform(translateX(0));
+                        @include transition(opacity .001s,
+                        transform .3s $bounce);
+                    }
+                }
+            }
+        }
+    }
+    ul.tabs-content-container {
+        width: 100%;
+        padding-top: 10px;
+        position: relative;
+        @include media("(min-width: 1200px)") {
+            padding-top: get-vw(10px);
+        }
+        li {
+            width: 100%;
+            position: relative;
+            top: 10px;
+            left: 0;
+            opacity: 0;
+            @include transition(all .15s);
+            @include media("(min-width: 1200px)") {
+                top: get-vw(10px);
+            }
+            &.active {
+                top: 0;
+                opacity: 1;
+                @include transition(all .15s ease-out)
+            }
+        }
+    }
+}
+
 .section-title {
     width: 300px;
     height: 60px;
@@ -964,8 +1085,7 @@ input[type="radio"] {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            //@include image-filter(blur(2px));
+            object-position: center; //@include image-filter(blur(2px));
             @include transform(scale(1.2));
             @include media("(min-width: 1200px)") {
                 //@include image-filter(blur(get-vw(2px)));
@@ -1526,7 +1646,8 @@ header {
                                 0.1);
                                 &:hover {
                                     background-color: nth($i, 2);
-                                    >a,>i{
+                                    >a,
+                                    >i {
                                         color: $header-footer-secondary-text-color;
                                         @include transition(all 0.3s);
                                     }
