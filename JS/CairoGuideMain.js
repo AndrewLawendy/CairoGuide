@@ -303,7 +303,7 @@ $(document).ready(function () {
             console.log('posTop ', posTop, ' posLeft ', posLeft, ' clickY ', newCircle.css('top'), ' clickX ', newCircle.css('left'));
             setTimeout(function () {
                 newCircle.remove();
-            }, 500);
+            }, 800);
         });
     }
 

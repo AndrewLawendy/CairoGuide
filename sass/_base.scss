@@ -707,8 +707,11 @@ input[type="radio"] {
         top: 0;
         left: 0;
         border-radius: 100%;
-        @include animation(ripple .8s ease-out)
+        @include animation(ripple .8s forwards)
     }
+}
+.ripple:not(.pos) .circle{
+    @include animation(ripple .4s forwards)
 }
 
 .ripple.pos {
@@ -922,6 +925,70 @@ input[type="radio"] {
         &:active {
             outline: none;
         }
+    }
+}
+.icon-btn{
+    i{
+        position:relative;
+        border:2px solid #fff;
+        border-radius: 100%;
+        display: inline-block;
+        overflow: hidden;
+        &::after{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            background: #fff;
+            width: 100%;
+            height:100%;
+            border-radius: 100%;
+            @include transform(scale(1.1));
+            @include transition(all .15s);
+        }
+        &::before{
+            position: relative;
+            z-index: 1;
+            display:block;
+        }
+    }
+    &:hover{
+        i{
+            &::before{
+                @include animation(icon-hover .3s forwards)
+            }
+            &::after{
+                @include transform(scale(.8));
+                @include transition(all .15s);
+            }
+        }
+    }
+}
+
+@include key-frame(icon-hover){
+    0%{
+        @include transform(translate(0,0))
+    }
+    10%{
+        @include transform(translate(-10%,0))
+    }
+    49%{
+        @include transform(translate(150%,0))
+    }
+    50%{
+        @include transform(translate(150%,150%))
+    }
+    51%{
+        @include transform(translate(-150%,150%))
+    }
+    52%{
+        @include transform(translate(-150%,0))
+    }
+    90%{
+        @include transform(translate(10%,0))
+    }
+    100%{
+        @include transform(translate(0,0))
     }
 }
 
@@ -1197,8 +1264,7 @@ input[type="radio"] {
             border-radius: 100%;
             position: relative;
             overflow: hidden; //@include transform(scale(0));
-            @include animation(pop-out 0.4s ease 0.4s);
-            animation-fill-mode: forwards;
+            @include animation(pop-out 0.4s ease 0.4s forwards);
             @include media("(min-width: 1200px)") {
                 width: get-vw(40px);
                 height: get-vw(40px);
@@ -1438,8 +1504,7 @@ input[type="radio"] {
         }
         .popup-header {
             .close-btn {
-                @include animation(pop-in 0.4s ease 0.2s);
-                animation-fill-mode: forwards;
+                @include animation(pop-in 0.4s ease 0.2s forwards);
                 .fill {
                     &:before,
                     &:after {
@@ -1478,8 +1543,8 @@ input[type="radio"] {
             .search-input {
                 a,
                 a:visited {
-                    @include animation(pop-in 0.4s ease 1.6s);
-                    animation-fill-mode: forwards; //@include transform(scale(1));
+                    @include animation(pop-in 0.4s ease 1.6s forwards);
+                    //@include transform(scale(1));
                     @include transition(background-color 0.3s ease);
                 }
             }
@@ -2160,9 +2225,7 @@ footer {
             text-align: right;
             font-size: 1.9em;
             i {
-                background-color: #fff;
-                border-radius: 100%;
-                color: #000;
+                color: #131313;
                 padding: 10px;
                 margin: 0 5px;
                 @include media("(min-width: 1200px)") {
