@@ -157,15 +157,26 @@ var isOpen = function () {
         day = date.getDate(),
         month = date.getMonth(),
         year = date.getFullYear(),
+        hour = date.getHours(),
+        minutes = date.getMinutes(),
+        now = hour + ':' + minutes,
         todayFrom = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.from').text(),
         todayTo = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.to').text(),
         todayFromDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayFrom);
     if (todayTo.toUpperCase().indexOf('AM') != -1) {
         var tomorrow = new Date();
-            tomorrow.setDate(day + 1);
+        tomorrow.setDate(day + 1);
         day = tomorrow.getDate();
         month = tomorrow.getMonth();
         year = tomorrow.getFullYear();
+        if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + todayTo)) {
+            var yesterday = new Date();
+            yesterday.setDate(day - 2);
+            eve = yesterday.getDate();
+            lastMonth = yesterday.getMonth();
+            lastYear = yesterday.getFullYear();
+            todayFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + todayFrom);
+        }
     }
     var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
     if (date >= todayFromDate && todayToDate > date) {
@@ -177,6 +188,16 @@ var isOpen = function () {
     };
     setTimeout(isOpen, 900000);
 };
+
+var ratingCircleResult = function () {
+    $('.general-rating-container .circle-container').each(function () {
+        var ratingValue = parseFloat($(this).find('span').text(), 10);
+        if (ratingValue > 100)
+            ratingValue = 100;
+        var newDashOffsetValue = 290 - (ratingValue * 290 / 100);
+        $(this).find('circle').css('stroke-dashoffset', newDashOffsetValue);
+    });
+}
 
 //Random Number Generator
 var randomLimit = function (min, max) {
@@ -388,6 +409,10 @@ $(document).ready(function () {
 
     if ($('.opening-hours-container').length) {
         isOpen();
+    }
+
+    if ($('.general-rating-container').length) {
+        ratingCircleResult();
     }
 
     //Start of Trending

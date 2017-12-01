@@ -86,6 +86,12 @@ $colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
     -ms-user-select: $value;
 }
 
+@mixin box-shadow($box-shadow...) {
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
 @mixin image-filter($filter) {
     -webkit-filter: #{$filter};
     /* Safari 6.0 - 9.0 */
@@ -542,6 +548,26 @@ a {
     }
 }
 
+@include media("(max-width: 1200px)") {
+    .thirty-width.responsive,
+    .half-width.responsive,
+    .seventy-width.responsive,
+    .three-quarter-width.responsive {
+        width: 100%;
+        float: none;
+    }
+    .third-width {
+        width: 50%;
+        float: left;
+        &:nth-of-type(odd) {
+            clear: left;
+        }
+        &:nth-of-type(even) {
+            clear: right;
+        }
+    }
+}
+
 .side-ads {
     position: absolute;
     right: 0;
@@ -550,6 +576,9 @@ a {
     box-sizing: border-box;
     @include media("(min-width: 1200px)") {
         padding-left: get-vw(20px);
+    }
+    @include media("(max-width: 768px)") {
+        display: none;
     }
     .ads-wrp {
         &.fixed {

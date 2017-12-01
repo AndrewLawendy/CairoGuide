@@ -76,6 +76,9 @@ Contains all styles of inner pages
                     }
                 }
             }
+            .rating-level circle {
+                stroke: nth($i, 2);
+            }
             .item-branches-container {
                 i {
                     color: nth($i, 2);
@@ -1043,17 +1046,9 @@ Contains all styles of inner pages
             }
             h2 {
                 font-size: 1.786em;
-                margin-bottom: 15px;
-                @include media("(min-width: 1200px)") {
-                    margin-bottom: get-vw(15px);
-                }
             }
             h6 {
                 font-size: 1.286em;
-                margin-bottom: 10px;
-                @include media("(min-width: 1200px)") {
-                    margin-bottom: get-vw(10px);
-                }
             }
             .overview-details {
                 .item-description-container {
@@ -1073,13 +1068,13 @@ Contains all styles of inner pages
                         .facility-unit {
                             float: left;
                             box-sizing: border-box;
-                            margin: 0 8px 10px 8px;
+                            margin: 10px 8px;
                             padding: 10px;
                             width: 44px;
                             height: 44px;
                             border-radius: 100%;
                             @include media("(min-width: 1200px)") {
-                                margin: 0 get-vw(8px) get-vw(10px) get-vw(8px);
+                                margin: get-vw(10px) get-vw(8px);
                                 padding: get-vw(10px);
                                 width: get-vw(44px);
                                 height: get-vw(44px);
@@ -1104,10 +1099,10 @@ Contains all styles of inner pages
                             float: left;
                             text-align: center;
                             width: 78px;
-                            margin: 0 8px;
+                            margin: 10px 8px 0;
                             @include media("(min-width: 1200px)") {
                                 width: get-vw(78px);
-                                margin: 0 get-vw(8px);
+                                margin: get-vw(10px) get-vw(8px) 0;
                             }
                             p {
                                 font: 1em 'Lato-Bold';
@@ -1147,11 +1142,8 @@ Contains all styles of inner pages
                             font-size: .857em;
                             position: relative;
                             bottom: 2px;
-                        }
-                        i {
-                            padding-right: 5px;
                             @include media("(min-width: 1200px)") {
-                                padding-right: get-vw(5px);
+                                bottom: get-vw(2px);
                             }
                         }
                     }
@@ -1180,6 +1172,75 @@ Contains all styles of inner pages
                                 .from::after {
                                     content: ' - ';
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .general-rating-container {
+            h6 {
+                float: left;
+            }
+            .general-rating {
+                float: right;
+                text-align: right;
+                font: 1.428em 'Lato-Black';
+            }
+            .rating-levels-container {
+                width: 100%;
+                .rating-level {
+                    width: 20%;
+                    float: left;
+                    text-align: center;
+                    p {
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(10px);
+                        }
+                    }
+                    .circle-container {
+                        display: inline-block;
+                        text-align: center;
+                        position: relative;
+                        width: 54px;
+                        height: 54px;
+                        border-radius: 100%;
+                        box-sizing: border-box;
+                        @include box-shadow(0 0 0 3px #ccc);
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(54px);
+                            height: get-vw(54px);
+                            @include box-shadow(0 0 0 get-vw(3px) #ccc);
+                        }
+                        svg {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            min-height: 100%;
+                            @include transform(rotate(-90deg) scale(1.1));
+                            circle {
+                                fill: none;
+                                stroke-width: 4;
+                                stroke-linecap: square;
+                                stroke-dasharray: 290;
+                                stroke-dashoffset: 290;
+                                @include transition(all 1s);
+                                @include media("(min-width: 1200px)") {
+                                    stroke-width: get-vw(4px);
+                                }
+                            }
+                        }
+                        span {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            line-height: 54px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(54px);
                             }
                         }
                     }
