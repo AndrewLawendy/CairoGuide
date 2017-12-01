@@ -63,11 +63,6 @@ Contains all styles of inner pages
                 h2 {
                     color: nth($i, 2);
                 }
-                .item-branches-container {
-                    i {
-                        color: nth($i, 2);
-                    }
-                }
                 .item-facilities-container {
                     .facility-unit {
                         background: nth($i, 2);
@@ -79,6 +74,11 @@ Contains all styles of inner pages
                             background: nth($i, 2);
                         }
                     }
+                }
+            }
+            .item-branches-container {
+                i {
+                    color: nth($i, 2);
                 }
             }
             .comment-section-container {
@@ -160,11 +160,13 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .control-btn,.circle {
+            .control-btn,
+            .circle {
                 background: nth($i, 2);
             }
-            ul.tabs-items li{
-                &::before,&::after{
+            ul.tabs-items li {
+                &::before,
+                &::after {
                     background: nth($i, 2);
                 }
             }
@@ -222,13 +224,13 @@ Contains all styles of inner pages
                 border-radius: get-vw(7px);
             }
             .dynamic-settings-wrp {
-                margin-right: 20px;
-                margin-top: 10px;
+                padding-right: 20px;
+                padding-top: 10px;
                 float: left;
                 cursor: pointer;
                 @include media("(min-width: 1200px)") {
-                    margin-right: get-vw(20px);
-                    margin-top: get-vw(10px);
+                    padding-right: get-vw(20px);
+                    padding-top: get-vw(10px);
                 }
                 .settings-column {
                     height: 25px;
@@ -276,7 +278,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            [class$="value"] {
+            [class*="value"] {
                 span {
                     margin-right: 2px;
                     display: inline-block;
@@ -285,10 +287,20 @@ Contains all styles of inner pages
                     }
                     &::after {
                         content: ',';
+                        display: inline-block;
+                        position: relative;
+                        top: 0;
+                        opacity: 1;
+                        @include transition(all .15s);
                     }
-                    &:last-child {
+                    &:last-of-type {
                         &::after {
-                            content: none;
+                            top: -20px;
+                            opacity: 0;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(-20px);
+                            }
                         }
                     }
                 }
@@ -347,14 +359,26 @@ Contains all styles of inner pages
                 }
                 .selected-value {
                     display: inline-block;
-                    line-height: 42px;
+                    line-height: 40px;
                     width: calc(100% - 24px);
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
                     @include media("(min-width: 1200px)") {
-                        line-height: get-vw(42px);
+                        line-height: get-vw(40px);
                         width: calc(100% - 2vw);
+                    }
+                    &::after {
+                        content: '...';
+                        display: block;
+                        opacity: 0;
+                        @include transform(translateY(-20px));
+                        @include transition(all .15s);
+                    }
+                    &.exceeds::after {
+                        opacity: 1;
+                        @include transform(translateY(0));
+                        @include transition(all .15s);
                     }
                     >span {
                         position: relative;
@@ -512,9 +536,9 @@ Contains all styles of inner pages
                 width: 100%;
                 box-sizing: border-box;
                 .filter-field-input {
-                    width: calc(100% - 28px);
+                    width: calc(100% - 56px);
                     @include media("(min-width: 1200px)") {
-                        width: calc(100% - 2.333vw);
+                        width: calc(100% - 4.6667vw);
                     }
                 }
                 .icon-filter-sort {
@@ -1032,83 +1056,129 @@ Contains all styles of inner pages
                 }
             }
             .overview-details {
-                .three-quarter-width {
-                    .item-description-container {
-                        p.overview-brief {
-                            text-align: justify;
-                            font-size: 1em;
+                .item-description-container {
+                    p.overview-brief {
+                        text-align: justify;
+                        font-size: 1em;
+                    }
+                }
+                .item-facilities-container {
+                    .facilities-wrp {
+                        margin-right: -8px;
+                        margin-left: -8px;
+                        @include media("(min-width: 1200px)") {
+                            margin-right: get-vw(-8px);
+                            margin-left: get-vw(-8px);
+                        }
+                        .facility-unit {
+                            float: left;
+                            box-sizing: border-box;
+                            margin: 0 8px 10px 8px;
+                            padding: 10px;
+                            width: 44px;
+                            height: 44px;
+                            border-radius: 100%;
+                            @include media("(min-width: 1200px)") {
+                                margin: 0 get-vw(8px) get-vw(10px) get-vw(8px);
+                                padding: get-vw(10px);
+                                width: get-vw(44px);
+                                height: get-vw(44px);
+                            }
+                            iframe {
+                                width: 100%;
+                                height: 100%;
+                                svg {
+                                    fill: #fff;
+                                }
+                            }
                         }
                     }
-                    .item-facilities-container {
-                        .facilities-wrp {
-                            margin-right: -8px;
-                            margin-left: -8px;
+                }
+                .item-rating-details-container {
+                    .rating-owl-wrp {
+                        margin: 0 -8px;
+                        @include media("(min-width: 1200px)") {
+                            margin: 0 get-vw(-8px);
+                        }
+                        div[class^="rating"] {
+                            float: left;
+                            text-align: center;
+                            width: 78px;
+                            margin: 0 8px;
                             @include media("(min-width: 1200px)") {
-                                margin-right: get-vw(-8px);
-                                margin-left: get-vw(-8px);
+                                width: get-vw(78px);
+                                margin: 0 get-vw(8px);
                             }
-                            .facility-unit {
-                                float: left;
-                                box-sizing: border-box;
-                                margin: 0 8px 10px 8px;
-                                padding: 10px;
-                                width: 44px;
-                                height: 44px;
-                                border-radius: 100%;
+                            p {
+                                font: 1em 'Lato-Bold';
+                                margin-bottom: 5px;
                                 @include media("(min-width: 1200px)") {
-                                    margin: 0 get-vw(8px) get-vw(10px) get-vw(8px);
-                                    padding: get-vw(10px);
-                                    width: get-vw(44px);
-                                    height: get-vw(44px);
+                                    margin-bottom: get-vw(5px);
                                 }
-                                iframe {
-                                    width: 100%;
-                                    height: 100%;
-                                    svg {
-                                        fill: #fff;
-                                    }
+                            }
+                            img {
+                                width: 48px;
+                                height: auto;
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(48px);
+                                }
+                            }
+                            span {
+                                display: inline-block;
+                                width: 100%;
+                                line-height: 20px;
+                                border-radius: 10px;
+                                color: #fff;
+                                @include media("(min-width: 1200px)") {
+                                    line-height: get-vw(20px);
                                 }
                             }
                         }
                     }
-                    .item-rating-details-container {
-                        .rating-owl-wrp {
-                            margin: 0 -8px;
+                }
+                .opening-hours-container {
+                    h6 {
+                        float: left
+                    }
+                    .open-availability {
+                        float: right;
+                        text-align: right;
+                        .open-status {
+                            font-size: .857em;
+                            position: relative;
+                            bottom: 2px;
+                        }
+                        i {
+                            padding-right: 5px;
                             @include media("(min-width: 1200px)") {
-                                margin: 0 get-vw(-8px);
+                                padding-right: get-vw(5px);
                             }
-                            div[class^="rating"] {
-                                float: left;
-                                text-align: center;
-                                width: 78px;
-                                margin: 0 8px;
+                        }
+                    }
+                    ul.opening-details {
+                        li {
+                            &::after {
+                                content: '';
+                                display: block;
+                                widows: 100%;
+                                height: 0;
+                                visibility: hidden;
+                                clear: both;
+                            }
+                            &:nth-of-type(1n+2) {
+                                margin-top: 5px;
                                 @include media("(min-width: 1200px)") {
-                                    width: get-vw(78px);
-                                    margin: 0 get-vw(8px);
+                                    margin-top: get-vw(5px);
                                 }
-                                p {
-                                    font: 1em 'Lato-Bold';
-                                    margin-bottom: 5px;
-                                    @include media("(min-width: 1200px)") {
-                                        margin-bottom: get-vw(5px);
-                                    }
-                                }
-                                img {
-                                    width: 48px;
-                                    height: auto;
-                                    @include media("(min-width: 1200px)") {
-                                        width: get-vw(48px);
-                                    }
-                                }
-                                span {
-                                    display: inline-block;
-                                    width: 100%;
-                                    line-height: 20px;
-                                    border-radius: 10px;
-                                    color: #fff;
-                                    @include media("(min-width: 1200px)") {
-                                        line-height: get-vw(20px);
-                                    }
+                            }
+                            .day {
+                                float: left;
+                            }
+                            .hour {
+                                float: right;
+                                text-align: right;
+                                .from::after {
+                                    content: ' - ';
                                 }
                             }
                         }
@@ -1117,7 +1187,7 @@ Contains all styles of inner pages
             }
         }
         .item-branches-container {
-            h6{
+            h6 {
                 font-size: 1.286em;
                 margin-bottom: 10px;
                 @include media("(min-width: 1200px)") {
@@ -1153,10 +1223,10 @@ Contains all styles of inner pages
                         margin-bottom: get-vw(10px);
                     }
                 }
-                &:nth-of-type(1n+4){
-                    margin-top:20px;
+                &:nth-of-type(1n+4) {
+                    margin-top: 20px;
                     @include media("(min-width: 1200px)") {
-                        margin-top:get-vw(20px);
+                        margin-top: get-vw(20px);
                     }
                 }
             }
@@ -1373,7 +1443,7 @@ Contains all styles of inner pages
         /*Login Page*/
         .login-wrp {
             margin-bottom: -30px;
-            min-height:100vh;
+            min-height: 100vh;
             display: table;
             width: 100%;
             padding: 60px 0;
@@ -1385,15 +1455,15 @@ Contains all styles of inner pages
             .login-container {
                 margin: 60px auto;
                 width: 768px;
-                background:#fff;
+                background: #fff;
                 display: table-cell;
                 vertical-align: middle;
-                padding:30px;
-                box-sizing:border-box;
+                padding: 30px;
+                box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
                     margin: get-vw(60px) auto;
                     width: get-vw(768px);
-                    padding:get-vw(30px);
+                    padding: get-vw(30px);
                 }
                 &>* {
                     display: block;
@@ -1401,8 +1471,8 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         margin-bottom: get-vw(30px);
                     }
-                    &:last-child{
-                        margin-bottom:0!important;
+                    &:last-child {
+                        margin-bottom: 0!important;
                     }
                 }
                 .login-logo {
