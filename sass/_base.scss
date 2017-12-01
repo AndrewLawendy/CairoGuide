@@ -548,7 +548,7 @@ a {
     }
 }
 
-@include media("(max-width: 1200px)") {
+@include media("(max-width: 768px)") {
     .thirty-width.responsive,
     .half-width.responsive,
     .seventy-width.responsive,

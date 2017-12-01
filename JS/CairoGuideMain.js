@@ -350,7 +350,6 @@ $(document).ready(function () {
                 })
             }
             newCircle.width(max).height(max);
-            console.log('posTop ', posTop, ' posLeft ', posLeft, ' clickY ', newCircle.css('top'), ' clickX ', newCircle.css('left'));
             setTimeout(function () {
                 newCircle.remove();
             }, 800);
@@ -1051,11 +1050,13 @@ $(document).ready(function () {
             if (arabic)
                 $(this).closest('.comment-container').addClass('arabic');
         });
-        $('.comment-container .continue-reading.exceeds').on('click', function () {
+        $('.comment-container .continue-reading').on('click', function () {
             var parentContainer = $(this).parent(),
                 paragraphContainer = parentContainer.find('.paragraph-container'),
                 paragraphHeight = parentContainer.find('p').height();
-            paragraphContainer.css('height', paragraphHeight);
+            paragraphContainer.css('height', paragraphHeight).delay(150).queue(function () {
+                paragraphContainer.css('height', 'auto').dequeue();
+            });
             $(this).fadeOut('fast');
         })
 
