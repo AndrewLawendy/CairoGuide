@@ -822,7 +822,7 @@ Contains all styles of inner pages
                             p {
                                 color: #555;
                                 @include limit-text-lines(3,
-                                1em);
+                                1.2em);
                             }
                             .item-links {
                                 position: absolute;
@@ -1000,7 +1000,6 @@ Contains all styles of inner pages
                     height: $main-slide-wrp-height / 3;
                     padding: 7px 0;
                     box-sizing: border-box;
-                    position: relative;
                     cursor: pointer;
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(7px) 0;
@@ -1011,9 +1010,14 @@ Contains all styles of inner pages
                     &:nth-of-type(3) {
                         padding-bottom: 0;
                     }
+                    a,a:visited{
+                        display:inline-block;
+                        position:relative;
+                        height:100%;
+                        overflow:hidden;
+                    
                     .side-slides-count {
                         background-color: rgba(0, 0, 0, 0.7);
-                        margin-top: 7px;
                         text-align: center;
                         font-size: 3em;
                         color: #fff;
@@ -1021,9 +1025,8 @@ Contains all styles of inner pages
                         top: 0;
                         left: 0;
                         height: 100%;
-                        @include media("(min-width: 1200px)") {
-                            margin-top: get-vw(7px);
-                        }
+                        display:none;
+
                         &,
                         span {
                             width: 100%;
@@ -1035,6 +1038,7 @@ Contains all styles of inner pages
                             @include transform(translateY(-50%));
                         }
                     }
+                }
                 }
             }
         }
@@ -1055,6 +1059,7 @@ Contains all styles of inner pages
                     p.overview-brief {
                         text-align: justify;
                         font-size: 1em;
+                        line-height:1.2em;
                     }
                 }
                 .item-facilities-container {
@@ -1149,6 +1154,10 @@ Contains all styles of inner pages
                     }
                     ul.opening-details {
                         li {
+                            margin-bottom:10px;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(10px);
+                            }
                             &::after {
                                 content: '';
                                 display: block;
