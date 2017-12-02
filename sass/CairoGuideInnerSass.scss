@@ -63,11 +63,6 @@ Contains all styles of inner pages
                 h2 {
                     color: nth($i, 2);
                 }
-                .item-branches-container {
-                    i {
-                        color: nth($i, 2);
-                    }
-                }
                 .item-facilities-container {
                     .facility-unit {
                         background: nth($i, 2);
@@ -79,6 +74,14 @@ Contains all styles of inner pages
                             background: nth($i, 2);
                         }
                     }
+                }
+            }
+            .rating-level circle {
+                stroke: nth($i, 2);
+            }
+            .item-branches-container {
+                i {
+                    color: nth($i, 2);
                 }
             }
             .comment-section-container {
@@ -160,8 +163,15 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .control-btn {
+            .control-btn,
+            .circle {
                 background: nth($i, 2);
+            }
+            ul.tabs-items li {
+                &::before,
+                &::after {
+                    background: nth($i, 2);
+                }
             }
         }
     }
@@ -217,13 +227,13 @@ Contains all styles of inner pages
                 border-radius: get-vw(7px);
             }
             .dynamic-settings-wrp {
-                margin-right: 20px;
-                margin-top: 10px;
+                padding-right: 20px;
+                padding-top: 10px;
                 float: left;
                 cursor: pointer;
                 @include media("(min-width: 1200px)") {
-                    margin-right: get-vw(20px);
-                    margin-top: get-vw(10px);
+                    padding-right: get-vw(20px);
+                    padding-top: get-vw(10px);
                 }
                 .settings-column {
                     height: 25px;
@@ -271,7 +281,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            [class$="value"] {
+            [class*="value"] {
                 span {
                     margin-right: 2px;
                     display: inline-block;
@@ -280,10 +290,20 @@ Contains all styles of inner pages
                     }
                     &::after {
                         content: ',';
+                        display: inline-block;
+                        position: relative;
+                        top: 0;
+                        opacity: 1;
+                        @include transition(all .15s);
                     }
-                    &:last-child {
+                    &:last-of-type {
                         &::after {
-                            content: none;
+                            top: -20px;
+                            opacity: 0;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(-20px);
+                            }
                         }
                     }
                 }
@@ -342,14 +362,26 @@ Contains all styles of inner pages
                 }
                 .selected-value {
                     display: inline-block;
-                    line-height: 42px;
+                    line-height: 40px;
                     width: calc(100% - 24px);
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
                     @include media("(min-width: 1200px)") {
-                        line-height: get-vw(42px);
+                        line-height: get-vw(40px);
                         width: calc(100% - 2vw);
+                    }
+                    &::after {
+                        content: '...';
+                        display: block;
+                        opacity: 0;
+                        @include transform(translateY(-20px));
+                        @include transition(all .15s);
+                    }
+                    &.exceeds::after {
+                        opacity: 1;
+                        @include transform(translateY(0));
+                        @include transition(all .15s);
                     }
                     >span {
                         position: relative;
@@ -497,7 +529,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .filter-radio-container {
+            .radio-container {
                 .inline-radio {
                     width: 33.333%;
                 }
@@ -507,9 +539,9 @@ Contains all styles of inner pages
                 width: 100%;
                 box-sizing: border-box;
                 .filter-field-input {
-                    width: calc(100% - 28px);
+                    width: calc(100% - 56px);
                     @include media("(min-width: 1200px)") {
-                        width: calc(100% - 2.333vw);
+                        width: calc(100% - 4.6667vw);
                     }
                 }
                 .icon-filter-sort {
@@ -1014,11 +1046,219 @@ Contains all styles of inner pages
             }
             h2 {
                 font-size: 1.786em;
-                margin-bottom: 15px;
-                @include media("(min-width: 1200px)") {
-                    margin-bottom: get-vw(15px);
+            }
+            h6 {
+                font-size: 1.286em;
+            }
+            .overview-details {
+                .item-description-container {
+                    p.overview-brief {
+                        text-align: justify;
+                        font-size: 1em;
+                    }
+                }
+                .item-facilities-container {
+                    .facilities-wrp {
+                        margin-right: -8px;
+                        margin-left: -8px;
+                        @include media("(min-width: 1200px)") {
+                            margin-right: get-vw(-8px);
+                            margin-left: get-vw(-8px);
+                        }
+                        .facility-unit {
+                            float: left;
+                            box-sizing: border-box;
+                            margin: 10px 8px;
+                            padding: 10px;
+                            width: 44px;
+                            height: 44px;
+                            border-radius: 100%;
+                            @include media("(min-width: 1200px)") {
+                                margin: get-vw(10px) get-vw(8px);
+                                padding: get-vw(10px);
+                                width: get-vw(44px);
+                                height: get-vw(44px);
+                            }
+                            iframe {
+                                width: 100%;
+                                height: 100%;
+                                svg {
+                                    fill: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+                .item-rating-details-container {
+                    .rating-owl-wrp {
+                        margin: 0 -8px;
+                        @include media("(min-width: 1200px)") {
+                            margin: 0 get-vw(-8px);
+                        }
+                        div[class^="rating"] {
+                            float: left;
+                            text-align: center;
+                            width: 78px;
+                            margin: 10px 8px 0;
+                            @include media("(min-width: 1200px)") {
+                                width: get-vw(78px);
+                                margin: get-vw(10px) get-vw(8px) 0;
+                            }
+                            p {
+                                font: 1em 'Lato-Bold';
+                                margin-bottom: 5px;
+                                @include media("(min-width: 1200px)") {
+                                    margin-bottom: get-vw(5px);
+                                }
+                            }
+                            img {
+                                width: 48px;
+                                height: auto;
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(48px);
+                                }
+                            }
+                            span {
+                                display: inline-block;
+                                width: 100%;
+                                line-height: 20px;
+                                border-radius: 10px;
+                                color: #fff;
+                                @include media("(min-width: 1200px)") {
+                                    line-height: get-vw(20px);
+                                }
+                            }
+                        }
+                    }
+                }
+                .opening-hours-container {
+                    h6 {
+                        float: left
+                    }
+                    .open-availability {
+                        float: right;
+                        text-align: right;
+                        .open-status {
+                            font-size: .857em;
+                            position: relative;
+                            bottom: 2px;
+                            @include media("(min-width: 1200px)") {
+                                bottom: get-vw(2px);
+                            }
+                        }
+                    }
+                    ul.opening-details {
+                        li {
+                            &::after {
+                                content: '';
+                                display: block;
+                                widows: 100%;
+                                height: 0;
+                                visibility: hidden;
+                                clear: both;
+                            }
+                            &:nth-of-type(1n+2) {
+                                margin-top: 5px;
+                                @include media("(min-width: 1200px)") {
+                                    margin-top: get-vw(5px);
+                                }
+                            }
+                            .day {
+                                float: left;
+                            }
+                            .hour {
+                                float: right;
+                                text-align: right;
+                                .from::after {
+                                    content: ' - ';
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
+        .general-rating-container {
+            h6 {
+                float: left;
+            }
+            .general-rating {
+                float: right;
+                text-align: right;
+                font: 1.428em 'Lato-Black';
+            }
+            .rating-levels-container {
+                width: 100%;
+                .rating-level {
+                    width: 20%;
+                    float: left;
+                    text-align: center;
+                    p {
+                        margin-bottom: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(10px);
+                        }
+                    }
+                    .circle-container {
+                        display: inline-block;
+                        text-align: center;
+                        position: relative;
+                        width: 54px;
+                        height: 54px;
+                        border-radius: 100%;
+                        box-sizing: border-box;
+                        @include box-shadow(0 0 0 3px #ccc);
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(54px);
+                            height: get-vw(54px);
+                            @include box-shadow(0 0 0 get-vw(3px) #ccc);
+                        }
+                        svg {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            min-height: 100%;
+                            @include transform(rotate(-90deg) scale(1.1));
+                            circle {
+                                fill: none;
+                                stroke-width: 4;
+                                stroke-linecap: square;
+                                stroke-dasharray: 290;
+                                stroke-dashoffset: 290;
+                                @include transition(all 1s);
+                                @include media("(min-width: 1200px)") {
+                                    stroke-width: get-vw(4px);
+                                }
+                            }
+                        }
+                        span {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            line-height: 54px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(54px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .branch-map {
+            width: 100%;
+            height: 160px;
+            @include media("(min-width: 1200px)") {
+                height: get-vw(160px);
+            }
+            iframe{
+                width:100%;
+                height: 100%;
+            }
+        }
+        .item-branches-container {
             h6 {
                 font-size: 1.286em;
                 margin-bottom: 10px;
@@ -1026,119 +1266,39 @@ Contains all styles of inner pages
                     margin-bottom: get-vw(10px);
                 }
             }
-            .overview-details {
-                .three-quarter-width {
-                    .item-description-container {
-                        p.overview-brief {
-                            text-align: justify;
-                            font-size: 1em;
-                        }
-                    }
-                    .item-facilities-container {
-                        .facilities-wrp {
-                            margin-right: -8px;
-                            margin-left: -8px;
-                            @include media("(min-width: 1200px)") {
-                                margin-right: get-vw(-8px);
-                                margin-left: get-vw(-8px);
-                            }
-                            .facility-unit {
-                                float: left;
-                                box-sizing: border-box;
-                                margin: 0 8px 10px 8px;
-                                padding: 10px;
-                                width: 44px;
-                                height: 44px;
-                                border-radius: 100%;
-                                @include media("(min-width: 1200px)") {
-                                    margin: 0 get-vw(8px) get-vw(10px) get-vw(8px);
-                                    padding: get-vw(10px);
-                                    width: get-vw(44px);
-                                    height: get-vw(44px);
-                                }
-                                iframe {
-                                    width: 100%;
-                                    height: 100%;
-                                    svg {
-                                        fill: #fff;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .item-rating-details-container {
-                        .rating-owl-wrp {
-                            margin: 0 -8px;
-                            @include media("(min-width: 1200px)") {
-                                margin: 0 get-vw(-8px);
-                            }
-                            div[class^="rating"] {
-                                float: left;
-                                text-align: center;
-                                width: 78px;
-                                margin: 0 8px;
-                                @include media("(min-width: 1200px)") {
-                                    width: get-vw(78px);
-                                    margin: 0 get-vw(8px);
-                                }
-                                p {
-                                    font: 1em 'Lato-Bold';
-                                    margin-bottom: 5px;
-                                    @include media("(min-width: 1200px)") {
-                                        margin-bottom: get-vw(5px);
-                                    }
-                                }
-                                img {
-                                    width: 48px;
-                                    height: auto;
-                                    @include media("(min-width: 1200px)") {
-                                        width: get-vw(48px);
-                                    }
-                                }
-                                span {
-                                    display: inline-block;
-                                    width: 100%;
-                                    line-height: 20px;
-                                    border-radius: 10px;
-                                    color: #fff;
-                                    @include media("(min-width: 1200px)") {
-                                        line-height: get-vw(20px);
-                                    }
-                                }
-                            }
-                        }
-                    }
+            p {
+                font: 1em 'Lato-Bold';
+                margin-bottom: 10px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(10px);
                 }
             }
-            .item-branches-container {
-                p {
-                    font: 1em 'Lato-Bold';
+            .icon-container {
+                display: inline-block;
+                width: 14px;
+                margin-right: 5px;
+                text-align: center;
+                @include media("(min-width: 1200px)") {
+                    width: get-vw(14px);
+                    margin-right: get-vw(5px);
+                }
+            }
+            .item-branche {
+                box-sizing: border-box;
+                padding-right: 15px;
+                @include media("(min-width: 1200px)") {
+                    padding-right: get-vw(15px);
+                }
+                .branche-address {
                     margin-bottom: 10px;
                     @include media("(min-width: 1200px)") {
                         margin-bottom: get-vw(10px);
                     }
                 }
-                .icon-container {
-                    display: inline-block;
-                    width: 14px;
-                    margin-right: 5px;
-                    text-align: center;
+                &:nth-of-type(1n+4) {
+                    margin-top: 20px;
                     @include media("(min-width: 1200px)") {
-                        width: get-vw(14px);
-                        margin-right: get-vw(5px);
-                    }
-                }
-                .item-branche {
-                    box-sizing: border-box;
-                    padding-right: 15px;
-                    @include media("(min-width: 1200px)") {
-                        padding-right: get-vw(15px);
-                    }
-                    .branche-address {
-                        margin-bottom: 10px;
-                        @include media("(min-width: 1200px)") {
-                            margin-bottom: get-vw(10px);
-                        }
+                        margin-top: get-vw(20px);
                     }
                 }
             }
@@ -1351,6 +1511,66 @@ Contains all styles of inner pages
             //         object-fit: cover;
             //     }
             // }
+        }
+        /*Login Page*/
+        .login-wrp {
+            margin-bottom: -30px;
+            min-height: 100vh;
+            display: table;
+            width: 100%;
+            padding: 60px 0;
+            box-sizing: border-box;
+            @include media("(min-width: 1200px)") {
+                margin-bottom: get-vw(-30px);
+                padding: get-vw(60px) 0;
+            }
+            .login-container {
+                margin: 60px auto;
+                width: 768px;
+                background: #fff;
+                display: table-cell;
+                vertical-align: middle;
+                padding: 30px;
+                box-sizing: border-box;
+                @include media("(min-width: 1200px)") {
+                    margin: get-vw(60px) auto;
+                    width: get-vw(768px);
+                    padding: get-vw(30px);
+                }
+                &>* {
+                    display: block;
+                    margin-bottom: 30px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(30px);
+                    }
+                    &:last-child {
+                        margin-bottom: 0!important;
+                    }
+                }
+                .login-logo {
+                    img {
+                        width: 200px;
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(200px);
+                        }
+                    }
+                }
+                .login-links {
+                    text-align: center;
+                    &>div {
+                        margin-bottom: 20px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(20px);
+                        }
+                        &:last-child {
+                            margin-bottom: 0!important;
+                        }
+                    }
+                    .default-link {
+                        font-size: 0.8em;
+                    }
+                }
+            }
         }
     }
 
