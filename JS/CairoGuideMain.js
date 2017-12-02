@@ -169,7 +169,8 @@ var isOpen = function () {
         day = tomorrow.getDate();
         month = tomorrow.getMonth();
         year = tomorrow.getFullYear();
-        if (hour < 12) {
+    }
+    if (hour < 12) {
             var actualDay = date.getDay();
             if (actualDay == 0)
                 actualDay = days.length - 1;
@@ -191,7 +192,6 @@ var isOpen = function () {
                 }
             }
         }
-    }
     var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
     if (date >= todayFromDate && todayToDate > date) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');

@@ -1500,6 +1500,26 @@ Contains all styles of inner pages
                                 margin-top: get-vw(25px);
                             }
                         }
+                        .images-container{
+                            height:150px;
+                            overflow: hidden;
+                            @include media("(min-width: 1200px)") {
+                                height:get-vw(150px);
+                            }
+                            .image-wrp{
+                                float: left;
+                                background: #fff;
+                                padding:10px;
+                                height:150px;
+                                @include media("(min-width: 1200px)") {
+                                    height:get-vw(150px);
+                                }
+                                box-sizing: border-box;
+                                img{
+                                    height:100%;
+                                }
+                            }
+                        }
                     }
                 }
                 .pagination-container {
