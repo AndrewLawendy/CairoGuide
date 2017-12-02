@@ -169,13 +169,27 @@ var isOpen = function () {
         day = tomorrow.getDate();
         month = tomorrow.getMonth();
         year = tomorrow.getFullYear();
-        if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + todayTo)) {
-            var yesterday = new Date();
-            yesterday.setDate(day - 2);
-            eve = yesterday.getDate();
-            lastMonth = yesterday.getMonth();
-            lastYear = yesterday.getFullYear();
-            todayFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + todayFrom);
+        if (hour < 12) {
+            var actualDay = date.getDay();
+            if (actualDay == 0)
+                actualDay = days.length - 1;
+            var dayBefore = days[actualDay - 1],
+                dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text(),
+                dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text();
+            if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
+                if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
+                    var yesterday = new Date();
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    eve = yesterday.getDate();
+                    lastMonth = yesterday.getMonth();
+                    lastYear = yesterday.getFullYear();
+                    var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom);
+                    todayFromDate = dayBeforeFromDate;
+                    day = date.getDate();
+                    month = date.getMonth();
+                    year = date.getFullYear();
+                }
+            }
         }
     }
     var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
