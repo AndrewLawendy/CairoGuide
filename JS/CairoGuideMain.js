@@ -152,7 +152,7 @@ var ifContinueReading = function (input, limit) {
 //isOpen
 var isOpen = function () {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        date = new Date('12/5/2017 01:00'),
+        date = new Date(),
         today = days[date.getDay()],
         day = date.getDate(),
         month = date.getMonth(),
@@ -164,7 +164,7 @@ var isOpen = function () {
         todayTo = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.to').text(),
         todayFromDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayFrom);
     if (todayTo.toUpperCase().indexOf('AM') != -1) {
-        var tomorrow = new Date('12/5/2017 01:00');
+        var tomorrow = new Date();
         tomorrow.setDate(day + 1);
         day = tomorrow.getDate();
         month = tomorrow.getMonth();
@@ -180,7 +180,7 @@ var isOpen = function () {
             dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text();
         if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
             if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
-                var yesterday = new Date('12/5/2017 01:00');
+                var yesterday = new Date();
                 day = date.getDate(),
                 month = date.getMonth(),
                 year = date.getFullYear(),
