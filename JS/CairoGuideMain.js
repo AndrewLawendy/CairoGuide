@@ -143,9 +143,9 @@ var ifParagraphExceeds = function (input, limit) {
 var ifContinueReading = function (input, limit) {
     var exceeds = ifParagraphExceeds(input, limit);
     if (exceeds) {
-        input.parent().siblings('.continue-reading').addClass('exceeds');
+        input.siblings('.continue-reading').addClass('exceeds');
     } else {
-        input.parent().siblings('.continue-reading').removeClass('exceeds');
+        input.siblings('.continue-reading').removeClass('exceeds');
     }
 }
 
@@ -170,29 +170,32 @@ var isOpen = function () {
         month = tomorrow.getMonth();
         year = tomorrow.getFullYear();
     }
+    var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
     if (hour < 12) {
-            var actualDay = date.getDay();
-            if (actualDay == 0)
-                actualDay = days.length - 1;
-            var dayBefore = days[actualDay - 1],
-                dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text(),
-                dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text();
-            if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
-                if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
-                    var yesterday = new Date();
-                    yesterday.setDate(yesterday.getDate() - 1);
-                    eve = yesterday.getDate();
-                    lastMonth = yesterday.getMonth();
-                    lastYear = yesterday.getFullYear();
-                    var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom);
-                    todayFromDate = dayBeforeFromDate;
-                    day = date.getDate();
-                    month = date.getMonth();
-                    year = date.getFullYear();
-                }
+        var actualDay = date.getDay();
+        if (actualDay == 0)
+            actualDay = days.length - 1;
+        var dayBefore = days[actualDay - 1],
+            dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text(),
+            dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text();
+        if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
+            if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
+                var yesterday = new Date();
+                day = date.getDate(),
+                month = date.getMonth(),
+                year = date.getFullYear(),
+                yesterday.setDate(yesterday.getDate() - 1);
+                eve = yesterday.getDate();
+                lastMonth = yesterday.getMonth();
+                lastYear = yesterday.getFullYear();
+                var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom),
+                dayBeforeToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + dayBeforeTo);
+                todayFromDate = dayBeforeFromDate;
+                todayToDate = dayBeforeToDate;
             }
         }
-    var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
+    }
+
     if (date >= todayFromDate && todayToDate > date) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
@@ -302,8 +305,7 @@ if ($('gallery-section-container').length) {
 }
 
 //Initialize gallery slider
-var DetailsGallerySlides = [
-    {
+var DetailsGallerySlides = [{
         src: '../images/details-gallery-test-1.jpg',
         title: 'image 1'
     },
@@ -328,7 +330,8 @@ var DetailsGallerySlides = [
         title: 'image 3'
     }
 ];
-var ImgToDisplay = {}, ImgToDisplayIndex = 0;
+var ImgToDisplay = {},
+    ImgToDisplayIndex = 0;
 var InitDetailsGallerySlider = function () {
     var counter = 0;
     $('.main-image').attr('src', DetailsGallerySlides[counter].src).attr('alt', DetailsGallerySlides[counter].alt).attr('data-index', counter);
@@ -1044,25 +1047,25 @@ $(document).ready(function () {
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
         var owlRatings = [{
-            src: 'bad-owl.svg',
-            title: 'Bad'
-        },
-        {
-            src: 'ihateit-owl.svg',
-            title: 'I hate it'
-        },
-        {
-            src: 'ok-owl.svg',
-            title: 'OK'
-        },
-        {
-            src: 'iloveit-owl.svg',
-            title: 'I love it'
-        },
-        {
-            src: 'wow-owl.svg',
-            title: 'Wow'
-        }
+                src: 'bad-owl.svg',
+                title: 'Bad'
+            },
+            {
+                src: 'ihateit-owl.svg',
+                title: 'I hate it'
+            },
+            {
+                src: 'ok-owl.svg',
+                title: 'OK'
+            },
+            {
+                src: 'iloveit-owl.svg',
+                title: 'I love it'
+            },
+            {
+                src: 'wow-owl.svg',
+                title: 'Wow'
+            }
         ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -1106,19 +1109,19 @@ $(document).ready(function () {
                 $(this).closest('.comment-container').addClass('arabic');
         });
         $('.comment-container .continue-reading').on('click', function () {
-            var parentContainer = $(this).parent(),
-                paragraphContainer = parentContainer.find('.paragraph-container'),
-                paragraphHeight = parentContainer.find('p').height();
+            // var parentContainer = $(this).parent(),
+            var  paragraphContainer = $(this).closest('.paragraph-container'),
+                 paragraphHeight = $(this).siblings('p').height();
             paragraphContainer.css('height', paragraphHeight).delay(150).queue(function () {
                 paragraphContainer.css('height', 'auto').dequeue();
             });
-            $(this).fadeOut('fast');
+            $(this).slideUp('fast');
         })
 
         $('.comment-container .translate-comment').on('click', function () {
-            $(this).siblings('.continue-reading').click();
+            $(this).siblings('.paragraph-container').find('.continue-reading').click();
             $(this).siblings('.translation-container').slideDown('fast');
-            $(this).fadeOut('fast');
+            $(this).slideUp('fast');
         });
     }
     //End of Comment Section
@@ -1208,7 +1211,7 @@ $(document).ready(function () {
                 $('#popup-close-btn').click();
             }
         } else if (e.keyCode == 13) {
-            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
+            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
