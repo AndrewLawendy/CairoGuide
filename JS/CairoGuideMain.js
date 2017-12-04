@@ -143,9 +143,9 @@ var ifParagraphExceeds = function (input, limit) {
 var ifContinueReading = function (input, limit) {
     var exceeds = ifParagraphExceeds(input, limit);
     if (exceeds) {
-        input.parent().siblings('.continue-reading').addClass('exceeds');
+        input.siblings('.continue-reading').addClass('exceeds');
     } else {
-        input.parent().siblings('.continue-reading').removeClass('exceeds');
+        input.siblings('.continue-reading').removeClass('exceeds');
     }
 }
 
@@ -1109,19 +1109,19 @@ $(document).ready(function () {
                 $(this).closest('.comment-container').addClass('arabic');
         });
         $('.comment-container .continue-reading').on('click', function () {
-            var parentContainer = $(this).parent(),
-                paragraphContainer = parentContainer.find('.paragraph-container'),
-                paragraphHeight = parentContainer.find('p').height();
+            // var parentContainer = $(this).parent(),
+            var  paragraphContainer = $(this).closest('.paragraph-container'),
+                 paragraphHeight = $(this).siblings('p').height();
             paragraphContainer.css('height', paragraphHeight).delay(150).queue(function () {
                 paragraphContainer.css('height', 'auto').dequeue();
             });
-            $(this).fadeOut('fast');
+            $(this).slideUp('fast');
         })
 
         $('.comment-container .translate-comment').on('click', function () {
-            $(this).siblings('.continue-reading').click();
+            $(this).siblings('.paragraph-container').find('.continue-reading').click();
             $(this).siblings('.translation-container').slideDown('fast');
-            $(this).fadeOut('fast');
+            $(this).slideUp('fast');
         });
     }
     //End of Comment Section
