@@ -149,6 +149,21 @@ var ifContinueReading = function (input, limit) {
     }
 }
 
+//ifImagesExceeds
+var ifImagesExceeds = function (wrp) {
+    var totlaImages = wrp.find('.image-wrp').length,
+        firsImagePos = wrp.find('.image-wrp:first').position().top;
+    wrp.find('.image-wrp .images-exceeds').remove();
+    for (var i = 0; i < totlaImages; i++) {
+        var imagePos = wrp.find('.image-wrp').eq(i).position().top;
+        if (imagePos > firsImagePos) {
+            var remaining = totlaImages - i;
+            wrp.find('.image-wrp').eq(i - 1).append('<div class="images-exceeds">+' + remaining + '</div>');
+            break;
+        }
+    }
+}
+
 //isOpen
 var isOpen = function () {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -182,14 +197,14 @@ var isOpen = function () {
             if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
                 var yesterday = new Date();
                 day = date.getDate(),
-                month = date.getMonth(),
-                year = date.getFullYear(),
-                yesterday.setDate(yesterday.getDate() - 1);
+                    month = date.getMonth(),
+                    year = date.getFullYear(),
+                    yesterday.setDate(yesterday.getDate() - 1);
                 eve = yesterday.getDate();
                 lastMonth = yesterday.getMonth();
                 lastYear = yesterday.getFullYear();
                 var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom),
-                dayBeforeToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + dayBeforeTo);
+                    dayBeforeToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + dayBeforeTo);
                 todayFromDate = dayBeforeFromDate;
                 todayToDate = dayBeforeToDate;
             }
@@ -1110,8 +1125,8 @@ $(document).ready(function () {
         });
         $('.comment-container .continue-reading').on('click', function () {
             // var parentContainer = $(this).parent(),
-            var  paragraphContainer = $(this).closest('.paragraph-container'),
-                 paragraphHeight = $(this).siblings('p').height();
+            var paragraphContainer = $(this).closest('.paragraph-container'),
+                paragraphHeight = $(this).siblings('p').height();
             paragraphContainer.css('height', paragraphHeight).delay(150).queue(function () {
                 paragraphContainer.css('height', 'auto').dequeue();
             });
@@ -1123,6 +1138,11 @@ $(document).ready(function () {
             $(this).siblings('.translation-container').slideDown('fast');
             $(this).slideUp('fast');
         });
+        if ($('.images-container').length) {
+            $('.images-container').each(function () {
+                ifImagesExceeds($(this));
+            });
+        }
     }
     //End of Comment Section
 
@@ -1231,10 +1251,16 @@ $(document).ready(function () {
         }
 
         //Comment Container
-        if ($('.comment-section-container').length)
+        if ($('.comment-section-container').length) {
             $('.comment-container .comment-text').each(function () {
                 ifContinueReading($(this), 4);
             });
+            if ($('.images-container').length) {
+                $('.images-container').each(function () {
+                    ifImagesExceeds($(this));
+                });
+            }
+        }
     });
 });
 
