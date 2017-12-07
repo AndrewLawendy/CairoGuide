@@ -191,26 +191,6 @@ var isOpen = function () {
         if (actualDay == 0)
             actualDay = days.length - 1;
         var dayBefore = days[actualDay - 1],
-<<<<<<< HEAD
-            dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text(),
-            dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text();
-        if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
-            if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
-                var yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
-                eve = yesterday.getDate();
-                lastMonth = yesterday.getMonth();
-                lastYear = yesterday.getFullYear();
-                var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom);
-                todayFromDate = dayBeforeFromDate;
-                day = date.getDate();
-                month = date.getMonth();
-                year = date.getFullYear();
-            }
-        }
-    }
-    var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
-=======
             dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text(),
             dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text();
         if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
@@ -231,7 +211,6 @@ var isOpen = function () {
         }
     }
 
->>>>>>> 4c89d9de53c7b480e85d31469a09074d77afcb13
     if (date >= todayFromDate && todayToDate > date) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
@@ -1358,7 +1337,6 @@ $(document).ready(function () {
         }
 
         //Comment Container
-<<<<<<< HEAD
         if ($('.comment-section-container').length){
             $('.comment-container .comment-text').each(function () {
                 ifContinueReading($(this), 4);
@@ -1366,17 +1344,6 @@ $(document).ready(function () {
         }
         if ($('#image-slider-popup.active').length) {
             MoveMarker();
-=======
-        if ($('.comment-section-container').length) {
-            $('.comment-container .comment-text').each(function () {
-                ifContinueReading($(this), 4);
-            });
-            if ($('.images-container').length) {
-                $('.images-container').each(function () {
-                    ifImagesExceeds($(this));
-                });
-            }
->>>>>>> 4c89d9de53c7b480e85d31469a09074d77afcb13
         }
     });
 });
