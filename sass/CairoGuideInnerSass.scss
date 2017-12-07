@@ -1128,35 +1128,34 @@ Contains all styles of inner pages
                     &:nth-of-type(3) {
                         padding-bottom: 0;
                     }
-                    a,a:visited{
-                        display:inline-block;
-                        position:relative;
-                        height:100%;
-                        overflow:hidden;
-                    
-                    .side-slides-count {
-                        background-color: rgba(0, 0, 0, 0.7);
-                        text-align: center;
-                        font-size: 3em;
-                        color: #fff;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
+                    a,
+                    a:visited {
+                        display: inline-block;
+                        position: relative;
                         height: 100%;
-                        display:none;
-
-                        &,
-                        span {
-                            width: 100%;
-                        }
-                        span {
-                            display: block;
+                        overflow: hidden;
+                        .side-slides-count {
+                            background-color: rgba(0, 0, 0, 0.7);
+                            text-align: center;
+                            font-size: 3em;
+                            color: #fff;
                             position: absolute;
-                            top: 50%;
-                            @include transform(translateY(-50%));
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            display: none;
+                            &,
+                            span {
+                                width: 100%;
+                            }
+                            span {
+                                display: block;
+                                position: absolute;
+                                top: 50%;
+                                @include transform(translateY(-50%));
+                            }
                         }
                     }
-                }
                 }
             }
         }
@@ -1177,7 +1176,7 @@ Contains all styles of inner pages
                     p.overview-brief {
                         text-align: justify;
                         font-size: 1em;
-                        line-height:1.2em;
+                        line-height: 1.2em;
                     }
                 }
                 .item-facilities-container {
@@ -1272,7 +1271,7 @@ Contains all styles of inner pages
                     }
                     ul.opening-details {
                         li {
-                            margin-bottom:10px;
+                            margin-bottom: 10px;
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(10px);
                             }
@@ -1334,11 +1333,11 @@ Contains all styles of inner pages
                         height: 54px;
                         border-radius: 100%;
                         box-sizing: border-box;
-                        @include box-shadow(0 0 0 3px #ccc);
+                        @include box-shadow(0 0 0 3px #ccc inset);
                         @include media("(min-width: 1200px)") {
                             width: get-vw(54px);
                             height: get-vw(54px);
-                            @include box-shadow(0 0 0 get-vw(3px) #ccc);
+                            @include box-shadow(0 0 0 get-vw(3px) #ccc inset);
                         }
                         svg {
                             position: absolute;
@@ -1346,7 +1345,7 @@ Contains all styles of inner pages
                             left: 0;
                             width: 100%;
                             min-height: 100%;
-                            @include transform(rotate(-90deg) scale(1.1));
+                            @include transform(rotate(-90deg));
                             circle {
                                 fill: none;
                                 stroke-width: 4;
@@ -1380,8 +1379,8 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 height: get-vw(160px);
             }
-            iframe{
-                width:100%;
+            iframe {
+                width: 100%;
                 height: 100%;
             }
         }
@@ -1511,9 +1510,8 @@ Contains all styles of inner pages
                             }
                             .continue-reading {
                                 right: auto;
-                                bottom: 40px;
                                 padding-left: 0;
-                                left: 65px;
+                                left: 0;
                                 padding-right: 45px;
                                 @include linear-gradient(left,
                                 #f8f8f8,
@@ -1523,8 +1521,6 @@ Contains all styles of inner pages
                                 0,
                                 100);
                                 @include media("(min-width: 1200px)") {
-                                    left: get-vw(65px);
-                                    bottom: get-vw(40px);
                                     padding-right: get-vw(45px);
                                 }
                             }
@@ -1566,6 +1562,7 @@ Contains all styles of inner pages
                             width: 100%;
                             height: 80px;
                             overflow: hidden;
+                            position: relative;
                             @include transition(height .15s);
                             @include media("(min-width: 1200px)") {
                                 height: get-vw(80px);
@@ -1579,8 +1576,8 @@ Contains all styles of inner pages
                             &.continue-reading {
                                 display: none;
                                 position: absolute;
-                                right: 20px;
-                                bottom: 20px;
+                                right: 0;
+                                bottom: 0;
                                 padding-left: 45px;
                                 color: #888;
                                 cursor: pointer;
@@ -1592,8 +1589,6 @@ Contains all styles of inner pages
                                 0,
                                 100);
                                 @include media("(min-width: 1200px)") {
-                                    right: get-vw(20px);
-                                    bottom: get-vw(20px);
                                     padding-left: get-vw(45px);
                                 }
                                 &.exceeds {
@@ -1603,7 +1598,7 @@ Contains all styles of inner pages
                             &.translate-comment {
                                 display: none;
                                 color: #777;
-                                float: right;
+                                text-align: right;
                                 font-size: .9em;
                             }
                         }
@@ -1618,23 +1613,58 @@ Contains all styles of inner pages
                                 margin-top: get-vw(25px);
                             }
                         }
-                        .images-container{
-                            height:150px;
+                        .images-container {
+                            clear: both;
+                            height: 150px;
                             overflow: hidden;
+                            margin-top:15px;
                             @include media("(min-width: 1200px)") {
-                                height:get-vw(150px);
+                                height: get-vw(150px);
+                                margin-top:get-vw(15px);
                             }
-                            .image-wrp{
+                            .image-wrp {
                                 float: left;
-                                background: #fff;
-                                padding:10px;
-                                height:150px;
-                                @include media("(min-width: 1200px)") {
-                                    height:get-vw(150px);
-                                }
+                                border:10px solid #fff;
+                                height: 150px;
+                                position: relative;
+                                cursor: pointer;
+                                overflow: hidden;
                                 box-sizing: border-box;
-                                img{
-                                    height:100%;
+                                @include media("(min-width: 1200px)") {
+                                    height: get-vw(150px);
+                                    border:get-vw(10px) solid #fff;
+                                }
+                                img {
+                                    height: 100%;
+                                    @include transform(scale(1));
+                                    @include transition(all .15s);
+                                }
+                                &:nth-of-type(1n+2) {
+                                    margin-left: 15px;
+                                    @include media("(min-width: 1200px)") {
+                                        margin-left: get-vw(15px);
+                                    }
+                                }
+                                &:hover{
+                                    img{
+                                        @include transform(scale(1.2));
+                                        @include transition(all .15s);
+                                    }
+                                }
+                                .images-exceeds {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width:100%;
+                                    height: 100%;
+                                    background: rgba(0,0,0,.7);
+                                    text-align: center;
+                                    color: #fff;
+                                    line-height: 150px;
+                                    font-size: 3em;
+                                    @include media("(min-width: 1200px)") {
+                                        line-height: get-vw(150px);
+                                    }
                                 }
                             }
                         }
