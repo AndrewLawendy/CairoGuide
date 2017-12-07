@@ -55,7 +55,23 @@
             </div>
         </div>
     </div>
-
+    <div id="image-slider-popup">
+        <div class="image-slider-wrp">
+            <div class="slider-main-slide-wrp">
+                <img src="../images/details-gallery-test-1.jpg" alt="" class="slider-main-image" />
+            </div>
+            <div class="image-small-slider-wrp">
+                <div class="img-small-slider-container"></div>
+                <div class="active-slider-img-marker"></div>
+            </div>
+        </div>
+        <div class="slider-nav">
+                <div class="full-width">
+                    <a href="javascript:void(0);" title="Next" class="icon-right-chevron float-right slider-nav-next"></a>
+                    <a href="javascript:void(0);" title="Prev" class="icon-left-chevron float-left slider-nav-prev"></a>
+                </div>
+            </div>
+    </div>
     <!--Header-->
     <header>
         <div class="top-header full-width container">
@@ -702,11 +718,11 @@
                 <div class="gallery-section-container display-inline-block full-width">
                     <div class="float-left seventy-width">
                         <div class="main-slide-wrp">
-                            <a href="javascript:void(0);" title="Show in gallery">
+                            <a href="javascript:void(0);" title="Show in gallery" class="activate-slider-popup">
                                 <img src="" alt="" class="main-image" />
                             </a>
                             <div class="gallery-nav">
-                                <div class="display-inline-block full-width">
+                                <div class="full-width">
                                     <a href="javascript:void(0);" title="Next" class="icon-right-chevron float-right gallery-next"></a>
                                     <a href="javascript:void(0);" title="Prev" class="icon-left-chevron float-left gallery-prev"></a>
                                 </div>
@@ -727,7 +743,7 @@
                         <div class="side-slide-item">
                             <a href="javascript:void(0);" title="#">
                                 <img src="" alt="" class="slide-image" />
-                                <div class="side-slides-count">
+                                <div class="side-slides-count activate-slider-popup more-slide">
                                     <span></span>
                                 </div>
                             </a>
@@ -754,6 +770,32 @@
                         </div>
                         <div class="item-facilities-container marg-t30">
                             <h6>Facilities</h6>
+                            <!--<div class="facilities-wrp">
+                                <div class="facility-unit" title="Alcohol">
+                                    <img src="../Icons/facility-alcohol.svg" />
+                                </div>
+                                <div class="facility-unit" title="Dancing">
+                                    <img src="../Icons/facility-dancing.svg" />
+                                </div>
+                                <div class="facility-unit" title="Catering">
+                                    <img src="../Icons/facility-catering.svg" />
+                                </div>
+                                <div class="facility-unit" title="Shisha">
+                                    <img src="../Icons/facility-shisha.svg" />
+                                </div>
+                                <div class="facility-unit" title="Credit Cards">
+                                    <img src="../Icons/facility-credit-cards.svg" />
+                                </div>
+                            </div>
+                            <style>
+                            main .overview-section-container .overview-details .item-facilities-container .facilities-wrp .facility-unit img{
+                                -webkit-filter: invert(100%);
+                                filter: invert(100%);
+                                -moz-filter: invert(100%);
+                                -o-filter: invert(100%);
+                                -ms-filter: invert(100%);
+                            }
+                            </style>-->
                             <div class="facilities-wrp">
                                 <div class="facility-unit" title="Alcohol">
                                     <iframe src="../Icons/facility-alcohol.svg"></iframe>
