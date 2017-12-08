@@ -391,7 +391,8 @@ var PrevDetailsGalleryItem = function () {
 
 //popup gallery slider
 var PopupGallerySlides = [];
-var PopupImgToDisplay = {}, PopupImgToDisplayIndex = 0;
+var PopupImgToDisplay = {},
+    PopupImgToDisplayIndex = 0;
 var sliderMainImage = $('#image-slider-popup').find('.slider-main-image');
 var imgSmallSliderContainer = $('#image-slider-popup').find('.img-small-slider-container');
 
@@ -437,8 +438,14 @@ var DisplayClickedPopupGalleryItem = function (imageIndex) {
 var MoveMarker = function () {
     var imageIndex = $('.slider-main-image').attr('popup-main-data-index');
     var selectedImage = $('.slider-slide-image[popup-slide-data-index="' + imageIndex + '"]');
-    var width = selectedImage.width(), height = selectedImage.height() - 2, left = selectedImage.position().left + width + 2;
-    $('.active-slider-img-marker').css({ 'left': left, 'width': width, 'height': height });
+    var width = selectedImage.width(),
+        height = selectedImage.height() - 2,
+        left = selectedImage.position().left + width + 2;
+    $('.active-slider-img-marker').css({
+        'left': left,
+        'width': width,
+        'height': height
+    });
 }
 
 //Display next popup gallery slide
@@ -1225,6 +1232,18 @@ $(document).ready(function () {
             $('.images-container').each(function () {
                 ifImagesExceeds($(this));
             });
+            $('.images-container .image-wrp').on('click', function () {
+                var allImages = $('.images-container .image-wrp').length,
+                    imageIndex = $(this).index(),
+                    commentImages = [];
+                for (var i = 0; i < allImages; i++) {
+                    var image = {};
+                    image.src = $('.images-container .image-wrp').eq(i).find('img').attr('src');
+                    image.title = $('.images-container .image-wrp').eq(i).find('img').attr('title') || 'Image';
+                    commentImages.push(image);
+                }
+                InitPopupGallery(commentImages, imageIndex);
+            });
         }
     }
     //End of Comment Section
@@ -1337,9 +1356,14 @@ $(document).ready(function () {
         }
 
         //Comment Container
-        if ($('.comment-section-container').length){
+        if ($('.comment-section-container').length) {
             $('.comment-container .comment-text').each(function () {
                 ifContinueReading($(this), 4);
+            });
+        }
+        if ($('.images-container').length) {
+            $('.images-container').each(function () {
+                ifImagesExceeds($(this));
             });
         }
         if ($('#image-slider-popup.active').length) {
