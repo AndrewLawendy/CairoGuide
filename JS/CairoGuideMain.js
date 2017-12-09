@@ -157,7 +157,7 @@ var ifImagesExceeds = function (wrp) {
     for (var i = 0; i < totlaImages; i++) {
         var imagePos = wrp.find('.image-wrp').eq(i).position().top;
         if (imagePos > firsImagePos) {
-            var remaining = totlaImages - i;
+            var remaining = totlaImages - i + 1;
             wrp.find('.image-wrp').eq(i - 1).append('<div class="images-exceeds">+' + remaining + '</div>');
             break;
         }
@@ -949,25 +949,28 @@ $(document).ready(function () {
     //End of Attractions
 
     //Start of Advanced Search
-    higherLowerValidation = false;
     if ($('.advanced-search-filters-wrp').length) {
+        //higherLowerValidation = false;
         $('.dropdown-input').on('click', function () {
             var _this = $(this);
+            $('.dropdown-input').not(_this).removeClass('active');
             _this.toggleClass('active');
-            $(document).on('click', function (e) {
-                if (!_this.is(e.target) && _this.has(e.target).length == 0) {
-                    _this.removeClass('active');
-                }
-            });
+            // $(document).on('click', function (e) {
+            //     if (!_this.is(e.target) && _this.has(e.target).length == 0) {
+            //         _this.removeClass('active');
+            //     }
+            // });
         });
-        $('.dropdown-options li').on('click', function () {
+        $('.dropdown-options li').on('click', function (e) {
+            e.stopPropagation();
             var parentDropDown = $(this).closest('.dropdown-input');
             if (!parentDropDown.hasClass('multiple-choice')) {
                 var dropDownChoice = $(this).text();
                 parentDropDown.find('.selected-value').text(dropDownChoice);
             }
         });
-        $('.dropdown-options li input').on('change', function () {
+        $('.dropdown-options li input').on('change', function (e) {
+            e.stopPropagation();
             var checkboxStatus = $(this).is(':checked'),
                 filterLabel = $(this).next('label').find('.filter-label').text(),
                 filterValue = $(this).closest('.multiple-choice').find('.selected-value'),
@@ -1049,18 +1052,18 @@ $(document).ready(function () {
             var parentSearchFilter = $(this).closest('.advanced-search-filters-wrp');
             var ratingChoices = parentCollapsable.find('p:contains("Rating")').siblings('.multiple-choice').find('.selected-value');
             var facilitiesChoices = parentCollapsable.find('p:contains("Facilities")').siblings('.multiple-choice').find('.selected-value');
-            var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/\D/g, '');
-            if (lowestPrice == '')
-                lowestPrice = 'The lowest possible';
-            var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/\D/g, '');
-            if (highestPrice == '')
-                highestPrice = 'The highest possible';
-            if (!isNaN(lowestPrice) && !isNaN(highestPrice) && Number(lowestPrice) >= Number(highestPrice)) {
-                parentCollapsable.find('p:contains("Lowest price")').siblings('.validation-msg').fadeIn().addClass('entering');
-                parentCollapsable.find('p:contains("Highest price")').siblings('.validation-msg').fadeIn().addClass('entering');
-                higherLowerValidation = true;
-                return;
-            }
+            // var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/\D/g, '');
+            // if (lowestPrice == '')
+            //     lowestPrice = 'The lowest possible';
+            // var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/\D/g, '');
+            // if (highestPrice == '')
+            //     highestPrice = 'The highest possible';
+            // if (!isNaN(lowestPrice) && !isNaN(highestPrice) && Number(lowestPrice) >= Number(highestPrice)) {
+            //     parentCollapsable.find('p:contains("Lowest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+            //     parentCollapsable.find('p:contains("Highest price")').siblings('.validation-msg').fadeIn().addClass('entering');
+            //     higherLowerValidation = true;
+            //     return;
+            // }
 
             if (ratingChoices.children().length == 0) {
                 parentSearchFilter.find('.rating-value').text('Any');
@@ -1083,20 +1086,20 @@ $(document).ready(function () {
                 }
             }
             var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
-            parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
-            parentSearchFilter.find('.highest-price-value').text(highestPrice);
-            higherLowerValidation = false;
+            // parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
+            // parentSearchFilter.find('.highest-price-value').text(highestPrice);
+            // higherLowerValidation = false;
         });
 
         $('.dynamic-settings-wrp').on('click', function () {
             var parentFilterWrapper = $(this).closest('.advanced-search-filters-wrp');
             var siblingCollapsable = parentFilterWrapper.find('.collapsable-filter-wrp');
             siblingCollapsable.toggleClass('open').slideToggle('fast');
-            $(document).on('click', function (e) {
-                if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
-                    siblingCollapsable.removeClass('open').slideUp('fast');
-                }
-            });
+            // $(document).on('click', function (e) {
+            //     if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
+            //         siblingCollapsable.removeClass('open').slideUp('fast');
+            //     }
+            // });
         });
         $('.advanced-search-filters-wrp').on('click', function () {
             var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
@@ -1343,7 +1346,36 @@ $(document).ready(function () {
             }
         }
     });
-
+    $(document).on('click', function (e) {
+        if ($('.dropdown-input').hasClass('active')) {
+            var _this = $('.dropdown-input.active');
+            if (!_this.is(e.target) && _this.has(e.target).length == 0) {
+                _this.removeClass('active');
+            }
+        }
+        if($('.collapsable-filter-wrp').hasClass('open')){
+            var parentFilterWrapper = $('.collapsable-filter-wrp.open').closest('.advanced-search-filters-wrp');
+            if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
+                $('.collapsable-filter-wrp.open').removeClass('open').slideUp('fast');
+            }
+        }
+    });
+    $(document).scroll(function () {
+        var header = $('header'),
+            breakPos = header.height();
+        var scrollPos = $(this).scrollTop();
+        TransformHeader(scrollPos, breakPos);
+        MainBannerlParallax(scrollPos, breakPos);
+        if ($('.side-ads.thirty-width').length) {
+            var adMargin = 30;
+            adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
+            var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
+                stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
+                stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
+            $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+            MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
+        }
+    });
     $(window).resize(function () {
         //Carousel Scroll Adjustment
         if ($('#main-carousel').length) {
@@ -1370,21 +1402,4 @@ $(document).ready(function () {
             MoveMarker();
         }
     });
-});
-
-$(document).scroll(function () {
-    var header = $('header'),
-        breakPos = header.height();
-    var scrollPos = $(this).scrollTop();
-    TransformHeader(scrollPos, breakPos);
-    MainBannerlParallax(scrollPos, breakPos);
-    if ($('.side-ads.thirty-width').length) {
-        var adMargin = 30;
-        adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
-        var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
-            stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
-            stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
-        $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
-        MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
-    }
 });
