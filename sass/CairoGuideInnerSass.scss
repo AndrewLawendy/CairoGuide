@@ -176,10 +176,10 @@ Contains all styles of inner pages
         }
     }
 
-    #image-slider-popup{
+    #image-slider-popup {
         position: fixed;
         z-index: 200;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0, 0, 0, 0.9);
         width: 100%;
         height: 100vh;
         position: fixed;
@@ -188,73 +188,65 @@ Contains all styles of inner pages
         opacity: 0;
         @include transition(left 0.3s ease,
         opacity 0.3s ease,
-        top 0s ease 0.3s);    
-
-        .image-slider-wrp{
+        top 0s ease 0.3s);
+        .image-slider-wrp {
             width: 80%;
             margin: 0 auto;
-            box-sizing:border-box;
+            box-sizing: border-box;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             left: 0;
             right: 0;
-
-            .slider-main-slide-wrp{
+            .slider-main-slide-wrp {
                 /*width: 60%;*/
                 overflow: hidden;
                 margin: 0 auto 6px;
                 position: relative;
-                text-align:center;
+                text-align: center;
                 @include media("(min-width: 1200px)") {
                     margin: 0 auto get-vw(6px);
                 }
-
-                .slider-main-image{
+                .slider-main-image {
                     /*width: 100%;*/
-                    height:500px;
+                    height: 500px;
                     display: inline-block;
                     @include media("(min-width: 1200px)") {
                         height: 0 auto get-vw(500px);
                     }
                 }
             }
-
-            .image-small-slider-wrp{
+            .image-small-slider-wrp {
                 width: 60%;
                 margin: 0 auto;
                 overflow: hidden;
-                text-align:center;
-                position:relative;
-
-                .img-small-slider-container{
+                text-align: center;
+                position: relative;
+                .img-small-slider-container {
                     position: relative;
-                    display:inline-block;
-
-                    .img-holder{
+                    display: inline-block;
+                    .img-holder {
                         width: get-vw((1200px * 0.8 * 0.6) / 8);
-                        padding:0 3px;
-                        box-sizing:border-box;
+                        padding: 0 3px;
+                        box-sizing: border-box;
                         float: left;
                         @include media("(min-width: 1200px)") {
-                            padding:0 get-vw(3px);
+                            padding: 0 get-vw(3px);
                         }
-
-                        img{
-                            width:100%;
-                            display:block;
-                            cursor:pointer;
+                        img {
+                            width: 100%;
+                            display: block;
+                            cursor: pointer;
                         }
                     }
                 }
-
-                .active-slider-img-marker{
-                    position:absolute;
-                    top:0;
-                    left:0;
-                    width:0;
-                    height:0;
-                    border:2px solid red;
+                .active-slider-img-marker {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 0;
+                    border: 2px solid red;
                     @include transition(all 0.3s ease);
                     @include media("(min-width: 1200px)") {
                         border-width: get-vw(2px);
@@ -262,8 +254,7 @@ Contains all styles of inner pages
                 }
             }
         }
-
-        .slider-nav{
+        .slider-nav {
             position: absolute;
             width: 100%;
             top: 48%;
@@ -271,19 +262,18 @@ Contains all styles of inner pages
             padding: 0 30px;
             box-sizing: border-box;
             font-size: 3em;
-            line-height: 1em;  
-            height :0;
+            line-height: 1em;
+            height: 0;
             @include media("(min-width: 1200px)") {
-                padding:0 get-vw(30px);
+                padding: 0 get-vw(30px);
             }
-
-            a,a:visited{
+            a,
+            a:visited {
                 color: #fff;
                 text-decoration: none;
             }
         }
-
-        &.active{
+        &.active {
             left: 0;
             top: 0;
             opacity: 1;
@@ -556,7 +546,8 @@ Contains all styles of inner pages
                             }
                         }
                         label {
-                            display: inline-block;
+                            display: block;
+                            overflow: hidden;
                             cursor: pointer;
                             position: relative;
                             padding: 10px;
@@ -707,6 +698,14 @@ Contains all styles of inner pages
                         display: block;
                         @include media("(min-width: 1200px)") {
                             margin-bottom: get-vw(10px);
+                        }
+                    }
+                    .radio-container{
+                        .inline-radio{
+                            line-height: 40px;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(40px);
+                            }
                         }
                     }
                     .validation-msg {
@@ -1088,7 +1087,7 @@ Contains all styles of inner pages
                     width: 100%;
                     top: 48%;
                     /*@include transform(translateY(-50%));*/
-                    height:0;
+                    height: 0;
                     a,
                     a:visited {
                         color: #fff;
@@ -1353,9 +1352,6 @@ Contains all styles of inner pages
                                 stroke-dasharray: 290;
                                 stroke-dashoffset: 290;
                                 @include transition(all 1s);
-                                @include media("(min-width: 1200px)") {
-                                    stroke-width: get-vw(4px);
-                                }
                             }
                         }
                         span {
@@ -1617,14 +1613,14 @@ Contains all styles of inner pages
                             clear: both;
                             height: 150px;
                             overflow: hidden;
-                            margin-top:15px;
+                            margin-top: 15px;
                             @include media("(min-width: 1200px)") {
                                 height: get-vw(150px);
-                                margin-top:get-vw(15px);
+                                margin-top: get-vw(15px);
                             }
                             .image-wrp {
                                 float: left;
-                                border:10px solid #fff;
+                                border: 10px solid #fff;
                                 height: 150px;
                                 position: relative;
                                 cursor: pointer;
@@ -1632,7 +1628,7 @@ Contains all styles of inner pages
                                 box-sizing: border-box;
                                 @include media("(min-width: 1200px)") {
                                     height: get-vw(150px);
-                                    border:get-vw(10px) solid #fff;
+                                    border: get-vw(10px) solid #fff;
                                 }
                                 img {
                                     height: 100%;
@@ -1645,8 +1641,8 @@ Contains all styles of inner pages
                                         margin-left: get-vw(15px);
                                     }
                                 }
-                                &:hover{
-                                    img{
+                                &:hover {
+                                    img {
                                         @include transform(scale(1.2));
                                         @include transition(all .15s);
                                     }
@@ -1655,9 +1651,9 @@ Contains all styles of inner pages
                                     position: absolute;
                                     top: 0;
                                     left: 0;
-                                    width:100%;
+                                    width: 100%;
                                     height: 100%;
-                                    background: rgba(0,0,0,.7);
+                                    background: rgba(0, 0, 0, .7);
                                     text-align: center;
                                     color: #fff;
                                     line-height: 150px;
