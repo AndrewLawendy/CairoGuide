@@ -667,338 +667,51 @@
             </div>
         </div>
     </header>
-
-
     <main>
-        <article>
-            <section class="category-banner">
-                <h1></h1>
-            </section>
-            <section class="container">
-                <div class="ad-below-banner-wrp">
-                    <img src="../Images/ad-below-banner.jpg" alt="Advert-1">
-                </div>
-                <div class="advanced-search-filters-wrp">
-                    <div class="seventy-width">
-                        <div class="dynamic-settings-wrp">
-                            <div class="settings-column">
-                                <div class="column-index"></div>
-                            </div>
-                            <div class="settings-column">
-                                <div class="column-index"></div>
-                            </div>
-                            <div class="settings-column">
-                                <div class="column-index"></div>
-                            </div>
-                        </div>
-                        <div class="filter-result-wrp">
-                            <!-- <div class="filter-result-item" title="Lowest price">
-                                        <span>Lowest price : </span>
-                                        <span class="lowest-price-value">325</span>
-                                        <span class="unit">EGP</span>
-                                    </div>
-                                    <div class="filter-result-item" title="Highest price">
-                                        <span>Highest price : </span>
-                                        <span class="highest-price-value">875</span>
-                                        <span class="unit">EGP</span>
-                                    </div> -->
-                            <div class="filter-result-item" title="Rating">
-                                <span>Rating : </span>
-                                <span class="rating-value">
-                                    <span>Excellent</span>
-                                    <span>Good</span>
-                                </span>
-                            </div>
-                            <div class="filter-result-item" title="Facilities">
-                                <span>Facilities : </span>
-                                <span class="facilities-value">
-                                    <span>Parking</span>
-                                    <span>Music</span>
-                                    <span>Bar</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="thirty-width">
-                        <div class="filter-sorting-wrp">
-                            <div class="filter-field-input dropdown-input" title="Please choose among options">
-                                <span class="selected-value">Price (Low to High)</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <!-- <li title="Price (Low to High)">Price (Low to High)</li>
-                                            <li title="Price (High to Low)">Price (High to Low)</li> -->
-                                    <li title="Rating">Rating</li>
-                                    <li title="Price and rating">Price and rating</li>
-                                </ul>
-                            </div>
-                            <i class="icon-filter-sort"></i>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="collapsable-filter-wrp">
-                        <!-- <div class="filter-set-item">
-                            <p>Lowest price</p>
-                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp" />
-                            <div class="validation-msg">
-                                <span>This value must be lower than the higher price</span>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Highest price</p>
-                            <input class="simulate-number" type="text" placeholder="Please choose" data-unit="egp" />
-                            <div class="validation-msg">
-                                <span>This value must be higher than the lowest price</span>
-                            </div>
-                        </div> -->
-                        <div class="filter-set-item">
-                            <p>Rating</p>
-                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
-                                <span class="selected-value">Please choose</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <li>
-                                        <input id="filter1-excellent" type="checkbox" />
-                                        <label for="filter1-excellent" title="Excellent">
-                                            <span class="filter-label">Excellent</span>
-                                            <span class="filter-rating-count">190</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input id="filter1-good" type="checkbox">
-                                        <label for="filter1-good" title="Good">
-                                            <span class="filter-label">Good</span>
-                                            <span class="filter-rating-count">100</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-pleasant">
-                                        <label for="filter1-pleasant" title="Pleasant">
-                                            <span class="filter-label">Pleasant</span>
-                                            <span class="filter-rating-count">40</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-not-rated">
-                                        <label for="filter1-not-rated" title="Not rated">
-                                            <span class="filter-label">Not rated</span>
-                                            <span class="filter-rating-count">3</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Facilities</p>
-                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
-                                <span class="selected-value">Please choose</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <li>
-                                        <input type="checkbox" id="filter1-parking" />
-                                        <label for="filter1-parking" title="Parking">
-                                            <span class="filter-label">Parking</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-music" />
-                                        <label for="filter1-music" title="Music">
-                                            <span class="filter-label">Music</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-car" />
-                                        <label for="filter1-car" title="Car">
-                                            <span class="filter-label">Car</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-wifi" />
-                                        <label for="filter1-wifi" title="WiFi">
-                                            <span class="filter-label">WiFi</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-food" />
-                                        <label for="filter1-food" title="Food">
-                                            <span class="filter-label">Food</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-beverages" />
-                                        <label for="filter1-beverages" title="Beverages">
-                                            <span class="filter-label">Beverages</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Offers</p>
-                            <div class="radio-container">
-                                <div class="inline-radio">
-                                    <input type="radio" name="filter1-offers" id="filter1-both" checked>
-                                    <label for="filter1-both" title="Both">Both</label>
-                                </div>
-                                <div class="inline-radio text-center">
-                                    <input type="radio" name="filter1-offers" id="filter1-yes">
-                                    <label for="filter1-yes" title="Yes">Yes</label>
-                                </div>
-                                <div class="inline-radio text-right">
-                                    <input type="radio" name="filter1-offers" id="filter1-no">
-                                    <label for="filter1-no" title="No">No</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-set-item float-right" title="Go">
-                            <div class="search-go-event">
-                                <span>Go</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="items-list-wrp display-inline-block full-width">
-                    <div class="side-ads thirty-width">
-                        <div class="ads-wrp">
-                            <img src="../images/item-listing-test-4.jpg" alt="halloween Ad" />
-                        </div>
-                    </div>
-                    <div class="items-list-container seventy-width">
-                        <div class="item-wrp">
-                            <div class="item-info">
-                                <div class="item-img">
-                                    <img src="../images/item-listing-test-1.jpg" alt="Cairo Opera House" />
-                                </div>
-                                <div class="item-data">
-                                    <div class="item-title-rating display-inline-block full-width">
-                                        <h2>Cairo Opera House</h2>
-                                        <div class="item-rating">
-                                            <span>Excellent - 4.5</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-location">
-                                        <i class="icon-map-location"></i>
-                                        <a href="#" title="#">Opera Land، EL GEZIRAH، Zamalek, Cairo Governorate - Show on map
-                                        </a>
-                                    </div>
-                                    <p>The Cairo Opera House, part of Cairo's National Cultural Center, is the main performing
-                                        arts venue in the Egyptian capital.</p>
-                                    <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
-                                        <a href="#" title="Buy Tickets">Buy Tickets</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-wrp">
-                            <div class="item-info">
-                                <div class="item-img">
-                                    <img src="../images/item-listing-test-2.jpg" alt="Dublin Pub" />
-                                </div>
-                                <div class="item-data">
-                                    <div class="item-title-rating display-inline-block full-width">
-                                        <h2>Dublin pub</h2>
-                                        <div class="item-rating">
-                                            <span>Good - 4.0</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-location">
-                                        <i class="icon-map-location"></i>
-                                        <a href="#" title="#">Zamalek, Cairo Governorate - Show on map
-                                        </a>
-                                    </div>
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                                    <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-wrp">
-                            <div class="item-info">
-                                <div class="item-img">
-                                    <img src="../images/item-listing-test-3.jpg" alt="Deals Pub" />
-                                </div>
-                                <div class="item-data">
-                                    <div class="item-title-rating display-inline-block full-width">
-                                        <h2>Deals pub</h2>
-                                        <div class="item-rating">
-                                            <span>Pleasent - 2.5</span>
-                                        </div>
-                                    </div>
-                                    <div class="item-location">
-                                        <i class="icon-map-location"></i>
-                                        <a href="#" title="#">Maadi, Cairo Governorate - Show on map
-                                        </a>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                    <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
-                                        <a href="#" title="Buy Tickets">Buy Tickets</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="olis-choice-wrp">
-                    <div class="section-title display-inline-block">
-                        <h2>
-                            Oli's Choice
-                        </h2>
-                    </div>
-                    <div class="olis-choice-items-container display-inline-block full-width">
-                        <div class="olis-choice-item">
-                            <a href="item-details.html?category=dining&subcategory=cafés" title="Public circus festival">
-                                <div class="olis-choice-item-image">
-                                    <img src="../images/item-listing-test-7.jpeg" alt="Public circus festival" />
-                                </div>
-                                <div class="olis-choice-item-info">
-                                    <h3>Public circus festival</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="olis-choice-item">
-                            <a href="item-details.html?category=dining&subcategory=cafés" title="Casino le Roi">
-                                <div class="olis-choice-item-image">
-                                    <img src="../images/item-listing-test-8.jpg" alt="Casino le Roi" />
-                                </div>
-                                <div class="olis-choice-item-info">
-                                    <h3>Casino le Roi</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="olis-choice-item">
-                            <a href="item-details.html?category=dining&subcategory=cafés" title="Golf View Lounge">
-                                <div class="olis-choice-item-image">
-                                    <img src="../images/item-listing-test-9.jpeg" alt="Golf View Lounge" />
-                                </div>
-                                <div class="olis-choice-item-info">
-                                    <h3>Golf View Lounge</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="olis-choice-item">
-                            <a href="item-details.html?category=dining&subcategory=cafés" title="38 Pub">
-                                <div class="olis-choice-item-image">
-                                    <img src="../images/item-listing-test-10.jpeg" alt="38 Pub" />
-                                </div>
-                                <div class="olis-choice-item-info">
-                                    <h3>38 Pub</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </article>
+        <section class="category-banner" style="background:#ccc url('../images/banners/template-banner.jpg') no-repeat center;background-size:cover">
+            <h1>best of cairo components template</h1>
+        </section>
+        <section class="container normal-text">
+            <h1>H1 Title</h1>
+            <h2>H2 Title</h2>
+            <h3>H3 Title</h3>
+            <h4>H4 Title</h4>
+            <h5>H5 Title</h5>
+            <h6>H6 Title</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius consectetur lectus et efficitur. Ut vitae
+                purus et nulla pulvinar finibus sed eget nunc. Nullam vel libero metus. Aenean faucibus magna feugiat sollicitudin
+                fermentum. Pellentesque efficitur ante ut tempor tristique. Cras ut consectetur mi. Aenean sodales libero
+                eget diam scelerisque finibus. Integer lacinia diam nec turpis tristique gravida. Fusce aliquam risus ante,
+                vitae molestie metus semper at. Curabitur nec lacus nunc.</p>
+            <p>Sed ultrices diam non mauris aliquam, porta semper diam bibendum. Fusce nec lacinia orci. Etiam luctus, orci
+                sit amet maximus faucibus, sem sapien finibus magna, quis venenatis mauris tellus ut diam. Donec porta accumsan
+                vulputate. Donec eu tristique odio, sed scelerisque dui. Aenean nibh urna, sagittis sed fermentum consequat,
+                elementum interdum nunc. Donec ex dui, ultricies nec nunc varius, egestas molestie dui. Sed urna magna, sodales
+                vel placerat id, sagittis placerat nisl. Aliquam sapien elit, sagittis non ex ut, fermentum dictum dolor.
+                Vivamus non augue venenatis, sagittis justo commodo, gravida metus. Aliquam et nisl ac sapien commodo condimentum
+                auctor in mauris. Pellentesque libero dui, ornare ac sapien at, convallis mollis urna. Fusce et pellentesque
+                neque. In hac habitasse platea dictumst. Pellentesque eget interdum mauris, in condimentum est.</p>
+            <ul>
+                <li>
+                    Item 1
+                </li>
+                <li>
+                    Item 2
+                </li>
+                <li>
+                    Item 3
+                </li>
+                <li>
+                    Item 4
+                </li>
+                <li>
+                    Item 5
+                </li>
+                <li>
+                    Item 6
+                </li>
+            </ul>
+        </section>
     </main>
     <!--Footer-->
     <footer>

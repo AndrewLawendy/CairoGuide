@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="keywords" content="Cairo Guide, Oli, Cairo, Egypt, Accomodation, Dining, Nightlife, Beauty, Shoping, Fun, Entertainment, Sports, Services, Utilities">
     <meta name="description" content="CAIRO'S BEST HOTELS, RESTAURANTS, CAFES, GIGS, CLUBS, SHOPS AND MORE">
     <title>Cairo Guide | Home</title>
@@ -60,17 +60,19 @@
             <div class="slider-main-slide-wrp">
                 <img src="../images/details-gallery-test-1.jpg" alt="" class="slider-main-image" />
             </div>
+            <div class="slider-count">
+                <span></span>
+            </div>
             <div class="image-small-slider-wrp">
                 <div class="img-small-slider-container"></div>
-                <div class="active-slider-img-marker"></div>
             </div>
         </div>
         <div class="slider-nav">
-                <div class="full-width">
-                    <a href="javascript:void(0);" title="Next" class="icon-right-chevron float-right slider-nav-next"></a>
-                    <a href="javascript:void(0);" title="Prev" class="icon-left-chevron float-left slider-nav-prev"></a>
-                </div>
+            <div class="full-width">
+                <a href="javascript:void(0);" title="Next" class="icon-right-chevron float-right slider-nav-next"></a>
+                <a href="javascript:void(0);" title="Prev" class="icon-left-chevron float-left slider-nav-prev"></a>
             </div>
+        </div>
     </div>
     <!--Header-->
     <header>
@@ -86,17 +88,17 @@
                         <a href="home.html" title="Home">Home</a>
                     </li>
                     <li>
-                        <a href="#" title="About">About</a>
+                        <a href="about.html" title="About">About</a>
                     </li>
                     <li>
-                        <a href="#" title="Contact">Contact</a>
+                        <a href="contact.html" title="Contact">Contact</a>
                     </li>
                 </ul>
                 <ul class="float-right header-account-menu">
                     <li>
                         <span>
-                            <a href="javascript:void(0);" title="Login" class="login-btn">Login</a>&nbsp;/&nbsp;
-                            <a href="javascript:void(0);" title="Register" class="register-btn">Register</a>
+                            <a href="../html/login.html" title="Login" class="login-btn">Login</a>&nbsp;/&nbsp;
+                            <a href="../html/login.html" title="Register" class="register-btn">Register</a>
                         </span>
                     </li>
                     <li>
@@ -660,6 +662,11 @@
                 <nav>
                     <ul>
                         <li>
+                            <a href="home.html" title="Home">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="javascript:void(0);" title="Back To Top" onclick="BackToTop()">
                                 <i class="icon-back-to-top"></i>
                             </a>
@@ -670,8 +677,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="word-link login-btn" href="javascript:void(0);" title="Login">Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-                            <a class="word-link register-btn" href="javascript:void(0);" title="Register">Register</a>
+                            <a class="word-link login-btn" href="login.html" title="Login">Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+                            <a class="word-link register-btn" href="login.html" title="Register">Register</a>
                         </li>
                     </ul>
                 </nav>
@@ -711,7 +718,7 @@
             </section>
         </article>
         <article class="marg-t30">
-            <section class="category-banner">
+            <section class="category-banner details-banner">
 
             </section>
             <section class="container">
@@ -1394,21 +1401,27 @@
                 <div class="half-width responsive">
                     <ul>
                         <li>
-                            <a href="#" title="Home">Home</a>
+                            <a href="home.html" title="Home">Home</a>
                         </li>
                         <li>
-                            <a href="#" title="Categories">Categories</a>
+                            <a href="category.html?category=accomodation" title="Accomodation">Accomodation</a>
                         </li>
                         <li>
-                            <a href="#" title="About">About</a>
+                            <a href="category.html?category=dining" title="Dining">Dining</a>
                         </li>
                         <li>
-                            <a href="#" title="Contact">Contact</a>
+                            <a href="category.html?category=nightlife" title="Nightlife">Nightlife</a>
                         </li>
                     </ul>
                 </div>
                 <div class="half-width responsive">
                     <ul>
+                        <li>
+                            <a href="about.html" title="About">About</a>
+                        </li>
+                        <li>
+                            <a href="contact.html" title="Contact">Contact</a>
+                        </li>
                         <li>
                             <a href="#" title="FAQ'S">FAQ'S</a>
                         </li>
@@ -1417,6 +1430,9 @@
                         </li>
                         <li>
                             <a href="#" title="Privacy">Privacy</a>
+                        </li>
+                        <li>
+                            <a href="sitemap.html" title="Sitemap">Sitemap</a>
                         </li>
                     </ul>
                 </div>

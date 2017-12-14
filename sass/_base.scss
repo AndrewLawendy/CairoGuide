@@ -16,6 +16,7 @@ $danger:#d9534f;
 
 /*Category Colors*/
 
+
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
 "tourism" desaturate(lighten(#00a79d, 10%), 30%),
 "shopping" desaturate(lighten(#ec008c, 10%), 30%),
@@ -36,7 +37,10 @@ $colorList: "nightlife" #f90000,
 "accomodation" #069347,
 "fitness" #0f82b7,
 "entertainment" #7f3f98,
-"more" #9a1c52;
+"more" #9a1c52,
+"logo-pink" #db2b4a,
+"logo-yellow" #f3a41e,
+"logo-green" #5daa46;
 
 /*Mixins*/
 
@@ -466,6 +470,10 @@ body {
     color: $danger;
 }
 
+.icon-home:before {
+    content: "\e917";
+}
+
 
 /*General Declarations*/
 
@@ -490,19 +498,86 @@ p {
 }
 
 h2 {
-    font-size: 3.6em
+    font-size: 3.6em;
 }
 
 h3 {
-    font-size: 2.9em
+    font-size: 2.9em;
 }
 
 h6 {
-    font-size: 1.15em
+    font-size: 1.15em;
 }
 
 a {
     cursor: pointer
+}
+
+p{
+    line-height:1.2em;
+}
+
+.normal-text {
+    h1 {
+        font-size: 3.8em;
+    }
+    h2{
+        font-size: 3.3em;
+    }
+    h3{
+        font-size: 2.6em;
+    }
+    h4 {
+        font-size: 2em;
+    }
+    h5 {
+        font-size: 1.4em;
+    }
+    h6{
+        font-size: 1.15em;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 15px;
+        @include media("(min-width: 1200px)") {
+            margin-bottom: get-vw(15px);
+        }
+    }
+    p {
+        margin-bottom: 10px;
+        @include media("(min-width: 1200px)") {
+            margin-bottom: get-vw(10px);
+        }
+    }
+    ul{
+        li{
+            margin-bottom:5px;
+            @include media("(min-width: 1200px)") {
+                margin-bottom: get-vw(5px);
+            }
+
+            &:before{
+                content: '';
+                display: block;
+                width: 3px;
+                height: 3px;
+                background-color: #000;
+                float: left;
+                margin-right: 5px;
+                margin-top: 5px;
+                @include media("(min-width: 1200px)") {
+                    width: get-vw(3px);
+                    height: get-vw(3px);
+                    margin-right: get-vw(5px);
+                    margin-top: get-vw(5px);
+                }
+            }
+        }
+    }
 }
 
 .container {
@@ -1456,6 +1531,7 @@ input[type="radio"] {
                     background-color: transparent;
                     position: relative;
                     z-index: 100;
+                    font-size:1rem;
                     @include reset-appearance();
                     @include media("(min-width: 1200px)") {
                         border-bottom-width: get-vw(2px);
@@ -2289,8 +2365,8 @@ footer {
 }
 
 @include media("(max-width: 1200px) and (min-width: 769px)") {
-    .opening-hours-container{
-        li{
+    .opening-hours-container {
+        li {
             font-size: 1.2vw;
         }
     }
