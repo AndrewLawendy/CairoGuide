@@ -209,8 +209,7 @@ $colorList: "nightlife" #f90000,
 
 @mixin object-fit-img() {
     width: 100%;
-    height: auto;
-    min-height:100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -313,8 +312,9 @@ body {
     overflow-x: hidden;
 }
 
-body {
-    @include media("(min-width: 1200px)") {
+body,
+html {
+    @include media("(min-width: 768px)") {
         font-size: get-vw(14px);
     }
 }
@@ -499,43 +499,43 @@ p {
 }
 
 h2 {
-    font-size: 3.6em;
+    font-size: 3.6rem;
 }
 
 h3 {
-    font-size: 2.9em;
+    font-size: 2.9rem;
 }
 
 h6 {
-    font-size: 1.15em;
+    font-size: 1.15rem;
 }
 
 a {
     cursor: pointer
 }
 
-p{
-    line-height:1.2em;
+p {
+    line-height: 1.2rem;
 }
 
 .normal-text {
     h1 {
-        font-size: 3.8em;
+        font-size: 3.8rem;
     }
-    h2{
-        font-size: 3.3em;
+    h2 {
+        font-size: 3.3rem;
     }
-    h3{
-        font-size: 2.6em;
+    h3 {
+        font-size: 2.6rem;
     }
     h4 {
-        font-size: 2em;
+        font-size: 2rem;
     }
     h5 {
-        font-size: 1.4em;
+        font-size: 1.4rem;
     }
-    h6{
-        font-size: 1.15em;
+    h6 {
+        font-size: 1.15rem;
     }
     h1,
     h2,
@@ -554,14 +554,13 @@ p{
             margin-bottom: get-vw(10px);
         }
     }
-    ul{
-        li{
-            margin-bottom:5px;
+    ul {
+        li {
+            margin-bottom: 5px;
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(5px);
             }
-
-            &:before{
+            &:before {
                 content: '';
                 display: block;
                 width: 3px;
@@ -987,7 +986,7 @@ input[type="radio"] {
         display: inline-block;
         background-color: #131313;
         color: #fff;
-        font-size: .7em;
+        font-size: .7rem;
         padding: 7px;
         border-radius: 7px;
         box-sizing: border-box;
@@ -1028,7 +1027,7 @@ input[type="radio"] {
         padding: 0 10px;
         line-height: 40px;
         color: #fff;
-        font-size: 1em;
+        font-size: 1rem;
         border: 0;
         text-transform: uppercase;
         @include media("(min-width: 1200px)") {
@@ -1251,7 +1250,7 @@ input[type="radio"] {
         letter-spacing: 10px;
         width: 400px;
         text-align: right;
-        font-size: 2em;
+        font-size: 2rem;
         line-height: 35px;
         @include media("(min-width: 1200px)") {
             letter-spacing: get-vw(10px);
@@ -1296,6 +1295,65 @@ input[type="radio"] {
 .logo-green-title {
     @include apply-color(background-color,
     $logo-green);
+}
+
+
+/*Loader*/
+
+#loader-wrp {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    text-align: center;
+    &:before,
+    .loader-text-container {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    &:before {
+        content: '';
+        height: 100%;
+    }
+    .loader-text-container {
+        overflow: hidden;
+        position:relative;
+        width:95%;
+        height:get-vw(6 * 14px) + get-vw(20px);
+        
+        .loader-text-white-bg {
+            background-color:#fff;
+            position:relative;
+            margin-left:100%;
+            z-index:100;
+            @include transition(all 0.2s ease);
+            &.active {
+                margin-left:0;
+                @include transition(all 0.2s ease);
+            }
+            &.in-active {
+                position:absolute;
+                z-index:-1;
+                margin-left:0;
+                @include transition(all 0.2s ease 0.2s);
+            }
+            span {
+                display: inline-block;
+                text-transform: uppercase;
+                color: #fff;
+                padding: 10px 10px 5px;
+                box-sizing: border-box;
+                font: 6rem 'Lato-Black';
+                letter-spacing: 5px;
+                line-height: 6rem;
+                @include media("(min-width: 1200px)") {
+                    padding: get-vw(10px) get-vw(10px) get-vw(5px);
+                    letter-spacing: get-vw(5px);
+                }
+            }
+        }
+    }
 }
 
 
@@ -1367,8 +1425,8 @@ input[type="radio"] {
             padding: 10px;
             left: -15px;
             font-family: "Lato-Regular";
-            line-height: 1.3em;
-            font-size: 1.2em;
+            line-height: 1.3rem;
+            font-size: 1.2rem;
             text-align: center;
             @include media("(min-width: 1200px)") {
                 width: get-vw(10px);
@@ -1455,7 +1513,7 @@ input[type="radio"] {
                 }
             }
             span {
-                font: 1.4em "Lato-Regular";
+                font: 1.4rem "Lato-Regular";
                 text-transform: uppercase;
                 line-height: 40px;
                 @include media("(min-width: 1200px)") {
@@ -1464,13 +1522,13 @@ input[type="radio"] {
             }
         }
         h2 {
-            font-size: 16.6em;
+            font-size: 16.6rem;
             white-space: nowrap;
             text-transform: capitalize;
             position: absolute;
             top: 50%;
             left: 500px;
-            line-height: 1em;
+            line-height: 1rem;
             opacity: 0;
             z-index: 100;
             @include transition(left 70s linear,
@@ -1532,7 +1590,7 @@ input[type="radio"] {
                     background-color: transparent;
                     position: relative;
                     z-index: 100;
-                    font-size:1rem;
+                    font-size: 1rem;
                     @include reset-appearance();
                     @include media("(min-width: 1200px)") {
                         border-bottom-width: get-vw(2px);
@@ -1543,7 +1601,7 @@ input[type="radio"] {
                     }
                 }
                 label {
-                    font: 1.3em "Lato-Light";
+                    font: 1.3rem "Lato-Light";
                     text-transform: uppercase;
                     letter-spacing: 5px;
                     position: absolute;
@@ -1556,7 +1614,7 @@ input[type="radio"] {
                 }
                 input.field-focus+label {
                     top: -22px;
-                    font: 1em "Lato-Light";
+                    font: 1rem "Lato-Light";
                     @include transition(all 0.3s ease);
                     @include media("(min-width: 1200px)") {
                         top: get-vw(-22px);
@@ -1572,7 +1630,7 @@ input[type="radio"] {
                     line-height: 40px;
                     text-decoration: none;
                     color: #fff;
-                    font-size: 1.5em;
+                    font-size: 1.5rem;
                     border-radius: 100%;
                     position: absolute;
                     top: 0;
@@ -1747,7 +1805,7 @@ header {
                 float: left;
                 a,
                 a:visited {
-                    font-size: 1em;
+                    font-size: 1rem;
                 }
             }
         }
@@ -1798,7 +1856,7 @@ header {
                         margin-top: 0;
                         [class^="icon-"],
                         [class*=" icon-"] {
-                            font-size: 1.14em;
+                            font-size: 1.14rem;
                         }
                     }
                 }
@@ -1948,7 +2006,7 @@ header {
                                 position: absolute;
                                 top: 35%;
                                 right: 5px;
-                                font-size: .7em;
+                                font-size: .7rem;
                                 color: #000;
                                 @include transform(rotate(-90deg));
                                 @include transition(all 0.3s);
@@ -2059,8 +2117,8 @@ header {
                     }
                     .icon-back-to-top {
                         display: block;
-                        font-size: 1.9em;
-                        line-height: 0.6em;
+                        font-size: 1.9rem;
+                        line-height: 1rem;
                     }
                 }
             }
@@ -2159,10 +2217,10 @@ main {
                             }
                             h3 {
                                 @include user-select(none);
-                                font: 1.5em "Lato-Light";
+                                font: 1.5rem "Lato-Light";
                                 color: #fff;
                                 text-transform: uppercase; //white-space: nowrap;
-                                line-height: 1em; //margin-left: 40px;
+                                line-height: 1rem; //margin-left: 40px;
                                 //@include transition(all 3s ease);
                                 /*@include media("(min-width: 1200px)") {
                                 margin-left: get-vw(40px);
@@ -2208,7 +2266,7 @@ main {
                 width: 40px;
                 height: 40px;
                 border: 2px solid #000;
-                font-size: 1.6em;
+                font-size: 1.6rem;
                 color: #000;
                 padding: 0 7px;
                 box-sizing: border-box;
@@ -2274,7 +2332,7 @@ footer {
         width: 100%;
         text-transform: uppercase;
         .rights {
-            font-size: 1.15em;
+            font-size: 1.15rem;
             margin-top: 40px;
             @include media("(min-width: 1200px)") {
                 margin-top: get-vw(40px);
@@ -2329,8 +2387,8 @@ footer {
             }
         }
         .half-width {
-            font-size: 1.13em;
-            line-height: 1.8em
+            font-size: 1.13rem;
+            line-height: 1.8rem
         }
         .mag-info {
             letter-spacing: 0.15em;
@@ -2345,7 +2403,7 @@ footer {
         }
         .mag-social {
             text-align: right;
-            font-size: 1.9em;
+            font-size: 1.9rem;
             i {
                 color: #131313;
                 padding: 10px;
@@ -2438,7 +2496,7 @@ footer {
             text-align: center;
             h6,
             .rights {
-                line-height: 1.5em;
+                line-height: 1.5rem;
             }
             .mag-info {
                 margin-top: 30px;

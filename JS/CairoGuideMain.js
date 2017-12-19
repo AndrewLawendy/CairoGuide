@@ -1,5 +1,28 @@
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
+//Initialize loader
+/*var InitLoader = function () {
+    var intervalTiming = 1000,
+        decreasedTime = 10,
+        animationTiming = 200,
+        descreasedAnimationTiming = 20,
+        catIndex = 0,
+        categories = ['accomodation', 'dining', 'nightlife', 'beauty', 'shopping', 'entertainment', 'fitness', 'services'],
+        loaderTextContainer = $('#loader-wrp').find('.loader-text-container');
+    var loaderInterval = setInterval(function () {
+        var newLayer = $('<div class="loader-text-white-bg"><span class="'+categories[catIndex]+'-bg">'+categories[catIndex]+'</span></div>');
+        loaderTextContainer.prepend(newLayer);
+        loaderTextContainer.find('.loader-text-white-bg').last().addClass('in-active').removeClass('active');
+        loaderTextContainer.find('.loader-text-white-bg').first().addClass('active');
+        loaderTextContainer.find('.loader-text-white-bg').last().delay(animationTiming).remove();
+        catIndex++;
+        if(catIndex == categories.length){
+            catIndex = 0;
+        }
+    }, intervalTiming);
+}
+InitLoader();*/
+
 //Initiate trending sliders
 var ResetTrendingSlides = function (trendItem) {
     trendItem.find('.trend-slide').each(function () {
@@ -49,6 +72,7 @@ var DragHighlights = function (actualScroll, baseClick, newMousePos) {
     $('.highlights-carousel-wrp').scrollLeft(actualScroll - HighlightDiff);
 }
 
+//Check highlights limit
 var checkHighlightLimit = function () {
     highlightsCarouselWrpPos = $('.highlights-carousel-wrp').scrollLeft(),
         maxScroll = $('.highlights-carousel-wrp')[0].scrollWidth - $('.highlights-carousel-wrp').width();
@@ -62,7 +86,6 @@ var checkHighlightLimit = function () {
         $('.highlights-controls a').removeClass('disabled');
     }
 }
-
 
 //Transform header during document scroll
 var TransformHeader = function (scrollPos, breakPos) {

@@ -112,10 +112,13 @@ section {
     display: block
 }
 
+body,html{
+    font-size: 14px;
+}
+
 body {
     line-height: 1;
     background: #fff;
-    font-size: 14px;
     font-family: "Lato-Regular", sans-serif!important;
     color: #000
 }
