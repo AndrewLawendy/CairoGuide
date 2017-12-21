@@ -1,27 +1,79 @@
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
-//Initialize loader
-/*var InitLoader = function () {
-    var intervalTiming = 1000,
-        decreasedTime = 10,
-        animationTiming = 200,
-        descreasedAnimationTiming = 20,
-        catIndex = 0,
-        categories = ['accomodation', 'dining', 'nightlife', 'beauty', 'shopping', 'entertainment', 'fitness', 'services'],
-        loaderTextContainer = $('#loader-wrp').find('.loader-text-container');
-    var loaderInterval = setInterval(function () {
-        var newLayer = $('<div class="loader-text-white-bg"><span class="'+categories[catIndex]+'-bg">'+categories[catIndex]+'</span></div>');
-        loaderTextContainer.prepend(newLayer);
-        loaderTextContainer.find('.loader-text-white-bg').last().addClass('in-active').removeClass('active');
-        loaderTextContainer.find('.loader-text-white-bg').first().addClass('active');
-        loaderTextContainer.find('.loader-text-white-bg').last().delay(animationTiming).remove();
+//Apply loader interval time
+var SetLoaderTimeOut = function (catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth) {
+    setTimeout(function () {
+        /*loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming).queue(function () {
+            $(this).removeClass('in-active active').dequeue();
+        });*/
+        loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration',intervalTiming+'ms').delay(intervalTiming).queue(function () {
+            $(this).removeClass('active').dequeue();//.removeAttr('style').dequeue();
+        });
         catIndex++;
-        if(catIndex == categories.length){
+        if (catIndex == categories.length) {
             catIndex = 0;
         }
+        intervalTiming -= decreasedTime;
+        //animationTiming -= decreasedAnimationTiming;
+        decreasedTime -= 3;
+        //decreasedAnimationTiming += 10;
+        if (intervalTiming <= 50){
+            intervalTiming = 50;
+            loaderTextContainer.find('.loader-text-white-bg').width(maxWidth).addClass('hide-text');
+            loaderTextContainer.find('.loader-main-text').addClass('active').delay(10000).queue(function () {
+                $(loaderTextContainer).find('.loader-text-white-bg').addClass('stop-animation').css('opacity','1').dequeue();
+                return false;
+            });
+            
+        }
+        if (decreasedTime <= 10){
+            decreasedTime = 10;
+        }
+        /*if(animationTiming <= 600){
+            animationTiming = 600;
+        }*/
+        SetLoaderTimeOut(catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth);
     }, intervalTiming);
 }
-InitLoader();*/
+
+//Initialize loader
+var InitLoader = function () {
+    var intervalTiming = 1500,
+        decreasedTime = 100,
+        animationTiming = 400,
+        decreasedAnimationTiming = 10,
+        catIndex = 0,
+        maxWidth = 0,
+        categories = [],
+        loaderTextContainer = $('#loader-wrp').find('.loader-text-container');
+
+    $('#loader-wrp .loader-text-white-bg').each(function () {
+        categories.push($(this).attr('data-category'));
+        var zindex = parseInt($(this).find('span').width(),10)*-1;
+        $(this).css('z-index',zindex);
+        if($(this).find('span').width() > maxWidth){
+            maxWidth = $(this).find('span').width();
+        }
+    });
+
+    SetLoaderTimeOut(catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth);
+
+    // var loaderInterval = setInterval(function () {
+    //     loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming + 100).queue(function () {
+    //         $(this).removeClass('in-active active').dequeue();
+    //     });
+    //     loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active');
+    //     catIndex++;
+    //     if (catIndex == categories.length) {
+    //         catIndex = 0;
+    //     }
+    //     intervalTiming -= decreasedTime;
+    //     decreasedTime *= 2;
+    //     if (intervalTiming <= 0)
+    //         intervalTiming = 1;
+    // }, intervalTiming);
+}
+InitLoader();
 
 //Initiate trending sliders
 var ResetTrendingSlides = function (trendItem) {
@@ -135,6 +187,11 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         } else {
             $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
         }
+    } else if ($('.article-with-bg').length) {
+        var newBgPosition = scrollPos / 15,
+            newTop = scrollPos / 5;
+        $('.article-with-bg .article-bg').css('object-position', '50% ' + (50 - newBgPosition) + '%');
+        $('.article-with-bg  section').css('bottom', newTop);
     }
 }
 

@@ -1779,6 +1779,9 @@ Contains all styles of inner pages
                         padding: get-vw(20px);
                     }
                 }
+                .login-register-desc {
+                    line-height: 1.2rem;
+                }
                 .login-register-links {
                     &>div {
                         margin-bottom: 20px;
@@ -1793,6 +1796,10 @@ Contains all styles of inner pages
                 .regsiter-container-section {
                     width: 70%;
                     text-align: left;
+                    padding-right: 30px;
+                    @include media("(min-width: 1200px)") {
+                        padding-right: get-vw(30px);
+                    }
                     .login-register-logo,
                     .login-register-desc {
                         margin-bottom: 30px;
@@ -1808,19 +1815,22 @@ Contains all styles of inner pages
                             }
                         }
                     }
-                    .login-register-desc {
-                        line-height: 1.2rem;
-                    }
                 }
                 .login-container-section {
                     width: 30%;
                     background-color: $header-footer-primary-background-color;
                     position: relative;
                     z-index: 1;
-                    text-align: center;
+                    text-align: left;
                     position: absolute;
                     right: 0;
                     top: 0;
+                    padding-bottom:100px;
+                    padding-left: 30px;
+                    @include media("(min-width: 1200px)") {
+                        padding-bottom:get-vw(100px);
+                        padding-left: get-vw(30px);
+                    }
                     .login-register-or {
                         width: 40px;
                         height: 40px;
@@ -1850,7 +1860,11 @@ Contains all styles of inner pages
                             }
                         }
                     }
+                    .login-register-desc {
+                        color:#fff;
+                    }
                     .login-register-links {
+                        text-align: center;
                         position: absolute;
                         bottom: 20px;
                         left: 20px;

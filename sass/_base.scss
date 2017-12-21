@@ -239,6 +239,32 @@ $colorList: "nightlife" #f90000,
     .#{nth($i,1)}-bg {
         background-color: nth($i, 2);
     }
+    #loader-wrp {
+        .loader-text-container {
+            .loader-text-white-bg {
+                span.#{nth($i,1)}-bg {
+                    $dark-color: darken(nth($i, 2), 7%);
+                    text-shadow: 5px 6px 0 rgba($dark-color, 1);
+                }
+                &.hide-text {
+                    background-color:transparent;
+                    text-align:center;
+                    span {
+                        border-width:0;
+                        display:inline-block;
+                        padding:0;
+                        color: nth($i, 2);
+                        background-color: nth($i, 2);
+                        text-shadow: none;
+                        @include transition(all 8s ease);
+                        &:before{
+                            display:none!important;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -349,6 +375,21 @@ html {
     }
     100% {
         transform: scale(0);
+    }
+}
+
+
+/*Loader effect*/
+
+@include key-frame(loader-effect) {
+    0% {
+        opacity: 0; //@include transform(translateY(-100%));
+    }
+    40% {
+        opacity: 1; //left:0;
+    }
+    80% {
+        opacity: 0; //@include transform(translateY(0));
     }
 }
 
@@ -1317,28 +1358,27 @@ input[type="radio"] {
         height: 100%;
     }
     .loader-text-container {
-        overflow: hidden;
+        z-index: 1000;
+        /*overflow: hidden;
         position:relative;
         width:95%;
-        height:get-vw(6 * 14px) + get-vw(20px);
-        
-        .loader-text-white-bg {
-            background-color:#fff;
-            position:relative;
-            margin-left:100%;
-            z-index:100;
-            @include transition(all 0.2s ease);
-            &.active {
-                margin-left:0;
+        height:get-vw(6 * 14px) + get-vw(20px);*/
+        .loader-text-white-bg,
+        .loader-main-text {
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 50%;
+            opacity: 0; //@include transition(all 0.2s ease);
+            /*&.in-active {
+                opacity:0;
+                left:-100px!important;
                 @include transition(all 0.2s ease);
-            }
-            &.in-active {
-                position:absolute;
-                z-index:-1;
-                margin-left:0;
-                @include transition(all 0.2s ease 0.2s);
-            }
-            span {
+            }*/
+            span,
+            img {
                 display: inline-block;
                 text-transform: uppercase;
                 color: #fff;
@@ -1347,11 +1387,61 @@ input[type="radio"] {
                 font: 6rem 'Lato-Black';
                 letter-spacing: 5px;
                 line-height: 6rem;
+                border: 20px double #fff;
+                position: relative;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(10px) get-vw(10px) get-vw(5px);
                     letter-spacing: get-vw(5px);
+                    border-width: get-vw(20px);
+                }
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: -8px;
+                    left: -8px;
+                    width: 100%;
+                    height: 100%;
+                    border: 8px solid #fff;
+                    @include media("(min-width: 1200px)") {
+                        top: get-vw(-8px);
+                        left: get-vw(-8px);
+                        border-width: get-vw(8px);
+                    }
                 }
             }
+        }
+        .loader-text-white-bg {
+            overflow: hidden;
+            @include transform(translateY(-50%));
+            &.active {
+                @include animation(loader-effect 500ms backwards);
+            }
+            &.stop-animation {
+                @include animation(loader-effect 500ms 1 forwards);
+            }
+        }
+        .loader-main-text {
+            background-color: transparent;
+            @include transform(translateY(-50%) scale(10));
+            &.active {
+                opacity: 1;
+                @include transform(translateY(-50%) scale(1));
+                @include transition(opacity 0.05s ease-out,
+                transform 10s ease-out);
+            }
+            img {
+                border: 0;
+                height: 100px;
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(100px);
+                }
+            }
+            /*span {
+                border:0;
+                color: $header-footer-primary-background-color;
+                letter-spacing: 0px;
+            }*/
         }
     }
 }
