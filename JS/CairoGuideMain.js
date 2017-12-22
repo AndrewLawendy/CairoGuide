@@ -225,10 +225,13 @@ var initCalendar = function () {
         remainigDays = 0;
     while (!monthDone) {
         $('.calendar-body tbody').append('<tr></tr>');
-        if (week == 1)
+        if (week == 1){
+            var daysBefore = getDaysInMonth(year, month - 1);
             for (var b = 0; b < firstDayIndex; b++) {
-                $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td></td>');
+                $('.calendar-body tbody tr:nth-child(' + week + ')').prepend('<td class="out-of-month">'+daysBefore+'</td>');
+                daysBefore--;
             }
+        }
         for (d = dayIteration; d <= days; d++) {
             $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td>' + d + '</td>');
             if (d == days) {
@@ -242,7 +245,7 @@ var initCalendar = function () {
             }
         }
         for (var r = 0; r < remainigDays; r++) {
-            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td></td>')
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td class="out-of-month">'+r+'</td>')
         }
     }
 
