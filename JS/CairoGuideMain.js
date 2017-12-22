@@ -1,13 +1,13 @@
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
 //Apply loader interval time
-var SetLoaderTimeOut = function (catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth) {
+var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth) {
     setTimeout(function () {
         /*loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming).queue(function () {
             $(this).removeClass('in-active active').dequeue();
         });*/
-        loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration',intervalTiming+'ms').delay(intervalTiming).queue(function () {
-            $(this).removeClass('active').dequeue();//.removeAttr('style').dequeue();
+        loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration', intervalTiming + 'ms').delay(intervalTiming).queue(function () {
+            $(this).removeClass('active').dequeue(); //.removeAttr('style').dequeue();
         });
         catIndex++;
         if (catIndex == categories.length) {
@@ -17,22 +17,22 @@ var SetLoaderTimeOut = function (catIndex,intervalTiming,categories,loaderTextCo
         //animationTiming -= decreasedAnimationTiming;
         decreasedTime -= 3;
         //decreasedAnimationTiming += 10;
-        if (intervalTiming <= 50){
+        if (intervalTiming <= 50) {
             intervalTiming = 50;
             loaderTextContainer.find('.loader-text-white-bg').width(maxWidth).addClass('hide-text');
             loaderTextContainer.find('.loader-main-text').addClass('active').delay(10000).queue(function () {
-                $(loaderTextContainer).find('.loader-text-white-bg').addClass('stop-animation').css('opacity','1').dequeue();
+                $(loaderTextContainer).find('.loader-text-white-bg').addClass('stop-animation').css('opacity', '1').dequeue();
                 return false;
             });
-            
+
         }
-        if (decreasedTime <= 10){
+        if (decreasedTime <= 10) {
             decreasedTime = 10;
         }
         /*if(animationTiming <= 600){
             animationTiming = 600;
         }*/
-        SetLoaderTimeOut(catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth);
+        SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
     }, intervalTiming);
 }
 
@@ -49,14 +49,14 @@ var InitLoader = function () {
 
     $('#loader-wrp .loader-text-white-bg').each(function () {
         categories.push($(this).attr('data-category'));
-        var zindex = parseInt($(this).find('span').width(),10)*-1;
-        $(this).css('z-index',zindex);
-        if($(this).find('span').width() > maxWidth){
+        var zindex = parseInt($(this).find('span').width(), 10) * -1;
+        $(this).css('z-index', zindex);
+        if ($(this).find('span').width() > maxWidth) {
             maxWidth = $(this).find('span').width();
         }
     });
 
-    SetLoaderTimeOut(catIndex,intervalTiming,categories,loaderTextContainer,decreasedTime,animationTiming,maxWidth);
+    SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
 
     // var loaderInterval = setInterval(function () {
     //     loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming + 100).queue(function () {
@@ -193,6 +193,69 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         $('.article-with-bg .article-bg').css('object-position', '50% ' + (50 - newBgPosition) + '%');
         $('.article-with-bg  section').css('bottom', newTop);
     }
+}
+//Event Calendar
+var getDaysInMonth = function (year, month) {
+    return new Date(year, month + 1, 0).getDate();
+};
+var initCalendar = function () {
+    var date = new Date();
+    if (arguments.length)
+        date = arguments[0];
+    var year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDay(),
+        monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ],
+        daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        currentMonth = monthNames[month],
+        firstDay = daysNames[day],
+        firstDayIndex = $('.calendar-body th:contains("' + firstDay + '")').index(),
+        days = getDaysInMonth(year, month);
+    $('#calendar-wrp .calendar-controls-wrp .month-details').text(year + ', ' + currentMonth);
+    $('#calendar-wrp .calendar-controls-wrp').data({
+        'year': year,
+        'month': month
+    });
+    $('.calendar-body tbody tr').remove();
+    var monthDone = false,
+        week = 1,
+        dayIteration = 1,
+        remainigDays = 0;
+    while (!monthDone) {
+        $('.calendar-body tbody').append('<tr></tr>');
+        if (week == 1)
+            for (var b = 0; b < firstDayIndex; b++) {
+                $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td></td>');
+            }
+        for (d = dayIteration; d <= days; d++) {
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td>' + d + '</td>');
+            if (d == days) {
+                remainigDays = 7 - $('.calendar-body tbody tr:nth-child(' + week + ') td').length;
+                monthDone = true;
+            }
+            if ($('.calendar-body tbody tr:nth-child(' + week + ') td').length == 7) {
+                week++;
+                dayIteration = d + 1;
+                break
+            }
+        }
+        for (var r = 0; r < remainigDays; r++) {
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td></td>')
+        }
+    }
+
+}
+
+var calNextMonth = function (currentYear, currentMonth) {
+    var nextMonth = new Date(currentYear, currentMonth + 1);
+    initCalendar(nextMonth);
+}
+
+var calPrevMonth = function (currentYear, currentMonth) {
+    var prevMonth = new Date(currentYear, currentMonth - 1);
+    initCalendar(prevMonth);
 }
 
 //ifArabic
@@ -1453,6 +1516,22 @@ $(document).ready(function () {
     if ($('.sitemap-list-wrp').length) {
         ArrangeSitemap(4);
     }
+
+    //Start of Events Calendar
+    if ($('#calendar-wrp').length) {
+        initCalendar();
+        $('.calendar-controls-wrp .calendar-prev').on('click', function () {
+            var year = $('.calendar-controls-wrp').data('year'),
+                month = $('.calendar-controls-wrp').data('month');
+            calPrevMonth(year, month);
+        });
+        $('.calendar-controls-wrp .calendar-next').on('click', function () {
+            var year = $('.calendar-controls-wrp').data('year'),
+                month = $('.calendar-controls-wrp').data('month');
+            calNextMonth(year, month);
+        });
+    }
+    //End of Events Calendar
 
     $(document).on('mousedown touchstart', function (e) {
         if ($('#image-slider-popup.active').length) {
