@@ -1255,12 +1255,10 @@ Contains all styles of inner pages
                                 width: get-vw(44px);
                                 height: get-vw(44px);
                             }
-                            iframe {
+                            svg {
                                 width: 100%;
                                 height: 100%;
-                                svg {
-                                    fill: #fff;
-                                }
+                                fill: #fff;
                             }
                         }
                     }
