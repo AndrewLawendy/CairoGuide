@@ -1507,6 +1507,21 @@ $(document).ready(function () {
         ArrangeSitemap(4);
     }
 
+    //Start of Register from
+    if ($('.login-register-container').length) {
+        $('.login-register-links .facebook-btn').on('click', function () {
+            $('.login-register-welcome-wrp').slideUp(function () {
+                $('.register-form').slideDown().addClass('opened');
+            });
+        });
+        $('.register-form button.cancel').on('click', function () {
+            $('.register-form').removeClass('opened').delay(300).slideUp(function () {
+                $('.login-register-welcome-wrp').slideDown();
+            });
+        });
+    }
+    //End of Register from
+
     //Start of Events Calendar
     if ($('#calendar-wrp').length) {
         initCalendar();

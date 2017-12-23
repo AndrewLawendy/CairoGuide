@@ -13,7 +13,7 @@
 
 <body data-category="null">
     <!--Loader-->
-    <div id="loader-wrp">
+    <div id="loader-wrp" style="display:none">
         <div class="loader-text-container">
             <div class="loader-text-white-bg" data-category="accomodation">
                 <span class="accomodation-bg">accomodation</span>
@@ -713,32 +713,66 @@
         <article class="article-with-bg login-register-wrp text-center">
             <img src="../Images/New folder/63533582-egypt-wallpapers.jpg" alt="#" class="article-bg">
             <section class="container login-register-container">
-                <div class="regsiter-container-section">
-                    <div class="login-register-logo">
-                        <img src="../Images/logo.png" alt="Best of Cairo logo" />
+                <div class="login-register-welcome-wrp">
+                    <div class="regsiter-container-section">
+                        <div class="login-register-logo">
+                            <img src="../Images/logo.png" alt="Best of Cairo logo" />
+                        </div>
+                        <div class="login-register-desc normal-text">
+                            <h4 class="marg-t10">Welcome</h4>
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet augue nec lorem
+                                viverra, viverra condimentum sapien consequat. Sed eget fermentum velit. Proin neque ante,
+                                ultricies at ipsum sed, dapibus rutrum nunc. Duis suscipit justo quis volutpat placerat.
+                                Nullam tempor, leo ac porta vestibulum, felis dui porttitor nisi, id congue ligula dolor
+                                id dui.</span>
+                        </div>
+                        <div class="login-register-links">
+                            <a href="javascript:void(0)" title="#" class="facebook-btn">Register with facebook</a>
+                        </div>
                     </div>
-                    <div class="login-register-desc normal-text">
-                        <h4 class="marg-t10">Welcome</h4>
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet augue nec lorem viverra,
-                            viverra condimentum sapien consequat. Sed eget fermentum velit. Proin neque ante, ultricies at
-                            ipsum sed, dapibus rutrum nunc. Duis suscipit justo quis volutpat placerat. Nullam tempor, leo
-                            ac porta vestibulum, felis dui porttitor nisi, id congue ligula dolor id dui.</span>
-                    </div>
-                    <div class="login-register-links">
-                        <a href="#" title="#" class="facebook-btn">Register with facebook</a>
+                    <div class="login-container-section">
+                        <div class="login-register-or">
+                            <span>Or</span>
+                        </div>
+                        <div class="login-register-desc normal-text">
+                            <h4 class="marg-t10">Welcome</h4>
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet augue nec lorem
+                                viverra, viverra condimentum sapien consequat. Sed eget fermentum velit.</span>
+                        </div>
+                        <div class="login-register-links">
+                            <a href="#" title="#" class="facebook-btn">Log in with facebook</a>
+                        </div>
                     </div>
                 </div>
-                <div class="login-container-section">
-                    <div class="login-register-or">
-                        <span>Or</span>
-                    </div>
-                    <div class="login-register-desc normal-text">
-                        <h4 class="marg-t10">Welcome</h4>
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet augue nec lorem viverra,
-                            viverra condimentum sapien consequat. Sed eget fermentum velit.</span>
-                    </div>
-                    <div class="login-register-links">
-                        <a href="#" title="#" class="facebook-btn">Log in with facebook</a>
+                <div class="register-form">
+                    <form>
+                        <div class="user-profile">
+                            <img src="../images/user-4.jpg" alt="John Doe" title="John Doe">
+                        </div>
+                        <div class="form-item">
+                            <label for="register-first-name">First Name : </label>
+                            <input type="text" id="register-first-name" value="Andrew" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="register-last-name">Last Name : </label>
+                            <input type="text" id="register-last-name" value="Hani" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="register-last-name">Main E-Mail : </label>
+                            <input type="text" id="register-last-name" value="andrew.lawendy@outlook.com" readonly>
+                        </div>
+                        <div class="form-item">
+                            <label for="register-email">Secondary E-mail : </label>
+                            <input type="email" id="register-email" placeholder="Write your E-Mail address...">
+                        </div>
+                        <div class="form-item">
+                            <label for="register-telephone">Telephone : </label>
+                            <input type="number" id="register-telephone" placeholder="Write your telephone number...">
+                        </div>
+                    </form>
+                    <div class="controls-btn-container">
+                        <button class="control-btn ripple pos white submit">Submit</button>
+                        <button class="control-btn ripple pos white cancel">Cancel</button>
                     </div>
                 </div>
             </section>
