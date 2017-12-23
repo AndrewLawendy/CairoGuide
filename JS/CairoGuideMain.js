@@ -1,5 +1,80 @@
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
+//Apply loader interval time
+var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth) {
+    setTimeout(function () {
+        /*loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming).queue(function () {
+            $(this).removeClass('in-active active').dequeue();
+        });*/
+        loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration', intervalTiming + 'ms').delay(intervalTiming).queue(function () {
+            $(this).removeClass('active').dequeue(); //.removeAttr('style').dequeue();
+        });
+        catIndex++;
+        if (catIndex == categories.length) {
+            catIndex = 0;
+        }
+        intervalTiming -= decreasedTime;
+        //animationTiming -= decreasedAnimationTiming;
+        decreasedTime -= 3;
+        //decreasedAnimationTiming += 10;
+        if (intervalTiming <= 50) {
+            intervalTiming = 50;
+            loaderTextContainer.find('.loader-text-white-bg').width(maxWidth).addClass('hide-text');
+            loaderTextContainer.find('.loader-main-text').addClass('active').delay(10000).queue(function () {
+                $(loaderTextContainer).find('.loader-text-white-bg').addClass('stop-animation').css('opacity', '1').dequeue();
+                return false;
+            });
+
+        }
+        if (decreasedTime <= 10) {
+            decreasedTime = 10;
+        }
+        /*if(animationTiming <= 600){
+            animationTiming = 600;
+        }*/
+        SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
+    }, intervalTiming);
+}
+
+//Initialize loader
+var InitLoader = function () {
+    var intervalTiming = 1500,
+        decreasedTime = 100,
+        animationTiming = 400,
+        decreasedAnimationTiming = 10,
+        catIndex = 0,
+        maxWidth = 0,
+        categories = [],
+        loaderTextContainer = $('#loader-wrp').find('.loader-text-container');
+
+    $('#loader-wrp .loader-text-white-bg').each(function () {
+        categories.push($(this).attr('data-category'));
+        var zindex = parseInt($(this).find('span').width(), 10) * -1;
+        $(this).css('z-index', zindex);
+        if ($(this).find('span').width() > maxWidth) {
+            maxWidth = $(this).find('span').width();
+        }
+    });
+
+    SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
+
+    // var loaderInterval = setInterval(function () {
+    //     loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming + 100).queue(function () {
+    //         $(this).removeClass('in-active active').dequeue();
+    //     });
+    //     loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active');
+    //     catIndex++;
+    //     if (catIndex == categories.length) {
+    //         catIndex = 0;
+    //     }
+    //     intervalTiming -= decreasedTime;
+    //     decreasedTime *= 2;
+    //     if (intervalTiming <= 0)
+    //         intervalTiming = 1;
+    // }, intervalTiming);
+}
+InitLoader();
+
 //Initiate trending sliders
 var ResetTrendingSlides = function (trendItem) {
     trendItem.find('.trend-slide').each(function () {
@@ -49,6 +124,7 @@ var DragHighlights = function (actualScroll, baseClick, newMousePos) {
     $('.highlights-carousel-wrp').scrollLeft(actualScroll - HighlightDiff);
 }
 
+//Check highlights limit
 var checkHighlightLimit = function () {
     highlightsCarouselWrpPos = $('.highlights-carousel-wrp').scrollLeft(),
         maxScroll = $('.highlights-carousel-wrp')[0].scrollWidth - $('.highlights-carousel-wrp').width();
@@ -62,7 +138,6 @@ var checkHighlightLimit = function () {
         $('.highlights-controls a').removeClass('disabled');
     }
 }
-
 
 //Transform header during document scroll
 var TransformHeader = function (scrollPos, breakPos) {
@@ -112,7 +187,78 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         } else {
             $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
         }
+    } else if ($('.article-with-bg').length) {
+        var newBgPosition = scrollPos / 15,
+            newTop = scrollPos / 5;
+        $('.article-with-bg .article-bg').css('object-position', '50% ' + (50 - newBgPosition) + '%');
+        $('.article-with-bg  section').css('bottom', newTop);
     }
+}
+//Event Calendar
+var getDaysInMonth = function (year, month) {
+    return new Date(year, month + 1, 0).getDate();
+};
+var initCalendar = function () {
+    var date = new Date();
+    if (arguments.length)
+        date = arguments[0];
+    var year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDay(),
+        monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ],
+        daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        currentMonth = monthNames[month],
+        firstDay = daysNames[day],
+        firstDayIndex = $('.calendar-body th:contains("' + firstDay + '")').index(),
+        days = getDaysInMonth(year, month);
+    $('#calendar-wrp .calendar-controls-wrp .month-details').text(year + ', ' + currentMonth);
+    $('#calendar-wrp .calendar-controls-wrp').data({
+        'year': year,
+        'month': month
+    });
+    $('.calendar-body tbody tr').remove();
+    var monthDone = false,
+        week = 1,
+        dayIteration = 1,
+        remainigDays = 0;
+    while (!monthDone) {
+        $('.calendar-body tbody').append('<tr></tr>');
+        if (week == 1) {
+            var daysBefore = getDaysInMonth(year, month - 1);
+            for (var b = 0; b < firstDayIndex; b++) {
+                $('.calendar-body tbody tr:nth-child(' + week + ')').prepend('<td class="out-of-month">' + daysBefore + '</td>');
+                daysBefore--;
+            }
+        }
+        for (d = dayIteration; d <= days; d++) {
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td>' + d + '</td>');
+            if (d == days) {
+                remainigDays = 7 - $('.calendar-body tbody tr:nth-child(' + week + ') td').length;
+                monthDone = true;
+            }
+            if ($('.calendar-body tbody tr:nth-child(' + week + ') td').length == 7) {
+                week++;
+                dayIteration = d + 1;
+                break
+            }
+        }
+        for (var r = 1; r <= remainigDays; r++) {
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td class="out-of-month">' + r + '</td>')
+        }
+    }
+
+}
+
+var calNextMonth = function (currentYear, currentMonth) {
+    var nextMonth = new Date(currentYear, currentMonth + 1);
+    initCalendar(nextMonth);
+}
+
+var calPrevMonth = function (currentYear, currentMonth) {
+    var prevMonth = new Date(currentYear, currentMonth - 1);
+    initCalendar(prevMonth);
 }
 
 //ifArabic
@@ -166,60 +312,47 @@ var ifImagesExceeds = function (wrp) {
 
 //isOpen
 var isOpen = function () {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    var oppeningHours = [],
+        days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         date = new Date(),
-        today = days[date.getDay()],
-        day = date.getDate(),
-        month = date.getMonth(),
-        year = date.getFullYear(),
-        hour = date.getHours(),
-        minutes = date.getMinutes(),
-        now = hour + ':' + minutes,
-        todayFrom = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.from').text(),
-        todayTo = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.to').text(),
-        todayFromDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayFrom);
-    if (todayTo.toUpperCase().indexOf('AM') != -1) {
-        var tomorrow = new Date();
-        tomorrow.setDate(day + 1);
-        day = tomorrow.getDate();
-        month = tomorrow.getMonth();
-        year = tomorrow.getFullYear();
-    }
-    var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
-    if (hour < 12) {
-        var actualDay = date.getDay();
-        if (actualDay == 0)
-            actualDay = days.length - 1;
-        var dayBefore = days[actualDay - 1],
-            dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text(),
-            dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text();
-        if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
-            if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
-                var yesterday = new Date();
-                day = date.getDate(),
-                    month = date.getMonth(),
-                    year = date.getFullYear(),
-                    yesterday.setDate(yesterday.getDate() - 1);
-                eve = yesterday.getDate();
-                lastMonth = yesterday.getMonth();
-                lastYear = yesterday.getFullYear();
-                var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom),
-                    dayBeforeToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + dayBeforeTo);
-                todayFromDate = dayBeforeFromDate;
-                todayToDate = dayBeforeToDate;
-            }
-        }
-    }
-
-    if (date >= todayFromDate && todayToDate > date) {
+        day = date.getDay().toString(),
+        hour = date.getHours().toString(),
+        minutes = date.getMinutes().toString(),
+        timeString = day + hour + minutes;
+    $('.opening-details li').each(function () {
+        var dayIndex = days.indexOf($(this).find('.day').text()),
+            from = convertTo_24($(this).find('.hour .from').text()),
+            to = convertTo_24($(this).find('.hour .to').text());
+        oppeningHours.push(getTimeValue(dayIndex, from, to));
+    });
+    var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    if (ifOpen.length) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
     } else {
         $('.opening-hours-container .icon-opening-hours').removeClass('opened').addClass('closed');
         $('.opening-hours-container .open-status').text('Closed now');
-    };
+    }
     setTimeout(isOpen, 900000);
 };
+
+var convertTo_24 = function (time) {
+    if (time.toUpperCase().indexOf('PM') != -1 && time.split(':')[0] < 12) {
+        var arr = time.split(':');
+        time = Number(arr[0]) + 12 + ':' + arr[1];
+    }
+    return time.replace(/[^0-9$:]/g, '')
+}
+
+var getTimeValue = function (dayIndex, from, to) {
+    var fromValue = dayIndex + from.split(':').join('');
+    var toTest = to.split(':').join('');
+    if (fromValue > 1200 && toTest < 1200)
+        dayIndex++;
+    var toValue = dayIndex + to.split(':').join('');
+    return [fromValue, toValue];
+}
+
 
 var ratingCircleResult = function () {
     $('.general-rating-container .circle-container').each(function () {
@@ -1373,6 +1506,22 @@ $(document).ready(function () {
     if ($('.sitemap-list-wrp').length) {
         ArrangeSitemap(4);
     }
+
+    //Start of Events Calendar
+    if ($('#calendar-wrp').length) {
+        initCalendar();
+        $('.calendar-controls-wrp .calendar-prev').on('click', function () {
+            var year = $('.calendar-controls-wrp').data('year'),
+                month = $('.calendar-controls-wrp').data('month');
+            calPrevMonth(year, month);
+        });
+        $('.calendar-controls-wrp .calendar-next').on('click', function () {
+            var year = $('.calendar-controls-wrp').data('year'),
+                month = $('.calendar-controls-wrp').data('month');
+            calNextMonth(year, month);
+        });
+    }
+    //End of Events Calendar
 
     $(document).on('mousedown touchstart', function (e) {
         if ($('#image-slider-popup.active').length) {
