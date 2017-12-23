@@ -1760,7 +1760,6 @@ Contains all styles of inner pages
             .login-register-container {
                 margin: 60px auto;
                 width: 768px;
-                background-color: #fff;
                 display: inline-block;
                 vertical-align: middle;
                 padding: 0!important;
@@ -1797,6 +1796,7 @@ Contains all styles of inner pages
                     width: 70%;
                     text-align: left;
                     padding-right: 30px;
+                    background: #fff;
                     @include media("(min-width: 1200px)") {
                         padding-right: get-vw(30px);
                     }
@@ -1825,10 +1825,10 @@ Contains all styles of inner pages
                     position: absolute;
                     right: 0;
                     top: 0;
-                    padding-bottom:100px;
+                    padding-bottom: 100px;
                     padding-left: 30px;
                     @include media("(min-width: 1200px)") {
-                        padding-bottom:get-vw(100px);
+                        padding-bottom: get-vw(100px);
                         padding-left: get-vw(30px);
                     }
                     .login-register-or {
@@ -1843,6 +1843,7 @@ Contains all styles of inner pages
                         text-align: center;
                         border-radius: 100%;
                         border: 1px solid $header-footer-primary-background-color;
+                        @include box-shadow(0px 0px 0 2px #fff);
                         @include transform(translateY(-50%));
                         @include media("(min-width: 1200px)") {
                             width: get-vw(40px);
@@ -1861,7 +1862,7 @@ Contains all styles of inner pages
                         }
                     }
                     .login-register-desc {
-                        color:#fff;
+                        color: #fff;
                     }
                     .login-register-links {
                         text-align: center;
@@ -1871,6 +1872,57 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             bottom: get-vw(20px);
                             left: get-vw(20px);
+                        }
+                    }
+                }
+                .register-form {
+                    display: none;
+                    width: 500px;
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(500px);
+                    }
+                    &.opened {
+                        form {
+                            padding-top: 80px;
+                            @include transition(all .3s .15s);
+                            @include media("(min-width: 1200px)") {
+                                padding-top: get-vw(80px);
+                            }
+                        }
+                        .user-profile {
+                            @include transition(all .3s .15s);
+                            opacity: 1;
+                            @include transform(translate(-50%, -50%));
+                        }
+                    }
+                    form {
+                        padding-top: 155px;
+                        @include transition(all .3s);
+                        @include media("(min-width: 1200px)") {
+                            padding-top: get-vw(155px);
+                        }
+                    }
+                    .user-profile {
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        z-index: 1;
+                        width: 150px;
+                        height: 150px;
+                        border: 2px solid #fff;
+                        border-radius: 100%;
+                        overflow: hidden;
+                        margin: 0 auto;
+                        opacity: 0;
+                        @include transition(all .3s);
+                        @include transform(translate(-50%, 0));
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(150px);
+                            height: get-vw(150px);
+                            border: get-vw(2px) solid #fff;
+                        }
+                        img {
+                            @include object-fit-img();
                         }
                     }
                 }
