@@ -364,6 +364,17 @@ var ratingCircleResult = function () {
     });
 }
 
+//Get Svg
+var getSvg = function (selector) {
+    $(selector).each(function () {
+        var _this = $(this);
+        var path = _this.find('img').attr('src');
+        $.get(path, function (data) {
+            _this.html(data);
+        }, 'text')
+    });
+};
+
 //Random Number Generator
 var randomLimit = function (min, max) {
     var random = Math.random();
@@ -814,6 +825,10 @@ $(document).ready(function () {
             field.removeClass("field-focus");
         }
     });
+
+    if ($('.facilities-wrp').length) {
+        getSvg('.facility-unit');
+    }
 
     if ($('.opening-hours-container').length) {
         isOpen();
