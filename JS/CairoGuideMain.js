@@ -225,10 +225,10 @@ var initCalendar = function () {
         remainigDays = 0;
     while (!monthDone) {
         $('.calendar-body tbody').append('<tr></tr>');
-        if (week == 1){
+        if (week == 1) {
             var daysBefore = getDaysInMonth(year, month - 1);
             for (var b = 0; b < firstDayIndex; b++) {
-                $('.calendar-body tbody tr:nth-child(' + week + ')').prepend('<td class="out-of-month">'+daysBefore+'</td>');
+                $('.calendar-body tbody tr:nth-child(' + week + ')').prepend('<td class="out-of-month">' + daysBefore + '</td>');
                 daysBefore--;
             }
         }
@@ -244,8 +244,8 @@ var initCalendar = function () {
                 break
             }
         }
-        for (var r = 0; r < remainigDays; r++) {
-            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td class="out-of-month">'+r+'</td>')
+        for (var r = 1; r <= remainigDays; r++) {
+            $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td class="out-of-month">' + r + '</td>')
         }
     }
 
@@ -312,60 +312,47 @@ var ifImagesExceeds = function (wrp) {
 
 //isOpen
 var isOpen = function () {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    var oppeningHours = [],
+        days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         date = new Date(),
-        today = days[date.getDay()],
-        day = date.getDate(),
-        month = date.getMonth(),
-        year = date.getFullYear(),
-        hour = date.getHours(),
-        minutes = date.getMinutes(),
-        now = hour + ':' + minutes,
-        todayFrom = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.from').text(),
-        todayTo = $('.opening-details li span:contains(' + today + ')').next('.hour').find('.to').text(),
-        todayFromDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayFrom);
-    if (todayTo.toUpperCase().indexOf('AM') != -1) {
-        var tomorrow = new Date();
-        tomorrow.setDate(day + 1);
-        day = tomorrow.getDate();
-        month = tomorrow.getMonth();
-        year = tomorrow.getFullYear();
-    }
-    var todayToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + todayTo);
-    if (hour < 12) {
-        var actualDay = date.getDay();
-        if (actualDay == 0)
-            actualDay = days.length - 1;
-        var dayBefore = days[actualDay - 1],
-            dayBeforeFrom = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.from').text(),
-            dayBeforeTo = $('.opening-details li span:contains(' + dayBefore + ')').next('.hour').find('.to').text();
-        if (dayBeforeTo.toUpperCase().indexOf('AM') != -1) {
-            if (new Date('1/1/2000 ' + now) < new Date('1/1/2000 ' + dayBeforeTo)) {
-                var yesterday = new Date();
-                day = date.getDate(),
-                    month = date.getMonth(),
-                    year = date.getFullYear(),
-                    yesterday.setDate(yesterday.getDate() - 1);
-                eve = yesterday.getDate();
-                lastMonth = yesterday.getMonth();
-                lastYear = yesterday.getFullYear();
-                var dayBeforeFromDate = new Date(lastMonth + 1 + '/' + eve + '/' + lastYear + ' ' + dayBeforeFrom),
-                    dayBeforeToDate = new Date(month + 1 + '/' + day + '/' + year + ' ' + dayBeforeTo);
-                todayFromDate = dayBeforeFromDate;
-                todayToDate = dayBeforeToDate;
-            }
-        }
-    }
-
-    if (date >= todayFromDate && todayToDate > date) {
+        day = date.getDay().toString(),
+        hour = date.getHours().toString(),
+        minutes = date.getMinutes().toString(),
+        timeString = day + hour + minutes;
+    $('.opening-details li').each(function () {
+        var dayIndex = days.indexOf($(this).find('.day').text()),
+            from = convertTo_24($(this).find('.hour .from').text()),
+            to = convertTo_24($(this).find('.hour .to').text());
+        oppeningHours.push(getTimeValue(dayIndex, from, to));
+    });
+    var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    if (ifOpen.length) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
     } else {
         $('.opening-hours-container .icon-opening-hours').removeClass('opened').addClass('closed');
         $('.opening-hours-container .open-status').text('Closed now');
-    };
+    }
     setTimeout(isOpen, 900000);
 };
+
+var convertTo_24 = function (time) {
+    if (time.toUpperCase().indexOf('PM') != -1 && time.split(':')[0] < 12) {
+        var arr = time.split(':');
+        time = Number(arr[0]) + 12 + ':' + arr[1];
+    }
+    return time.replace(/[^0-9$:]/g, '')
+}
+
+var getTimeValue = function (dayIndex, from, to) {
+    var fromValue = dayIndex + from.split(':').join('');
+    var toTest = to.split(':').join('');
+    if (fromValue > 1200 && toTest < 1200)
+        dayIndex++;
+    var toValue = dayIndex + to.split(':').join('');
+    return [fromValue, toValue];
+}
+
 
 var ratingCircleResult = function () {
     $('.general-rating-container .circle-container').each(function () {
