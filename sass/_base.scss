@@ -247,20 +247,13 @@ $colorList: "nightlife" #f90000,
                     $dark-color: darken(nth($i, 2), 7%);
                     text-shadow: 5px 6px 0 rgba($dark-color, 1);
                 }
-                &.hide-text {
-                    background-color: transparent;
-                    text-align: center;
+            }
+            .loader-main-text {
+                &.switch-#{nth($i,1)}-animation {
                     span {
-                        border-width: 0;
-                        display: inline-block;
-                        padding: 0;
-                        color: nth($i, 2);
+                        $dark-color: darken(nth($i, 2), 7%);
                         background-color: nth($i, 2);
-                        text-shadow: none;
-                        @include transition(all 8s ease);
-                        &:before {
-                            display: none!important;
-                        }
+                        text-shadow: 5px 6px 0 rgba($dark-color, 1);
                     }
                 }
             }
@@ -391,6 +384,82 @@ html {
     }
     80% {
         opacity: 0; //@include transform(translateY(0));
+    }
+}
+
+@include key-frame (ripple) {
+    0% {
+        opacity: 1;
+        @include transform(scale(0))
+    }
+    100% {
+        opacity: 0;
+        @include transform(scale(2.5))
+    }
+}
+
+@include key-frame(radio-leaving) {
+    0% {
+        @include transform(scale(.6))
+    }
+    50% {
+        @include transform(scale(.8))
+    }
+    100% {
+        @include transform(scale(0))
+    }
+}
+
+@include key-frame(radio-entering) {
+    0% {
+        @include transform(scale(0))
+    }
+    40% {
+        @include transform(scale(.8))
+    }
+    60% {
+        @include transform(scale(.5))
+    }
+    80% {
+        @include transform(scale(.7))
+    }
+    100% {
+        @include transform(scale(.6))
+    }
+}
+
+@include key-frame(icon-hover) {
+    0% {
+        @include transform(translate(0,
+        0))
+    }
+    10% {
+        @include transform(translate(-10%,
+        0))
+    }
+    49% {
+        @include transform(translate(150%,
+        0))
+    }
+    50% {
+        @include transform(translate(150%,
+        150%))
+    }
+    51% {
+        @include transform(translate(-150%,
+        150%))
+    }
+    52% {
+        @include transform(translate(-150%,
+        0))
+    }
+    90% {
+        @include transform(translate(10%,
+        0))
+    }
+    100% {
+        @include transform(translate(0,
+        0))
     }
 }
 
@@ -930,17 +999,6 @@ input[type="radio"] {
     @include theme-link-color(#000);
 }
 
-@include key-frame (ripple) {
-    0% {
-        opacity: 1;
-        @include transform(scale(0))
-    }
-    100% {
-        opacity: 0;
-        @include transform(scale(2.5))
-    }
-}
-
 .radio-container {
     .inline-radio {
         float: left;
@@ -982,36 +1040,6 @@ input[type="radio"] {
             @include transform(scale(.6));
             @include animation(radio-entering .3s);
         }
-    }
-}
-
-@include key-frame(radio-leaving) {
-    0% {
-        @include transform(scale(.6))
-    }
-    50% {
-        @include transform(scale(.8))
-    }
-    100% {
-        @include transform(scale(0))
-    }
-}
-
-@include key-frame(radio-entering) {
-    0% {
-        @include transform(scale(0))
-    }
-    40% {
-        @include transform(scale(.8))
-    }
-    60% {
-        @include transform(scale(.5))
-    }
-    80% {
-        @include transform(scale(.7))
-    }
-    100% {
-        @include transform(scale(.6))
     }
 }
 
@@ -1063,9 +1091,10 @@ input[type="radio"] {
     background: #fff;
     padding: 20px;
     margin: 0 auto;
-    border-radius: 7px;
+    border-radius: 5px;
     @include media("(min-width: 1200px)") {
         padding: get-vw(20px);
+        border-radius: get-vw(5px);
     }
     .form-item {
         width: 100%;
@@ -1074,8 +1103,7 @@ input[type="radio"] {
         position: relative;
         @include media("(min-width: 1200px)") {
             margin-bottom: get-vw(15px);
-        }
-        // &::before {
+        } // &::before {
         //     content: '';
         //     height: 1px;
         //     background: $header-footer-primary-background-color;
@@ -1091,19 +1119,21 @@ input[type="radio"] {
         label {
             display: inline-block;
             margin-bottom: 10px;
+            font: 1rem "Lato-Regular";
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(10px);
             }
         }
-        input{
+        input {
             width: 100%;
             border: 0;
-            border-bottom: 1px solid #ccc;
-            padding: 0 5px 5px;
-            font-size: 1rem;
+            border-bottom: 1px solid #000;
+            padding: 0 5px 5px 0;
+            box-sizing:border-box;
+            font: 1rem 'Lato-Light';
             @include media("(min-width: 1200px)") {
-                padding: 0 get-vw(5px) get-vw(5px);
-                border-bottom: get-vw(1px) solid #ccc;
+                padding: 0 get-vw(5px) get-vw(5px) 0;
+                border-bottom-width: get-vw(1px);
             }
             &:focus,
             &:active {
@@ -1174,41 +1204,6 @@ input[type="radio"] {
                 @include transition(all .15s);
             }
         }
-    }
-}
-
-@include key-frame(icon-hover) {
-    0% {
-        @include transform(translate(0,
-        0))
-    }
-    10% {
-        @include transform(translate(-10%,
-        0))
-    }
-    49% {
-        @include transform(translate(150%,
-        0))
-    }
-    50% {
-        @include transform(translate(150%,
-        150%))
-    }
-    51% {
-        @include transform(translate(-150%,
-        150%))
-    }
-    52% {
-        @include transform(translate(-150%,
-        0))
-    }
-    90% {
-        @include transform(translate(10%,
-        0))
-    }
-    100% {
-        @include transform(translate(0,
-        0))
     }
 }
 
@@ -1404,6 +1399,8 @@ input[type="radio"] {
     background-color: #fff;
     z-index: 1000;
     text-align: center;
+    left:0;
+    opacity:1;
     &:before,
     .loader-text-container {
         display: inline-block;
@@ -1412,6 +1409,12 @@ input[type="radio"] {
     &:before {
         content: '';
         height: 100%;
+    }
+    &.fade-away{
+        left:50px;
+        opacity:0;
+        z-index:-1;
+        @include transition(all 0.3s ease);
     }
     .loader-text-container {
         z-index: 1000;
@@ -1427,14 +1430,18 @@ input[type="radio"] {
             right: 0;
             margin: 0 auto;
             top: 50%;
-            opacity: 0; //@include transition(all 0.2s ease);
+            opacity: 0;
+            overflow: hidden;
+            @include transform(translateY(-50%)); //@include transition(all 0.2s ease);
             /*&.in-active {
                 opacity:0;
                 left:-100px!important;
                 @include transition(all 0.2s ease);
             }*/
-            span,
-            img {
+            &.active {
+                @include animation(loader-effect 500ms backwards);
+            }
+            span {
                 display: inline-block;
                 text-transform: uppercase;
                 color: #fff;
@@ -1445,6 +1452,7 @@ input[type="radio"] {
                 line-height: 6rem;
                 border: 20px double #fff;
                 position: relative;
+                text-align: center;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(10px) get-vw(10px) get-vw(5px);
                     letter-spacing: get-vw(5px);
@@ -1467,37 +1475,15 @@ input[type="radio"] {
                 }
             }
         }
-        .loader-text-white-bg {
-            overflow: hidden;
-            @include transform(translateY(-50%));
-            &.active {
-                @include animation(loader-effect 500ms backwards);
-            }
-            &.stop-animation {
-                @include animation(loader-effect 500ms 1 forwards);
-            }
-        }
-        .loader-main-text {
-            background-color: transparent;
-            @include transform(translateY(-50%) scale(10));
-            &.active {
-                opacity: 1;
-                @include transform(translateY(-50%) scale(1));
-                @include transition(opacity 0.05s ease-out,
-                transform 10s ease-out);
-            }
-            img {
-                border: 0;
-                height: 100px;
-                @include media("(min-width: 1200px)") {
-                    height: get-vw(100px);
+        .loader-main-text{
+            opacity:0;
+            &.switch-animation {
+                opacity:1;
+                @include transition(all 1.5s ease);
+                span {
+                    //@include transition(all 1.5s ease);
                 }
             }
-            /*span {
-                border:0;
-                color: $header-footer-primary-background-color;
-                letter-spacing: 0px;
-            }*/
         }
     }
 }

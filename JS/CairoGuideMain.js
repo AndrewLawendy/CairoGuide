@@ -1,77 +1,65 @@
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
 //Apply loader interval time
-var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth) {
-    setTimeout(function () {
-        /*loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming).queue(function () {
-            $(this).removeClass('in-active active').dequeue();
-        });*/
-        loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration', intervalTiming + 'ms').delay(intervalTiming).queue(function () {
-            $(this).removeClass('active').dequeue(); //.removeAttr('style').dequeue();
-        });
-        catIndex++;
-        if (catIndex == categories.length) {
-            catIndex = 0;
-        }
-        intervalTiming -= decreasedTime;
-        //animationTiming -= decreasedAnimationTiming;
-        decreasedTime -= 3;
-        //decreasedAnimationTiming += 10;
-        if (intervalTiming <= 50) {
-            intervalTiming = 50;
-            loaderTextContainer.find('.loader-text-white-bg').width(maxWidth).addClass('hide-text');
-            loaderTextContainer.find('.loader-main-text').addClass('active').delay(10000).queue(function () {
-                $(loaderTextContainer).find('.loader-text-white-bg').addClass('stop-animation').css('opacity', '1').dequeue();
-                return false;
+var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount) {
+    if (loaderLoopCount == true) {
+        loaderLoop = setTimeout(function () {
+            loopCount--;
+            loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration', intervalTiming + 'ms').delay(intervalTiming).queue(function () {
+                $(this).removeClass('active').dequeue();
             });
-
-        }
-        if (decreasedTime <= 10) {
-            decreasedTime = 10;
-        }
-        /*if(animationTiming <= 600){
-            animationTiming = 600;
-        }*/
-        SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
-    }, intervalTiming);
+            catIndex++;
+            if (catIndex == categories.length) {
+                catIndex = 0;
+            }
+            intervalTiming -= decreasedTime;
+            if (intervalTiming <= 120) {
+                intervalTiming = 120;
+            }
+            if (loopCount == 10) {
+                loaderLoopCount = false;
+            }
+            if (decreasedTime <= 10) {
+                decreasedTime = 10;
+            }
+            SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount);
+        }, intervalTiming);
+    } else {
+        clearTimeout(loaderLoop);
+        var finishInterval = setInterval(function () {
+            loopCount--;
+            $(loaderTextContainer).find('.loader-main-text').removeAttr('style').attr('class', 'loader-main-text switch-animation switch-' + categories[catIndex] + '-animation');
+            catIndex++;
+            if (catIndex == categories.length) {
+                catIndex = 0;
+            }
+            if(loopCount == 0 && windowLoaded == true){
+                $('#loader-wrp').addClass('fade-away');
+                clearInterval(finishInterval);
+            }
+        }, 700);
+        return;
+    }
 }
 
 //Initialize loader
 var InitLoader = function () {
-    var intervalTiming = 1500,
-        decreasedTime = 100,
-        animationTiming = 400,
-        decreasedAnimationTiming = 10,
+    var intervalTiming = 1000,
+        decreasedTime = 90,
         catIndex = 0,
-        maxWidth = 0,
         categories = [],
+        loaderLoopCount = true,
+        loaderLoop,
+        loopCount = 42,
         loaderTextContainer = $('#loader-wrp').find('.loader-text-container');
 
     $('#loader-wrp .loader-text-white-bg').each(function () {
         categories.push($(this).attr('data-category'));
         var zindex = parseInt($(this).find('span').width(), 10) * -1;
         $(this).css('z-index', zindex);
-        if ($(this).find('span').width() > maxWidth) {
-            maxWidth = $(this).find('span').width();
-        }
     });
 
-    SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, animationTiming, maxWidth);
-
-    // var loaderInterval = setInterval(function () {
-    //     loaderTextContainer.find('.loader-text-white-bg').not('[data-category="' + categories[catIndex] + '"]').addClass('in-active').delay(animationTiming + 100).queue(function () {
-    //         $(this).removeClass('in-active active').dequeue();
-    //     });
-    //     loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active');
-    //     catIndex++;
-    //     if (catIndex == categories.length) {
-    //         catIndex = 0;
-    //     }
-    //     intervalTiming -= decreasedTime;
-    //     decreasedTime *= 2;
-    //     if (intervalTiming <= 0)
-    //         intervalTiming = 1;
-    // }, intervalTiming);
+    SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount);
 }
 InitLoader();
 
@@ -750,8 +738,12 @@ var ArrangeSitemap = function (columnsCount) {
         });
 }
 
+var windowLoaded = false;
 //document ready
 $(document).ready(function () {
+    windowLoaded = true;
+    console.log(windowLoaded);
+
     //Ripple Effect
     if ($('.ripple').length) {
         var circle = '<span class="circle"></span>'
