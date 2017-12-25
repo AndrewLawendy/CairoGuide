@@ -304,9 +304,11 @@ var isOpen = function () {
         days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         date = new Date(),
         day = date.getDay().toString(),
-        hour = date.getHours().toString(),
-        minutes = date.getMinutes().toString(),
-        timeString = day + hour + minutes;
+        hour = convertTo_00(date.getHours().toString()),
+        minutes = convertTo_00(date.getMinutes().toString());
+    if (day == 0 && $('.opening-details li:contains("Saturday") .hour .to').text().indexOf('AM') != -1)
+        day = 7;
+    var timeString = day + hour + minutes;
     $('.opening-details li').each(function () {
         var dayIndex = days.indexOf($(this).find('.day').text()),
             from = convertTo_24($(this).find('.hour .from').text()),
@@ -324,12 +326,17 @@ var isOpen = function () {
     setTimeout(isOpen, 900000);
 };
 
+var convertTo_00 = function (value) {
+    value = '0' + value.toString();
+    return value.slice(-2);
+}
+
 var convertTo_24 = function (time) {
     if (time.toUpperCase().indexOf('PM') != -1 && time.split(':')[0] < 12) {
         var arr = time.split(':');
         time = Number(arr[0]) + 12 + ':' + arr[1];
     }
-    return time.replace(/[^0-9$:]/g, '')
+    return time.replace(/[^0-9$:]/g, '');
 }
 
 var getTimeValue = function (dayIndex, from, to) {
