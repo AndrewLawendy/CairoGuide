@@ -314,11 +314,13 @@ var ifImagesExceeds = function (wrp) {
 var isOpen = function () {
     var oppeningHours = [],
         days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        date = new Date(),
+        date = new Date('12/24/2017 00:30'),
         day = date.getDay().toString(),
         hour = convertTo_00(date.getHours().toString()),
-        minutes = convertTo_00(date.getMinutes().toString()),
-        timeString = day + hour + minutes;
+        minutes = convertTo_00(date.getMinutes().toString());
+    if (day == 0 && $('.opening-details li:contains("Saturday") .hour .to').text().indexOf('AM') != -1)
+        day = 7;
+    var timeString = day + hour + minutes;
     $('.opening-details li').each(function () {
         var dayIndex = days.indexOf($(this).find('.day').text()),
             from = convertTo_24($(this).find('.hour .from').text()),
