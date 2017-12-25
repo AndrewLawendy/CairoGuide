@@ -1411,7 +1411,6 @@ input[type="radio"] {
         height: 100%;
     }
     &.fade-away{
-        left:50px;
         opacity:0;
         z-index:-1;
         @include transition(all 0.3s ease);
@@ -2226,6 +2225,7 @@ header {
                             top: -5px;
                             left: -5px;
                             padding: 5px;
+                            width:100%;
                             background-color: $header-footer-secondary-background-color;
                             color: $header-footer-primary-text-color;
                             clip: rect(0px, 0px, 200px, 0px);

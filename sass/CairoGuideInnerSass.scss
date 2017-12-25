@@ -163,7 +163,6 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .control-btn,
             .circle {
                 background: nth($i, 2);
             }
@@ -199,6 +198,7 @@ Contains all styles of inner pages
         opacity: 0;
         padding: 30px;
         box-sizing: border-box;
+        overflow:hidden;
         @include transition(left 0.3s ease,
         opacity 0.3s ease,
         top 0s ease 0.3s);
@@ -231,9 +231,18 @@ Contains all styles of inner pages
                     height: 100%;
                     display: inline-block;
                     background-color: rgba(0, 0, 0, 0.8);
+                    position: relative;
+                    z-index: 10;
                     @include user-select(none);
                     @include media("(min-width: 1200px)") {
                         height: 0 auto get-vw(500px);
+                    }
+                    &.cloned {
+                        position: absolute;
+                        z-index: 0;
+                        left:0;
+                        right:0;
+                        margin:0 auto;
                     }
                 }
             }
@@ -385,6 +394,9 @@ Contains all styles of inner pages
                 padding: get-vw(10px);
                 margin-bottom: get-vw(30px);
                 border-radius: get-vw(7px);
+            }
+            .advanced-search-filters{
+                cursor:pointer;
             }
             .dynamic-settings-wrp {
                 padding-right: 20px;
@@ -1135,12 +1147,21 @@ Contains all styles of inner pages
             .main-slide-wrp {
                 height: $main-slide-wrp-height;
                 position: relative;
+                img {
+                    position: relative;
+                    z-index: 10;
+                    &.cloned {
+                        position: absolute;
+                        z-index: 0;
+                    }
+                }
                 .gallery-nav {
                     position: absolute;
                     width: 100%;
                     top: 48%;
                     /*@include transform(translateY(-50%));*/
                     height: 0;
+                    z-index: 20;
                     a,
                     a:visited {
                         color: #fff;
@@ -1179,6 +1200,10 @@ Contains all styles of inner pages
                     }
                     &:nth-of-type(3) {
                         padding-bottom: 0;
+                        img{
+                            @include image-filter(blur(7px));
+                            @include transform(scale(1.2));
+                        }
                     }
                     a,
                     a:visited {
@@ -1187,7 +1212,7 @@ Contains all styles of inner pages
                         height: 100%;
                         overflow: hidden;
                         .side-slides-count {
-                            background-color: rgba(0, 0, 0, 0.7);
+                            background-color: rgba(0, 0, 0, 0.8);
                             text-align: center;
                             font-size: 3rem;
                             color: #fff;
@@ -1496,7 +1521,7 @@ Contains all styles of inner pages
                         border-radius: 5px;
                         padding: 20px;
                         background: #eee;
-                        font-size: 1.142rem;
+                        font-size: 1rem;
                         @include media("(min-width: 1200px)") {
                             height: get-vw(95px);
                             padding: get-vw(20px);
@@ -1519,7 +1544,7 @@ Contains all styles of inner pages
                                 margin-bottom: get-vw(10px);
                             }
                             p {
-                                font: 1rem 'Lato-Bold';
+                                font: 1rem 'Lato-Regular';
                                 float: left;
                             }
                             .review-satisfaction-wrp {
@@ -1915,7 +1940,7 @@ Contains all styles of inner pages
                         height: 150px;
                         overflow: hidden;
                         margin: 0 auto;
-                        margin-bottom:20px;
+                        margin-bottom: 20px;
                         opacity: 0;
                         border: 2px solid #fff;
                         border-radius: 100%;
@@ -1923,7 +1948,7 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             width: get-vw(150px);
                             height: get-vw(150px);
-                            margin-bottom:get-vw(20px);
+                            margin-bottom: get-vw(20px);
                             border-width: get-vw(2px); //border: get-vw(2px) solid #fff;
                         }
                         img {
