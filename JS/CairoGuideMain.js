@@ -832,7 +832,9 @@ var windowLoaded = false;
 //document ready
 $(document).ready(function () {
     windowLoaded = true;
-
+    if($('.items-list-wrp').length && $('.items-list-wrp').find('.ads-wrp').length){
+        $('.items-list-wrp').css('min-height',$('.ads-wrp').height());
+    }
     //Ripple Effect
     if ($('.ripple').length) {
         var circle = '<span class="circle"></span>'
