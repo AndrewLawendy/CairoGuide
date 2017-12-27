@@ -1049,12 +1049,12 @@ Contains all styles of inner pages
                                 font: 1rem 'Lato-Light';
                                 color: #fff;
                                 margin-top: 10px;
-                                border-radius: 7px;
+                                border-radius: 5px;
                                 //border: 1px solid;
                                 @include media("(min-width: 1200px)") {
                                     padding: get-vw(5px);
                                     margin-top: get-vw(10px);
-                                    border-radius: get-vw(7px);
+                                    border-radius: get-vw(5px);
                                     //border-width: get-vw(1px);
                                 }
                                 i,
