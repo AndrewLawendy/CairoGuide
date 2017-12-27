@@ -94,12 +94,6 @@ $colorList: "nightlife" #f90000,
     -moz-user-select: $value;
     -ms-user-select: $value;
     user-select: $value;
-    user-drag: $value;
-    user-select: $value;
-    -moz-user-select: $value;
-    -webkit-user-drag: $value;
-    -webkit-user-select: $value;
-    -ms-user-select: $value;
 }
 
 @mixin box-shadow($box-shadow...) {
@@ -588,6 +582,18 @@ html {
 
 .icon-offer:before {
     content: "\e918";
+}
+
+.icon-owl:before {
+    content: "\e919";
+}
+
+.icon-search-results:before {
+    content: "\e91a";
+}
+
+.icon-comment:before {
+    content: "\e91b";
 }
 
 
@@ -1483,10 +1489,39 @@ input[type="radio"] {
             &.switch-animation {
                 opacity: 1;
                 @include transition(all 1.5s ease);
-                span {
-                    //@include transition(all 1.5s ease);
-                }
             }
+        }
+    }
+    .loader-skip-link {
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        left:0;
+        margin:0 auto;
+        opacity: 0;
+        @include transform(translateX(10px));
+        @include transition(all 0.3s ease);
+        @include media("(min-width: 1200px)") {
+            bottom: get-vw(20px);
+            @include transform(translateX(get-vw(10px)));
+        }
+        &.active {
+            opacity: 1;
+            @include transform(translateX(0));
+            @include transition(all 0.3s ease);
+        }
+        a,
+        a:visited {
+            color: #131313;
+            font: 1.2rem 'Lato-Regular';
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            @include media("(min-width: 1200px)") {
+                letter-spacing: get-vw(3px);
+            }
+        }
+        a:hover {
+            text-decoration: none;
         }
     }
 }

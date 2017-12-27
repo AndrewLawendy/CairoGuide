@@ -89,6 +89,10 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                 }
             }
+            .items-list-info {
+                color: nth($i, 2);
+                border-color: nth($i, 2);
+            }
             .items-list-wrp {
                 .items-list-container {
                     .item-wrp {
@@ -109,9 +113,10 @@ Contains all styles of inner pages
                                         @include theme-link-color(nth($i, 2));
                                     }
                                 }
-                                .item-offer{
+                                .item-exclusive {
+                                    //border-color: nth($i, 2);
                                     background-color: nth($i, 2);
-                                }
+                                                                }
                                 .item-links {
                                     a,
                                     a:visited {
@@ -201,7 +206,7 @@ Contains all styles of inner pages
         opacity: 0;
         padding: 30px;
         box-sizing: border-box;
-        overflow:hidden;
+        overflow: hidden;
         @include transition(left 0.3s ease,
         opacity 0.3s ease,
         top 0s ease 0.3s);
@@ -243,9 +248,9 @@ Contains all styles of inner pages
                     &.cloned {
                         position: absolute;
                         z-index: 0;
-                        left:0;
-                        right:0;
-                        margin:0 auto;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
                     }
                 }
             }
@@ -271,7 +276,7 @@ Contains all styles of inner pages
                         padding: 0 3px;
                         box-sizing: border-box;
                         float: left;
-                        background-color:#000;
+                        background-color: #000;
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(3px);
                         }
@@ -279,13 +284,14 @@ Contains all styles of inner pages
                             display: block;
                             cursor: pointer;
                             background-color: rgba(0, 0, 0, 0.8);
-                            opacity:0.4;
+                            opacity: 0.4;
                             @include object-fit-img();
                             @include transition(all 0.3s ease);
                         }
-                        &:hover,&.active{
-                            img{
-                                opacity:1;
+                        &:hover,
+                        &.active {
+                            img {
+                                opacity: 1;
                                 @include transition(all 0.3s ease);
                             }
                         }
@@ -407,8 +413,8 @@ Contains all styles of inner pages
                 margin-bottom: get-vw(30px);
                 border-radius: get-vw(7px);
             }
-            .advanced-search-filters{
-                cursor:pointer;
+            .advanced-search-filters {
+                cursor: pointer;
             }
             .dynamic-settings-wrp {
                 padding-right: 20px;
@@ -902,6 +908,34 @@ Contains all styles of inner pages
                 }
             }
         }
+        .items-list-info {
+            line-height: 2rem;
+            padding: 10px 5px;
+            box-sizing:border-box;
+            border-bottom: 4px solid;
+            margin-bottom: 30px;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(10px) get-vw(5px);
+                border-bottom-width: get-vw(4px);
+                margin-bottom: get-vw(30px);
+            }
+            i{
+                font-size:2rem;
+                float:left;
+            }
+            span{
+                display: block;
+                float:left;
+                margin-left:10px;
+                font-family: 'Lato-Black';
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                @include media("(min-width: 1200px)") {
+                    letter-spacing: get-vw(2px);
+                    margin-left:get-vw(10px);
+                }   
+            }
+        }
         .items-list-wrp {
             position: relative;
             /*margin-bottom: 30px;
@@ -1008,36 +1042,45 @@ Contains all styles of inner pages
                                     @include link-hover();
                                 }
                             }
-                            .item-offer{
-                                padding:7px;
-                                box-sizing:border-box;
-                                line-height:1em;
-                                font:1rem 'Lato-Light';
-                                color:#fff;
-                                margin-top:10px;
+                            .item-exclusive {
+                                padding: 5px;
+                                box-sizing: border-box;
+                                line-height: 1em;
+                                font: 1rem 'Lato-Light';
+                                color: #fff;
+                                margin-top: 10px;
+                                border-radius: 7px;
+                                //border: 1px solid;
                                 @include media("(min-width: 1200px)") {
-                                    padding:get-vw(7px);
-                                    margin-top:get-vw(10px);
+                                    padding: get-vw(5px);
+                                    margin-top: get-vw(10px);
+                                    border-radius: get-vw(7px);
+                                    //border-width: get-vw(1px);
                                 }
-                                i,span{
-                                    display:block;
-                                    float:left;
+                                i,
+                                span {
+                                    display: block;
+                                    float: left;
+                                    line-height: 1.2rem;
                                 }
-                                i{
-                                    margin-right:5px;
-                                    font-size:1.2rem;
+                                span {
+                                    white-space: nowrap;
+                                    margin-left: 5px;
                                     @include media("(min-width: 1200px)") {
-                                        margin-right:get-vw(5px);
+                                        margin-left: get-vw(5px);
                                     }
+                                }
+                                i {
+                                    font-size: 1.2rem;
                                 }
                             }
                             p {
                                 color: #555;
-                                margin-top:20px;
+                                margin-top: 20px;
                                 @include limit-text-lines(3,
                                 1.2em);
                                 @include media("(min-width: 1200px)") {
-                                    margin-top:get-vw(20px);
+                                    margin-top: get-vw(20px);
                                 }
                             }
                             .item-links {
@@ -1235,7 +1278,7 @@ Contains all styles of inner pages
                     }
                     &:nth-of-type(3) {
                         padding-bottom: 0;
-                        img{
+                        img {
                             @include image-filter(blur(7px));
                             @include transform(scale(1.2));
                         }
