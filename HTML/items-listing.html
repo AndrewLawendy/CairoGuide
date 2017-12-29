@@ -725,8 +725,14 @@
                                 <ul class="dropdown-options">
                                     <!-- <li title="Price (Low to High)">Price (Low to High)</li>
                                             <li title="Price (High to Low)">Price (High to Low)</li> -->
-                                    <li title="Rating">Rating</li>
-                                    <li title="Price and rating">Price and rating</li>
+                                    <li title="Rating">
+                                        <input type="radio" name="Sort" id="sorting-rating">
+                                        <label for="sorting-rating">Rating</label>
+                                    </li>
+                                    <li title="Price and rating">
+                                        <input type="radio" name="Sort" id="sorting-price">
+                                        <label for="sorting-price">Price and rating</label>
+                                    </li>
                                 </ul>
                             </div>
                             <i class="icon-filter-sort"></i>
@@ -848,9 +854,7 @@
                             </div>
                         </div>
                         <div class="filter-set-item float-right" title="Go">
-                            <div class="search-go-event">
-                                <span>Go</span>
-                            </div>
+                            <button type="submit" class="search-go-event">Go</button>
                         </div>
                     </div>
                 </div>

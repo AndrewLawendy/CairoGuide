@@ -424,8 +424,9 @@ var GetParameterByName = function (name, url) {
 
 //Set Active Category
 var SetActiveCategory = function () {
-    var cat = GetParameterByName('category');
-    $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
+    var cat = $('body').attr('class').replace('-theme','');
+    if (cat != null)
+        $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
 }
 
 //Category names to inner pages
@@ -879,8 +880,8 @@ $(document).ready(function () {
         $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
         MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
     }
-    SetActiveCategory();
     SetInnersCategory();
+    SetActiveCategory();
     $('.category-nav>li>ul li').has('ul').each(function () {
         $(this).append('<i class="icon-triangular-arrow"></i>');
     });
@@ -1303,24 +1304,19 @@ $(document).ready(function () {
             var _this = $(this);
             $('.dropdown-input').not(_this).removeClass('active');
             _this.toggleClass('active');
-            // $(document).on('click', function (e) {
-            //     if (!_this.is(e.target) && _this.has(e.target).length == 0) {
-            //         _this.removeClass('active');
-            //     }
-            // });
         });
         $('.dropdown-options li').on('click', function (e) {
             e.stopPropagation();
             var parentDropDown = $(this).closest('.dropdown-input');
             if (!parentDropDown.hasClass('multiple-choice')) {
                 var dropDownChoice = $(this).text();
-                parentDropDown.find('.selected-value').text(dropDownChoice);
+                parentDropDown.removeClass('active').find('.selected-value').text(dropDownChoice);
             }
         });
         $('.dropdown-options li input').on('change', function (e) {
             e.stopPropagation();
             var checkboxStatus = $(this).is(':checked'),
-                filterLabel = $(this).next('label').find('.filter-label').text(),
+                filterLabel = $(this).siblings('label').find('.filter-label').text(),
                 filterValue = $(this).closest('.multiple-choice').find('.selected-value'),
                 baseText = 'Please choose',
                 spanModel = '<span class="entering">' + filterLabel + '</span>',
@@ -1355,7 +1351,7 @@ $(document).ready(function () {
                 }, 400);
             }
         });
-        $('.filter-set-item .simulate-number').on('keypress', function (e) {
+        /*$('.filter-set-item .simulate-number').on('keypress', function (e) {
             if (e.which < 48 || e.which > 57) {
                 e.preventDefault();
             }
@@ -1393,7 +1389,7 @@ $(document).ready(function () {
             var valUnitIndex = val.indexOf(valUnit);
             val = val.slice(0, valUnitIndex) + ' ' + valUnit;
             $(this).val(val);
-        });
+        });*/
 
         $('.search-go-event').on('click', function () {
             var parentCollapsable = $(this).closest('.collapsable-filter-wrp');
@@ -1433,7 +1429,7 @@ $(document).ready(function () {
                     parentSearchFilter.find('.facilities-value').append('<span>' + ratingResult + '</span>');
                 }
             }
-            var offers = parentCollapsable.find('p:contains("Offers")').siblings('.filter-radio-container').find('.inline-radio input:checked + label').text();
+            //var offers = parentCollapsable.find('p:contains("Offers")').siblings('.radio-container').find('.inline-radio input:checked + label').text();
             // parentSearchFilter.find('.lowest-price-value').text(lowestPrice);
             // parentSearchFilter.find('.highest-price-value').text(highestPrice);
             // higherLowerValidation = false;
