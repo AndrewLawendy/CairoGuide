@@ -44,15 +44,12 @@ Contains all styles of inner pages
                     }
                 }
                 .search-go-event {
-                    span {
-                        color: nth($i, 2);
-                    }
+                    background: nth($i, 2);
+                    color:nth($i, 2);
                     &:hover {
                         background: nth($i, 2);
+                        color: #fff;
                         @include transition(all .15s);
-                        span {
-                            color: #fff;
-                        }
                     }
                 }
                 @include placeholder {
@@ -89,6 +86,10 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                 }
             }
+            .items-list-info {
+                color: nth($i, 2);
+                border-color: nth($i, 2);
+            }
             .items-list-wrp {
                 .items-list-container {
                     .item-wrp {
@@ -108,6 +109,10 @@ Contains all styles of inner pages
                                     a:visited {
                                         @include theme-link-color(nth($i, 2));
                                     }
+                                }
+                                .item-exclusive {
+                                    //border-color: nth($i, 2);
+                                    background-color: nth($i, 2);
                                 }
                                 .item-links {
                                     a,
@@ -163,7 +168,6 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .control-btn,
             .circle {
                 background: nth($i, 2);
             }
@@ -190,7 +194,7 @@ Contains all styles of inner pages
     #image-slider-popup {
         position: fixed;
         z-index: 200;
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.95);
         width: 100%;
         height: 100vh;
         position: fixed;
@@ -199,6 +203,7 @@ Contains all styles of inner pages
         opacity: 0;
         padding: 30px;
         box-sizing: border-box;
+        overflow: hidden;
         @include transition(left 0.3s ease,
         opacity 0.3s ease,
         top 0s ease 0.3s);
@@ -231,9 +236,18 @@ Contains all styles of inner pages
                     height: 100%;
                     display: inline-block;
                     background-color: rgba(0, 0, 0, 0.8);
+                    position: relative;
+                    z-index: 10;
                     @include user-select(none);
                     @include media("(min-width: 1200px)") {
                         height: 0 auto get-vw(500px);
+                    }
+                    &.cloned {
+                        position: absolute;
+                        z-index: 0;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
                     }
                 }
             }
@@ -259,20 +273,28 @@ Contains all styles of inner pages
                         padding: 0 3px;
                         box-sizing: border-box;
                         float: left;
+                        background-color: #000;
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(3px);
                         }
                         img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
                             display: block;
                             cursor: pointer;
                             background-color: rgba(0, 0, 0, 0.8);
+                            opacity: 0.4;
+                            @include object-fit-img();
+                            @include transition(all 0.3s ease);
+                        }
+                        &:hover,
+                        &.active {
+                            img {
+                                opacity: 1;
+                                @include transition(all 0.3s ease);
+                            }
                         }
                     }
                 }
-                .active-slider-img-marker {
+                /*.active-slider-img-marker {
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -283,7 +305,7 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         border-width: get-vw(2px);
                     }
-                }
+                }*/
             }
         }
         .slider-nav {
@@ -387,6 +409,9 @@ Contains all styles of inner pages
                 padding: get-vw(10px);
                 margin-bottom: get-vw(30px);
                 border-radius: get-vw(7px);
+            }
+            .advanced-search-filters {
+                cursor: pointer;
             }
             .dynamic-settings-wrp {
                 padding-right: 20px;
@@ -588,15 +613,64 @@ Contains all styles of inner pages
                     li {
                         background: #fff;
                         cursor: pointer;
-                        input {
+                        input[type="checkbox"] {
                             &:checked {
-                                +label::after {
+                                ~label::after {
                                     top: 10px;
                                     opacity: 1;
                                     @include transition(all .15s);
                                     @include media("(min-width: 1200px)") {
                                         top: get-vw(10px);
                                     }
+                                }
+                            }
+                            ~label{
+                                &::before {
+                                    content: '';
+                                    display: block;
+                                    width: 16px;
+                                    height: 16px;
+                                    border-radius: 3px;
+                                    margin-right: 10px;
+                                    border: 2px solid;
+                                    float: left;
+                                    box-sizing: border-box;
+                                    @include media("(min-width: 1200px)") {
+                                        width: get-vw(16px);
+                                        height: get-vw(16px);
+                                        border: get-vw(2px) solid;
+                                        margin-right: get-vw(10px);
+                                    }
+                                }
+                                &::after {
+                                    content: '';
+                                    display: block;
+                                    width: 4px;
+                                    height: 10px;
+                                    border-right: 2px solid;
+                                    border-bottom: 2px solid;
+                                    position: absolute;
+                                    opacity: 0;
+                                    top: 5px;
+                                    left: 16px;
+                                    @include transform(rotate(45deg));
+                                    @include transition(all .1s);
+                                    @include media("(min-width: 1200px)") {
+                                        width: get-vw(4px);
+                                        height: get-vw(10px);
+                                        border-right: get-vw(2px) solid;
+                                        border-bottom: get-vw(2px) solid;
+                                        top: get-vw(5px);
+                                        left: get-vw(16px);
+                                    }
+                                }
+                            }
+                        }
+                        input[type="radio"]{
+                            ~label{
+                                padding:10px 0;
+                                @include media("(min-width: 1200px)") {
+                                    padding:get-vw(10px) 0;
                                 }
                             }
                         }
@@ -624,45 +698,6 @@ Contains all styles of inner pages
                                 line-height: 16px;
                                 @include media("(min-width: 1200px)") {
                                     line-height: get-vw(16px);
-                                }
-                            }
-                            &::before {
-                                content: '';
-                                display: block;
-                                width: 16px;
-                                height: 16px;
-                                border-radius: 3px;
-                                margin-right: 10px;
-                                border: 2px solid;
-                                float: left;
-                                box-sizing: border-box;
-                                @include media("(min-width: 1200px)") {
-                                    width: get-vw(16px);
-                                    height: get-vw(16px);
-                                    border: get-vw(2px) solid;
-                                    margin-right: get-vw(10px);
-                                }
-                            }
-                            &::after {
-                                content: '';
-                                display: block;
-                                width: 4px;
-                                height: 10px;
-                                border-right: 2px solid;
-                                border-bottom: 2px solid;
-                                position: absolute;
-                                opacity: 0;
-                                top: 5px;
-                                left: 16px;
-                                @include transform(rotate(45deg));
-                                @include transition(all .1s);
-                                @include media("(min-width: 1200px)") {
-                                    width: get-vw(4px);
-                                    height: get-vw(10px);
-                                    border-right: get-vw(2px) solid;
-                                    border-bottom: get-vw(2px) solid;
-                                    top: get-vw(5px);
-                                    left: get-vw(16px);
                                 }
                             }
                         }
@@ -774,24 +809,21 @@ Contains all styles of inner pages
                     cursor: pointer;
                     width: 60px;
                     height: 60px;
+                    line-height: 60px;
                     border-radius: 100%;
                     background: #fff;
                     border: 1px solid #fff;
                     box-sizing: border-box;
                     text-align: center;
                     float: right;
+                    outline: none;
                     font: 1.43rem 'Lato-Black';
                     @include transition(background .3s);
                     @include media("(min-width: 1200px)") {
                         width: get-vw(60px);
                         height: get-vw(60px);
+                        line-height: get-vw(60px);
                         border: get-vw(1px) solid #fff;
-                    }
-                    span {
-                        line-height: 60px;
-                        @include media("(min-width: 1200px)") {
-                            line-height: get-vw(60px);
-                        }
                     }
                 }
             }
@@ -877,6 +909,34 @@ Contains all styles of inner pages
                             }
                         }
                     }
+                }
+            }
+        }
+        .items-list-info {
+            line-height: 2rem;
+            padding: 10px 5px;
+            box-sizing: border-box;
+            border-bottom: 4px solid;
+            margin-bottom: 30px;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(10px) get-vw(5px);
+                border-bottom-width: get-vw(4px);
+                margin-bottom: get-vw(30px);
+            }
+            i {
+                font-size: 2rem;
+                float: left;
+            }
+            span {
+                display: block;
+                float: left;
+                margin-left: 10px;
+                font-family: 'Lato-Black';
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                @include media("(min-width: 1200px)") {
+                    letter-spacing: get-vw(2px);
+                    margin-left: get-vw(10px);
                 }
             }
         }
@@ -968,12 +1028,8 @@ Contains all styles of inner pages
                                 }
                             }
                             .item-location {
-                                margin-bottom: 20px;
                                 display: inline-block;
                                 width: 100%;
-                                @include media("(min-width: 1200px)") {
-                                    margin-bottom: get-vw(20px);
-                                }
                                 i,
                                 a,
                                 a:visited {
@@ -990,10 +1046,44 @@ Contains all styles of inner pages
                                     @include link-hover();
                                 }
                             }
+                            .item-exclusive {
+                                padding: 5px;
+                                box-sizing: border-box;
+                                line-height: 1em;
+                                font: 1rem 'Lato-Light';
+                                color: #fff;
+                                margin-top: 10px;
+                                border-radius: 5px; //border: 1px solid;
+                                @include media("(min-width: 1200px)") {
+                                    padding: get-vw(5px);
+                                    margin-top: get-vw(10px);
+                                    border-radius: get-vw(5px); //border-width: get-vw(1px);
+                                }
+                                i,
+                                span {
+                                    display: block;
+                                    float: left;
+                                    line-height: 1.2rem;
+                                }
+                                span {
+                                    white-space: nowrap;
+                                    margin-left: 5px;
+                                    @include media("(min-width: 1200px)") {
+                                        margin-left: get-vw(5px);
+                                    }
+                                }
+                                i {
+                                    font-size: 1.2rem;
+                                }
+                            }
                             p {
                                 color: #555;
+                                margin-top: 20px;
                                 @include limit-text-lines(3,
                                 1.2em);
+                                @include media("(min-width: 1200px)") {
+                                    margin-top: get-vw(20px);
+                                }
                             }
                             .item-links {
                                 position: absolute;
@@ -1137,12 +1227,21 @@ Contains all styles of inner pages
             .main-slide-wrp {
                 height: $main-slide-wrp-height;
                 position: relative;
+                img {
+                    position: relative;
+                    z-index: 10;
+                    &.cloned {
+                        position: absolute;
+                        z-index: 0;
+                    }
+                }
                 .gallery-nav {
                     position: absolute;
                     width: 100%;
                     top: 48%;
                     /*@include transform(translateY(-50%));*/
                     height: 0;
+                    z-index: 20;
                     a,
                     a:visited {
                         color: #fff;
@@ -1181,6 +1280,10 @@ Contains all styles of inner pages
                     }
                     &:nth-of-type(3) {
                         padding-bottom: 0;
+                        img {
+                            @include image-filter(blur(7px));
+                            @include transform(scale(1.2));
+                        }
                     }
                     a,
                     a:visited {
@@ -1189,7 +1292,7 @@ Contains all styles of inner pages
                         height: 100%;
                         overflow: hidden;
                         .side-slides-count {
-                            background-color: rgba(0, 0, 0, 0.7);
+                            background-color: rgba(0, 0, 0, 0.8);
                             text-align: center;
                             font-size: 3rem;
                             color: #fff;
@@ -1255,7 +1358,8 @@ Contains all styles of inner pages
                                 width: get-vw(44px);
                                 height: get-vw(44px);
                             }
-                            svg {
+                            svg,
+                            img {
                                 width: 100%;
                                 height: 100%;
                                 fill: #fff;
@@ -1487,6 +1591,17 @@ Contains all styles of inner pages
             }
             .interaction-section-container {
                 .comment-submit-wrp {
+                    >.ripple {
+                        width: 100%;
+                        height: 95px;
+                        border-radius: 5px;
+                        @include media("(min-width: 1200px)") {
+                            height: get-vw(95px);
+                        }
+                        .circle {
+                            background-color: rgba(0, 0, 0, .05);
+                        }
+                    }
                     textarea {
                         box-sizing: border-box;
                         font-family: 'Lato-Regular';
@@ -1497,7 +1612,7 @@ Contains all styles of inner pages
                         border-radius: 5px;
                         padding: 20px;
                         background: #eee;
-                        font-size: 1.142rem;
+                        font-size: 1rem;
                         @include media("(min-width: 1200px)") {
                             height: get-vw(95px);
                             padding: get-vw(20px);
@@ -1520,7 +1635,7 @@ Contains all styles of inner pages
                                 margin-bottom: get-vw(10px);
                             }
                             p {
-                                font: 1rem 'Lato-Bold';
+                                font: 1rem 'Lato-Regular';
                                 float: left;
                             }
                             .review-satisfaction-wrp {
@@ -1791,12 +1906,14 @@ Contains all styles of inner pages
                     }
                 }
                 .regsiter-container-section {
-                    width: 70%;
+                    width: 100%;
                     text-align: left;
                     padding-right: 30px;
                     background: #fff;
+                    border-radius: 5px;
                     @include media("(min-width: 1200px)") {
                         padding-right: get-vw(30px);
+                        border-radius: get-vw(5px);
                     }
                     .login-register-logo,
                     .login-register-desc {
@@ -1875,51 +1992,58 @@ Contains all styles of inner pages
                 }
                 .register-form {
                     display: none;
-                    width: 500px;
-                    @include media("(min-width: 1200px)") {
+                    width: 100%;
+                    position: relative;
+                    /*@include media("(min-width: 1200px)") {
                         width: get-vw(500px);
-                    }
+                    }*/
                     &.opened {
                         form {
-                            padding-top: 80px;
-                            @include transition(all .3s .15s);
-                            @include media("(min-width: 1200px)") {
+                            //padding-top: 80px;
+                            @include transition(all .3s);
+                            /*@include media("(min-width: 1200px)") {
                                 padding-top: get-vw(80px);
-                            }
+                            }*/
                         }
                         .user-profile {
-                            @include transition(all .3s .15s);
                             opacity: 1;
-                            @include transform(translate(-50%, -50%));
+                            margin-top: -97px;
+                            @include transition(all .3s .3s); //@include transform(translateY(-50%));
+                            @include media("(min-width: 1200px)") {
+                                margin-top: get-vw(-97px);
+                            }
                         }
                     }
                     form {
-                        padding-top: 155px;
+                        //padding-top: 155px;
                         @include transition(all .3s);
-                        @include media("(min-width: 1200px)") {
+                        /*@include media("(min-width: 1200px)") {
                             padding-top: get-vw(155px);
-                        }
+                        }*/
                     }
                     .user-profile {
-                        position: absolute;
+                        /*position: absolute;
                         top: 0;
-                        left: 50%;
-                        z-index: 1;
+                        left: 0;
+                        right:0;
+                        z-index: 1;*/
                         width: 150px;
                         height: 150px;
-                        border: 2px solid #fff;
-                        border-radius: 100%;
                         overflow: hidden;
                         margin: 0 auto;
+                        margin-bottom: 20px;
                         opacity: 0;
-                        @include transition(all .3s);
-                        @include transform(translate(-50%, 0));
+                        border: 2px solid #fff;
+                        border-radius: 100%;
+                        @include transition(all .3s); //@include transform(translate(-50%, 0));
                         @include media("(min-width: 1200px)") {
                             width: get-vw(150px);
                             height: get-vw(150px);
-                            border: get-vw(2px) solid #fff;
+                            margin-bottom: get-vw(20px);
+                            border-width: get-vw(2px); //border: get-vw(2px) solid #fff;
                         }
                         img {
+                            display: block;
                             @include object-fit-img();
                         }
                     }
