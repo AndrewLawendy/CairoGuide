@@ -1309,7 +1309,7 @@ $(document).ready(function () {
             e.stopPropagation();
             var parentDropDown = $(this).closest('.dropdown-input');
             if (!parentDropDown.hasClass('multiple-choice')) {
-                var dropDownChoice = $(this).text();
+                var dropDownChoice = $(this).find('label').text();
                 parentDropDown.removeClass('active').find('.selected-value').text(dropDownChoice);
             }
         });
