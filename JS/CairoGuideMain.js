@@ -1391,7 +1391,7 @@ $(document).ready(function () {
 
     //Item Details Gallery Functions
     if ($('.gallery-section-container').length) {
-        InitDetailsGallerySlider();
+        //InitDetailsGallerySlider();
     }
 
     //Tabs component
