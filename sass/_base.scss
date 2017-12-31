@@ -2,6 +2,7 @@
 
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
+$in-out : cubic-bezier(0.65, 0.05, 0.36, 1);
 
 /*Main Colors*/
 
@@ -90,6 +91,7 @@ $colorList: "nightlife" #f90000,
 @mixin user-select($value) {
     -webkit-touch-callout: $value;
     -webkit-user-select: $value;
+    -webkit-user-drag: $value;
     -khtml-user-select: $value;
     -moz-user-select: $value;
     -ms-user-select: $value;
@@ -784,6 +786,13 @@ p {
 
 .clear {
     clear: both
+}
+
+.marg-b3 {
+    margin-bottom: 3px;
+    @include media("(min-width: 1200px)") {
+        margin-bottom: get-vw(3px);
+    }
 }
 
 .marg-b10 {
@@ -2345,7 +2354,7 @@ main {
             .highlights-wrp {
                 margin-left: 0;
                 @include transition(margin-left 0.3s ease);
-                .hightlights-item {
+                .highlights-item {
                     position: relative;
                     width: calc((( 100vw - 60px) / 5) - 20px);
                     padding: 0 10px;
@@ -2399,7 +2408,7 @@ main {
                                 font: 1.5rem "Lato-Light";
                                 color: #fff;
                                 text-transform: uppercase; //white-space: nowrap;
-                                line-height: 1rem; //margin-left: 40px;
+                                line-height: 1em; //margin-left: 40px;
                                 //@include transition(all 3s ease);
                                 /*@include media("(min-width: 1200px)") {
                                 margin-left: get-vw(40px);
