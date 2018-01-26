@@ -1165,25 +1165,51 @@ Contains all styles of inner pages
                 }
             }*/
             .olis-choice-items-container {
+                margin-right: -10px;
+                margin-left: -10px;
+                @include media("(min-width: 1200px)") {
+                    margin-right: get-vw(-10px);
+                    margin-left: get-vw(-10px);
+                }
                 .olis-choice-item {
                     $olis-choice-item-width: ((1200px - 60px) / 4) - (60px / 3);
                     padding: 0 10px;
+                    box-sizing: border-box;
                     @include media("(min-width: 1200px)") {
                         $olis-choice-item-width: get-vw($olis-choice-item-width);
                         padding: 0 get-vw(10px);
                     }
                     width: $olis-choice-item-width;
                     float: left;
-                    &:first-child {
-                        padding-left: 0;
-                    }
-                    &:last-child {
-                        padding-right: 0;
-                    }
                     a,
                     a:visited {
                         text-decoration: none;
                         color: #fff;
+                    }
+                    @include media("(max-width: 768px)") {
+                        width: 33.33%;
+                        &:nth-child(1n+4){
+                            margin-top:15px
+                        }
+                        &:nth-child(3n+1){
+                            clear: left;
+                        }
+                        &:nth-child(3n+3){
+                            clear: right;
+                        }
+                    }
+                    @include media("(max-width: 480px)") {
+                        width: 50%;
+                        margin-top: 0;
+                        &:nth-child(1n+3){
+                            margin-top: 15px;
+                        }
+                        &:nth-child(odd){
+                            clear: left;
+                        }
+                        &:nth-child(even){
+                            clear: right;
+                        }
                     }
                     .olis-choice-item-image {
                         height: 200px;
