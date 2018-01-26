@@ -45,7 +45,7 @@ Contains all styles of inner pages
                 }
                 .search-go-event {
                     background: nth($i, 2);
-                    color:nth($i, 2);
+                    color: nth($i, 2);
                     &:hover {
                         background: nth($i, 2);
                         color: #fff;
@@ -345,6 +345,7 @@ Contains all styles of inner pages
             top 0s ease);
         }
     }
+
     /*Main*/
 
     main {
@@ -412,6 +413,9 @@ Contains all styles of inner pages
             }
             .advanced-search-filters {
                 cursor: pointer;
+                @include media("(max-width: 768px)") {
+                    margin-bottom: 15px;
+                }
             }
             .dynamic-settings-wrp {
                 padding-right: 20px;
@@ -421,6 +425,9 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     padding-right: get-vw(20px);
                     padding-top: get-vw(10px);
+                }
+                @include media("(max-width: 768px)") {
+                    padding-top: 0;
                 }
                 .settings-column {
                     height: 25px;
@@ -496,16 +503,15 @@ Contains all styles of inner pages
                 }
             }
             .filter-result-wrp {
-                float: left;
+                overflow: hidden;
+                width: auto;
                 color: #fff;
                 margin-top: 10px;
                 line-height: 25px;
-                width: calc(100% - 40px);
                 box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
                     margin-top: get-vw(10px);
                     line-height: get-vw(25px);
-                    width: calc(100% - 3.3333vw);
                 }
                 .filter-result-item {
                     display: inline;
@@ -624,7 +630,7 @@ Contains all styles of inner pages
                                     }
                                 }
                             }
-                            ~label{
+                            ~label {
                                 &::before {
                                     content: '';
                                     display: block;
@@ -666,11 +672,11 @@ Contains all styles of inner pages
                                 }
                             }
                         }
-                        input[type="radio"]{
-                            ~label{
-                                padding:10px 0;
+                        input[type="radio"] {
+                            ~label {
+                                padding: 10px 0;
                                 @include media("(min-width: 1200px)") {
-                                    padding:get-vw(10px) 0;
+                                    padding: get-vw(10px) 0;
                                 }
                             }
                         }
@@ -741,6 +747,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         width: calc(100% - 4.6667vw);
                     }
+                    @include media("(max-width: 768px)") {
+                        width: 100%;
+                    }
                 }
                 .icon-filter-sort {
                     color: #fff;
@@ -750,6 +759,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(10px);
                         line-height: get-vw(40px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        display: none;
                     }
                 }
                 .filter-field-input {
@@ -781,6 +793,20 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(10px);
                         margin-top: get-vw(20px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        width: 50%;
+                        &:nth-child(2n+1) {
+                            clear: left;
+                        }
+                        &:nth-child(2n+2) {
+                            clear: right;
+                        }
+                    }
+                    @include media("(max-width: 480px)") {
+                        width: 100%;
+                        float: none;
+                        clear: both;
                     }
                     p {
                         color: #fff;
@@ -824,6 +850,10 @@ Contains all styles of inner pages
                         height: get-vw(60px);
                         line-height: get-vw(60px);
                         border: get-vw(1px) solid #fff;
+                    }
+                    @include media("(max-width: 480px)") {
+                        border-radius: 7px;
+                        width: 100%;
                     }
                 }
             }
@@ -988,9 +1018,20 @@ Contains all styles of inner pages
                                 height: get-vw(200px);
                                 padding-right: get-vw(20px);
                             }
+                            @include media("(max-width: 768px)") {
+                                height: 115px;
+                            }
                             img {
+                                min-height: 50%;
+                                display: block;
+                                background: #eee;
+                                text-indent: 5px;
+                                font-family: 'Lato-Light';
                                 @include object-fit-img();
                                 object-position: center;
+                                @include media("(min-width: 1200px)") {
+                                    text-indent: get-vw(5px);
+                                }
                             }
                         }
                         .item-data {
@@ -1008,7 +1049,6 @@ Contains all styles of inner pages
                                 h2 {
                                     color: #131313;
                                     font: 2.14rem 'Lato-Black';
-                                    float: left;
                                     margin-top: 5px;
                                     text-transform: capitalize;
                                     @include media("(min-width: 1200px)") {
@@ -1034,9 +1074,14 @@ Contains all styles of inner pages
                                 a,
                                 a:visited {
                                     float: left;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    width: 90%;
                                 }
                                 i {
                                     margin-right: 5px;
+                                    width: auto;
                                     @include media("(min-width: 1200px)") {
                                         margin-right: get-vw(5px);
                                     }
@@ -1083,6 +1128,9 @@ Contains all styles of inner pages
                                 1.2em);
                                 @include media("(min-width: 1200px)") {
                                     margin-top: get-vw(20px);
+                                }
+                                @include media("(max-width: 768px)") {
+                                    display: none;
                                 }
                             }
                             .item-links {
@@ -1300,7 +1348,12 @@ Contains all styles of inner pages
                             top: 0;
                             left: 0;
                             height: 100%;
-                            display: none;
+                            opacity: 0;
+                            @include transition(all 0.3s ease);
+                            &.active {
+                                opacity: 1;
+                                @include transition(all 0.3s ease);
+                            }
                             &,
                             span {
                                 width: 100%;
@@ -1875,7 +1928,7 @@ Contains all styles of inner pages
                 width: 768px;
                 display: inline-block;
                 vertical-align: middle;
-                padding: 0!important;
+                padding: 0 !important;
                 position: relative;
                 @include media("(min-width: 1200px)") {
                     margin: get-vw(60px) auto;
@@ -1901,7 +1954,7 @@ Contains all styles of inner pages
                             margin-bottom: get-vw(20px);
                         }
                         &:last-child {
-                            margin-bottom: 0!important;
+                            margin-bottom: 0 !important;
                         }
                     }
                 }
@@ -2054,8 +2107,8 @@ Contains all styles of inner pages
         .about-oli {
             display: block;
             width: 8%;
-            margin-right:auto;
-            margin-left:auto;
+            margin-right: auto;
+            margin-left: auto;
             opacity: 0.7;
         }
         /*Sitemap Page*/
@@ -2147,7 +2200,7 @@ Contains all styles of inner pages
                 height: 40px;
                 background-color: transparent;
                 z-index: 100;
-                outline: 0!important;
+                outline: 0 !important;
                 font-size: 1rem;
                 @include reset-appearance();
                 @include media("(min-width: 1200px)") {
@@ -2194,6 +2247,83 @@ Contains all styles of inner pages
                 @include theme-link-color(#000);
                 @include media("(min-width: 1200px)") {
                     margin-bottom: get-vw(10px);
+                }
+            }
+        }
+        /*Profile*/
+        /*.profile-cover {
+            width: 100%;
+            height: 335px;
+            overflow: hidden;
+            @include media("(min-width: 1200px)") {
+                height: get-vw(335px);
+            }
+            img {
+                @include object-fit-img();
+            }
+        }*/
+        .profile-user-header {
+            position: relative;
+            padding: 20px 0;
+            box-sizing: border-box;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(20px) 0;
+            }
+            .profile-display-holder {
+                width: 150px;
+                height: 150px;
+                border-radius: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                @include transform(translateY(-50%));
+                @include media("(min-width: 1200px)") {
+                    width: get-vw(150px);
+                    height: get-vw(150px);
+                }
+                img {
+                    @include object-fit-img();
+                }
+            }
+            .profile-data-holder {
+                margin-left: 170px;
+                @include media("(min-width: 1200px)") {
+                    margin-left: get-vw(170px);
+                }
+                .profile-rank,
+                .signout-btn {
+                    display: block;
+                    line-height: 1em;
+                }
+                .profile-name {
+                    display: inline-block;
+                    margin-bottom: 5px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(5px);
+                    }
+                    h2 {
+                        font: 1.7rem 'Lato-Regular';
+                        line-height: 1em;
+                        float: left;
+                        margin-right: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-right: get-vw(10px);
+                        }
+                    }
+                    a,
+                    a:visited {
+                        float: left;
+                        text-decoration: none;
+                        color: #777;
+                        font-size: 1.4rem;
+                    }
+                }
+                .profile-rank {
+                    margin-bottom: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(10px);
+                    }
                 }
             }
         }
