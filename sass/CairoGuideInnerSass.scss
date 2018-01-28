@@ -383,6 +383,7 @@ Contains all styles of inner pages
             top 0s ease);
         }
     }
+
     /*Main*/
 
     main {
@@ -456,6 +457,9 @@ Contains all styles of inner pages
             }
             .advanced-search-filters {
                 cursor: pointer;
+                @include media("(max-width: 768px)") {
+                    margin-bottom: 15px;
+                }
             }
             .dynamic-settings-wrp {
                 padding-right: 20px;
@@ -465,6 +469,9 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     padding-right: get-vw(20px);
                     padding-top: get-vw(10px);
+                }
+                @include media("(max-width: 768px)") {
+                    padding-top: 0;
                 }
                 .settings-column {
                     height: 25px;
@@ -540,16 +547,15 @@ Contains all styles of inner pages
                 }
             }
             .filter-result-wrp {
-                float: left;
+                overflow: hidden;
+                width: auto;
                 color: #fff;
                 margin-top: 10px;
                 line-height: 25px;
-                width: calc(100% - 40px);
                 box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
                     margin-top: get-vw(10px);
                     line-height: get-vw(25px);
-                    width: calc(100% - 3.3333vw);
                 }
                 .filter-result-item {
                     display: inline;
@@ -785,6 +791,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         width: calc(100% - 4.6667vw);
                     }
+                    @include media("(max-width: 768px)") {
+                        width: 100%;
+                    }
                 }
                 .icon-filter-sort {
                     color: #fff;
@@ -794,6 +803,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(10px);
                         line-height: get-vw(40px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        display: none;
                     }
                 }
                 .filter-field-input {
@@ -825,6 +837,20 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(10px);
                         margin-top: get-vw(20px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        width: 50%;
+                        &:nth-child(2n+1) {
+                            clear: left;
+                        }
+                        &:nth-child(2n+2) {
+                            clear: right;
+                        }
+                    }
+                    @include media("(max-width: 480px)") {
+                        width: 100%;
+                        float: none;
+                        clear: both;
                     }
                     p {
                         color: #fff;
@@ -868,6 +894,10 @@ Contains all styles of inner pages
                         height: get-vw(60px);
                         line-height: get-vw(60px);
                         border: get-vw(1px) solid #fff;
+                    }
+                    @include media("(max-width: 480px)") {
+                        border-radius: 7px;
+                        width: 100%;
                     }
                 }
             }
@@ -1032,6 +1062,9 @@ Contains all styles of inner pages
                                 height: get-vw(200px);
                                 padding-right: get-vw(20px);
                             }
+                            @include media("(max-width: 768px)") {
+                                height: 115px;
+                            }
                             img {
                                 min-height: 50%;
                                 display: block;
@@ -1060,7 +1093,6 @@ Contains all styles of inner pages
                                 h2 {
                                     color: #131313;
                                     font: 2.14rem 'Lato-Black';
-                                    float: left;
                                     margin-top: 5px;
                                     text-transform: capitalize;
                                     @include media("(min-width: 1200px)") {
@@ -1092,6 +1124,7 @@ Contains all styles of inner pages
                                 }
                                 i {
                                     margin-right: 5px;
+                                    width: auto;
                                     @include media("(min-width: 1200px)") {
                                         margin-right: get-vw(5px);
                                     }
@@ -1140,6 +1173,9 @@ Contains all styles of inner pages
                                 @include media("(min-width: 1200px)") {
                                     margin-top: get-vw(20px);
                                 }
+                                @include media("(max-width: 768px)") {
+                                    display: none;
+                                }
                             }
                             .item-links {
                                 position: absolute;
@@ -1173,25 +1209,51 @@ Contains all styles of inner pages
                 }
             }*/
             .olis-choice-items-container {
+                margin-right: -10px;
+                margin-left: -10px;
+                @include media("(min-width: 1200px)") {
+                    margin-right: get-vw(-10px);
+                    margin-left: get-vw(-10px);
+                }
                 .olis-choice-item {
                     $olis-choice-item-width: ((1200px - 60px) / 4) - (60px / 3);
                     padding: 0 10px;
+                    box-sizing: border-box;
                     @include media("(min-width: 1200px)") {
                         $olis-choice-item-width: get-vw($olis-choice-item-width);
                         padding: 0 get-vw(10px);
                     }
                     width: $olis-choice-item-width;
                     float: left;
-                    &:first-child {
-                        padding-left: 0;
-                    }
-                    &:last-child {
-                        padding-right: 0;
-                    }
                     a,
                     a:visited {
                         text-decoration: none;
                         color: #fff;
+                    }
+                    @include media("(max-width: 768px)") {
+                        width: 33.33%;
+                        &:nth-child(1n+4){
+                            margin-top:15px
+                        }
+                        &:nth-child(3n+1){
+                            clear: left;
+                        }
+                        &:nth-child(3n+3){
+                            clear: right;
+                        }
+                    }
+                    @include media("(max-width: 480px)") {
+                        width: 50%;
+                        margin-top: 0;
+                        &:nth-child(1n+3){
+                            margin-top: 15px;
+                        }
+                        &:nth-child(odd){
+                            clear: left;
+                        }
+                        &:nth-child(even){
+                            clear: right;
+                        }
                     }
                     .olis-choice-item-image {
                         height: 200px;
@@ -1991,7 +2053,7 @@ Contains all styles of inner pages
                 width: 768px;
                 display: inline-block;
                 vertical-align: middle;
-                padding: 0!important;
+                padding: 0 !important;
                 position: relative;
                 @include media("(min-width: 1200px)") {
                     margin: get-vw(60px) auto;
@@ -2017,7 +2079,7 @@ Contains all styles of inner pages
                             margin-bottom: get-vw(20px);
                         }
                         &:last-child {
-                            margin-bottom: 0!important;
+                            margin-bottom: 0 !important;
                         }
                     }
                 }
@@ -2263,7 +2325,7 @@ Contains all styles of inner pages
                 height: 40px;
                 background-color: transparent;
                 z-index: 100;
-                outline: 0!important;
+                outline: 0 !important;
                 font-size: 1rem;
                 @include reset-appearance();
                 @include media("(min-width: 1200px)") {
@@ -2327,10 +2389,10 @@ Contains all styles of inner pages
         }*/
         .profile-user-header {
             position: relative;
-            padding:20px 0;
-            box-sizing:border-box;
+            padding: 20px 0;
+            box-sizing: border-box;
             @include media("(min-width: 1200px)") {
-                padding:get-vw(20px) 0;
+                padding: get-vw(20px) 0;
             }
             .profile-display-holder {
                 width: 150px;
@@ -2339,7 +2401,7 @@ Contains all styles of inner pages
                 position: absolute;
                 top: 0;
                 left: 0;
-                overflow:hidden;
+                overflow: hidden;
                 @include transform(translateY(-50%));
                 @include media("(min-width: 1200px)") {
                     width: get-vw(150px);
@@ -2349,41 +2411,43 @@ Contains all styles of inner pages
                     @include object-fit-img();
                 }
             }
-            .profile-data-holder{
-                margin-left:170px;
+            .profile-data-holder {
+                margin-left: 170px;
                 @include media("(min-width: 1200px)") {
-                    margin-left:get-vw(170px);
+                    margin-left: get-vw(170px);
                 }
-                .profile-rank,.signout-btn{
-                    display:block;
-                    line-height:1em;
+                .profile-rank,
+                .signout-btn {
+                    display: block;
+                    line-height: 1em;
                 }
-                .profile-name{
-                    display:inline-block;
-                    margin-bottom:5px;
+                .profile-name {
+                    display: inline-block;
+                    margin-bottom: 5px;
                     @include media("(min-width: 1200px)") {
-                        margin-bottom:get-vw(5px);
+                        margin-bottom: get-vw(5px);
                     }
-                    h2{
-                        font:1.7rem 'Lato-Regular';
-                        line-height:1em;
-                        float:left;
-                        margin-right:10px;
+                    h2 {
+                        font: 1.7rem 'Lato-Regular';
+                        line-height: 1em;
+                        float: left;
+                        margin-right: 10px;
                         @include media("(min-width: 1200px)") {
-                            margin-right:get-vw(10px);
+                            margin-right: get-vw(10px);
                         }
                     }
-                    a,a:visited{
-                        float:left;
+                    a,
+                    a:visited {
+                        float: left;
                         text-decoration: none;
-                        color:#777;
-                        font-size:1.4rem;
+                        color: #777;
+                        font-size: 1.4rem;
                     }
                 }
-                .profile-rank{
-                    margin-bottom:10px;
+                .profile-rank {
+                    margin-bottom: 10px;
                     @include media("(min-width: 1200px)") {
-                        margin-bottom:get-vw(10px);
+                        margin-bottom: get-vw(10px);
                     }
                 }
             }
