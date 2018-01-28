@@ -263,8 +263,8 @@ $colorList: "nightlife" #f90000,
     @return ($value / $vw-context) * 1vw;
 }*/
 
-@function get-vw($value) {
-    @return (($value * 100) / 1200px) * 1vw;
+@function get-vw($value,$screen-size: 1200px) {
+    @return (($value * 100) / $screen-size) * 1vw;
 }
 
 @function opposite-direction($directions) {
@@ -326,12 +326,11 @@ $colorList: "nightlife" #f90000,
 html,
 body {
     overflow-x: hidden;
-}
-
-body,
-html {
     @include media("(min-width: 768px)") {
         font-size: get-vw(14px);
+    }
+    &.popup-in-motion{
+        overflow-y:hidden;
     }
 }
 
@@ -714,6 +713,9 @@ p {
     @include media("(min-width: 1200px)") {
         padding: 0 get-vw(30px);
     }
+    @include media("(max-width: 768px)") {
+        padding: 0 15px;
+    }
 }
 
 .full-width {
@@ -1021,6 +1023,41 @@ input[type="radio"] {
     display: inline-block;
     @include link-hover();
     @include theme-link-color(#000);
+}
+
+.default-close-btn{
+    width:30px;
+    height:30px;
+    border:1px solid #fff;
+    border-radius:100%;
+    position:relative;
+    cursor:pointer;
+    @include media("(min-width: 1200px)") {
+        width:get-vw(30px);
+    height:get-vw(30px);
+    border-width:get-vw(1px);
+    }
+    &:before,&:after{
+        content:'';
+        display:block;
+        width:70%;
+        height:1px;
+        background:#fff;
+        position:absolute;
+        top:50%;
+        left:0;
+        right:0;
+        margin:0 auto;
+        @include media("(min-width: 1200px)") {
+            height:get-vw(1px);
+        }
+    }
+    &:before{
+        @include transform(translateY(-50%) rotate(45deg));
+    }
+    &:after{
+        @include transform(translateY(-50%) rotate(-45deg));
+    }
 }
 
 .radio-container {
@@ -1361,6 +1398,9 @@ input[type="radio"] {
         padding: get-vw(10px) 0;
         margin: get-vw(50px) 0;
     }
+    @include media("(max-width: 640px)") {
+        width: 60%;
+    }
     h2 {
         text-transform: uppercase;
         letter-spacing: 10px;
@@ -1372,6 +1412,9 @@ input[type="radio"] {
             letter-spacing: get-vw(10px);
             width: get-vw(400px);
             line-height: get-vw(35px);
+        }
+        @include media("(max-width: 640px)") {
+            width: 165%;
         }
     }
 }
@@ -2702,7 +2745,7 @@ footer {
     }
 }
 
-@include media("(max-width: 480px)") {
+@include media("(max-width: 640px)") {
     .third-width {
         width: 100%;
         float: none;
