@@ -220,6 +220,9 @@ Contains all styles of inner pages
             transform: translateY(-50%);
             left: 0;
             right: 0;*/
+            .default-close-btn{
+                float:left;
+            }
             .slider-main-slide-wrp {
                 /*width: 60%;*/
                 overflow: hidden;
@@ -230,6 +233,37 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     margin: 0 auto get-vw(6px);
                     height: get-vw(400px);
+                }
+                @include media("(max-width: 768px)") {
+                    display:none;
+                }
+                .slider-nav {
+                    position: absolute;
+                    width: 100%;
+                    top: 48%;
+                    padding: 0 30px;
+                    box-sizing: border-box;
+                    font-size: 3rem;
+                    line-height: 1rem;
+                    height: 0;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(30px);
+                    }
+                    a,
+                    a:visited {
+                        color: #fff;
+                        text-decoration: none;
+                        padding: 5px;
+                        @include transition(all 0.3s ease);
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(5px);
+                        }
+                    }
+                    a:hover {
+                        background-color: #fff;
+                        color: #000;
+                        @include transition(all 0.3s ease);
+                    }
                 }
                 .slider-main-image {
                     /*width: 100%;*/
@@ -256,6 +290,12 @@ Contains all styles of inner pages
                 text-align: center;
                 padding: 25px;
                 box-sizing: border-box;
+                @include media("(max-width: 768px)") {
+                    float:right;
+                    padding:0;
+                    line-height:30px;
+                    margin-bottom:25px;
+                }
             }
             .image-small-slider-wrp {
                 width: 100%;
@@ -263,10 +303,18 @@ Contains all styles of inner pages
                 overflow: hidden;
                 text-align: center;
                 position: relative;
+                @include media("(max-width: 768px)") {
+                    height:calc(100vh - 110px);
+                    overflow:auto;
+                }
                 .img-small-slider-container {
                     position: relative;
                     display: inline-block;
                     @include transition(all 0.3s ease);
+                    @include media("(max-width: 768px)") {
+                        width:100%!important;
+                        margin:0!important;
+                    }
                     .img-holder {
                         width: get-vw((1200px - 60px) / 7);
                         height: get-vw((1200px * 0.5) / 7);
@@ -277,6 +325,20 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(3px);
                         }
+                        @include media("(max-width: 768px)") {
+                            width:100%;
+                            height:auto;
+                            float:none;
+                            padding:0;
+                            clear:both;
+                            margin:10px 0;
+                            &:first-child{
+                                margin-top:0;
+                            }
+                            &:last-child{
+                                margin-bottom:0;
+                            }
+                        }
                         img {
                             display: block;
                             cursor: pointer;
@@ -284,6 +346,9 @@ Contains all styles of inner pages
                             opacity: 0.4;
                             @include object-fit-img();
                             @include transition(all 0.3s ease);
+                            @include media("(max-width: 768px)") {
+                                opacity: 1;
+                            }
                         }
                         &:hover,
                         &.active {
@@ -308,34 +373,7 @@ Contains all styles of inner pages
                 }*/
             }
         }
-        .slider-nav {
-            position: absolute;
-            width: get-vw(1200px - 60px);
-            top: 48%;
-            padding: 0 30px;
-            box-sizing: border-box;
-            font-size: 3rem;
-            line-height: 1rem;
-            height: 0;
-            @include media("(min-width: 1200px)") {
-                padding: 0 get-vw(30px);
-            }
-            a,
-            a:visited {
-                color: #fff;
-                text-decoration: none;
-                padding: 5px;
-                @include transition(all 0.3s ease);
-                @include media("(min-width: 1200px)") {
-                    padding: get-vw(5px);
-                }
-            }
-            a:hover {
-                background-color: #fff;
-                color: #000;
-                @include transition(all 0.3s ease);
-            }
-        }
+        
         &.active {
             left: 0;
             top: 0;
@@ -358,6 +396,12 @@ Contains all styles of inner pages
             @include media("(min-width: 1200px)") {
                 height: get-vw(335px);
                 margin-bottom: get-vw(30px);
+            }
+            @include media("(max-width: 768px)") {
+                height: 250px;
+            }
+            @include media("(max-width: 640px)") {
+                height: 200px;
             }
             &:before {
                 content: '';
@@ -1045,7 +1089,6 @@ Contains all styles of inner pages
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
-                                    width: 90%;
                                 }
                                 i {
                                     margin-right: 5px;
@@ -1055,6 +1098,7 @@ Contains all styles of inner pages
                                 }
                                 a,
                                 a:visited {
+                                    width: 90%;
                                     @include link-hover();
                                 }
                             }
@@ -1203,6 +1247,9 @@ Contains all styles of inner pages
                 }
             }
             .category-location-wrp {
+                display:inline-block;
+                width:100%;
+
                 * {
                     float: left;
                 }
@@ -1220,6 +1267,27 @@ Contains all styles of inner pages
                     margin-right: 15px;
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(15px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        width:50%;
+                        margin:0;
+                        padding:5px 10px;
+                        box-sizing:border-box;
+
+                        &:nth-of-type(odd){
+                            padding-left:0;
+                            clear:left;
+                        }
+                        &:nth-of-type(even){
+                            padding-right:0;
+                            clear:right;
+                        }
+                    }
+                    @include media("(max-width: 640px)") {
+                        width:100%;
+                        float:none;
+                        padding:5px 0;
+                        clear:both;
                     }
                 }
             }
@@ -1260,6 +1328,9 @@ Contains all styles of inner pages
                         text-decoration: none;
                         font-size: 3rem;
                         @include transition(all 0.3s ease);
+                        @include media("(max-width: 768px)") {
+                            font-size:4vw;
+                        }
                     }
                     a:hover {
                         @include transition(all 0.3s ease);
@@ -1279,6 +1350,12 @@ Contains all styles of inner pages
                 }
             }
             .side-slides-wrp {
+                @include media("(max-width: 768px)") {
+                    margin-top:15px;
+                }
+                @include media("(max-width: 640px)") {
+                    margin-top:6px;
+                }
                 .side-slide-item {
                     height: $main-slide-wrp-height / 3;
                     padding: 7px 0;
@@ -1287,11 +1364,30 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(7px) 0;
                     }
+                    @include media("(max-width: 768px)") {
+                        $side-slide-item-width: calc(((100vw - 30px) / 3) - 10px);
+                        $side-slide-item-height: calc((((100vw - 30px) / 3) - 10px) * (2 / 3));
+                        width:$side-slide-item-width;
+                        height:$side-slide-item-height;
+                        padding:0;
+                        margin-right:15px;
+                        float:left;
+                    }
+                    @include media("(max-width: 640px)") {
+                        $side-slide-item-width: calc(((100vw - 30px) / 3) - 4px);
+                        $side-slide-item-height: calc((((100vw - 30px) / 3) - 4px) * (2 / 3));
+                        width:$side-slide-item-width;
+                        height:$side-slide-item-height;
+                        margin-right:6px;
+                    }
                     &:first-child {
                         padding-top: 0;
                     }
                     &:nth-of-type(3) {
                         padding-bottom: 0;
+                        @include media("(max-width: 768px)") {
+                            margin-right:0;
+                        }
                         img {
                             @include image-filter(blur(7px));
                             @include transform(scale(1.2));
@@ -1314,6 +1410,9 @@ Contains all styles of inner pages
                             height: 100%;
                             opacity: 0;
                             @include transition(all 0.3s ease);
+                            @include media("(max-width: 768px)") {
+                                font-size:4vw;
+                            }
                             &.active {
                                 opacity: 1;
                                 @include transition(all 0.3s ease);
