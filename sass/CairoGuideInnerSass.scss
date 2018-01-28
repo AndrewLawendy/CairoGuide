@@ -220,8 +220,8 @@ Contains all styles of inner pages
             transform: translateY(-50%);
             left: 0;
             right: 0;*/
-            .default-close-btn{
-                float:left;
+            .default-close-btn {
+                float: left;
             }
             .slider-main-slide-wrp {
                 /*width: 60%;*/
@@ -235,7 +235,7 @@ Contains all styles of inner pages
                     height: get-vw(400px);
                 }
                 @include media("(max-width: 768px)") {
-                    display:none;
+                    display: none;
                 }
                 .slider-nav {
                     position: absolute;
@@ -291,10 +291,10 @@ Contains all styles of inner pages
                 padding: 25px;
                 box-sizing: border-box;
                 @include media("(max-width: 768px)") {
-                    float:right;
-                    padding:0;
-                    line-height:30px;
-                    margin-bottom:25px;
+                    float: right;
+                    padding: 0;
+                    line-height: 30px;
+                    margin-bottom: 25px;
                 }
             }
             .image-small-slider-wrp {
@@ -304,16 +304,16 @@ Contains all styles of inner pages
                 text-align: center;
                 position: relative;
                 @include media("(max-width: 768px)") {
-                    height:calc(100vh - 110px);
-                    overflow:auto;
+                    height: calc(100vh - 110px);
+                    overflow: auto;
                 }
                 .img-small-slider-container {
                     position: relative;
                     display: inline-block;
                     @include transition(all 0.3s ease);
                     @include media("(max-width: 768px)") {
-                        width:100%!important;
-                        margin:0!important;
+                        width: 100% !important;
+                        margin: 0 !important;
                     }
                     .img-holder {
                         width: get-vw((1200px - 60px) / 7);
@@ -326,17 +326,17 @@ Contains all styles of inner pages
                             padding: 0 get-vw(3px);
                         }
                         @include media("(max-width: 768px)") {
-                            width:100%;
-                            height:auto;
-                            float:none;
-                            padding:0;
-                            clear:both;
-                            margin:10px 0;
-                            &:first-child{
-                                margin-top:0;
+                            width: 100%;
+                            height: auto;
+                            float: none;
+                            padding: 0;
+                            clear: both;
+                            margin: 10px 0;
+                            &:first-child {
+                                margin-top: 0;
                             }
-                            &:last-child{
-                                margin-bottom:0;
+                            &:last-child {
+                                margin-bottom: 0;
                             }
                         }
                         img {
@@ -373,7 +373,6 @@ Contains all styles of inner pages
                 }*/
             }
         }
-        
         &.active {
             left: 0;
             top: 0;
@@ -394,38 +393,46 @@ Contains all styles of inner pages
             margin-bottom: 30px;
             background-position-y: 50%;
             position: relative;
+            text-align: center;
+            &::before{
+                content:'';
+                display:inline-block;
+                height:100%;
+                vertical-align: middle;
+            }
             @include media("(min-width: 1200px)") {
                 height: get-vw(335px);
                 margin-bottom: get-vw(30px);
             }
             @include media("(max-width: 768px)") {
-                height: 250px;
+                height: 175px;
             }
             @include media("(max-width: 640px)") {
-                height: 200px;
-            }
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                background-color: rgba(0, 0, 0, 0.15);
+                height: 125px;
             }
             &.details-banner:before {
                 display: none;
             }
             h1 {
+                display: inline-block;
+                vertical-align: middle;
                 text-align: center;
                 line-height: 335px;
                 font: 3.5rem "Lato-Black";
                 color: #fff;
                 text-transform: uppercase;
-                position: relative;
                 @include media("(min-width: 1200px)") {
                     line-height: get-vw(335px);
+                }
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background-color: rgba(0, 0, 0, 0.15);
                 }
             }
         }
@@ -847,7 +854,7 @@ Contains all styles of inner pages
                             clear: right;
                         }
                     }
-                    @include media("(max-width: 480px)") {
+                    @include media("(max-width: 640px)") {
                         width: 100%;
                         float: none;
                         clear: both;
@@ -895,7 +902,7 @@ Contains all styles of inner pages
                         line-height: get-vw(60px);
                         border: get-vw(1px) solid #fff;
                     }
-                    @include media("(max-width: 480px)") {
+                    @include media("(max-width: 640px)") {
                         border-radius: 7px;
                         width: 100%;
                     }
@@ -1041,6 +1048,9 @@ Contains all styles of inner pages
                             bottom: get-vw(3px);
                             height: get-vw(3px);
                         }
+                        @include media("(max-width: 768px)") {
+                            width: 100%;
+                        }
                     }
                     &:last-child {
                         margin-bottom: 0;
@@ -1063,7 +1073,11 @@ Contains all styles of inner pages
                                 padding-right: get-vw(20px);
                             }
                             @include media("(max-width: 768px)") {
-                                height: 115px;
+                                height: 125px;
+                                width: 100%;
+                                padding: 0;
+                                float: none;
+                                margin-bottom: 15px
                             }
                             img {
                                 min-height: 50%;
@@ -1084,6 +1098,10 @@ Contains all styles of inner pages
                             padding-bottom: 44px;
                             @include media("(min-width: 1200px)") {
                                 padding-bottom: get-vw(44px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                float: none;
+                                width: 100%;
                             }
                             .item-title-rating {
                                 margin-bottom: 10px;
@@ -1173,9 +1191,6 @@ Contains all styles of inner pages
                                 @include media("(min-width: 1200px)") {
                                     margin-top: get-vw(20px);
                                 }
-                                @include media("(max-width: 768px)") {
-                                    display: none;
-                                }
                             }
                             .item-links {
                                 position: absolute;
@@ -1216,14 +1231,12 @@ Contains all styles of inner pages
                     margin-left: get-vw(-10px);
                 }
                 .olis-choice-item {
-                    $olis-choice-item-width: ((1200px - 60px) / 4) - (60px / 3);
+                    width: 25%;
                     padding: 0 10px;
                     box-sizing: border-box;
                     @include media("(min-width: 1200px)") {
-                        $olis-choice-item-width: get-vw($olis-choice-item-width);
                         padding: 0 get-vw(10px);
                     }
-                    width: $olis-choice-item-width;
                     float: left;
                     a,
                     a:visited {
@@ -1231,27 +1244,15 @@ Contains all styles of inner pages
                         color: #fff;
                     }
                     @include media("(max-width: 768px)") {
-                        width: 33.33%;
-                        &:nth-child(1n+4){
-                            margin-top:15px
-                        }
-                        &:nth-child(3n+1){
-                            clear: left;
-                        }
-                        &:nth-child(3n+3){
-                            clear: right;
-                        }
-                    }
-                    @include media("(max-width: 480px)") {
                         width: 50%;
                         margin-top: 0;
-                        &:nth-child(1n+3){
+                        &:nth-child(1n+3) {
                             margin-top: 15px;
                         }
-                        &:nth-child(odd){
+                        &:nth-child(odd) {
                             clear: left;
                         }
-                        &:nth-child(even){
+                        &:nth-child(even) {
                             clear: right;
                         }
                     }
@@ -1262,6 +1263,9 @@ Contains all styles of inner pages
                         @include media("(min-width: 1200px)") {
                             height: get-vw(200px);
                             border-width: get-vw(2px);
+                        }
+                        @include media("(max-width: 768px)") {
+                            height: 125px;
                         }
                         img {
                             @include object-fit-img();
@@ -1309,9 +1313,8 @@ Contains all styles of inner pages
                 }
             }
             .category-location-wrp {
-                display:inline-block;
-                width:100%;
-
+                display: inline-block;
+                width: 100%;
                 * {
                     float: left;
                 }
@@ -1331,25 +1334,24 @@ Contains all styles of inner pages
                         margin-right: get-vw(15px);
                     }
                     @include media("(max-width: 768px)") {
-                        width:50%;
-                        margin:0;
-                        padding:5px 10px;
-                        box-sizing:border-box;
-
-                        &:nth-of-type(odd){
-                            padding-left:0;
-                            clear:left;
+                        width: 50%;
+                        margin: 0;
+                        padding: 5px 10px;
+                        box-sizing: border-box;
+                        &:nth-of-type(odd) {
+                            padding-left: 0;
+                            clear: left;
                         }
-                        &:nth-of-type(even){
-                            padding-right:0;
-                            clear:right;
+                        &:nth-of-type(even) {
+                            padding-right: 0;
+                            clear: right;
                         }
                     }
                     @include media("(max-width: 640px)") {
-                        width:100%;
-                        float:none;
-                        padding:5px 0;
-                        clear:both;
+                        width: 100%;
+                        float: none;
+                        padding: 5px 0;
+                        clear: both;
                     }
                 }
             }
@@ -1391,7 +1393,7 @@ Contains all styles of inner pages
                         font-size: 3rem;
                         @include transition(all 0.3s ease);
                         @include media("(max-width: 768px)") {
-                            font-size:4vw;
+                            font-size: 4vw;
                         }
                     }
                     a:hover {
@@ -1413,10 +1415,10 @@ Contains all styles of inner pages
             }
             .side-slides-wrp {
                 @include media("(max-width: 768px)") {
-                    margin-top:15px;
+                    margin-top: 15px;
                 }
                 @include media("(max-width: 640px)") {
-                    margin-top:6px;
+                    margin-top: 6px;
                 }
                 .side-slide-item {
                     height: $main-slide-wrp-height / 3;
@@ -1429,18 +1431,18 @@ Contains all styles of inner pages
                     @include media("(max-width: 768px)") {
                         $side-slide-item-width: calc(((100vw - 30px) / 3) - 10px);
                         $side-slide-item-height: calc((((100vw - 30px) / 3) - 10px) * (2 / 3));
-                        width:$side-slide-item-width;
-                        height:$side-slide-item-height;
-                        padding:0;
-                        margin-right:15px;
-                        float:left;
+                        width: $side-slide-item-width;
+                        height: $side-slide-item-height;
+                        padding: 0;
+                        margin-right: 15px;
+                        float: left;
                     }
                     @include media("(max-width: 640px)") {
                         $side-slide-item-width: calc(((100vw - 30px) / 3) - 4px);
                         $side-slide-item-height: calc((((100vw - 30px) / 3) - 4px) * (2 / 3));
-                        width:$side-slide-item-width;
-                        height:$side-slide-item-height;
-                        margin-right:6px;
+                        width: $side-slide-item-width;
+                        height: $side-slide-item-height;
+                        margin-right: 6px;
                     }
                     &:first-child {
                         padding-top: 0;
@@ -1448,7 +1450,7 @@ Contains all styles of inner pages
                     &:nth-of-type(3) {
                         padding-bottom: 0;
                         @include media("(max-width: 768px)") {
-                            margin-right:0;
+                            margin-right: 0;
                         }
                         img {
                             @include image-filter(blur(7px));
@@ -1473,7 +1475,7 @@ Contains all styles of inner pages
                             opacity: 0;
                             @include transition(all 0.3s ease);
                             @include media("(max-width: 768px)") {
-                                font-size:4vw;
+                                font-size: 4vw;
                             }
                             &.active {
                                 opacity: 1;
