@@ -394,10 +394,10 @@ Contains all styles of inner pages
             background-position-y: 50%;
             position: relative;
             text-align: center;
-            &::before{
-                content:'';
-                display:inline-block;
-                height:100%;
+            &::before {
+                content: '';
+                display: inline-block;
+                height: 100%;
                 vertical-align: middle;
             }
             @include media("(min-width: 1200px)") {
@@ -2452,6 +2452,52 @@ Contains all styles of inner pages
                         margin-bottom: get-vw(10px);
                     }
                 }
+            }
+        }
+        /*Calendar*/
+        #calendar-wrp {
+            .calendar-month-body {
+                .calendar-controls {
+                    cursor: pointer;
+                    i {
+                        font-size: 3em;
+                        line-height: 60px;
+                    }
+                }
+                .calendar-prev {
+                    float: left;
+                }
+                .calendar-next {
+                    float: right;
+                }
+                .calendar-days-view {
+                    overflow: hidden;
+                    .calendar-month-days-wrp {
+                        .day-view {
+                            float: left;
+                            text-align: center;
+                            width: calc((100vw - 175px) * .07);
+                            padding: 0 10px;
+                            box-sizing: border-box;
+                            cursor: pointer;
+                            @include media("(min-width: 1200px)") {
+                                width: calc(((95vw * .7) - 120px) / 10);
+                            }
+                            .day-name {
+                                font-size: .7em;
+                                line-height: inherit;
+                                margin-bottom: 5px;
+                            }
+                            .day-date {
+                                font: 3em 'Lato-Black';
+                                line-height: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+            .day-events-wrp{
+                clear: both;
             }
         }
     }
