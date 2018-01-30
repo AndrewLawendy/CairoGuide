@@ -1631,7 +1631,7 @@ $(document).ready(function () {
 
     //Start of Events Calendar
     if ($('#calendar-wrp').length) {
-        initCalendar();
+        //initCalendar();
         $('.calendar-controls-wrp .calendar-prev').on('click', function () {
             var year = $('.calendar-controls-wrp').data('year'),
                 month = $('.calendar-controls-wrp').data('month');

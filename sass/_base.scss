@@ -884,6 +884,11 @@ p {
     text-align: left;
 }
 
+.superscript{
+    font-size: 50%;
+    vertical-align: top;
+}
+
 .display-inline-block {
     display: inline-block;
 }
@@ -1419,6 +1424,9 @@ input[type="radio"] {
         padding: get-vw(10px) 0;
         margin: get-vw(50px) 0;
     }
+    @include media("(max-width: 640px)") {
+        width: 60%;
+    }
     h2 {
         text-transform: uppercase;
         letter-spacing: 10px;
@@ -1430,6 +1438,9 @@ input[type="radio"] {
             letter-spacing: get-vw(10px);
             width: get-vw(400px);
             line-height: get-vw(35px);
+        }
+        @include media("(max-width: 640px)") {
+            width: 165%;
         }
     }
 }
@@ -2840,7 +2851,7 @@ footer {
     }
 }
 
-@include media("(max-width: 480px)") {
+@include media("(max-width: 640px)") {
     .third-width {
         width: 100%;
         float: none;
