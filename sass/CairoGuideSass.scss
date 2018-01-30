@@ -195,10 +195,10 @@ main {
         }
         &>div {
             height: 100%;
-            width: calc(25% - 6px);
+            width:25%;
             @include media("(min-width: 1200px)") {
                 $margin: get-vw(6px);
-                width: calc(25% - $margin);
+                width:25%;
             }
             .trend-item img,
             .ad-item img {

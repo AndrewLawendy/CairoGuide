@@ -176,6 +176,47 @@ var TransformHeader = function (scrollPos, breakPos) {
     mainContent.css('margin-top', (breakPos - 1) + 'px');
 }
 
+//Add see all at the end of submenu in main nav
+var AddSeeAll = function(listItem){
+    if(listItem.children('ul').length){
+        var childList = listItem.children('ul');
+        childList.children('li').each(function(){
+            AddSeeAll($(this));
+        });
+        var seeAllLink = listItem.children('a').attr('href'),
+            seeAllTitle = listItem.children('a').attr('title');
+        var seeAllItem = '<li><a href="'+seeAllLink+'" title="'+seeAllTitle+'">See all</a></li>';
+        listItem.children('ul').append(seeAllItem);
+        listItem.children('a').attr('href','javascript:void(0);');
+    }else{
+        return;
+    }
+}
+
+//Change menu header in smaller screen
+var ManipulateMainNav = function(){
+    if ($(document).width() <= 1024 && !$('.bottom-header').hasClass('changed')) {
+        $('.bottom-header').addClass('changed');
+        $('.bottom-header').find('li').each(function(){
+            AddSeeAll($(this));
+        });
+    }
+}
+
+//Toggle main menu on smaller screens
+var ToggleMainNav = function(isOpen){
+    if(!isOpen){
+    $('.bottom-header').addClass('active');
+    $('html,body').addClass('popup-in-motion');
+    $('.bottom-header .category-nav').find('li').find('a').off().on('click',function(){
+        if($(this).siblings('ul').length){
+            $(this).parent().siblings().find('ul').slideUp();
+            $(this).siblings('ul').slideDown();
+        }
+    });   
+}
+}
+
 //Scroll back to top function
 var BackToTop = function () {
     $("html, body").animate({
@@ -850,6 +891,17 @@ $(document).ready(function () {
         breakPos = header.height();
     var scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
+    ManipulateMainNav();
+    if($('.burger-menu-btn-wrapper').length){
+        $('.burger-menu-btn-wrapper').off().on('click',function(){
+            if(!$('.bottom-header').hasClass('active')){
+                ToggleMainNav(false);
+            }
+            else{
+                ToggleMainNav(true);
+            }
+        });
+    }
     newScreenSize = CalcLastScreenSize(newScreenSize);
     console.log('newScreenSize in ready:' + newScreenSize);
     MainBannerlParallax(scrollPos, breakPos);
