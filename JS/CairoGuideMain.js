@@ -1226,15 +1226,12 @@ $(document).ready(function () {
         var actualFrameIndex = 1;
         var bestFrameCount = $('#best-spots .best-frame-container').length;
         var bestAnimaion = false;
-        $('#best-spots .best-frame-container:first,#best-spots .best-frame-container:first .best-image-frame:first,#best-spots .best-frame-container:first h2:first,#best-spots .best-frame-container:first h6:first,#best-spots .best-frame-container:first .best-description-frame:first').addClass('active');
+        $('#best-spots .best-frame-container:first,#best-spots .best-frame-container:first .best-item:first').addClass('active');
         $('#best-spots .best-frame-container .best-image-frame').on('click', function () {
-            var bestFrameIndex = $(this).closest('.best-frame-container').index();
-            var bestIndex = $(this).index();
-            $('#best-spots .best-frame-container .best-image-frame,#best-spots .best-frame-container .best-description-frame,#best-spots .best-frame-container h2,#best-spots .best-frame-container h6').removeClass('active shadow');
-            if (bestIndex == 1)
-                $(this).siblings().not('.best-description-frame, h2').addClass('shadow');
-            $(this).addClass('active');
-            $('#best-spots .best-frame-container:eq(' + bestFrameIndex + ') .best-description-frame:eq(' + bestIndex + '),#best-spots .best-frame-container:eq(' + bestFrameIndex + ') h2:eq(' + bestIndex + '),#best-spots .best-frame-container:eq(' + bestFrameIndex + ') h6:eq(' + bestIndex + ')').addClass('active');
+            $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
+            var parentItem = $(this).closest('.best-item');
+            parentItem.addClass('active');
+            if(parentItem.index()== 1) parentItem.siblings().addClass('shadow');
         });
         $('.best-controls .best-previous').on('click', function () {
             if (!bestAnimaion) {
@@ -1244,10 +1241,7 @@ $(document).ready(function () {
                 if (actualFrameIndex == 0)
                     actualFrameIndex = bestFrameCount;
                 $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(700).queue(function () {
-                    $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-                    $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
-                    $('#best-spots .best-frame-container h2').removeClass('active');
-                    $('#best-spots .best-frame-container h6').removeClass('active');
+                    $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == 1)
@@ -1258,10 +1252,7 @@ $(document).ready(function () {
                         _this.removeClass('clicked');
                         $(this).removeClass('enter').dequeue();
                     });
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h6:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-item:first').addClass('active');
                     actualFrameIndex--;
                 }, 700);
             }
@@ -1274,10 +1265,7 @@ $(document).ready(function () {
                 if (actualFrameIndex == (bestFrameCount + 1))
                     actualFrameIndex = 1;
                 $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(1000).queue(function () {
-                    $('#best-spots .best-frame-container .best-description-frame').removeClass('active');
-                    $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-                    $('#best-spots .best-frame-container h2').removeClass('active');
-                    $('#best-spots .best-frame-container h6').removeClass('active');
+                    $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == bestFrameCount)
@@ -1288,10 +1276,7 @@ $(document).ready(function () {
                         _this.removeClass('clicked');
                         $(this).removeClass('enter').dequeue();
                     });
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h6:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-item:first').addClass('active');
                     actualFrameIndex++;
                 }, 1000);
             }
