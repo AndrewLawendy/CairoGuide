@@ -1083,14 +1083,16 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: '-650'
-                    }, 800);
+                    }, 400);
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                         left: 30
-                    }, 1000);
+                    }, 600);
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-                    }, 1000, function () {
-                        $('.carousel-data').css('left', '30px');
+                    }, 400, function () {
+                        setTimeout(function(){
+                            $('.carousel-data').css('left', '30px');
+                        },200);
                         carouselAnimation = false;
                     });
                     selectedIndexControl = activeItemIndex;
@@ -1116,15 +1118,15 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: fullScroll
-                    }, 1000);
-                    activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                    }, 400);
+                    activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
                             left: 30
-                        }, 800);
+                        }, 400);
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-                    }, 1000, function () {
+                    }, 400, function () {
                         $('#main-carousel .carousel-data').css('left', '30px');
                         carouselAnimation = false;
                     });
@@ -1221,15 +1223,12 @@ $(document).ready(function () {
         var actualFrameIndex = 1;
         var bestFrameCount = $('#best-spots .best-frame-container').length;
         var bestAnimaion = false;
-        $('#best-spots .best-frame-container:first,#best-spots .best-frame-container:first .best-image-frame:first,#best-spots .best-frame-container:first h2:first,#best-spots .best-frame-container:first h6:first,#best-spots .best-frame-container:first .best-description-frame:first').addClass('active');
+        $('#best-spots .best-frame-container:first,#best-spots .best-frame-container:first .best-item:first').addClass('active');
         $('#best-spots .best-frame-container .best-image-frame').on('click', function () {
-            var bestFrameIndex = $(this).closest('.best-frame-container').index();
-            var bestIndex = $(this).index();
-            $('#best-spots .best-frame-container .best-image-frame,#best-spots .best-frame-container .best-description-frame,#best-spots .best-frame-container h2,#best-spots .best-frame-container h6').removeClass('active shadow');
-            if (bestIndex == 1)
-                $(this).siblings().not('.best-description-frame, h2').addClass('shadow');
-            $(this).addClass('active');
-            $('#best-spots .best-frame-container:eq(' + bestFrameIndex + ') .best-description-frame:eq(' + bestIndex + '),#best-spots .best-frame-container:eq(' + bestFrameIndex + ') h2:eq(' + bestIndex + '),#best-spots .best-frame-container:eq(' + bestFrameIndex + ') h6:eq(' + bestIndex + ')').addClass('active');
+            $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
+            var parentItem = $(this).closest('.best-item');
+            parentItem.addClass('active');
+            if(parentItem.index()== 1) parentItem.siblings().addClass('shadow');
         });
         $('.best-controls .best-previous').on('click', function () {
             if (!bestAnimaion) {
@@ -1239,10 +1238,7 @@ $(document).ready(function () {
                 if (actualFrameIndex == 0)
                     actualFrameIndex = bestFrameCount;
                 $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(700).queue(function () {
-                    $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-                    $('#best-spots .best-frame-container .best-description-frame').removeClass('active')
-                    $('#best-spots .best-frame-container h2').removeClass('active');
-                    $('#best-spots .best-frame-container h6').removeClass('active');
+                    $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == 1)
@@ -1253,10 +1249,7 @@ $(document).ready(function () {
                         _this.removeClass('clicked');
                         $(this).removeClass('enter').dequeue();
                     });
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-image-frame:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h2:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') h6:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-description-frame:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex - 1) + ') .best-item:first').addClass('active');
                     actualFrameIndex--;
                 }, 700);
             }
@@ -1269,10 +1262,7 @@ $(document).ready(function () {
                 if (actualFrameIndex == (bestFrameCount + 1))
                     actualFrameIndex = 1;
                 $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(1000).queue(function () {
-                    $('#best-spots .best-frame-container .best-description-frame').removeClass('active');
-                    $('#best-spots .best-frame-container .best-image-frame').removeClass('active shadow');
-                    $('#best-spots .best-frame-container h2').removeClass('active');
-                    $('#best-spots .best-frame-container h6').removeClass('active');
+                    $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
                 if (actualFrameIndex == bestFrameCount)
@@ -1283,10 +1273,7 @@ $(document).ready(function () {
                         _this.removeClass('clicked');
                         $(this).removeClass('enter').dequeue();
                     });
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-image-frame:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h2:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') h6:first').addClass('active');
-                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-description-frame:first').addClass('active');
+                    $('#best-spots .best-frame-container:nth-of-type(' + (actualFrameIndex + 1) + ') .best-item:first').addClass('active');
                     actualFrameIndex++;
                 }, 1000);
             }
@@ -1296,19 +1283,19 @@ $(document).ready(function () {
 
     //Start of Attractions
     if ($('#attractions').length) {
-        var anchorPos = $('#attractions a:first').position().left;
-        var titlePos = $('#attractions a:first').find('h3').position();
-        var titleWidth = $('#attractions a:first').find('h3').width();
+        var anchorPos = $('#attractions .attractions-body .attraction:first').position().left;
+        var titlePos = $('#attractions .attractions-body .attraction:first h3').position();
+        var titleWidth = $('#attractions .attractions-body .attraction:first h3').width();
         var activeTitleIndex = 0;
         var attractionOut = true;
-        $('.attractions-body').find('img').eq(activeTitleIndex).addClass('active');
+        $('#attractions .attractions-body .attraction:first').addClass('active');
         $('.attractions-index').css({
             'top': titlePos.top + 14,
             'left': titlePos.left + anchorPos - 15,
             'width': titleWidth + 30
         });
         $('.attractions-index div').css('border-right-width', titleWidth + 30);
-        $('#attractions a').on('mouseenter', function () {
+        $('#attractions .attractions-body .attraction').on('mouseenter', function () {
             var titleIndex = $(this).index();
             if (activeTitleIndex != titleIndex) {
                 var titlePos = $(this).find('h3').position();
@@ -1322,8 +1309,8 @@ $(document).ready(function () {
                 $('.attractions-index div').css({
                     'border-right-width': titleWidth + 30
                 });
-                $('.attractions-body').find('img').removeClass('active');
-                $('.attractions-body').find('img').eq(titleIndex).addClass('active');
+                $('.attractions-body .attraction').removeClass('active');
+                $('.attractions-body .attraction').eq(titleIndex).addClass('active');
                 activeTitleIndex = titleIndex;
             }
         });
@@ -1662,7 +1649,7 @@ $(document).ready(function () {
                         if (carouselPosDiff > 0) {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                            }, 600);
+                            }, 400);
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
                                 controlsIndex = 0;
@@ -1673,10 +1660,10 @@ $(document).ready(function () {
                         } else {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                            }, 600);
+                            }, 400);
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
-                            }, 600);
+                            }, 400);
                             activeItemIndex = carouselItemTarget.index() + 1;
                             var controlsIndex = activeItemIndex - 1;
                             if (controlsIndex == 1) {
@@ -1696,7 +1683,7 @@ $(document).ready(function () {
                     entered = false;
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 30
-                    }, 800);
+                    }, 600);
                 }
             }
             //End of Carousel Autocomplete
