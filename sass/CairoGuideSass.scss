@@ -339,6 +339,7 @@ main {
             }
             .ad-item {
                 height: 50%;
+                @include default-no-ad();
             }
         }
     }
@@ -640,7 +641,9 @@ main {
                     }
                 }
             }
-
+            &.ad-item{
+                @include default-no-ad();
+            }
             &:hover{
                 .news-info {
                     @include transform(translateY(0));

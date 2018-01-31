@@ -526,6 +526,7 @@ var SetInnersCategory = function () {
 //Move advert during scroll
 var MoveAd = function (scrollPos, breakPos, stopPos, stopBreakPos, customTop) {
     var adContainer = $('.ads-wrp');
+    adContainer.width(adContainer.parent().width());
     if (scrollPos >= stopBreakPos) {
         adContainer.removeClass('fixed').parent().css('top', stopPos);
     } else if (scrollPos >= breakPos) {
@@ -855,10 +856,6 @@ var ArrangeSitemap = function (columnsCount) {
 var windowLoaded = false;
 //document ready
 $(document).ready(function () {
-    windowLoaded = true;
-    if ($('#loader-wrp').length && !$('#loader-wrp').hasClass('fade-away')) {
-        $('#loader-wrp').find('.loader-skip-link').addClass('active');
-    }
     if ($('.items-list-wrp').length && $('.items-list-wrp').find('.ads-wrp').length) {
         $('.items-list-wrp').css('min-height', $('.ads-wrp').height());
     }
@@ -1857,6 +1854,12 @@ $(document).ready(function () {
         //Sitemap
         if ($('.sitemap-list-wrp').length) {
             ArrangeSitemap(4);
+        }
+    });
+    $(window).on('load',function(){
+        windowLoaded = true;
+        if ($('#loader-wrp').length && !$('#loader-wrp').hasClass('fade-away')) {
+            $('#loader-wrp').find('.loader-skip-link').addClass('active');
         }
     });
 });

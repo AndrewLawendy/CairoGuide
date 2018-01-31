@@ -440,6 +440,7 @@ Contains all styles of inner pages
             width: 100%;
             height: 200px;
             margin-bottom: 30px;
+            @include default-no-ad();
             @include media("(min-width: 1200px)") {
                 height: get-vw(200px);
                 margin-bottom: get-vw(30px);

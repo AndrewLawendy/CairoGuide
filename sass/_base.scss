@@ -222,6 +222,36 @@ $colorList: "nightlife" #f90000,
     }
 }
 
+@mixin default-no-ad(){
+    background-color: #eee;
+    position: relative;
+    &:before{
+        content: 'Advertisement area';
+        color: #aaa;
+        text-transform: capitalize;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        padding: 5px 30px;
+        box-sizing: border-box;
+        display: block;
+        font-size:1.2rem;
+        /*border-top: 1px solid #ccc;
+        border-bottom: 3px solid #ccc;*/
+        @include transform(translateY(-50%));
+        @include media("(min-width: 1200px)") {
+            padding: get-vw(5px) get-vw(30px);
+            /*border-top-width: get-vw(1px);
+        border-bottom-width: get-vw(3px);*/
+        }
+    }
+    img{
+        position: relative;
+        z-index:10;
+    }
+}
+
 /*Functions*/
 
 @each $i in $colorList {
@@ -767,6 +797,8 @@ p {
         display: none;
     }
     .ads-wrp {
+        min-height:300px;
+        @include default-no-ad();
         &.fixed {
             position: fixed;
             top: 0;
@@ -1595,12 +1627,12 @@ input[type="radio"] {
         a,
         a:visited {
             color: #131313;
-            font: 1.2rem 'Lato-Regular';
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font: 1.2rem 'Lato-Black';
+            text-transform: capitalize;
+            /*letter-spacing: 3px;
             @include media("(min-width: 1200px)") {
                 letter-spacing: get-vw(3px);
-            }
+            }*/
         }
         a:hover {
             text-decoration: none;
