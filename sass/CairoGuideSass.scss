@@ -5,7 +5,6 @@ Contains all styles
 
 @import 'reset'; //Reset file import
 @import 'base'; //Base file import
-
 /*Main*/
 
 main {
@@ -30,16 +29,16 @@ main {
                     color: #fff;
                     position: relative;
                     float: left;
-                    background-color:#000;
+                    background-color: #000;
                     @each $item in $colorList {
                         &.#{nth($item,1)}-item {
                             .section-title {
-                                background: nth($item, 2)!important;
+                                background: nth($item, 2) !important;
                             }
                             .carousel-read-more {
                                 &:hover {
-                                    background: nth($item, 2)!important;
-                                    border-color: nth($item, 2)!important;
+                                    background: nth($item, 2) !important;
+                                    border-color: nth($item, 2) !important;
                                     @include transition(all .1s);
                                 }
                             }
@@ -52,7 +51,7 @@ main {
                         pointer-events: none;
                         @include user-select(none);
                         object-fit: cover;
-                        opacity:0.7;
+                        opacity: 0.7;
                     }
                     .carousel-gradient {
                         position: absolute;
@@ -91,11 +90,11 @@ main {
                                     width: get-vw(615px);
                                     padding: get-vw(5px) 0;
                                 }
-                                &.carousel-slogan{
+                                &.carousel-slogan {
                                     font: 1.4rem 'Lato-Bold';
-                                    margin-top:40px;
+                                    margin-top: 40px;
                                     @include media("(min-width: 1200px)") {
-                                        margin-top:get-vw(40px);
+                                        margin-top: get-vw(40px);
                                     }
                                 }
                             }
@@ -195,10 +194,10 @@ main {
         }
         &>div {
             height: 100%;
-            width:25%;
+            width: 25%;
             @include media("(min-width: 1200px)") {
                 $margin: get-vw(6px);
-                width:25%;
+                width: 25%;
             }
             .trend-item img,
             .ad-item img {
@@ -599,7 +598,7 @@ main {
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    height:1.2em;
+                    height: 1.2em;
                     @include transition(all ease 0.3s);
                     @include media("(min-width: 1200px)") {
                         margin: get-vw(-35px) 0 get-vw(15px);
@@ -640,16 +639,14 @@ main {
                     }
                 }
             }
-
-            &:hover{
+            &:hover {
                 .news-info {
                     @include transform(translateY(0));
-                @include transition(all 0.3s ease);
-
-                h3{
-                    height:2.4em;
-                    @include transition(all ease 0.3s);
-                }
+                    @include transition(all 0.3s ease);
+                    h3 {
+                        height: 2.4em;
+                        @include transition(all ease 0.3s);
+                    }
                 }
             }
         }
@@ -1137,6 +1134,7 @@ main {
     /*Attraction*/
     .attractions-body {
         height: 500px;
+        width: 100vw;
         margin: 0 -30px;
         overflow: hidden;
         position: relative;
@@ -1144,72 +1142,89 @@ main {
             height: get-vw(500px);
             margin: 0 get-vw(-30px);
         }
-        img {
-            @include object-fit-img();
-            position: absolute;
-            opacity: 0;
-            @include transition(opacity 0.5s ease 0.3s);
-            &.active {
-                opacity: 1;
-                @include transition(opacity 0.5s ease);
-            }
+        @include media("(max-width: 768px)") {
+            height: 75vh;
+            margin: 0 -15px;
         }
-        .attractions-titles {
-            width: 100%;
+        .attraction {
+            float: left;
+            width: 25%;
             height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            box-sizing: border-box;
+            @include media("(max-width: 768px)") {
+                position: relative;
+                width:50%;
+                height: 50%;
+            }
+            &.active {
+                img {
+                    opacity: 1;
+                    @include transition(opacity 0.5s ease);
+                }
+            }
+            img {
+                @include object-fit-img();
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                @include transition(opacity 0.5s ease 0.3s);
+                @include media("(max-width: 768px)") {
+                    opacity: 1;
+                }
+            }
             a {
                 text-decoration: none;
                 color: #fff;
                 text-transform: uppercase;
                 font-size: 2.15em;
                 display: block;
-                width: 25%;
                 height: 100%;
-                text-align: center;
-                margin: 0 -2px;
-                padding: 240px 30px 0 30px;
                 position: relative;
                 z-index: 4;
-                float: left;
-                box-sizing: border-box;
-                @include media("(min-width: 1200px)") {
-                    margin: 0 get-vw(-2px);
-                    padding: get-vw(240px) get-vw(30px) 0 get-vw(30px);
+                text-align: center;
+                &::before {
+                    content: '';
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: middle;
                 }
                 h3 {
-                    display: inline;
+                    display: inline-block;
                     font: 1.2em "Lato-Bold";
+                    vertical-align: middle;
+                    max-width: 95%;
                 }
             }
-            .attractions-index {
-                width: 100px;
-                height: 15px;
-                background: $logo-yellow;
-                overflow: visible!important;
+        }
+        .attractions-index {
+            width: 100px;
+            height: 15px;
+            background: $logo-yellow;
+            overflow: visible !important;
+            position: absolute;
+            z-index: 3;
+            @include transition(all .5s $in-out);
+            @include media("(min-width: 1200px)") {
+                width: get-vw(100px);
+                height: get-vw(15px);
+            }
+            @include media("(max-width: 768px)") {
+                display: none;
+            }
+            div {
+                width: 0;
+                height: 0;
+                border-top: 15px solid $logo-yellow;
+                border-right: 80px solid transparent;
                 position: absolute;
-                z-index: 3;
-                @include transition(all .5s $in-out);
+                top: 15px;
+                left: 0;
+                @include transition(all .3s $bounce);
                 @include media("(min-width: 1200px)") {
-                    width: get-vw(100px);
-                    height: get-vw(15px);
-                }
-                div {
-                    width: 0;
-                    height: 0;
-                    border-top: 15px solid $logo-yellow;
-                    border-right: 80px solid transparent;
-                    position: absolute;
-                    top: 15px;
-                    left: 0;
-                    @include transition(all .3s $bounce);
-                    @include media("(min-width: 1200px)") {
-                        border-top: get-vw(15px) solid $logo-yellow;
-                        border-right: get-vw(80px) solid transparent;
-                        top: get-vw(15px);
-                    }
+                    border-top: get-vw(15px) solid $logo-yellow;
+                    border-right: get-vw(80px) solid transparent;
+                    top: get-vw(15px);
                 }
             }
         }
