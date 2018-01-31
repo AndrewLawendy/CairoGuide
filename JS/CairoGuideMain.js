@@ -1237,7 +1237,7 @@ $(document).ready(function () {
                 bestAnimaion = true;
                 if (actualFrameIndex == 0)
                     actualFrameIndex = bestFrameCount;
-                $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(700).queue(function () {
+                $('#best-spots .best-frame-container').addClass('leaving').delay(700).queue(function () {
                     $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
@@ -1261,7 +1261,7 @@ $(document).ready(function () {
                 bestAnimaion = true;
                 if (actualFrameIndex == (bestFrameCount + 1))
                     actualFrameIndex = 1;
-                $('#best-spots .best-frame-container:nth-of-type(' + actualFrameIndex + ')').addClass('leaving').delay(1000).queue(function () {
+                $('#best-spots .best-frame-container').addClass('leaving').delay(1000).queue(function () {
                     $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
                     $(this).removeClass('active leaving').dequeue();
                 });
