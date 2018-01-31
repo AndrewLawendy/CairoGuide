@@ -222,9 +222,11 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-@mixin default-no-ad(){
+@mixin default-no-ad($isPosRel: true){
     background-color: #eee;
-    position: relative;
+    @if $isPosRel == true{
+        position: relative;
+    }
     &:before{
         content: 'Advertisement area';
         color: #aaa;
@@ -798,7 +800,7 @@ p {
     }
     .ads-wrp {
         min-height:300px;
-        @include default-no-ad();
+        @include default-no-ad(false);
         &.fixed {
             position: fixed;
             top: 0;
@@ -2143,6 +2145,15 @@ header {
                         [class*=" icon-"] {
                             font-size: 1.14rem;
                         }
+                        .facebook-social{
+                            color:#3b5998;
+                        }
+                        .twitter-social{
+                            color: #55acee;
+                        }
+                        .instagram-social{
+                            color:#e95950;
+                        }
                         .burger-menu-btn-skeleton {
                             border-right-color: $header-footer-primary-text-color;
                             border-left-color: $header-footer-primary-text-color;
@@ -2197,6 +2208,11 @@ header {
                     @each $i in $colorList {
                         &.#{nth($i,1)}-menu-item ul {
                             border-left: 2px solid nth($i, 2);
+                            &.expand ~ i{
+                                @include media("(max-width: 1024px)") {
+                                color:nth($i, 2)!important;
+                                }
+                            }
                             li {
                                 @include background-opacity(nth($i,
                                 2),
@@ -2313,7 +2329,9 @@ header {
                             opacity: 1;
                             @include transform(translateY(0));
                             @include transition(all 0.3s ease);
-                            /*display: block;*/
+                            @include media("(max-width: 1024px)") {
+                                @include transition(unset);
+                            }
                         }
                     }
                     ul {
@@ -2332,12 +2350,13 @@ header {
                         }
                         @include media("(max-width: 1024px)") {
                             position:static;
-                            opacity:1;
+                            opacity:0.8!important;
                             top:0;
                             background-color:transparent;
                             border:0!important;
                             display:none;
                             @include transform(translateY(0)!important);
+                            @include transition(unset);
                             // &:before{
                             //     content: '';
                             //     display: inline-block;
@@ -2349,6 +2368,10 @@ header {
                             //     top: -25px;
                             //     @include transform(rotateX(180deg));
                             // }
+                            &.expand ~ i{
+                                @include transform(rotateX(180deg));
+                                @include transition(all 0.3s ease);
+                            }
                         }
                         li {
                             margin: 0;
@@ -2369,6 +2392,7 @@ header {
                                 }
                                 @include media("(max-width: 1024px)") {
                                     color: $header-footer-secondary-text-color;
+                                    font-family:'Lato-Light';
                                 }
                                 &:after {
                                     display: none;
@@ -2857,9 +2881,6 @@ footer {
         }
     }
     /*sticky-header*/
-    .sticky-header .bottom-header {
-        display: none;
-    }
     main {
         margin-top: 0 !important
     }
