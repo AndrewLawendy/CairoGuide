@@ -230,9 +230,11 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-@mixin default-no-ad(){
+@mixin default-no-ad($isPosRel: true){
     background-color: #eee;
-    position: relative;
+    @if $isPosRel == true{
+        position: relative;
+    }
     &:before{
         content: 'Advertisement area';
         color: #aaa;
@@ -806,7 +808,7 @@ p {
     }
     .ads-wrp {
         min-height:300px;
-        @include default-no-ad();
+        @include default-no-ad(false);
         &.fixed {
             position: fixed;
             top: 0;
@@ -2151,6 +2153,15 @@ header {
                         [class*=" icon-"] {
                             font-size: 1.14rem;
                         }
+                        .facebook-social{
+                            color:#3b5998;
+                        }
+                        .twitter-social{
+                            color: #55acee;
+                        }
+                        .instagram-social{
+                            color:#e95950;
+                        }
                         .burger-menu-btn-skeleton {
                             border-right-color: $header-footer-primary-text-color;
                             border-left-color: $header-footer-primary-text-color;
@@ -2187,13 +2198,29 @@ header {
         .bottom-header {
             background-color: $header-footer-primary-background-color;
             @include media("(max-width: 1024px)") {
-                padding:30px;
+                padding:20px 0 0;
                 box-sizing:border-box;
                 height:100vh;
                 position:fixed;
                 width:100%;
                 overflow:auto;
                 display:none;
+            }
+            .close-mobile-menu-btn{
+                display:none;
+                @include media("(max-width: 1024px)") {
+                    display:block;
+                    margin-bottom:20px;
+                    a,a:visited{
+                        padding: 10px 30px !important;
+                        font-size: 1.5rem;
+                        display: block;
+                        color: #fff;
+                    }
+                    span{
+                        margin-left:10px;
+                    }
+                }
             }
             nav{
             .category-nav {
@@ -2205,6 +2232,11 @@ header {
                     @each $i in $colorList {
                         &.#{nth($i,1)}-menu-item ul {
                             border-left: 2px solid nth($i, 2);
+                            &.expand ~ i{
+                                @include media("(max-width: 1024px)") {
+                                color:nth($i, 2)!important;
+                                }
+                            }
                             li {
                                 @include background-opacity(nth($i,
                                 2),
@@ -2309,10 +2341,12 @@ header {
                             padding: get-vw(25px) get-vw(15px, 769px) get-vw(25px) get-vw(5px, 769px);
                         }
                         @include media("(max-width: 1024px)") {
-                            padding:15px 0!important;
+                            padding:10px 30px!important;
                             font-size:1.5rem;
-                            border-bottom: 1px solid #333;
+                            border-bottom: 1px solid rgba(255,255,255,0.1);
                             display:block;
+                            white-space: normal;
+                            line-height: 2rem;
                         }
                     }
                     &:hover {
@@ -2321,7 +2355,9 @@ header {
                             opacity: 1;
                             @include transform(translateY(0));
                             @include transition(all 0.3s ease);
-                            /*display: block;*/
+                            @include media("(max-width: 1024px)") {
+                                @include transition(unset);
+                            }
                         }
                     }
                     ul {
@@ -2342,10 +2378,13 @@ header {
                             position:static;
                             opacity:1;
                             top:0;
-                            background-color:transparent;
+                            //background-color:transparent;
                             border:0!important;
                             display:none;
+                            @include background-opacity(#fff,0.05);
+                            @include box-shadow(0px 15px 80px #000);
                             @include transform(translateY(0)!important);
+                            @include transition(unset);
                             // &:before{
                             //     content: '';
                             //     display: inline-block;
@@ -2357,6 +2396,10 @@ header {
                             //     top: -25px;
                             //     @include transform(rotateX(180deg));
                             // }
+                            &.expand ~ i{
+                                @include transform(rotateX(180deg));
+                                @include transition(all 0.3s ease);
+                            }
                         }
                         li {
                             margin: 0;
@@ -2377,6 +2420,7 @@ header {
                                 }
                                 @include media("(max-width: 1024px)") {
                                     color: $header-footer-secondary-text-color;
+                                    font-family:'Lato-Light';
                                 }
                                 &:after {
                                     display: none;
@@ -2411,8 +2455,10 @@ header {
                         }
                         @include media("(max-width: 1024px)") {
                             top: 18px;
+                            right: 35px;
                             color: #fff;
                             font-size: 1.2rem;
+                            z-index: -1;
                             @include transform(rotateX(0deg));
                         }
                     }
@@ -2865,9 +2911,6 @@ footer {
         }
     }
     /*sticky-header*/
-    .sticky-header .bottom-header {
-        display: none;
-    }
     main {
         margin-top: 0 !important
     }
