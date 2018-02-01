@@ -352,6 +352,9 @@ main {
             margin: 0 get-vw(-30px);
             height: get-vw(388px);
         }
+        @include media("(max-width: 768px)") {
+            height: 350px;
+        }
         div[class^=wtd] {
             float: left;
             height: 100%;
@@ -359,20 +362,34 @@ main {
             position: relative;
             @include transform(skewX(-30deg));
             @include transition(all .3s);
+            @include media("(max-width: 768px)") {
+                float: none;
+                position: absolute;
+                @include transform(rotate(-45deg));
+            }
             a {
                 display: block;
                 @include transform(skew(30deg));
                 width: 100%;
                 height: 100%;
+                @include media("(max-width: 768px)") {
+                    @include transform(rotate(45deg));
+                }
             }
             img {
                 position: relative;
                 min-height: 100%;
                 object-fit: cover;
                 @include transition(all .5s);
+                @include media("(max-width: 768px)") {
+                    left: 0;
+                    width:100%;
+                    height:100%;
+                    @include transform(scale(1.4));
+                }
             }
             h2 {
-                font: 8.5em Lato-Black;
+                font: 8.5rem Lato-Black;
                 color: #fff;
                 position: absolute;
                 text-transform: uppercase;
@@ -380,6 +397,9 @@ main {
                 text-align: center;
                 @include transform(translate(0));
                 @include transition(all 3s);
+                @include media("(max-width: 768px)") {
+                    font-size: 4.5rem;
+                }
             }
         }
         .selected,
@@ -392,6 +412,13 @@ main {
             @include media("(min-width: 1200px)") {
                 width: calc(33% + 10.1667vw);
                 margin-left: get-vw(-112px);
+            }
+            @include media("(max-width: 768px)") {
+                top: 15%;
+                left: -100px;
+                z-index: 2;
+                width:500px!important;
+                height: 500px!important;
             }
             img {
                 top: 0;
@@ -408,6 +435,10 @@ main {
                 @include media("(min-width: 1200px)") {
                     top: get-vw(110px);
                     left: get-vw(110px);
+                }
+                @include media("(max-width: 768px)") {
+                    bottom: 60%;
+                    top: auto;
                 }
             }
             &.selected {
@@ -427,6 +458,16 @@ main {
         }
         .wtd-weekend {
             width: 35%;
+            @include media("(max-width: 768px)") {
+                @include transform(none!important);
+                top:0;
+                left:0;
+                width: 100%!important;
+                height: 100%!important;
+                a{
+                    @include transform(none!important);
+                }
+            }
             img {
                 top: 0;
                 left: -240px;
@@ -440,6 +481,9 @@ main {
                 top: 215px;
                 @include media("(min-width: 1200px)") {
                     top: get-vw(215px);
+                }
+                @include media("(max-width: 768px)") {
+                    top: 20%;                    
                 }
             }
             &.selected {
@@ -464,6 +508,13 @@ main {
                 width: calc(32% + 41.25vw);
                 margin-right: get-vw(-550px);
             }
+            @include media("(max-width: 768px)") {
+                top: 20%;
+                right: 285px;
+                z-index: 3;
+                width:600px!important;
+                height:600px!important;
+            }
             img {
                 top: 0;
                 left: -200px;
@@ -477,6 +528,11 @@ main {
                 top: 110px;
                 @include media("(min-width: 1200px)") {
                     top: get-vw(110px);
+                }
+                @include media("(max-width: 768px)") {
+                    top: auto;
+                    bottom: 58%;
+                    left: -150px;
                 }
             }
             &.selected {
@@ -972,7 +1028,7 @@ main {
                         &:nth-of-type(1) {
                             .best-image-frame {
                                 right: 70px;
-                                @include transition(all .5s ease);
+                                @include transition(all .3s ease);
                                 @include media("(min-width: 1200px)") {
                                     right: get-vw(70px);
                                 }
@@ -981,7 +1037,7 @@ main {
                         &:nth-of-type(3) {
                             .best-image-frame {
                                 right: 80px;
-                                @include transition(all .5s ease);
+                                @include transition(all .3s ease);
                                 @include media("(min-width: 1200px)") {
                                     right: get-vw(80px);
                                 }
