@@ -437,7 +437,7 @@ main {
                     left: get-vw(110px);
                 }
                 @include media("(max-width: 768px)") {
-                    bottom: 50%;
+                    bottom: 60%;
                     top: auto;
                 }
             }
@@ -483,7 +483,7 @@ main {
                     top: get-vw(215px);
                 }
                 @include media("(max-width: 768px)") {
-                    top: 20px;                    
+                    top: 20%;                    
                 }
             }
             &.selected {
@@ -531,8 +531,8 @@ main {
                 }
                 @include media("(max-width: 768px)") {
                     top: auto;
-                    bottom: 55%;
-                    left: -155px;
+                    bottom: 58%;
+                    left: -150px;
                 }
             }
             &.selected {
