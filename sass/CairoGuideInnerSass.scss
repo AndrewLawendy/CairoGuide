@@ -400,6 +400,16 @@ Contains all styles of inner pages
                 height: 100%;
                 vertical-align: middle;
             }
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.15);
+            }
             @include media("(min-width: 1200px)") {
                 height: get-vw(335px);
                 margin-bottom: get-vw(30px);
@@ -421,18 +431,10 @@ Contains all styles of inner pages
                 font: 3.5rem "Lato-Black";
                 color: #fff;
                 text-transform: uppercase;
+                position: relative;
+                z-index: 10;
                 @include media("(min-width: 1200px)") {
                     line-height: get-vw(335px);
-                }
-                &:before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                    background-color: rgba(0, 0, 0, 0.15);
                 }
             }
         }
