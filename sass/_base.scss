@@ -2198,13 +2198,29 @@ header {
         .bottom-header {
             background-color: $header-footer-primary-background-color;
             @include media("(max-width: 1024px)") {
-                padding:30px;
+                padding:20px 0 0;
                 box-sizing:border-box;
                 height:100vh;
                 position:fixed;
                 width:100%;
                 overflow:auto;
                 display:none;
+            }
+            .close-mobile-menu-btn{
+                display:none;
+                @include media("(max-width: 1024px)") {
+                    display:block;
+                    margin-bottom:20px;
+                    a,a:visited{
+                        padding: 10px 30px !important;
+                        font-size: 1.5rem;
+                        display: block;
+                        color: #fff;
+                    }
+                    span{
+                        margin-left:10px;
+                    }
+                }
             }
             nav{
             .category-nav {
@@ -2325,10 +2341,12 @@ header {
                             padding: get-vw(25px) get-vw(15px, 769px) get-vw(25px) get-vw(5px, 769px);
                         }
                         @include media("(max-width: 1024px)") {
-                            padding:15px 0!important;
+                            padding:10px 30px!important;
                             font-size:1.5rem;
-                            border-bottom: 1px solid #333;
+                            border-bottom: 1px solid rgba(255,255,255,0.1);
                             display:block;
+                            white-space: normal;
+                            line-height: 2rem;
                         }
                     }
                     &:hover {
@@ -2358,11 +2376,13 @@ header {
                         }
                         @include media("(max-width: 1024px)") {
                             position:static;
-                            opacity:0.8!important;
+                            opacity:1;
                             top:0;
-                            background-color:transparent;
+                            //background-color:transparent;
                             border:0!important;
                             display:none;
+                            @include background-opacity(#fff,0.05);
+                            @include box-shadow(0px 15px 80px #000);
                             @include transform(translateY(0)!important);
                             @include transition(unset);
                             // &:before{
@@ -2435,8 +2455,10 @@ header {
                         }
                         @include media("(max-width: 1024px)") {
                             top: 18px;
+                            right: 35px;
                             color: #fff;
                             font-size: 1.2rem;
+                            z-index: -1;
                             @include transform(rotateX(0deg));
                         }
                     }
