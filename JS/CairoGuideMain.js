@@ -1941,4 +1941,12 @@ $(document).ready(function () {
             $('#loader-wrp').find('.loader-skip-link').addClass('active');
         }
     });
+    $(window).on('navigate', function (e, data) {
+        var direction = data.state.direction;
+        if (!!direction) {
+            if (direction == 'back'){
+                if ($('.bottom-header.changed').hasClass('active')) $('.close-mobile-menu-btn').click();
+            }
+        }
+    });
 });
