@@ -1314,6 +1314,7 @@ $(document).ready(function () {
         var bestSwipe = false,
             bestTouchStart = 0;
         $('.best-spots-body').on('touchstart', function (e) {
+            if ($(window).width() >= 640) return;
             bestSwipe = true;
             bestTouchStart = e.originalEvent.touches[0].pageX;
         });
