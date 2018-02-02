@@ -17,6 +17,9 @@ main {
             height: get-vw(540px);
             margin: 0 get-vw(-30px);
         }
+        @include media("(max-width: 768px)") {
+            margin: 0 -15px;
+        }
         .carousel-container {
             width: 100%;
             height: 100%;
@@ -33,7 +36,9 @@ main {
                     @each $item in $colorList {
                         &.#{nth($item,1)}-item {
                             .section-title {
-                                background: nth($item, 2) !important;
+                                &::before{
+                                    background: nth($item, 2) !important;
+                                }
                             }
                             .carousel-read-more {
                                 &:hover {
@@ -66,14 +71,14 @@ main {
                         position: absolute;
                         left: 30px;
                         top: 210px;
-                        width: 405px;
-                        height: 110px;
+                        max-width: 75%;
                         @include transform(translateX(0));
                         @include media("(min-width: 1200px)") {
                             left: get-vw(30px);
                             top: get-vw(210px);
-                            width: get-vw(405px);
-                            height: get-vw(110px);
+                        }
+                        @include media("(max-width: 768px)") {
+                            left: 15px;
                         }
                         .section-title {
                             margin-bottom: 5px;
@@ -81,36 +86,35 @@ main {
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(5px);
                             }
-                            .carousel-description {
-                                width: 615px;
-                                padding: 5px 0;
-                                text-align: justify;
-                                font: 1em 'Lato-Regular';
+                        }
+                        .carousel-description {
+                            width: 100%;
+                            padding: 5px 0;
+                            text-align: justify;
+                            font: 1em 'Lato-Regular';
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(5px) 0;
+                            }
+                            &.carousel-slogan {
+                                font: 1.4rem 'Lato-Bold';
+                                margin-top: 20px;
                                 @include media("(min-width: 1200px)") {
-                                    width: get-vw(615px);
-                                    padding: get-vw(5px) 0;
-                                }
-                                &.carousel-slogan {
-                                    font: 1.4rem 'Lato-Bold';
-                                    margin-top: 40px;
-                                    @include media("(min-width: 1200px)") {
-                                        margin-top: get-vw(40px);
-                                    }
+                                    margin-top: get-vw(20px);
                                 }
                             }
-                            .carousel-read-more {
-                                display: inline-block;
-                                padding: 10px;
-                                color: #fff;
-                                border: 1px solid #fff;
-                                text-decoration: none;
-                                margin-top: 25px;
-                                background: transparent;
-                                @include transition(all .15s);
-                                @include media("(min-width: 1200px)") {
-                                    padding: get-vw(10px);
-                                    margin-top: get-vw(25px);
-                                }
+                        }
+                        .carousel-read-more {
+                            display: inline-block;
+                            padding: 10px;
+                            color: #fff;
+                            border: 1px solid #fff;
+                            text-decoration: none;
+                            margin-top: 25px;
+                            background: transparent;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(10px);
+                                margin-top: get-vw(25px);
                             }
                         }
                     }

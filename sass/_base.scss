@@ -230,12 +230,12 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-@mixin default-no-ad($isPosRel: true){
+@mixin default-no-ad($isPosRel: true) {
     background-color: #eee;
-    @if $isPosRel == true{
+    @if $isPosRel==true {
         position: relative;
     }
-    &:before{
+    &:before {
         content: 'Advertisement area';
         color: #aaa;
         text-transform: capitalize;
@@ -246,7 +246,7 @@ $colorList: "nightlife" #f90000,
         padding: 5px 30px;
         box-sizing: border-box;
         display: block;
-        font-size:1.2rem;
+        font-size: 1.2rem;
         /*border-top: 1px solid #ccc;
         border-bottom: 3px solid #ccc;*/
         @include transform(translateY(-50%));
@@ -256,9 +256,9 @@ $colorList: "nightlife" #f90000,
         border-bottom-width: get-vw(3px);*/
         }
     }
-    img{
+    img {
         position: relative;
-        z-index:10;
+        z-index: 10;
     }
 }
 
@@ -807,7 +807,7 @@ p {
         display: none;
     }
     .ads-wrp {
-        min-height:300px;
+        min-height: 300px;
         @include default-no-ad(false);
         &.fixed {
             position: fixed;
@@ -926,7 +926,7 @@ p {
     text-align: left;
 }
 
-.superscript{
+.superscript {
     font-size: 50%;
     vertical-align: top;
 }
@@ -1095,7 +1095,7 @@ input[type="radio"] {
 }
 
 .burger-menu-btn-skeleton {
-    display:none;
+    display: none;
     cursor: pointer;
     width: 8px;
     border-right: 2px solid #fff;
@@ -1109,7 +1109,7 @@ input[type="radio"] {
         height: get-vw(15px);
     }
     @include media("(max-width: 1024px)") {
-        display:block;
+        display: block;
     }
     .burger-menu-btn {
         width: 2px;
@@ -1455,8 +1455,8 @@ input[type="radio"] {
 }
 
 .section-title {
-    width: 300px;
-    height: 60px;
+    position: relative;
+    width: 100%;
     padding: 10px 0;
     box-sizing: border-box;
     margin: 50px 0;
@@ -1466,10 +1466,21 @@ input[type="radio"] {
         padding: get-vw(10px) 0;
         margin: get-vw(50px) 0;
     }
+    &::before {
+        content: '';
+        width: 300px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
     @include media("(max-width: 640px)") {
-        width: 60%;
+        &::before {
+            width: 60%;
+        }
     }
     h2 {
+        position: relative;
         text-transform: uppercase;
         letter-spacing: 10px;
         width: 400px;
@@ -1482,7 +1493,7 @@ input[type="radio"] {
             line-height: get-vw(35px);
         }
         @include media("(max-width: 640px)") {
-            width: 165%;
+            width: 100%;
         }
     }
 }
@@ -1509,19 +1520,40 @@ input[type="radio"] {
     }
 }
 
-.logo-pink-title {
+.logo-pink-title:not(.section-title) {
     @include apply-color(background-color,
     $logo-pink);
 }
 
-.logo-yellow-title {
+.logo-pink-title.section-title {
+    &::before {
+        @include apply-color(background-color,
+        $logo-pink);
+    }
+}
+
+.logo-yellow-title:not(.section-title) {
     @include apply-color(background-color,
     $logo-yellow);
 }
 
-.logo-green-title {
+.logo-yellow-title.section-title {
+    &::before {
+        @include apply-color(background-color,
+        $logo-yellow);
+    }
+}
+
+.logo-green-title:not(.section-title) {
     @include apply-color(background-color,
     $logo-green);
+}
+
+.logo-green-title.section-title {
+    &::before {
+        @include apply-color(background-color,
+        $logo-green);
+    }
 }
 
 /*Loader*/
@@ -2153,14 +2185,14 @@ header {
                         [class*=" icon-"] {
                             font-size: 1.14rem;
                         }
-                        .facebook-social{
-                            color:#3b5998;
+                        .facebook-social {
+                            color: #3b5998;
                         }
-                        .twitter-social{
+                        .twitter-social {
                             color: #55acee;
                         }
-                        .instagram-social{
-                            color:#e95950;
+                        .instagram-social {
+                            color: #e95950;
                         }
                         .burger-menu-btn-skeleton {
                             border-right-color: $header-footer-primary-text-color;
@@ -2190,281 +2222,280 @@ header {
         z-index: 100;
         top: 100%;
         @include media("(max-width: 1024px)") {
-            position:fixed;
-            //height:100%;
-            width:100vw;
-            top:0;
+            position: fixed; //height:100%;
+            width: 100vw;
+            top: 0;
         }
         .bottom-header {
             background-color: $header-footer-primary-background-color;
             @include media("(max-width: 1024px)") {
-                padding:20px 0 0;
-                box-sizing:border-box;
-                height:100vh;
-                position:fixed;
-                width:100%;
-                overflow:auto;
-                display:none;
+                padding: 20px 0 0;
+                box-sizing: border-box;
+                height: 100vh;
+                position: fixed;
+                width: 100%;
+                overflow: auto;
+                display: none;
             }
-            .close-mobile-menu-btn{
-                display:none;
+            .close-mobile-menu-btn {
+                display: none;
                 @include media("(max-width: 1024px)") {
-                    display:block;
-                    margin-bottom:20px;
-                    a,a:visited{
+                    display: block;
+                    margin-bottom: 20px;
+                    a,
+                    a:visited {
                         padding: 10px 30px !important;
                         font-size: 1.5rem;
                         display: block;
                         color: #fff;
                     }
-                    span{
-                        margin-left:10px;
+                    span {
+                        margin-left: 10px;
                     }
                 }
             }
-            nav{
-            .category-nav {
-                &>li {
-                    @include media("(max-width: 1024px)") {
-                        float:none;
-                        width:100%;
-                    }
-                    @each $i in $colorList {
-                        &.#{nth($i,1)}-menu-item ul {
-                            border-left: 2px solid nth($i, 2);
-                            &.expand ~ i{
-                                @include media("(max-width: 1024px)") {
-                                color:nth($i, 2)!important;
+            nav {
+                .category-nav {
+                    &>li {
+                        @include media("(max-width: 1024px)") {
+                            float: none;
+                            width: 100%;
+                        }
+                        @each $i in $colorList {
+                            &.#{nth($i,1)}-menu-item ul {
+                                border-left: 2px solid nth($i, 2);
+                                &.expand~i {
+                                    @include media("(max-width: 1024px)") {
+                                        color: nth($i, 2) !important;
+                                    }
                                 }
-                            }
-                            li {
-                                @include background-opacity(nth($i,
-                                2),
-                                0.1);
-                                &:hover {
-                                    background-color: nth($i, 2);
-                                    >a,
-                                    >i {
-                                        color: $header-footer-secondary-text-color;
-                                        @include transition(all 0.3s);
+                                li {
+                                    @include background-opacity(nth($i,
+                                    2),
+                                    0.1);
+                                    &:hover {
+                                        background-color: nth($i, 2);
+                                        >a,
+                                        >i {
+                                            color: $header-footer-secondary-text-color;
+                                            @include transition(all 0.3s);
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    &>ul {
-                        @include transform(translateY(20px) !important);
-                        @include media("(min-width: 1200px)") {
-                            @include transform(translateY(get-vw(20px)) !important);
+                        &>ul {
+                            @include transform(translateY(20px) !important);
+                            @include media("(min-width: 1200px)") {
+                                @include transform(translateY(get-vw(20px)) !important);
+                            }
                         }
-                    }
-                    &:last-child {
-                        & ul {
-                            left: auto !important;
-                            right: 0;
+                        &:last-child {
+                            & ul {
+                                left: auto !important;
+                                right: 0;
+                            }
                         }
-                    }
-                    &>a {
-                        span {
-                            position: relative;
-                            &::after {
-                                content: attr(title);
-                                position: absolute;
-                                top: -5px;
-                                left: -5px;
-                                padding: 5px;
-                                background-color: $header-footer-secondary-background-color;
-                                color: $header-footer-primary-text-color;
-                                clip: rect(0px, 0px, 200px, 0px);
-                                @include transition(clip .3s);
-                                @include media("(min-width: 1200px)") {
-                                    top: get-vw(-5px);
-                                    left: get-vw(-5px);
-                                    padding: get-vw(5px);
-                                    clip: rect(0, 0, get-vw(200px), 0);
+                        &>a {
+                            span {
+                                position: relative;
+                                &::after {
+                                    content: attr(title);
+                                    position: absolute;
+                                    top: -5px;
+                                    left: -5px;
+                                    padding: 5px;
+                                    background-color: $header-footer-secondary-background-color;
+                                    color: $header-footer-primary-text-color;
+                                    clip: rect(0px, 0px, 200px, 0px);
+                                    @include transition(clip .3s);
+                                    @include media("(min-width: 1200px)") {
+                                        top: get-vw(-5px);
+                                        left: get-vw(-5px);
+                                        padding: get-vw(5px);
+                                        clip: rect(0, 0, get-vw(200px), 0);
+                                    }
+                                    @include media("(max-width: 1024px)") {
+                                        display: none !important;
+                                    }
                                 }
-                                @include media("(max-width: 1024px)") {
-                                    display:none!important;
+                            }
+                            &.active {
+                                span::after {
+                                    clip: rect(0px, 200px, 200px, 0);
+                                    @include transition(all 1s);
+                                    @include media("(min-width: 1200px)") {
+                                        clip: rect(0, get-vw(200px), get-vw(200px), 0);
+                                    }
+                                    @include media("(max-width: 1024px)") {
+                                        display: none !important;
+                                    }
                                 }
                             }
                         }
-                        &.active {
-                            span::after {
+                        &:hover {
+                            &>a>span::after {
                                 clip: rect(0px, 200px, 200px, 0);
                                 @include transition(all 1s);
                                 @include media("(min-width: 1200px)") {
                                     clip: rect(0, get-vw(200px), get-vw(200px), 0);
                                 }
-                                @include media("(max-width: 1024px)") {
-                                    display:none!important;
-                                }
                             }
-                        }
-                    }
-                    &:hover {
-                        &>a>span::after {
-                            clip: rect(0px, 200px, 200px, 0);
-                            @include transition(all 1s);
-                            @include media("(min-width: 1200px)") {
-                                clip: rect(0, get-vw(200px), get-vw(200px), 0);
-                            }
-                        }
-                        &>ul {
-                            @include transform(translateY(0px) !important);
-                            @include media("(min-width: 1200px)") {
-                                @include transform(translateY(get-vw(0px)) !important);
-                            }
-                        }
-                    }
-                    &>i{
-                        display:none!important;
-                        @include media("(max-width: 1024px)") {
-                            display:block!important;
-                        }
-                    }
-                }
-                li {
-                    position: relative;
-                    overflow: hidden;
-                    @include transition(all 0.2s ease);
-                    @include media("(max-width: 1024px)") {
-                        background-color:transparent!important;
-                        overflow:auto!important;
-                    }
-                    a,
-                    a:visited {
-                        padding: 25px 30px 25px 5px;
-                        display: inline-block;
-                        color: $header-footer-secondary-text-color;
-                        position: relative;
-                        @include media("(min-width: 769px)") {
-                            padding: get-vw(25px) get-vw(15px, 769px) get-vw(25px) get-vw(5px, 769px);
-                        }
-                        @include media("(max-width: 1024px)") {
-                            padding:10px 30px!important;
-                            font-size:1.5rem;
-                            border-bottom: 1px solid rgba(255,255,255,0.1);
-                            display:block;
-                            white-space: normal;
-                            line-height: 2rem;
-                        }
-                    }
-                    &:hover {
-                        overflow: visible;
-                        &>ul {
-                            opacity: 1;
-                            @include transform(translateY(0));
-                            @include transition(all 0.3s ease);
-                            @include media("(max-width: 1024px)") {
-                                @include transition(unset);
-                            }
-                        }
-                    }
-                    ul {
-                        position: absolute;
-                        min-width: 100%;
-                        top: 100%;
-                        z-index: 300;
-                        white-space: nowrap;
-                        opacity: 0;
-                        background-color: $header-footer-secondary-background-color;
-                        @include transform(translateY(20px));
-                        @include transition(all 0.3s ease);
-                        /*display: none;*/
-                        @include media("(min-width: 1200px)") {
-                            border-left-width: get-vw(1px) !important;
-                        }
-                        @include media("(max-width: 1024px)") {
-                            position:static;
-                            opacity:1;
-                            top:0;
-                            //background-color:transparent;
-                            border:0!important;
-                            display:none;
-                            @include background-opacity(#fff,0.05);
-                            @include box-shadow(0px 15px 80px #000);
-                            @include transform(translateY(0)!important);
-                            @include transition(unset);
-                            // &:before{
-                            //     content: '';
-                            //     display: inline-block;
-                            //     position: absolute;
-                            //     border-bottom: 8px solid #fff;
-                            //     border-right: 8px solid transparent;
-                            //     border-left: 8px solid transparent;
-                            //     right: 5px;
-                            //     top: -25px;
-                            //     @include transform(rotateX(180deg));
-                            // }
-                            &.expand ~ i{
-                                @include transform(rotateX(180deg));
-                                @include transition(all 0.3s ease);
-                            }
-                        }
-                        li {
-                            margin: 0;
-                            text-align: left;
-                            /*line-height: 1.5em;*/
-                            padding: 0;
-                            float: none;
-                            a,
-                            a:visited {
-                                padding: 10px 20px 10px 5px;
-                                box-sizing: border-box;
-                                display: block;
-                                text-transform: capitalize; //background-color: $header-footer-secondary-background-color;
-                                color: $header-footer-primary-text-color;
-                                @include transition(all 0.3s);
+                            &>ul {
+                                @include transform(translateY(0px) !important);
                                 @include media("(min-width: 1200px)") {
-                                    padding: get-vw(10px) get-vw(20px) get-vw(10px) get-vw(5px);
-                                }
-                                @include media("(max-width: 1024px)") {
-                                    color: $header-footer-secondary-text-color;
-                                    font-family:'Lato-Light';
-                                }
-                                &:after {
-                                    display: none;
+                                    @include transform(translateY(get-vw(0px)) !important);
                                 }
                             }
-                            a:hover {
-                                /*background-color: $header-footer-primary-background-color;*/
-                                color: $header-footer-secondary-text-color;
-                                @include transition(all 0.3s ease);
-                            }
-                            ul {
-                                left: 100%;
-                                top: 0;
-                                &.open-other-dir,
-                                &.open-other-dir ul {
-                                    left: auto;
-                                    right: 100%;
-                                }
+                        }
+                        &>i {
+                            display: none !important;
+                            @include media("(max-width: 1024px)") {
+                                display: block !important;
                             }
                         }
                     }
-                    i {
-                        position: absolute;
-                        top: 35%;
-                        right: 5px;
-                        font-size: .7rem;
-                        color: #131313;
-                        @include transform(rotate(-90deg));
-                        @include transition(all 0.3s);
-                        @include media("(min-width: 1200px)") {
-                            right: get-vw(5px);
-                        }
+                    li {
+                        position: relative;
+                        overflow: hidden;
+                        @include transition(all 0.2s ease);
                         @include media("(max-width: 1024px)") {
-                            top: 18px;
-                            right: 35px;
-                            color: #fff;
-                            font-size: 1.2rem;
-                            z-index: -1;
-                            @include transform(rotateX(0deg));
+                            background-color: transparent !important;
+                            overflow: auto !important;
+                        }
+                        a,
+                        a:visited {
+                            padding: 25px 30px 25px 5px;
+                            display: inline-block;
+                            color: $header-footer-secondary-text-color;
+                            position: relative;
+                            @include media("(min-width: 769px)") {
+                                padding: get-vw(25px) get-vw(15px, 769px) get-vw(25px) get-vw(5px, 769px);
+                            }
+                            @include media("(max-width: 1024px)") {
+                                padding: 10px 30px !important;
+                                font-size: 1.5rem;
+                                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                                display: block;
+                                white-space: normal;
+                                line-height: 2rem;
+                            }
+                        }
+                        &:hover {
+                            overflow: visible;
+                            &>ul {
+                                opacity: 1;
+                                @include transform(translateY(0));
+                                @include transition(all 0.3s ease);
+                                @include media("(max-width: 1024px)") {
+                                    @include transition(unset);
+                                }
+                            }
+                        }
+                        ul {
+                            position: absolute;
+                            min-width: 100%;
+                            top: 100%;
+                            z-index: 300;
+                            white-space: nowrap;
+                            opacity: 0;
+                            background-color: $header-footer-secondary-background-color;
+                            @include transform(translateY(20px));
+                            @include transition(all 0.3s ease);
+                            /*display: none;*/
+                            @include media("(min-width: 1200px)") {
+                                border-left-width: get-vw(1px) !important;
+                            }
+                            @include media("(max-width: 1024px)") {
+                                position: static;
+                                opacity: 1;
+                                top: 0; //background-color:transparent;
+                                border: 0 !important;
+                                display: none;
+                                @include background-opacity(#fff,
+                                0.05);
+                                @include box-shadow(0px 15px 80px #000);
+                                @include transform(translateY(0) !important);
+                                @include transition(unset); // &:before{
+                                //     content: '';
+                                //     display: inline-block;
+                                //     position: absolute;
+                                //     border-bottom: 8px solid #fff;
+                                //     border-right: 8px solid transparent;
+                                //     border-left: 8px solid transparent;
+                                //     right: 5px;
+                                //     top: -25px;
+                                //     @include transform(rotateX(180deg));
+                                // }
+                                &.expand~i {
+                                    @include transform(rotateX(180deg));
+                                    @include transition(all 0.3s ease);
+                                }
+                            }
+                            li {
+                                margin: 0;
+                                text-align: left;
+                                /*line-height: 1.5em;*/
+                                padding: 0;
+                                float: none;
+                                a,
+                                a:visited {
+                                    padding: 10px 20px 10px 5px;
+                                    box-sizing: border-box;
+                                    display: block;
+                                    text-transform: capitalize; //background-color: $header-footer-secondary-background-color;
+                                    color: $header-footer-primary-text-color;
+                                    @include transition(all 0.3s);
+                                    @include media("(min-width: 1200px)") {
+                                        padding: get-vw(10px) get-vw(20px) get-vw(10px) get-vw(5px);
+                                    }
+                                    @include media("(max-width: 1024px)") {
+                                        color: $header-footer-secondary-text-color;
+                                        font-family: 'Lato-Light';
+                                    }
+                                    &:after {
+                                        display: none;
+                                    }
+                                }
+                                a:hover {
+                                    /*background-color: $header-footer-primary-background-color;*/
+                                    color: $header-footer-secondary-text-color;
+                                    @include transition(all 0.3s ease);
+                                }
+                                ul {
+                                    left: 100%;
+                                    top: 0;
+                                    &.open-other-dir,
+                                    &.open-other-dir ul {
+                                        left: auto;
+                                        right: 100%;
+                                    }
+                                }
+                            }
+                        }
+                        i {
+                            position: absolute;
+                            top: 35%;
+                            right: 5px;
+                            font-size: .7rem;
+                            color: #131313;
+                            @include transform(rotate(-90deg));
+                            @include transition(all 0.3s);
+                            @include media("(min-width: 1200px)") {
+                                right: get-vw(5px);
+                            }
+                            @include media("(max-width: 1024px)") {
+                                top: 18px;
+                                right: 35px;
+                                color: #fff;
+                                font-size: 1.2rem;
+                                z-index: -1;
+                                @include transform(rotateX(0deg));
+                            }
                         }
                     }
                 }
             }
-        }
         }
         .attached-menu {
             float: right;
@@ -2481,7 +2512,7 @@ header {
                 padding: get-vw(10px) get-vw(25px); //right: get-vw(-50px);
             }
             @include media("(max-width: 1024px)") {
-                top:0;
+                top: 0;
             }
             &:after {
                 content: '';

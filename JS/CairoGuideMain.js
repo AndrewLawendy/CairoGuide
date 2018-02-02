@@ -1233,13 +1233,13 @@ $(document).ready(function () {
             });
 
             //Automatic Scroll
-            var carouselAuto = setInterval(moveNext, 4000);
-            $('#main-carousel').on('mouseenter touchstart', function () {
-                clearInterval(carouselAuto);
-            });
-            $('#main-carousel').on('mouseleave touchend', function () {
-                carouselAuto = setInterval(moveNext, 4000);
-            });
+            //var carouselAuto = setInterval(moveNext, 4000);
+            // $('#main-carousel').on('mouseenter touchstart', function () {
+            //     clearInterval(carouselAuto);
+            // });
+            // $('#main-carousel').on('mouseleave touchend', function () {
+            //     carouselAuto = setInterval(moveNext, 4000);
+            // });
         }
     }
     // End of Carousel
@@ -1247,7 +1247,7 @@ $(document).ready(function () {
     //Start of Things to Do
     if ($('#wtd').length) {
         $('#wtd .wtd-container div[class^=wtd]').on('mouseenter', function () {
-            if(ifNotDesktop()) return;
+            if (ifNotDesktop()) return;
             $(this).addClass('selected');
             $(this).siblings().addClass('shadow');
             $(this).on('mouseleave', function () {
