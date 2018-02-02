@@ -1,6 +1,13 @@
 var newScreenSize = 0; //Last screen size, changes when screen size changes, takes values 1,2 or 3
 var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
+//ifNotDesktop
+var ifNotDesktop = function () {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        return true;
+    return false;
+}
+
 //Calculate last screen size
 var CalcLastScreenSize = function (screenSize) {
     if ($(document).width() > 768) {
@@ -1240,6 +1247,7 @@ $(document).ready(function () {
     //Start of Things to Do
     if ($('#wtd').length) {
         $('#wtd .wtd-container div[class^=wtd]').on('mouseenter', function () {
+            if(ifNotDesktop()) return;
             $(this).addClass('selected');
             $(this).siblings().addClass('shadow');
             $(this).on('mouseleave', function () {
