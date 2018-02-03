@@ -13,12 +13,14 @@ main {
         height: 540px;
         margin: 0 -30px;
         position: relative;
+        background-color: #131313;
         @include media("(min-width: 1200px)") {
             height: get-vw(540px);
             margin: 0 get-vw(-30px);
         }
         @include media("(max-width: 768px)") {
             margin: 0 -15px;
+            height: auto;
         }
         .carousel-container {
             width: 100%;
@@ -32,7 +34,6 @@ main {
                     color: #fff;
                     position: relative;
                     float: left;
-                    background-color: #000;
                     @each $item in $colorList {
                         &.#{nth($item,1)}-item {
                             .section-title {
@@ -57,6 +58,11 @@ main {
                         @include user-select(none);
                         object-fit: cover;
                         opacity: 0.7;
+                        @include transition(all .7s);
+                        @include media("(max-width: 768px)") {
+                            min-height: 0;
+                            height: 55vw;
+                        }
                     }
                     .carousel-gradient {
                         position: absolute;
@@ -66,25 +72,48 @@ main {
                         height: 50%;
                         opacity: .5;
                         @include linear-gradient(top, #fff, 0, 0, #131313, 50, 100);
+                        @include media("(max-width: 768px)") {
+                            display: none;
+                        }
                     }
                     .carousel-data {
                         position: absolute;
-                        left: 30px;
-                        top: 210px;
-                        max-width: 75%;
-                        @include transform(translateX(0));
+                        left: 0;
+                        top: 60%;
+                        width: 100%;
+                        padding-left: 30px;
+                        padding-right: 25%;
+                        box-sizing: border-box;
+                        @include transform(translateY(-50%));
+                        @include transition(top .7s);
                         @include media("(min-width: 1200px)") {
-                            left: get-vw(30px);
-                            top: get-vw(210px);
+                            padding-left: get-vw(30px);
                         }
                         @include media("(max-width: 768px)") {
-                            left: 15px;
+                            padding-left: 15px;
+                            position: relative;
+                            top: 0;
+                            padding-right: 75px;
+                            @include transform(translateY(-25px));
                         }
                         .section-title {
-                            margin-bottom: 5px;
+                            margin-bottom: 10px;
+                            padding-bottom: 0;
                             @include user-select(none);
                             @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(5px);
+                                margin-bottom: get-vw(10px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                margin-top: 0;
+                            }
+                            @include media("(max-width: 768px)"){
+                                &::before{
+                                    height: 42px
+                                }
+                                h2{
+                                    font-size: 1.5rem;
+                                    line-height: 2rem;
+                                }
                             }
                         }
                         .carousel-description {
@@ -94,13 +123,6 @@ main {
                             font: 1em 'Lato-Regular';
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(5px) 0;
-                            }
-                            &.carousel-slogan {
-                                font: 1.4rem 'Lato-Bold';
-                                margin-top: 20px;
-                                @include media("(min-width: 1200px)") {
-                                    margin-top: get-vw(20px);
-                                }
                             }
                         }
                         .carousel-read-more {
@@ -116,6 +138,9 @@ main {
                                 padding: get-vw(10px);
                                 margin-top: get-vw(25px);
                             }
+                            @include media("(max-width: 768px)"){
+                                margin-top: 10px;
+                            }
                         }
                     }
                 }
@@ -127,14 +152,19 @@ main {
             position: absolute;
             top: 0;
             right: 0;
-            display: table;
             padding: 0 15px 0 30px;
             @include linear-gradient(left, #fff, 0, 0, #131313, 1, 100);
             @include media("(min-width: 1200px)") {
                 padding: 0 get-vw(15px) 0 get-vw(30px);
             }
+            &::before{
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+            }
             .carousel-indexes {
-                display: table-cell;
+                display: inline-block;
                 vertical-align: middle;
                 div {
                     margin: 7px;
@@ -171,6 +201,9 @@ main {
             bottom: 0;
             right: 0;
             text-align: right;
+            @include media("(max-width: 768px)") {
+                display: none;
+            }
             p {
                 padding: 5px 10px;
                 background: #131313;
@@ -179,11 +212,11 @@ main {
                 float: right;
                 cursor: pointer;
                 margin-right: 10px;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(5px) get-vw(10px);
                     margin-right: get-vw(10px);
-                    margin-bottom: get-vw(10px);
+                    margin-bottom: get-vw(20px);
                 }
             }
         }

@@ -268,20 +268,19 @@ var BackToTop = function () {
 }
 
 //Main Carousel Parallax
-var carouselDataTop = parseFloat($('.carousel-data').css('top'), 10);
 var MainBannerlParallax = function (scrollPos, breakPos) {
     if ($('#main-carousel').length) {
-        var carouselBodyHeight = $('#main-carousel .carousel-body').height(),
-            newTopValue = scrollPos / 2,
-            newPaddingValue = (scrollPos - breakPos) / 4;
+        var carouselBodyHeight = $('#main-carousel').height(),
+            newTopValue = scrollPos - breakPos,
+            newPaddingValue = (scrollPos - breakPos) / 3;
         if (scrollPos >= Math.floor(breakPos)) {
             if (newPaddingValue <= carouselBodyHeight) {
                 $('#main-carousel .carousel-body').css('padding-top', newPaddingValue);
-                $('.carousel-data').css('top', carouselDataTop - newTopValue);
+                $('.carousel-data').css('margin-top', (newTopValue*-.5));
             }
         } else {
             $('#main-carousel .carousel-body').css('padding-top', 0);
-            $('.carousel-data').css('top', carouselDataTop);
+            $('.carousel-data').css('margin-top', 0);
         }
     } else if ($('.category-banner').length) {
         var categoryBannerHeight = $('.category-banner').height();
@@ -1087,7 +1086,7 @@ $(document).ready(function () {
                     entered = false;
                     activeItemIndex = carouselItemTarget.index();
                     carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.changedTouches[0].pageX);
-                    carouselItemTarget.find('.carousel-data').css('left', 30 + (carouselPosDiff * -1.2) + 'px');
+                    carouselItemTarget.find('.carousel-data').css('left', carouselPosDiff * -1.2 + 'px');
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft(fullScroll);
@@ -1123,13 +1122,13 @@ $(document).ready(function () {
                         left: '-650'
                     }, 400);
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
-                        left: 30
+                        left: 0
                     }, 600);
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
                     }, 400, function () {
                         setTimeout(function () {
-                            $('.carousel-data').css('left', '30px');
+                            $('.carousel-data').css('left', '0px');
                         }, 200);
                         carouselAnimation = false;
                     });
@@ -1159,13 +1158,13 @@ $(document).ready(function () {
                     }, 400);
                     activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
-                            left: 30
+                            left: 0
                         }, 400);
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
                     }, 400, function () {
-                        $('#main-carousel .carousel-data').css('left', '30px');
+                        $('#main-carousel .carousel-data').css('left', '0px');
                         carouselAnimation = false;
                     });
                     selectedIndexControl = activeItemIndex - 2;
@@ -1755,7 +1754,7 @@ $(document).ready(function () {
                     carouselPosDiff = undefined;
                     entered = false;
                     $('#main-carousel .carousel-data').stop().animate({
-                        left: 30
+                        left: 0
                     }, 600);
                 }
             }
