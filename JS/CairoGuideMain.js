@@ -1052,13 +1052,15 @@ $(document).ready(function () {
 
     //Start of Carousel
     if ($('#main-carousel').length) {
-        var carouselItemCount = $('#main-carousel .carousel-item').length;
-        var carouselDrag = false;
-        var carouselBasePos = 0;
-        var carouselPosDiff = 0;
-        var carouselScrollLeft = 0;
-        var activeItemIndex = 2;
-        var carouselAnimation = false;
+        var carouselItemCount = $('#main-carousel .carousel-item').length,
+            carouselDrag = false,
+            carouselBasePos = 0,
+            carouselPosDiff = 0,
+            carouselScrollLeft = 0,
+            activeItemIndex = 2,
+            carouselAnimation = false,
+            scrollingOnCarousel = false;
+        documentScrollOnTouch = 0;
         if (carouselItemCount > 1) {
             carouselItemCount += 2;
             $('#main-carousel .carousel-body').css('width', carouselItemCount + '00vw');
@@ -1079,14 +1081,24 @@ $(document).ready(function () {
                     var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
                     carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
+                    documentScrollOnTouch = $(document).scrollTop();
                 }
             });
             $('#main-carousel .carousel-container').on('mousemove touchmove', function (e) {
-                if (carouselDrag) {
+                if (carouselDrag && !scrollingOnCarousel) {
+                    if ($(document).scrollTop() != documentScrollOnTouch) {
+                        scrollingOnCarousel = true;
+                        return;
+                    }
                     entered = false;
                     activeItemIndex = carouselItemTarget.index();
                     carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.changedTouches[0].pageX);
                     carouselItemTarget.find('.carousel-data').css('left', carouselPosDiff * -1.2 + 'px');
+                    if (Math.abs(carouselPosDiff) > 30){
+                        console.log('Stop Scrolling');
+                        $(document).scrollTop(documentScrollOnTouch);
+
+                    }
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft(fullScroll);
@@ -1094,7 +1106,7 @@ $(document).ready(function () {
                             carouselItemTarget = $('#main-carousel .carousel-item:nth-child(2)')
                             entered = true;
                         }
-                        carouselItemTarget.next().find('.carousel-data').stop().css('left', fullScroll - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.next().find('.carousel-data').css('left', fullScroll - (carouselPosDiff * .5) + 'px');
                     } else {
                         if (activeItemIndex == 0 && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
@@ -1102,9 +1114,9 @@ $(document).ready(function () {
                             carouselScrollLeft = (carouselItemCount - 2) * fullScroll;
                             entered = true;
                         }
-                        carouselItemTarget.prev().find('.carousel-data').stop().css('left', -650 - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.prev().find('.carousel-data').css('left', -650 - (carouselPosDiff * .5) + 'px');
                     }
-                    $(this).stop().scrollLeft(carouselScrollLeft + carouselPosDiff);
+                    $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
                 }
             });
             var moveNext = function () {
@@ -1761,6 +1773,7 @@ $(document).ready(function () {
                     }
                     carouselPosDiff = undefined;
                     entered = false;
+                    scrollingOnCarousel = false;
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
                     }, 600, function () {
