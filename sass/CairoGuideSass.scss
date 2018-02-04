@@ -59,12 +59,10 @@ main {
                         pointer-events: none;
                         @include user-select(none);
                         object-fit: cover;
-                        opacity: 0.7;
                         @include transition(all .7s);
                         @include media("(max-width: 768px)") {
                             min-height: 0;
                             height: 55vw;
-                            opacity: 1;
                         }
                     }
                     .carousel-gradient {
@@ -72,8 +70,8 @@ main {
                         bottom: 0;
                         left: 0;
                         width: 100%;
-                        height: 50%;
-                        opacity: .5;
+                        height: 60%;
+                        opacity: .7;
                         @include linear-gradient(top, #fff, 0, 0, #131313, 50, 100);
                         @include media("(max-width: 768px)") {
                             display: none;

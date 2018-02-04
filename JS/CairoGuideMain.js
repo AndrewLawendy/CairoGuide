@@ -1094,7 +1094,7 @@ $(document).ready(function () {
                     activeItemIndex = carouselItemTarget.index();
                     carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.changedTouches[0].pageX);
                     carouselItemTarget.find('.carousel-data').css('left', carouselPosDiff * -1.2 + 'px');
-                    if (Math.abs(carouselPosDiff) < 5) return;
+                    if (Math.abs(carouselPosDiff) < 30) return;
                     e.preventDefault();
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
@@ -1129,17 +1129,27 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: '-650'
-                    }, 400);
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                         left: 0
-                    }, 600);
+                    }, {
+                        duration: 750,
+                        easing: 'easeOutExpo'
+                    });
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-                    }, 400, function () {
-                        setTimeout(function () {
-                            $('.carousel-data').css('left', '0px');
-                        }, 200);
-                        carouselAnimation = false;
+                    }, {
+                        duration: 750,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            setTimeout(function () {
+                                $('.carousel-data').css('left', '0px');
+                            }, 150);
+                            carouselAnimation = false;
+                        }
                     });
                     selectedIndexControl = activeItemIndex;
                     if (selectedIndexControl == carouselItemCount - 1) {
@@ -1164,17 +1174,27 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: fullScroll
-                    }, 400);
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
                             left: 0
-                        }, 400);
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-                    }, 400, function () {
-                        $('#main-carousel .carousel-data').css('left', '0px');
-                        carouselAnimation = false;
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            $('#main-carousel .carousel-data').css('left', '0px');
+                            carouselAnimation = false;
+                        }
                     });
                     selectedIndexControl = activeItemIndex - 2;
                     if (selectedIndexControl == 0) {
@@ -1216,23 +1236,38 @@ $(document).ready(function () {
                     if (indexValue > activeItemIndex) {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
-                        }, 600);
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                         newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                             left: 0
-                        }, 600);
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     } else {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
-                        }, 400);
+                        }, {
+                            duration: 400,
+                            easing: 'easeOutExpo'
+                        });
                         newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                             $(this).stop().animate({
                                 left: 0
-                            }, 600);
+                            }, {
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                         })
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
-                    }, 400, function () {
+                    }, {
+                        duration: 400,
+                        easing: 'easeOutExpo'
+                    }, function () {
                         setTimeout(function () {
                             $('.carousel-data').css('left', '0px');
                         }, 200);
@@ -1242,14 +1277,14 @@ $(document).ready(function () {
                 }
             });
 
-            //Automatic Scroll
-            //var carouselAuto = setInterval(moveNext, 4000);
-            // $('#main-carousel').on('mouseenter touchstart', function () {
-            //     clearInterval(carouselAuto);
-            // });
-            // $('#main-carousel').on('mouseleave touchend', function () {
-            //     carouselAuto = setInterval(moveNext, 4000);
-            // });
+            // Automatic Scroll
+            var carouselAuto = setInterval(moveNext, 5000);
+            $('#main-carousel').on('mouseenter touchstart', function () {
+                clearInterval(carouselAuto);
+            });
+            $('#main-carousel').on('mouseleave touchend', function () {
+                carouselAuto = setInterval(moveNext, 5000);
+            });
         }
     }
     // End of Carousel
@@ -1732,8 +1767,12 @@ $(document).ready(function () {
                         if (carouselPosDiff > 0) {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                            }, 400, function () {
-                                carouselAnimation = false;
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
                             });
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
@@ -1745,12 +1784,19 @@ $(document).ready(function () {
                         } else {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                            }, 400, function () {
-                                carouselAnimation = false;
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
                             });
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
-                            }, 400);
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo'
+                            });
                             activeItemIndex = carouselItemTarget.index() + 1;
                             var controlsIndex = activeItemIndex - 1;
                             if (controlsIndex == 1) {
@@ -1764,6 +1810,8 @@ $(document).ready(function () {
                     } else {
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
+                        }, {
+                            easing: 'easeOutExpo'
                         }, function () {
                             carouselAnimation = false;
                         });
@@ -1773,7 +1821,10 @@ $(document).ready(function () {
                     scrollingOnCarousel = false;
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
-                    }, 600, function () {
+                    }, {
+                        duration: 1000,
+                        easing: 'easeOutExpo'
+                    }, function () {
                         carouselAnimation = false;
                     });
                 }
