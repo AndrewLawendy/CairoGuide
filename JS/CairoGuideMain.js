@@ -276,7 +276,7 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         if (scrollPos >= Math.floor(breakPos)) {
             if (newPaddingValue <= carouselBodyHeight) {
                 $('#main-carousel .carousel-body').css('padding-top', newPaddingValue);
-                $('.carousel-data').css('margin-top', (newTopValue*-.5));
+                $('.carousel-data').css('margin-top', (newTopValue * -.5));
             }
         } else {
             $('#main-carousel .carousel-body').css('padding-top', 0);
@@ -1207,24 +1207,26 @@ $(document).ready(function () {
                     if (indexValue > activeItemIndex) {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
-                        }, 800);
+                        }, 600);
                         newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
-                            left: 30
-                        }, 1000);
+                            left: 0
+                        }, 600);
                     } else {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
-                        }, 1000);
-                        newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                        }, 400);
+                        newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                             $(this).stop().animate({
-                                left: 30
-                            }, 800);
+                                left: 0
+                            }, 600);
                         })
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
-                    }, 1000, function () {
-                        $('.carousel-data').css('left', '30px');
+                    }, 400, function () {
+                        setTimeout(function () {
+                            $('.carousel-data').css('left', '0px');
+                        }, 200);
                         carouselAnimation = false;
                     });
                     activeItemIndex = indexValue;
@@ -1721,7 +1723,9 @@ $(document).ready(function () {
                         if (carouselPosDiff > 0) {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                            }, 400);
+                            }, 400, function () {
+                                carouselAnimation = false;
+                            });
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
                                 controlsIndex = 0;
@@ -1732,7 +1736,9 @@ $(document).ready(function () {
                         } else {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                            }, 400);
+                            }, 400, function () {
+                                carouselAnimation = false;
+                            });
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
                             }, 400);
@@ -1749,13 +1755,17 @@ $(document).ready(function () {
                     } else {
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
+                        }, function () {
+                            carouselAnimation = false;
                         });
                     }
                     carouselPosDiff = undefined;
                     entered = false;
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
-                    }, 600);
+                    }, 600, function () {
+                        carouselAnimation = false;
+                    });
                 }
             }
             //End of Carousel Autocomplete
