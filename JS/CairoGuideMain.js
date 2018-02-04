@@ -1822,11 +1822,7 @@ $(document).ready(function () {
             if ($('.bottom-header').hasClass('active')) {
                 ToggleMainNav();
             }
-<<<<<<< HEAD
-        } else if (e.keyCode == 13) {
-=======
         } else if (e.keyCode == 13) { //Enter button
->>>>>>> b1b9a9b23ca283c43d40abdaf1dbe860bbdb290f
             if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
