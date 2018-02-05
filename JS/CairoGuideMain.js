@@ -276,7 +276,7 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         if (scrollPos >= Math.floor(breakPos)) {
             if (newPaddingValue <= carouselBodyHeight) {
                 $('#main-carousel .carousel-body').css('padding-top', newPaddingValue);
-                $('.carousel-data').css('margin-top', (newTopValue*-.5));
+                $('.carousel-data').css('margin-top', (newTopValue * -.5));
             }
         } else {
             $('#main-carousel .carousel-body').css('padding-top', 0);
@@ -1052,13 +1052,15 @@ $(document).ready(function () {
 
     //Start of Carousel
     if ($('#main-carousel').length) {
-        var carouselItemCount = $('#main-carousel .carousel-item').length;
-        var carouselDrag = false;
-        var carouselBasePos = 0;
-        var carouselPosDiff = 0;
-        var carouselScrollLeft = 0;
-        var activeItemIndex = 2;
-        var carouselAnimation = false;
+        var carouselItemCount = $('#main-carousel .carousel-item').length,
+            carouselDrag = false,
+            carouselBasePos = 0,
+            carouselPosDiff = 0,
+            carouselScrollLeft = 0,
+            activeItemIndex = 2,
+            carouselAnimation = false,
+            scrollingOnCarousel = false,
+            documentScrollOnTouch = 0;
         if (carouselItemCount > 1) {
             carouselItemCount += 2;
             $('#main-carousel .carousel-body').css('width', carouselItemCount + '00vw');
@@ -1079,14 +1081,21 @@ $(document).ready(function () {
                     var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
                     carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
+                    documentScrollOnTouch = $(document).scrollTop();
                 }
             });
             $('#main-carousel .carousel-container').on('mousemove touchmove', function (e) {
-                if (carouselDrag) {
+                if (carouselDrag && !scrollingOnCarousel) {
+                    if ($(document).scrollTop() != documentScrollOnTouch) {
+                        scrollingOnCarousel = true;
+                        return;
+                    }
                     entered = false;
                     activeItemIndex = carouselItemTarget.index();
                     carouselPosDiff = carouselBasePos - (e.pageX || e.originalEvent.changedTouches[0].pageX);
                     carouselItemTarget.find('.carousel-data').css('left', carouselPosDiff * -1.2 + 'px');
+                    if (Math.abs(carouselPosDiff) < 30) return;
+                    e.preventDefault();
                     if (carouselPosDiff > 0) {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft(fullScroll);
@@ -1094,7 +1103,7 @@ $(document).ready(function () {
                             carouselItemTarget = $('#main-carousel .carousel-item:nth-child(2)')
                             entered = true;
                         }
-                        carouselItemTarget.next().find('.carousel-data').stop().css('left', fullScroll - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.next().find('.carousel-data').css('left', fullScroll - (carouselPosDiff * .5) + 'px');
                     } else {
                         if (activeItemIndex == 0 && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
@@ -1102,9 +1111,9 @@ $(document).ready(function () {
                             carouselScrollLeft = (carouselItemCount - 2) * fullScroll;
                             entered = true;
                         }
-                        carouselItemTarget.prev().find('.carousel-data').stop().css('left', -650 - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.prev().find('.carousel-data').css('left', -650 - (carouselPosDiff * .5) + 'px');
                     }
-                    $(this).stop().scrollLeft(carouselScrollLeft + carouselPosDiff);
+                    $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
                 }
             });
             var moveNext = function () {
@@ -1120,17 +1129,27 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: '-650'
-                    }, 400);
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                         left: 0
-                    }, 600);
+                    }, {
+                        duration: 750,
+                        easing: 'easeOutExpo'
+                    });
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
-                    }, 400, function () {
-                        setTimeout(function () {
-                            $('.carousel-data').css('left', '0px');
-                        }, 200);
-                        carouselAnimation = false;
+                    }, {
+                        duration: 750,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            setTimeout(function () {
+                                $('.carousel-data').css('left', '0px');
+                            }, 150);
+                            carouselAnimation = false;
+                        }
                     });
                     selectedIndexControl = activeItemIndex;
                     if (selectedIndexControl == carouselItemCount - 1) {
@@ -1155,17 +1174,27 @@ $(document).ready(function () {
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: fullScroll
-                    }, 400);
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
                             left: 0
-                        }, 400);
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
-                    }, 400, function () {
-                        $('#main-carousel .carousel-data').css('left', '0px');
-                        carouselAnimation = false;
+                    }, {
+                        duration: 600,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            $('#main-carousel .carousel-data').css('left', '0px');
+                            carouselAnimation = false;
+                        }
                     });
                     selectedIndexControl = activeItemIndex - 2;
                     if (selectedIndexControl == 0) {
@@ -1207,38 +1236,55 @@ $(document).ready(function () {
                     if (indexValue > activeItemIndex) {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
-                        }, 800);
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                         newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
-                            left: 30
-                        }, 1000);
+                            left: 0
+                        }, {
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     } else {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
-                        }, 1000);
-                        newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(300).queue(function () {
+                        }, {
+                            duration: 400,
+                            easing: 'easeOutExpo'
+                        });
+                        newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                             $(this).stop().animate({
-                                left: 30
-                            }, 800);
+                                left: 0
+                            }, {
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                         })
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
-                    }, 1000, function () {
-                        $('.carousel-data').css('left', '30px');
+                    }, {
+                        duration: 400,
+                        easing: 'easeOutExpo'
+                    }, function () {
+                        setTimeout(function () {
+                            $('.carousel-data').css('left', '0px');
+                        }, 200);
                         carouselAnimation = false;
                     });
                     activeItemIndex = indexValue;
                 }
             });
 
-            //Automatic Scroll
-            //var carouselAuto = setInterval(moveNext, 4000);
-            // $('#main-carousel').on('mouseenter touchstart', function () {
-            //     clearInterval(carouselAuto);
-            // });
-            // $('#main-carousel').on('mouseleave touchend', function () {
-            //     carouselAuto = setInterval(moveNext, 4000);
-            // });
+            // Automatic Scroll
+            var carouselAuto = setInterval(moveNext, 5000);
+            $('#main-carousel').on('mouseenter touchstart', function () {
+                clearInterval(carouselAuto);
+            });
+            $('#main-carousel').on('mouseleave touchend', function () {
+                carouselAuto = setInterval(moveNext, 5000);
+            });
         }
     }
     // End of Carousel
@@ -1721,7 +1767,13 @@ $(document).ready(function () {
                         if (carouselPosDiff > 0) {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
-                            }, 400);
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
+                            });
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
                                 controlsIndex = 0;
@@ -1732,10 +1784,19 @@ $(document).ready(function () {
                         } else {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
-                            }, 400);
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
+                            });
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
-                            }, 400);
+                            }, {
+                                duration: 750,
+                                easing: 'easeOutExpo'
+                            });
                             activeItemIndex = carouselItemTarget.index() + 1;
                             var controlsIndex = activeItemIndex - 1;
                             if (controlsIndex == 1) {
@@ -1749,13 +1810,23 @@ $(document).ready(function () {
                     } else {
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
+                        }, {
+                            easing: 'easeOutExpo'
+                        }, function () {
+                            carouselAnimation = false;
                         });
                     }
                     carouselPosDiff = undefined;
                     entered = false;
+                    scrollingOnCarousel = false;
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
-                    }, 600);
+                    }, {
+                        duration: 1000,
+                        easing: 'easeOutExpo'
+                    }, function () {
+                        carouselAnimation = false;
+                    });
                 }
             }
             //End of Carousel Autocomplete
