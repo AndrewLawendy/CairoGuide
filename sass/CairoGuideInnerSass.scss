@@ -126,7 +126,7 @@ Contains all styles of inner pages
                 }
             }
             .category-best-wrp {
-                .section-title {
+                .section-title::before {
                     background-color: nth($i, 2);
                 }
             }

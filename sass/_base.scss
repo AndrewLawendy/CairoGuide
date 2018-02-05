@@ -2743,6 +2743,17 @@ main {
         .highlights-carousel-wrp{
             .highlights-item {
                 @include flex(1 0 20%);
+                @include media("(max-width: 1024px)") {
+                    @include flex(1 0 calc(100% / 3));
+                }
+                @include media("(max-width: 768px)") {
+                    @include flex(1 0 50%);
+                    margin-top:0!important;
+                    height:400px;
+                }
+                @include media("(max-width: 640px)") {
+                    @include flex(1 0 100%);
+                }
             }
         }
         .category-highlights-carousel-wrp{
