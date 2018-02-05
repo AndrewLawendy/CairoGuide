@@ -262,6 +262,22 @@ $colorList: "nightlife" #f90000,
     }
 }
 
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  @mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex:  $values;
+    -webkit-flex:  $values;
+    -ms-flex:  $values;
+    flex:  $values;
+  }
+
 /*Functions*/
 
 @each $i in $colorList {
@@ -2618,26 +2634,38 @@ header {
 
 main {
     background-color: #fff;
+    /*boc-carousel*/
+    .boc-carousel{
+        overflow: hidden;
+        @include user-select(none);
+        @include flexbox();
+        //flex-flow: row nowrap;
+    }
     /*Highlights*/
     #highlights {
         .highlights-carousel-wrp,
         .category-highlights-carousel-wrp {
-            overflow: hidden;
-            .highlights-wrp {
+            //overflow: hidden;
+            //@include flexbox();
+            //justify-content: space-around;
+            //flex-flow: row nowrap;
+            /*.highlights-wrp {
                 margin-left: 0;
-                @include transition(margin-left 0.3s ease);
+                @include transition(margin-left 0.3s ease);*/
                 .highlights-item {
                     position: relative;
-                    width: calc((( 100vw - 60px) / 5) - 20px);
+                    //width: calc((( 100vw - 60px) / 5) - 20px);
+                    //width:20%;
+                    //flex-basis: 20%;
                     padding: 0 10px;
+                    box-sizing:border-box;
                     overflow: hidden;
-                    float: left;
+                    //float: left;
                     height: 450px;
-                    /*box-sizing:border-box;*/
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(10px);
                         height: get-vw(450px);
-                        width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
+                        //width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
                     }
                     &:nth-child(2n) {
                         margin-top: 40px;
@@ -2709,6 +2737,25 @@ main {
                         }*/
                         }
                     }
+                }
+            //}
+        }
+        .highlights-carousel-wrp{
+            .highlights-item {
+                @include flex(1 0 20%);
+            }
+        }
+        .category-highlights-carousel-wrp{
+            overflow: hidden;
+            @include flexbox();
+            //flex-flow: row nowrap;
+            @include media("(max-width: 1024px)") {
+                flex-flow: row wrap;
+            }
+            .highlights-item {
+                @include flex(1 0 25%);
+                @include media("(max-width: 1024px)") {
+                    @include flex(1 0 50%);
                 }
             }
         }

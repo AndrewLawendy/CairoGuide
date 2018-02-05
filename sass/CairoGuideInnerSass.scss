@@ -982,10 +982,10 @@ Contains all styles of inner pages
         }
         #highlights {
             .category-highlights-carousel-wrp {
-                .highlights-wrp {
+                //.highlights-wrp {
                     .highlights-item {
-                        width: 25%;
-                        box-sizing: border-box;
+                        /*width: 25%;
+                        box-sizing: border-box;*/
                         &:nth-child(2n) {
                             margin-top: 0;
                             @include media("(min-width: 1200px)") {
@@ -993,7 +993,7 @@ Contains all styles of inner pages
                             }
                         }
                     }
-                }
+                //}
             }
         }
         .items-list-info {
