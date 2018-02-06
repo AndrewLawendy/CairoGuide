@@ -412,7 +412,7 @@ var initCalendar = function () {
     $('#calendar-wrp .calendar-today .calendar-month-day').text(currentMonth + ' ' + dayDate);
     $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
     for (var w = 0; w < returnMonth.length; w++) {
-        returnMonth[w] = "<tr>\n<td>\n" + returnMonth[w].join("</td>\n<td>") + "</td></tr>\n"
+        returnMonth[w] = "<tr>\n<td>" + returnMonth[w].join("</td>\n<td>") + "</td></tr>\n"
     }
     var monthTable = $("<table>\n<thead>\n<th>Sunday</th>\n<th>Monday</th>\n<th>Tuesday</th>\n<th>Wednesday</th>\n<th>Thursday</th>\n<th>Friday</th>\n<th>Saturday</th>\n</thead>\n<tbody></tbody>\n</table>\n");
     $('#calendar-wrp .calendar-month-view').append(monthTable);
