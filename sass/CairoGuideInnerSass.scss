@@ -2490,6 +2490,9 @@ Contains all styles of inner pages
                             line-height: inherit;
                             padding-top: 15px;
                             cursor: pointer;
+                            span{
+                                display: inline-block;
+                            }
                         }
                     }
                 }
