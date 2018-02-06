@@ -8,6 +8,17 @@ var ifNotDesktop = function () {
     return false;
 }
 
+//ifInfiniteLoop
+var maxIteration = 0;
+var ifInfiniteLoop = function (max) {
+    maxIteration++;
+    if (maxIteration == max) {
+        maxIteration = 0;
+        return true;
+    }
+    return false;
+}
+
 //Calculate last screen size
 var CalcLastScreenSize = function (screenSize) {
     if ($(document).width() > 768) {
@@ -303,6 +314,21 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
 var getDaysInMonth = function (year, month) {
     return new Date(year, month + 1, 0).getDate();
 };
+var getMonthArray = function (firstDayIndex, days) {
+    var month = [],
+        numberOfweeks = Math.ceil((firstDayIndex + days) / 7),
+        startRowWith = 1;
+    for (var w = 0; w < numberOfweeks; w++) {
+        month[w] = [];
+        for (var d = startRowWith; firstDayIndex < 7 && d <= days; d++, firstDayIndex++) {
+            month[w][firstDayIndex] = d;
+        }
+        startRowWith = month[w][6] + 1;
+        firstDayIndex = 0;
+        month[w].length = 7;
+    }
+    return month;
+}
 // var initCalendar = function () {
 //     var date = new Date();
 //     if (arguments.length)
@@ -358,19 +384,10 @@ var getDaysInMonth = function (year, month) {
 
 var getOrdinalIndicator = function (num) {
     var lastNumber = num.toString().slice(-1);
-    switch (lastNumber) {
-        case 1 && num != 11:
-            return 'st';
-            break;
-        case 2 && num != 12:
-            return 'nd';
-            break;
-        case 3 && num != 13:
-            return 'rd';
-            break;
-        default:
-            return 'th';
-    }
+    if (lastNumber == 1 && num != 11) return 'st';
+    if (lastNumber == 2 && num != 12) return 'nd';
+    if (lastNumber == 3 && num != 13) return 'rd';
+    return 'th';
 }
 
 var initCalendar = function () {
@@ -380,21 +397,26 @@ var initCalendar = function () {
     var year = date.getFullYear(),
         month = date.getMonth(),
         dayDate = date.getDate(),
-        firstDayIndex = new Date(year+'-'+month+1+'-01').getDay(),
+        firstDayIndex = new Date(year + '-' + (month + 1) + '-01').getDay(),
         monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ],
         daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         currentMonth = monthNames[month],
-        days = getDaysInMonth(year, month);
+        days = getDaysInMonth(year, month),
+        returnMonth = getMonthArray(firstDayIndex, days);
+    $('#calendar-wrp').data({
+        'year': year,
+        'month': month
+    });
     $('#calendar-wrp .calendar-today .calendar-month-day').text(currentMonth + ' ' + dayDate);
     $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
-    for (var i = 1, d = firstDayIndex; i <= days; i++, d++) {
-        if (d == 7) d = 0;
-        var dayName = daysNames[d],
-            dayView = '<div class="day-view">\n<p class="day-name">' + dayName + '</p>\n<p class="day-date">' + i + '</p>\n</div>\n';
-        $('#calendar-wrp .calendar-days-view').append(dayView);
+    for (var w = 0; w < returnMonth.length; w++) {
+        returnMonth[w] = "<tr><td>" + returnMonth[w].join("</td>\n<td>") + "</td></tr>\n"
     }
+    var monthTable = $("<table>\n<thead>\n<th>Sunday</th>\n<th>Monday</th>\n<th>Tuesday</th>\n<th>Wednesday</th>\n<th>Thursday</th>\n<th>Friday</th>\n<th>Saturday</th>\n</thead>\n<tbody></tbody>\n</table>\n");
+    $('#calendar-wrp .calendar-month-view').append(monthTable);
+    monthTable.find('tbody').append(returnMonth).find('td:contains(' + dayDate + ')').addClass('today');
 }
 
 var calNextMonth = function (currentYear, currentMonth) {

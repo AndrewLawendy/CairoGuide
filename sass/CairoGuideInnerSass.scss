@@ -983,17 +983,16 @@ Contains all styles of inner pages
         #highlights {
             .category-highlights-carousel-wrp {
                 //.highlights-wrp {
-                    .highlights-item {
-                        /*width: 25%;
+                .highlights-item {
+                    /*width: 25%;
                         box-sizing: border-box;*/
-                        &:nth-child(2n) {
-                            margin-top: 0;
-                            @include media("(min-width: 1200px)") {
-                                margin-top: get-vw(0px);
-                            }
+                    &:nth-child(2n) {
+                        margin-top: 0;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(0px);
                         }
                     }
-                //}
+                } //}
             }
         }
         .items-list-info {
@@ -2472,24 +2471,25 @@ Contains all styles of inner pages
                 .calendar-next {
                     float: right;
                 }
-                .calendar-days-view {
+                .calendar-month-view {
                     overflow: hidden;
                     display: flex;
-                    .day-view {
-                        float: left;
-                        text-align: center;
-                        cursor: pointer;
+                    table {
                         flex-grow: 0;
                         flex-shrink: 0;
-                        flex-basis: 10%;
-                        .day-name {
+                        flex-basis: 100%;
+                        width: 100%;
+                        text-align: center;
+                        th {
                             font-size: .7em;
                             line-height: inherit;
                             margin-bottom: 5px;
                         }
-                        .day-date {
+                        td {
                             font: 3em 'Lato-Black';
                             line-height: inherit;
+                            padding-top: 15px;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -2500,7 +2500,7 @@ Contains all styles of inner pages
                     border-radius: 7px;
                     padding: 15px;
                     color: #fff;
-                    &:nth-child(1n+2){
+                    &:nth-child(1n+2) {
                         margin-top: 15px;
                     }
                     >div {
@@ -2511,8 +2511,8 @@ Contains all styles of inner pages
                     }
                     .event-description {
                         width: 50%;
-                        .event-name{
-                            font:1.5rem 'Lato-Bold';
+                        .event-name {
+                            font: 1.5rem 'Lato-Bold';
                             margin-bottom: 10px;
                         }
                     }
