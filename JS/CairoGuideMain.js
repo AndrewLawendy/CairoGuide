@@ -311,6 +311,7 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
     }
 }
 //Event Calendar
+var creatingCalendar = false;
 var getDaysInMonth = function (year, month) {
     return new Date(year, month + 1, 0).getDate();
 };
@@ -426,6 +427,8 @@ var initCalendar = function () {
 }
 
 var calNextMonth = function (currentYear, currentMonth, currentDay) {
+    if (creatingCalendar) return;
+    creatingCalendar = true;
     var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
         fullScroll = $('#calendar-wrp .calendar-month-view').width();
     if (!$('#calendar-wrp table.active').next().length) {
@@ -441,13 +444,17 @@ var calNextMonth = function (currentYear, currentMonth, currentDay) {
         $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(currentDay));
         $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + nextYear);
     }
-    $('#calendar-wrp .calendar-month-view').animate({
+    $('#calendar-wrp .calendar-month-view').stop().animate({
         scrollLeft: roundToNearestValue(fullScroll, (actualScroll + fullScroll))
+    }, function () {
+        creatingCalendar = false;
     });
 
 }
 
 var calPrevMonth = function (currentYear, currentMonth, currentDay) {
+    if (creatingCalendar) return;
+    creatingCalendar = true;
     var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
         fullScroll = $('#calendar-wrp .calendar-month-view').width();
     if (!$('#calendar-wrp table.active').prev().length) {
@@ -465,8 +472,10 @@ var calPrevMonth = function (currentYear, currentMonth, currentDay) {
         $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(currentDay));
         $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + prevYear);
     }
-    $('#calendar-wrp .calendar-month-view').animate({
+    $('#calendar-wrp .calendar-month-view').stop().animate({
         scrollLeft: roundToNearestValue(fullScroll, (actualScroll - fullScroll))
+    }, function () {
+        creatingCalendar = false;
     });
 }
 
