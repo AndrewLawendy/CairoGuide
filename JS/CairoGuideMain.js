@@ -638,8 +638,8 @@ var GetParameterByName = function (name, url) {
 
 //Set Active Category
 var SetActiveCategory = function () {
-    var cat = $('body').attr('class').replace('-theme', '');
-    if (cat != null)
+    var cat = $('body').attr('class').split(' ')[0].replace('-theme','');
+    if (cat != null && cat != 'null')
         $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
 }
 
