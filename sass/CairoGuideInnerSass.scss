@@ -2461,6 +2461,7 @@ Contains all styles of inner pages
             .calendar-month-body {
                 .calendar-controls {
                     cursor: pointer;
+                    padding: 15px;
                     i {
                         font-size: 3em;
                     }
@@ -2490,7 +2491,7 @@ Contains all styles of inner pages
                             line-height: inherit;
                             padding-top: 15px;
                             cursor: pointer;
-                            span{
+                            span {
                                 display: inline-block;
                             }
                         }
