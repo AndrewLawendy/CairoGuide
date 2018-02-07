@@ -184,6 +184,13 @@ Contains all styles of inner pages
                     background: nth($i, 2);
                 }
             }
+            &.accommodation-theme {
+                .overview-details {
+                    .thirty-width.float-right {
+                        display: none;
+                    }
+                }
+            }
         }
         .sitemap-list-wrp.#{nth($i,1)}-list {
             .#{nth($i,1)}-list-container {

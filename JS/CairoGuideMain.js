@@ -430,7 +430,7 @@ var calNextMonth = function (currentYear, currentMonth, currentDay) {
     if (creatingCalendar) return;
     creatingCalendar = true;
     var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-month-view').width();
+        fullScroll = $('#calendar-wrp .calendar-month-view table').width();
     if (!$('#calendar-wrp table.active').next().length) {
         var nextMonth = new Date(currentYear, currentMonth + 1, currentDay);
         initCalendar(nextMonth, false);
@@ -456,7 +456,7 @@ var calPrevMonth = function (currentYear, currentMonth, currentDay) {
     if (creatingCalendar) return;
     creatingCalendar = true;
     var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-month-view').width();
+        fullScroll = $('#calendar-wrp .calendar-month-view table').width();
     if (!$('#calendar-wrp table.active').prev().length) {
         var prevMonth = new Date(currentYear, currentMonth - 1, currentDay);
         initCalendar(prevMonth, true);
