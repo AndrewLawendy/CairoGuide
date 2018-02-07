@@ -3033,6 +3033,7 @@ footer {
         .control-btn {
             float: none;
             width: 100%;
+            margin: 0;
             &:nth-child(1n+2) {
                 margin-top: 10px;
             }

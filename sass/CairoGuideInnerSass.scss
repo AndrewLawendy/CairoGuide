@@ -76,6 +76,13 @@ Contains all styles of inner pages
             .rating-level circle {
                 stroke: nth($i, 2);
             }
+            .item-details-offer {
+                background-color: nth($i, 2);
+                &::before {
+                    color: nth($i, 2);
+                    border-color: nth($i, 2);
+                }
+            }
             .item-branches-container {
                 i {
                     color: nth($i, 2);
@@ -983,17 +990,16 @@ Contains all styles of inner pages
         #highlights {
             .category-highlights-carousel-wrp {
                 //.highlights-wrp {
-                    .highlights-item {
-                        /*width: 25%;
+                .highlights-item {
+                    /*width: 25%;
                         box-sizing: border-box;*/
-                        &:nth-child(2n) {
-                            margin-top: 0;
-                            @include media("(min-width: 1200px)") {
-                                margin-top: get-vw(0px);
-                            }
+                    &:nth-child(2n) {
+                        margin-top: 0;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(0px);
                         }
                     }
-                //}
+                } //}
             }
         }
         .items-list-info {
@@ -1707,6 +1713,43 @@ Contains all styles of inner pages
                         }
                     }
                 }
+            }
+        }
+        .item-details-offer {
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #f90000;
+            color: #fff;
+            border-radius: 10px 10px 10px 0;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid #fff;
+            &::before {
+                content: 'Offer';
+                position: absolute;
+                left: -8px;
+                background: #fff;
+                color: #f90000;
+                padding: 10px;
+                box-sizing: border-box;
+                font: 1.2rem 'Lato-Black';
+                line-height: 1em;
+                height: 35px;
+                border: 1px solid red;
+                bottom: -15px;
+                z-index: 10;
+                border-radius: 40px 25px 25px 0px;
+            }
+            h4 {
+                font-size: 1.8rem;
+                text-transform: capitalize;
+            }
+            a,
+            a:visited {
+                float: right;
+                color: #fff;
             }
         }
         .branch-map {
@@ -2500,7 +2543,7 @@ Contains all styles of inner pages
                     border-radius: 7px;
                     padding: 15px;
                     color: #fff;
-                    &:nth-child(1n+2){
+                    &:nth-child(1n+2) {
                         margin-top: 15px;
                     }
                     >div {
@@ -2511,8 +2554,8 @@ Contains all styles of inner pages
                     }
                     .event-description {
                         width: 50%;
-                        .event-name{
-                            font:1.5rem 'Lato-Bold';
+                        .event-name {
+                            font: 1.5rem 'Lato-Bold';
                             margin-bottom: 10px;
                         }
                     }
