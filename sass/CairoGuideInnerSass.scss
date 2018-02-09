@@ -76,6 +76,13 @@ Contains all styles of inner pages
             .rating-level circle {
                 stroke: nth($i, 2);
             }
+            .item-details-offer {
+                background-color: nth($i, 2);
+                &::before {
+                    color: nth($i, 2);
+                    border-color: nth($i, 2);
+                }
+            }
             .item-branches-container {
                 i {
                     color: nth($i, 2);
@@ -175,6 +182,13 @@ Contains all styles of inner pages
                 &::before,
                 &::after {
                     background: nth($i, 2);
+                }
+            }
+            &.accommodation-theme {
+                .overview-details {
+                    .thirty-width.float-right {
+                        display: none;
+                    }
                 }
             }
         }
@@ -1708,6 +1722,43 @@ Contains all styles of inner pages
                 }
             }
         }
+        .item-details-offer {
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #f90000;
+            color: #fff;
+            border-radius: 10px 10px 10px 0;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid #fff;
+            &::before {
+                content: 'Offer';
+                position: absolute;
+                left: -8px;
+                background: #fff;
+                color: #f90000;
+                padding: 10px;
+                box-sizing: border-box;
+                font: 1.2rem 'Lato-Black';
+                line-height: 1em;
+                height: 35px;
+                border: 1px solid red;
+                bottom: -15px;
+                z-index: 10;
+                border-radius: 40px 25px 25px 0px;
+            }
+            h4 {
+                font-size: 1.8rem;
+                text-transform: capitalize;
+            }
+            a,
+            a:visited {
+                float: right;
+                color: #fff;
+            }
+        }
         .branch-map {
             width: 100%;
             height: 160px;
@@ -2533,6 +2584,49 @@ Contains all styles of inner pages
                             padding-left: 10px;
                         }
                     }
+                }
+            }
+        }
+        /*Events details page*/
+        .event-details {
+            text-align: center;
+            padding: 45px 0;
+            margin-bottom: -30px;
+            background: url(../images/wtd-monthly.jpg) center center no-repeat;
+            background-size: cover;
+            position: relative;
+            height: auto;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(45px) 0;
+                margin-bottom: get-vw(-30px);
+            }
+            &::before {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, .7);
+            }
+            .event-content-details {
+                display: inline-block;
+                position: relative;
+                text-align: left;
+                z-index: 1;
+                vertical-align: middle;
+                width: 768px;
+                padding: 15px;
+                border-radius: 7px;
+                background: #fff;
+                @include media("(min-width: 1200px)") {
+                    padding: get-vw(15px);
                 }
             }
         }

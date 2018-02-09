@@ -5,6 +5,7 @@ Contains all styles
 
 @import 'reset'; //Reset file import
 @import 'base'; //Base file import
+
 /*Main*/
 
 main {
@@ -27,7 +28,7 @@ main {
             overflow: hidden;
             .carousel-body {
                 height: 100%;
-                @include media("(max-width: 768px)"){
+                @include media("(max-width: 768px)") {
                     padding-top: 0!important;
                 }
                 .carousel-item {
@@ -39,7 +40,7 @@ main {
                     @each $item in $colorList {
                         &.#{nth($item,1)}-item {
                             .section-title {
-                                &::before{
+                                &::before {
                                     background: nth($item, 2) !important;
                                 }
                             }
@@ -107,12 +108,12 @@ main {
                             }
                             @include media("(max-width: 768px)") {
                                 margin-top: 0;
-                                &::before{
+                                &::before {
                                     height: 3px;
-                                    top:auto;
+                                    top: auto;
                                     bottom: -6px;
                                 }
-                                h2{
+                                h2 {
                                     text-align: left;
                                     color: #000;
                                     letter-spacing: 0;
@@ -146,7 +147,7 @@ main {
                                 padding: get-vw(10px);
                                 margin-top: get-vw(25px);
                             }
-                            @include media("(max-width: 768px)"){
+                            @include media("(max-width: 768px)") {
                                 margin-top: 10px;
                             }
                             @include media("(max-width: 768px)") {
@@ -169,7 +170,7 @@ main {
             @include media("(min-width: 1200px)") {
                 padding: 0 get-vw(15px) 0 get-vw(30px);
             }
-            &::before{
+            &::before {
                 content: '';
                 display: inline-block;
                 vertical-align: middle;
@@ -180,9 +181,9 @@ main {
                 position: relative;
                 padding: 0 15px;
                 background: transparent;
-                &::before{
+                &::before {
                     position: absolute;
-                    top:-5px;
+                    top: -5px;
                     left: 10%;
                     background: #eee;
                     border-radius: 100%;
@@ -211,7 +212,7 @@ main {
                         height: get-vw(15px);
                         padding: get-vw(6px) 0 get-vw(11px);
                     }
-                    @include media("(max-width: 768px)"){
+                    @include media("(max-width: 768px)") {
                         display: inline-block;
                         padding: 0;
                         color: #000;
@@ -261,12 +262,40 @@ main {
         @include media("(min-width: 1200px)") {
             height: get-vw(550px);
         }
-        &>div {
+        @include media("(max-width: 768px)") {
+            height: 100vh;
+            min-height: 1024px;
+        }
+        @include media("(max-width: 640px)") {
+            height: auto;
+            min-height: auto;
+        }
+        .trend-box {
             height: 100%;
             width: 25%;
+            overflow: hidden;
             @include media("(min-width: 1200px)") {
-                $margin: get-vw(6px);
+                //$margin: get-vw(6px);
                 width: 25%;
+            }
+            @include media("(max-width: 768px)") {
+                height: 50vh;
+                min-height: 50%;
+                width: 50%;
+                float: left!important;
+            }
+            @include media("(max-width: 640px)") {
+                height: auto;
+                min-height: auto;
+                width: 100%;
+                float: none!important;
+            }
+            .trend-item,
+            .ad-item {
+                @include media("(max-width: 640px)") {
+                    margin-bottom: 15px;
+                    height: 50vw!important;
+                }
             }
             .trend-item img,
             .ad-item img {
@@ -277,13 +306,15 @@ main {
                 position: relative;
                 overflow: hidden;
                 height: 100%;
-                /*margin:0 3px 3px 0;
-                @include media("(min-width: 1200px)") {
-                    margin:0 get-vw(3px) get-vw(3px) 0;
-                }*/
+                @include media("(max-width: 768px)") {
+                    background-color: #000;
+                }
                 img {
                     @include transform(scale(1));
                     @include transition(transform 0s linear 1s);
+                    @include media("(max-width: 768px)") {
+                        opacity: 0.8;
+                    }
                 }
                 &.offers-item {
                     height: 53%;
@@ -292,6 +323,15 @@ main {
                     height: 47%;
                     iframe {
                         background-color: #000;
+                    }
+                    @include media("(max-width: 768px)") {
+                        .trend-info {
+                            display: none;
+                        }
+                        &>a,
+                        &>a:visited {
+                            left: 10px!important;
+                        }
                     }
                 }
                 .trend-slide {
@@ -312,6 +352,12 @@ main {
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(25px) get-vw(10px) 0;
                         }
+                        @include media("(max-width: 768px)") {
+                            height: auto;
+                            top: auto!important;
+                            bottom: 0;
+                            padding: 25px 10px;
+                        }
                         p,
                         a,
                         a:visited {
@@ -321,6 +367,9 @@ main {
                         p {
                             margin-left: -110%;
                             @include transition(margin-left 0.2s ease);
+                            @include media("(max-width: 768px)") {
+                                margin-left: 0;
+                            }
                         }
                         h3 {
                             margin-bottom: 15px; //max-height: 150px;
@@ -333,8 +382,13 @@ main {
                         p {
                             //max-height: 65px;
                             margin-bottom: 15px;
+                            @include limit-text-lines(3, 1.2rem);
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(15px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                margin-bottom: 10px;
+                                @include limit-text-lines(2, 1.2rem);
                             }
                         }
                         a,
@@ -348,6 +402,9 @@ main {
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(10px);
                             }
+                            @include media("(max-width: 768px)") {
+                                margin-left: 0;
+                            }
                         }
                         a:hover {
                             background-color: #fff;
@@ -356,10 +413,16 @@ main {
                         @each $i in $colorList {
                             &.#{nth($i,1)}-bg {
                                 background: rgba(nth($i, 2), 0.8);
+                                /*@include media("(max-width: 768px)") {
+                                    background: nth($i, 2);
+                                }*/
                                 a:hover {
                                     color: nth($i, 2);
                                 }
                             }
+                        }
+                        @include media("(max-width: 768px)") {
+                            background: transparent!important;
                         }
                     }
                     &:hover {
@@ -399,6 +462,11 @@ main {
                     @include media("(min-width: 1200px)") {
                         bottom: get-vw(15px);
                         left: get-vw(15px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        left: auto;
+                        right: 10px;
+                        bottom: 25px;
                     }
                 }
                 &>a:hover {
@@ -486,8 +554,7 @@ main {
                 text-transform: uppercase;
                 width: 100%;
                 text-align: center;
-                @include transform(translate(0));
-                //@include transition(all 3s);
+                @include transform(translate(0)); //@include transition(all 3s);
                 @include media("(max-width: 768px)") {
                     font-size: 4.5rem;
                 }
@@ -653,158 +720,198 @@ main {
     }
     /*Latest News*/
     #latest-news {
-        .news-item {
-            width: get-vw(((1200px - 60px) / 4) - 20px);
-            height: get-vw(((1200px - 60px) / 4) - 20px);
-            margin: get-vw(10px);
-            float: left;
-            position: relative;
+        .latest-news-wrp {
+            //height:75vh;
             overflow: hidden;
-            &.wide-news-item {
-                width: get-vw(((1200px - 60px) / 2) - 20px);
-            }
-            &:nth-child(3n-2) {
+            flex-wrap: wrap;
+            @include flexbox();
+            .news-box {
+                height: 25vw;
+                padding: get-vw(10px);
+                box-sizing: border-box;
+                @include flex(1 0 25%);
+                @include media("(max-width: 768px)") {
+                    min-height: 33vw;
+                    @include flex(1 0 calc(100% / 3));
+                }
+                @include media("(max-width: 640px)") {
+                    height: 50vw;
+                    padding: 0 0 10px 0;
+                    @include flex(1 0 100%);
+                }
+                &.wide-news-box {
+                    //width: get-vw(((1200px - 60px) / 2) - 20px);
+                    @include flex(1 0 50%);
+                    @include media("(max-width: 768px)") {
+                        @include flex(1 0 calc((100% / 3) * 2));
+                    }
+                }
+                .news-item {
+                    position: relative;
+                    overflow: hidden;
+                    height: 100%; //width: get-vw(((1200px - 60px) / 4) - 20px);
+                    //height: get-vw(((1200px - 60px) / 4) - 20px);
+                    //float: left;
+                    /*&:nth-child(3n-2) {
                 margin-left: 0;
                 clear: left;
             }
             &:nth-child(3n) {
                 margin-right: 0;
                 clear: right;
-            }
-            &:nth-child(even) {
-                .news-info:before {
-                    border-right: 50px solid transparent;
-                    border-left: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
-                    @include media("(min-width: 1200px)") {
-                        border-right-width: get-vw(50px);
-                    }
-                }
-                &.wide-news-item .news-info:before {
-                    border-right: 100px solid transparent;
-                    border-left: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
-                    @include media("(min-width: 1200px)") {
-                        border-right-width: get-vw(100px);
-                    }
-                }
-            }
-            &:nth-child(odd) {
-                .news-info:before {
-                    border-left: 50px solid transparent;
-                    border-right: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
-                    @include media("(min-width: 1200px)") {
-                        border-left-width: get-vw(50px);
-                    }
-                }
-                &.wide-news-item .news-info:before {
-                    border-left: 100px solid transparent;
-                    border-right: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
-                    @include media("(min-width: 1200px)") {
-                        border-left-width: get-vw(100px);
-                    }
-                }
-            }
-            img {
-                @include object-fit-img();
-                object-position: center 0;
-            }
-            .img-dark-overlay {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+0,000000+100&0+0,0.5+100 */
-                background: -moz-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
-                /* FF3.6-15 */
-                background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
-                /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to bottom, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
-                /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#80000000', GradientType=0);
-                /* IE6-9 */
-            }
-            .news-info {
-                position: absolute;
-                bottom: 0;
-                height: 35%;
-                padding: 0 15px 15px 15px;
-                box-sizing: border-box;
-                @include transform(translateY(100%));
-                @include transition(all 0.3s ease);
-                @include media("(min-width: 1200px)") {
-                    padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
-                }
-                &:before {
-                    content: '';
-                    border-bottom: 35px solid;
-                    position: absolute;
-                    top: -35px;
-                    left: 0;
-                    @include media("(min-width: 1200px)") {
-                        border-bottom-width: get-vw(35px);
-                        top: get-vw(-35px);
-                    }
-                }
-                h3 {
-                    font: 1.4em "Lato-Bold";
-                    color: #fff;
-                    margin: -35px 0 15px;
-                    position: relative;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    height: 1.2em;
-                    @include transition(all ease 0.3s);
-                    @include media("(min-width: 1200px)") {
-                        margin: get-vw(-35px) 0 get-vw(15px);
-                    }
-                }
-                p {
-                    color: #fff;
-                    font: 1em "Lato-Light";
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-            }
-            @each $i in $colorList {
-                &.#{nth($i,1)}-news-item {
-                    .news-info {
-                        background-color: nth($i, 2);
-                        &:before {
-                            border-bottom-color: nth($i, 2);
+            }*/
+                    &:nth-child(even) {
+                        .news-info:before {
+                            border-right: 50px solid transparent;
+                            border-left: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
+                            @include media("(min-width: 1200px)") {
+                                border-right-width: get-vw(50px);
+                            }
+                        }
+                        &.wide-news-item .news-info:before {
+                            border-right: 100px solid transparent;
+                            border-left: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
+                            @include media("(min-width: 1200px)") {
+                                border-right-width: get-vw(100px);
+                            }
                         }
                     }
-                }
-            }
-            &:not(.ad-item) {
-                a,
-                a:visited {
-                    img {
-                        @include transform(scale(1));
-                        @include transition(transform 1s linear);
+                    &:nth-child(odd) {
+                        .news-info:before {
+                            border-left: 50px solid transparent;
+                            border-right: get-vw(((1200px - 60px) / 4) - 70px) solid transparent;
+                            @include media("(min-width: 1200px)") {
+                                border-left-width: get-vw(50px);
+                            }
+                        }
+                        &.wide-news-item .news-info:before {
+                            border-left: 100px solid transparent;
+                            border-right: get-vw(((1200px - 60px) / 2) - 120px) solid transparent;
+                            @include media("(min-width: 1200px)") {
+                                border-left-width: get-vw(100px);
+                            }
+                        }
                     }
-                }
-                a:hover {
                     img {
-                        @include transform(scale(1.05));
-                        @include transition(transform 6s linear);
+                        @include object-fit-img();
+                        object-position: center 0;
                     }
-                }
-            }
-            &.ad-item {
-                @include default-no-ad();
-            }
-            &:hover {
-                .news-info {
-                    @include transform(translateY(0));
-                    @include transition(all 0.3s ease);
-                    h3 {
-                        height: 2.4em;
-                        @include transition(all ease 0.3s);
+                    .img-dark-overlay {
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+0,000000+100&0+0,0.5+100 */
+                        background: -moz-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                        /* FF3.6-15 */
+                        background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                        /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to bottom, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+                        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#80000000', GradientType=0);
+                        /* IE6-9 */
+                        @include media("(max-width: 768px)") {
+                            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+1,000000+100&0+0,0.7+100 */
+                            background: -moz-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.01) 1%, rgba(0, 0, 0, 0.7) 100%);
+                            /* FF3.6-15 */
+                            background: -webkit-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.01) 1%, rgba(0, 0, 0, 0.7) 100%);
+                            /* Chrome10-25,Safari5.1-6 */
+                            background: linear-gradient(to bottom, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.01) 1%, rgba(0, 0, 0, 0.7) 100%);
+                            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#b3000000', GradientType=0);
+                            /* IE6-9 */
+                        }
+                    }
+                    .news-info {
+                        position: absolute;
+                        bottom: 0; //height: 35%;
+                        padding: 0 15px 15px 15px;
+                        box-sizing: border-box;
+                        @include transform(translateY(100%));
+                        @include transition(all 0.3s ease);
+                        @include media("(min-width: 1200px)") {
+                            padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
+                        }
+                        @include media("(max-width: 768px)") {
+                            background-color: transparent!important;
+                            @include transform(translateY(0)!important);
+                        }
+                        &:before {
+                            content: '';
+                            border-bottom: 35px solid;
+                            position: absolute;
+                            top: -35px;
+                            left: 0;
+                            @include media("(min-width: 1200px)") {
+                                border-bottom-width: get-vw(35px);
+                                top: get-vw(-35px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                display: none;
+                            }
+                        }
+                        h3 {
+                            font: 1.4rem "Lato-Bold";
+                            color: #fff;
+                            margin: -35px 0 15px;
+                            position: relative;
+                            height: 1.6rem;
+                            @include limit-text-lines(2, 1.6rem);
+                            @include transition(all ease 0.3s);
+                            @include media("(min-width: 1200px)") {
+                                margin: get-vw(-35px) 0 get-vw(15px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                height: 3.2rem!important;
+                            }
+                        }
+                        p {
+                            color: #fff;
+                            font: 1em "Lato-Light";
+                            @include limit-text-lines(3, 1.2rem);
+                            @include media("(max-width: 768px)") {
+                                @include limit-text-lines(2, 1.2rem);
+                            }
+                        }
+                    }
+                    @each $i in $colorList {
+                        &.#{nth($i,1)}-news-item {
+                            .news-info {
+                                background-color: nth($i, 2);
+                                &:before {
+                                    border-bottom-color: nth($i, 2);
+                                }
+                            }
+                        }
+                    }
+                    &:not(.ad-item) {
+                        a,
+                        a:visited {
+                            img {
+                                @include transform(scale(1));
+                                @include transition(transform 1s linear);
+                            }
+                        }
+                        a:hover {
+                            img {
+                                @include transform(scale(1.05));
+                                @include transition(transform 6s linear);
+                            }
+                        }
+                    }
+                    &.ad-item {
+                        @include default-no-ad();
+                    }
+                    &:hover {
+                        .news-info {
+                            @include transform(translateY(0));
+                            @include transition(all 0.3s ease);
+                            h3 {
+                                height: 2.4em;
+                                @include transition(all ease 0.3s);
+                            }
+                        }
                     }
                 }
             }
