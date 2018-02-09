@@ -3,6 +3,7 @@
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
 $in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+
 /*Main Colors*/
 
 $header-footer-primary-background-color:#131313;
@@ -14,7 +15,9 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 $success:#5cb85c;
 $danger:#d9534f;
+
 /*Category Colors*/
+
 
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
 "tourism" desaturate(lighten(#00a79d, 10%), 30%),
@@ -40,6 +43,7 @@ $colorList: "nightlife" #f90000,
 "logo-pink" #db2b4a,
 "logo-yellow" #f3a41e,
 "logo-green" #5daa46;
+
 /*Mixins*/
 
 @mixin apply-color($prop, $color) {
@@ -278,6 +282,7 @@ $colorList: "nightlife" #f90000,
     flex: $values;
 }
 
+
 /*Functions*/
 
 @each $i in $colorList {
@@ -308,6 +313,7 @@ $colorList: "nightlife" #f90000,
     }
 }
 
+
 /*@function get-vw($value) {
     $vw-context: (1000 * .01) * 1px;
     @return ($value / $vw-context) * 1vw;
@@ -331,6 +337,7 @@ $colorList: "nightlife" #f90000,
     }
     @return $opposite-directions;
 }
+
 
 /*Fonts*/
 
@@ -383,7 +390,9 @@ body {
     }
 }
 
+
 /*Key Frames*/
+
 
 /*Pop elements in*/
 
@@ -399,6 +408,7 @@ body {
     }
 }
 
+
 /*Pop elements out*/
 
 @include key-frame(pop-out) {
@@ -412,6 +422,7 @@ body {
         transform: scale(0);
     }
 }
+
 
 /*Loader effect*/
 
@@ -502,6 +513,7 @@ body {
         0))
     }
 }
+
 
 /*Icons*/
 
@@ -644,6 +656,7 @@ body {
 .icon-pen:before {
     content: "\e91c";
 }
+
 
 /*General Declarations*/
 
@@ -1572,6 +1585,7 @@ input[type="radio"] {
     }
 }
 
+
 /*Loader*/
 
 #loader-wrp {
@@ -1697,6 +1711,7 @@ input[type="radio"] {
         }
     }
 }
+
 
 /*Popup Base*/
 
@@ -2119,6 +2134,7 @@ input[type="radio"] {
     }
 }
 
+
 /*Header*/
 
 header,
@@ -2201,20 +2217,28 @@ header {
                         [class*=" icon-"] {
                             font-size: 1.14rem;
                         }
-                        .facebook-social {
+                        .facebook-social:hover,
+                        .twitter-social:hover,
+                        .instagram-social:hover {
+                            opacity: 1;
+                        }
+                        .facebook-social:hover {
                             color: #3b5998;
                         }
-                        .twitter-social {
+                        .twitter-social:hover {
                             color: #55acee;
                         }
-                        .instagram-social {
+                        .instagram-social:hover {
                             color: #e95950;
                         }
-                        .burger-menu-btn-skeleton {
-                            border-right-color: $header-footer-primary-text-color;
-                            border-left-color: $header-footer-primary-text-color;
-                            .burger-menu-btn {
-                                background-color: $header-footer-primary-text-color;
+                        .burger-menu-btn-wrapper {
+                            display: block;
+                            .burger-menu-btn-skeleton {
+                                border-right-color: $header-footer-primary-text-color;
+                                border-left-color: $header-footer-primary-text-color;
+                                .burger-menu-btn {
+                                    background-color: $header-footer-primary-text-color;
+                                }
                             }
                         }
                     }
@@ -2630,6 +2654,7 @@ header {
     }
 }
 
+
 /*Main*/
 
 main {
@@ -2662,6 +2687,9 @@ main {
                 @include media("(min-width: 1200px)") {
                     padding: 0 get-vw(10px);
                     height: get-vw(450px); //width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
+                }
+                @include media("(max-width: 640px)") {
+                    padding: 0;
                 }
                 &:nth-child(2n) {
                     margin-top: 40px;
@@ -2756,11 +2784,32 @@ main {
             @include flexbox(); //flex-flow: row nowrap;
             @include media("(max-width: 1024px)") {
                 flex-flow: row wrap;
+                height: 100vh;
             }
             .highlights-item {
                 @include flex(1 0 25%);
                 @include media("(max-width: 1024px)") {
                     @include flex(1 0 50%);
+                    height: 50%;
+                    padding: 0;
+                }
+                a,
+                a:visited {
+                    background-color: #000;
+                    img {
+                        opacity: 0.7;
+                    }
+                    .title-wrp {
+                        background-color: transparent!important;
+                        bottom: 50%;
+                        @include transform(translateY(50%));
+                        h3 {
+                            font-family: 'Lato-Black';
+                            @include media("(max-width: 1024px)") {
+                                font-size: 4vw
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -2827,6 +2876,7 @@ main {
         }
     }
 }
+
 
 /*Footer*/
 
