@@ -2615,7 +2615,7 @@ Contains all styles of inner pages
                 height: 100%;
                 background: rgba(255, 255, 255, .7);
             }
-            .event-content-details {
+            .event-content-container {
                 display: inline-block;
                 position: relative;
                 text-align: left;
@@ -2627,6 +2627,20 @@ Contains all styles of inner pages
                 background: #fff;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(15px);
+                }
+                img {
+                    float: left;
+                    width: 50%;
+                    margin-right: -20%;
+                    border-radius: 7px;
+                }
+                .event-details-content {
+                    overflow: hidden;
+                    position: relative;
+                    margin-top: 120px;
+                    padding: 5px;
+                    border-radius: 7px;
+                    background: rgba(255, 255, 255, .75)
                 }
             }
         }
