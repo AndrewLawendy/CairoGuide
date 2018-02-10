@@ -3,7 +3,7 @@
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
 $in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
-
+$out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 /*Main Colors*/
 
 $header-footer-primary-background-color:#131313;
@@ -15,9 +15,7 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 $success:#5cb85c;
 $danger:#d9534f;
-
 /*Category Colors*/
-
 
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
 "tourism" desaturate(lighten(#00a79d, 10%), 30%),
@@ -43,7 +41,6 @@ $colorList: "nightlife" #f90000,
 "logo-pink" #db2b4a,
 "logo-yellow" #f3a41e,
 "logo-green" #5daa46;
-
 /*Mixins*/
 
 @mixin apply-color($prop, $color) {
@@ -87,6 +84,20 @@ $colorList: "nightlife" #f90000,
     -moz-animation: $animation;
     -o-animation: $animation;
     animation: $animation;
+}
+
+@mixin animation-delay($animation...) {
+    -webkit-animation-delay: $animation;
+    -moz-animation-delay: $animation;
+    -o-animation-delay: $animation;
+    animation-delay: $animation;
+}
+
+@mixin animation-direction($animation...) {
+    -webkit-animation-direction: $animation;
+    -moz-animation-direction: $animation;
+    -o-animation-direction: $animation;
+    animation-direction: $animation;
 }
 
 @mixin reset-appearance() {
@@ -282,7 +293,6 @@ $colorList: "nightlife" #f90000,
     flex: $values;
 }
 
-
 /*Functions*/
 
 @each $i in $colorList {
@@ -313,7 +323,6 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-
 /*@function get-vw($value) {
     $vw-context: (1000 * .01) * 1px;
     @return ($value / $vw-context) * 1vw;
@@ -337,7 +346,6 @@ $colorList: "nightlife" #f90000,
     }
     @return $opposite-directions;
 }
-
 
 /*Fonts*/
 
@@ -390,9 +398,7 @@ body {
     }
 }
 
-
 /*Key Frames*/
-
 
 /*Pop elements in*/
 
@@ -408,7 +414,6 @@ body {
     }
 }
 
-
 /*Pop elements out*/
 
 @include key-frame(pop-out) {
@@ -422,7 +427,6 @@ body {
         transform: scale(0);
     }
 }
-
 
 /*Loader effect*/
 
@@ -513,7 +517,6 @@ body {
         0))
     }
 }
-
 
 /*Icons*/
 
@@ -656,7 +659,6 @@ body {
 .icon-pen:before {
     content: "\e91c";
 }
-
 
 /*General Declarations*/
 
@@ -1585,7 +1587,6 @@ input[type="radio"] {
     }
 }
 
-
 /*Loader*/
 
 #loader-wrp {
@@ -1711,7 +1712,6 @@ input[type="radio"] {
         }
     }
 }
-
 
 /*Popup Base*/
 
@@ -2133,7 +2133,6 @@ input[type="radio"] {
         }*/
     }
 }
-
 
 /*Header*/
 
@@ -2654,7 +2653,6 @@ header {
     }
 }
 
-
 /*Main*/
 
 main {
@@ -2800,7 +2798,7 @@ main {
                         opacity: 0.7;
                     }
                     .title-wrp {
-                        background-color: transparent!important;
+                        background-color: transparent !important;
                         bottom: 50%;
                         @include transform(translateY(50%));
                         h3 {
@@ -2876,7 +2874,6 @@ main {
         }
     }
 }
-
 
 /*Footer*/
 

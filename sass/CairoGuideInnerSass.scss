@@ -2589,6 +2589,7 @@ Contains all styles of inner pages
         }
         /*Events details page*/
         .event-details {
+            box-sizing: border-box;
             text-align: center;
             padding: 45px 0;
             margin-bottom: -30px;
@@ -2615,10 +2616,14 @@ Contains all styles of inner pages
                 height: 100%;
                 background: rgba(255, 255, 255, .7);
             }
-            .event-content-details {
+            @include media("(max-width: 768px)") {
+                padding: 45px 15px;
+            }
+            .event-content-container {
                 display: inline-block;
                 position: relative;
                 text-align: left;
+                overflow: hidden;
                 z-index: 1;
                 vertical-align: middle;
                 width: 768px;
@@ -2628,7 +2633,67 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(15px);
                 }
+                img,
+                .event-details-content {
+                    opacity: 0;
+                    @include transform(translateX(350px));
+                    @include animation(event-detail-entering .75s forwards $out-cubic)
+                }
+                img {
+                    float: left;
+                    width: 50%;
+                    margin-right: -20%;
+                    border-radius: 7px;
+                    @include media("(max-width: 640px)") {
+                        float: none;
+                        display: block;
+                        margin: 0 auto;
+                    }
+                }
+                .event-details-content {
+                    overflow: hidden;
+                    position: relative;
+                    margin-top: 120px;
+                    padding: 5px;
+                    border-radius: 7px;
+                    background: rgba(255, 255, 255, .75);
+                    @include animation-delay(.05s);
+                    @include media("(max-width: 640px)") {
+                        margin-top: 20px;
+                    }
+                }
+                &.leaving {
+                    img,
+                    .event-details-content {
+                        @include animation(event-detail-leaving .75s forwards $out-cubic)
+                    }
+                }
+                @include media("(max-width: 768px)") {
+                    width: auto;
+                }
             }
+        }
+    }
+
+    @include key-frame(event-detail-entering) {
+        from {
+            opacity: 0;
+            @include transform(translateX(350px))
+        }
+        to {
+            opacity: 1;
+            @include transform(translateX(0))
+        }
+    }
+
+    @include key-frame(event-detail-leaving) {
+        to {
+            opacity: 0;
+            @include transform(translateX(350px))
+        }
+        from {
+            opacity: 1;
+            @include transform(translateX(0))
         }
     }
 

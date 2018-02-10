@@ -36,6 +36,18 @@ var roundToNearestValue = function (reference, newVal) {
     return reference * Math.round((newVal) / reference);
 }
 
+//leavingtransition
+var leavingTransition = function () {
+    $('a').on('click', function (e) {
+        e.preventDefault();
+        var link = this.href;
+        $('.leaving-transition').addClass('leaving');
+        setTimeout(function () {
+            window.location = link;
+        }, 150);
+    })
+}
+
 //Apply loader interval time
 var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount) {
     if (loaderLoopCount == true) {
@@ -638,7 +650,7 @@ var GetParameterByName = function (name, url) {
 
 //Set Active Category
 var SetActiveCategory = function () {
-    var cat = $('body').attr('class').split(' ')[0].replace('-theme','');
+    var cat = $('body').attr('class').split(' ')[0].replace('-theme', '');
     if (cat != null && cat != 'null')
         $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
 }
@@ -1063,6 +1075,7 @@ $(document).ready(function () {
     }
     SetInnersCategory();
     SetActiveCategory();
+    if ($('.leaving-transition').length) leavingTransition();
     $('.category-nav>li>ul li').has('ul').each(function () {
         $(this).append('<i class="icon-triangular-arrow"></i>');
     });
