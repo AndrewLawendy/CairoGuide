@@ -650,6 +650,7 @@ var GetParameterByName = function (name, url) {
 
 //Set Active Category
 var SetActiveCategory = function () {
+    if (location.pathname == "/") return;
     var cat = $('body').attr('class').split(' ')[0].replace('-theme', '');
     if (cat != null && cat != 'null')
         $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
