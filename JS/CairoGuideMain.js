@@ -36,18 +36,6 @@ var roundToNearestValue = function (reference, newVal) {
     return reference * Math.round((newVal) / reference);
 }
 
-//leavingtransition
-var leavingTransition = function () {
-    $('a').on('click', function (e) {
-        e.preventDefault();
-        var link = this.href;
-        $('.leaving-transition').addClass('leaving');
-        setTimeout(function () {
-            window.location = link;
-        }, 150);
-    })
-}
-
 //Apply loader interval time
 var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount) {
     if (loaderLoopCount == true) {
@@ -1076,7 +1064,6 @@ $(document).ready(function () {
     }
     SetInnersCategory();
     SetActiveCategory();
-    if ($('.leaving-transition').length) leavingTransition();
     $('.category-nav>li>ul li').has('ul').each(function () {
         $(this).append('<i class="icon-triangular-arrow"></i>');
     });

@@ -224,14 +224,21 @@ Contains all styles of inner pages
         @include media("(min-width: 1200px)") {
             padding: get-vw(30px);
         }
+        @include media("(max-width: 768px)"){
+            padding: 15px;
+        }
         .default-close-btn {
             position: absolute;
-            top:30px;
+            top: 30px;
             left: 30px;
             z-index: 1;
             @include media("(min-width: 1200px)") {
                 top: get-vw(30px);
                 left: get-vw(30px);
+            }
+            @include media("(max-width: 768px)") {
+                top: 15px;
+                left: 15px;
             }
         }
         &.image-slider {
@@ -409,16 +416,16 @@ Contains all styles of inner pages
                 position: relative;
                 display: inline-block;
                 box-sizing: border-box;
-                width: 768px;
+                width: 708px;
                 height: 60%;
                 top: 50%;
                 border: 20px solid #fff;
                 @include transform(translateY(-50%));
-                @include media("(max-width: 828px)") {
+                @include media("(max-width: 768px)") {
                     width: 100%;
+                    height: 65vh;
                 }
                 @include media("(max-width: 640px)") {
-                    height: 60vw;
                     border-width: 10px;
                 }
                 iframe {
@@ -2655,7 +2662,7 @@ Contains all styles of inner pages
                 text-align: left;
                 overflow: hidden;
                 z-index: 1;
-                max-width: 768px;
+                max-width: 738px;
                 padding: 15px;
                 border-radius: 7px;
                 margin: 0 auto;
@@ -2693,12 +2700,6 @@ Contains all styles of inner pages
                         margin-top: 20px;
                     }
                 }
-                &.leaving {
-                    img,
-                    .event-details-content {
-                        @include animation(event-detail-leaving .75s forwards $out-cubic)
-                    }
-                }
                 @include media("(max-width: 768px)") {
                     width: auto;
                 }
@@ -2712,17 +2713,6 @@ Contains all styles of inner pages
             @include transform(translateX(350px))
         }
         to {
-            opacity: 1;
-            @include transform(translateX(0))
-        }
-    }
-
-    @include key-frame(event-detail-leaving) {
-        to {
-            opacity: 0;
-            @include transform(translateX(350px))
-        }
-        from {
             opacity: 1;
             @include transform(translateX(0))
         }
