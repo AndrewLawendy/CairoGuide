@@ -977,7 +977,14 @@ var PopulatePopup = function (type, title) {
 
 //searchAutocomplete
 var searchAutocomplete = function () {
-    var searchKeyWord = $(this).val();
+    var searchKeyWord = $(this).val(),
+        keywordRegExp = new RegExp("(" + searchKeyWord + ")", "gi"),
+        template = '<span class="bold">' + searchKeyWord + '</span>';
+    $('#popup-base .autocomplete-keywords li').each(function () {
+        if ($(this).text().toLowerCase().indexOf(searchKeyWord.toLowerCase()) != -1) {
+            $(this).text($(this).text().replace(keywordRegExp, template));
+        }
+    });
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1088,7 +1095,7 @@ $(document).ready(function () {
 
     $('#popup-base .search-input input').on('keyup', searchAutocomplete);
 
-    $('#popup-base .search-input input').on('keydown',function(){
+    $('#popup-base .search-input input').on('keydown', function () {
         var searchKeyWord = $(this).val();
         if (searchKeyWord == '') $('#popup-base .autocomplete-keywords').addClass('opened').slideDown('fast');
     });
