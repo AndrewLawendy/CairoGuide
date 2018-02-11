@@ -828,6 +828,7 @@ var DrawPopupGallery = function (galleryList, activeImgIndex) {
     ActivateGalleryPopup();
     $('html,body').addClass('popup-in-motion');
     $('#lightbox-popup').find('.default-close-btn').off().on('click', function () {
+        $('#lightbox-popup').removeAttr('class');
         DestroyPopupGallery();
     });
 }

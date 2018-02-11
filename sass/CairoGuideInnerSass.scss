@@ -225,7 +225,13 @@ Contains all styles of inner pages
             padding: get-vw(30px);
         }
         .default-close-btn {
-            float: left;
+            position: absolute;
+            top:30px;
+            left: 30px;
+            @include media("(min-width: 1200px)") {
+                top: get-vw(30px);
+                left: get-vw(30px);
+            }
         }
         &.image-slider {
             .location-map-wrp {
@@ -398,19 +404,22 @@ Contains all styles of inner pages
             .image-slider-wrp {
                 display: none
             }
-            &:before {
-                content: '';
-                display: inline-block;
-                height: 100%;
-                vertical-align: middle;
-            }
             .location-map-wrp {
+                position: relative;
                 display: inline-block;
+                box-sizing: border-box;
                 width: 768px;
                 height: 60%;
-                vertical-align: middle;
-                background: $background-midcolor;
+                top: 50%;
                 border: 20px solid #fff;
+                @include transform(translateY(-50%));
+                @include media("(max-width: 828px)") {
+                    width: 100%;
+                }
+                @include media("(max-width: 640px)") {
+                    height: 60vw;
+                    border-width: 10px;
+                }
                 iframe {
                     width: 100%;
                     height: 100%;
@@ -2628,10 +2637,7 @@ Contains all styles of inner pages
                 margin-bottom: get-vw(-30px);
             }
             &::before {
-                content: '';
-                display: inline-block;
-                height: 100%;
-                vertical-align: middle;
+                content: none;
             }
             &::after {
                 content: '';
@@ -2646,15 +2652,15 @@ Contains all styles of inner pages
                 padding: 45px 15px;
             }
             .event-content-container {
-                display: inline-block;
                 position: relative;
                 text-align: left;
                 overflow: hidden;
                 z-index: 1;
-                vertical-align: middle;
-                width: 768px;
+                max-width: 768px;
                 padding: 15px;
                 border-radius: 7px;
+                margin: 0 auto;
+                box-sizing: border-box;
                 background: #fff;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(15px);
