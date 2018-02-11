@@ -882,6 +882,10 @@ p {
     }
 }
 
+.bold {
+    font-family: 'Lato-Bold';
+}
+
 .marg-b3 {
     margin-bottom: 3px;
     @include media("(min-width: 1200px)") {
@@ -2035,8 +2039,7 @@ input[type="radio"] {
                 border-bottom: 2px solid #000;
                 max-height: calc(((1rem + 20px) * 7) + 10px);
                 overflow: auto;
-                display: none;
-                //@include transition(all .3s);
+                display: none; //@include transition(all .3s);
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(5px) 0;
                     max-height: calc(((1rem + 1.538vw) * 7) + .769vw);
