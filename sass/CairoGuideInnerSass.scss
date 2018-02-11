@@ -228,6 +228,7 @@ Contains all styles of inner pages
             position: absolute;
             top:30px;
             left: 30px;
+            z-index: 1;
             @include media("(min-width: 1200px)") {
                 top: get-vw(30px);
                 left: get-vw(30px);
