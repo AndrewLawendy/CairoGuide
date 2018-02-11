@@ -975,6 +975,11 @@ var PopulatePopup = function (type, title) {
     $('#popup-base').addClass('popup-active ' + type + '-popup-active').find('.close-btn').addClass('init');
 }
 
+//searchAutocomplete
+var searchAutocomplete = function () {
+    var searchKeyWord = $(this).val();
+}
+
 //-------------------------------------------------------------------------------------------------
 
 //Arrange Sitemap Components
@@ -1079,6 +1084,13 @@ $(document).ready(function () {
             $('#popup-base').removeClass('popup-with-bg');
         }, 1000);*/
         $('html,body').removeClass('popup-in-motion');
+    });
+
+    $('#popup-base .search-input input').on('keyup', searchAutocomplete);
+
+    $('#popup-base .search-input input').on('keydown',function(){
+        var searchKeyWord = $(this).val();
+        if (searchKeyWord == '') $('#popup-base .autocomplete-keywords').addClass('opened').slideDown('fast');
     });
 
     if ($('#lightbox-popup').length) {

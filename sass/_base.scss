@@ -2029,6 +2029,33 @@ input[type="radio"] {
                     @include transition(background-color 0.3s ease);
                 }
             }
+            .autocomplete-keywords {
+                padding: 5px 0;
+                background: $background-midcolor;
+                border-bottom: 2px solid #000;
+                max-height: calc(((1rem + 20px) * 7) + 10px);
+                overflow: auto;
+                display: none;
+                //@include transition(all .3s);
+                @include media("(min-width: 1200px)") {
+                    padding: get-vw(5px) 0;
+                    max-height: calc(((1rem + 1.538vw) * 7) + .769vw);
+                }
+                li {
+                    padding: 10px 15px;
+                    cursor: pointer;
+                    color: #000;
+                    background: transparent;
+                    @include transition(all .15s);
+                    @include media("(min-width: 1200px)") {
+                        padding: get-vw(10px) get-vw(15px);
+                    }
+                    &:hover {
+                        color: #fff;
+                        background: #131313;
+                    }
+                }
+            }
         }
         /*.login-container,
         .register-container {
