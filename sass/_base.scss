@@ -10,6 +10,7 @@ $header-footer-primary-background-color:#131313;
 $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
 $header-footer-secondary-text-color:#fff;
+$background-midcolor : #f4f7f6;
 $logo-pink:#db2b4a;
 $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
@@ -175,6 +176,7 @@ $colorList: "nightlife" #f90000,
 @mixin link-hover() {
     & {
         text-decoration: none;
+        max-width: 100%;
     }
     &:after {
         content: '';
@@ -182,7 +184,7 @@ $colorList: "nightlife" #f90000,
         height: 1px;
         width: 20%;
         margin-top: 1px;
-        @include transition(all 0.3s ease);
+        @include transition(all 0.3s);
         @include media("(min-width: 1200px)") {
             height: get-vw(1px);
             margin-top: get-vw(1px);
@@ -190,7 +192,6 @@ $colorList: "nightlife" #f90000,
     }
     &:hover:after {
         width: 100%;
-        @include transition(all 0.3s ease);
     }
 }
 
@@ -846,6 +847,15 @@ p {
         }
         img {
             width: 100%;
+        }
+    }
+}
+
+.open-location-box {
+    cursor: pointer;
+    &:hover {
+        a::after {
+            width: 100%!important;
         }
     }
 }
