@@ -1760,7 +1760,6 @@ Contains all styles of inner pages
         .item-details-offer {
             padding: 10px;
             box-sizing: border-box;
-            background-color: #f90000;
             color: #fff;
             border-radius: 10px 10px 10px 0;
             display: inline-block;
@@ -1773,13 +1772,12 @@ Contains all styles of inner pages
                 position: absolute;
                 left: -8px;
                 background: #fff;
-                color: #f90000;
                 padding: 10px;
                 box-sizing: border-box;
                 font: 1.2rem 'Lato-Black';
                 line-height: 1em;
                 height: 35px;
-                border: 1px solid red;
+                border: 1px solid transparent;
                 bottom: -15px;
                 z-index: 10;
                 border-radius: 40px 25px 25px 0px;
