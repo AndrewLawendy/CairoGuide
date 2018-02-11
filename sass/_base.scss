@@ -10,7 +10,7 @@ $header-footer-primary-background-color:#131313;
 $header-footer-secondary-background-color:#fff;
 $header-footer-primary-text-color:#000;
 $header-footer-secondary-text-color:#fff;
-$background-midcolor : #f4f7f6;
+$background-midcolor: #f4f7f6;
 $logo-pink:#db2b4a;
 $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
@@ -855,7 +855,7 @@ p {
     cursor: pointer;
     &:hover {
         a::after {
-            width: 100%!important;
+            width: 100% !important;
         }
     }
 }
@@ -866,6 +866,20 @@ p {
 
 .overflow-hidden {
     overflow: hidden;
+}
+
+.v-align-middle {
+    text-align: center;
+    &::before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+    }
+    >* {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }
 
 .marg-b3 {
