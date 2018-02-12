@@ -980,11 +980,20 @@ var PopulatePopup = function (type, title) {
 
 //searchAutocomplete
 var searchAutocomplete = function () {
+    if ($('#popup-base .autocomplete-keywords li').length && !$('#popup-base .autocomplete-keywords').hasClass('opened')) $('#popup-base .autocomplete-keywords').addClass('opened').slideDown('fast');
+    $('#popup-base .autocomplete-keywords li').on('click', function () {
+        var keywordVal = $(this).text();
+        $('#popup-base .search-input input').val(keywordVal);
+        $('#popup-base .autocomplete-keywords').removeClass('opened').slideUp('fast');
+        $('#popup-base .search-input a').click();
+    })
     var searchKeyWord = $(this).val(),
-        keywordRegExp = new RegExp("(" + searchKeyWord + ")", "gi");
+        keywordRegExp = new RegExp("(" + searchKeyWord + ")", "gi"),
+        allKeywordsHeights = 0;
     $('#popup-base .autocomplete-keywords li').each(function () {
         var autocompleteText = $(this).text();
         $(this).text(autocompleteText);
+        allKeywordsHeights += $(this).outerHeight();
         var ifMatch = autocompleteText.match(keywordRegExp);
         if (ifMatch != null) {
             var template = '<span class="bold">' + ifMatch[0] + '</span>',
@@ -992,6 +1001,11 @@ var searchAutocomplete = function () {
             $(this).html(highlightedKeywords);
         }
     });
+    $('#popup-base .autocomplete-keywords').animate({
+        height: allKeywordsHeights
+    }, {
+        duration: 'fast'
+    })
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1102,9 +1116,8 @@ $(document).ready(function () {
 
     $('#popup-base .search-input input').on('keyup', searchAutocomplete);
 
-    $('#popup-base .search-input input').on('keydown', function () {
-        var searchKeyWord = $(this).val();
-        if (searchKeyWord == '') $('#popup-base .autocomplete-keywords').addClass('opened').slideDown('fast');
+    $('#popup-base .search-input input').on('blur', function () {
+        $('#popup-base .autocomplete-keywords').removeClass('opened').slideUp('fast');
     });
 
     if ($('#lightbox-popup').length) {
