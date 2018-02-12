@@ -2047,15 +2047,21 @@ input[type="radio"] {
                 li {
                     padding: 10px 15px;
                     cursor: pointer;
-                    color: #000;
+                    color: #555;
                     background: transparent;
                     @include transition(all .15s);
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(10px) get-vw(15px);
                     }
+                    .bold {
+                        color: #000;
+                    }
                     &:hover {
                         color: #fff;
                         background: #131313;
+                        .bold {
+                            color: #fff;
+                        }
                     }
                 }
             }

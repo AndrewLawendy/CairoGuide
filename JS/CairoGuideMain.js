@@ -980,7 +980,11 @@ var PopulatePopup = function (type, title) {
 
 //searchAutocomplete
 var searchAutocomplete = function () {
-    if ($('#popup-base .autocomplete-keywords li').length && !$('#popup-base .autocomplete-keywords').hasClass('opened')) $('#popup-base .autocomplete-keywords').addClass('opened').slideDown('fast');
+    if ($('#popup-base .autocomplete-keywords li').length && !$('#popup-base .autocomplete-keywords').hasClass('opened')) {
+        $('#popup-base .autocomplete-keywords').addClass('opened').stop().slideDown('fast');
+    }else if(!$('#popup-base .autocomplete-keywords li').length && $('#popup-base .autocomplete-keywords').hasClass('opened')){
+        $('#popup-base .autocomplete-keywords').removeClass('opened').stop().slideUp('fast');
+    }
     $('#popup-base .autocomplete-keywords li').on('click', function () {
         var keywordVal = $(this).text();
         $('#popup-base .search-input input').val(keywordVal);
@@ -1001,7 +1005,7 @@ var searchAutocomplete = function () {
             $(this).html(highlightedKeywords);
         }
     });
-    $('#popup-base .autocomplete-keywords').animate({
+    $('#popup-base .autocomplete-keywords').stop().animate({
         height: allKeywordsHeights
     }, {
         duration: 'fast'
@@ -1243,6 +1247,7 @@ $(document).ready(function () {
             $('#main-carousel .carousel-indexes div:first').addClass('selected');
             $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {
                 if (e.which == 1 || e.which == 0) {
+                    $('#main-carousel .carousel-container,#main-carousel .carousel-data').stop();
                     carouselDrag = true;
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     carouselItemTarget = $(e.target).closest('.carousel-item');
