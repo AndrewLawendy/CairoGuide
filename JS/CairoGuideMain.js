@@ -982,7 +982,7 @@ var PopulatePopup = function (type, title) {
 var searchAutocomplete = function () {
     if ($('#popup-base .autocomplete-keywords li').length && !$('#popup-base .autocomplete-keywords').hasClass('opened')) {
         $('#popup-base .autocomplete-keywords').addClass('opened').stop().slideDown('fast');
-    }else if(!$('#popup-base .autocomplete-keywords li').length && $('#popup-base .autocomplete-keywords').hasClass('opened')){
+    } else if (!$('#popup-base .autocomplete-keywords li').length && $('#popup-base .autocomplete-keywords').hasClass('opened')) {
         $('#popup-base .autocomplete-keywords').removeClass('opened').stop().slideUp('fast');
     }
     $('#popup-base .autocomplete-keywords li').on('click', function () {
@@ -1000,8 +1000,10 @@ var searchAutocomplete = function () {
         allKeywordsHeights += $(this).outerHeight();
         var ifMatch = autocompleteText.match(keywordRegExp);
         if (ifMatch != null) {
-            var template = '<span class="bold">' + ifMatch[0] + '</span>',
-                highlightedKeywords = $(this).text().replace(ifMatch[0], template);
+            var matchRegExp = new RegExp("(" + ifMatch[0] + ")", "gi"),
+                highlightedKeywords = $(this).text().replace(matchRegExp, function (x) {
+                    return '<span class="bold">' + x + '</span>';
+                });
             $(this).html(highlightedKeywords);
         }
     });
