@@ -1533,8 +1533,9 @@ input[type="radio"] {
         width: 300px;
         height: 60px;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 0;
+        @include transform(translateY(-50%))
     }
     @include media("(max-width: 640px)") {
         width: 80%;
@@ -1547,9 +1548,10 @@ input[type="radio"] {
         text-transform: uppercase;
         letter-spacing: 10px;
         width: 100%;
-        text-align: right;
+        text-align: left;
         font-size: 2rem;
         line-height: 35px;
+        padding-left: 30%;
         @include media("(min-width: 1200px)") {
             letter-spacing: get-vw(10px);
             line-height: get-vw(35px);
