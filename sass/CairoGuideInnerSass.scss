@@ -2550,42 +2550,59 @@ Contains all styles of inner pages
         }
         /*Calendar*/
         #calendar-wrp {
-            .calendar-month-body {
-                .calendar-controls {
+            .calendar-controls-wrp {
+                >* {
                     cursor: pointer;
                     padding: 15px;
-                    i {
-                        font-size: 3em;
+                }
+                .calendar-controls {
+                    &.calendar-prev {
+                        float: left;
+                    }
+                    &.calendar-next {
+                        float: right;
                     }
                 }
-                .calendar-prev {
-                    float: left;
-                }
-                .calendar-next {
-                    float: right;
-                }
-                .calendar-month-view {
+                .calendar-today {
                     overflow: hidden;
-                    display: flex;
-                    table {
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                        flex-basis: 100%;
-                        width: 100%;
+                    text-align: center;
+                }
+            }
+            .calendar-month-head-wrp {
+                width: 100%;
+                text-align: center;
+                div {
+                    float: left;
+                    width: calc(100% / 7);
+                    font-size: .7em;
+                    line-height: inherit;
+                    margin-bottom: 5px;
+                }
+            }
+            .calendar-month-body-wrp {
+                overflow: hidden;
+                display: flex;
+                .calendar-month-wrp {
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    flex-basis: 100%;
+                    width: 100%;
+                    div {
+                        float: left;
+                        width: calc(100% / 7);
+                        font: 2em 'Lato-Black';
+                        line-height: inherit;
                         text-align: center;
-                        th {
-                            font-size: .7em;
-                            line-height: inherit;
-                            margin-bottom: 5px;
-                        }
-                        td {
-                            font: 3em 'Lato-Black';
-                            line-height: inherit;
-                            padding-top: 15px;
+                        &:not(:empty) {
                             cursor: pointer;
-                            span {
-                                display: inline-block;
-                            }
+                        }
+                        &::before {
+                            content: '';
+                            display: inline-block;
+                            width: 0;
+                            height: 0;
+                            padding-bottom: 100%; //A percentage value on top/bottom padding or margins is relative to the width of the containing block
+                            vertical-align: middle;
                         }
                     }
                 }
@@ -2696,11 +2713,11 @@ Contains all styles of inner pages
                     @include media("(max-width: 640px)") {
                         margin-top: 20px;
                     }
-                    *{
+                    * {
                         @include animation-delay(.05s);
                     }
-                    h2{
-                        color:#e31b23
+                    h2 {
+                        color: #e31b23
                     }
                 }
                 @include media("(max-width: 768px)") {
