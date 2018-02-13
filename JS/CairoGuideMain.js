@@ -311,77 +311,11 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
     }
 }
 //Event Calendar
-var creatingCalendar = false;
+var creatingCalendar = false,
+    todaySet = false;
 var getDaysInMonth = function (year, month) {
     return new Date(year, month + 1, 0).getDate();
 };
-var getMonthArray = function (firstDayIndex, days) {
-    var month = [],
-        numberOfweeks = Math.ceil((firstDayIndex + days) / 7),
-        startRowWith = 1;
-    for (var w = 0; w < numberOfweeks; w++) {
-        month[w] = [];
-        for (var d = startRowWith; firstDayIndex < 7 && d <= days; d++, firstDayIndex++) {
-            month[w][firstDayIndex] = d;
-        }
-        startRowWith = month[w][6] + 1;
-        firstDayIndex = 0;
-        month[w].length = 7;
-    }
-    return month;
-}
-// var initCalendar = function () {
-//     var date = new Date();
-//     if (arguments.length)
-//         date = arguments[0];
-//     var year = date.getFullYear(),
-//         month = date.getMonth(),
-//         day = date.getDay(),
-//         monthNames = ["January", "February", "March", "April", "May", "June",
-//             "July", "August", "September", "October", "November", "December"
-//         ],
-//         daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-//         currentMonth = monthNames[month],
-//         firstDay = daysNames[day],
-//         firstDayIndex = $('.calendar-body th:contains("' + firstDay + '")').index(),
-//         days = getDaysInMonth(year, month);
-//     $('#calendar-wrp .calendar-controls-wrp .month-details').text(year + ', ' + currentMonth);
-//     $('#calendar-wrp .calendar-controls-wrp').data({
-//         'year': year,
-//         'month': month
-//     });
-//     $('.calendar-body tbody tr').remove();
-//     var monthDone = false,
-//         week = 1,
-//         dayIteration = 1,
-//         remainigDays = 0;
-//     while (!monthDone) {
-//         $('.calendar-body tbody').append('<tr></tr>');
-//         if (week == 1) {
-//             var daysBefore = getDaysInMonth(year, month - 1);
-//             for (var b = 0; b < firstDayIndex; b++) {
-//                 $('.calendar-body tbody tr:nth-child(' + week + ')').prepend('<td class="out-of-month">' + daysBefore + '</td>');
-//                 daysBefore--;
-//             }
-//         }
-//         for (d = dayIteration; d <= days; d++) {
-//             $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td>' + d + '</td>');
-//             if (d == days) {
-//                 remainigDays = 7 - $('.calendar-body tbody tr:nth-child(' + week + ') td').length;
-//                 monthDone = true;
-//             }
-//             if ($('.calendar-body tbody tr:nth-child(' + week + ') td').length == 7) {
-//                 week++;
-//                 dayIteration = d + 1;
-//                 break
-//             }
-//         }
-//         for (var r = 1; r <= remainigDays; r++) {
-//             $('.calendar-body tbody tr:nth-child(' + week + ')').append('<td class="out-of-month">' + r + '</td>')
-//         }
-//     }
-
-// }
 
 var getOrdinalIndicator = function (num) {
     var lastNumber = num.toString().slice(-1);
@@ -389,6 +323,12 @@ var getOrdinalIndicator = function (num) {
     if (lastNumber == 2 && num != 12) return 'nd';
     if (lastNumber == 3 && num != 13) return 'rd';
     return 'th';
+}
+
+var ifCurrentExceedsOther = function (year, month, currentDay) {
+    var monthDays = getDaysInMonth(year, month);
+    if (monthDays <= currentDay) return currentDay;
+    return monthDays;
 }
 
 var initCalendar = function () {
@@ -408,43 +348,60 @@ var initCalendar = function () {
         daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         currentMonth = monthNames[month],
         days = getDaysInMonth(year, month),
-        returnMonth = getMonthArray(firstDayIndex, days);
-    for (var w = 0; w < returnMonth.length; w++) {
-        returnMonth[w] = "<tr>\n<td>" + returnMonth[w].join("</td>\n<td>") + "</td></tr>\n"
+        emptyDays = [];
+    emptyDays[firstDayIndex] = 1;
+    var monthView = $('<div class="calendar-month-wrp"></div>');
+    monthPrev ? $('#calendar-wrp .calendar-month-body-wrp').prepend(monthView) : $('#calendar-wrp .calendar-month-body-wrp').append(monthView);
+    monthView.append('<div>' + emptyDays.join('</div>\n<div>') + '</div>\n');
+    for (var i = 2; i <= days; i++) {
+        monthView.append('<div>' + i + '</div>\n');
     }
-    var monthTable = $("<table>\n<thead>\n<th>Sunday</th>\n<th>Monday</th>\n<th>Tuesday</th>\n<th>Wednesday</th>\n<th>Thursday</th>\n<th>Friday</th>\n<th>Saturday</th>\n</thead>\n<tbody></tbody>\n</table>\n");
-    monthPrev ? $('#calendar-wrp .calendar-month-view').prepend(monthTable) : $('#calendar-wrp .calendar-month-view').append(monthTable);
-    $('#calendar-wrp table').removeClass('active');
-    monthTable.data({
+    $('#calendar-wrp').data('current-day', dayDate);
+    $('#calendar-wrp .calendar-month-wrp').removeClass('active');
+    monthView.data({
         'year': year,
         'month': month,
         'monthName': currentMonth,
-        'day': dayDate
-    }).addClass('active').find('tbody').append(returnMonth).find('td:contains(' + dayDate + ')').addClass('today');
-    $('#calendar-wrp .calendar-today .calendar-month-day').text(currentMonth + ' ' + dayDate);
+        'day': dayDate,
+        'totalDays': days
+    }).addClass('active').find('div:contains(' + dayDate + ')').addClass('active');
+    if (!todaySet) {
+        todaySet = true;
+        monthView.find('div:contains(' + dayDate + ')').addClass('today');
+    }
+    $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
+    $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
     $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
     $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + year);
+    // $('#calendar-wrp .calendar-month-body-wrp').removeAttr('style').stop().animate({
+    //     height: monthView.outerHeight()
+    // }, {
+    //     duration: 400
+    // });
 }
 
 var calNextMonth = function (currentYear, currentMonth, currentDay) {
     if (creatingCalendar) return;
     creatingCalendar = true;
-    var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-month-view table').width();
-    if (!$('#calendar-wrp table.active').next().length) {
+    var actualScroll = $('#calendar-wrp .calendar-month-body-wrp').scrollLeft(),
+        fullScroll = $('#calendar-wrp .calendar-month-body-wrp .calendar-month-wrp').width();
+    if (!$('#calendar-wrp .calendar-month-wrp.active').next().length) {
         var nextMonth = new Date(currentYear, currentMonth + 1, currentDay);
         initCalendar(nextMonth, false);
     } else {
-        var nextMonth = $('#calendar-wrp table.active').next(),
-            nexttMonthName = nextMonth.data('monthName'),
-            nextYear = nextMonth.data('year');
-        $('#calendar-wrp table').removeClass('active');
+        var nextMonth = $('#calendar-wrp .calendar-month-wrp.active').next(),
+            nextMonthData = nextMonth.data(),
+            nextDayDate = nextMonthData.day,
+            nexttMonthName = nextMonthData.monthName,
+            nextYear = nextMonthData.year;
+        $('#calendar-wrp .calendar-month-wrp').removeClass('active');
         nextMonth.addClass('active');
-        $('#calendar-wrp .calendar-today .calendar-month-day').text(nexttMonthName + ' ' + currentDay);
-        $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(currentDay));
+        $('#calendar-wrp .calendar-today .calendar-month-name').text(nexttMonthName);
+        $('#calendar-wrp .calendar-today .calendar-month-day').text(nextDayDate);
+        $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(nextDayDate));
         $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + nextYear);
     }
-    $('#calendar-wrp .calendar-month-view').stop().animate({
+    $('#calendar-wrp .calendar-month-body-wrp').stop().animate({
         scrollLeft: roundToNearestValue(fullScroll, (actualScroll + fullScroll))
     }, function () {
         creatingCalendar = false;
@@ -455,24 +412,27 @@ var calNextMonth = function (currentYear, currentMonth, currentDay) {
 var calPrevMonth = function (currentYear, currentMonth, currentDay) {
     if (creatingCalendar) return;
     creatingCalendar = true;
-    var actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-month-view table').width();
-    if (!$('#calendar-wrp table.active').prev().length) {
+    var actualScroll = $('#calendar-wrp .calendar-month-body-wrp').scrollLeft(),
+        fullScroll = $('#calendar-wrp .calendar-month-body-wrp .calendar-month-wrp').width();
+    if (!$('#calendar-wrp .calendar-month-wrp.active').prev().length) {
         var prevMonth = new Date(currentYear, currentMonth - 1, currentDay);
         initCalendar(prevMonth, true);
-        $('#calendar-wrp .calendar-month-view').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
-        actualScroll = $('#calendar-wrp .calendar-month-view').scrollLeft();
+        $('#calendar-wrp .calendar-month-body-wrp').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
+        actualScroll = $('#calendar-wrp .calendar-month-body-wrp').scrollLeft();
     } else {
-        var prevMonth = $('#calendar-wrp table.active').prev(),
-            prevMonthName = prevMonth.data('monthName'),
-            prevYear = prevMonth.data('year');
-        $('#calendar-wrp table').removeClass('active');
+        var prevMonth = $('#calendar-wrp .calendar-month-wrp.active').prev(),
+            prevMonthData = prevMonth.data(),
+            prevDayDate = prevMonthData.day,
+            prevtMonthName = prevMonthData.monthName,
+            prevYear = prevMonthData.year;
+        $('#calendar-wrp .calendar-month-wrp').removeClass('active');
         prevMonth.addClass('active');
-        $('#calendar-wrp .calendar-today .calendar-month-day').text(prevMonthName + ' ' + currentDay);
-        $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(currentDay));
+        $('#calendar-wrp .calendar-today .calendar-month-name').text(prevtMonthName);
+        $('#calendar-wrp .calendar-today .calendar-month-day').text(prevDayDate);
+        $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(prevDayDate));
         $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + prevYear);
     }
-    $('#calendar-wrp .calendar-month-view').stop().animate({
+    $('#calendar-wrp .calendar-month-body-wrp').stop().animate({
         scrollLeft: roundToNearestValue(fullScroll, (actualScroll - fullScroll))
     }, function () {
         creatingCalendar = false;
@@ -1912,16 +1872,18 @@ $(document).ready(function () {
     if ($('#calendar-wrp').length) {
         initCalendar();
         $('.calendar-prev').on('click', function () {
-            var year = $('#calendar-wrp table.active').data('year'),
-                month = $('#calendar-wrp table.active').data('month'),
-                day = $('#calendar-wrp table.active').data('day');
-            calPrevMonth(year, month, day);
+            var monthData = $('#calendar-wrp .calendar-month-wrp.active').data(),
+                year = monthData.year,
+                month = monthData.month,
+                current = $('#calendar-wrp').data('current-day');
+            calPrevMonth(year, month, current);
         });
         $('.calendar-next').on('click', function () {
-            var year = $('#calendar-wrp table.active').data('year'),
-                month = $('#calendar-wrp table.active').data('month'),
-                day = $('#calendar-wrp table.active').data('day');
-            calNextMonth(year, month, day);
+            var monthData = $('#calendar-wrp .calendar-month-wrp.active').data(),
+                year = monthData.year,
+                month = monthData.month,
+                current = $('#calendar-wrp').data('current-day');
+            calNextMonth(year, month, current);
         });
     }
     //End of Events Calendar
