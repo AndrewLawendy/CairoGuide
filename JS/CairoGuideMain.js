@@ -388,11 +388,11 @@ var switchControlView = function () {
     }
 }
 
-var setMonth = function () {
-    var month = $(this).index(),
-        year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
-        dateObj = new Date(year, month);
-    if (monthsCreated.indexOf(dateObj) == -1) {
+var checkMonthBefore = function (dateObj) {
+    var monthsCreatedArr = monthsCreated.map(function (m) {
+        return m.toDateString();
+    })
+    if (monthsCreatedArr.indexOf(dateObj.toDateString()) == -1) {
         var monthAfter = monthsCreated.filter(function (m) {
             return dateObj < m;
         });
@@ -402,9 +402,26 @@ var setMonth = function () {
                 }),
                 monthDivPosLeft = monthDiv.position().left,
                 isPrev = monthDivPosLeft < $('.calendar-months-body-wrp').width() ? true : false;
-            initCalendar(dateObj, isPrev);
+            return [monthDiv, isPrev]
         }
+        return [undefined, false]
     }
+    var monthIndex = monthsCreatedArr.indexOf(dateObj.toDateString()),
+        choosenMonth = $('.calendar-month-wrp').eq(monthIndex);
+    $('.calendar-month-wrp').removeClass('active');
+    choosenMonth.addClass('active');
+    scrollToMonth(choosenMonth);
+    updateDay(choosenMonth.data('monthName'), choosenMonth.data('day'), choosenMonth.data('year'));
+    return false;
+}
+
+var setMonth = function () {
+    var month = $(this).index(),
+        year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
+        dateObj = new Date(year, month),
+        checkMonth = checkMonthBefore(dateObj);
+    if (checkMonth != false)
+        initCalendar(dateObj, checkMonth[0], checkMonth[1]);
     $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
         width: 'show'
     }, {
@@ -446,10 +463,12 @@ var updateDay = function (currentMonth, dayDate, year) {
 
 var initCalendar = function () {
     var date = new Date(),
-        monthPrev = false;
+        monthPrev = false,
+        prevCalendar = undefined;
     if (arguments.length) {
         date = arguments[0];
-        monthPrev = arguments[1];
+        prevCalendar = arguments[1],
+            monthPrev = arguments[2];
         var current = $('#calendar-wrp').data('current-day');
         date.setDate(ifCurrentExceedsOther(date, current));
     }
@@ -462,7 +481,7 @@ var initCalendar = function () {
         emptyDays = [];
     emptyDays[firstDayIndex] = 1;
     var monthView = $('<div class="calendar-month-wrp"></div>');
-    monthPrev ? $('#calendar-wrp .calendar-months-body-wrp').prepend(monthView) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
+    prevCalendar != undefined ? monthView.insertBefore(prevCalendar) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
     monthView.append('<div class="day calendar-unit">\n<div>' + emptyDays.join('</div>\n</div>\n<div class="day calendar-unit">\n<div>') + '</div\ndiv>\n');
     for (var i = 2; i <= days; i++) {
         monthView.append('<div class="day calendar-unit">\n<div>' + i + '</div>\n</div>\n');
