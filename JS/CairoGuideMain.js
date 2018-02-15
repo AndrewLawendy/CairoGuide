@@ -332,8 +332,13 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
     }
 }
 //Event Calendar
-var creatingCalendar = false,
-    todaySet = false;
+var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ],
+    daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    creatingCalendar = false,
+    todaySet = false,
+    monthsCreated = [];
 var getDaysInMonth = function (year, month) {
     return new Date(year, month + 1, 0).getDate();
 };
@@ -352,45 +357,92 @@ var ifCurrentExceedsOther = function (date, currentDay) {
     return monthDays;
 }
 
-var initCalendar = function () {
-    var date = new Date(),
-        monthPrev = false;
-    if (arguments.length) {
-        date = arguments[0];
-        monthPrev = arguments[1];
+var switchControlView = function () {
+    if (!$('.calendar-controls-wrp').hasClass('months-view')) {
+        $('.calendar-controls-wrp').addClass('months-view');
+        var thisMonth = $('#calendar-wrp').data('date')[1];
+        $(this).find('.calendar-month-name').stop().animate({
+            width: 'hide'
+        }, {
+            duration: 'fast'
+        });
+        $('.calendar-overview .calendar-head-body').addClass('leaving');
+        $('.calendar-overview .calendar-months-view-wrp').fadeIn().addClass('entering').find('div:contains(' + thisMonth + ')').addClass('this-month active');
+    } else if (!$('.calendar-controls-wrp').hasClass('years-view')) {
+        var thisYear = $('#calendar-wrp').data('date')[3],
+            startFrom = thisYear - (thisYear % 12),
+            endAt = startFrom + 11;
+        for (var i = startFrom; i <= endAt; i++) {
+            $('.calendar-overview .calendar-years-view-wrp').append('<div class="calendar-unit">\n<div>' + i + '</div>\n</div>');
+        }
+        $(this).find('.calendar-year-range').text(startFrom + ' - ' + endAt);
+        $('.calendar-controls-wrp').addClass('years-view');
+        $(this).find('.calendar-month-year').stop().animate({
+            width: 'hide'
+        }, {
+            duration: 'fast'
+        });
+        $(this).find('.calendar-year-range').fadeIn();
+        $('.calendar-overview .calendar-months-view-wrp').fadeOut('fast').removeClass('entering')
+        $('.calendar-overview .calendar-years-view-wrp').fadeIn().addClass('entering').find('div:contains(' + thisYear + ')').addClass('this-year active');
     }
-    var year = date.getFullYear(),
-        month = date.getMonth(),
-        dayDate = date.getDate(),
-        firstDayIndex = new Date(year + '-' + (month + 1) + '-01').getDay(),
-        monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ],
-        daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        currentMonth = monthNames[month],
-        days = getDaysInMonth(year, month),
-        emptyDays = [];
-    emptyDays[firstDayIndex] = 1;
-    var monthView = $('<div class="calendar-month-wrp"></div>');
-    monthPrev ? $('#calendar-wrp .calendar-months-body-wrp').prepend(monthView) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
-    monthView.append('<div class="day ripple pos black">' + emptyDays.join('</div>\n<div class="day ripple pos black">') + '</div>\n');
-    for (var i = 2; i <= days; i++) {
-        monthView.append('<div class="day ripple pos black">' + i + '</div>\n');
+}
+
+var checkMonthBefore = function (dateObj) {
+    var monthsCreatedArr = monthsCreated.map(function (m) {
+        return m.toDateString();
+    })
+    if (monthsCreatedArr.indexOf(dateObj.toDateString()) == -1) {
+        var monthAfter = monthsCreated.filter(function (m) {
+            return dateObj < m;
+        });
+        if (monthAfter.length) {
+            var monthDiv = $('.calendar-month-wrp').filter(function () {
+                    return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
+                }),
+                monthDivPosLeft = monthDiv.position().left,
+                isPrev = monthDivPosLeft < $('.calendar-months-body-wrp').width() ? true : false;
+            return [monthDiv, isPrev]
+        }
+        return [undefined, false]
     }
-    $('#calendar-wrp').data('current-day', dayDate);
-    $('#calendar-wrp .calendar-month-wrp').removeClass('active');
-    monthView.data({
-        'year': year,
-        'month': month,
-        'monthName': currentMonth,
-        'day': dayDate,
-        'totalDays': days
-    }).addClass('active').find('div:contains(' + dayDate + ')').addClass('active');
-    if (!todaySet) {
-        todaySet = true;
-        $('#calendar-wrp').data('date', date.toDateString().split(' '));
-        monthView.find('div:contains(' + dayDate + ')').addClass('today');
-    }
+    var monthIndex = monthsCreatedArr.indexOf(dateObj.toDateString()),
+        choosenMonth = $('.calendar-month-wrp').eq(monthIndex);
+    $('.calendar-month-wrp').removeClass('active');
+    choosenMonth.addClass('active');
+    scrollToMonth(choosenMonth);
+    updateDay(choosenMonth.data('monthName'), choosenMonth.data('day'), choosenMonth.data('year'));
+    return false;
+}
+
+var setMonth = function () {
+    var month = $(this).index(),
+        year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
+        dateObj = new Date(year, month),
+        checkMonth = checkMonthBefore(dateObj);
+    if (checkMonth != false)
+        initCalendar(dateObj, checkMonth[0], checkMonth[1]);
+    $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
+        width: 'show'
+    }, {
+        duration: 'fast'
+    })
+    $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering');
+    $('.calendar-head-body').removeClass('leaving');
+}
+
+var scrollToMonth = function (month) {
+    var fullScroll = month.width(),
+        allCalendars = month.prevAll().length,
+        relativePosLeft = (allCalendars * fullScroll);
+    $('#calendar-wrp .calendar-months-body-wrp').stop().animate({
+        scrollLeft: roundToNearestValue(fullScroll, relativePosLeft)
+    }, function () {
+        creatingCalendar = false;
+    });
+}
+
+var updateDay = function (currentMonth, dayDate, year) {
     $('#calendar-wrp .calendar-today>span').stop().animate({
         opacity: 0
     }, {
@@ -407,96 +459,88 @@ var initCalendar = function () {
             });
         }
     });
-    // $('#calendar-wrp .calendar-months-body-wrp').removeAttr('style').stop().animate({
-    //     height: monthView.outerHeight()
-    // }, {
-    //     duration: 400
-    // });
 }
 
-var calNextMonth = function (currentYear, currentMonth, currentDay) {
+var initCalendar = function () {
+    var date = new Date(),
+        monthPrev = false,
+        prevCalendar = undefined;
+    if (arguments.length) {
+        date = arguments[0];
+        prevCalendar = arguments[1],
+            monthPrev = arguments[2];
+        var current = $('#calendar-wrp').data('current-day');
+        date.setDate(ifCurrentExceedsOther(date, current));
+    }
+    var year = date.getFullYear(),
+        month = date.getMonth(),
+        dayDate = date.getDate(),
+        firstDayIndex = new Date(year + '-' + (month + 1) + '-01').getDay(),
+        currentMonth = monthNames[month],
+        days = getDaysInMonth(year, month),
+        emptyDays = [];
+    emptyDays[firstDayIndex] = 1;
+    var monthView = $('<div class="calendar-month-wrp"></div>');
+    prevCalendar != undefined ? monthView.insertBefore(prevCalendar) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
+    monthView.append('<div class="day calendar-unit">\n<div>' + emptyDays.join('</div>\n</div>\n<div class="day calendar-unit">\n<div>') + '</div\ndiv>\n');
+    for (var i = 2; i <= days; i++) {
+        monthView.append('<div class="day calendar-unit">\n<div>' + i + '</div>\n</div>\n');
+    }
+    monthsCreated.push(new Date(year, month))
+    monthsCreated.sort(function (a, b) {
+        return a - b
+    });
+    $('#calendar-wrp').data('current-day', dayDate);
+    $('#calendar-wrp .calendar-month-wrp').removeClass('active');
+    monthView.data({
+        'year': year,
+        'month': month,
+        'monthName': currentMonth,
+        'day': dayDate,
+        'totalDays': days
+    }).addClass('active').find('.day:contains(' + dayDate + ')').addClass('active');
+    if (!todaySet) {
+        todaySet = true;
+        $('#calendar-wrp').data('date', date.toDateString().split(' '));
+        monthView.find('.day:contains(' + dayDate + ')').addClass('today');
+    }
+    updateDay(currentMonth, dayDate, year);
+    if (monthPrev) {
+        var fullScroll = monthView.width(),
+            actualScroll = $('#calendar-wrp .calendar-months-body-wrp').scrollLeft();
+        $('#calendar-wrp .calendar-months-body-wrp').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
+    }
+    scrollToMonth(monthView);
+}
+
+var calNextMonth = function (currentYear, currentMonth) {
     if (creatingCalendar) return;
     creatingCalendar = true;
-    var actualScroll = $('#calendar-wrp .calendar-months-body-wrp').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-months-body-wrp .calendar-month-wrp').width();
     if (!$('#calendar-wrp .calendar-month-wrp.active').next().length) {
         var nextMonth = new Date(currentYear, currentMonth + 1);
-        nextMonth.setDate(ifCurrentExceedsOther(nextMonth, currentDay));
         initCalendar(nextMonth, false);
     } else {
-        var nextMonth = $('#calendar-wrp .calendar-month-wrp.active').next(),
-            nextMonthData = nextMonth.data(),
-            nextDayDate = nextMonthData.day,
-            nexttMonthName = nextMonthData.monthName,
-            nextYear = nextMonthData.year;
+        var nextMonth = $('#calendar-wrp .calendar-month-wrp.active').next();
         $('#calendar-wrp .calendar-month-wrp').removeClass('active');
         nextMonth.addClass('active');
-        $('#calendar-wrp .calendar-today>span').stop().animate({
-            opacity: 0
-        }, {
-            duration: 'fast',
-            complete: function () {
-                $('#calendar-wrp .calendar-today .calendar-month-name').text(nexttMonthName);
-                $('#calendar-wrp .calendar-today .calendar-month-day').text(nextDayDate);
-                $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(nextDayDate));
-                $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + nextYear);
-                $('#calendar-wrp .calendar-today>span').animate({
-                    opacity: 1
-                }, {
-                    duration: 'fast'
-                });
-            }
-        });
+        updateDay(nextMonth.data('monthName'), nextMonth.data('day'), nextMonth.data('year'));
+        scrollToMonth(nextMonth);
     }
-    $('#calendar-wrp .calendar-months-body-wrp').stop().animate({
-        scrollLeft: roundToNearestValue(fullScroll, (actualScroll + fullScroll))
-    }, function () {
-        creatingCalendar = false;
-    });
-
 }
 
-var calPrevMonth = function (currentYear, currentMonth, currentDay) {
+var calPrevMonth = function (currentYear, currentMonth) {
     if (creatingCalendar) return;
     creatingCalendar = true;
-    var actualScroll = $('#calendar-wrp .calendar-months-body-wrp').scrollLeft(),
-        fullScroll = $('#calendar-wrp .calendar-months-body-wrp .calendar-month-wrp').width();
     if (!$('#calendar-wrp .calendar-month-wrp.active').prev().length) {
         var prevMonth = new Date(currentYear, currentMonth - 1);
-        prevMonth.setDate(ifCurrentExceedsOther(prevMonth, currentDay));
         initCalendar(prevMonth, true);
-        $('#calendar-wrp .calendar-months-body-wrp').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
-        actualScroll = $('#calendar-wrp .calendar-months-body-wrp').scrollLeft();
     } else {
-        var prevMonth = $('#calendar-wrp .calendar-month-wrp.active').prev(),
-            prevMonthData = prevMonth.data(),
-            prevDayDate = prevMonthData.day,
-            prevtMonthName = prevMonthData.monthName,
-            prevYear = prevMonthData.year;
+        var prevMonth = $('#calendar-wrp .calendar-month-wrp.active').prev();
         $('#calendar-wrp .calendar-month-wrp').removeClass('active');
         prevMonth.addClass('active');
-        $('#calendar-wrp .calendar-today>span').stop().animate({
-            opacity: 0
-        }, {
-            duration: 'fast',
-            complete: function () {
-                $('#calendar-wrp .calendar-today .calendar-month-name').text(prevtMonthName);
-                $('#calendar-wrp .calendar-today .calendar-month-day').text(prevDayDate);
-                $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(prevDayDate));
-                $('#calendar-wrp .calendar-today .calendar-month-year').text(', ' + prevYear);
-                $('#calendar-wrp .calendar-today>span').animate({
-                    opacity: 1
-                }, {
-                    duration: 'fast'
-                });
-            }
-        });
+        updateDay(prevMonth.data('monthName'), prevMonth.data('day'), prevMonth.data('year'));
+        scrollToMonth(prevMonth);
     }
-    $('#calendar-wrp .calendar-months-body-wrp').stop().animate({
-        scrollLeft: roundToNearestValue(fullScroll, (actualScroll - fullScroll))
-    }, function () {
-        creatingCalendar = false;
-    });
 }
 
 var setCalendarDate = function (e, _this) {
@@ -1921,53 +1965,23 @@ $(document).ready(function () {
     if ($('#calendar-wrp').length) {
         initCalendar();
         $('#calendar-wrp .calendar-months-body-wrp').on('click', '.day:not(:empty)', function (e) {
-            rippleEffect(e, $(this));
             setCalendarDate(e, $(this));
         });
         $('.calendar-controls-wrp .calendar-prev').on('click', function () {
             var monthData = $('#calendar-wrp .calendar-month-wrp.active').data(),
                 year = monthData.year,
-                month = monthData.month,
-                current = $('#calendar-wrp').data('current-day');
-            calPrevMonth(year, month, current);
+                month = monthData.month;
+            calPrevMonth(year, month);
         });
         $('.calendar-controls-wrp .calendar-next').on('click', function () {
             var monthData = $('#calendar-wrp .calendar-month-wrp.active').data(),
                 year = monthData.year,
-                month = monthData.month,
-                current = $('#calendar-wrp').data('current-day');
-            calNextMonth(year, month, current);
+                month = monthData.month;
+            calNextMonth(year, month);
         });
-        $('.calendar-controls-wrp .calendar-today').on('click', function () {
-            if (!$(this).hasClass('months-view')) {
-                $(this).addClass('months-view');
-                var thisMonth = $('#calendar-wrp').data('date')[1];
-                $(this).find('.calendar-month-name').stop().animate({
-                    width: 'hide'
-                }, {
-                    duration: 'fast'
-                });
-                $('.calendar-overview .calendar-head-body').addClass('leaving');
-                $('.calendar-overview .calendar-months-view-wrp').fadeIn().addClass('entering').find('div:contains(' + thisMonth + ')').addClass('this-month');
-            } else if (!$(this).hasClass('years-view')) {
-                var thisYear = $('#calendar-wrp').data('date')[3],
-                    startFrom = thisYear - (thisYear % 12),
-                    endAt = startFrom + 11;
-                for (var i = startFrom; i < endAt; i++) {
-                    $('.calendar-overview .calendar-years-view-wrp').append('<div>' + i + '</div>');
-                }
-                $(this).find('.calendar-year-range').text(startFrom + ' - ' + endAt);
-                $(this).addClass('years-view');
-                $(this).find('.calendar-month-year').stop().animate({
-                    width: 'hide'
-                }, {
-                    duration: 'fast'
-                });
-                $(this).find('.calendar-year-range').fadeIn();
-                $('.calendar-overview .calendar-months-view-wrp').fadeOut('fast').removeClass('entering')
-                $('.calendar-overview .calendar-years-view-wrp').fadeIn().addClass('entering').find('div:contains(' + thisYear + ')').addClass('this-year');
-            }
-        });
+        $('.calendar-controls-wrp .calendar-today').on('click', switchControlView);
+        //set Year
+        $('.calendar-months-view-wrp').on('click', '.month', setMonth);
     }
     //End of Events Calendar
 
