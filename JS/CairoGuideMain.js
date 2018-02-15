@@ -486,7 +486,10 @@ var initCalendar = function () {
     for (var i = 2; i <= days; i++) {
         monthView.append('<div class="day calendar-unit">\n<div>' + i + '</div>\n</div>\n');
     }
-    monthsCreated.push(new Date(year, month));
+    monthsCreated.push(new Date(year, month))
+    monthsCreated.sort(function (a, b) {
+        return a - b
+    });
     $('#calendar-wrp').data('current-day', dayDate);
     $('#calendar-wrp .calendar-month-wrp').removeClass('active');
     monthView.data({
