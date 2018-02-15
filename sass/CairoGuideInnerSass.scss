@@ -2565,21 +2565,6 @@ Contains all styles of inner pages
                         display: none;
                     }
                 }
-                &.months-view {
-                    .calendar-month-name {
-                        @include transition(transform .5s);
-                        @include transform(translateY(-60px));
-                    }
-                    .calendar-month-year::before {
-                        display: none;
-                    }
-                }
-                &.years-view {
-                    .calendar-month-year{
-                        @include transition(transform .5s);
-                        @include transform(translateY(-60px));
-                    }
-                }
             }
             h3.calendar-today {
                 text-align: left;
@@ -2602,10 +2587,77 @@ Contains all styles of inner pages
                         float: right;
                     }
                 }
+                &.months-view {
+                    .calendar-today {
+                        .calendar-month-name {
+                            @include transition(transform .5s);
+                            @include transform(translateY(-60px));
+                        }
+                        .calendar-month-year::before {
+                            display: none;
+                        }
+                    }
+                }
+                &.years-view {
+                    .calendar-month-year {
+                        @include transition(transform .5s);
+                        @include transform(translateY(-60px));
+                    }
+                }
             }
             .calendar-overview {
                 position: relative;
                 overflow: hidden;
+                .calendar-unit {
+                    position: relative;
+                    text-align: center;
+                    padding: 2px;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: #f3a41e;
+                        @include transform(translate(-100%, -100%));
+                        @include transition(all .15s);
+                    }
+                    &:hover {
+                        &::before {
+                            @include transition(all .5s);
+                            @include transform(translate(50%, 50%));
+                        }
+                    }
+                    &.active {
+                        &::before {
+                            @include transform(translate(-50%, -50%));
+                        }
+                    }
+                    div {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        background: #fff;
+                        @include transition(all .5s);
+                        &:not(:empty) {
+                            cursor: pointer;
+                        }
+                        &::before {
+                            content: '';
+                            display: inline-block;
+                            width: 0;
+                            height: 0;
+                            padding-bottom: 100%; //A percentage value on top/bottom padding or margins is relative to the width of the containing block
+                            vertical-align: middle;
+                        }
+                        &:empty {
+                            @include transform(scale(1.1));
+                        }
+                    }
+                }
                 .calendar-head-body {
                     opacity: 1;
                     @include transition(all .3s);
@@ -2636,26 +2688,8 @@ Contains all styles of inner pages
                             .day {
                                 float: left;
                                 width: calc(100% / 7);
-                                font: 2em 'Lato-Black';
+                                font: 1.1em 'Lato-Black';
                                 line-height: inherit;
-                                text-align: center;
-                                background: transparent;
-                                @include transition(all .5s);
-                                &:not(:empty) {
-                                    cursor: pointer;
-                                    &:hover {
-                                        @include transition(all .3s);
-                                        background: #eee;
-                                    }
-                                }
-                                &::before {
-                                    content: '';
-                                    display: inline-block;
-                                    width: 0;
-                                    height: 0;
-                                    padding-bottom: 100%; //A percentage value on top/bottom padding or margins is relative to the width of the containing block
-                                    vertical-align: middle;
-                                }
                             }
                         }
                     }
@@ -2674,18 +2708,12 @@ Contains all styles of inner pages
                     &.entering {
                         @include transform(scale(1));
                     }
-                    div {
+                    >div {
                         float: left;
-                        width: 33.333%;
-                        height: 25%;
+                        width: 25%;
+                        height: 33.33%;
                         text-align: center;
                         cursor: pointer;
-                        &::before {
-                            content: '';
-                            display: inline-block;
-                            height: 100%;
-                            vertical-align: middle;
-                        }
                     }
                 }
             }
