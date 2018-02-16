@@ -2580,14 +2580,29 @@ Contains all styles of inner pages
                     }
                 }
                 .calendar-controls {
-                    &.calendar-prev {
+                    &[class*="prev"] {
                         float: left;
                     }
-                    &.calendar-next {
+                    &[class*="next"] {
                         float: right;
                     }
                 }
+                &.calendar-view {
+                    >[class*="year"] {
+                        display: none;
+                    }
+                }
                 &.months-view {
+                    .calendar-prev,
+                    .calendar-next,
+                    .year-range-prev,
+                    .year-range-next {
+                        display: none;
+                    }
+                    .year-prev,
+                    .year-next {
+                        display: block;
+                    }
                     .calendar-today {
                         .calendar-month-name {
                             @include transition(transform .5s);
@@ -2599,6 +2614,16 @@ Contains all styles of inner pages
                     }
                 }
                 &.years-view {
+                    .calendar-prev,
+                    .calendar-next,
+                    .year-prev,
+                    .year-next {
+                        display: none;
+                    }
+                    .year-range-prev,
+                    .year-range-next {
+                        display: block;
+                    }
                     .calendar-month-year {
                         @include transition(transform .5s);
                         @include transform(translateY(-60px));
@@ -2664,7 +2689,7 @@ Contains all styles of inner pages
                     @include transform(scale(1));
                     &.leaving {
                         opacity: 0;
-                        @include transform(scale(.5));
+                        @include transform(scale(.8));
                     }
                     .calendar-month-head-wrp {
                         width: 100%;
@@ -2704,9 +2729,12 @@ Contains all styles of inner pages
                     background: #fff;
                     display: none;
                     @include transition(all .3s);
-                    @include transform(scale(1.5));
+                    @include transform(scale(1.3));
                     &.entering {
                         @include transform(scale(1));
+                    }
+                    &.leaving {
+                        @include transform(scale(.8));
                     }
                     >div {
                         float: left;
