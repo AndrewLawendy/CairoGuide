@@ -2628,6 +2628,9 @@ Contains all styles of inner pages
                         @include transition(transform .5s);
                         @include transform(translateY(-60px));
                     }
+                    .calendar-today {
+                        cursor: default;
+                    }
                 }
             }
             .calendar-overview {
@@ -2721,6 +2724,7 @@ Contains all styles of inner pages
                 }
                 .calendar-months-view-wrp,
                 .calendar-years-view-wrp {
+                    overflow: hidden;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -2736,12 +2740,21 @@ Contains all styles of inner pages
                     &.leaving {
                         @include transform(scale(.8));
                     }
-                    >div {
+                    .month,
+                    .year {
                         float: left;
                         width: 25%;
                         height: 33.33%;
                         text-align: center;
                         cursor: pointer;
+                    }
+                }
+                .calendar-years-view-wrp {
+                    .years-range-wrp {
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        flex-basis: 100%;
+                        width: 100%;
                     }
                 }
             }
