@@ -882,6 +882,28 @@ p {
     }
 }
 
+.paragraph-overflow{
+    position: relative;
+    overflow: hidden;
+    text-align: justify;
+    max-height: 3.6rem;
+    padding-right: .7rem;
+    margin-right: -.7rem;
+    &::after{
+        content: '';
+        position: absolute;
+        right: 0;
+        width: .7rem;
+        height: 1.2rem;
+    }
+    &::before{
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
 .bold {
     font-family: 'Lato-Bold';
 }
