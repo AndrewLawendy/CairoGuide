@@ -2548,6 +2548,24 @@ Contains all styles of inner pages
                 }
             }
         }
+        /*Calendar Carousel*/
+        #calendar-carousel {
+            .details-carousel {
+                height: 335px;
+                margin: 0 -30px;
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(335px);
+                    margin: 0 get-vw(-30px);
+                }
+                .details-carousel-item-wrp {
+                    .details-carousel-content {
+                        border-color: #f3a41e;
+                        background: #131313;
+                        color: #fff;
+                    }
+                }
+            }
+        }
         /*Calendar*/
         #calendar-wrp {
             .calendar-today {
@@ -2765,7 +2783,10 @@ Contains all styles of inner pages
                     border-left: 10px solid #f3a41e;
                     color: #fff;
                     &:nth-child(1n+2) {
-                        margin-top: 15px;
+                        margin-top: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(10px);
+                        }
                     }
                     .calendar-event-description,
                     .calendar-event-dur-loc {
@@ -2774,22 +2795,33 @@ Contains all styles of inner pages
                     .calendar-event-img {
                         float: left;
                         width: 15%;
+                        height: 140px;
+                        @include media("(min-width: 1200px)") {
+                            height: get-vw(140px);
+                        }
                         img {
-                            width: 100%;
-                            display: block;
+                            @include object-fit-img();
                         }
                     }
                     .calendar-event-details {
-                        padding: 0 15px;
+                        padding: 15px 25px 15px 15px;
                         overflow: hidden;
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
+                        }
                         .calendar-event-name {
                             font: 1.5rem 'Lato-Bold';
-                            margin-bottom: 10px;
+                            margin-bottom: 5px;
+                            @include text-overflow();
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(5px);
+                            }
                         }
                         .calendar-event-duration,
                         .calendar-event-location {
                             float: left;
-                            width: 50%;
+                            font-size: .9rem;
+                            color: #f3a41e;
                             i {
                                 float: left;
                                 margin-right: 10px;
@@ -2798,8 +2830,22 @@ Contains all styles of inner pages
                                 overflow: hidden;
                             }
                         }
+                        .calendar-event-duration {
+                            margin-right: 30px;
+                            @include media("(min-width: 1200px)") {
+                                margin-right: get-vw(30px);
+                            }
+                        }
                         .paragraph-overflow {
-                            &::before {
+                            margin-top: 5px;
+                            font-family: 'Lato-Light';
+                            font-size: .9rem;
+                            color: #ccc;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(5px);
+                            }
+                            &::before,
+                            &::after {
                                 background: #131313;
                             }
                         }
@@ -2913,10 +2959,6 @@ Contains all styles of inner pages
                 .calendar-day-events-wrp {
                     .calendar-event-unit {
                         border-left-width: get-vw(10px);
-                        .calendar-event-details,
-                        .calendar-event-dur-loc {
-                            padding: get-vw(15px) get-vw(15px);
-                        }
                     }
                 }
             }
