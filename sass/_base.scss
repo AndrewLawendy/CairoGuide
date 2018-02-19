@@ -3,7 +3,9 @@
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
 $in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+$in-cubic:cubic-bezier(0.55, 0.06, 0.68, 0.19);
 $out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
+$out-quadratic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 /*Main Colors*/
 
 $header-footer-primary-background-color:#131313;
@@ -228,6 +230,12 @@ $colorList: "nightlife" #f90000,
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@mixin text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 @mixin active-popup($prefix) {
@@ -882,8 +890,38 @@ p {
     }
 }
 
+.paragraph-overflow {
+    position: relative;
+    overflow: hidden;
+    text-align: justify;
+    max-height: 3.6rem;
+    padding-right: .7rem;
+    margin-right: -.7rem;
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: .7rem;
+        height: 1.2rem;
+    }
+    &::before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
 .bold {
     font-family: 'Lato-Bold';
+}
+
+.marg-zero {
+    margin: 0;
+}
+
+.padding-zero {
+    padding: 0
 }
 
 .marg-b3 {
@@ -1520,13 +1558,11 @@ input[type="radio"] {
 .section-title {
     position: relative;
     width: 400px;
-    padding: 10px 0;
     box-sizing: border-box;
-    margin: 50px 0;
+    margin: 30px 0;
     @include media("(min-width: 1200px)") {
         width: get-vw(400px);
-        padding: get-vw(10px) 0;
-        margin: get-vw(50px) 0;
+        margin: get-vw(30px) 0;
     }
     &::before {
         content: '';
@@ -1614,6 +1650,48 @@ input[type="radio"] {
     &::before {
         @include apply-color(background-color,
         $logo-green);
+    }
+}
+
+//Details-Carousel
+.details-carousel {
+    @include flexbox();
+    overflow: hidden;
+    .details-carousel-item-wrp {
+        @include flex(0 0 100%);
+        position: relative;
+        .details-carousel-img,
+        .details-carousel-content {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .details-carousel-img {
+            width: 75%;
+            img {
+                @include object-fit-img();
+            }
+        }
+        .details-carousel-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 25%;
+            border-left: 10px solid;
+            padding: 15px;
+            overflow: hidden;
+            @include media("(min-width: 1200px)") {
+                border-width: get-vw(10px);
+                padding: get-vw(15px);
+            }
+            div {
+                p {
+                    margin-bottom: 15px;
+                    @include media("(min-width: 1200px)") {
+                        margin-bottom: get-vw(15px);
+                    }
+                }
+            }
+        }
     }
 }
 

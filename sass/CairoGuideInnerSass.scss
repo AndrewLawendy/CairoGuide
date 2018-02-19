@@ -2548,6 +2548,24 @@ Contains all styles of inner pages
                 }
             }
         }
+        /*Calendar Carousel*/
+        #calendar-carousel {
+            .details-carousel {
+                height: 335px;
+                margin: 0 -30px;
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(335px);
+                    margin: 0 get-vw(-30px);
+                }
+                .details-carousel-item-wrp {
+                    .details-carousel-content {
+                        border-color: #f3a41e;
+                        background: #131313;
+                        color: #fff;
+                    }
+                }
+            }
+        }
         /*Calendar*/
         #calendar-wrp {
             .calendar-today {
@@ -2627,6 +2645,9 @@ Contains all styles of inner pages
                     .calendar-month-year {
                         @include transition(transform .5s);
                         @include transform(translateY(-60px));
+                    }
+                    .calendar-today {
+                        cursor: default;
                     }
                 }
             }
@@ -2721,6 +2742,7 @@ Contains all styles of inner pages
                 }
                 .calendar-months-view-wrp,
                 .calendar-years-view-wrp {
+                    overflow: hidden;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -2736,7 +2758,8 @@ Contains all styles of inner pages
                     &.leaving {
                         @include transform(scale(.8));
                     }
-                    >div {
+                    .month,
+                    .year {
                         float: left;
                         width: 25%;
                         height: 33.33%;
@@ -2744,47 +2767,94 @@ Contains all styles of inner pages
                         cursor: pointer;
                     }
                 }
+                .calendar-years-view-wrp {
+                    .years-range-wrp {
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        flex-basis: 100%;
+                        width: 100%;
+                    }
+                }
             }
-            .day-events-wrp {
-                .event-unit {
+            .calendar-day-events-wrp {
+                .calendar-event-unit {
                     background: #131313;
                     border-radius: 7px;
-                    padding: 15px;
+                    border-left: 10px solid #f3a41e;
                     color: #fff;
                     &:nth-child(1n+2) {
-                        margin-top: 15px;
+                        margin-top: 10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(10px);
+                        }
                     }
-                    >div {
+                    .calendar-event-description,
+                    .calendar-event-dur-loc {
+                        box-sizing: border-box;
+                    }
+                    .calendar-event-img {
                         float: left;
+                        width: 15%;
+                        height: 140px;
+                        @include media("(min-width: 1200px)") {
+                            height: get-vw(140px);
+                        }
+                        img {
+                            @include object-fit-img();
+                        }
                     }
-                    .event-start {
-                        width: 25%;
-                    }
-                    .event-description {
-                        width: 50%;
-                        .event-name {
+                    .calendar-event-details {
+                        padding: 15px 25px 15px 15px;
+                        overflow: hidden;
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
+                        }
+                        .calendar-event-name {
                             font: 1.5rem 'Lato-Bold';
-                            margin-bottom: 10px;
+                            margin-bottom: 5px;
+                            @include text-overflow();
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(5px);
+                            }
                         }
-                    }
-                    .event-dur-loc {
-                        width: 25%;
-                        .event-duration {
-                            margin-bottom: 10px;
-                        }
-                        i {
+                        .calendar-event-duration,
+                        .calendar-event-location {
                             float: left;
+                            font-size: .9rem;
+                            color: #f3a41e;
+                            i {
+                                float: left;
+                                margin-right: 10px;
+                            }
+                            p {
+                                overflow: hidden;
+                            }
                         }
-                        p {
-                            overflow: hidden;
-                            padding-left: 10px;
+                        .calendar-event-duration {
+                            margin-right: 30px;
+                            @include media("(min-width: 1200px)") {
+                                margin-right: get-vw(30px);
+                            }
+                        }
+                        .paragraph-overflow {
+                            margin-top: 5px;
+                            font-family: 'Lato-Light';
+                            font-size: .9rem;
+                            color: #ccc;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(5px);
+                            }
+                            &::before,
+                            &::after {
+                                background: #131313;
+                            }
                         }
                     }
                 }
             }
         }
         /*Events details page*/
-        .event-details {
+        #event-details {
             box-sizing: border-box;
             text-align: center;
             padding: 45px 0;
@@ -2880,5 +2950,17 @@ Contains all styles of inner pages
         margin-top: 30px;
         @include media("(min-width: 1200px)") {
             margin-top: get-vw(30px);
+        }
+    }
+
+    @include media("(min-width: 1200px)") {
+        main {
+            #calendar-wrp {
+                .calendar-day-events-wrp {
+                    .calendar-event-unit {
+                        border-left-width: get-vw(10px);
+                    }
+                }
+            }
         }
     }
