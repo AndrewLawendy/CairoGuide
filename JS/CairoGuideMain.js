@@ -329,6 +329,16 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
             newTop = scrollPos / 5;
         $('.article-with-bg .article-bg').css('object-position', '50% ' + (50 - newBgPosition) + '%');
         $('.article-with-bg  section').css('bottom', newTop);
+    } else if ($('#calendar-carousel').length) {
+        var carouselBodyHeight = $('.details-carousel').height(),
+            newTopValue = (scrollPos - breakPos) / 3.5;
+        if (scrollPos >= Math.floor(breakPos)) {
+            if (newTopValue <= carouselBodyHeight) {
+                $('.details-carousel .details-carousel-item-wrp').css('top', newTopValue);
+            }
+        } else {
+            $('.details-carousel .details-carousel-item-wrp').css('top', 0);
+        }
     }
 }
 //Event Calendar
@@ -339,7 +349,8 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
     creatingCalendar = false,
     creatingRange = false,
     todaySet = false,
-    monthsCreated = [];
+    monthsCreated = [],
+    yearsCreated = [];
 
 var getDaysInMonth = function (year, month) {
     return new Date(year, month + 1, 0).getDate();
@@ -362,7 +373,8 @@ var ifCurrentExceedsOther = function (date, currentDay) {
 var switchControlView = function () {
     if (!$('.calendar-controls-wrp').hasClass('months-view')) {
         $('.calendar-controls-wrp').addClass('months-view');
-        var thisMonth = $('#calendar-wrp').data('date')[1];
+        var thisMonth = $('#calendar-wrp').data('thisDate')[1],
+            currentMonth = $('#calendar-wrp').data('currentDate')[1];
         $(this).find('.calendar-month-name').stop().animate({
             width: 'hide'
         }, {
@@ -370,21 +382,29 @@ var switchControlView = function () {
         });
         $('.calendar-overview .calendar-head-body').addClass('leaving');
         setTimeout(function () {
-            $('.calendar-overview .calendar-months-view-wrp').fadeIn(500).addClass('entering').find('.month:contains(' + thisMonth + ')').addClass('this-month active');
+            $('.calendar-overview .calendar-months-view-wrp').fadeIn(500).addClass('entering').find('.month:contains(' + thisMonth + ')').addClass('this-month');
+            $('.calendar-overview .calendar-months-view-wrp .month').removeClass('active');
+            $('.calendar-overview .calendar-months-view-wrp .month').eq(currentMonth).addClass('active');
         }, 300);
     } else if (!$('.calendar-controls-wrp').hasClass('years-view')) {
-        var thisYear = $('#calendar-wrp').data('date')[3];
-        generateYearsView();
+        var thisYear = $('#calendar-wrp').data('thisDate')[3],
+            currentYear = $('#calendar-wrp').data('currentDate')[2],
+            checkYearBefore = checkYearRangeBefore(currentYear);
+        if (checkYearBefore != false)
+            generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
         $('.calendar-controls-wrp').addClass('years-view');
-        $(this).find('.calendar-month-year').stop().animate({
-            width: 'hide'
-        }, {
-            duration: 'fast'
-        });
+        $(this).find('.calendar-month-year').fadeOut();
+        // $(this).find('.calendar-month-year').stop().animate({
+        //     width: 'hide'
+        // }, {
+        //     duration: 'fast'
+        // });
         $(this).find('.calendar-year-range').fadeIn();
         $('.calendar-overview .calendar-months-view-wrp').fadeOut('fast').addClass('leaving')
         setTimeout(function () {
-            $('.calendar-overview .calendar-years-view-wrp').fadeIn(500).css('display','flex').addClass('entering').find('.year:contains(' + thisYear + ')').addClass('this-year active');
+            $('.calendar-overview .calendar-years-view-wrp').fadeIn(500).css('display', 'flex').addClass('entering').find('.year:contains(' + thisYear + ')').addClass('this-year');
+            $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
+            $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
         }, 300);
     }
 }
@@ -412,7 +432,47 @@ var checkMonthBefore = function (dateObj) {
     $('.calendar-month-wrp').removeClass('active');
     choosenMonth.addClass('active');
     scrollToMonth(choosenMonth);
-    updateDay(choosenMonth.data('monthName'), choosenMonth.data('day'), choosenMonth.data('year'));
+    updateDay(choosenMonth.data('monthName'), $('#calendar-wrp').data('currentDate')[0], choosenMonth.data('year'));
+    choosenMonth.find('.day').removeClass('active');
+    choosenMonth.find('.day:contains(' + $('#calendar-wrp').data('currentDate')[0] + ')').addClass('active');
+    return false;
+}
+
+var checkYearRangeBefore = function (year) {
+    var yearIndex = yearsCreated.indexOf(year),
+        startFrom = year - (year % 12),
+        endAt = startFrom + 11,
+        choosenYear;
+    if (yearIndex == -1) {
+        var yearAfter = yearsCreated.filter(function (y) {
+            return year < y;
+        });
+        if (yearAfter.length) {
+            var yearAfterIndex = yearsCreated.indexOf(yearAfter[0]);
+            if (yearAfterIndex % 2 == 0) {
+                choosenYear = $('.years-range-wrp').filter(function () {
+                    return $(this).data('startFrom') == yearAfter[0];
+                });
+                var yearDivPosLeft = choosenYear.position().left,
+                    isPrev = yearDivPosLeft < $('.calendar-years-view-wrp').width() ? true : false;
+                return [startFrom, endAt, isPrev, choosenYear];
+            }
+            choosenYear = $('.years-range-wrp').filter(function () {
+                return $(this).data('endAt') == yearAfter[0];
+            });
+        } else {
+            return [startFrom, endAt, false]
+        }
+    }
+    if (choosenYear == undefined) choosenYear = $('.years-range-wrp').filter(function () {
+        return $(this).data('startFrom') == year || $(this).data('endAt') == year;
+    });
+    updateCalControls(choosenYear.data('startFrom') + ' - ' + choosenYear.data('endAt'));
+    $('.years-range-wrp').removeClass('active')
+    choosenYear.addClass('active');
+    $('.years-range-wrp .year').removeClass('active');
+    choosenYear.find('.year:contains(' + year + ')').addClass('active');
+    scrollToYear();
     return false;
 }
 
@@ -428,6 +488,10 @@ var setMonth = function (e, date) {
         width: 'show'
     }, {
         duration: 'fast'
+    }, {
+        complete: function () {
+            $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
+        }
     })
     $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
     setTimeout(function () {
@@ -438,13 +502,16 @@ var setMonth = function (e, date) {
 var setYear = function () {
     $('.calendar-years-view-wrp .year').removeClass('active');
     $(this).addClass('active');
-    $('#calendar-wrp').data('date')[3] = $(this).text();
+    $('#calendar-wrp').data('currentDate')[2] = $(this).text();
     $('.calendar-controls-wrp .calendar-month-year').text($(this).text());
     $('.calendar-controls-wrp .calendar-year-range').fadeOut('fast', function () {
         $('.calendar-controls-wrp').removeClass('years-view').find('.calendar-month-year').stop().animate({
             width: 'show'
         }, {
-            duration: 'fast'
+            duration: 'fast',
+            complete: function () {
+                $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
+            }
         });
     });
     $('.calendar-overview .calendar-years-view-wrp').fadeOut('fast').removeClass('entering').find('.year').removeClass('this-year active');
@@ -479,16 +546,16 @@ var updateDay = function (currentMonth, dayDate, year) {
     $('#calendar-wrp .calendar-today>span').stop().animate({
         opacity: 0
     }, {
-        duration: 'fast',
+        duration: 150,
         complete: function () {
             $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
             $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
             $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
             $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
-            $('#calendar-wrp .calendar-today>span').animate({
+            $('#calendar-wrp .calendar-today>span').stop().animate({
                 opacity: 1
             }, {
-                duration: 'fast'
+                duration: 150
             });
         }
     });
@@ -498,30 +565,22 @@ var updateCalControls = function (year) {
     $('.calendar-controls-wrp .calendar-today>span').stop().animate({
         opacity: 0
     }, {
-        duration: 'fast',
+        duration: 150,
         complete: function () {
             $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
             $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
-            $('#calendar-wrp .calendar-today>span').animate({
+            $('#calendar-wrp .calendar-today>span').stop().animate({
                 opacity: 1
             }, {
-                duration: 'fast'
+                duration: 150
             });
         }
     });
 }
 
-var generateYearsView = function () {
-    var thisYear = $('#calendar-wrp').data('date')[3],
-        startFrom = thisYear - (thisYear % 12),
-        endAt = startFrom + 11,
-        yearsRangeWrp = $('<div class="years-range-wrp"></div>');
-    if (arguments.length) {
-        var startFrom = arguments[0],
-            endAt = arguments[1],
-            yearPrev = arguments[2];
-    }
-    yearPrev ? $('.calendar-overview .calendar-years-view-wrp').prepend(yearsRangeWrp) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
+var generateYearsView = function (startFrom, endAt, yearPrev, insertBefore) {
+    var yearsRangeWrp = $('<div class="years-range-wrp"></div>');
+    insertBefore != undefined ? yearsRangeWrp.insertBefore(insertBefore) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
     for (var i = startFrom; i <= endAt; i++) {
         yearsRangeWrp.append('<div class="calendar-unit year">\n<div>' + i + '</div>\n</div>');
     }
@@ -538,6 +597,10 @@ var generateYearsView = function () {
         $('.calendar-overview .calendar-years-view-wrp').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
     }
     scrollToYear();
+    yearsCreated.push(startFrom, endAt);
+    yearsCreated.sort(function (a, b) {
+        return a - b
+    });
 }
 
 var initCalendar = function () {
@@ -548,7 +611,7 @@ var initCalendar = function () {
         date = arguments[0];
         prevCalendar = arguments[1],
             monthPrev = arguments[2];
-        var current = $('#calendar-wrp').data('current-day');
+        var current = $('#calendar-wrp').data('currentDate')[0];
         date.setDate(ifCurrentExceedsOther(date, current));
     }
     var year = date.getFullYear(),
@@ -565,12 +628,12 @@ var initCalendar = function () {
     for (var i = 2; i <= days; i++) {
         monthView.append('<div class="day calendar-unit">\n<div>' + i + '</div>\n</div>\n');
     }
-    monthsCreated.push(new Date(year, month))
+    monthsCreated.push(new Date(year, month));
     monthsCreated.sort(function (a, b) {
         return a - b
     });
-    $('#calendar-wrp').data('current-day', dayDate);
-    $('#calendar-wrp .calendar-month-wrp').removeClass('active');
+    $('#calendar-wrp').data('currentDate', [dayDate, month, year]);
+    $('#calendar-wrp .calendar-month-wrp,#calendar-wrp .calendar-month-wrp .day').removeClass('active');
     monthView.data({
         'year': year,
         'month': month,
@@ -580,7 +643,7 @@ var initCalendar = function () {
     }).addClass('active').find('.day:contains(' + dayDate + ')').addClass('active');
     if (!todaySet) {
         todaySet = true;
-        $('#calendar-wrp').data('date', date.toDateString().split(' '));
+        $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
         monthView.find('.day:contains(' + dayDate + ')').addClass('today');
     }
     updateDay(currentMonth, dayDate, year);
@@ -593,9 +656,38 @@ var initCalendar = function () {
 }
 
 var setCalendarDate = function () {
+    var _this = $(this);
     $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
-    $(this).addClass('active');
-    $('#calendar-wrp').data('current-day', Number($(this).text()));
+    _this.addClass('active');
+    $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
+    $('h3.calendar-today .calendar-month-day').stop().animate({
+        opacity: 0
+    }, {
+        duration: 150,
+        complete: function () {
+            $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
+            $('h3.calendar-today .calendar-month-day').animate({
+                opacity: 1
+            }, {
+                duration: 150
+            });
+        }
+    });
+    if (_this.text() == '1' || _this.text() == '2' || _this.text() == '3') {
+        $('h3.calendar-today .ordinal-indicator').animate({
+            opacity: 0
+        }, {
+            duration: 150,
+            complete: function () {
+                $('h3.calendar-today .ordinal-indicator').text(_this.text().trim());
+                $('h3.calendar-today .calendar-month-day').animate({
+                    opacity: 1
+                }, {
+                    duration: 150
+                });
+            }
+        });
+    }
 }
 
 //ifArabic
@@ -2055,37 +2147,29 @@ $(document).ready(function () {
         });
         $('.calendar-controls-wrp .year-prev').on('click', function () {
             var prevYear = Number($('.calendar-controls-wrp .calendar-today .calendar-month-year').text()) - 1;
+            $('#calendar-wrp').data('currentDate')[2] = prevYear;
             updateCalControls(prevYear);
         })
         $('.calendar-controls-wrp .year-next').on('click', function () {
             var nextYear = Number($('.calendar-controls-wrp .calendar-today .calendar-month-year').text()) + 1;
+            $('#calendar-wrp').data('currentDate')[2] = nextYear;
             updateCalControls(nextYear);
         })
         $('.calendar-controls-wrp .year-range-prev').on('click', function () {
-            var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('startFrom') - 13,
-                rangeEnd = rangeStart + 12,
-                prevRange = $('.calendar-years-view-wrp .years-range-wrp.active').prev();
-            if (!prevRange.length) {
-                generateYearsView(rangeStart, rangeEnd, true);
-            } else {
-                $('.calendar-years-view-wrp .years-range-wrp').removeClass('active');
-                prevRange.addClass('active');
-                scrollToYear();
-                updateCalControls(rangeStart + ' - ' + rangeEnd);
-            }
+            var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('startFrom') - 12,
+                checkYearBefore = checkYearRangeBefore(rangeStart);
+            if (checkYearBefore != false)
+                generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
+            $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
+            $('.calendar-overview .calendar-years-view-wrp .year:contains(' + rangeStart + ')').addClass('active');
         });
         $('.calendar-controls-wrp .year-range-next').on('click', function () {
             var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('endAt') + 1,
-                rangeEnd = rangeStart + 13,
-                nextRange = $('.calendar-years-view-wrp .years-range-wrp.active').next();
-            if (!nextRange.length) {
-                generateYearsView(rangeStart, rangeEnd, false);
-            } else {
-                $('.calendar-years-view-wrp .years-range-wrp').removeClass('active');
-                nextRange.addClass('active');
-                scrollToYear();
-                updateCalControls(rangeStart + ' - ' + rangeEnd);
-            }
+                checkYearBefore = checkYearRangeBefore(rangeStart);
+            if (checkYearBefore != false)
+                generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
+            $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
+            $('.calendar-overview .calendar-years-view-wrp .year:contains(' + rangeStart + ')').addClass('active');
         });
         $('.calendar-controls-wrp .calendar-today').on('click', switchControlView);
         //set Month
