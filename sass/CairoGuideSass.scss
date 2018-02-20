@@ -939,11 +939,10 @@ main {
             position: relative;
             overflow: hidden;
             width: 100%;
-            height: calc(100% - 65px);
+            height: 100%;
             margin-top: -80px;
             @include media("(min-width: 1200px)") {
                 margin-top: get-vw(-80px);
-                height: calc(100% - 5.4167vw);
             }
             @include media("(max-width: 768px)") {
                 margin-top: 0;
@@ -1221,12 +1220,12 @@ main {
                                 width: 520px;
                                 height: 520px;
                                 bottom: -530px;
-                                right: -50px;
+                                right: -70px;
                                 @include media("(min-width: 1200px)") {
                                     width: get-vw(520px);
                                     height: get-vw(520px);
                                     bottom: get-vw(-530px);
-                                    right: get-vw(-50px);
+                                    right: get-vw(-70px);
                                 }
                             }
                         }
@@ -1234,19 +1233,19 @@ main {
                     &.shadow {
                         &:nth-of-type(1) {
                             .best-image-frame {
-                                right: 70px;
+                                right: 80px;
                                 @include transition(all .3s ease);
                                 @include media("(min-width: 1200px)") {
-                                    right: get-vw(70px);
+                                    right: get-vw(80px);
                                 }
                             }
                         }
                         &:nth-of-type(3) {
                             .best-image-frame {
-                                right: 80px;
+                                right: 35px;
                                 @include transition(all .3s ease);
                                 @include media("(min-width: 1200px)") {
-                                    right: get-vw(80px);
+                                    right: get-vw(35px);
                                 }
                             }
                         }
@@ -1285,15 +1284,14 @@ main {
                     &:nth-of-type(2) {
                         .best-image-frame {
                             @include transform-origin(top left);
-                            top: -5px;
-                            right: -350px;
-                            width: 340px;
-                            height: 340px;
+                            top: 0px;
+                            right: -365px;
+                            width: 360px;
+                            height: 360px;
                             @include media("(min-width: 1200px)") {
-                                top: get-vw(-5px);
-                                right: get-vw(-350px);
-                                width: get-vw(340px);
-                                height: get-vw(340px);
+                                right: get-vw(-365px);
+                                width: get-vw(360px);
+                                height: get-vw(360px);
                             }
                             img {
                                 @include transform(rotate(-45deg) translate(-25%, -25%));
@@ -1319,12 +1317,12 @@ main {
                         .best-image-frame {
                             @include transform-origin(top right);
                             bottom: -390px;
-                            right: -55px;
+                            right: -70px;
                             width: 380px;
                             height: 380px;
                             @include media("(min-width: 1200px)") {
                                 bottom: get-vw(-390px);
-                                right: get-vw(-55px);
+                                right: get-vw(-70px);
                                 width: get-vw(380px);
                                 height: get-vw(380px);
                             }
@@ -1560,13 +1558,13 @@ main {
     }
     @include key-frame(bestEnterTwo) {
         0% {
-            right: -575px;
+            right: -610px;
         }
         20% {
-            right: -575px;
+            right: -610px;
         }
         100% {
-            right: -350px;
+            right: -365px;
         }
     }
     @include key-frame(bestLeaveThree) {
@@ -1602,13 +1600,13 @@ main {
         }
         @include key-frame(bestEnterTwo) {
             0% {
-                right: get-vw(-575px);
+                right: get-vw(-610px);
             }
             20% {
-                right: get-vw(-575px);
+                right: get-vw(-610px);
             }
             100% {
-                right: get-vw(-350px);
+                right: get-vw(-365px);
             }
         }
         @include key-frame(bestEnterThree) {
