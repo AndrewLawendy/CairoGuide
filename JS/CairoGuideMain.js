@@ -479,7 +479,8 @@ var checkYearRangeBefore = function (year) {
 var setMonth = function (e, date) {
     var month = $(this).index(),
         year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
-        dateObj = new Date(year, month);
+        dateObj = new Date(year, month),
+        currentDay = $('#calendar-wrp').data('currentDate')[0];
     if (date != undefined) dateObj = date;
     var checkMonth = checkMonthBefore(dateObj);
     if (checkMonth != false)
@@ -494,6 +495,8 @@ var setMonth = function (e, date) {
         }
     })
     $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
+    $('.calendar-month-wrp .day').removeClass('active');
+    $('.calendar-month-wrp .day:contains(' + currentDay + ')').addClass('active');
     setTimeout(function () {
         $('.calendar-head-body').removeClass('leaving');
     }, 300);
@@ -1226,7 +1229,7 @@ var SearchAutocomplete = function () {
 }
 
 //Change selected category
-var ChangeSelectedCat = function(obj){
+var ChangeSelectedCat = function (obj) {
     $('.search-input-filter-wrp .search-filter-menu').find('li').removeClass('active');
     var selectedCat = obj.closest('li').addClass('active').text().trim();
     $('.search-filter-display').text(selectedCat);
@@ -1234,12 +1237,12 @@ var ChangeSelectedCat = function(obj){
 }
 
 //Category dropdown initiation
-var InitCatDropdown = function(){
-    if($('.search-input-filter-wrp').length){
-        $('.search-input-filter-wrp').find('.search-filter-display').off().on('click',function(){
+var InitCatDropdown = function () {
+    if ($('.search-input-filter-wrp').length) {
+        $('.search-input-filter-wrp').find('.search-filter-display').off().on('click', function () {
             $('.search-input-filter-wrp').toggleClass('active');
         });
-        $('.search-input-filter-wrp .search-filter-menu').find('a').off().on('click',function(){
+        $('.search-input-filter-wrp .search-filter-menu').find('a').off().on('click', function () {
             ChangeSelectedCat($(this));
         });
     }
@@ -1328,7 +1331,7 @@ $(document).ready(function () {
     $('#popup-close-btn').on('click', function () {
         $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
         $('#popup-base').find('.popup-body-container').fadeOut(0);
-        if($('.search-input-filter-wrp').length){
+        if ($('.search-input-filter-wrp').length) {
             $('.search-input-filter-wrp').removeClass('active');
         }
         $('html,body').removeClass('popup-in-motion');

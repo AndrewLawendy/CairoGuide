@@ -2558,9 +2558,13 @@ Contains all styles of inner pages
                     margin: 0 get-vw(-30px);
                 }
                 .details-carousel-item-wrp {
-                    .details-carousel-content {
-                        border-color: #f3a41e;
+                    &::before{
                         background: #131313;
+                    }
+                    &::after{
+                        background: #f3a41e;
+                    }
+                    .details-carousel-content {
                         color: #fff;
                     }
                 }

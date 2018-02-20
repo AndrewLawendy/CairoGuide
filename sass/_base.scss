@@ -980,7 +980,7 @@ p {
     }
 }
 
-.marg-t50{
+.marg-t50 {
     margin-top: 50px;
     @include media("(min-width: 1200px)") {
         margin-top: get-vw(50px);
@@ -1669,15 +1669,22 @@ input[type="radio"] {
 
 //Details-Carousel
 .details-carousel {
-    @include flexbox();
+    position: relative;
     overflow: hidden;
     .details-carousel-item-wrp {
-        @include flex(0 0 100%);
-        position: relative;
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        @include transition(left .3s .7s $in-cubic);
         .details-carousel-img,
         .details-carousel-content {
             height: 100%;
             box-sizing: border-box;
+            float: left;
+            @include transition(all 1s $in-cubic);
         }
         .details-carousel-img {
             width: 75%;
@@ -1686,13 +1693,10 @@ input[type="radio"] {
             }
         }
         .details-carousel-content {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 25%;
-            border-left: 10px solid;
-            padding: 15px;
+            position: relative;
             overflow: hidden;
+            width: 25%;
+            padding: 15px;
             @include media("(min-width: 1200px)") {
                 border-width: get-vw(10px);
                 padding: get-vw(15px);
@@ -1706,6 +1710,60 @@ input[type="radio"] {
                 }
             }
         }
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 75%;
+            height: 100%;
+            width: 25%;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 75%;
+            height: 100%;
+            width: 5px;
+            visibility: visible;
+            @include transition(all 1.1s $in-cubic);
+        }
+        &.leaving-left {
+            z-index: 5;
+            left:-25%;
+            .details-carousel-img{
+                width: 0;
+            }
+            .details-carousel-content{
+                &::before{
+                    z-index: 6;
+                    width: 0;
+                }
+            }
+            &::before {
+                @include animation(details-carousel-leave-left 1.1s $in-cubic forwards);
+            }
+            &::after{
+                left:-5px;
+            }
+        }
+    }
+}
+
+@include key-frame(details-carousel-leave-left) {
+    0% {
+        width: 25%;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        left: 0;
+        width: 0%;
+        padding-left: 0;
+        padding-right: 0;
+        border-width: 0;
     }
 }
 
@@ -2191,8 +2249,8 @@ input[type="radio"] {
                     border-bottom: 2px solid #000;
                     max-height: calc(((1rem + 20px) * 7) + 10px);
                     overflow: auto;
-                    position:relative;
-                    z-index:500;
+                    position: relative;
+                    z-index: 500;
                     display: none; //@include transition(all .3s);
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(5px) 0;
@@ -2401,7 +2459,8 @@ input[type="radio"] {
                         left: 0;
                         right: 0;
                         @include animation(none);
-                        @include transition(all 0.3s $bounce 1.6s,background-color 0.3s ease);
+                        @include transition(all 0.3s $bounce 1.6s,
+                        background-color 0.3s ease);
                     }
                 }
             }
