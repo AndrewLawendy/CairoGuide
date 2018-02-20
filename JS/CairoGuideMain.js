@@ -479,7 +479,8 @@ var checkYearRangeBefore = function (year) {
 var setMonth = function (e, date) {
     var month = $(this).index(),
         year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
-        dateObj = new Date(year, month);
+        dateObj = new Date(year, month),
+        currentDay = $('#calendar-wrp').data('currentDate')[0];
     if (date != undefined) dateObj = date;
     var checkMonth = checkMonthBefore(dateObj);
     if (checkMonth != false)
@@ -494,6 +495,8 @@ var setMonth = function (e, date) {
             }
         })
     $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
+    $('.calendar-month-wrp .day').removeClass('active');
+    $('.calendar-month-wrp .day:contains(' + currentDay + ')').addClass('active');
     setTimeout(function () {
         $('.calendar-head-body').removeClass('leaving');
     }, 300);
