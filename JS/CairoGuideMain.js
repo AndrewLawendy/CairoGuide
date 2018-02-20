@@ -343,8 +343,8 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
 }
 //Event Calendar
 var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ],
+    "July", "August", "September", "October", "November", "December"
+],
     daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     creatingCalendar = false,
     creatingRange = false,
@@ -378,8 +378,8 @@ var switchControlView = function () {
         $(this).find('.calendar-month-name').stop().animate({
             width: 'hide'
         }, {
-            duration: 'fast'
-        });
+                duration: 'fast'
+            });
         $('.calendar-overview .calendar-head-body').addClass('leaving');
         setTimeout(function () {
             $('.calendar-overview .calendar-months-view-wrp').fadeIn(500).addClass('entering').find('.month:contains(' + thisMonth + ')').addClass('this-month');
@@ -419,8 +419,8 @@ var checkMonthBefore = function (dateObj) {
         });
         if (monthAfter.length) {
             var monthDiv = $('.calendar-month-wrp').filter(function () {
-                    return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
-                }),
+                return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
+            }),
                 monthDivPosLeft = monthDiv.position().left,
                 isPrev = monthDivPosLeft < $('.calendar-months-body-wrp').width() ? true : false;
             return [monthDiv, isPrev]
@@ -487,12 +487,12 @@ var setMonth = function (e, date) {
     $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
         width: 'show'
     }, {
-        duration: 'fast'
-    }, {
-        complete: function () {
-            $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
-        }
-    })
+            duration: 'fast'
+        }, {
+            complete: function () {
+                $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
+            }
+        })
     $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
     setTimeout(function () {
         $('.calendar-head-body').removeClass('leaving');
@@ -508,11 +508,11 @@ var setYear = function () {
         $('.calendar-controls-wrp').removeClass('years-view').find('.calendar-month-year').stop().animate({
             width: 'show'
         }, {
-            duration: 'fast',
-            complete: function () {
-                $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
-            }
-        });
+                duration: 'fast',
+                complete: function () {
+                    $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
+                }
+            });
     });
     $('.calendar-overview .calendar-years-view-wrp').fadeOut('fast').removeClass('entering').find('.year').removeClass('this-year active');
     setTimeout(function () {
@@ -546,36 +546,36 @@ var updateDay = function (currentMonth, dayDate, year) {
     $('#calendar-wrp .calendar-today>span').stop().animate({
         opacity: 0
     }, {
-        duration: 150,
-        complete: function () {
-            $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
-            $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
-            $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
-            $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
-            $('#calendar-wrp .calendar-today>span').stop().animate({
-                opacity: 1
-            }, {
-                duration: 150
-            });
-        }
-    });
+            duration: 150,
+            complete: function () {
+                $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
+                $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
+                $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
+                $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
+                $('#calendar-wrp .calendar-today>span').stop().animate({
+                    opacity: 1
+                }, {
+                        duration: 150
+                    });
+            }
+        });
 }
 
 var updateCalControls = function (year) {
     $('.calendar-controls-wrp .calendar-today>span').stop().animate({
         opacity: 0
     }, {
-        duration: 150,
-        complete: function () {
-            $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
-            $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
-            $('#calendar-wrp .calendar-today>span').stop().animate({
-                opacity: 1
-            }, {
-                duration: 150
-            });
-        }
-    });
+            duration: 150,
+            complete: function () {
+                $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
+                $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
+                $('#calendar-wrp .calendar-today>span').stop().animate({
+                    opacity: 1
+                }, {
+                        duration: 150
+                    });
+            }
+        });
 }
 
 var generateYearsView = function (startFrom, endAt, yearPrev, insertBefore) {
@@ -663,30 +663,30 @@ var setCalendarDate = function () {
     $('h3.calendar-today .calendar-month-day').stop().animate({
         opacity: 0
     }, {
-        duration: 150,
-        complete: function () {
-            $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
-            $('h3.calendar-today .calendar-month-day').animate({
-                opacity: 1
-            }, {
-                duration: 150
-            });
-        }
-    });
+            duration: 150,
+            complete: function () {
+                $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
+                $('h3.calendar-today .calendar-month-day').animate({
+                    opacity: 1
+                }, {
+                        duration: 150
+                    });
+            }
+        });
     if (_this.text() == '1' || _this.text() == '2' || _this.text() == '3') {
         $('h3.calendar-today .ordinal-indicator').animate({
             opacity: 0
         }, {
-            duration: 150,
-            complete: function () {
-                $('h3.calendar-today .ordinal-indicator').text(_this.text().trim());
-                $('h3.calendar-today .calendar-month-day').animate({
-                    opacity: 1
-                }, {
-                    duration: 150
-                });
-            }
-        });
+                duration: 150,
+                complete: function () {
+                    $('h3.calendar-today .ordinal-indicator').text(_this.text().trim());
+                    $('h3.calendar-today .calendar-month-day').animate({
+                        opacity: 1
+                    }, {
+                            duration: 150
+                        });
+                }
+            });
     }
 }
 
@@ -1037,12 +1037,8 @@ var DrawPopupGallery = function (galleryList, activeImgIndex) {
 
 //Initialize popup gallery slider
 var InitPopupGallery = function () {
-    console.log('entered');
-    console.log('lastScreenSize: in initial : ' + lastScreenSize);
     if (lastScreenSize != newScreenSize) {
-        console.log('here');
         if (newScreenSize == 1) {
-            console.log('bigger');
             imgSmallSliderContainer.find('img').off().on('click', function () {
                 DisplayClickedPopupGalleryItem($(this).attr('popup-slide-data-index'));
             });
@@ -1054,13 +1050,11 @@ var InitPopupGallery = function () {
             });
             $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
         } else {
-            console.log('smaller');
             imgSmallSliderContainer.find('img').off();
             $('#lightbox-popup').find('.slider-nav-next,.slider-nav-prev').off();
             $('.slider-count span').html(PopupGallerySlides.length + ' Photos');
         }
         lastScreenSize = CalcLastScreenSize(lastScreenSize);
-        console.log('lastScreenSize inside change : ' + lastScreenSize);
     }
 }
 
@@ -1108,7 +1102,11 @@ var DisplayClickedPopupGalleryItem = function (imageIndex) {
             $(this).remove().dequeue();
         });
     });
-    $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
+    if (newScreenSize == 1) {
+        $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
+    }else{
+        $('.slider-count span').html(PopupGallerySlides.length + ' Photos');
+    }
     setTimeout(function () {
         MoveMarker();
     }, 200);
@@ -1221,12 +1219,12 @@ var SearchAutocomplete = function () {
     $('#popup-base .autocomplete-keywords').stop().animate({
         height: allKeywordsHeights
     }, {
-        duration: 'fast'
-    })
+            duration: 'fast'
+        })
 }
 
 //Change selected category
-var ChangeSelectedCat = function(obj){
+var ChangeSelectedCat = function (obj) {
     $('.search-input-filter-wrp .search-filter-menu').find('li').removeClass('active');
     var selectedCat = obj.closest('li').addClass('active').text().trim();
     $('.search-filter-display').text(selectedCat);
@@ -1234,12 +1232,12 @@ var ChangeSelectedCat = function(obj){
 }
 
 //Category dropdown initiation
-var InitCatDropdown = function(){
-    if($('.search-input-filter-wrp').length){
-        $('.search-input-filter-wrp').find('.search-filter-display').off().on('click',function(){
+var InitCatDropdown = function () {
+    if ($('.search-input-filter-wrp').length) {
+        $('.search-input-filter-wrp').find('.search-filter-display').off().on('click', function () {
             $('.search-input-filter-wrp').toggleClass('active');
         });
-        $('.search-input-filter-wrp .search-filter-menu').find('a').off().on('click',function(){
+        $('.search-input-filter-wrp .search-filter-menu').find('a').off().on('click', function () {
             ChangeSelectedCat($(this));
         });
     }
@@ -1328,7 +1326,7 @@ $(document).ready(function () {
     $('#popup-close-btn').on('click', function () {
         $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
         $('#popup-base').find('.popup-body-container').fadeOut(0);
-        if($('.search-input-filter-wrp').length){
+        if ($('.search-input-filter-wrp').length) {
             $('.search-input-filter-wrp').removeClass('active');
         }
         $('html,body').removeClass('popup-in-motion');
@@ -1521,27 +1519,27 @@ $(document).ready(function () {
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: '-650'
                     }, {
-                        duration: 600,
-                        easing: 'easeOutExpo'
-                    });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                         left: 0
                     }, {
-                        duration: 850,
-                        easing: 'easeOutExpo'
-                    });
+                            duration: 850,
+                            easing: 'easeOutExpo'
+                        });
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
                     }, {
-                        duration: 750,
-                        easing: 'easeOutExpo',
-                        complete: function () {
-                            setTimeout(function () {
-                                $('.carousel-data').css('left', '0px');
-                            }, 150);
-                            carouselAnimation = false;
-                        }
-                    });
+                            duration: 750,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                setTimeout(function () {
+                                    $('.carousel-data').css('left', '0px');
+                                }, 150);
+                                carouselAnimation = false;
+                            }
+                        });
                     selectedIndexControl = activeItemIndex;
                     if (selectedIndexControl == carouselItemCount - 1) {
                         selectedIndexControl = 1;
@@ -1566,27 +1564,27 @@ $(document).ready(function () {
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: fullScroll
                     }, {
-                        duration: 600,
-                        easing: 'easeOutExpo'
-                    });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
                             left: 0
                         }, {
-                            duration: 500,
-                            easing: 'easeOutExpo'
-                        });
+                                duration: 500,
+                                easing: 'easeOutExpo'
+                            });
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
                     }, {
-                        duration: 600,
-                        easing: 'easeOutExpo',
-                        complete: function () {
-                            $('#main-carousel .carousel-data').css('left', '0px');
-                            carouselAnimation = false;
-                        }
-                    });
+                            duration: 600,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                $('#main-carousel .carousel-data').css('left', '0px');
+                                carouselAnimation = false;
+                            }
+                        });
                     selectedIndexControl = activeItemIndex - 2;
                     if (selectedIndexControl == 0) {
                         var indexControlMax = $('#main-carousel .carousel-indexes div').length;
@@ -1628,43 +1626,43 @@ $(document).ready(function () {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
                         }, {
-                            duration: 600,
-                            easing: 'easeOutExpo'
-                        });
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                         newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                             left: 0
                         }, {
-                            duration: 600,
-                            easing: 'easeOutExpo'
-                        });
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                     } else {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
                         }, {
-                            duration: 400,
-                            easing: 'easeOutExpo'
-                        });
+                                duration: 400,
+                                easing: 'easeOutExpo'
+                            });
                         newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                             $(this).stop().animate({
                                 left: 0
                             }, {
-                                duration: 600,
-                                easing: 'easeOutExpo'
-                            });
+                                    duration: 600,
+                                    easing: 'easeOutExpo'
+                                });
                         })
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
                     }, {
-                        duration: 400,
-                        easing: 'easeOutExpo',
-                        complete: function () {
-                            carouselAnimation = false;
-                            setTimeout(function () {
-                                $('.carousel-data').css('left', '0px');
-                            }, 200);
-                        }
-                    });
+                            duration: 400,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                carouselAnimation = false;
+                                setTimeout(function () {
+                                    $('.carousel-data').css('left', '0px');
+                                }, 200);
+                            }
+                        });
                     activeItemIndex = indexValue;
                 }
             });
@@ -2006,25 +2004,25 @@ $(document).ready(function () {
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
         var owlRatings = [{
-                src: 'bad-owl.svg',
-                title: 'Bad'
-            },
-            {
-                src: 'ihateit-owl.svg',
-                title: 'I hate it'
-            },
-            {
-                src: 'ok-owl.svg',
-                title: 'OK'
-            },
-            {
-                src: 'iloveit-owl.svg',
-                title: 'I love it'
-            },
-            {
-                src: 'wow-owl.svg',
-                title: 'Wow'
-            }
+            src: 'bad-owl.svg',
+            title: 'Bad'
+        },
+        {
+            src: 'ihateit-owl.svg',
+            title: 'I hate it'
+        },
+        {
+            src: 'ok-owl.svg',
+            title: 'OK'
+        },
+        {
+            src: 'iloveit-owl.svg',
+            title: 'I love it'
+        },
+        {
+            src: 'wow-owl.svg',
+            title: 'Wow'
+        }
         ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
@@ -2200,12 +2198,12 @@ $(document).ready(function () {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                             }, {
-                                duration: 750,
-                                easing: 'easeOutExpo',
-                                complete: function () {
-                                    carouselAnimation = false;
-                                }
-                            });
+                                    duration: 750,
+                                    easing: 'easeOutExpo',
+                                    complete: function () {
+                                        carouselAnimation = false;
+                                    }
+                                });
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
                                 controlsIndex = 0;
@@ -2217,18 +2215,18 @@ $(document).ready(function () {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
                             }, {
-                                duration: 750,
-                                easing: 'easeOutExpo',
-                                complete: function () {
-                                    carouselAnimation = false;
-                                }
-                            });
+                                    duration: 750,
+                                    easing: 'easeOutExpo',
+                                    complete: function () {
+                                        carouselAnimation = false;
+                                    }
+                                });
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
                             }, {
-                                duration: 750,
-                                easing: 'easeOutExpo'
-                            });
+                                    duration: 750,
+                                    easing: 'easeOutExpo'
+                                });
                             activeItemIndex = carouselItemTarget.index() + 1;
                             var controlsIndex = activeItemIndex - 1;
                             if (controlsIndex == 1) {
@@ -2243,10 +2241,10 @@ $(document).ready(function () {
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
                         }, {
-                            easing: 'easeOutExpo'
-                        }, function () {
-                            carouselAnimation = false;
-                        });
+                                easing: 'easeOutExpo'
+                            }, function () {
+                                carouselAnimation = false;
+                            });
                     }
                     carouselPosDiff = undefined;
                     entered = false;
@@ -2254,11 +2252,11 @@ $(document).ready(function () {
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
                     }, {
-                        duration: 1000,
-                        easing: 'easeOutExpo'
-                    }, function () {
-                        carouselAnimation = false;
-                    });
+                            duration: 1000,
+                            easing: 'easeOutExpo'
+                        }, function () {
+                            carouselAnimation = false;
+                        });
                 }
             }
             //End of Carousel Autocomplete
@@ -2300,15 +2298,14 @@ $(document).ready(function () {
                 }
             }
 
-            /*
-            var container = $("YOUR SELECTOR"); // Give you class or ID
 
-    if (!container.is(e.target) &&            // If the target of the click is not the desired div or section
-        container.has(e.target).length === 0) // ... nor a descendant-child of the container
-    {
-        container.hide();
-    }
-            */
+            var container = $(".search-input-filter-wrp.active"); // Give you class or ID
+
+            if (!container.is(e.target) &&            // If the target of the click is not the desired div or section
+                container.has(e.target).length === 0) // ... nor a descendant-child of the container
+            {
+                container.removeClass('active');
+            }
         }
     });
     $(document).on('touchend', function (e) {
@@ -2347,7 +2344,7 @@ $(document).ready(function () {
                 ToggleMainNav();
             }
         } else if (e.keyCode == 13) { //Enter button
-            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
+            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();
