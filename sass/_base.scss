@@ -2,11 +2,10 @@
 
 $bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
-$in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+$in-out-cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
 $in-cubic:cubic-bezier(0.55, 0.06, 0.68, 0.19);
 $out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 $out-quadratic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
 /*Main Colors*/
 
 $header-footer-primary-background-color:#131313;
@@ -19,9 +18,7 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 $success:#5cb85c;
 $danger:#d9534f;
-
 /*Category Colors*/
-
 
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
 "tourism" desaturate(lighten(#00a79d, 10%), 30%),
@@ -47,7 +44,6 @@ $colorList: "nightlife" #f90000,
 "logo-pink" #db2b4a,
 "logo-yellow" #f3a41e,
 "logo-green" #5daa46;
-
 /*Mixins*/
 
 @mixin apply-color($prop, $color) {
@@ -306,7 +302,6 @@ $colorList: "nightlife" #f90000,
     flex: $values;
 }
 
-
 /*Functions*/
 
 @each $i in $colorList {
@@ -337,7 +332,6 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-
 /*@function get-vw($value) {
     $vw-context: (1000 * .01) * 1px;
     @return ($value / $vw-context) * 1vw;
@@ -361,7 +355,6 @@ $colorList: "nightlife" #f90000,
     }
     @return $opposite-directions;
 }
-
 
 /*Fonts*/
 
@@ -414,9 +407,7 @@ body {
     }
 }
 
-
 /*Key Frames*/
-
 
 /*Pop elements in*/
 
@@ -432,7 +423,6 @@ body {
     }
 }
 
-
 /*Pop elements out*/
 
 @include key-frame(pop-out) {
@@ -446,7 +436,6 @@ body {
         transform: scale(0);
     }
 }
-
 
 /*Loader effect*/
 
@@ -537,7 +526,6 @@ body {
         0))
     }
 }
-
 
 /*Icons*/
 
@@ -680,7 +668,6 @@ body {
 .icon-pen:before {
     content: "\e91c";
 }
-
 
 /*General Declarations*/
 
@@ -1698,19 +1685,21 @@ input[type="radio"] {
     position: relative;
     overflow: hidden;
     .details-carousel-item-wrp {
+        display: none;
         position: absolute;
         overflow: hidden;
         width: 100%;
         height: 100%;
-        top:0;
+        top: 0;
         left: 0;
-        @include transition(left .3s .7s $in-cubic);
+        @include transform(translateX(0));
+        @include transition(transform .55s .5s);
         .details-carousel-img,
         .details-carousel-content {
+            position: relative;
+            left: 0;
             height: 100%;
             box-sizing: border-box;
-            float: left;
-            @include transition(all 1s $in-cubic);
         }
         .details-carousel-img {
             width: 75%;
@@ -1719,13 +1708,19 @@ input[type="radio"] {
             }
         }
         .details-carousel-content {
-            position: relative;
+            position: absolute;
+            top:0;
+            left: 75%;;
             overflow: hidden;
-            width: 25%;
+            width: 125%;
             padding: 15px;
+            padding-right: calc(100% + 15px);
+            border-left: 10px solid;
+            @include transition(left .5s $in-out-cubic);
             @include media("(min-width: 1200px)") {
                 border-width: get-vw(10px);
                 padding: get-vw(15px);
+                padding-right: calc(100% + 1.25vw);
             }
             div {
                 p {
@@ -1736,63 +1731,68 @@ input[type="radio"] {
                 }
             }
         }
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 75%;
-            height: 100%;
-            width: 25%;
-        }
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 75%;
-            height: 100%;
-            width: 5px;
-            visibility: visible;
-            @include transition(all 1.1s $in-cubic);
-        }
         &.leaving-left {
-            z-index: 5;
-            left:-25%;
-            .details-carousel-img{
-                width: 0;
-            }
-            .details-carousel-content{
-                &::before{
-                    z-index: 6;
-                    width: 0;
-                }
-            }
-            &::before {
-                @include animation(details-carousel-leave-left 1.1s $in-cubic forwards);
-            }
-            &::after{
-                left:-5px;
+            z-index: 9;
+            @include transform(translateX(-100%));
+            .details-carousel-content {
+                left: -25%;
             }
         }
     }
-}
-
-@include key-frame(details-carousel-leave-left) {
-    0% {
-        width: 25%;
-    }
-    50% {
+    .details-carousel-nav {
+        z-index: 10;
+        position: absolute;
+        text-align: center;
+        bottom: 0;
+        left: 0;
         width: 100%;
-        left: 0;
+        .details-carousel-dot {
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 100%;
+            cursor: pointer;
+            background: #fff;
+            width: 10px;
+            height: 10px;
+            margin: 10px;
+            @include transition(all .075s .075s);
+            @include box-shadow(1px 1px 1px #131313);
+            @include media("(min-width: 1200px)") {
+                width: get-vw(10px);
+                height: get-vw(10px);
+                margin: get-vw(10px);
+            }
+            &:hover{
+                @include transition(all .15s);
+            }
+        }
     }
-    100% {
-        left: 0;
-        width: 0%;
-        padding-left: 0;
-        padding-right: 0;
-        border-width: 0;
+    .details-carousel-controls{
+        z-index: 10;
+        position: absolute;
+        cursor: pointer;
+        top:50%;
+        padding: 15px;
+        font-size:4rem;
+        opacity: .7;
+        background: transparent;
+        color: #000;
+        @include transition(all .3s);
+        @include transform(translateY(-50%));
+        &:hover{
+            opacity:1;
+        }
+        &.details-carousel-next{
+            right:10px
+        }
+        &.details-carousel-prev{
+            left: 10px;
+        }
+        i{
+            vertical-align: middle;
+        }
     }
 }
-
 
 /*Loader*/
 
@@ -1919,7 +1919,6 @@ input[type="radio"] {
         }
     }
 }
-
 
 /*Popup Base*/
 
@@ -2542,7 +2541,6 @@ input[type="radio"] {
     }
 }
 
-
 /*Header*/
 
 header,
@@ -2709,7 +2707,7 @@ header {
             .mobile-social-media {
                 a,
                 a:visited {
-                    font-size: 1.5rem!important;
+                    font-size: 1.5rem !important;
                     display: block;
                 }
             }
@@ -2741,14 +2739,14 @@ header {
                 box-sizing: border-box;
                 li {
                     display: inline-block;
-                    float: none!important;
+                    float: none !important;
                     a,
                     a:visited {
                         color: #131313;
                         background-color: #fff;
                         padding: 10px;
                         box-sizing: border-box;
-                        line-height: 1rem!important;
+                        line-height: 1rem !important;
                         margin: 0 10px;
                         border-radius: 100%;
                     }
@@ -3126,7 +3124,6 @@ header {
     }
 }
 
-
 /*Main*/
 
 main {
@@ -3349,7 +3346,6 @@ main {
     }
 }
 
-
 /*Footer*/
 
 footer {
@@ -3550,7 +3546,7 @@ footer {
             float: none;
             width: 100%;
             margin: 0;
-            border-radius:40px;
+            border-radius: 40px;
             &:nth-child(1n+2) {
                 margin-top: 10px;
             }

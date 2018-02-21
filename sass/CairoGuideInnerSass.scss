@@ -498,8 +498,8 @@ Contains all styles of inner pages
                     line-height: get-vw(335px);
                 }
                 @include media("(max-width: 640px)") {
-                    width:90%;
-                    overflow:hidden;
+                    width: 90%;
+                    overflow: hidden;
                 }
             }
         }
@@ -1441,7 +1441,7 @@ Contains all styles of inner pages
                     height: get-vw(430px);
                 }
                 @include media("(max-width: 768px)") {
-                    height:250px;
+                    height: 250px;
                 }
                 img {
                     position: relative;
@@ -1459,7 +1459,7 @@ Contains all styles of inner pages
                     height: 0;
                     z-index: 20;
                     @include media("(max-width: 768px)") {
-                        display:none;
+                        display: none;
                     }
                     a,
                     a:visited {
@@ -2575,14 +2575,22 @@ Contains all styles of inner pages
                     margin: 0 get-vw(-30px);
                 }
                 .details-carousel-item-wrp {
-                    &::before{
-                        background: #131313;
-                    }
-                    &::after{
-                        background: #f3a41e;
-                    }
                     .details-carousel-content {
                         color: #fff;
+                        border-color: #f3a41e;
+                        background: #131313;
+                    }
+                }
+                .details-carousel-dot {
+                    &:hover,
+                    &.active {
+                        background: #f3a41e;
+                    }
+                }
+                .details-carousel-controls {
+                    &:hover {
+                        background: #131313;
+                        color: #f3a41e
                     }
                 }
             }

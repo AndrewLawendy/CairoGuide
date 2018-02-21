@@ -1691,7 +1691,7 @@ main {
             overflow: visible !important;
             position: absolute;
             z-index: 3;
-            @include transition(all .5s $in-out);
+            @include transition(all .5s $in-out-cubic);
             @include media("(min-width: 1200px)") {
                 width: get-vw(100px);
                 height: get-vw(15px);
