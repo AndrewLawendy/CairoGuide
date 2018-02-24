@@ -2574,6 +2574,9 @@ Contains all styles of inner pages
                     height: get-vw(335px);
                     margin: 0 get-vw(-30px);
                 }
+                @include media("(max-width: 640px)") {
+                    height: 90vh;
+                }
                 .details-carousel-item-wrp {
                     .details-carousel-content {
                         color: #fff;

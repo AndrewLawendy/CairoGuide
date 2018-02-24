@@ -746,7 +746,10 @@ var isOpen = function () {
             to = convertTo_24($(this).find('.hour .to').text());
         oppeningHours.push(getTimeValue(dayIndex, from, to));
     });
-    var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    // var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    var ifOpen = oppeningHours.filter(function (v) {
+        return timeString > v[0] && timeString < v[1];
+    });
     if (ifOpen.length) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
@@ -2057,27 +2060,27 @@ $(document).ready(function () {
     //Start of Comment Section
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
-        var owlRatings = [{
-                src: 'bad-owl.svg',
-                title: 'Bad'
-            },
-            {
-                src: 'ihateit-owl.svg',
-                title: 'I hate it'
-            },
-            {
-                src: 'ok-owl.svg',
-                title: 'OK'
-            },
-            {
-                src: 'iloveit-owl.svg',
-                title: 'I love it'
-            },
-            {
-                src: 'wow-owl.svg',
-                title: 'Wow'
-            }
-        ]
+        // var owlRatings = [{
+        //         src: 'bad-owl.svg',
+        //         title: 'Bad'
+        //     },
+        //     {
+        //         src: 'ihateit-owl.svg',
+        //         title: 'I hate it'
+        //     },
+        //     {
+        //         src: 'ok-owl.svg',
+        //         title: 'OK'
+        //     },
+        //     {
+        //         src: 'iloveit-owl.svg',
+        //         title: 'I love it'
+        //     },
+        //     {
+        //         src: 'wow-owl.svg',
+        //         title: 'Wow'
+        //     }
+        // ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
             $(this).prevAll().addClass('selected');
@@ -2099,15 +2102,15 @@ $(document).ready(function () {
             }
         });
 
-        $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
-            var ratingValue = parseInt($(this).data('rating') / 20);
-            ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
-            $(this).find('img').attr({
-                'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
-                'title': owlRatings[ratingValue].title
-            })
-            $(this).find('span').text(owlRatings[ratingValue].title);
-        })
+        // $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
+        //     var ratingValue = parseInt($(this).data('rating') / 20);
+        //     ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
+        //     $(this).find('img').attr({
+        //         'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
+        //         'title': owlRatings[ratingValue].title
+        //     })
+        //     $(this).find('span').text(owlRatings[ratingValue].title);
+        // })
 
         $('.multilanguage').on('keyup paste', function () {
             var val = $(this).val();

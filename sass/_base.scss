@@ -1709,8 +1709,9 @@ input[type="radio"] {
         }
         .details-carousel-content {
             position: absolute;
-            top:0;
-            left: 75%;;
+            top: 0;
+            left: 75%;
+            ;
             overflow: hidden;
             width: 125%;
             padding: 15px;
@@ -1762,33 +1763,33 @@ input[type="radio"] {
                 height: get-vw(10px);
                 margin: get-vw(10px);
             }
-            &:hover{
+            &:hover {
                 @include transition(all .15s);
             }
         }
     }
-    .details-carousel-controls{
+    .details-carousel-controls {
         z-index: 10;
         position: absolute;
         cursor: pointer;
-        top:50%;
+        top: 50%;
         padding: 15px;
-        font-size:4rem;
+        font-size: 4rem;
         opacity: .7;
         background: transparent;
         color: #000;
         @include transition(all .3s);
         @include transform(translateY(-50%));
-        &:hover{
-            opacity:1;
+        &:hover {
+            opacity: 1;
         }
-        &.details-carousel-next{
-            right:10px
+        &.details-carousel-next {
+            right: 10px
         }
-        &.details-carousel-prev{
+        &.details-carousel-prev {
             left: 10px;
         }
-        i{
+        i {
             vertical-align: middle;
         }
     }
@@ -3510,6 +3511,18 @@ footer {
                 }
             }
         }
+    } //Details-Carousel
+    .details-carousel {
+        .details-carousel-item-wrp {
+            .details-carousel-img {
+                width: 60%;
+            }
+            .details-carousel-content {
+                left: 60%;
+                width: 140%;
+                padding-right: calc(100% + 30px);
+            }
+        }
     }
     /*sticky-header*/
     main {
@@ -3549,6 +3562,26 @@ footer {
             border-radius: 40px;
             &:nth-child(1n+2) {
                 margin-top: 10px;
+            }
+        }
+    }
+    .details-carousel {
+        .details-carousel-item-wrp {
+            .details-carousel-img {
+                width: 100%;
+                height: 335px;
+            }
+            .details-carousel-content {
+                left: 0;
+                width: 100%;
+                padding: 15px;
+                position: relative;
+            }
+            &.leaving-left {
+                @include transition-delay(0s);
+                .details-carousel-content {
+                    left: 0;
+                }
             }
         }
     }
