@@ -669,6 +669,26 @@ body {
     content: "\e91c";
 }
 
+.icon-smartphone:before {
+    content: "\e91d";
+  }
+
+  .icon-phone-call:before {
+    content: "\e91e";
+  }
+
+  .icon-message:before {
+    content: "\e91f";
+  }
+
+  .icon-fax:before {
+    content: "\e920";
+  }
+
+  .icon-smartphone-filled:before {
+    content: "\e921";
+  }
+
 /*General Declarations*/
 
 #hidden-title {
