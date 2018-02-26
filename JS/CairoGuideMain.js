@@ -729,6 +729,31 @@ var ifImagesExceeds = function (wrp) {
     }
 }
 
+//initTextScroll
+var initTextScroll = function () {
+    var distributeOpacity = function () {
+        $('.text-scroll .text-scroll-unit-content *').each(function () {
+            var docScroll = $(document).scrollTop(),
+                posTop = $(this).offset().top - docScroll,
+                startFadeIn = $(window).height() * .65,
+                startFadeOut = $(window).height() * .3,
+                newOpacity;
+            if (posTop < startFadeIn) {
+                if (posTop > startFadeOut) {
+                    newOpacity = 1;
+                } else {
+                    newOpacity = 1 - Math.abs(((posTop - startFadeOut) / 150));
+                }
+            }else{
+                newOpacity = 1 - Math.abs(((startFadeIn - posTop) / 150));
+            }
+            $(this).css('opacity',newOpacity)
+        });
+    }
+    distributeOpacity();
+    $(document).scroll(distributeOpacity);
+}
+
 //isOpen
 var isOpen = function () {
     var oppeningHours = [],
@@ -1435,6 +1460,9 @@ $(document).ready(function () {
     if ($('.general-rating-container').length) {
         ratingCircleResult();
     }
+
+    //Text Scroll
+    if ($('.text-scroll').length) initTextScroll();
 
     //Start of Trending
     if ($('.trend-item').length) {

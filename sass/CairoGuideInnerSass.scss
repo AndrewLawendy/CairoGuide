@@ -444,6 +444,11 @@ Contains all styles of inner pages
         }
     }
 
+    .attach-to-footer{
+        margin-bottom: -30px;
+        padding-bottom: 30px;
+    }
+
     /*Main*/
 
     main {
@@ -2342,12 +2347,8 @@ Contains all styles of inner pages
             }
         }
         /*About Page*/
-        .about-oli {
-            display: block;
-            width: 8%;
-            margin-right: auto;
-            margin-left: auto;
-            opacity: 0.7;
+        .about-boc {
+            background-image: url(../images/banners/about-banner.jpg)
         }
         /*Sitemap Page*/
         .sitemap-list-container {
@@ -2986,6 +2987,10 @@ Contains all styles of inner pages
     }
 
     @include media("(min-width: 1200px)") {
+        .attach-to-footer {
+            margin-bottom: get-vw(-30px);
+            padding-bottom: get-vw(30px);
+        }
         main {
             #calendar-wrp {
                 .calendar-day-events-wrp {
