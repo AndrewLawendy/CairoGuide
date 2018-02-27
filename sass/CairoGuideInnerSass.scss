@@ -2396,6 +2396,16 @@ Contains all styles of inner pages
                     &:nth-of-type(9n+4),&:nth-of-type(9n+5) {
                         @include transition-delay(.45s)
                     }
+                    @include media("(max-width: 768px)"){
+                        &:nth-of-type(9n+2),&:nth-of-type(9n+7),&:nth-of-type(9n+3),&:nth-of-type(9n+6),&:nth-of-type(9n+4),&:nth-of-type(9n+5),&:nth-of-type(7n+2),&:nth-of-type(7n+6),&:nth-of-type(7n+3),&:nth-of-type(7n+5) {
+                            @include transition-delay(0s)
+                        }
+                    }
+                    @include media("(max-width: 640px)"){
+                        &{
+                            @include transition-delay(0s);
+                        }
+                    }
                     .image-holder{
                         position: relative;
                         width: 100%;
