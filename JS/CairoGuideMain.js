@@ -40,6 +40,41 @@ var rippleEffect = function (e, _this) {
     }, 800);
 }
 
+//initTypewriter
+var initTypewriter = function () {
+    $('[data-typewriter]').each(function () {
+        var data = $(this).data('typewriter').split(';'),
+            _this = $(this);
+        updateChar = function (str, timeOut) {
+            setTimeout(function () {
+                _this.text(str);
+            }, timeOut)
+        }
+        loopingData = function (data) {
+            var timeOut = 100;
+            for (var i = 0; i < data.length; i++) {
+                for (var j = 1; j <= data[i].length; j++) {
+                    var newStr = data[i].slice(0, j);
+                    updateChar(newStr, timeOut);
+                    timeOut += 100;
+                }
+                timeOut += 1000;
+                for (var e = data[i].length; e >= 0; e--) {
+                    var newStr = data[i].slice(0, e);
+                    updateChar(newStr, timeOut);
+                    timeOut += 75;
+                }
+                timeOut += 150;
+            }
+            timeOut += 150;
+            setTimeout(function () {
+                loopingData(data);
+            }, timeOut);
+        }
+        loopingData(data);
+    });
+}
+
 //Calculate last screen size
 var CalcLastScreenSize = function (screenSize) {
     if ($(document).width() > 768) {
@@ -744,10 +779,10 @@ var initTextScroll = function () {
                 } else {
                     newOpacity = 1 - Math.abs(((posTop - startFadeOut) / 150));
                 }
-            }else{
+            } else {
                 newOpacity = 1 - Math.abs(((startFadeIn - posTop) / 150));
             }
-            $(this).css('opacity',newOpacity)
+            $(this).css('opacity', newOpacity)
         });
     }
     distributeOpacity();
@@ -1460,6 +1495,9 @@ $(document).ready(function () {
     if ($('.general-rating-container').length) {
         ratingCircleResult();
     }
+
+    //initTypewriter
+    if ($('[data-typewriter]').length) initTypewriter();
 
     //Text Scroll
     if ($('.text-scroll').length) initTextScroll();
