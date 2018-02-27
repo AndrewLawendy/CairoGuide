@@ -1396,6 +1396,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(10px);
                     }
+                    @include media("(max-width: 768px)") {
+                        margin-bottom: 10px;
+                    }
                 }
                 a {
                     @include link-hover();
@@ -1623,11 +1626,10 @@ Contains all styles of inner pages
                                 width: get-vw(44px);
                                 height: get-vw(44px);
                             }
-                            svg,
-                            img {
+                            * {
                                 width: 100%;
                                 height: 100%;
-                                fill: #fff;
+                                fill: #fff!important;
                             }
                         }
                     }
@@ -1808,8 +1810,8 @@ Contains all styles of inner pages
                 background: #fff;
                 padding: 10px;
                 box-sizing: border-box;
-                font: 1.2rem 'Lato-Black';
-                line-height: 1em;
+                font: 20px 'Lato-Black';
+                line-height: 20px;
                 height: 35px;
                 border: 1px solid transparent;
                 bottom: -15px;

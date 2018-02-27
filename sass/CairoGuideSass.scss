@@ -285,18 +285,27 @@ main {
                 min-height: 50%;
                 width: 50%;
                 float: left !important;
+                border-bottom:5px solid #fff;
             }
             @include media("(max-width: 640px)") {
                 height: auto;
                 min-height: auto;
                 width: 100%;
                 float: none !important;
+                border:0;
             }
             .trend-item,
             .ad-item {
+                border-right:5px solid #fff;
+                border-bottom:5px solid #fff;
+                @include media("(min-width: 1200px)") {
+                    border-right-width:get-vw(5px);
+                    border-bottom-width:get-vw(5px);
+                }
                 @include media("(max-width: 640px)") {
                     margin-bottom: 15px;
                     height: 50vw !important;
+                    border:0;
                 }
             }
             .trend-item img,
