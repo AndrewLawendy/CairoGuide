@@ -764,10 +764,27 @@ var ifImagesExceeds = function (wrp) {
     }
 }
 
+//showOnScroll
+var showOnScroll = function () {
+    var checkPos = function(){
+        $('.show-onscroll').each(function () {
+            if($(this).hasClass('active')) return;
+            var docScroll = $(document).scrollTop(),
+                posTop = $(this).offset().top - docScroll,
+                startFadeIn = $(window).height() * .9;
+                if (posTop < startFadeIn) {
+                    $(this).addClass('active');
+                }
+        });
+    }
+    checkPos();
+    $(document).scroll(checkPos);
+}
+
 //initTextScroll
 var initTextScroll = function () {
     var distributeOpacity = function () {
-        $('.text-scroll .text-scroll-unit-content *').each(function () {
+        $('.text-scroll .text-scroll-unit-content>*').each(function () {
             var docScroll = $(document).scrollTop(),
                 posTop = $(this).offset().top - docScroll,
                 startFadeIn = $(window).height() * .65,
@@ -1403,14 +1420,12 @@ $(document).ready(function () {
     }
 
     //Details Carousel
-    if ($('.details-carousel').length) {
-        detailsCarousel();
-    }
+    if ($('.details-carousel').length) detailsCarousel();
 
     //Header
     var header = $('header'),
-        breakPos = header.height();
-    var scrollPos = $(this).scrollTop();
+        breakPos = header.height(),
+        scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     ManipulateMainNav();
     if ($('.burger-menu-btn-wrapper').length) {
@@ -1484,17 +1499,14 @@ $(document).ready(function () {
 
     FixHeaderMenusPosition();
 
-    if ($('.facilities-wrp').length) {
-        getSvg('.facility-unit');
-    }
+    if ($('.facilities-wrp').length) getSvg('.facility-unit');
 
-    if ($('.opening-hours-container').length) {
-        isOpen();
-    }
+    if ($('.opening-hours-container').length) isOpen();
 
-    if ($('.general-rating-container').length) {
-        ratingCircleResult();
-    }
+    if ($('.general-rating-container').length) ratingCircleResult();
+
+    // showOnScroll
+    if($('.show-onscroll').length) showOnScroll();
 
     //initTypewriter
     if ($('[data-typewriter]').length) initTypewriter();
@@ -2105,9 +2117,7 @@ $(document).ready(function () {
     //End of Advanced Search
 
     //Item Details Gallery Functions
-    if ($('#item-gallery-init').length) {
-        InitDetailsGallerySlider();
-    }
+    if ($('#item-gallery-init').length) InitDetailsGallerySlider();
 
     //Tabs component
     if ($('.tabs-global-container ul.tabs-items li').length > 1) {
@@ -2225,9 +2235,7 @@ $(document).ready(function () {
     //End of Comment Section
 
     //Sitemap
-    if ($('.sitemap-list-wrp').length) {
-        ArrangeSitemap(4);
-    }
+    if ($('.sitemap-list-wrp').length) ArrangeSitemap(4);
 
     //Start of Register from
     if ($('.login-register-container').length) {
