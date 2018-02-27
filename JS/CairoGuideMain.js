@@ -771,7 +771,7 @@ var showOnScroll = function () {
             if($(this).hasClass('active')) return;
             var docScroll = $(document).scrollTop(),
                 posTop = $(this).offset().top - docScroll,
-                startFadeIn = $(window).height() * .9;
+                startFadeIn = $(window).height() * .6;
                 if (posTop < startFadeIn) {
                     $(this).addClass('active');
                 }

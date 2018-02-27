@@ -2372,7 +2372,7 @@ Contains all styles of inner pages
                     border: 15px solid #fff;
                     background: #131313;
                     opacity: 0;
-                    @include transform(translateY(25%));
+                    @include transform(translateY(10%));
                     @include transition(all .3s ease-out);
                     @include media("(min-width: 1200px)"){
                         border-width: get-vw(15px);
