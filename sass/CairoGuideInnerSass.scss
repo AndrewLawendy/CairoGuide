@@ -444,9 +444,18 @@ Contains all styles of inner pages
         }
     }
 
+    .attach-to-footer{
+        margin-bottom: -30px;
+        padding-bottom: 30px;
+    }
+
     /*Main*/
 
     main {
+        #contact-us-map{
+            height:500px;
+            width:100%;
+        }
         .category-banner {
             width: 100%;
             height: 335px;
@@ -476,11 +485,11 @@ Contains all styles of inner pages
                 margin-bottom: get-vw(30px);
             }
             @include media("(max-width: 768px)") {
-                height: 175px;
+                height: 275px;
             }
-            @include media("(max-width: 640px)") {
+            /*@include media("(max-width: 640px)") {
                 height: 125px;
-            }
+            }*/
             &.details-banner:before {
                 display: none;
             }
@@ -496,6 +505,10 @@ Contains all styles of inner pages
                 z-index: 10;
                 @include media("(min-width: 1200px)") {
                     line-height: get-vw(335px);
+                }
+                @include media("(max-width: 640px)") {
+                    width: 90%;
+                    overflow: hidden;
                 }
             }
         }
@@ -1383,6 +1396,9 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         margin-right: get-vw(10px);
                     }
+                    @include media("(max-width: 768px)") {
+                        margin-bottom: 10px;
+                    }
                 }
                 a {
                     @include link-hover();
@@ -1416,10 +1432,13 @@ Contains all styles of inner pages
             }
         }
         .gallery-section-container {
-            $main-slide-wrp-height: 430px;
+            /*$main-slide-wrp-height: 430px;
             @include media("(min-width: 1200px)") {
                 $main-slide-wrp-height: get-vw(430px);
             }
+            @include media("(max-width: 768px)") {
+                $main-slide-wrp-height:200px;
+            }*/
             .main-slide-wrp,
             .side-slides-wrp {
                 img {
@@ -1428,8 +1447,14 @@ Contains all styles of inner pages
                 }
             }
             .main-slide-wrp {
-                height: $main-slide-wrp-height;
+                height: 430px;
                 position: relative;
+                @include media("(min-width: 1200px)") {
+                    height: get-vw(430px);
+                }
+                @include media("(max-width: 768px)") {
+                    height: 250px;
+                }
                 img {
                     position: relative;
                     z-index: 10;
@@ -1445,6 +1470,9 @@ Contains all styles of inner pages
                     /*@include transform(translateY(-50%));*/
                     height: 0;
                     z-index: 20;
+                    @include media("(max-width: 768px)") {
+                        display: none;
+                    }
                     a,
                     a:visited {
                         color: #fff;
@@ -1480,12 +1508,13 @@ Contains all styles of inner pages
                     margin-top: 6px;
                 }
                 .side-slide-item {
-                    height: $main-slide-wrp-height / 3;
+                    height: calc(430px / 3);
                     padding: 7px 0;
                     box-sizing: border-box;
                     cursor: pointer;
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(7px) 0;
+                        height: get-vw(430px) / 3;
                     }
                     @include media("(max-width: 768px)") {
                         $side-slide-item-width: calc(((100vw - 30px) / 3) - 10px);
@@ -1597,11 +1626,10 @@ Contains all styles of inner pages
                                 width: get-vw(44px);
                                 height: get-vw(44px);
                             }
-                            svg,
-                            img {
+                            * {
                                 width: 100%;
                                 height: 100%;
-                                fill: #fff;
+                                fill: #fff!important;
                             }
                         }
                     }
@@ -1782,8 +1810,8 @@ Contains all styles of inner pages
                 background: #fff;
                 padding: 10px;
                 box-sizing: border-box;
-                font: 1.2rem 'Lato-Black';
-                line-height: 1em;
+                font: 20px 'Lato-Black';
+                line-height: 20px;
                 height: 35px;
                 border: 1px solid transparent;
                 bottom: -15px;
@@ -2325,12 +2353,78 @@ Contains all styles of inner pages
             }
         }
         /*About Page*/
-        .about-oli {
-            display: block;
-            width: 8%;
-            margin-right: auto;
-            margin-left: auto;
-            opacity: 0.7;
+        .about-boc {
+            background-image: url(../images/banners/about-banner.jpg);
+            min-height: 80vh;
+        }
+        .about-boc-team{
+            .boc-team-members{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin: 0 -15px;
+                @include media("(min-width: 1200px)"){
+                    margin: 0 get-vw(-15px);
+                }
+                .team-member {
+                    flex: 0 0 25%;
+                    box-sizing: border-box;
+                    border: 15px solid #fff;
+                    background: #131313;
+                    opacity: 0;
+                    @include transform(translateY(25%));
+                    @include transition(all .3s ease-out);
+                    @include media("(min-width: 1200px)"){
+                        border-width: get-vw(15px);
+                    }
+                    @include media("(max-width: 768px)") {
+                        flex-basis: 33.33%;
+                    }
+                    @include media("(max-width: 640px)") {
+                        flex-basis: 100%;
+                    }
+                    &.active{
+                        opacity: 1;
+                        @include transform(none);
+                    }
+                    &:nth-of-type(9n+2),&:nth-of-type(9n+7) {
+                        @include transition-delay(.15s)
+                    }
+                    &:nth-of-type(9n+3),&:nth-of-type(9n+6) {
+                        @include transition-delay(.3s)
+                    }
+                    &:nth-of-type(9n+4),&:nth-of-type(9n+5) {
+                        @include transition-delay(.45s)
+                    }
+                    .image-holder{
+                        position: relative;
+                        width: 100%;
+                        height: 0;
+                        padding-bottom: 100%;
+                        img{
+                            position: absolute;
+                            top:0;
+                            left: 0;
+                            @include object-fit-img();
+                        }
+                    }
+                    .member-details{
+                        background: #131313;
+                        color: #fff;
+                        text-align: center;
+                        padding: 10px;
+                        @include media("(min-width: 1200px)"){
+                            padding: get-vw(10px);
+                        }
+                        p{
+                            color: #ccc;
+                            &:last-of-type{
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
         }
         /*Sitemap Page*/
         .sitemap-list-container {
@@ -2557,11 +2651,26 @@ Contains all styles of inner pages
                     height: get-vw(335px);
                     margin: 0 get-vw(-30px);
                 }
+                @include media("(max-width: 640px)") {
+                    height: 90vh;
+                }
                 .details-carousel-item-wrp {
                     .details-carousel-content {
+                        color: #fff;
                         border-color: #f3a41e;
                         background: #131313;
-                        color: #fff;
+                    }
+                }
+                .details-carousel-dot {
+                    &:hover,
+                    &.active {
+                        background: #f3a41e;
+                    }
+                }
+                .details-carousel-controls {
+                    &:hover {
+                        background: #131313;
+                        color: #f3a41e
                     }
                 }
             }
@@ -2933,6 +3042,46 @@ Contains all styles of inner pages
                 }
             }
         }
+        /*Contact us*/
+        .contact-info-wrapper{
+            .contact-info-item{
+                float:left;
+                width:25%;
+                padding:30px;
+                box-sizing:border-box;
+                text-align:center;
+                @include media("(min-width: 1200px)") {
+                    padding:get-vw(30px);
+                }
+                @include media("(max-width: 768px)") {
+                    width:50%;
+                }
+                @include media("(max-width: 640px)") {
+                    width:100%;
+                    float:none;
+                }
+                i{
+                    display:block;
+                    width:100px;
+                    height:100px;
+                    border-radius:100%;
+                    line-height:100px;
+                    background-color:#131313;
+                    margin:0 auto 30px;
+                    color:#fff;
+                    font-size:2.5rem;
+                    @include media("(min-width: 1200px)") {
+                        width:get-vw(100px);
+                        height:get-vw(100px);
+                        line-height:get-vw(100px);
+                        margin-bottom:get-vw(30px);
+                    }
+                }
+                span{
+                    font-family:'Lato-Black';
+                }
+            }
+        }
     }
 
     @include key-frame(event-detail-entering) {
@@ -2954,6 +3103,10 @@ Contains all styles of inner pages
     }
 
     @include media("(min-width: 1200px)") {
+        .attach-to-footer {
+            margin-bottom: get-vw(-30px);
+            padding-bottom: get-vw(30px);
+        }
         main {
             #calendar-wrp {
                 .calendar-day-events-wrp {

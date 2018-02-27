@@ -40,6 +40,41 @@ var rippleEffect = function (e, _this) {
     }, 800);
 }
 
+//initTypewriter
+var initTypewriter = function () {
+    $('[data-typewriter]').each(function () {
+        var data = $(this).data('typewriter').split(';'),
+            _this = $(this);
+        updateChar = function (str, timeOut) {
+            setTimeout(function () {
+                _this.text(str);
+            }, timeOut)
+        }
+        loopingData = function (data) {
+            var timeOut = 100;
+            for (var i = 0; i < data.length; i++) {
+                for (var j = 1; j <= data[i].length; j++) {
+                    var newStr = data[i].slice(0, j);
+                    updateChar(newStr, timeOut);
+                    timeOut += 100;
+                }
+                timeOut += 1000;
+                for (var e = data[i].length; e >= 0; e--) {
+                    var newStr = data[i].slice(0, e);
+                    updateChar(newStr, timeOut);
+                    timeOut += 75;
+                }
+                timeOut += 150;
+            }
+            timeOut += 150;
+            setTimeout(function () {
+                loopingData(data);
+            }, timeOut);
+        }
+        loopingData(data);
+    });
+}
+
 //Calculate last screen size
 var CalcLastScreenSize = function (screenSize) {
     if ($(document).width() > 768) {
@@ -331,8 +366,9 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         $('.article-with-bg  section').css('bottom', newTop);
     } else if ($('#calendar-carousel').length) {
         var carouselBodyHeight = $('.details-carousel').height(),
-            newTopValue = (scrollPos - breakPos) / 3.5;
-        if (scrollPos >= Math.floor(breakPos)) {
+            carouselOffsetTop = $('.details-carousel').offset().top * .75,
+            newTopValue = (scrollPos - carouselOffsetTop) / 3.5;
+        if (scrollPos >= Math.floor(carouselOffsetTop)) {
             if (newTopValue <= carouselBodyHeight) {
                 $('.details-carousel .details-carousel-item-wrp').css('top', newTopValue);
             }
@@ -440,8 +476,6 @@ var checkMonthBefore = function (dateObj) {
 
 var checkYearRangeBefore = function (year) {
     var yearIndex = yearsCreated.indexOf(year),
-        // thisYear = $('#calendar-wrp').data('currentDate')[2],
-        // startFrom = thisYear - (thisYear % 12),
         startFrom = year - (year % 12),
         endAt = startFrom + 11,
         choosenYear;
@@ -455,10 +489,12 @@ var checkYearRangeBefore = function (year) {
                 choosenYear = $('.years-range-wrp').filter(function () {
                     return $(this).data('startFrom') == yearAfter[0];
                 });
-                return [startFrom, endAt, true, choosenYear];
+                var yearDivPosLeft = choosenYear.position().left,
+                    isPrev = yearDivPosLeft < $('.calendar-years-view-wrp').width() ? true : false;
+                return [startFrom, endAt, isPrev, choosenYear];
             }
             choosenYear = $('.years-range-wrp').filter(function () {
-                return $(this).data('startFrom') == yearAfter[0];
+                return $(this).data('endAt') == yearAfter[0];
             });
         } else {
             return [startFrom, endAt, false]
@@ -479,7 +515,8 @@ var checkYearRangeBefore = function (year) {
 var setMonth = function (e, date) {
     var month = $(this).index(),
         year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
-        dateObj = new Date(year, month);
+        dateObj = new Date(year, month),
+        currentDay = $('#calendar-wrp').data('currentDate')[0];
     if (date != undefined) dateObj = date;
     var checkMonth = checkMonthBefore(dateObj);
     if (checkMonth != false)
@@ -494,6 +531,8 @@ var setMonth = function (e, date) {
         }
     })
     $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
+    $('.calendar-month-wrp .day').removeClass('active');
+    $('.calendar-month-wrp .day:contains(' + currentDay + ')').addClass('active');
     setTimeout(function () {
         $('.calendar-head-body').removeClass('leaving');
     }, 300);
@@ -580,7 +619,7 @@ var updateCalControls = function (year) {
 
 var generateYearsView = function (startFrom, endAt, yearPrev, insertBefore) {
     var yearsRangeWrp = $('<div class="years-range-wrp"></div>');
-    yearPrev ? yearsRangeWrp.insertBefore(insertBefore) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
+    insertBefore != undefined ? yearsRangeWrp.insertBefore(insertBefore) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
     for (var i = startFrom; i <= endAt; i++) {
         yearsRangeWrp.append('<div class="calendar-unit year">\n<div>' + i + '</div>\n</div>');
     }
@@ -660,13 +699,14 @@ var setCalendarDate = function () {
     $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
     _this.addClass('active');
     $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
-    $('h3.calendar-today .calendar-month-day').stop().animate({
+    $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
         opacity: 0
     }, {
         duration: 150,
         complete: function () {
             $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
-            $('h3.calendar-today .calendar-month-day').animate({
+            $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
+            $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
                 opacity: 1
             }, {
                 duration: 150
@@ -724,6 +764,48 @@ var ifImagesExceeds = function (wrp) {
     }
 }
 
+//showOnScroll
+var showOnScroll = function () {
+    var checkPos = function(){
+        $('.show-onscroll').each(function () {
+            if($(this).hasClass('active')) return;
+            var docScroll = $(document).scrollTop(),
+                posTop = $(this).offset().top - docScroll,
+                startFadeIn = $(window).height() * .9;
+                if (posTop < startFadeIn) {
+                    $(this).addClass('active');
+                }
+        });
+    }
+    checkPos();
+    $(document).scroll(checkPos);
+}
+
+//initTextScroll
+var initTextScroll = function () {
+    var distributeOpacity = function () {
+        $('.text-scroll .text-scroll-unit-content>*').each(function () {
+            var docScroll = $(document).scrollTop(),
+                posTop = $(this).offset().top - docScroll,
+                startFadeIn = $(window).height() * .65,
+                startFadeOut = $(window).height() * .3,
+                newOpacity;
+            if (posTop < startFadeIn) {
+                if (posTop > startFadeOut) {
+                    newOpacity = 1;
+                } else {
+                    newOpacity = 1 - Math.abs(((posTop - startFadeOut) / 150));
+                }
+            } else {
+                newOpacity = 1 - Math.abs(((startFadeIn - posTop) / 150));
+            }
+            $(this).css('opacity', newOpacity)
+        });
+    }
+    distributeOpacity();
+    $(document).scroll(distributeOpacity);
+}
+
 //isOpen
 var isOpen = function () {
     var oppeningHours = [],
@@ -741,7 +823,10 @@ var isOpen = function () {
             to = convertTo_24($(this).find('.hour .to').text());
         oppeningHours.push(getTimeValue(dayIndex, from, to));
     });
-    var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    // var ifOpen = oppeningHours.filter(v => timeString > v[0] && timeString < v[1]);
+    var ifOpen = oppeningHours.filter(function (v) {
+        return timeString > v[0] && timeString < v[1];
+    });
     if (ifOpen.length) {
         $('.opening-hours-container .icon-opening-hours').removeClass('closed').addClass('opened');
         $('.opening-hours-container .open-status').text('Open now');
@@ -1022,12 +1107,8 @@ var DrawPopupGallery = function (galleryList, activeImgIndex) {
 
 //Initialize popup gallery slider
 var InitPopupGallery = function () {
-    console.log('entered');
-    console.log('lastScreenSize: in initial : ' + lastScreenSize);
     if (lastScreenSize != newScreenSize) {
-        console.log('here');
         if (newScreenSize == 1) {
-            console.log('bigger');
             imgSmallSliderContainer.find('img').off().on('click', function () {
                 DisplayClickedPopupGalleryItem($(this).attr('popup-slide-data-index'));
             });
@@ -1039,13 +1120,11 @@ var InitPopupGallery = function () {
             });
             $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
         } else {
-            console.log('smaller');
             imgSmallSliderContainer.find('img').off();
             $('#lightbox-popup').find('.slider-nav-next,.slider-nav-prev').off();
             $('.slider-count span').html(PopupGallerySlides.length + ' Photos');
         }
         lastScreenSize = CalcLastScreenSize(lastScreenSize);
-        console.log('lastScreenSize inside change : ' + lastScreenSize);
     }
 }
 
@@ -1093,7 +1172,11 @@ var DisplayClickedPopupGalleryItem = function (imageIndex) {
             $(this).remove().dequeue();
         });
     });
-    $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
+    if (newScreenSize == 1) {
+        $('.slider-count span').html((parseInt(PopupImgToDisplayIndex) + 1) + ' / ' + PopupGallerySlides.length);
+    } else {
+        $('.slider-count span').html(PopupGallerySlides.length + ' Photos');
+    }
     setTimeout(function () {
         MoveMarker();
     }, 200);
@@ -1174,8 +1257,8 @@ var PopulatePopup = function (type, title) {
     $('#popup-base').addClass('popup-active ' + type + '-popup-active').find('.close-btn').addClass('init');
 }
 
-//searchAutocomplete
-var searchAutocomplete = function () {
+//Search Autocomplete
+var SearchAutocomplete = function () {
     if ($('#popup-base .autocomplete-keywords li').length && !$('#popup-base .autocomplete-keywords').hasClass('opened')) {
         $('#popup-base .autocomplete-keywords').addClass('opened').stop().slideDown('fast');
     } else if (!$('#popup-base .autocomplete-keywords li').length && $('#popup-base .autocomplete-keywords').hasClass('opened')) {
@@ -1208,6 +1291,26 @@ var searchAutocomplete = function () {
     }, {
         duration: 'fast'
     })
+}
+
+//Change selected category
+var ChangeSelectedCat = function (obj) {
+    $('.search-input-filter-wrp .search-filter-menu').find('li').removeClass('active');
+    var selectedCat = obj.closest('li').addClass('active').text().trim();
+    $('.search-filter-display').text(selectedCat);
+    $('.search-input-filter-wrp').removeClass('active');
+}
+
+//Category dropdown initiation
+var InitCatDropdown = function () {
+    if ($('.search-input-filter-wrp').length) {
+        $('.search-input-filter-wrp').find('.search-filter-display').off().on('click', function () {
+            $('.search-input-filter-wrp').toggleClass('active');
+        });
+        $('.search-input-filter-wrp .search-filter-menu').find('a').off().on('click', function () {
+            ChangeSelectedCat($(this));
+        });
+    }
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1244,6 +1347,65 @@ var ArrangeSitemap = function (columnsCount) {
         });
 }
 
+//---------------------------------------------------------------------------------------------------
+//initDetailsCarousel
+var detailsCarousel = function () {
+    var detailsNext = $('<div class="details-carousel-controls details-carousel-next"><i class="icon-right-chevron"></i></div>'),
+        detailsPrev = $('<div class="details-carousel-controls details-carousel-prev"><i class="icon-left-chevron"></i></div>'),
+        detailsNav = $('<div class="details-carousel-nav"></div>'),
+        detailsItemsLength = $('.details-carousel-item-wrp').length,
+        moving = false,
+        detailsCarouselAuto;
+    $('.details-carousel-item-wrp').first().show().addClass('active');
+    $('.details-carousel').append(detailsNext, detailsPrev, detailsNav);
+    for (var i = 0; i < detailsItemsLength; i++) {
+        detailsNav.append('<div class="details-carousel-dot"></div>');
+    }
+    $('.details-carousel-dot').first().addClass('active');
+
+    var setActiveItem = function (index) {
+        if (moving) return;
+        moving = true;
+        $('.details-carousel-item-wrp.active').removeClass('active').addClass('leaving-left').delay(1050).fadeOut(1, function () {
+            $(this).removeClass('leaving-left');
+            moving = false;
+        });
+        $('.details-carousel-item-wrp').eq(index).addClass('active').show();
+        $('.details-carousel-dot').removeClass('active');
+        $('.details-carousel-dot').eq(index).addClass('active');
+    }
+
+    $('.details-carousel-dot').on('click', function () {
+        var index = $(this).index();
+        if ($('.details-carousel-item-wrp.active').index() == index) return;
+        setActiveItem(index);
+    })
+
+    detailsNext.on('click', function () {
+        var index = $('.details-carousel-item-wrp.active').index() + 1;
+        if (index == detailsItemsLength) index = 0;
+        setActiveItem(index);
+    });
+
+    detailsPrev.on('click', function () {
+        var index = $('.details-carousel-item-wrp.active').index() - 1;
+        if (index == -1) index = detailsItemsLength - 1;
+        setActiveItem(index);
+    });
+
+    detailsCarouselAuto = setInterval(function () {
+        detailsNext.click();
+    }, 5000);
+    $('.details-carousel').on('mouseenter touchstart', function () {
+        clearInterval(detailsCarouselAuto);
+    });
+    $('.details-carousel').on('mouseleave touchend', function () {
+        detailsCarouselAuto = setInterval(function () {
+            detailsNext.click();
+        }, 5000);
+    });
+};
+
 var windowLoaded = false;
 //document ready
 $(document).ready(function () {
@@ -1257,10 +1419,13 @@ $(document).ready(function () {
         });
     }
 
+    //Details Carousel
+    if ($('.details-carousel').length) detailsCarousel();
+
     //Header
     var header = $('header'),
-        breakPos = header.height();
-    var scrollPos = $(this).scrollTop();
+        breakPos = header.height(),
+        scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
     ManipulateMainNav();
     if ($('.burger-menu-btn-wrapper').length) {
@@ -1293,17 +1458,18 @@ $(document).ready(function () {
     $('#popup-close-btn').on('click', function () {
         $('#popup-base').removeClass('popup-active search-popup-active').find('.close-btn').removeClass('init');
         $('#popup-base').find('.popup-body-container').fadeOut(0);
-        /*setTimeout(function () {
-            $('#popup-base').removeClass('popup-with-bg');
-        }, 1000);*/
+        if ($('.search-input-filter-wrp').length) {
+            $('.search-input-filter-wrp').removeClass('active');
+        }
         $('html,body').removeClass('popup-in-motion');
     });
 
-    $('#popup-base .search-input input').on('keyup', searchAutocomplete);
+    $('#popup-base .search-input input').on('keyup', SearchAutocomplete);
 
     $('#popup-base .search-input input').on('blur', function () {
         $('#popup-base .autocomplete-keywords').removeClass('opened').slideUp('fast');
     });
+    InitCatDropdown();
 
     if ($('#lightbox-popup').length) {
         $('#lightbox-popup .default-close-btn').off().on('click', function () {
@@ -1333,17 +1499,20 @@ $(document).ready(function () {
 
     FixHeaderMenusPosition();
 
-    if ($('.facilities-wrp').length) {
-        getSvg('.facility-unit');
-    }
+    if ($('.facilities-wrp').length) getSvg('.facility-unit');
 
-    if ($('.opening-hours-container').length) {
-        isOpen();
-    }
+    if ($('.opening-hours-container').length) isOpen();
 
-    if ($('.general-rating-container').length) {
-        ratingCircleResult();
-    }
+    if ($('.general-rating-container').length) ratingCircleResult();
+
+    // showOnScroll
+    if($('.show-onscroll').length) showOnScroll();
+
+    //initTypewriter
+    if ($('[data-typewriter]').length) initTypewriter();
+
+    //Text Scroll
+    if ($('.text-scroll').length) initTextScroll();
 
     //Start of Trending
     if ($('.trend-item').length) {
@@ -1539,7 +1708,7 @@ $(document).ready(function () {
                         }, {
                             duration: 500,
                             easing: 'easeOutExpo'
-                        });
+                        }).dequeue();
                     })
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
@@ -1614,7 +1783,7 @@ $(document).ready(function () {
                             }, {
                                 duration: 600,
                                 easing: 'easeOutExpo'
-                            });
+                            }).dequeue();
                         })
                     }
                     $('#main-carousel .carousel-container').stop().animate({
@@ -1948,9 +2117,7 @@ $(document).ready(function () {
     //End of Advanced Search
 
     //Item Details Gallery Functions
-    if ($('#item-gallery-init').length) {
-        InitDetailsGallerySlider();
-    }
+    if ($('#item-gallery-init').length) InitDetailsGallerySlider();
 
     //Tabs component
     if ($('.tabs-global-container ul.tabs-items li').length > 1) {
@@ -1969,27 +2136,27 @@ $(document).ready(function () {
     //Start of Comment Section
     if ($('.comment-section-container').length) {
         var heartsCount = 0;
-        var owlRatings = [{
-                src: 'bad-owl.svg',
-                title: 'Bad'
-            },
-            {
-                src: 'ihateit-owl.svg',
-                title: 'I hate it'
-            },
-            {
-                src: 'ok-owl.svg',
-                title: 'OK'
-            },
-            {
-                src: 'iloveit-owl.svg',
-                title: 'I love it'
-            },
-            {
-                src: 'wow-owl.svg',
-                title: 'Wow'
-            }
-        ]
+        // var owlRatings = [{
+        //         src: 'bad-owl.svg',
+        //         title: 'Bad'
+        //     },
+        //     {
+        //         src: 'ihateit-owl.svg',
+        //         title: 'I hate it'
+        //     },
+        //     {
+        //         src: 'ok-owl.svg',
+        //         title: 'OK'
+        //     },
+        //     {
+        //         src: 'iloveit-owl.svg',
+        //         title: 'I love it'
+        //     },
+        //     {
+        //         src: 'wow-owl.svg',
+        //         title: 'Wow'
+        //     }
+        // ]
         $('.review-satisfaction-wrp i').on('mouseenter', function () {
             $(this).addClass('selected');
             $(this).prevAll().addClass('selected');
@@ -2011,15 +2178,15 @@ $(document).ready(function () {
             }
         });
 
-        $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
-            var ratingValue = parseInt($(this).data('rating') / 20);
-            ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
-            $(this).find('img').attr({
-                'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
-                'title': owlRatings[ratingValue].title
-            })
-            $(this).find('span').text(owlRatings[ratingValue].title);
-        })
+        // $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
+        //     var ratingValue = parseInt($(this).data('rating') / 20);
+        //     ratingValue > (owlRatings.length - 1) ? ratingValue-- : '';
+        //     $(this).find('img').attr({
+        //         'src': '../Images/ratings-owls/' + owlRatings[ratingValue].src,
+        //         'title': owlRatings[ratingValue].title
+        //     })
+        //     $(this).find('span').text(owlRatings[ratingValue].title);
+        // })
 
         $('.multilanguage').on('keyup paste', function () {
             var val = $(this).val();
@@ -2068,9 +2235,7 @@ $(document).ready(function () {
     //End of Comment Section
 
     //Sitemap
-    if ($('.sitemap-list-wrp').length) {
-        ArrangeSitemap(4);
-    }
+    if ($('.sitemap-list-wrp').length) ArrangeSitemap(4);
 
     //Start of Register from
     if ($('.login-register-container').length) {
@@ -2120,17 +2285,7 @@ $(document).ready(function () {
             updateCalControls(nextYear);
         })
         $('.calendar-controls-wrp .year-range-prev').on('click', function () {
-            //     rangeEnd = rangeStart + 12,
-            //     prevRange = $('.calendar-years-view-wrp .years-range-wrp.active').prev();
-            // if (!prevRange.length) {
-            //     generateYearsView(rangeStart, rangeEnd, true);
-            // } else {
-            //     $('.calendar-years-view-wrp .years-range-wrp').removeClass('active');
-            //     prevRange.addClass('active');
-            //     scrollToYear();
-            //     updateCalControls(rangeStart + ' - ' + rangeEnd);
-            // }
-            var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('startFrom') - 13,
+            var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('startFrom') - 12,
                 checkYearBefore = checkYearRangeBefore(rangeStart);
             if (checkYearBefore != false)
                 generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
@@ -2138,17 +2293,6 @@ $(document).ready(function () {
             $('.calendar-overview .calendar-years-view-wrp .year:contains(' + rangeStart + ')').addClass('active');
         });
         $('.calendar-controls-wrp .year-range-next').on('click', function () {
-            // var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('endAt') + 1,
-            //     rangeEnd = rangeStart + 13,
-            //     nextRange = $('.calendar-years-view-wrp .years-range-wrp.active').next();
-            // if (!nextRange.length) {
-            //     generateYearsView(rangeStart, rangeEnd, false);
-            // } else {
-            //     $('.calendar-years-view-wrp .years-range-wrp').removeClass('active');
-            //     nextRange.addClass('active');
-            //     scrollToYear();
-            //     updateCalControls(rangeStart + ' - ' + rangeEnd);
-            // }
             var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('endAt') + 1,
                 checkYearBefore = checkYearRangeBefore(rangeStart);
             if (checkYearBefore != false)
@@ -2283,6 +2427,15 @@ $(document).ready(function () {
                         PrevPopupGalleryItem();
                     }
                 }
+            }
+
+
+            var container = $(".search-input-filter-wrp.active"); // Give you class or ID
+
+            if (!container.is(e.target) && // If the target of the click is not the desired div or section
+                container.has(e.target).length === 0) // ... nor a descendant-child of the container
+            {
+                container.removeClass('active');
             }
         }
     });

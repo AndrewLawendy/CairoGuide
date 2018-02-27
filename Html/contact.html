@@ -74,7 +74,7 @@
                 </a>
             </div>
             <nav class="main-nav">
-                <ul class="float-left">
+                <ul class="float-left desktop-show">
                     <li>
                         <a href="home.html" title="Home">Home</a>
                     </li>
@@ -86,7 +86,7 @@
                     </li>
                 </ul>
                 <ul class="float-right header-account-menu">
-                    <li>
+                    <li class="desktop-show">
                         <span>
                             <a href="../html/login.html" title="Login / register" class="login-btn">Login / Register</a>
                         </span>
@@ -98,17 +98,17 @@
                                     <i class="icon-search"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="desktop-show">
                                 <a href="#" title="Facebook" class="facebook-social">
                                     <i class="icon-social-facebook"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="desktop-show">
                                 <a href="#" title="Twitter" class="twitter-social">
                                     <i class="icon-social-twitter"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="desktop-show">
                                 <a href="#" title="Instagram" class="instagram-social">
                                     <i class="icon-social-instagram"></i>
                                 </a>
@@ -670,6 +670,41 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="mobile-show">
+                    <nav class="mobile-main-links">
+                        <ul>
+                            <li>
+                                <a href="home.html" title="Home" rel="nofollow">Home</a>
+                            </li>
+                            <li>
+                                <a href="about.html" title="About" rel="nofollow">About</a>
+                            </li>
+                            <li>
+                                <a href="contact.html" title="Contact" rel="nofollow">Contact</a>
+                            </li>
+                            <li>
+                                <a href="../html/login.html" title="Login / register" class="login-btn" rel="nofollow">Login / Register</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <ul class="mobile-social-media">
+                        <li>
+                            <a href="#" title="Facebook" class="facebook-social" rel="nofollow">
+                                <i class="icon-social-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="Twitter" class="twitter-social" rel="nofollow">
+                                <i class="icon-social-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="Instagram" class="instagram-social" rel="nofollow">
+                                <i class="icon-social-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="attached-menu">
                 <nav>
@@ -696,8 +731,8 @@
                                 <i class="icon-search"></i>
                             </a>
                         </li>
-                        <li>
-                            <a class="word-link login-btn" href="login.html" title="Login / register">Login / Register</a>
+                        <li class="desktop-show">
+                            <a class="word-link login-btn" href="login.html" title="Login / register" rel="nofollow">Login / Register</a>
                         </li>
                     </ul>
                 </nav>
@@ -705,8 +740,170 @@
         </div>
     </header>
     <main>
-        <section class="category-banner" style="background:#ccc url('../images/banners/contact-banner.jpg') no-repeat center;background-size:cover">
-            <h1>Contact us</h1>
+        <section>
+            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2902.964763877414!2d31.334299136210785!3d30.08770310514729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583e1e6519cd5b%3A0xf19997f4e74a5a11!2s45+El-Sayed+El-Merghany%2C+Almazah%2C+Heliopolis%2C+Cairo+Governorate!5e0!3m2!1sen!2seg!4v1519642654460" width="2000" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+            <div id="contact-us-map"></div>
+            <script>
+                function initMap() {
+                    // Styles a map in night mode.
+                    var myLatlng = new google.maps.LatLng(30.0881676, 31.3339443);
+                    var map = new google.maps.Map(document.getElementById('contact-us-map'), {
+                        center: myLatlng,
+                        zoom: 12,
+                        styles: [{
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#242f3e'
+                                }]
+                            },
+                            {
+                                elementType: 'labels.text.stroke',
+                                stylers: [{
+                                    color: '#242f3e'
+                                }]
+                            },
+                            {
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#746855'
+                                }]
+                            },
+                            {
+                                featureType: 'administrative.locality',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#d59563'
+                                }]
+                            },
+                            {
+                                featureType: 'poi',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#d59563'
+                                }]
+                            },
+                            {
+                                featureType: 'poi.park',
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#263c3f'
+                                }]
+                            },
+                            {
+                                featureType: 'poi.park',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#6b9a76'
+                                }]
+                            },
+                            {
+                                featureType: 'road',
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#38414e'
+                                }]
+                            },
+                            {
+                                featureType: 'road',
+                                elementType: 'geometry.stroke',
+                                stylers: [{
+                                    color: '#212a37'
+                                }]
+                            },
+                            {
+                                featureType: 'road',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#9ca5b3'
+                                }]
+                            },
+                            {
+                                featureType: 'road.highway',
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#746855'
+                                }]
+                            },
+                            {
+                                featureType: 'road.highway',
+                                elementType: 'geometry.stroke',
+                                stylers: [{
+                                    color: '#1f2835'
+                                }]
+                            },
+                            {
+                                featureType: 'road.highway',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#f3d19c'
+                                }]
+                            },
+                            {
+                                featureType: 'transit',
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#2f3948'
+                                }]
+                            },
+                            {
+                                featureType: 'transit.station',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#d59563'
+                                }]
+                            },
+                            {
+                                featureType: 'water',
+                                elementType: 'geometry',
+                                stylers: [{
+                                    color: '#17263c'
+                                }]
+                            },
+                            {
+                                featureType: 'water',
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#515c6d'
+                                }]
+                            },
+                            {
+                                featureType: 'water',
+                                elementType: 'labels.text.stroke',
+                                stylers: [{
+                                    color: '#17263c'
+                                }]
+                            }
+                        ]
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        title: "Best Of Cairo"
+                    });
+
+                    // To add the marker to the map, call setMap();
+                    marker.setMap(map);
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+        </section>
+        <section class="marg-t20 contact-info-wrapper container">
+            <div class="contact-info-item">
+                <i class="icon-phone-call"></i>
+                <span>0226754356</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="icon-smartphone"></i>
+                <span>012296574653</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="icon-message"></i>
+                <span>example&shy;@bestofcairo.com</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="icon-map-location"></i>
+                <span>45 Marghany street, Nasr City, Cairo</span>
+            </div>
         </section>
     </main>
     <!--Footer-->
@@ -756,16 +953,8 @@
             <div class="half-width responsive">
                 <div class="half-width responsive mag-info">
                     <div>
-                        <span class="info-title">Address</span>
-                        <span class="info-data">45 Marghany street, Nasr City, Cairo</span>
-                    </div>
-                    <div>
-                        <span class="info-title">Telephone</span>
-                        <span class="info-data">0226754356</span>
-                    </div>
-                    <div>
-                        <span class="info-title">Mobile</span>
-                        <span class="info-data">012296574653</span>
+                        <span class="info-title">Email</span>
+                        <span class="info-data">example&shy;@bestofcairo.com</span>
                     </div>
                 </div>
                 <div class="half-width responsive mag-social">
@@ -781,7 +970,7 @@
                 </div>
             </div>
             <div class="clear"></div>
-            <p class="rights">All right reserved. &commat; Cairo Guide</p>
+            <p class="rights">All rights reserved. &commat; Cairo Guide</p>
         </div>
     </footer>
     <script src="../JS/jquery-3.2.1.min.js"></script>
