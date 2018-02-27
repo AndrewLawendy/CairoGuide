@@ -1699,6 +1699,25 @@ input[type="radio"] {
     }
 }
 
+[data-typewriter]{
+    &::after{
+        content: '|';
+        @include animation(typewriter .7s infinite)
+    }
+}
+
+@include key-frame(typewriter) {
+    0% {
+        opacity: 0
+    }
+    50% {
+        opacity: 1
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
 //Details-Carousel
 .details-carousel {
     position: relative;
