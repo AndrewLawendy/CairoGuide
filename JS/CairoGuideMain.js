@@ -92,6 +92,14 @@ var roundToNearestValue = function (reference, newVal) {
     return reference * Math.round((newVal) / reference);
 }
 
+//getQueryString
+var getQueryString = function (field) {
+    var href = window.location.href,
+        reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i'),
+        string = reg.exec(href);
+    return string ? string[1] : null;
+};
+
 //Apply loader interval time
 var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount) {
     if (loaderLoopCount == true) {
