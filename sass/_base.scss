@@ -238,6 +238,16 @@ $colorList: "nightlife" #f90000,
     white-space: nowrap;
 }
 
+.show-onscroll{
+    opacity:0;
+    @include transform(translateY(10%));
+    @include transition(all 0.3s ease-out);
+    &.active{
+        opacity:1;
+        @include transform(translateY(0));
+    }
+}
+
 @mixin active-popup($prefix) {
     &.#{$prefix}-popup-active {
         .popup-body {
@@ -1443,6 +1453,21 @@ input[type="radio"] {
         &:active {
             outline: none;
         }
+    }
+}
+
+.clear-btn{
+    padding:10px;
+    color:#fff;
+    border:1px solid #fff;
+    text-decoration: none;
+    background:transparent;
+    display: inline-block;
+    vertical-align: middle;
+    @include transition(all .15s);
+    &:hover{
+        background:#fff;
+        color:#000;
     }
 }
 

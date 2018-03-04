@@ -2903,80 +2903,168 @@ Contains all styles of inner pages
                     }
                 }
                 .calendar-day-events-wrp {
-                    .calendar-event-unit {
-                        background: #131313;
-                        border-radius: 7px;
-                        border-left: 10px solid #f3a41e;
-                        color: #fff;
-                        &:nth-child(1n+2) {
-                            margin-top: 10px;
-                            @include media("(min-width: 1200px)") {
-                                margin-top: get-vw(10px);
-                            }
+                    padding: 15px 0;
+                    background: #f8f8f8;
+                    @include media("(min-width: 1200px)") {
+                        padding: get-vw(15px) 0;
+                    }
+                    .calendar-event-unit{
+                        width:25%;
+                        float: left;
+                        padding: 0 15px;
+                        box-sizing: border-box;
+                        @include media("(min-width: 1200px)") {
+                            padding: 0 get-vw(15px);
                         }
-                        .calendar-event-description,
-                        .calendar-event-dur-loc {
-                            box-sizing: border-box;
-                        }
-                        .calendar-event-img {
-                            float: left;
-                            width: 15%;
-                            height: 140px;
-                            @include media("(min-width: 1200px)") {
-                                height: get-vw(140px);
-                            }
-                            img {
-                                @include object-fit-img();
-                            }
-                        }
-                        .calendar-event-details {
-                            padding: 15px 25px 15px 15px;
+                        .unit-wrp{
+                            display: block;
+                            box-shadow:0px 0px 1px 1px #f0f0f0;
+                            border-radius: 3px;
                             overflow: hidden;
-                            @include media("(min-width: 1200px)") {
-                                padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
-                            }
-                            .calendar-event-name {
-                                font: 1.5rem 'Lato-Bold';
-                                margin-bottom: 5px;
-                                @include text-overflow();
-                                @include media("(min-width: 1200px)") {
-                                    margin-bottom: get-vw(5px);
+                            .calendar-event-photo{
+                                width: 100%;
+                                height:0;
+                                padding-bottom: 100%;
+                                position: relative;
+                                overflow: hidden;
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    z-index: 1;
+                                    width: 0;
+                                    height: 0;
+                                    bottom:0;
+                                    left:0;
+                                    border-bottom: 20px solid #f3a41e;
+                                    border-right: get-vw(184.5px) solid transparent;
+                                }
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    z-index: 2;
+                                    width: 0;
+                                    height: 0;
+                                    bottom:0;
+                                    right:0;
+                                    border-bottom: 35px solid #fff;
+                                    border-left: get-vw(184.5px) solid transparent;
+                                }
+                                img{
+                                    @include object-fit-img();
+                                    position: absolute;
+                                    top:0;
+                                    left: 0;
                                 }
                             }
-                            .calendar-event-duration,
-                            .calendar-event-location {
-                                float: left;
-                                font-size: .9rem;
-                                color: #f3a41e;
-                                i {
-                                    float: left;
-                                    margin-right: 10px;
+                            .calendar-event-desc{
+                                padding:10px;
+                                background: #fff;
+                                @include media("(min-width: 1200px)") {
+                                    padding:get-vw(10px);
+                                }
+                                h5,
+                                p {
+                                    i {
+                                        float: left;
+                                        margin-right: 10px;
+                                        font-size:1rem;
+                                    }
+                                    span {
+                                        display: block;
+                                        overflow: hidden;
+                                    }
+                                }
+                                h5 {
+                                    margin-bottom: 10px;
+                                    font-size: 1rem;
+                                    height: 2rem;
+                                    overflow: hidden
                                 }
                                 p {
-                                    overflow: hidden;
-                                }
-                            }
-                            .calendar-event-duration {
-                                margin-right: 30px;
-                                @include media("(min-width: 1200px)") {
-                                    margin-right: get-vw(30px);
-                                }
-                            }
-                            .paragraph-overflow {
-                                margin-top: 5px;
-                                font-family: 'Lato-Light';
-                                font-size: .9rem;
-                                color: #ccc;
-                                @include media("(min-width: 1200px)") {
-                                    margin-bottom: get-vw(5px);
-                                }
-                                &::before,
-                                &::after {
-                                    background: #131313;
+                                    font-size: .8rem;
+                                    margin-bottom: 5px;
+                                    &.event-ocation {
+                                        height: 2rem;
+                                        overflow: hidden;
+                                    }
                                 }
                             }
                         }
                     }
+                    // .calendar-event-unit {
+                    //     background: #131313;
+                    //     border-radius: 7px;
+                    //     border-left: 10px solid #f3a41e;
+                    //     color: #fff;
+                    //     &:nth-child(1n+2) {
+                    //         margin-top: 10px;
+                    //         @include media("(min-width: 1200px)") {
+                    //             margin-top: get-vw(10px);
+                    //         }
+                    //     }
+                    //     .calendar-event-description,
+                    //     .calendar-event-dur-loc {
+                    //         box-sizing: border-box;
+                    //     }
+                    //     .calendar-event-img {
+                    //         float: left;
+                    //         width: 15%;
+                    //         height: 140px;
+                    //         @include media("(min-width: 1200px)") {
+                    //             height: get-vw(140px);
+                    //         }
+                    //         img {
+                    //             @include object-fit-img();
+                    //         }
+                    //     }
+                    //     .calendar-event-details {
+                    //         padding: 15px 25px 15px 15px;
+                    //         overflow: hidden;
+                    //         @include media("(min-width: 1200px)") {
+                    //             padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
+                    //         }
+                    //         .calendar-event-name {
+                    //             font: 1.5rem 'Lato-Bold';
+                    //             margin-bottom: 5px;
+                    //             @include text-overflow();
+                    //             @include media("(min-width: 1200px)") {
+                    //                 margin-bottom: get-vw(5px);
+                    //             }
+                    //         }
+                    //         .calendar-event-duration,
+                    //         .calendar-event-location {
+                    //             float: left;
+                    //             font-size: .9rem;
+                    //             color: #f3a41e;
+                    //             i {
+                    //                 float: left;
+                    //                 margin-right: 10px;
+                    //             }
+                    //             p {
+                    //                 overflow: hidden;
+                    //             }
+                    //         }
+                    //         .calendar-event-duration {
+                    //             margin-right: 30px;
+                    //             @include media("(min-width: 1200px)") {
+                    //                 margin-right: get-vw(30px);
+                    //             }
+                    //         }
+                    //         .paragraph-overflow {
+                    //             margin-top: 5px;
+                    //             font-family: 'Lato-Light';
+                    //             font-size: .9rem;
+                    //             color: #ccc;
+                    //             @include media("(min-width: 1200px)") {
+                    //                 margin-bottom: get-vw(5px);
+                    //             }
+                    //             &::before,
+                    //             &::after {
+                    //                 background: #131313;
+                    //             }
+                    //         }
+                    //     }
+                    // }
                 }
             }
             #weekend-view{
