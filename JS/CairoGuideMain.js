@@ -1210,6 +1210,16 @@ var AutoPlayDetailsGallery = function () {
 
 //-------------------------------------------------------------------------------------------------
 
+//Click FAQ Question
+var ExpandFAQ = function(obj){
+    obj.find('.ques-header').addClass("first-step");
+    setTimeout(function(){
+        //obj.css('background-color','red');
+    }, 600);
+}
+
+//------------------------------------------------------------------------------------------------
+
 //popup gallery slider
 var PopupGallerySlides = [];
 var PopupImgToDisplay = {},
@@ -2408,6 +2418,14 @@ $(document).ready(function () {
         }
     }
     //End of Events Calendar
+
+    //Start of FAQ
+    if($('.faq-wrp').length){
+        $('.faq-item').on('click',function(){
+            ExpandFAQ($(this));
+        });
+    }
+    //End of FAQ
 
     $(document).on('mousedown touchstart', function (e) {
         if (newScreenSize == 1) {

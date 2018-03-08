@@ -3213,6 +3213,91 @@ Contains all styles of inner pages
                 }
             }
         }
+        /*FAQs*/
+        .faq-wrp {
+            .faq-item {
+                display:inline-block;
+                width:100%;
+                h2 {
+                    clear: both;
+                    font-size: 20px;
+                }
+                .ques-number,
+                .ques-head,
+                .ques {
+                    display: block;
+                }
+                .ques-number,
+                .ques-head,
+                .ques,
+                p {
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                }
+                .ques-header {
+                    float: left;
+                    position: relative;
+                    height:50px;
+                    width:100%;
+                    border-right: 2px solid red;
+                    overflow:hidden;
+                    @include transition(width 1.3s ease 1.3s,border-width 0.15s ease 2.6s);
+                    .ques-number {
+                        background-color: #131313;
+                        color: #fff;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        padding: 0;
+                        text-align: center;
+                        //border-radius: 100%;
+                        float:left;
+                        font-size:20px;
+                    }
+                    .ques-head{
+                        float:left;
+                        width:calc(100% - 50px);
+                        box-sizing:border-box;
+                        position: relative;
+                        overflow:hidden;
+                        top:50%;
+                        @include transform(translateY(-50%));
+                        @include transition(all 1.3s ease 1.3s);
+                        &:after{
+                            content: '';
+                            position: absolute;
+                            right: 2px;
+                            top: 0;
+                            height: 100%;
+                            background: #fff;
+                            width: 0;
+                            @include transition(all 1.3s);
+                        }
+                    }
+                    &.first-step{
+                        width:50px;
+                        border-width:0;
+                        .ques-head{
+                            //width:0;
+                            padding:0;
+                            &:after{
+                                width:100%;
+                            }
+                        }
+                    }
+                }
+                .answer-wrp {
+                    overflow: hidden;
+                    display:none;
+                    h2 {
+                        display:inline-block;
+                    }
+                }
+                p {
+                    display: none;
+                }
+            }
+        }
     }
 
     @include key-frame(event-detail-entering) {
