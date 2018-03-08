@@ -2271,7 +2271,7 @@ $(document).ready(function () {
             $(this).addClass('active');
             closestContainer.find('ul.tabs-content-container li').eq(index).slideDown('slow', function () {
                 $(this).addClass('active');
-                showOnScroll();
+                if ($('.show-onscroll').length) showOnScroll();
             });
             //setTimeout(showOnScroll,1000);
         })
