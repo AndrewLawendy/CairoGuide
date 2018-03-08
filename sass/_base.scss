@@ -1572,12 +1572,14 @@ input[type="radio"] {
                 position: relative;
                 overflow: hidden;
                 display: inline-block;
+                vertical-align: middle;
                 z-index: 1;
                 color: #bbb;
                 &::after {
                     content: attr(title);
                     color: #000;
                     position: absolute;
+                    z-index: 1;
                     top: 0;
                     left: 0;
                     opacity: 0;
@@ -3677,6 +3679,7 @@ footer {
             clear: right;
         }
     }
+    .hide-on-tab{display: none!important}
     .rating-levels-container {
         .rating-level {
             p {
@@ -3691,7 +3694,8 @@ footer {
                 }
             }
         }
-    } //Details-Carousel
+    } 
+    //Details-Carousel
     .details-carousel {
         .details-carousel-item-wrp {
             .details-carousel-img {
@@ -3734,6 +3738,7 @@ footer {
         float: none;
         clear: both;
     }
+    .hide-on-mob{display: none!important}
     .controls-btn-container {
         .control-btn {
             float: none;

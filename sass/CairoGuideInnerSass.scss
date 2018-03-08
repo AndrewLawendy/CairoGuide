@@ -2722,13 +2722,13 @@ Contains all styles of inner pages
             }
             .calendar-overview {
                 position: relative;
-                overflow: hidden;
                 .calendar-unit {
                     position: relative;
                     text-align: center;
                     padding: 2px;
                     box-sizing: border-box;
                     overflow: hidden;
+                    background: #fff;
                     &::before {
                         content: '';
                         position: absolute;
@@ -2740,22 +2740,11 @@ Contains all styles of inner pages
                         @include transform(translate(-100%, -100%));
                         @include transition(all .15s);
                     }
-                    &:hover {
-                        &::before {
-                            @include transition(all .5s);
-                            @include transform(translate(50%, 50%));
-                        }
-                    }
-                    &.active {
-                        &::before {
-                            @include transform(translate(-50%, -50%));
-                        }
-                    }
                     div {
                         position: relative;
                         width: 100%;
                         height: 100%;
-                        background: #fff;
+                        background: inherit;
                         @include transition(all .5s);
                         &:not(:empty) {
                             cursor: pointer;
@@ -2770,6 +2759,17 @@ Contains all styles of inner pages
                         }
                         &:empty {
                             @include transform(scale(1.1));
+                        }
+                    }
+                    &:hover {
+                        &::before {
+                            @include transition(all .5s);
+                            @include transform(translate(50%, 50%));
+                        }
+                    }
+                    &.active {
+                        &::before {
+                            @include transform(translate(-50%, -50%));
                         }
                     }
                 }
@@ -2844,6 +2844,50 @@ Contains all styles of inner pages
                         width: 100%;
                     }
                 }
+                .week-indicator{
+                    display: none;
+                    cursor: pointer;
+                    position: absolute;
+                    text-align: center;
+                    z-index: 1;
+                    top:0;
+                    left: 0;
+                    height: 58px;
+                    box-sizing:border-box;
+                    border-radius: 1px;
+                    background: #f3a41e;
+                    font:.8rem 'Lato-Bold';
+                    color: #fff;
+                    padding: 5px;
+                    @include user-select(none);
+                    @include transform(translateX(-100%));
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top:0;
+                        right: -15px;
+                        border-bottom: 29px solid transparent;
+                        border-top: 29px solid transparent;
+                        border-left: 15px solid #f3a41e;
+                    }
+                }
+                &.weekend-view,&.week-view{
+                    .week-indicator{
+                        display: block;
+                    }
+                    .day:not(.this-week){
+                        opacity: .2;
+                        pointer-events: none;
+                        @include transition(all .15s);
+                    }
+                }
+                &.weekend-view{
+                    .day.this-week:nth-of-type(7n+1),.day.this-week:nth-of-type(7n+2),.day.this-week:nth-of-type(7n+3),.day.this-week:nth-of-type(7n+4){
+                        opacity: .2;
+                        pointer-events: none;
+                        @include transition(all .15s);
+                    }
+                }
             }
             #month-view {
                 .calendar-today {
@@ -2866,13 +2910,11 @@ Contains all styles of inner pages
                     text-align: left;
                 }
             }
-            #weekend-view {
-                .tabs-global-container {
-                    .tabs-items {
-                        li::before,
-                        li::after {
-                            background: #131313;
-                        }
+            .tabs-global-container {
+                .tabs-items {
+                    li::before,
+                    li::after {
+                        background: #131313;
                     }
                 }
             }
