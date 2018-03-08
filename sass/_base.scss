@@ -802,6 +802,17 @@ p {
     @include media("(max-width: 768px)") {
         padding: 0 15px;
     }
+    &.fixed-width-container{
+        width:1200px;
+        margin:0 auto;
+        padding: 0 30px;
+        @include media("(max-width: 1200px)") {
+            width:100%;
+        }
+        @include media("(max-width: 768px)") {
+            padding: 0 15px;
+        }
+    }
 }
 
 .full-width {

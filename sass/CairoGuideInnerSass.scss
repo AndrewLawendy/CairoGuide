@@ -444,7 +444,7 @@ Contains all styles of inner pages
         }
     }
 
-    .attach-to-footer{
+    .attach-to-footer {
         margin-bottom: -30px;
         padding-bottom: 30px;
     }
@@ -452,9 +452,9 @@ Contains all styles of inner pages
     /*Main*/
 
     main {
-        #contact-us-map{
-            height:500px;
-            width:100%;
+        #contact-us-map {
+            height: 500px;
+            width: 100%;
         }
         .category-banner {
             width: 100%;
@@ -1629,7 +1629,7 @@ Contains all styles of inner pages
                             * {
                                 width: 100%;
                                 height: 100%;
-                                fill: #fff!important;
+                                fill: #fff !important;
                             }
                         }
                     }
@@ -2973,42 +2973,127 @@ Contains all styles of inner pages
             }
         }
         /*Contact us*/
-        .contact-info-wrapper{
-            .contact-info-item{
-                float:left;
-                width:25%;
-                padding:30px;
-                box-sizing:border-box;
-                text-align:center;
+        .contact-info-wrapper {
+            .contact-info-item {
+                float: left;
+                width: 25%;
+                padding: 30px;
+                box-sizing: border-box;
+                text-align: center;
                 @include media("(min-width: 1200px)") {
-                    padding:get-vw(30px);
+                    padding: get-vw(30px);
                 }
                 @include media("(max-width: 768px)") {
-                    width:50%;
+                    width: 50%;
                 }
                 @include media("(max-width: 640px)") {
-                    width:100%;
-                    float:none;
+                    width: 100%;
+                    float: none;
                 }
-                i{
-                    display:block;
-                    width:100px;
-                    height:100px;
-                    border-radius:100%;
-                    line-height:100px;
-                    background-color:#131313;
-                    margin:0 auto 30px;
-                    color:#fff;
-                    font-size:2.5rem;
+                i {
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 100%;
+                    line-height: 100px;
+                    background-color: #131313;
+                    margin: 0 auto 30px;
+                    color: #fff;
+                    font-size: 2.5rem;
                     @include media("(min-width: 1200px)") {
-                        width:get-vw(100px);
-                        height:get-vw(100px);
-                        line-height:get-vw(100px);
-                        margin-bottom:get-vw(30px);
+                        width: get-vw(100px);
+                        height: get-vw(100px);
+                        line-height: get-vw(100px);
+                        margin-bottom: get-vw(30px);
                     }
                 }
-                span{
-                    font-family:'Lato-Black';
+                span {
+                    font-family: 'Lato-Black';
+                }
+            }
+        }
+        /*FAQs*/
+        .faq-wrp {
+            .faq-item {
+                display:inline-block;
+                width:100%;
+                h2 {
+                    clear: both;
+                    font-size: 20px;
+                }
+                .ques-number,
+                .ques-head,
+                .ques {
+                    display: block;
+                }
+                .ques-number,
+                .ques-head,
+                .ques,
+                p {
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                }
+                .ques-header {
+                    float: left;
+                    position: relative;
+                    height:50px;
+                    width:100%;
+                    border-right: 2px solid red;
+                    overflow:hidden;
+                    @include transition(width 1.3s ease 1.3s,border-width 0.15s ease 2.6s);
+                    .ques-number {
+                        background-color: #131313;
+                        color: #fff;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        padding: 0;
+                        text-align: center;
+                        //border-radius: 100%;
+                        float:left;
+                        font-size:20px;
+                    }
+                    .ques-head{
+                        float:left;
+                        width:calc(100% - 50px);
+                        box-sizing:border-box;
+                        position: relative;
+                        overflow:hidden;
+                        top:50%;
+                        @include transform(translateY(-50%));
+                        @include transition(all 1.3s ease 1.3s);
+                        &:after{
+                            content: '';
+                            position: absolute;
+                            right: 2px;
+                            top: 0;
+                            height: 100%;
+                            background: #fff;
+                            width: 0;
+                            @include transition(all 1.3s);
+                        }
+                    }
+                    &.first-step{
+                        width:50px;
+                        border-width:0;
+                        .ques-head{
+                            //width:0;
+                            padding:0;
+                            &:after{
+                                width:100%;
+                            }
+                        }
+                    }
+                }
+                .answer-wrp {
+                    overflow: hidden;
+                    display:none;
+                    h2 {
+                        display:inline-block;
+                    }
+                }
+                p {
+                    display: none;
                 }
             }
         }
