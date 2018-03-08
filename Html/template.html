@@ -29,6 +29,20 @@
             font-size: 1em;
             margin-bottom: 15px;
         }
+
+        .class-names div:not(.clear) {
+            height: 150px;
+            border: 2px solid;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .class-names div:not(.clear)::before{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -933,6 +947,21 @@
                     <p>icon-pen</p>
                 </div>
             </div>
+        </section>
+        <section class="container class-names">
+            <div class="full-width">full-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="three-quarter-width">three-quarter-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="seventy-width">seventy-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="half-width">half-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="third-width">third-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="thirty-width">thirty-width</div>
+            <div class="clear marg-t10"></div>
+            <div class="quarter-width">quarter-width</div>
         </section>
     </main>
     <!--Footer-->

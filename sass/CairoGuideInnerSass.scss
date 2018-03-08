@@ -2354,7 +2354,55 @@ Contains all styles of inner pages
         }
         /*About Page*/
         .about-boc {
-            background-image: url(../images/banners/about-banner.jpg)
+            background-image: url(../images/banners/about-banner.jpg);
+            min-height: 80vh;
+        }
+        .about-boc-team {
+            .boc-team-members {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin: 0 -15px;
+                @include media("(min-width: 1200px)") {
+                    margin: 0 get-vw(-15px);
+                }
+                .team-member {
+                    box-sizing: border-box;
+                    border: 15px solid #fff;
+                    background: #131313;
+                    @include transition(all .3s ease-out);
+                    @include media("(min-width: 1200px)") {
+                        border-width: get-vw(15px);
+                    }                    
+                    .image-holder {
+                        position: relative;
+                        width: 100%;
+                        height: 0;
+                        padding-bottom: 100%;
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            @include object-fit-img();
+                        }
+                    }
+                    .member-details {
+                        background: #131313;
+                        color: #fff;
+                        text-align: center;
+                        padding: 10px;
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(10px);
+                        }
+                        p {
+                            color: #ccc;
+                            &:last-of-type {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
         }
         /*Sitemap Page*/
         .sitemap-list-container {
@@ -2607,30 +2655,12 @@ Contains all styles of inner pages
         }
         /*Calendar*/
         #calendar-wrp {
-            .calendar-today {
-                overflow: hidden;
-                text-align: center;
-                span:not(.ordinal-indicator) {
-                    display: inline-block;
-                    overflow: hidden;
-                    vertical-align: middle;
-                    @include transform(translateY(0));
-                    &.calendar-month-year::before {
-                        content: ', ';
-                    }
-                    &.calendar-year-range {
-                        display: none;
-                    }
-                }
-            }
-            h3.calendar-today {
-                text-align: left;
-            }
             .calendar-controls-wrp {
                 >* {
                     cursor: pointer;
                     padding: 15px;
                     background: transparent;
+                    text-align: center;
                     @include transition(all .5s);
                     &:hover {
                         background: #eee;
@@ -2815,77 +2845,206 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .calendar-day-events-wrp {
-                .calendar-event-unit {
-                    background: #131313;
-                    border-radius: 7px;
-                    border-left: 10px solid #f3a41e;
-                    color: #fff;
-                    &:nth-child(1n+2) {
-                        margin-top: 10px;
-                        @include media("(min-width: 1200px)") {
-                            margin-top: get-vw(10px);
-                        }
-                    }
-                    .calendar-event-description,
-                    .calendar-event-dur-loc {
-                        box-sizing: border-box;
-                    }
-                    .calendar-event-img {
-                        float: left;
-                        width: 15%;
-                        height: 140px;
-                        @include media("(min-width: 1200px)") {
-                            height: get-vw(140px);
-                        }
-                        img {
-                            @include object-fit-img();
-                        }
-                    }
-                    .calendar-event-details {
-                        padding: 15px 25px 15px 15px;
+            #month-view {
+                .calendar-today {
+                    overflow: hidden;
+                    text-align: center;
+                    span:not(.ordinal-indicator) {
+                        display: inline-block;
                         overflow: hidden;
-                        @include media("(min-width: 1200px)") {
-                            padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
+                        vertical-align: middle;
+                        @include transform(translateY(0));
+                        &.calendar-month-year::before {
+                            content: ', ';
                         }
-                        .calendar-event-name {
-                            font: 1.5rem 'Lato-Bold';
-                            margin-bottom: 5px;
-                            @include text-overflow();
-                            @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(5px);
+                        &.calendar-year-range {
+                            display: none;
+                        }
+                    }
+                }
+                h3.calendar-today {
+                    text-align: left;
+                }
+            }
+            #weekend-view {
+                .tabs-global-container {
+                    .tabs-items {
+                        li::before,
+                        li::after {
+                            background: #131313;
+                        }
+                    }
+                }
+            }
+            .calendar-day-events-wrp {
+                padding: 15px 0;
+                background: #f8f8f8;
+                display: flex;
+                flex-wrap: wrap;
+                @include media("(min-width: 1200px)") {
+                    padding: get-vw(15px) 0;
+                }
+                .calendar-event-unit {
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(15px);
+                    }
+                    &:nth-child(1n+5){
+                        margin-top:15px;
+                        @include media("(min-width: 1200px)"){
+                            margin-top:get-vw(15px);
+                        }
+                    }
+                    @include media("(max-width: 768px)"){
+                        &:nth-child(1n+4) {
+                            margin-top: 15px;
+                        }
+                    }
+                    @include media("(max-width: 640px)"){
+                        &:nth-child(1n+2) {
+                            margin-top: 15px;
+                        }
+                        height:25vh;
+                    }
+                    .unit-wrp {
+                        display: block;
+                        box-shadow: 0px 0px 1px 1px #f0f0f0;
+                        border-radius: 3px;
+                        overflow: hidden;
+                        background: #fff;
+                        height: 100%;
+                        .calendar-event-photo {
+                            display: block;
+                            width: 100%;
+                            height: 0;
+                            padding-bottom: 100%;
+                            position: relative;
+                            overflow: hidden;
+                            @include transition(all .15s);
+                            &::before,
+                            &::after {
+                                position: absolute;
+                                width: 0;
+                                height: 0;
+                                bottom: 0;
+                                @include transition(all .3s $bounce);
+                            }
+                            &::before {
+                                content: '';
+                                z-index: 1;
+                                left: 0;
+                                border-bottom: 20px solid #f3a41e;
+                                border-right: get-vw(184.5px) solid transparent;
+                            }
+                            &::after {
+                                content: '';
+                                z-index: 2;
+                                right: 0;
+                                border-bottom: 35px solid #fff;
+                                border-left: get-vw(184.5px) solid transparent;
+                            }
+                            img {
+                                @include object-fit-img();
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                            }
+                            @include media("(max-width: 768px)"){
+                                &::after {
+                                    border-left-width:calc((100vw - 60px) / 3);
+                                }
+                            }
+                            @include media("(max-width: 640px)") {
+                                width: 50%;
+                                height: 100%;
+                                padding-bottom: 0;
+                                float: left;
+                                &::before,&::after{display:none}
+                                border-top-right-radius: 3px;
+                                border-bottom-right-radius: 3px;
+                                a{
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                    img {
+                                        position: static;
+                                    }
+                                }
                             }
                         }
-                        .calendar-event-duration,
-                        .calendar-event-location {
-                            float: left;
-                            font-size: .9rem;
-                            color: #f3a41e;
-                            i {
-                                float: left;
-                                margin-right: 10px;
+                        .calendar-event-desc {
+                            position: relative;
+                            padding: 10px;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(10px);
+                            }
+                            h5,
+                            p {
+                                i {
+                                    float: left;
+                                    margin-right: 10px;
+                                    font-size: 1rem;
+                                }
+                                span {
+                                    display: block;
+                                    overflow: hidden;
+                                }
+                            }
+                            h5 {
+                                margin-bottom: 10px;
+                                font-size: 1rem;
+                                height: 2rem;
+                                overflow: hidden;
+                                @include media("(min-width: 1200px)") {
+                                    margin-bottom: get-vw(10px);
+                                }
                             }
                             p {
+                                font-size: .8rem;
+                                margin-bottom: 5px;
+                                &.event-ocation {
+                                    height: 2rem;
+                                    overflow: hidden;
+                                }
+                            }
+                            .btn-wrap {
+                                width: 100%;
+                                box-sizing: border-box;
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                padding-right: inherit;
+                                padding-left: inherit;
+                                @include transform(translateY(100%));
+                                @include media("(max-width: 768px)"){
+                                    position: static;
+                                    @include transform(translateY(0));
+                                }
+                                @include media("(max-width: 640px)"){
+                                    margin-top: 15px;
+                                }
+                            }
+                            @include media("(max-width: 640px)") {
                                 overflow: hidden;
                             }
                         }
-                        .calendar-event-duration {
-                            margin-right: 30px;
-                            @include media("(min-width: 1200px)") {
-                                margin-right: get-vw(30px);
-                            }
-                        }
-                        .paragraph-overflow {
-                            margin-top: 5px;
-                            font-family: 'Lato-Light';
-                            font-size: .9rem;
-                            color: #ccc;
-                            @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(5px);
-                            }
-                            &::before,
-                            &::after {
-                                background: #131313;
+                        @include media("(min-width: 769px)"){
+                            &:hover {
+                                .calendar-event-photo {
+                                    @include transition-delay(.15s);
+                                    padding-bottom: calc(100% - 49px);
+                                    @include media("(min-width: 1200px)"){
+                                        padding-bottom: calc(100% - 34px - (1500px / 1200)vw);
+                                    }
+                                    &::after {
+                                        border-bottom-width: 65px;
+                                    }
+                                    &::before {
+                                        border-bottom-width: 50px;
+                                    }
+                                }
                             }
                         }
                     }
@@ -3005,6 +3164,7 @@ Contains all styles of inner pages
                         height: get-vw(100px);
                         line-height: get-vw(100px);
                         margin-bottom: get-vw(30px);
+<<<<<<< HEAD
                     }
                 }
                 span {
@@ -3094,6 +3254,12 @@ Contains all styles of inner pages
                 }
                 p {
                     display: none;
+=======
+                    }
+                }
+                span {
+                    font-family: 'Lato-Black';
+>>>>>>> a9fa1e03ca8f1cd2854309efd38ffb4b18b68f06
                 }
             }
         }
