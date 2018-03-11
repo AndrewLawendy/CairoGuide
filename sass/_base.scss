@@ -1681,6 +1681,50 @@ input[type="radio"] {
             }
         }
     }
+    @include media("(max-width: 640px)"){
+        &.responsive{
+            ul.tabs-items{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                li{
+                    display: block;
+                    flex:0 0 72px;
+                    box-sizing: border-box;
+                    height: 72px;
+                    border-radius: 100%;
+                    padding: 0;
+                    background: #ccc;
+                    margin-bottom: 10px;
+                    overflow: hidden;
+                    &::before{
+                        display: none;
+                    }
+                    &::after{
+                        border-radius: 100%;
+                        @include transform-origin(top);
+                        @include transform(rotate(-180deg));
+                    }
+                    span{
+                        line-height: 70px;
+                        width: 100%;
+                        padding: 0 5px;
+                        box-sizing: border-box;
+                        color: #000;
+                    }
+                    &.active{
+                        &::after{
+                            @include transform(none);
+                        }
+                        span{
+                            color: #fff;
+                            @include transition-delay(.15s);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .section-title {

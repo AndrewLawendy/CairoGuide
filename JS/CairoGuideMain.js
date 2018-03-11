@@ -604,9 +604,7 @@ var initCalendarView = function (calendarView) {
             current = $('#calendar-wrp').data('currentDate');
         $('.week-indicator').stop().animate({
             top: dayPos + dayHeight
-        }, {
-            easing: 'easeOutBack'
-        })
+        });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
     }
 
@@ -732,11 +730,12 @@ var initCalendarView = function (calendarView) {
 
     var initWeekView = function (dayInWeek) {
         var weekPos = dayInWeek.position().top,
-        thisWeek = $('.day').filter(function () {
+        dayActive = $('.calendar-month-wrp.active .day.active').index()%7,
+        thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
             return $(this).position().top == weekPos;
         });
-        $('.day').removeClass('this-week');
-        thisWeek.addClass('this-week');
+        $('.calendar-month-wrp.active .day').removeClass('this-week active');
+        thisWeek.addClass('this-week').eq(dayActive).addClass('active');
         posWeekIndicator(dayInWeek);
     }
 
@@ -2264,6 +2263,7 @@ $(document).ready(function () {
     if ($('.tabs-global-container').length) {
         $('.tabs-global-container ul.tabs-content-container li:not(".active")').hide();
         $('.tabs-global-container ul.tabs-items li').on('click', function () {
+            if($(this).hasClass('active')) return;
             var index = $(this).index(),
             closestContainer = $(this).closest('.tabs-global-container');
             closestContainer.find('ul.tabs-items li').removeClass('active');
