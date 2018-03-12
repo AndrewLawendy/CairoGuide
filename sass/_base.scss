@@ -18,6 +18,7 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 $success:#5cb85c;
 $danger:#d9534f;
+$calendar-color:#f3a41e;
 /*Category Colors*/
 
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
@@ -1481,6 +1482,7 @@ input[type="radio"] {
     margin-top: 20px;
     .control-btn {
         float: right;
+        box-sizing: border-box;
         cursor: pointer;
         margin-left: 10px;
         border-radius: 7px;
@@ -1684,18 +1686,16 @@ input[type="radio"] {
     @include media("(max-width: 640px)"){
         &.responsive{
             ul.tabs-items{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
+                text-align: center;
                 li{
-                    display: block;
-                    flex:0 0 72px;
+                    display: inline-block;
+                    width:62px;
+                    height: 62px;
                     box-sizing: border-box;
-                    height: 72px;
                     border-radius: 100%;
                     padding: 0;
                     background: #ccc;
-                    margin-bottom: 10px;
+                    margin:0 5px 10px;
                     overflow: hidden;
                     &::before{
                         display: none;
@@ -1706,7 +1706,7 @@ input[type="radio"] {
                         @include transform(rotate(-180deg));
                     }
                     span{
-                        line-height: 70px;
+                        line-height: 62px;
                         width: 100%;
                         padding: 0 5px;
                         box-sizing: border-box;

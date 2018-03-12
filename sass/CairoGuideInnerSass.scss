@@ -2525,7 +2525,7 @@ Contains all styles of inner pages
                     line-height: get-vw(40px);
                 }
                 &:hover {
-                    background-color: #f3a41e;
+                    background-color: $calendar-color;
                     @include transition(all 0.3s ease);
                 }
             }
@@ -2635,26 +2635,85 @@ Contains all styles of inner pages
                 .details-carousel-item-wrp {
                     .details-carousel-content {
                         color: #fff;
-                        border-color: #f3a41e;
+                        border-color: $calendar-color;
                         background: #131313;
                     }
                 }
                 .details-carousel-dot {
                     &:hover,
                     &.active {
-                        background: #f3a41e;
+                        background: $calendar-color;
                     }
                 }
                 .details-carousel-controls {
                     &:hover {
                         background: #131313;
-                        color: #f3a41e
+                        color: $calendar-color
                     }
                 }
             }
         }
         /*Calendar*/
         #calendar-wrp {
+            .calendar-views-wrp{
+                position: relative;
+                p{
+                    float: left;
+                    width: 33.33%;
+                    padding: 15px 5px;
+                    box-sizing: border-box;
+                    color:#ccc;
+                    cursor: pointer;
+                    @include transition(all .15s);
+                    @include media("(min-width: 1200px)"){
+                        padding: get-vw(15px) get-vw(5px);
+                    }
+                    span {
+                        position: relative;
+                        overflow: hidden;
+                        display: inline-block;
+                        vertical-align: middle;
+                        &::before {
+                            content: attr(data-title);
+                            position: absolute;
+                            color: #000;
+                            @include transform(translateX(-100%));
+                            @include transition(all .3s);
+                        }
+                    }
+                    &.active {
+                        color: $calendar-color;
+                        span{
+                            z-index: 1;
+                            &::before {
+                                display: none;
+                            }
+                        }
+                    }
+                    &:hover{
+                        span{
+                            &::before{
+                                @include transform(translateX(0));
+                            }
+                        }
+                    }
+                }
+                .calendar-views-index{
+                    position:absolute;
+                    top:0;
+                    background:#131313;
+                    margin: 10px 0;
+                    padding: 5px 10px;
+                    border-radius:40px;
+                    @include transform(translateX(-10px));
+                    @include media("(min-width: 1200px)"){
+                        margin: get-vw(10px) 0;
+                        padding: get-vw(5px) get-vw(10px);
+                        @include transform(translateX(-.769vw));
+                    }
+                    @include transition(all .3s);
+                }
+            }
             .calendar-controls-wrp {
                 >* {
                     cursor: pointer;
@@ -2736,7 +2795,7 @@ Contains all styles of inner pages
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: #f3a41e;
+                        background: $calendar-color;
                         @include transform(translate(-100%, -100%));
                         @include transition(all .15s);
                     }
@@ -2855,7 +2914,7 @@ Contains all styles of inner pages
                     height: 58px;
                     box-sizing:border-box;
                     border-radius: 1px;
-                    background: #f3a41e;
+                    background: $calendar-color;
                     font:.8rem 'Lato-Bold';
                     color: #fff;
                     padding: 5px;
@@ -2868,7 +2927,7 @@ Contains all styles of inner pages
                         right: -15px;
                         border-bottom: 29px solid transparent;
                         border-top: 29px solid transparent;
-                        border-left: 15px solid #f3a41e;
+                        border-left: 15px solid $calendar-color;
                     }
                 }
                 &.weekend-view,&.week-view{
@@ -2976,7 +3035,7 @@ Contains all styles of inner pages
                                 content: '';
                                 z-index: 1;
                                 left: 0;
-                                border-bottom: 20px solid #f3a41e;
+                                border-bottom: 20px solid $calendar-color;
                                 border-right: get-vw(184.5px) solid transparent;
                             }
                             &::after {
