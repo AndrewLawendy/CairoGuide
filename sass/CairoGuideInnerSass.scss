@@ -2373,7 +2373,7 @@ Contains all styles of inner pages
                     @include transition(all .3s ease-out);
                     @include media("(min-width: 1200px)") {
                         border-width: get-vw(15px);
-                    }                    
+                    }
                     .image-holder {
                         position: relative;
                         width: 100%;
@@ -2844,45 +2844,49 @@ Contains all styles of inner pages
                         width: 100%;
                     }
                 }
-                .week-indicator{
+                .week-indicator {
                     display: none;
                     cursor: pointer;
                     position: absolute;
                     text-align: center;
                     z-index: 1;
-                    top:0;
+                    top: 0;
                     left: 0;
                     height: 58px;
-                    box-sizing:border-box;
+                    box-sizing: border-box;
                     border-radius: 1px;
                     background: #f3a41e;
-                    font:.8rem 'Lato-Bold';
+                    font: .8rem 'Lato-Bold';
                     color: #fff;
                     padding: 5px;
                     @include user-select(none);
                     @include transform(translateX(-100%));
-                    &::after{
+                    &::after {
                         content: '';
                         position: absolute;
-                        top:0;
+                        top: 0;
                         right: -15px;
                         border-bottom: 29px solid transparent;
                         border-top: 29px solid transparent;
                         border-left: 15px solid #f3a41e;
                     }
                 }
-                &.weekend-view,&.week-view{
-                    .week-indicator{
+                &.weekend-view,
+                &.week-view {
+                    .week-indicator {
                         display: block;
                     }
-                    .day:not(.this-week){
+                    .day:not(.this-week) {
                         opacity: .2;
                         pointer-events: none;
                         @include transition(all .15s);
                     }
                 }
-                &.weekend-view{
-                    .day.this-week:nth-of-type(7n+1),.day.this-week:nth-of-type(7n+2),.day.this-week:nth-of-type(7n+3),.day.this-week:nth-of-type(7n+4){
+                &.weekend-view {
+                    .day.this-week:nth-of-type(7n+1),
+                    .day.this-week:nth-of-type(7n+2),
+                    .day.this-week:nth-of-type(7n+3),
+                    .day.this-week:nth-of-type(7n+4) {
                         opacity: .2;
                         pointer-events: none;
                         @include transition(all .15s);
@@ -2932,18 +2936,18 @@ Contains all styles of inner pages
                     @include media("(min-width: 1200px)") {
                         padding: 0 get-vw(15px);
                     }
-                    &:nth-child(1n+5){
-                        margin-top:15px;
-                        @include media("(min-width: 1200px)"){
-                            margin-top:get-vw(15px);
+                    &:nth-child(1n+5) {
+                        margin-top: 15px;
+                        @include media("(min-width: 1200px)") {
+                            margin-top: get-vw(15px);
                         }
                     }
-                    @include media("(max-width: 768px)"){
+                    @include media("(max-width: 768px)") {
                         &:nth-child(1n+4) {
                             margin-top: 15px;
                         }
                     }
-                    @include media("(max-width: 640px)"){
+                    @include media("(max-width: 640px)") {
                         &:nth-child(1n+2) {
                             margin-top: 15px;
                         }
@@ -2992,9 +2996,9 @@ Contains all styles of inner pages
                                 top: 0;
                                 left: 0;
                             }
-                            @include media("(max-width: 768px)"){
+                            @include media("(max-width: 768px)") {
                                 &::after {
-                                    border-left-width:calc((100vw - 60px) / 3);
+                                    border-left-width: calc((100vw - 60px) / 3);
                                 }
                             }
                             @include media("(max-width: 640px)") {
@@ -3002,10 +3006,13 @@ Contains all styles of inner pages
                                 height: 100%;
                                 padding-bottom: 0;
                                 float: left;
-                                &::before,&::after{display:none}
+                                &::before,
+                                &::after {
+                                    display: none
+                                }
                                 border-top-right-radius: 3px;
                                 border-bottom-right-radius: 3px;
-                                a{
+                                a {
                                     display: block;
                                     width: 100%;
                                     height: 100%;
@@ -3060,11 +3067,11 @@ Contains all styles of inner pages
                                 padding-right: inherit;
                                 padding-left: inherit;
                                 @include transform(translateY(100%));
-                                @include media("(max-width: 768px)"){
+                                @include media("(max-width: 768px)") {
                                     position: static;
                                     @include transform(translateY(0));
                                 }
-                                @include media("(max-width: 640px)"){
+                                @include media("(max-width: 640px)") {
                                     margin-top: 15px;
                                 }
                             }
@@ -3072,12 +3079,12 @@ Contains all styles of inner pages
                                 overflow: hidden;
                             }
                         }
-                        @include media("(min-width: 769px)"){
+                        @include media("(min-width: 769px)") {
                             &:hover {
                                 .calendar-event-photo {
                                     @include transition-delay(.15s);
                                     padding-bottom: calc(100% - 49px);
-                                    @include media("(min-width: 1200px)"){
+                                    @include media("(min-width: 1200px)") {
                                         padding-bottom: calc(100% - 34px - (1500px / 1200)vw);
                                     }
                                     &::after {
@@ -3215,86 +3222,38 @@ Contains all styles of inner pages
         }
         /*FAQs*/
         .faq-wrp {
+            margin: 0 -15px;
             .faq-item {
-                display:inline-block;
-                width:100%;
+                float: none;
+                width: 100%;
+                //padding: 0 15px;
+                box-sizing: border-box;
+                margin-bottom: 30px;
+                &:nth-of-type(2n-1) {
+                    clear: left;
+                }
+                &:nth-of-type(2n) {
+                    clear: right;
+                }
                 h2 {
-                    clear: both;
-                    font-size: 20px;
-                }
-                .ques-number,
-                .ques-head,
-                .ques {
-                    display: block;
-                }
-                .ques-number,
-                .ques-head,
-                .ques,
-                p {
-                    padding: 0 15px;
-                    box-sizing: border-box;
-                }
-                .ques-header {
-                    float: left;
-                    position: relative;
-                    height:50px;
-                    width:100%;
-                    border-right: 2px solid red;
-                    overflow:hidden;
-                    @include transition(width 1.3s ease 1.3s,border-width 0.15s ease 2.6s);
-                    .ques-number {
-                        background-color: #131313;
-                        color: #fff;
-                        width: 50px;
-                        height: 50px;
-                        line-height: 50px;
-                        padding: 0;
-                        text-align: center;
-                        //border-radius: 100%;
-                        float:left;
-                        font-size:20px;
-                    }
-                    .ques-head{
-                        float:left;
-                        width:calc(100% - 50px);
-                        box-sizing:border-box;
-                        position: relative;
-                        overflow:hidden;
-                        top:50%;
-                        @include transform(translateY(-50%));
-                        @include transition(all 1.3s ease 1.3s);
-                        &:after{
-                            content: '';
-                            position: absolute;
-                            right: 2px;
-                            top: 0;
-                            height: 100%;
-                            background: #fff;
-                            width: 0;
-                            @include transition(all 1.3s);
-                        }
-                    }
-                    &.first-step{
-                        width:50px;
-                        border-width:0;
-                        .ques-head{
-                            //width:0;
-                            padding:0;
-                            &:after{
-                                width:100%;
-                            }
-                        }
-                    }
-                }
-                .answer-wrp {
-                    overflow: hidden;
-                    display:none;
-                    h2 {
-                        display:inline-block;
-                    }
+                    font: 1.3rem 'Lato-Bold';
+                    margin-bottom: 15px;
                 }
                 p {
-                    display: none;
+                    font: 1.2rem 'Lato-Regular';
+                    color: #777;
+                }
+            }
+            @include media("(max-width: 640px)") {
+                margin: 0;
+                .faq-item {
+                    float: none;
+                    width: 100%;
+                    padding: 0;
+                    clear: none !important;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
