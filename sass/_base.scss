@@ -18,6 +18,7 @@ $logo-yellow:#f3a41e;
 $logo-green:#5daa46;
 $success:#5cb85c;
 $danger:#d9534f;
+$calendar-color:#f3a41e;
 /*Category Colors*/
 
 /*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
@@ -1481,6 +1482,7 @@ input[type="radio"] {
     margin-top: 20px;
     .control-btn {
         float: right;
+        box-sizing: border-box;
         cursor: pointer;
         margin-left: 10px;
         border-radius: 7px;
@@ -1678,6 +1680,48 @@ input[type="radio"] {
                 top: 0;
                 opacity: 1;
                 @include transition(all .15s ease-out)
+            }
+        }
+    }
+    @include media("(max-width: 640px)"){
+        &.responsive{
+            ul.tabs-items{
+                text-align: center;
+                li{
+                    display: inline-block;
+                    width:62px;
+                    height: 62px;
+                    box-sizing: border-box;
+                    border-radius: 100%;
+                    padding: 0;
+                    background: #ccc;
+                    margin:0 5px 10px;
+                    overflow: hidden;
+                    &::before{
+                        display: none;
+                    }
+                    &::after{
+                        border-radius: 100%;
+                        @include transform-origin(top);
+                        @include transform(rotate(-180deg));
+                    }
+                    span{
+                        line-height: 62px;
+                        width: 100%;
+                        padding: 0 5px;
+                        box-sizing: border-box;
+                        color: #000;
+                    }
+                    &.active{
+                        &::after{
+                            @include transform(none);
+                        }
+                        span{
+                            color: #fff;
+                            @include transition-delay(.15s);
+                        }
+                    }
+                }
             }
         }
     }
