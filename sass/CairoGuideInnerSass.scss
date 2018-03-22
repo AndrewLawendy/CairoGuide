@@ -139,8 +139,8 @@ Contains all styles of inner pages
             }
             .olis-choice-wrp {
                 /*h2 {
-                    color: nth($i, 2);
-                }*/
+                color: nth($i, 2);
+            }*/
                 .section-title {
                     background-color: nth($i, 2);
                 }
@@ -252,10 +252,10 @@ Contains all styles of inner pages
                 box-sizing: border-box;
                 position: relative;
                 /*position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 0;
-                right: 0;*/
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;*/
                 .slider-main-slide-wrp {
                     /*width: 60%;*/
                     overflow: hidden;
@@ -393,17 +393,17 @@ Contains all styles of inner pages
                         }
                     }
                     /*.active-slider-img-marker {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 0;
-                        height: 0;
-                        border: 2px solid red;
-                        @include transition(all 0.3s ease);
-                        @include media("(min-width: 1200px)") {
-                            border-width: get-vw(2px);
-                        }
-                    }*/
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 0;
+                    border: 2px solid red;
+                    @include transition(all 0.3s ease);
+                    @include media("(min-width: 1200px)") {
+                        border-width: get-vw(2px);
+                    }
+                }*/
                 }
             }
         }
@@ -488,8 +488,8 @@ Contains all styles of inner pages
                 height: 275px;
             }
             /*@include media("(max-width: 640px)") {
-                height: 125px;
-            }*/
+            height: 125px;
+        }*/
             &.details-banner:before {
                 display: none;
             }
@@ -1059,7 +1059,7 @@ Contains all styles of inner pages
                 //.highlights-wrp {
                 .highlights-item {
                     /*width: 25%;
-                        box-sizing: border-box;*/
+                    box-sizing: border-box;*/
                     &:nth-child(2n) {
                         margin-top: 0;
                         @include media("(min-width: 1200px)") {
@@ -1100,9 +1100,9 @@ Contains all styles of inner pages
         .items-list-wrp {
             position: relative;
             /*margin-bottom: 30px;
-            @include media("(min-width: 1200px)") {
-                margin-bottom: get-vw(30px);
-            }*/
+        @include media("(min-width: 1200px)") {
+            margin-bottom: get-vw(30px);
+        }*/
             .items-list-container {
                 float: left;
                 .item-wrp {
@@ -1288,13 +1288,13 @@ Contains all styles of inner pages
         }
         .olis-choice-wrp {
             /*h2 {
-                font: 1.7em 'Lato-Black';
-                text-transform: capitalize;
-                margin-bottom: 20px;
-                @include media("(min-width: 1200px)") {
-                    margin-bottom: get-vw(20px);
-                }
-            }*/
+            font: 1.7em 'Lato-Black';
+            text-transform: capitalize;
+            margin-bottom: 20px;
+            @include media("(min-width: 1200px)") {
+                margin-bottom: get-vw(20px);
+            }
+        }*/
             .olis-choice-items-container {
                 margin-right: -10px;
                 margin-left: -10px;
@@ -1433,12 +1433,12 @@ Contains all styles of inner pages
         }
         .gallery-section-container {
             /*$main-slide-wrp-height: 430px;
-            @include media("(min-width: 1200px)") {
-                $main-slide-wrp-height: get-vw(430px);
-            }
-            @include media("(max-width: 768px)") {
-                $main-slide-wrp-height:200px;
-            }*/
+        @include media("(min-width: 1200px)") {
+            $main-slide-wrp-height: get-vw(430px);
+        }
+        @include media("(max-width: 768px)") {
+            $main-slide-wrp-height:200px;
+        }*/
             .main-slide-wrp,
             .side-slides-wrp {
                 img {
@@ -2297,15 +2297,15 @@ Contains all styles of inner pages
                     width: 100%;
                     position: relative;
                     /*@include media("(min-width: 1200px)") {
-                        width: get-vw(500px);
-                    }*/
+                    width: get-vw(500px);
+                }*/
                     &.opened {
                         form {
                             //padding-top: 80px;
                             @include transition(all .3s);
                             /*@include media("(min-width: 1200px)") {
-                                padding-top: get-vw(80px);
-                            }*/
+                            padding-top: get-vw(80px);
+                        }*/
                         }
                         .user-profile {
                             opacity: 1;
@@ -2320,15 +2320,15 @@ Contains all styles of inner pages
                         //padding-top: 155px;
                         @include transition(all .3s);
                         /*@include media("(min-width: 1200px)") {
-                            padding-top: get-vw(155px);
-                        }*/
+                        padding-top: get-vw(155px);
+                    }*/
                     }
                     .user-profile {
                         /*position: absolute;
-                        top: 0;
-                        left: 0;
-                        right:0;
-                        z-index: 1;*/
+                    top: 0;
+                    left: 0;
+                    right:0;
+                    z-index: 1;*/
                         width: 150px;
                         height: 150px;
                         overflow: hidden;
@@ -2545,16 +2545,16 @@ Contains all styles of inner pages
         }
         /*Profile*/
         /*.profile-cover {
-            width: 100%;
-            height: 335px;
-            overflow: hidden;
-            @include media("(min-width: 1200px)") {
-                height: get-vw(335px);
-            }
-            img {
-                @include object-fit-img();
-            }
-        }*/
+        width: 100%;
+        height: 335px;
+        overflow: hidden;
+        @include media("(min-width: 1200px)") {
+            height: get-vw(335px);
+        }
+        img {
+            @include object-fit-img();
+        }
+    }*/
         .profile-user-header {
             position: relative;
             padding: 20px 0;
@@ -2613,9 +2613,204 @@ Contains all styles of inner pages
                     }
                 }
                 .profile-rank {
-                    margin-bottom: 10px;
+                    margin-bottom: 5px;
                     @include media("(min-width: 1200px)") {
-                        margin-bottom: get-vw(10px);
+                        margin-bottom: get-vw(5px);
+                    }
+                }
+            }
+        }
+        .achievements-wrp {
+            @include media("(max-width: 768px)") {
+                margin-bottom: 30px;
+            }
+            .achievements-item {
+                width: calc(100% / 3);
+                float: left;
+                padding: 0 10px 20px;
+                box-sizing: border-box;
+                text-align: center;
+                text-transform: capitalize;
+                &:nth-of-type(3n-2) {
+                    clear: left;
+                }
+                &:nth-of-type(3n) {
+                    clear: right;
+                }
+                @include media("(min-width: 1200px)") {
+                    padding: 0 gwt-vw(10px) get-vw(20px);
+                }
+                @include media("(max-width: 768px)") {
+                    @include media("(min-width: 400px)") {
+                        width: calc(100% / 4);
+                        &:nth-of-type(3n-2),
+                        &:nth-of-type(3n) {
+                            clear: none;
+                        }
+                        &:nth-of-type(4n-3) {
+                            clear: left;
+                        }
+                        &:nth-of-type(4n) {
+                            clear: right;
+                        }
+                    }
+                }
+                img {
+                    width: 50px;
+                    height: auto;
+                    opacity: 0.2;
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(50px);
+                    }
+                }
+                span {
+                    display: block;
+                    margin-top: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(10px);
+                    }
+                }
+                &.active {
+                    img {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .profile-numbers-wrp {
+            background-color: $logo-green;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #fff;
+            text-transform: capitalize;
+            text-align: center;
+            border-radius: 5px;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(10px);
+                border-radius: get-vw(5px);
+            }
+            .profile-number-item {
+                width: calc(100% / 3);
+                float: left;
+                padding: 0 10px;
+                @include media("(min-width: 1200px)") {
+                    padding: 0 get-vw(10px);
+                }
+                box-sizing: border-box;
+                span {
+                    display: block;
+                    &.profile-number-title {
+                        margin-bottom: 15px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(15px);
+                        }
+                    }
+                    &.profile-number {
+                        font: 2.5rem 'Lato-Bold';
+                    }
+                }
+            }
+        }
+        .favourits-wrp {
+            padding: 0 5px;
+            @include media("(min-width: 1200px)") {
+                padding: 0 get-vw(5px);
+            }
+            @include media("(max-width: 640px)") {
+                padding: 0 10px;
+            }
+            .favourits-item {
+                width: calc(100% / 3); //height: get-vw(165px,768px);
+                height: 180px;
+                float: left;
+                padding: 0 5px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+                @include media("(min-width: 1200px)") {
+                    padding: 0 get-vw(5px);
+                    margin-bottom: get-vw(10px); //height: get-vw(165px);
+                    height: get-vw(180px);
+                }
+                @include media("(max-width: 768px)") {
+                    width: calc((100vw - 20px) / 3); //height: calc((100vw - 20px) / 3);
+                }
+                @include media("(max-width: 640px)") {
+                    width: 100%;
+                    padding: 0;
+                }
+                a {
+                    $margin: get-vw(10px);
+                    width: calc(100% - 10px);
+                    height:100%;
+                    overflow:hidden;
+                    position: absolute;
+                    top:0;
+                    left:5px;
+                    @include media("(min-width: 1200px)") {
+                        width: calc(100% - #{$margin});
+                        left:get-vw(5px);
+                    }
+                    img {
+                        @include object-fit-img();
+                        object-position: center;
+                        @include transform(scale(1));
+                        @include transition(transform 0.3s linear);
+                    }
+                    .favourite-item-title {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width:100%;
+                        padding: 40px 10px 10px;
+                        box-sizing: border-box;
+                        color: #fff;
+                        overflow: hidden;
+                        text-transform: capitalize;
+                        opacity: 0;
+                        @include transform(translateY(20px));
+                        @include transition(all 0.15s);
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(40px) get-vw(10px) get-vw(10px);
+                            @include transform(translateY(get-vw(20px)));
+                        }
+                        @include media("(max-width: 768px)") {
+                            @include transform(translateY(0));
+                            opacity:1;
+                        }
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 25px;
+                            left: 0;
+                            width: 100%;
+                            height: 999px;
+                            background: #000;
+                            @include transform(skewY(2deg));
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(25px);
+                                height: get-vw(999px);
+                            }
+                        }
+                        p {
+                            position: relative;
+                            z-index: 10;
+                            font-size: 1.2rem;
+                            line-height: 1.5rem;
+                        }
+                    }
+                }
+                &:hover {
+                    a {
+                        img {
+                            @include transform(scale(1.05));
+                            @include transition(transform 6s linear);
+                        }
+                        .favourite-item-title {
+                            opacity: 1;
+                            @include transform(translateY(0));
+                        }
                     }
                 }
             }
@@ -2655,17 +2850,17 @@ Contains all styles of inner pages
         }
         /*Calendar*/
         #calendar-wrp {
-            .calendar-views-wrp{
+            .calendar-views-wrp {
                 position: relative;
-                p{
+                p {
                     float: left;
                     width: 33.33%;
                     padding: 15px 5px;
                     box-sizing: border-box;
-                    color:#ccc;
+                    color: #ccc;
                     cursor: pointer;
                     @include transition(all .15s);
-                    @include media("(min-width: 1200px)"){
+                    @include media("(min-width: 1200px)") {
                         padding: get-vw(15px) get-vw(5px);
                     }
                     span {
@@ -2683,30 +2878,30 @@ Contains all styles of inner pages
                     }
                     &.active {
                         color: $calendar-color;
-                        span{
+                        span {
                             z-index: 1;
                             &::before {
                                 display: none;
                             }
                         }
                     }
-                    &:hover{
-                        span{
-                            &::before{
+                    &:hover {
+                        span {
+                            &::before {
                                 @include transform(translateX(0));
                             }
                         }
                     }
                 }
-                .calendar-views-index{
-                    position:absolute;
-                    top:0;
-                    background:#131313;
+                .calendar-views-index {
+                    position: absolute;
+                    top: 0;
+                    background: #131313;
                     margin: 10px 0;
                     padding: 5px 10px;
-                    border-radius:40px;
+                    border-radius: 40px;
                     @include transform(translateX(-10px));
-                    @include media("(min-width: 1200px)"){
+                    @include media("(min-width: 1200px)") {
                         margin: get-vw(10px) 0;
                         padding: get-vw(5px) get-vw(10px);
                         @include transform(translateX(-.769vw));
@@ -2915,7 +3110,7 @@ Contains all styles of inner pages
                     box-sizing: border-box;
                     border-radius: 1px;
                     background: $calendar-color;
-                    font:.8rem 'Lato-Bold';
+                    font: .8rem 'Lato-Bold';
                     color: #fff;
                     padding: 5px;
                     @include user-select(none);
@@ -3284,8 +3479,7 @@ Contains all styles of inner pages
             margin: 0 -15px;
             .faq-item {
                 float: none;
-                width: 100%;
-                //padding: 0 15px;
+                width: 100%; //padding: 0 15px;
                 box-sizing: border-box;
                 margin-bottom: 30px;
                 &:nth-of-type(2n-1) {
