@@ -600,10 +600,9 @@ var initCalendarView = function (calendarView) {
 
     var posWeekIndicator = function (day) {
         var dayPos = day.position().top,
-            dayHeight = day.height() * .1,
             current = $('#calendar-wrp').data('currentDate');
         $('.week-indicator').stop().animate({
-            top: dayPos + dayHeight
+            top: dayPos
         });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
     }
@@ -718,7 +717,7 @@ var initCalendarView = function (calendarView) {
         if (!todaySet) {
             todaySet = true;
             $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
-            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today');
+            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today').click();
         }
         updateDay(currentMonth, dayDate, year);
         if (monthPrev) {
@@ -745,6 +744,12 @@ var initCalendarView = function (calendarView) {
         $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
         _this.addClass('active');
         $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
+        if($('.calendar-overview').hasClass('weekend-view')){
+            var tabIndex = (_this.index()%7)-4;
+            $('#weekend-view .tabs-items li').eq(tabIndex).click();
+        }else if($('.calendar-overview').hasClass('week-view')){
+            $('#week-view .tabs-items li').eq(_this.index()%7).click();
+        }
         $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
             opacity: 0
         }, {
