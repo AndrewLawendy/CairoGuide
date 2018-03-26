@@ -255,8 +255,14 @@ var TransformHeader = function (scrollPos, breakPos) {
         bottomHeader = $('.bottom-header'),
         mainContent = $('main');
     if (scrollPos >= breakPos) {
+        if ($('.top-header .account-wrp').length) {
+            $('.top-header .account-wrp').removeClass('active');
+        }
         stickyHeader.addClass('fixed');
     } else {
+        if ($('.attached-menu .account-wrp').length) {
+            $('.attached-menu .account-wrp').removeClass('active');
+        }
         stickyHeader.removeClass('fixed');
         topHeader.removeAttr('style');
     }
@@ -471,7 +477,7 @@ var initCalendarView = function (calendarView) {
                 var monthDiv = $('.calendar-month-wrp').filter(function () {
                         return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
                     }),
-                    activeMonthDateObj = new Date($('.calendar-month-wrp.active').data('year'),$('.calendar-month-wrp.active').data('month')),
+                    activeMonthDateObj = new Date($('.calendar-month-wrp.active').data('year'), $('.calendar-month-wrp.active').data('month')),
                     isPrevWindow = dateObj < activeMonthDateObj;
                 return [monthDiv, isPrevWindow]
             }
@@ -529,7 +535,7 @@ var initCalendarView = function (calendarView) {
             year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
             dateObj = new Date(year, month),
             currentDay = $('#calendar-wrp').data('currentDate')[0],
-            newDayLimit = ifCurrentExceedsOther(date,currentDay);
+            newDayLimit = ifCurrentExceedsOther(date, currentDay);
         if (date != undefined) dateObj = date;
         var checkMonth = checkMonthBefore(dateObj);
         if (checkMonth != false) initCalendar(dateObj, checkMonth[0], checkMonth[1]);
@@ -551,7 +557,7 @@ var initCalendarView = function (calendarView) {
             $('.calendar-head-body').removeClass('leaving');
         }, 300);
         $('#calendar-wrp').data('currentDate', [newDayLimit, dateObj.getMonth(), dateObj.getFullYear()]);
-        $('.calendar-overview').attr('class') != 'calendar-overview'&&initWeekView($('.calendar-month-wrp.active .day:contains(1)').first());
+        $('.calendar-overview').attr('class') != 'calendar-overview' && initWeekView($('.calendar-month-wrp.active .day:contains(1)').first());
     }
 
     var setYear = function () {
@@ -739,7 +745,7 @@ var initCalendarView = function (calendarView) {
         if ($('.calendar-overview.weekend-view').length) {
             if (thisWeek.length < 5) {
                 var index = dayInWeek.index(),
-                dayInLastWeek = $('.calendar-month-wrp.active .day').eq(index - 7);
+                    dayInLastWeek = $('.calendar-month-wrp.active .day').eq(index - 7);
                 return initWeekView(dayInLastWeek);
             }
             if (dayActive < 4) dayActive = 4;
@@ -750,7 +756,7 @@ var initCalendarView = function (calendarView) {
             }
         }
         thisWeek.addClass('this-week').eq(dayActive).addClass('active').click();
-        dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type('+roundToNearestValue(7,dayInWeek.index())+')');
+        dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + roundToNearestValue(7, dayInWeek.index()) + ')');
         posWeekIndicator(dayInWeek);
     }
 
@@ -818,7 +824,7 @@ var initCalendarView = function (calendarView) {
                 $('#weekend-view').slideDown(150, function () {
                     var weekIndex = Math.floor(Math.ceil($('.calendar-month-wrp .day.active').index() / 6.9) * 6.9);
                     initWeekView($('.calendar-month-wrp .day').eq(weekIndex));
-                    $('.calendar-this .this-weekend').siblings().fadeOut(function(){
+                    $('.calendar-this .this-weekend').siblings().fadeOut(function () {
                         $('.calendar-this .this-weekend').fadeIn();
                     });
                 });
@@ -829,7 +835,7 @@ var initCalendarView = function (calendarView) {
                 $('#week-view').slideDown(150, function () {
                     var weekIndex = Math.floor(Math.ceil($('.calendar-month-wrp .day.active').index() / 6.9) * 6.9);
                     initWeekView($('.calendar-month-wrp .day').eq(weekIndex));
-                    $('.calendar-this .this-week').siblings().fadeOut(function(){
+                    $('.calendar-this .this-week').siblings().fadeOut(function () {
                         $('.calendar-this .this-week').fadeIn();
                     })
                 });
@@ -1653,12 +1659,12 @@ var SearchFaq = function (searchWord) {
                 desc.html(descHighlightedKeywords);
                 item.appendTo('.faq-search-results');
             }
-            if(haveRes){
+            if (haveRes) {
                 $('.no-results-item').hide();
-            }else{
+            } else {
                 $('.no-results-item').show();
             }
-        }else{
+        } else {
             $('.faq-search-result-wrp').hide();
             $('.faq-category-wrp').show();
         }
@@ -1686,6 +1692,11 @@ $(document).ready(function () {
         breakPos = header.height(),
         scrollPos = $(this).scrollTop();
     TransformHeader(scrollPos, breakPos);
+    if ($('.account-wrp').length) {
+        $('.account-wrp a').on('click', function () {
+            $(this).closest('.account-wrp').toggleClass('active');
+        });
+    }
     ManipulateMainNav();
     if ($('.burger-menu-btn-wrapper').length) {
         $('.burger-menu-btn-wrapper').off().on('click', function () {
@@ -1693,7 +1704,6 @@ $(document).ready(function () {
         });
     }
     newScreenSize = CalcLastScreenSize(newScreenSize);
-    console.log('newScreenSize in ready:' + newScreenSize);
     MainBannerlParallax(scrollPos, breakPos);
     if ($('.side-ads.thirty-width').length) {
         var adMargin = 30;
@@ -2741,6 +2751,12 @@ $(document).ready(function () {
                 }, 300);
             }
         }
+        if ($('.account-wrp').hasClass('active')) {
+            var accountWrp = $('.account-wrp');
+            if (!accountWrp.is(e.target) && accountWrp.has(e.target).length == 0) {
+                $('.account-wrp').removeClass('active');
+            }
+        }
     });
     $(document).scroll(function () {
         var header = $('header'),
@@ -2764,6 +2780,9 @@ $(document).ready(function () {
         var scrollPos = $(this).scrollTop();
         TransformHeader(scrollPos, breakPos);
         ManipulateMainNav();
+        if ($(window).width() <= 768 && $('.account-wrp').length) {
+            $('.account-wrp').removeClass('active');
+        }
         newScreenSize = CalcLastScreenSize(newScreenSize);
 
         /*if ($('.side-ads.thirty-width').length) {

@@ -236,10 +236,10 @@ main {
             bottom: 0;
             right: 0;
             text-align: right;
-            padding:20px;
-            box-sizing:border-box;
+            padding: 20px;
+            box-sizing: border-box;
             @include media("(min-width: 1200px)") {
-                padding:get-vw(20px);
+                padding: get-vw(20px);
             }
             @include media("(max-width: 768px)") {
                 display: none;
@@ -247,21 +247,19 @@ main {
             p {
                 //padding: 5px 10px;
                 background-color: #131313;
-                border-color:#131313;
+                border-color: #131313;
                 color: #fff;
                 font-size: 1em;
                 float: right;
                 cursor: pointer;
-                margin-left: 10px;
-                //margin-bottom: 20px;
+                margin-left: 10px; //margin-bottom: 20px;
                 @include media("(min-width: 1200px)") {
                     //padding: get-vw(5px) get-vw(10px);
-                    margin-left: get-vw(10px);
-                    //margin-bottom: get-vw(20px);
+                    margin-left: get-vw(10px); //margin-bottom: get-vw(20px);
                 }
-                &:hover{
-                    color:#131313;
-                    border-color:#fff;
+                &:hover {
+                    color: #131313;
+                    border-color: #fff;
                     background-color: #fff;
                 }
             }

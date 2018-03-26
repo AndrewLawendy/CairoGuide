@@ -125,11 +125,11 @@ Contains all styles of inner pages
                                     a,
                                     a:visited {
                                         //@include theme-link-color(nth($i, 2));
-                                        color:nth($i, 2);
-                                        border-color:nth($i, 2);
+                                        color: nth($i, 2);
+                                        border-color: nth($i, 2);
                                     }
-                                    a:hover{
-                                        background-color:nth($i, 2);
+                                    a:hover {
+                                        background-color: nth($i, 2);
                                     }
                                 }
                             }
@@ -1279,14 +1279,13 @@ Contains all styles of inner pages
                                 a,
                                 a:visited {
                                     float: right;
-                                    margin-left: 10px;
-                                    //@include link-hover();
+                                    margin-left: 10px; //@include link-hover();
                                     @include media("(min-width: 1200px)") {
                                         margin-left: get-vw(10px);
                                     }
                                 }
-                                a:hover{
-                                    color:#fff!important;
+                                a:hover {
+                                    color: #fff !important;
                                 }
                             }
                         }
