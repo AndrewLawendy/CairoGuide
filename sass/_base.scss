@@ -1623,7 +1623,7 @@ input[type="radio"] {
                 position: relative;
                 overflow: hidden;
                 display: inline-block;
-                vertical-align: middle;
+                vertical-align: top;
                 z-index: 1;
                 color: #bbb;
                 &::after {
