@@ -349,6 +349,21 @@ $colorList: "nightlife" #f90000,
     flex: $values;
 }
 
+@mixin btn-base(){
+    text-decoration: none;
+    padding: 7px 10px 5px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    display:inline-block;
+    border-radius:100vw;
+    font-size: 1rem;
+    text-transform: uppercase;
+    @include media("(min-width: 1200px)") {
+        padding: get-vw(7px) get-vw(10px) get-vw(5px);
+        //font-size: 0.7rem;
+    }
+}
+
 /*Functions*/
 
 @each $i in $colorList {
@@ -1498,24 +1513,31 @@ input[type="radio"] {
 }
 
 .controls-btn-container {
-    margin-top: 20px;
     .control-btn {
         float: right;
         box-sizing: border-box;
         cursor: pointer;
         margin-left: 10px;
         border-radius: 7px;
-        padding: 0 10px;
-        line-height: 40px;
+        padding: 7px 10px 5px;
+        //line-height: 2rem;
         background: $header-footer-primary-background-color;
         color: #fff;
+        border:1px solid #131313;
         font-size: 1rem;
-        border: 0;
+        //border: 0;
         text-transform: uppercase;
+        border-radius:100vw;
+        @include transition(all 0.15s);
         @include media("(min-width: 1200px)") {
             margin-left: get-vw(10px);
-            padding: 0 get-vw(10px);
-            line-height: get-vw(40px);
+            padding: get-vw(7px) get-vw(10px) get-vw(5px);
+            //line-height: get-vw(40px);
+        }
+        &:hover{
+            color:#131313;
+            //border-color:#fff;
+            background-color: #fff;
         }
         &:focus,
         &:active {
@@ -1525,13 +1547,10 @@ input[type="radio"] {
 }
 
 .clear-btn {
-    padding: 10px;
     color: #fff;
-    border: 1px solid #fff;
-    text-decoration: none;
     background: transparent;
-    display: inline-block;
     vertical-align: middle;
+    @include btn-base();
     @include transition(all .15s);
     &:hover {
         background: #fff;
@@ -2074,19 +2093,20 @@ input[type="radio"] {
         position: absolute;
         bottom: 20px;
         right: 0;
-        left: 0;
+        left: 100vw;
         margin: 0 auto;
         opacity: 0;
         @include transform(translateX(10px));
-        @include transition(all 0.3s ease);
+        @include transition(opacity 0.3s ease,transform 0.3s ease);
         @include media("(min-width: 1200px)") {
             bottom: get-vw(20px);
             @include transform(translateX(get-vw(10px)));
         }
         &.active {
+            left:0;
             opacity: 1;
             @include transform(translateX(0));
-            @include transition(all 0.3s ease);
+           // @include transition(opacity 0.3s ease);
         }
         a,
         a:visited {
@@ -3687,7 +3707,7 @@ footer {
             }
         }
         .mag-social {
-            text-align: right;
+            //text-align: right;
             font-size: 1.9rem;
             i {
                 color: #131313;

@@ -545,7 +545,7 @@ var initCalendarView = function (calendarView) {
         $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
         $('.calendar-month-wrp .day').removeClass('active');
         $('.calendar-month-wrp').each(function () {
-            if(! $(this).find('.day.active').length) $(this).find('.day:contains(' + currentDay + ')').first().addClass('active');
+            if (!$(this).find('.day.active').length) $(this).find('.day:contains(' + currentDay + ')').first().addClass('active');
         });
         setTimeout(function () {
             $('.calendar-head-body').removeClass('leaving');
@@ -645,7 +645,7 @@ var initCalendarView = function (calendarView) {
 
     var updateWeekNumber = function (date) {
         var weekNumber = getWeekNumber(date);
-        if($('.week-indicator span').text() == weekNumber) return;
+        if ($('.week-indicator span').text() == weekNumber) return;
         $('.week-indicator span').fadeOut(150, function () {
             $(this).text(weekNumber).fadeIn(150);
         })
@@ -730,10 +730,10 @@ var initCalendarView = function (calendarView) {
 
     var initWeekView = function (dayInWeek) {
         var weekPos = dayInWeek.position().top,
-        dayActive = $('.calendar-month-wrp.active .day.active').index()%7,
-        thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
-            return $(this).position().top == weekPos;
-        });
+            dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
+            thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
+                return $(this).position().top == weekPos;
+            });
         $('.calendar-month-wrp.active .day').removeClass('this-week active');
         thisWeek.addClass('this-week').eq(dayActive).addClass('active');
         posWeekIndicator(dayInWeek);
@@ -744,11 +744,11 @@ var initCalendarView = function (calendarView) {
         $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
         _this.addClass('active');
         $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
-        if($('.calendar-overview').hasClass('weekend-view')){
-            var tabIndex = (_this.index()%7)-4;
+        if ($('.calendar-overview').hasClass('weekend-view')) {
+            var tabIndex = (_this.index() % 7) - 4;
             $('#weekend-view .tabs-items li').eq(tabIndex).click();
-        }else if($('.calendar-overview').hasClass('week-view')){
-            $('#week-view .tabs-items li').eq(_this.index()%7).click();
+        } else if ($('.calendar-overview').hasClass('week-view')) {
+            $('#week-view .tabs-items li').eq(_this.index() % 7).click();
         }
         $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
             opacity: 0
@@ -773,11 +773,11 @@ var initCalendarView = function (calendarView) {
                 indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
                 stopIndicatorDrag = function (e) {
                     var dayHeight = $('.day').height(),
-                    mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
-                    hoveredWeek = $('.calendar-month-wrp.active .day').filter(function(){
-                        return mouseUpPos>$(this).offset().top;
-                    }).last();
-                    if(!hoveredWeek.length) hoveredWeek = $('.day:contains(1)').first();
+                        mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
+                        hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
+                            return mouseUpPos > $(this).offset().top;
+                        }).last();
+                    if (!hoveredWeek.length) hoveredWeek = $('.day:contains(1)').first();
                     initWeekView(hoveredWeek);
                     $('#calendar-wrp').off('mousemove mouseup mouseleave touchmove touchend');
                 };
@@ -789,11 +789,11 @@ var initCalendarView = function (calendarView) {
         }
     }
 
-    var switchViews = function(calendarView){
+    var switchViews = function (calendarView) {
         if (calendarView == 'today') {
             $('#month-view').siblings().slideUp(150, function () {
                 $('#month-view').slideDown(150);
-                $('.calendar-this .this-day').siblings().fadeOut(function(){
+                $('.calendar-this .this-day').siblings().fadeOut(function () {
                     $('.calendar-this .this-day').fadeIn();
                 });
             });
@@ -803,18 +803,18 @@ var initCalendarView = function (calendarView) {
                 $('#weekend-view').slideDown(150, function () {
                     var weekIndex = Math.floor(Math.ceil($('.day.today').index() / 6.9) * 6.9);
                     initWeekView($('.day').eq(weekIndex));
-                    $('.calendar-this .this-weekend').siblings().fadeOut(function(){
+                    $('.calendar-this .this-weekend').siblings().fadeOut(function () {
                         $('.calendar-this .this-weekend').fadeIn();
                     });
                 });
             });
             $('.calendar-overview').attr('class', 'calendar-overview weekend-view');
-        }else{
+        } else {
             $('#week-view').siblings().slideUp(150, function () {
                 $('#week-view').slideDown(150, function () {
                     var weekIndex = Math.floor(Math.ceil($('.day.today').index() / 6.9) * 6.9);
                     initWeekView($('.day').eq(weekIndex));
-                    $('.calendar-this .this-week').siblings().fadeOut(function(){
+                    $('.calendar-this .this-week').siblings().fadeOut(function () {
                         $('.calendar-this .this-week').fadeIn();
                     })
                 });
@@ -832,12 +832,12 @@ var initCalendarView = function (calendarView) {
         $('.calendar-views-index').css({
             left: spanLeft,
             width: spanWidth,
-            height:spanHeight
+            height: spanHeight
         });
         $(this).addClass('active').siblings().removeClass('active');
         switchViews(calendarView);
     });
-    $('.calendar-this .control-btn').on('click',function(){
+    $('.calendar-this .control-btn').on('click', function () {
         var currentMonth = $('.current-month'),
             currentMonthData = currentMonth.data();
         scrollToMonth(currentMonth);
@@ -904,11 +904,13 @@ var initCalendarView = function (calendarView) {
 
     initCalendar();
     if (calendarView != 'today') {
-        var weekIndex = Math.floor(Math.ceil($('.day.today').index()/6.9)*6.9);
+        var weekIndex = Math.floor(Math.ceil($('.day.today').index() / 6.9) * 6.9);
         initWeekView($('.day').eq(weekIndex));
     }
     switchViews(calendarView);
-    $('.calendar-views-wrp p').filter(function(){return $(this).text().trim().toLowerCase() == calendarView}).click();
+    $('.calendar-views-wrp p').filter(function () {
+        return $(this).text().trim().toLowerCase() == calendarView
+    }).click();
 }
 
 //ifArabic
@@ -1601,6 +1603,52 @@ var detailsCarousel = function () {
         }, 5000);
     });
 };
+
+//-------------------------------------------------------------------------------------------------
+//FAQs category expand
+var ExpandFaqCat = function (obj) {
+    var faqCatClicked = obj.closest('.faq-category');
+    $('.faq-category').not(faqCatClicked).removeClass('active').find('.faq-wrp').slideUp();
+    faqCatClicked.toggleClass('active').find('.faq-wrp').slideToggle(300);
+}
+
+//Search in FAQs
+var SearchFaq = function (searchWord) {
+    $('.faq-search-results').html('');
+    var searchWordRegex = new RegExp("(" + searchWord + ")", "gi"),
+        haveRes = false;
+    $('.faq-category-wrp .faq-item').each(function () {
+        var item = $(this).clone(),
+            title = item.find('h3'),
+            desc = item.find('p'),
+            titleMatch = title.text().match(searchWordRegex),
+            descMatch = desc.text().match(searchWordRegex);
+        if (searchWord != '' && searchWord != null && searchWord != undefined) {
+            $('.faq-category-wrp').hide();
+            $('.faq-search-result-wrp').show();
+            if (titleMatch != null || descMatch != null) {
+                haveRes = true;
+                titleHighlightedKeywords = title.text().replace(searchWordRegex, function (x) {
+                    return '<span class="mark">' + x + '</span>';
+                });
+                descHighlightedKeywords = desc.text().replace(searchWordRegex, function (x) {
+                    return '<span class="mark">' + x + '</span>';
+                });
+                title.html(titleHighlightedKeywords);
+                desc.html(descHighlightedKeywords);
+                item.appendTo('.faq-search-results');
+            }
+            if(haveRes){
+                $('.no-results-item').hide();
+            }else{
+                $('.no-results-item').show();
+            }
+        }else{
+            $('.faq-search-result-wrp').hide();
+            $('.faq-category-wrp').show();
+        }
+    });
+}
 
 var windowLoaded = false;
 //document ready
@@ -2319,9 +2367,9 @@ $(document).ready(function () {
     if ($('.tabs-global-container').length) {
         $('.tabs-global-container ul.tabs-content-container li:not(".active")').hide();
         $('.tabs-global-container ul.tabs-items li').on('click', function () {
-            if($(this).hasClass('active')) return;
+            if ($(this).hasClass('active')) return;
             var index = $(this).index(),
-            closestContainer = $(this).closest('.tabs-global-container');
+                closestContainer = $(this).closest('.tabs-global-container');
             closestContainer.find('ul.tabs-items li').removeClass('active');
             closestContainer.find('ul.tabs-content-container li').slideUp('slow').removeClass('active');
             $(this).addClass('active');
@@ -2459,6 +2507,16 @@ $(document).ready(function () {
     }
     //End of Events Calendar
 
+    //Start of FAQs
+    if ($('.faq-category-wrp').length) {
+        $('.faq-category-wrp').find('h2').on('click', function () {
+            ExpandFaqCat($(this));
+        });
+        $('.faq-search').find('input').on('keyup', function () {
+            SearchFaq($(this).val());
+        });
+    }
+    //End of FAQs
     $(document).on('mousedown touchstart', function (e) {
         if (newScreenSize == 1) {
             if ($('#lightbox-popup.active.image-slider').length) {

@@ -124,7 +124,12 @@ Contains all styles of inner pages
                                 .item-links {
                                     a,
                                     a:visited {
-                                        @include theme-link-color(nth($i, 2));
+                                        //@include theme-link-color(nth($i, 2));
+                                        color:nth($i, 2);
+                                        border-color:nth($i, 2);
+                                    }
+                                    a:hover{
+                                        background-color:nth($i, 2);
                                     }
                                 }
                             }
@@ -1139,13 +1144,13 @@ Contains all styles of inner pages
                         width: 100%;
                         .item-img {
                             width: 30%;
-                            height: 200px;
+                            height: 232px;
                             overflow: hidden;
                             float: left;
                             padding-right: 20px;
                             box-sizing: border-box;
                             @include media("(min-width: 1200px)") {
-                                height: get-vw(200px);
+                                height: get-vw(232px);
                                 padding-right: get-vw(20px);
                             }
                             @include media("(max-width: 768px)") {
@@ -1171,9 +1176,9 @@ Contains all styles of inner pages
                         .item-data {
                             float: left;
                             width: 70%;
-                            padding-bottom: 44px;
+                            padding-bottom: 65px;
                             @include media("(min-width: 1200px)") {
-                                padding-bottom: get-vw(44px);
+                                padding-bottom: get-vw(65px);
                             }
                             @include media("(max-width: 768px)") {
                                 float: none;
@@ -1274,11 +1279,14 @@ Contains all styles of inner pages
                                 a,
                                 a:visited {
                                     float: right;
-                                    margin-left: 15px;
-                                    @include link-hover();
+                                    margin-left: 10px;
+                                    //@include link-hover();
                                     @include media("(min-width: 1200px)") {
-                                        margin-left: get-vw(15px);
+                                        margin-left: get-vw(10px);
                                     }
+                                }
+                                a:hover{
+                                    color:#fff!important;
                                 }
                             }
                         }
@@ -1951,10 +1959,10 @@ Contains all styles of inner pages
                     }
                 }
                 .comment-view-wrp {
-                    margin-top: 50px;
+                    //margin-top: 30px;
                     padding-left: 20px;
                     @include media("(min-width: 1200px)") {
-                        margin-top: get-vw(50px);
+                        //margin-top: get-vw(30px);
                         padding-left: get-vw(20px);
                     }
                     .comment-container {
@@ -2584,8 +2592,7 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     margin-left: get-vw(170px);
                 }
-                .profile-rank,
-                .signout-btn {
+                .profile-rank {
                     display: block;
                     line-height: 1em;
                 }
@@ -2613,9 +2620,17 @@ Contains all styles of inner pages
                     }
                 }
                 .profile-rank {
-                    margin-bottom: 5px;
+                    margin-bottom: 10px;
                     @include media("(min-width: 1200px)") {
-                        margin-bottom: get-vw(5px);
+                        margin-bottom: get-vw(10px);
+                    }
+                }
+                .signout-btn {
+                    color: #131313;
+                    border-color: #131313;
+                    &:hover {
+                        background-color: #131313;
+                        color: #fff;
                     }
                 }
             }
@@ -2743,14 +2758,14 @@ Contains all styles of inner pages
                 a {
                     $margin: get-vw(10px);
                     width: calc(100% - 10px);
-                    height:100%;
-                    overflow:hidden;
+                    height: 100%;
+                    overflow: hidden;
                     position: absolute;
-                    top:0;
-                    left:5px;
+                    top: 0;
+                    left: 5px;
                     @include media("(min-width: 1200px)") {
                         width: calc(100% - #{$margin});
-                        left:get-vw(5px);
+                        left: get-vw(5px);
                     }
                     img {
                         @include object-fit-img();
@@ -2762,7 +2777,7 @@ Contains all styles of inner pages
                         position: absolute;
                         bottom: 0;
                         left: 0;
-                        width:100%;
+                        width: 100%;
                         padding: 40px 10px 10px;
                         box-sizing: border-box;
                         color: #fff;
@@ -2777,7 +2792,7 @@ Contains all styles of inner pages
                         }
                         @include media("(max-width: 768px)") {
                             @include transform(translateY(0));
-                            opacity:1;
+                            opacity: 1;
                         }
                         &:before {
                             content: '';
@@ -2786,7 +2801,7 @@ Contains all styles of inner pages
                             left: 0;
                             width: 100%;
                             height: 999px;
-                            background: #000;
+                            background: #131313;
                             @include transform(skewY(2deg));
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(25px);
@@ -2798,6 +2813,25 @@ Contains all styles of inner pages
                             z-index: 10;
                             font-size: 1.2rem;
                             line-height: 1.5rem;
+                            overflow: hidden;
+                            max-height: 3rem; //text-align: justify;
+                            //margin-right: -1em;
+                            padding-right: 1em;
+                            &:before {
+                                content: '...';
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                            }
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                right: 0;
+                                width: 1em;
+                                height: 1em;
+                                margin-top: 0.2em;
+                                background: #131313;
+                            }
                         }
                     }
                 }
@@ -3315,12 +3349,12 @@ Contains all styles of inner pages
                             .btn-wrap {
                                 width: 100%;
                                 box-sizing: border-box;
-                                position: absolute;
+                                /*position: absolute;
                                 left: 0;
-                                bottom: 0;
+                                bottom: 0;*/
+                                margin-bottom: -65px;
                                 padding-right: inherit;
-                                padding-left: inherit;
-                                @include transform(translateY(100%));
+                                padding-left: inherit; //@include transform(translateY(100%));
                                 @include media("(max-width: 768px)") {
                                     position: static;
                                     @include transform(translateY(0));
@@ -3337,7 +3371,7 @@ Contains all styles of inner pages
                             &:hover {
                                 .calendar-event-photo {
                                     @include transition-delay(.15s);
-                                    padding-bottom: calc(100% - 49px);
+                                    padding-bottom: calc(100% - 65px);
                                     @include media("(min-width: 1200px)") {
                                         padding-bottom: calc(100% - 34px - (1500px / 1200)vw);
                                     }
@@ -3476,19 +3510,19 @@ Contains all styles of inner pages
         }
         /*FAQs*/
         .faq-wrp {
-            margin: 0 -15px;
+            margin-top: 20px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(20px);
+            }
             .faq-item {
                 float: none;
-                width: 100%; //padding: 0 15px;
+                width: 100%;
                 box-sizing: border-box;
-                margin-bottom: 30px;
-                &:nth-of-type(2n-1) {
-                    clear: left;
+                margin-bottom: 20px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(20px);
                 }
-                &:nth-of-type(2n) {
-                    clear: right;
-                }
-                h2 {
+                h3 {
                     font: 1.3rem 'Lato-Bold';
                     margin-bottom: 15px;
                 }
@@ -3496,16 +3530,76 @@ Contains all styles of inner pages
                     font: 1.2rem 'Lato-Regular';
                     color: #777;
                 }
+                .mark {
+                    background-color: yellow;
+                    vertical-align: top;
+                }
             }
-            @include media("(max-width: 640px)") {
-                margin: 0;
-                .faq-item {
-                    float: none;
-                    width: 100%;
-                    padding: 0;
-                    clear: none !important;
-                    &:last-child {
-                        margin-bottom: 0;
+        }
+        .faq-search {
+            input {
+                width: 100%;
+                border: 2px solid #131313;
+                padding: 10px;
+                box-sizing: border-box;
+                font: 1rem 'Lato-Bold';
+                color: #131313;
+                outline: 0;
+                border-radius: 100vw;
+                @include media("(min-width: 1200px)") {
+                    border-width: get-vw(2px);
+                    padding: get-vw(10px);
+                }
+            }
+        }
+        .faq-search-result-wrp {
+            display: none;
+        }
+        .faq-category-wrp {
+            .faq-category {
+                padding-bottom: 20px;
+                box-sizing: border-box;
+                @include media("(min-width: 1200px)") {
+                    padding-bottom: get-vw(20px);
+                }
+                &:last-child {
+                    padding-bottom: 0 !important;
+                }
+                h2 {
+                    font-size: 2rem;
+                    position: relative;
+                    cursor: pointer;
+                    padding-right: 25px;
+                    box-sizing: border-box;
+                    @include media("(min-width: 1200px)") {
+                        padding-right: get-vw(25px);
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        right: 0;
+                        display: block;
+                        border-top: 8px solid #000;
+                        border-right: 8px solid transparent;
+                        border-left: 8px solid transparent;
+                        top: 50%;
+                        @include transform(translateY(-50%) rotateX(0deg));
+                        @include transition(all 0.3s);
+                        @include media("(min-width: 1200px)") {
+                            border-width: get-vw(8px) get-vw(8px) 0 get-vw(8px);
+                        }
+                    }
+                }
+                .faq-wrp {
+                    display: none;
+                }
+                &.active {
+                    h2 {
+                        &:after {
+                            @include transform(translateY(-50%) rotateX(180deg));
+                        }
                     }
                 }
             }
