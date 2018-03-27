@@ -3448,9 +3448,11 @@ header {
             z-index: -1;
             border: 1px solid #fff;
             border-top: 0;
+            @include transform(translateY(100vh));
             @include transition(top 0.3s,
             opacity 0.3s,
-            z-index 0s ease 0.3s);
+            z-index 0s ease 0.3s,
+            transform 0s ease 0.3s);
             @include media("(min-width: 1200px)") {
                 $top-margin: get-vw(40px);
                 top: calc(100%+#{$top-margin});
@@ -3491,9 +3493,11 @@ header {
                 top: calc(100% + 10px);
                 opacity: 1;
                 z-index: 200;
+                @include transform(translateY(0));
                 @include transition(top 0.3s,
                 opacity 0.3s,
-                z-index 0s); // @include media("(min-width: 1200px)") {
+                z-index 0s,
+                transform 0s); // @include media("(min-width: 1200px)") {
                 //     $top-margin:get-vw(20px);
                 //     top: calc(100% + #{$top-margin});
                 // }
