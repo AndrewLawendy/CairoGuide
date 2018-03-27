@@ -750,6 +750,10 @@ body {
     content: "\e921";
 }
 
+.icon-user:before {
+    content: "\e922";
+}
+
 /*General Declarations*/
 
 #hidden-title {
@@ -3435,7 +3439,7 @@ header {
         }
         ul {
             display: inline-block;
-            width: 100%;
+            //width: 100%;
             position: absolute;
             top: calc(100% + 40px);
             opacity: 0; //background-color: #131313;
@@ -3465,6 +3469,7 @@ header {
                     padding: 10px;
                     text-align: center;
                     display: block;
+                    white-space: nowrap;
                     @include media("(min-width: 1200px)") {
                         padding: get-vw(10px);
                     }
