@@ -746,8 +746,9 @@ var initCalendarView = function (calendarView) {
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
                 return $(this).position().top == weekPos;
             }),
-            posWeekDayIndex = ceilToNearestValue(6,dayInWeek.index());
-            posWeekDayIndex == 0 &&(posWeekDayIndex = 6);
+            posWeekDayIndex = ceilToNearestValue(7, dayInWeek.index());
+        posWeekDayIndex == 0 && (posWeekDayIndex = 7);
+        posWeekDayIndex > $('.calendar-month-wrp.active .day').length && (posWeekDayIndex = $('.calendar-month-wrp.active .day').length);
         $('.calendar-month-wrp.active .day').removeClass('this-week active');
         if ($('.calendar-overview.weekend-view').length) {
             if (thisWeek.length < 5) {
@@ -763,7 +764,7 @@ var initCalendarView = function (calendarView) {
             }
         }
         thisWeek.addClass('this-week').eq(dayActive).addClass('active').click();
-        //dayInWeek = $('.calendar-month-wrp.active .day').eq(posWeekDayIndex);
+        dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + posWeekDayIndex + ')');
         posWeekIndicator(dayInWeek);
     }
 
@@ -829,9 +830,9 @@ var initCalendarView = function (calendarView) {
         } else if (calendarView == 'weekend') {
             $('#weekend-view').siblings().slideUp(150, function () {
                 $('#weekend-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(6,$('.calendar-month-wrp .day.active').index());
-                    if(weekIndex == 0) weekIndex = 6;
-                    initWeekView($('.calendar-month-wrp .day').eq(weekIndex));
+                    var weekIndex = ceilToNearestValue(7, $('.day.today').index());
+                    weekIndex == 0 && (weekIndex = 7);
+                    initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-weekend').siblings().fadeOut(function () {
                         $('.calendar-this .this-weekend').fadeIn();
                     });
@@ -841,8 +842,9 @@ var initCalendarView = function (calendarView) {
         } else {
             $('#week-view').siblings().slideUp(150, function () {
                 $('#week-view').slideDown(150, function () {
-                    var weekIndex = Math.floor(Math.ceil($('.calendar-month-wrp .day.active').index() / 6.9) * 6.9);
-                    initWeekView($('.calendar-month-wrp .day').eq(weekIndex));
+                    var weekIndex = ceilToNearestValue(7, $('.day.today').index());
+                    weekIndex == 0 && (weekIndex = 7);
+                    initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-week').siblings().fadeOut(function () {
                         $('.calendar-this .this-week').fadeIn();
                     })
