@@ -939,10 +939,10 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "smartphone"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {},
@@ -955,7 +955,7 @@
       ],
       "properties": {
         "order": 28,
-        "id": 35,
+        "id": 29,
         "name": "smartphone",
         "prevSize": 32,
         "code": 59677
@@ -980,10 +980,10 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "phone-call"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {},
@@ -993,7 +993,7 @@
       ],
       "properties": {
         "order": 29,
-        "id": 34,
+        "id": 30,
         "name": "phone-call",
         "prevSize": 32,
         "code": 59678
@@ -1016,10 +1016,10 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "message"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {},
@@ -1028,7 +1028,7 @@
       ],
       "properties": {
         "order": 30,
-        "id": 33,
+        "id": 31,
         "name": "message",
         "prevSize": 32,
         "code": 59679
@@ -1057,10 +1057,10 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "fax"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {},
@@ -1072,7 +1072,7 @@
       ],
       "properties": {
         "order": 31,
-        "id": 30,
+        "id": 32,
         "name": "fax",
         "prevSize": 32,
         "code": 59680
@@ -1091,17 +1091,17 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "icon"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {}
       ],
       "properties": {
         "order": 32,
-        "id": 29,
+        "id": 33,
         "name": "smartphone-filled",
         "prevSize": 32,
         "code": 59681
@@ -1109,6 +1109,35 @@
       "setIdx": 0,
       "setId": 2,
       "iconIdx": 33
+    },
+    {
+      "icon": {
+        "paths": [
+          "M512 0.022c-282.74 0-512 229.215-512 511.978s229.237 511.978 512 511.978c282.785 0 512-229.215 512-511.978s-229.215-511.978-512-511.978zM512 153.11c93.557 0 169.37 75.835 169.37 169.347 0 93.535-75.813 169.347-169.37 169.347-93.512 0-169.325-75.813-169.325-169.347 0-93.512 75.813-169.347 169.325-169.347zM511.888 890.119c-93.31 0-178.77-33.982-244.688-90.229-16.058-13.696-25.323-33.779-25.323-54.852 0-94.839 76.757-170.742 171.619-170.742h197.055c94.884 0 171.349 75.903 171.349 170.742 0 21.095-9.221 41.134-25.301 54.83-65.895 56.269-151.378 90.251-244.71 90.251z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "user"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 224,
+        "id": 34,
+        "name": "user",
+        "prevSize": 32,
+        "code": 59682
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 34
     }
   ],
   "height": 1024,
