@@ -92,6 +92,11 @@ var roundToNearestValue = function (reference, newVal) {
     return reference * Math.round((newVal) / reference);
 }
 
+//Ceil to nearest value
+var ceilToNearestValue = function (reference, newVal) {
+    return reference * Math.ceil((newVal) / reference);
+}
+
 //getQueryString
 var getQueryString = function (field) {
     var href = window.location.href,
@@ -535,7 +540,7 @@ var initCalendarView = function (calendarView) {
             year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
             dateObj = new Date(year, month),
             currentDay = $('#calendar-wrp').data('currentDate')[0],
-            newDayLimit = ifCurrentExceedsOther(date, currentDay);
+            newDayLimit = ifCurrentExceedsOther(dateObj, currentDay);
         if (date != undefined) dateObj = date;
         var checkMonth = checkMonthBefore(dateObj);
         if (checkMonth != false) initCalendar(dateObj, checkMonth[0], checkMonth[1]);
@@ -740,7 +745,9 @@ var initCalendarView = function (calendarView) {
             dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
                 return $(this).position().top == weekPos;
-            });
+            }),
+            posWeekDayIndex = ceilToNearestValue(6,dayInWeek.index());
+            posWeekDayIndex == 0 &&(posWeekDayIndex = 6);
         $('.calendar-month-wrp.active .day').removeClass('this-week active');
         if ($('.calendar-overview.weekend-view').length) {
             if (thisWeek.length < 5) {
@@ -756,7 +763,7 @@ var initCalendarView = function (calendarView) {
             }
         }
         thisWeek.addClass('this-week').eq(dayActive).addClass('active').click();
-        dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + roundToNearestValue(7, dayInWeek.index()) + ')');
+        //dayInWeek = $('.calendar-month-wrp.active .day').eq(posWeekDayIndex);
         posWeekIndicator(dayInWeek);
     }
 
@@ -822,7 +829,8 @@ var initCalendarView = function (calendarView) {
         } else if (calendarView == 'weekend') {
             $('#weekend-view').siblings().slideUp(150, function () {
                 $('#weekend-view').slideDown(150, function () {
-                    var weekIndex = Math.floor(Math.ceil($('.calendar-month-wrp .day.active').index() / 6.9) * 6.9);
+                    var weekIndex = ceilToNearestValue(6,$('.calendar-month-wrp .day.active').index());
+                    if(weekIndex == 0) weekIndex = 6;
                     initWeekView($('.calendar-month-wrp .day').eq(weekIndex));
                     $('.calendar-this .this-weekend').siblings().fadeOut(function () {
                         $('.calendar-this .this-weekend').fadeIn();
