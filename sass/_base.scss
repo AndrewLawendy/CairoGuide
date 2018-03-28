@@ -1295,6 +1295,15 @@ input[type="radio"] {
     }
 }
 
+img:not([data-src]),iframe:not([data-src]){
+    opacity: 1;
+    @include transition(opacity 0.3s);
+}
+
+[data-src] {
+    opacity: 0;
+  }
+
 .default-link {
     display: inline-block;
     @include link-hover();
