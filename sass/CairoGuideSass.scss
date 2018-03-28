@@ -236,22 +236,31 @@ main {
             bottom: 0;
             right: 0;
             text-align: right;
+            padding: 20px;
+            box-sizing: border-box;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(20px);
+            }
             @include media("(max-width: 768px)") {
                 display: none;
             }
             p {
-                padding: 5px 10px;
-                background: #131313;
+                //padding: 5px 10px;
+                background-color: #131313;
+                border-color: #131313;
                 color: #fff;
                 font-size: 1em;
                 float: right;
                 cursor: pointer;
-                margin-right: 10px;
-                margin-bottom: 20px;
+                margin-left: 10px; //margin-bottom: 20px;
                 @include media("(min-width: 1200px)") {
-                    padding: get-vw(5px) get-vw(10px);
-                    margin-right: get-vw(10px);
-                    margin-bottom: get-vw(20px);
+                    //padding: get-vw(5px) get-vw(10px);
+                    margin-left: get-vw(10px); //margin-bottom: get-vw(20px);
+                }
+                &:hover {
+                    color: #131313;
+                    border-color: #fff;
+                    background-color: #fff;
                 }
             }
         }
@@ -285,27 +294,27 @@ main {
                 min-height: 50%;
                 width: 50%;
                 float: left !important;
-                border-bottom:5px solid #fff;
+                border-bottom: 5px solid #fff;
             }
             @include media("(max-width: 640px)") {
                 height: auto;
                 min-height: auto;
                 width: 100%;
                 float: none !important;
-                border:0;
+                border: 0;
             }
             .trend-item,
             .ad-item {
-                border-right:5px solid #fff;
-                border-bottom:5px solid #fff;
+                border-right: 5px solid #fff;
+                border-bottom: 5px solid #fff;
                 @include media("(min-width: 1200px)") {
-                    border-right-width:get-vw(5px);
-                    border-bottom-width:get-vw(5px);
+                    border-right-width: get-vw(5px);
+                    border-bottom-width: get-vw(5px);
                 }
                 @include media("(max-width: 640px)") {
                     margin-bottom: 15px;
                     height: 50vw !important;
-                    border:0;
+                    border: 0;
                 }
             }
             .trend-item img,
@@ -404,22 +413,15 @@ main {
                         }
                         a,
                         a:visited {
-                            text-decoration: none;
-                            padding: 10px;
-                            box-sizing: border-box;
-                            border: 1px solid #fff;
                             margin-left: -110%;
-                            display: inline-block;
-                            @include media("(min-width: 1200px)") {
-                                padding: get-vw(10px);
-                            }
+                            @include btn-base();
                             @include media("(max-width: 768px)") {
                                 margin-left: 0;
                             }
                         }
                         a:hover {
                             background-color: #fff;
-                            @include transition(background-color 0.3s ease, color 0.3s ease);
+                            @include transition(background-color 0.15s ease, color 0.15s ease);
                         }
                         @each $i in $colorList {
                             &.#{nth($i,1)}-bg {
@@ -452,7 +454,7 @@ main {
                                 @include transition(margin-left 0.2s ease 0.3s);
                             }
                             a {
-                                @include transition(margin-left 0.2s ease 0.5s, background-color 0.3s ease, color 0.3s ease);
+                                @include transition(margin-left 0.2s ease 0.5s, background-color 0.15s ease, color 0.15s ease);
                             }
                         }
                     }

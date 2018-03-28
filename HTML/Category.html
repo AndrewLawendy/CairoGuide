@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Cairo Guide, Oli, Cairo, Egypt, Accommodation, Dining, Nightlife, Beauty, Shoping, Fun, Entertainment, Sports, Services, Utilities">
     <meta name="description" content="CAIRO'S BEST HOTELS, RESTAURANTS, CAFES, GIGS, CLUBS, SHOPS AND MORE">
-    <title>Cairo Guide | Home</title>
+    <title>Best of Cairo | Category</title>
     <link rel="icon" type="image/ico" sizes="16x16" href="../Images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../css/CairoGuideInnerSass.css" />
 </head>
 
 <body>
     <div id="hidden-title">
-        <h1>Cairo Guide</h1>
+        <h1>Best of Cairo | Category</h1>
     </div>
 
     <!--Popup-->
     <div id="popup-base" class="popup-base">
-        <div class="popup-bg-img">
-            <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
-            <div class="popup-clear-img">
-                <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
-            </div>
-        </div>
         <div class="popup-header display-inline-block full-width">
             <a id="popup-close-btn" href="javascript:void(0);" title="Close" class="close-btn float-left">
                 <div class="fill"></div>
@@ -39,22 +33,61 @@
         </div>
         <div class="popup-body">
             <div class="search-container popup-body-container">
-                <div class="search-input">
-                    <input type="text" />
-                    <label>Search in best of cairo ...</label>
-                    <a href="javascript:void(0);" title="Search">
-                        <i class="icon-search"></i>
-                    </a>
+
+                <div class="search-input-filter-wrp float-left">
+                    <div class="search-filter-display">
+                        <span>Choose category...</span>
+                    </div>
+                    <div class="search-filter-menu">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);" title="Accommodation">Accommodation</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Dining">Dining</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Nightlife">Nightlife</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Beauty">Beauty</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Shopping">Shopping</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Fun &amp; Entertainment">Fun &amp; Entertainment</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Sports &amp; Fitness">Sports &amp; Fitness</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Services &amp; Utilities">Services &amp; Utilities</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="More">More</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="autocomplete-keywords">
-                    <li>Hilton Ramses</li>
-                    <li>Nile-Ritz Carlton</li>
-                    <li>The Old Carlton</li>
-                    <li>Cairo Marriott Hotel &amp; Omar Khayyam Casino</li>
-                    <li>Cairo Pyramids Hotel</li>
-                    <li>Concorde El Salam</li>
-                    <li>Conrad Cairo</li>
-                </ul>
+                <div class="search-input-wrp float-right">
+                    <div class="search-input">
+                        <input type="text" />
+                        <label>Search in best of cairo ...</label>
+                        <a href="javascript:void(0);" title="Search">
+                            <i class="icon-search"></i>
+                        </a>
+                    </div>
+                    <ul class="autocomplete-keywords">
+                        <li>Hilton Ramses</li>
+                        <li>Nile-Ritz Carlton</li>
+                        <li>The Old Carlton</li>
+                        <li>Cairo Marriott Hotel &amp; Omar Khayyam Casino</li>
+                        <li>Cairo Pyramids Hotel</li>
+                        <li>Concorde El Salam</li>
+                        <li>Conrad Cairo</li>
+                    </ul>
+                </div>
             </div>
             <div class="login-container popup-body-container">
                 <a href="#" title="#">Log in with facebook</a>
@@ -87,12 +120,36 @@
                 </ul>
                 <ul class="float-right header-account-menu">
                     <li class="desktop-show">
-                        <span>
-                            <a href="../html/login.html" title="Login / register" class="login-btn">Login / Register</a>
+                        <!-- <span class="login-wrp">
+                                <a href="../html/login.html" title="Login / register" class="login-btn">Login / Register</a>
+                            </span> -->
+                        <span class="account-wrp">
+                            <a href="javascript:void(0);" class="account-name" title="John Smith">John Smith</a>
+                            <ul>
+                                <li>
+                                    <a href="profile.html" title="Profile">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" title="Log out">Log out</a>
+                                </li>
+                            </ul>
                         </span>
                     </li>
                     <li>
                         <ul class="display-inline-block header-social-menu">
+                            <li class="account-wrp mobile-show">
+                                <a href="javascript:void(0);" class="account-name mobile-show" title="John Smith" rel="nofollow">
+                                    <i class="icon-user"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="profile.html" title="Profile" rel="nofollow">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="Log out" rel="nofollow">Log out</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
                                 <a class="nav-search-btn" href="javascript:void(0);" title="Search">
                                     <i class="icon-search"></i>
@@ -731,8 +788,22 @@
                                 <i class="icon-search"></i>
                             </a>
                         </li>
-                        <li class="desktop-show">
-                            <a class="word-link login-btn" href="login.html" title="Login / register" rel="nofollow">Login / Register</a>
+                        <!-- <li class="desktop-show">
+                                <a class="word-link login-btn" href="login.html" title="Login / register" rel="nofollow">Login / Register</a>
+                            </li> -->
+                        <li class="account-wrp">
+                            <a href="javascript:void(0);" class="account-name desktop-show" title="John Smith">John Smith</a>
+                            <a href="javascript:void(0);" class="account-name mobile-show" title="John Smith" rel="nofollow">
+                                <i class="icon-user"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="profile.html" title="Profile">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" title="Log out">Log out</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -889,7 +960,7 @@
                             <a href="contact.html" title="Contact">Contact</a>
                         </li>
                         <li>
-                            <a href="#" title="FAQ'S">FAQ'S</a>
+                            <a href="faqs.html" title="FAQ'S">FAQ'S</a>
                         </li>
                         <li>
                             <a href="#" title="Legal">Legal</a>

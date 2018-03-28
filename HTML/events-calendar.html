@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Cairo Guide, Oli, Cairo, Egypt, Accommodation, Dining, Nightlife, Beauty, Shoping, Fun, Entertainment, Sports, Services, Utilities">
     <meta name="description" content="CAIRO'S BEST HOTELS, RESTAURANTS, CAFES, GIGS, CLUBS, SHOPS AND MORE">
-    <title>Cairo Guide | Events Calendar</title>
+    <title>Best of Cairo | Events calendar</title>
     <link rel="icon" type="image/ico" sizes="16x16" href="../Images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../css/CairoGuideInnerSass.css" />
 </head>
 
 <body data-category="null">
     <div id="hidden-title">
-        <h1>Cairo Guide</h1>
+        <h1>Best of Cairo | Events calendar</h1>
     </div>
 
     <!--Popup-->
     <div id="popup-base" class="popup-base">
-        <div class="popup-bg-img">
-            <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
-            <div class="popup-clear-img">
-                <img src="../Images/New folder/3305860702_6763e4ffb1_b.jpg" alt="#">
-            </div>
-        </div>
         <div class="popup-header display-inline-block full-width">
             <a id="popup-close-btn" href="javascript:void(0);" title="Close" class="close-btn float-left">
                 <div class="fill"></div>
@@ -39,22 +33,61 @@
         </div>
         <div class="popup-body">
             <div class="search-container popup-body-container">
-                <div class="search-input">
-                    <input type="text" />
-                    <label>Search in best of cairo ...</label>
-                    <a href="javascript:void(0);" title="Search">
-                        <i class="icon-search"></i>
-                    </a>
+
+                <div class="search-input-filter-wrp float-left">
+                    <div class="search-filter-display">
+                        <span>Choose category...</span>
+                    </div>
+                    <div class="search-filter-menu">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);" title="Accommodation">Accommodation</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Dining">Dining</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Nightlife">Nightlife</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Beauty">Beauty</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Shopping">Shopping</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Fun &amp; Entertainment">Fun &amp; Entertainment</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Sports &amp; Fitness">Sports &amp; Fitness</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Services &amp; Utilities">Services &amp; Utilities</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="More">More</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="autocomplete-keywords">
-                    <li>Hilton Ramses</li>
-                    <li>Nile-Ritz Carlton</li>
-                    <li>The Old Carlton</li>
-                    <li>Cairo Marriott Hotel &amp; Omar Khayyam Casino</li>
-                    <li>Cairo Pyramids Hotel</li>
-                    <li>Concorde El Salam</li>
-                    <li>Conrad Cairo</li>
-                </ul>
+                <div class="search-input-wrp float-right">
+                    <div class="search-input">
+                        <input type="text" />
+                        <label>Search in best of cairo ...</label>
+                        <a href="javascript:void(0);" title="Search">
+                            <i class="icon-search"></i>
+                        </a>
+                    </div>
+                    <ul class="autocomplete-keywords">
+                        <li>Hilton Ramses</li>
+                        <li>Nile-Ritz Carlton</li>
+                        <li>The Old Carlton</li>
+                        <li>Cairo Marriott Hotel &amp; Omar Khayyam Casino</li>
+                        <li>Cairo Pyramids Hotel</li>
+                        <li>Concorde El Salam</li>
+                        <li>Conrad Cairo</li>
+                    </ul>
+                </div>
             </div>
             <div class="login-container popup-body-container">
                 <a href="#" title="#">Log in with facebook</a>
@@ -87,12 +120,36 @@
                 </ul>
                 <ul class="float-right header-account-menu">
                     <li class="desktop-show">
-                        <span>
-                            <a href="../html/login.html" title="Login / register" class="login-btn">Login / Register</a>
+                        <!-- <span class="login-wrp">
+                                <a href="../html/login.html" title="Login / register" class="login-btn">Login / Register</a>
+                            </span> -->
+                        <span class="account-wrp">
+                            <a href="javascript:void(0);" class="account-name" title="John Smith">John Smith</a>
+                            <ul>
+                                <li>
+                                    <a href="profile.html" title="Profile">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" title="Log out">Log out</a>
+                                </li>
+                            </ul>
                         </span>
                     </li>
                     <li>
                         <ul class="display-inline-block header-social-menu">
+                            <li class="account-wrp mobile-show">
+                                <a href="javascript:void(0);" class="account-name mobile-show" title="John Smith" rel="nofollow">
+                                    <i class="icon-user"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="profile.html" title="Profile" rel="nofollow">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="Log out" rel="nofollow">Log out</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
                                 <a class="nav-search-btn" href="javascript:void(0);" title="Search">
                                     <i class="icon-search"></i>
@@ -731,8 +788,22 @@
                                 <i class="icon-search"></i>
                             </a>
                         </li>
-                        <li class="desktop-show">
-                            <a class="word-link login-btn" href="login.html" title="Login / register" rel="nofollow">Login / Register</a>
+                        <!-- <li class="desktop-show">
+                                <a class="word-link login-btn" href="login.html" title="Login / register" rel="nofollow">Login / Register</a>
+                            </li> -->
+                        <li class="account-wrp">
+                            <a href="javascript:void(0);" class="account-name desktop-show" title="John Smith">John Smith</a>
+                            <a href="javascript:void(0);" class="account-name mobile-show" title="John Smith" rel="nofollow">
+                                <i class="icon-user"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="profile.html" title="Profile">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" title="Log out">Log out</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -757,6 +828,7 @@
                                 <p>Thursday 22/02/2018</p>
                                 <p>At 19:00</p>
                             </div>
+                            <a href="#" title="Book now" class="clear-btn">Book now</a>
                         </div>
                     </div>
                     <div class="details-carousel-item-wrp">
@@ -770,6 +842,7 @@
                                 <p>Thursday 22/02/2018</p>
                                 <p>At 19:00</p>
                             </div>
+                            <a href="#" title="Book now" class="clear-btn">Book now</a>
                         </div>
                     </div>
                     <div class="details-carousel-item-wrp">
@@ -783,12 +856,25 @@
                                 <p>Thursday 22/02/2018</p>
                                 <p>At 19:00</p>
                             </div>
+                            <a href="#" title="Book now" class="clear-btn">Book now</a>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="calendar-wrp" class="wrp">
                 <div class="thirty-width responsive float-right">
+                    <div class="calendar-views-wrp">
+                        <p>
+                            <span data-title="Today">Today</span>
+                        </p>
+                        <p class="text-center">
+                            <span data-title="Weekend">Weekend</span>
+                        </p>
+                        <p class="text-right">
+                            <span data-title="Weekly">Weekly</span>
+                        </p>
+                        <div class="calendar-views-index"></div>
+                    </div>
                     <div class="calendar-controls-wrp calendar-view">
                         <div class="calendar-prev calendar-controls">
                             <i class="icon-left-chevron"></i>
@@ -866,78 +952,1212 @@
                             </div>
                         </div>
                         <div class="calendar-years-view-wrp"></div>
+                        <div class="week-indicator">
+                            <p>Week</p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="calendar-this controls-btn-container">
+                        <div class="control-btn ripple pos white full-width text-center this-day">This Day</div>
+                        <div class="control-btn ripple pos white full-width text-center this-weekend">This Weekend</div>
+                        <div class="control-btn ripple pos white full-width text-center this-week">This Week</div>
                     </div>
                 </div>
                 <div class="overflow-hidden">
-                    <h3 class="calendar-today marg-t20 marg-b20">
-                        <span class="calendar-month-name"></span>
-                        <span class="calendar-month-day"></span>
-                        <span class="ordinal-indicator superscript"></span>
-                        <span class="calendar-month-year"></span>
-                    </h3>
-                    <div class="calendar-day-events-wrp">
-                        <div class="calendar-event-unit wrp">
-                            <div class="calendar-event-img">
-                                <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                    <div id="month-view">
+                        <h3 class="calendar-today marg-t20 marg-b20">
+                            <span class="calendar-month-name"></span>
+                            <span class="calendar-month-day"></span>
+                            <span class="ordinal-indicator superscript"></span>
+                            <span class="calendar-month-year"></span>
+                        </h3>
+                        <div class="calendar-day-events-wrp">
+                            <div class="calendar-event-unit show-onscroll">
+                                <div class="unit-wrp">
+                                    <div class="calendar-event-photo">
+                                        <a title="Massar Egbari - Band" href="#">
+                                            <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                        </a>
+                                    </div>
+                                    <div class="calendar-event-desc">
+                                        <a title="Massar Egbari - Band" href="#">
+                                            <h5>Massar Egbari</h5>
+                                        </a>
+                                        <p>
+                                            <i class="icon-opening-hours"></i>
+                                            <span>07:00 PM</span>
+                                        </p>
+                                        <p class="event-ocation">
+                                            <i class="icon-map-location"></i>
+                                            <span>Sakiet el Sawy</span>
+                                        </p>
+                                        <div class="btn-wrap">
+                                            <button class="clear-btn inverse full-width">Book now</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="calendar-event-details">
-                                <h3 class="calendar-event-name">Massar Egbari - Band</h3>
-                                <div class="calendar-event-duration">
-                                    <i class="icon-opening-hours"></i>
-                                    <p>19:30 - 22:00</p>
+                            <div class="calendar-event-unit show-onscroll">
+                                <div class="unit-wrp">
+                                    <div class="calendar-event-photo">
+                                        <a title="Expressive Art Workshop" href="#">
+                                            <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                        </a>
+                                    </div>
+                                    <div class="calendar-event-desc">
+                                        <a title="Expressive Art Workshop" href="#">
+                                            <h5>Expressive Art Workshop</h5>
+                                        </a>
+                                        <p>
+                                            <i class="icon-opening-hours"></i>
+                                            <span>05:00 PM</span>
+                                        </p>
+                                        <p class="event-ocation">
+                                            <i class="icon-map-location"></i>
+                                            <span>Medrar</span>
+                                        </p>
+                                        <div class="btn-wrap">
+                                            <button class="clear-btn inverse full-width">Book now</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="calendar-event-location">
-                                    <i class="icon-map-location"></i>
-                                    <p>Sakyet El Sawy - Zamalek</p>
+                            </div>
+                            <div class="calendar-event-unit show-onscroll">
+                                <div class="unit-wrp">
+                                    <div class="calendar-event-photo">
+                                        <a title="Baladi Exhibition" href="#">
+                                            <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                        </a>
+                                    </div>
+                                    <div class="calendar-event-desc">
+                                        <a title="Baladi Exhibition" href="#">
+                                            <h5>Baladi Exhibition</h5>
+                                        </a>
+                                        <p>
+                                            <i class="icon-opening-hours"></i>
+                                            <span>10:00 AM</span>
+                                        </p>
+                                        <p class="event-ocation">
+                                            <i class="icon-map-location"></i>
+                                            <span>Sacré Cœur - Heliopolis</span>
+                                        </p>
+                                        <div class="btn-wrap">
+                                            <button class="clear-btn inverse full-width">Book now</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="clear"></div>
-                                <p class="paragraph-overflow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut mi vehicula, aliquet nisl
-                                    id, dictum arcu. Maecenas sagittis lectus ac diam volutpat mattis. Integer ut nibh ligula.
-                                    In lobortis vel mi sit amet condimentum. Sed iaculis, dui quis viverra sollicitudin,
-                                    sem dolor luctus quam, sit amet laoreet metus lectus at lorem.</p>
+                            </div>
+                            <div class="calendar-event-unit show-onscroll">
+                                <div class="unit-wrp">
+                                    <div class="calendar-event-photo">
+                                        <a title="Pottery Course" href="#">
+                                            <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                        </a>
+                                    </div>
+                                    <div class="calendar-event-desc">
+                                        <a title="Pottery Course" href="#">
+                                            <h5>Pottery Course</h5>
+                                        </a>
+                                        <p>
+                                            <i class="icon-opening-hours"></i>
+                                            <span>06:30 PM</span>
+                                        </p>
+                                        <p class="event-ocation">
+                                            <i class="icon-map-location"></i>
+                                            <span>Darb 1718</span>
+                                        </p>
+                                        <div class="btn-wrap">
+                                            <button class="clear-btn inverse full-width">Book now</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="calendar-event-unit wrp">
-                            <div class="calendar-event-img">
-                                <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
-                            </div>
-                            <div class="calendar-event-details">
-                                <h3 class="calendar-event-name">Massar Egbari - Band</h3>
-                                <div class="calendar-event-duration">
-                                    <i class="icon-opening-hours"></i>
-                                    <p>19:30 - 22:00</p>
-                                </div>
-                                <div class="calendar-event-location">
-                                    <i class="icon-map-location"></i>
-                                    <p>Sakyet El Sawy - Zamalek</p>
-                                </div>
-                                <div class="clear"></div>
-                                <p class="paragraph-overflow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut mi vehicula, aliquet nisl
-                                    id, dictum arcu. Maecenas sagittis lectus ac diam volutpat mattis. Integer ut nibh ligula.
-                                    In lobortis vel mi sit amet condimentum. Sed iaculis, dui quis viverra sollicitudin,
-                                    sem dolor luctus quam, sit amet laoreet metus lectus at lorem.</p>
-                            </div>
+                    </div>
+                    <div id="weekend-view">
+                        <div class="tabs-global-container responsive">
+                            <ul class="tabs-items">
+                                <li class="active">
+                                    <span title="Thursday">Thu<!--
+                                    --><span class="hide-on-tab">rsday</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Friday">Fri<!--
+                                    --><span class="hide-on-tab">day</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Saturday">Sat<!--
+                                    --><span class="hide-on-tab">urday</span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="tabs-content-container">
+                                <li class="active calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="calendar-event-unit wrp">
-                            <div class="calendar-event-img">
-                                <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
-                            </div>
-                            <div class="calendar-event-details">
-                                <h3 class="calendar-event-name">Massar Egbari - Band</h3>
-                                <div class="calendar-event-duration">
-                                    <i class="icon-opening-hours"></i>
-                                    <p>19:30 - 22:00</p>
-                                </div>
-                                <div class="calendar-event-location">
-                                    <i class="icon-map-location"></i>
-                                    <p>Sakyet El Sawy - Zamalek</p>
-                                </div>
-                                <div class="clear"></div>
-                                <p class="paragraph-overflow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut mi vehicula, aliquet nisl
-                                    id, dictum arcu. Maecenas sagittis lectus ac diam volutpat mattis. Integer ut nibh ligula.
-                                    In lobortis vel mi sit amet condimentum. Sed iaculis, dui quis viverra sollicitudin,
-                                    sem dolor luctus quam, sit amet laoreet metus lectus at lorem.</p>
-                            </div>
+                    </div>
+                    <div id="week-view">
+                        <div class="tabs-global-container responsive">
+                            <ul class="tabs-items">
+                                <li class="active">
+                                    <span title="Sunday">Sun<!--
+                                    --><span class="hide-on-tab">day</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Monday">Mon<!--
+                                    --><span class="hide-on-tab">day</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Tuesday">Tue<!--
+                                    --><span class="hide-on-tab">sday</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Wednesday">Wed<!--
+                                    --><span class="hide-on-tab">nesday</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Thursday">Thu<!--
+                                    --><span class="hide-on-tab">rsday</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Friday">Fri<!--
+                                    --><span class="hide-on-tab">day</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span title="Saturday">Sat<!--
+                                    --><span class="hide-on-tab">urday</span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="tabs-content-container">
+                                <li class="calendar-day-events-wrp active">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="calendar-day-events-wrp">
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <img src="/Images/calendar-events/massar-egbari.png" alt="Massar Egbari - Band">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Massar Egbari - Band" href="#">
+                                                    <h5>Massar Egbari</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>07:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sakiet el Sawy</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <img src="/Images/calendar-events/darb1718.jpg" alt="Expressive Art Workshop">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Expressive Art Workshop" href="#">
+                                                    <h5>Expressive Art Workshop</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>05:00 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Medrar</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <img src="/Images/calendar-events/baladi-exhibition.jpg" alt="Baladi Exhibition">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Baladi Exhibition" href="#">
+                                                    <h5>Baladi Exhibition</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>10:00 AM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Sacré Cœur - Heliopolis</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-event-unit show-onscroll">
+                                        <div class="unit-wrp">
+                                            <div class="calendar-event-photo">
+                                                <a title="Pottery Course" href="#">
+                                                    <img src="/Images/calendar-events/pottery.jpeg" alt="Pottery Course">
+                                                </a>
+                                            </div>
+                                            <div class="calendar-event-desc">
+                                                <a title="Pottery Course" href="#">
+                                                    <h5>Pottery Course</h5>
+                                                </a>
+                                                <p>
+                                                    <i class="icon-opening-hours"></i>
+                                                    <span>06:30 PM</span>
+                                                </p>
+                                                <p class="event-ocation">
+                                                    <i class="icon-map-location"></i>
+                                                    <span>Darb 1718</span>
+                                                </p>
+                                                <div class="btn-wrap">
+                                                    <button class="clear-btn inverse full-width">Book now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -974,7 +2194,7 @@
                             <a href="contact.html" title="Contact">Contact</a>
                         </li>
                         <li>
-                            <a href="#" title="FAQ'S">FAQ'S</a>
+                            <a href="faqs.html" title="FAQ'S">FAQ'S</a>
                         </li>
                         <li>
                             <a href="#" title="Legal">Legal</a>

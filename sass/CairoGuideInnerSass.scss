@@ -124,7 +124,12 @@ Contains all styles of inner pages
                                 .item-links {
                                     a,
                                     a:visited {
-                                        @include theme-link-color(nth($i, 2));
+                                        //@include theme-link-color(nth($i, 2));
+                                        color: nth($i, 2);
+                                        border-color: nth($i, 2);
+                                    }
+                                    a:hover {
+                                        background-color: nth($i, 2);
                                     }
                                 }
                             }
@@ -139,8 +144,8 @@ Contains all styles of inner pages
             }
             .olis-choice-wrp {
                 /*h2 {
-                    color: nth($i, 2);
-                }*/
+                color: nth($i, 2);
+            }*/
                 .section-title {
                     background-color: nth($i, 2);
                 }
@@ -252,10 +257,10 @@ Contains all styles of inner pages
                 box-sizing: border-box;
                 position: relative;
                 /*position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 0;
-                right: 0;*/
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;*/
                 .slider-main-slide-wrp {
                     /*width: 60%;*/
                     overflow: hidden;
@@ -393,17 +398,17 @@ Contains all styles of inner pages
                         }
                     }
                     /*.active-slider-img-marker {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 0;
-                        height: 0;
-                        border: 2px solid red;
-                        @include transition(all 0.3s ease);
-                        @include media("(min-width: 1200px)") {
-                            border-width: get-vw(2px);
-                        }
-                    }*/
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 0;
+                    border: 2px solid red;
+                    @include transition(all 0.3s ease);
+                    @include media("(min-width: 1200px)") {
+                        border-width: get-vw(2px);
+                    }
+                }*/
                 }
             }
         }
@@ -444,7 +449,7 @@ Contains all styles of inner pages
         }
     }
 
-    .attach-to-footer{
+    .attach-to-footer {
         margin-bottom: -30px;
         padding-bottom: 30px;
     }
@@ -452,9 +457,9 @@ Contains all styles of inner pages
     /*Main*/
 
     main {
-        #contact-us-map{
-            height:500px;
-            width:100%;
+        #contact-us-map {
+            height: 500px;
+            width: 100%;
         }
         .category-banner {
             width: 100%;
@@ -488,8 +493,8 @@ Contains all styles of inner pages
                 height: 275px;
             }
             /*@include media("(max-width: 640px)") {
-                height: 125px;
-            }*/
+            height: 125px;
+        }*/
             &.details-banner:before {
                 display: none;
             }
@@ -1059,7 +1064,7 @@ Contains all styles of inner pages
                 //.highlights-wrp {
                 .highlights-item {
                     /*width: 25%;
-                        box-sizing: border-box;*/
+                    box-sizing: border-box;*/
                     &:nth-child(2n) {
                         margin-top: 0;
                         @include media("(min-width: 1200px)") {
@@ -1100,9 +1105,9 @@ Contains all styles of inner pages
         .items-list-wrp {
             position: relative;
             /*margin-bottom: 30px;
-            @include media("(min-width: 1200px)") {
-                margin-bottom: get-vw(30px);
-            }*/
+        @include media("(min-width: 1200px)") {
+            margin-bottom: get-vw(30px);
+        }*/
             .items-list-container {
                 float: left;
                 .item-wrp {
@@ -1139,13 +1144,13 @@ Contains all styles of inner pages
                         width: 100%;
                         .item-img {
                             width: 30%;
-                            height: 200px;
+                            height: 232px;
                             overflow: hidden;
                             float: left;
                             padding-right: 20px;
                             box-sizing: border-box;
                             @include media("(min-width: 1200px)") {
-                                height: get-vw(200px);
+                                height: get-vw(232px);
                                 padding-right: get-vw(20px);
                             }
                             @include media("(max-width: 768px)") {
@@ -1171,9 +1176,9 @@ Contains all styles of inner pages
                         .item-data {
                             float: left;
                             width: 70%;
-                            padding-bottom: 44px;
+                            padding-bottom: 65px;
                             @include media("(min-width: 1200px)") {
-                                padding-bottom: get-vw(44px);
+                                padding-bottom: get-vw(65px);
                             }
                             @include media("(max-width: 768px)") {
                                 float: none;
@@ -1274,11 +1279,13 @@ Contains all styles of inner pages
                                 a,
                                 a:visited {
                                     float: right;
-                                    margin-left: 15px;
-                                    @include link-hover();
+                                    margin-left: 10px; //@include link-hover();
                                     @include media("(min-width: 1200px)") {
-                                        margin-left: get-vw(15px);
+                                        margin-left: get-vw(10px);
                                     }
+                                }
+                                a:hover {
+                                    color: #fff !important;
                                 }
                             }
                         }
@@ -1288,13 +1295,13 @@ Contains all styles of inner pages
         }
         .olis-choice-wrp {
             /*h2 {
-                font: 1.7em 'Lato-Black';
-                text-transform: capitalize;
-                margin-bottom: 20px;
-                @include media("(min-width: 1200px)") {
-                    margin-bottom: get-vw(20px);
-                }
-            }*/
+            font: 1.7em 'Lato-Black';
+            text-transform: capitalize;
+            margin-bottom: 20px;
+            @include media("(min-width: 1200px)") {
+                margin-bottom: get-vw(20px);
+            }
+        }*/
             .olis-choice-items-container {
                 margin-right: -10px;
                 margin-left: -10px;
@@ -1433,12 +1440,12 @@ Contains all styles of inner pages
         }
         .gallery-section-container {
             /*$main-slide-wrp-height: 430px;
-            @include media("(min-width: 1200px)") {
-                $main-slide-wrp-height: get-vw(430px);
-            }
-            @include media("(max-width: 768px)") {
-                $main-slide-wrp-height:200px;
-            }*/
+        @include media("(min-width: 1200px)") {
+            $main-slide-wrp-height: get-vw(430px);
+        }
+        @include media("(max-width: 768px)") {
+            $main-slide-wrp-height:200px;
+        }*/
             .main-slide-wrp,
             .side-slides-wrp {
                 img {
@@ -1629,7 +1636,7 @@ Contains all styles of inner pages
                             * {
                                 width: 100%;
                                 height: 100%;
-                                fill: #fff!important;
+                                fill: #fff !important;
                             }
                         }
                     }
@@ -1951,10 +1958,10 @@ Contains all styles of inner pages
                     }
                 }
                 .comment-view-wrp {
-                    margin-top: 50px;
+                    //margin-top: 30px;
                     padding-left: 20px;
                     @include media("(min-width: 1200px)") {
-                        margin-top: get-vw(50px);
+                        //margin-top: get-vw(30px);
                         padding-left: get-vw(20px);
                     }
                     .comment-container {
@@ -2297,15 +2304,15 @@ Contains all styles of inner pages
                     width: 100%;
                     position: relative;
                     /*@include media("(min-width: 1200px)") {
-                        width: get-vw(500px);
-                    }*/
+                    width: get-vw(500px);
+                }*/
                     &.opened {
                         form {
                             //padding-top: 80px;
                             @include transition(all .3s);
                             /*@include media("(min-width: 1200px)") {
-                                padding-top: get-vw(80px);
-                            }*/
+                            padding-top: get-vw(80px);
+                        }*/
                         }
                         .user-profile {
                             opacity: 1;
@@ -2320,15 +2327,15 @@ Contains all styles of inner pages
                         //padding-top: 155px;
                         @include transition(all .3s);
                         /*@include media("(min-width: 1200px)") {
-                            padding-top: get-vw(155px);
-                        }*/
+                        padding-top: get-vw(155px);
+                    }*/
                     }
                     .user-profile {
                         /*position: absolute;
-                        top: 0;
-                        left: 0;
-                        right:0;
-                        z-index: 1;*/
+                    top: 0;
+                    left: 0;
+                    right:0;
+                    z-index: 1;*/
                         width: 150px;
                         height: 150px;
                         overflow: hidden;
@@ -2357,68 +2364,46 @@ Contains all styles of inner pages
             background-image: url(../images/banners/about-banner.jpg);
             min-height: 80vh;
         }
-        .about-boc-team{
-            .boc-team-members{
+        .about-boc-team {
+            .boc-team-members {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
                 margin: 0 -15px;
-                @include media("(min-width: 1200px)"){
+                @include media("(min-width: 1200px)") {
                     margin: 0 get-vw(-15px);
                 }
                 .team-member {
-                    flex: 0 0 25%;
                     box-sizing: border-box;
                     border: 15px solid #fff;
                     background: #131313;
-                    opacity: 0;
-                    @include transform(translateY(25%));
                     @include transition(all .3s ease-out);
-                    @include media("(min-width: 1200px)"){
+                    @include media("(min-width: 1200px)") {
                         border-width: get-vw(15px);
                     }
-                    @include media("(max-width: 768px)") {
-                        flex-basis: 33.33%;
-                    }
-                    @include media("(max-width: 640px)") {
-                        flex-basis: 100%;
-                    }
-                    &.active{
-                        opacity: 1;
-                        @include transform(none);
-                    }
-                    &:nth-of-type(9n+2),&:nth-of-type(9n+7) {
-                        @include transition-delay(.15s)
-                    }
-                    &:nth-of-type(9n+3),&:nth-of-type(9n+6) {
-                        @include transition-delay(.3s)
-                    }
-                    &:nth-of-type(9n+4),&:nth-of-type(9n+5) {
-                        @include transition-delay(.45s)
-                    }
-                    .image-holder{
+                    .image-holder {
                         position: relative;
                         width: 100%;
                         height: 0;
                         padding-bottom: 100%;
-                        img{
+                        img {
                             position: absolute;
-                            top:0;
+                            top: 0;
                             left: 0;
                             @include object-fit-img();
                         }
                     }
-                    .member-details{
+                    .member-details {
                         background: #131313;
                         color: #fff;
                         text-align: center;
                         padding: 10px;
-                        @include media("(min-width: 1200px)"){
+                        @include media("(min-width: 1200px)") {
                             padding: get-vw(10px);
                         }
-                        p{
+                        p {
                             color: #ccc;
-                            &:last-of-type{
+                            &:last-of-type {
                                 margin-bottom: 0;
                             }
                         }
@@ -2547,7 +2532,7 @@ Contains all styles of inner pages
                     line-height: get-vw(40px);
                 }
                 &:hover {
-                    background-color: #f3a41e;
+                    background-color: $calendar-color;
                     @include transition(all 0.3s ease);
                 }
             }
@@ -2567,16 +2552,16 @@ Contains all styles of inner pages
         }
         /*Profile*/
         /*.profile-cover {
-            width: 100%;
-            height: 335px;
-            overflow: hidden;
-            @include media("(min-width: 1200px)") {
-                height: get-vw(335px);
-            }
-            img {
-                @include object-fit-img();
-            }
-        }*/
+        width: 100%;
+        height: 335px;
+        overflow: hidden;
+        @include media("(min-width: 1200px)") {
+            height: get-vw(335px);
+        }
+        img {
+            @include object-fit-img();
+        }
+    }*/
         .profile-user-header {
             position: relative;
             padding: 20px 0;
@@ -2606,8 +2591,7 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     margin-left: get-vw(170px);
                 }
-                .profile-rank,
-                .signout-btn {
+                .profile-rank {
                     display: block;
                     line-height: 1em;
                 }
@@ -2640,6 +2624,228 @@ Contains all styles of inner pages
                         margin-bottom: get-vw(10px);
                     }
                 }
+                .signout-btn {
+                    color: #131313;
+                    border-color: #131313;
+                    &:hover {
+                        background-color: #131313;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .achievements-wrp {
+            @include media("(max-width: 768px)") {
+                margin-bottom: 30px;
+            }
+            .achievements-item {
+                width: calc(100% / 3);
+                float: left;
+                padding: 0 10px 20px;
+                box-sizing: border-box;
+                text-align: center;
+                text-transform: capitalize;
+                &:nth-of-type(3n-2) {
+                    clear: left;
+                }
+                &:nth-of-type(3n) {
+                    clear: right;
+                }
+                @include media("(min-width: 1200px)") {
+                    padding: 0 gwt-vw(10px) get-vw(20px);
+                }
+                @include media("(max-width: 768px)") {
+                    @include media("(min-width: 400px)") {
+                        width: calc(100% / 4);
+                        &:nth-of-type(3n-2),
+                        &:nth-of-type(3n) {
+                            clear: none;
+                        }
+                        &:nth-of-type(4n-3) {
+                            clear: left;
+                        }
+                        &:nth-of-type(4n) {
+                            clear: right;
+                        }
+                    }
+                }
+                img {
+                    width: 50px;
+                    height: auto;
+                    opacity: 0.2;
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(50px);
+                    }
+                }
+                span {
+                    display: block;
+                    margin-top: 10px;
+                    @include media("(min-width: 1200px)") {
+                        margin-top: get-vw(10px);
+                    }
+                }
+                &.active {
+                    img {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .profile-numbers-wrp {
+            background-color: $logo-green;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #fff;
+            text-transform: capitalize;
+            text-align: center;
+            border-radius: 5px;
+            @include media("(min-width: 1200px)") {
+                padding: get-vw(10px);
+                border-radius: get-vw(5px);
+            }
+            .profile-number-item {
+                width: calc(100% / 3);
+                float: left;
+                padding: 0 10px;
+                @include media("(min-width: 1200px)") {
+                    padding: 0 get-vw(10px);
+                }
+                box-sizing: border-box;
+                span {
+                    display: block;
+                    &.profile-number-title {
+                        margin-bottom: 15px;
+                        @include media("(min-width: 1200px)") {
+                            margin-bottom: get-vw(15px);
+                        }
+                    }
+                    &.profile-number {
+                        font: 2.5rem 'Lato-Bold';
+                    }
+                }
+            }
+        }
+        .favourits-wrp {
+            padding: 0 5px;
+            @include media("(min-width: 1200px)") {
+                padding: 0 get-vw(5px);
+            }
+            @include media("(max-width: 640px)") {
+                padding: 0 10px;
+            }
+            .favourits-item {
+                width: calc(100% / 3); //height: get-vw(165px,768px);
+                height: 180px;
+                float: left;
+                padding: 0 5px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+                @include media("(min-width: 1200px)") {
+                    padding: 0 get-vw(5px);
+                    margin-bottom: get-vw(10px); //height: get-vw(165px);
+                    height: get-vw(180px);
+                }
+                @include media("(max-width: 768px)") {
+                    width: calc((100vw - 20px) / 3); //height: calc((100vw - 20px) / 3);
+                }
+                @include media("(max-width: 640px)") {
+                    width: 100%;
+                    padding: 0;
+                }
+                a {
+                    $margin: get-vw(10px);
+                    width: calc(100% - 10px);
+                    height: 100%;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    left: 5px;
+                    @include media("(min-width: 1200px)") {
+                        width: calc(100% - #{$margin});
+                        left: get-vw(5px);
+                    }
+                    img {
+                        @include object-fit-img();
+                        object-position: center;
+                        @include transform(scale(1));
+                        @include transition(transform 0.3s linear);
+                    }
+                    .favourite-item-title {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        padding: 40px 10px 10px;
+                        box-sizing: border-box;
+                        color: #fff;
+                        overflow: hidden;
+                        text-transform: capitalize;
+                        opacity: 0;
+                        @include transform(translateY(20px));
+                        @include transition(all 0.15s);
+                        @include media("(min-width: 1200px)") {
+                            padding: get-vw(40px) get-vw(10px) get-vw(10px);
+                            @include transform(translateY(get-vw(20px)));
+                        }
+                        @include media("(max-width: 768px)") {
+                            @include transform(translateY(0));
+                            opacity: 1;
+                        }
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 25px;
+                            left: 0;
+                            width: 100%;
+                            height: 999px;
+                            background: #131313;
+                            @include transform(skewY(2deg));
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(25px);
+                                height: get-vw(999px);
+                            }
+                        }
+                        p {
+                            position: relative;
+                            z-index: 10;
+                            font-size: 1.2rem;
+                            line-height: 1.5rem;
+                            overflow: hidden;
+                            max-height: 3rem; //text-align: justify;
+                            //margin-right: -1em;
+                            padding-right: 1em;
+                            &:before {
+                                content: '...';
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                            }
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                right: 0;
+                                width: 1em;
+                                height: 1em;
+                                margin-top: 0.2em;
+                                background: #131313;
+                            }
+                        }
+                    }
+                }
+                &:hover {
+                    a {
+                        img {
+                            @include transform(scale(1.05));
+                            @include transition(transform 6s linear);
+                        }
+                        .favourite-item-title {
+                            opacity: 1;
+                            @include transform(translateY(0));
+                        }
+                    }
+                }
             }
         }
         /*Calendar Carousel*/
@@ -2657,50 +2863,91 @@ Contains all styles of inner pages
                 .details-carousel-item-wrp {
                     .details-carousel-content {
                         color: #fff;
-                        border-color: #f3a41e;
+                        border-color: $calendar-color;
                         background: #131313;
                     }
                 }
                 .details-carousel-dot {
                     &:hover,
                     &.active {
-                        background: #f3a41e;
+                        background: $calendar-color;
                     }
                 }
                 .details-carousel-controls {
                     &:hover {
                         background: #131313;
-                        color: #f3a41e
+                        color: $calendar-color
                     }
                 }
             }
         }
         /*Calendar*/
         #calendar-wrp {
-            .calendar-today {
-                overflow: hidden;
-                text-align: center;
-                span:not(.ordinal-indicator) {
-                    display: inline-block;
-                    overflow: hidden;
-                    vertical-align: middle;
-                    @include transform(translateY(0));
-                    &.calendar-month-year::before {
-                        content: ', ';
+            .calendar-views-wrp {
+                position: relative;
+                p {
+                    float: left;
+                    width: 33.33%;
+                    padding: 15px 5px;
+                    box-sizing: border-box;
+                    color: #ccc;
+                    cursor: pointer;
+                    @include transition(all .15s);
+                    @include media("(min-width: 1200px)") {
+                        padding: get-vw(15px) get-vw(5px);
                     }
-                    &.calendar-year-range {
-                        display: none;
+                    span {
+                        position: relative;
+                        overflow: hidden;
+                        display: inline-block;
+                        vertical-align: middle;
+                        &::before {
+                            content: attr(data-title);
+                            position: absolute;
+                            color: #000;
+                            @include transform(translateX(-100%));
+                            @include transition(all .3s);
+                        }
+                    }
+                    &.active {
+                        color: $calendar-color;
+                        span {
+                            z-index: 1;
+                            &::before {
+                                display: none;
+                            }
+                        }
+                    }
+                    &:hover {
+                        span {
+                            &::before {
+                                @include transform(translateX(0));
+                            }
+                        }
                     }
                 }
-            }
-            h3.calendar-today {
-                text-align: left;
+                .calendar-views-index {
+                    position: absolute;
+                    top: 0;
+                    background: #131313;
+                    margin: 10px 0;
+                    padding: 5px 10px;
+                    border-radius: 40px;
+                    @include transform(translateX(-10px));
+                    @include media("(min-width: 1200px)") {
+                        margin: get-vw(10px) 0;
+                        padding: get-vw(5px) get-vw(10px);
+                        @include transform(translateX(-.769vw));
+                    }
+                    @include transition(all .3s);
+                }
             }
             .calendar-controls-wrp {
                 >* {
                     cursor: pointer;
                     padding: 15px;
                     background: transparent;
+                    text-align: center;
                     @include transition(all .5s);
                     &:hover {
                         background: #eee;
@@ -2762,13 +3009,13 @@ Contains all styles of inner pages
             }
             .calendar-overview {
                 position: relative;
-                overflow: hidden;
                 .calendar-unit {
                     position: relative;
                     text-align: center;
                     padding: 2px;
                     box-sizing: border-box;
                     overflow: hidden;
+                    background: #fff;
                     &::before {
                         content: '';
                         position: absolute;
@@ -2776,26 +3023,15 @@ Contains all styles of inner pages
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: #f3a41e;
+                        background: $calendar-color;
                         @include transform(translate(-100%, -100%));
                         @include transition(all .15s);
-                    }
-                    &:hover {
-                        &::before {
-                            @include transition(all .5s);
-                            @include transform(translate(50%, 50%));
-                        }
-                    }
-                    &.active {
-                        &::before {
-                            @include transform(translate(-50%, -50%));
-                        }
                     }
                     div {
                         position: relative;
                         width: 100%;
                         height: 100%;
-                        background: #fff;
+                        background: inherit;
                         @include transition(all .5s);
                         &:not(:empty) {
                             cursor: pointer;
@@ -2810,6 +3046,17 @@ Contains all styles of inner pages
                         }
                         &:empty {
                             @include transform(scale(1.1));
+                        }
+                    }
+                    &:hover {
+                        &::before {
+                            @include transition(all .5s);
+                            @include transform(translate(50%, 50%));
+                        }
+                    }
+                    &.active {
+                        &::before {
+                            @include transform(translate(-50%, -50%));
                         }
                     }
                 }
@@ -2884,78 +3131,256 @@ Contains all styles of inner pages
                         width: 100%;
                     }
                 }
+                .week-indicator {
+                    display: none;
+                    cursor: pointer;
+                    position: absolute;
+                    text-align: center;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                    height: 58px;
+                    box-sizing: border-box;
+                    border-radius: 1px;
+                    background: $calendar-color;
+                    font: .8rem 'Lato-Bold';
+                    color: #fff;
+                    padding: 5px;
+                    @include user-select(none);
+                    @include transform(translateX(-100%));
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        right: -15px;
+                        border-bottom: 29px solid transparent;
+                        border-top: 29px solid transparent;
+                        border-left: 15px solid $calendar-color;
+                    }
+                }
+                &.weekend-view,
+                &.week-view {
+                    .week-indicator {
+                        display: block;
+                    }
+                    .day:not(.this-week) {
+                        opacity: .2;
+                        pointer-events: none;
+                        @include transition(all .15s);
+                    }
+                }
+                &.weekend-view {
+                    .day.this-week:nth-of-type(7n+1),
+                    .day.this-week:nth-of-type(7n+2),
+                    .day.this-week:nth-of-type(7n+3),
+                    .day.this-week:nth-of-type(7n+4) {
+                        opacity: .2;
+                        pointer-events: none;
+                        @include transition(all .15s);
+                    }
+                }
+            }
+            #month-view {
+                .calendar-today {
+                    overflow: hidden;
+                    text-align: center;
+                    span:not(.ordinal-indicator) {
+                        display: inline-block;
+                        overflow: hidden;
+                        vertical-align: middle;
+                        @include transform(translateY(0));
+                        &.calendar-month-year::before {
+                            content: ', ';
+                        }
+                        &.calendar-year-range {
+                            display: none;
+                        }
+                    }
+                }
+                h3.calendar-today {
+                    text-align: left;
+                }
+            }
+            .tabs-global-container {
+                .tabs-items {
+                    li::before,
+                    li::after {
+                        background: #131313;
+                    }
+                }
             }
             .calendar-day-events-wrp {
+                padding: 15px 0;
+                background: #f8f8f8;
+                display: flex;
+                flex-wrap: wrap;
+                @include media("(min-width: 1200px)") {
+                    padding: get-vw(15px) 0;
+                }
                 .calendar-event-unit {
-                    background: #131313;
-                    border-radius: 7px;
-                    border-left: 10px solid #f3a41e;
-                    color: #fff;
-                    &:nth-child(1n+2) {
-                        margin-top: 10px;
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(15px);
+                    }
+                    &:nth-child(1n+5) {
+                        margin-top: 15px;
                         @include media("(min-width: 1200px)") {
-                            margin-top: get-vw(10px);
+                            margin-top: get-vw(15px);
                         }
                     }
-                    .calendar-event-description,
-                    .calendar-event-dur-loc {
-                        box-sizing: border-box;
-                    }
-                    .calendar-event-img {
-                        float: left;
-                        width: 15%;
-                        height: 140px;
-                        @include media("(min-width: 1200px)") {
-                            height: get-vw(140px);
-                        }
-                        img {
-                            @include object-fit-img();
+                    @include media("(max-width: 768px)") {
+                        &:nth-child(1n+4) {
+                            margin-top: 15px;
                         }
                     }
-                    .calendar-event-details {
-                        padding: 15px 25px 15px 15px;
+                    @include media("(max-width: 640px)") {
+                        &:nth-child(1n+2) {
+                            margin-top: 15px;
+                        }
+                        height:25vh;
+                    }
+                    .unit-wrp {
+                        display: block;
+                        box-shadow: 0px 0px 1px 1px #f0f0f0;
+                        border-radius: 3px;
                         overflow: hidden;
-                        @include media("(min-width: 1200px)") {
-                            padding: get-vw(15px) get-vw(25px) get-vw(15px) get-vw(15px);
-                        }
-                        .calendar-event-name {
-                            font: 1.5rem 'Lato-Bold';
-                            margin-bottom: 5px;
-                            @include text-overflow();
-                            @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(5px);
+                        background: #fff;
+                        height: 100%;
+                        .calendar-event-photo {
+                            display: block;
+                            width: 100%;
+                            height: 0;
+                            padding-bottom: 100%;
+                            position: relative;
+                            overflow: hidden;
+                            @include transition(all .15s);
+                            &::before,
+                            &::after {
+                                position: absolute;
+                                width: 0;
+                                height: 0;
+                                bottom: 0;
+                                @include transition(all .3s $bounce);
+                            }
+                            &::before {
+                                content: '';
+                                z-index: 1;
+                                left: 0;
+                                border-bottom: 20px solid $calendar-color;
+                                border-right: get-vw(184.5px) solid transparent;
+                            }
+                            &::after {
+                                content: '';
+                                z-index: 2;
+                                right: 0;
+                                border-bottom: 35px solid #fff;
+                                border-left: get-vw(184.5px) solid transparent;
+                            }
+                            img {
+                                @include object-fit-img();
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                            }
+                            @include media("(max-width: 768px)") {
+                                &::after {
+                                    border-left-width: calc((100vw - 60px) / 3);
+                                }
+                            }
+                            @include media("(max-width: 640px)") {
+                                width: 50%;
+                                height: 100%;
+                                padding-bottom: 0;
+                                float: left;
+                                &::before,
+                                &::after {
+                                    display: none
+                                }
+                                border-top-right-radius: 3px;
+                                border-bottom-right-radius: 3px;
+                                a {
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                    img {
+                                        position: static;
+                                    }
+                                }
                             }
                         }
-                        .calendar-event-duration,
-                        .calendar-event-location {
-                            float: left;
-                            font-size: .9rem;
-                            color: #f3a41e;
-                            i {
-                                float: left;
-                                margin-right: 10px;
+                        .calendar-event-desc {
+                            position: relative;
+                            padding: 10px;
+                            @include transition(all .15s);
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(10px);
+                            }
+                            h5,
+                            p {
+                                i {
+                                    float: left;
+                                    margin-right: 10px;
+                                    font-size: 1rem;
+                                }
+                                span {
+                                    display: block;
+                                    overflow: hidden;
+                                }
+                            }
+                            h5 {
+                                margin-bottom: 10px;
+                                font-size: 1rem;
+                                height: 2rem;
+                                overflow: hidden;
+                                @include media("(min-width: 1200px)") {
+                                    margin-bottom: get-vw(10px);
+                                }
                             }
                             p {
+                                font-size: .8rem;
+                                margin-bottom: 5px;
+                                &.event-ocation {
+                                    height: 2rem;
+                                    overflow: hidden;
+                                }
+                            }
+                            .btn-wrap {
+                                width: 100%;
+                                box-sizing: border-box;
+                                /*position: absolute;
+                                left: 0;
+                                bottom: 0;*/
+                                margin-bottom: -65px;
+                                padding-right: inherit;
+                                padding-left: inherit; //@include transform(translateY(100%));
+                                @include media("(max-width: 768px)") {
+                                    position: static;
+                                    @include transform(translateY(0));
+                                }
+                                @include media("(max-width: 640px)") {
+                                    margin-top: 15px;
+                                }
+                            }
+                            @include media("(max-width: 640px)") {
                                 overflow: hidden;
                             }
                         }
-                        .calendar-event-duration {
-                            margin-right: 30px;
-                            @include media("(min-width: 1200px)") {
-                                margin-right: get-vw(30px);
-                            }
-                        }
-                        .paragraph-overflow {
-                            margin-top: 5px;
-                            font-family: 'Lato-Light';
-                            font-size: .9rem;
-                            color: #ccc;
-                            @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(5px);
-                            }
-                            &::before,
-                            &::after {
-                                background: #131313;
+                        @include media("(min-width: 769px)") {
+                            &:hover {
+                                .calendar-event-photo {
+                                    @include transition-delay(.15s);
+                                    padding-bottom: calc(100% - 65px);
+                                    @include media("(min-width: 1200px)") {
+                                        padding-bottom: calc(100% - 34px - (1500px / 1200)vw);
+                                    }
+                                    &::after {
+                                        border-bottom-width: 65px;
+                                    }
+                                    &::before {
+                                        border-bottom-width: 50px;
+                                    }
+                                }
                             }
                         }
                     }
@@ -3043,42 +3468,138 @@ Contains all styles of inner pages
             }
         }
         /*Contact us*/
-        .contact-info-wrapper{
-            .contact-info-item{
-                float:left;
-                width:25%;
-                padding:30px;
-                box-sizing:border-box;
-                text-align:center;
+        .contact-info-wrapper {
+            .contact-info-item {
+                float: left;
+                width: 25%;
+                padding: 30px;
+                box-sizing: border-box;
+                text-align: center;
                 @include media("(min-width: 1200px)") {
-                    padding:get-vw(30px);
+                    padding: get-vw(30px);
                 }
                 @include media("(max-width: 768px)") {
-                    width:50%;
+                    width: 50%;
                 }
                 @include media("(max-width: 640px)") {
-                    width:100%;
-                    float:none;
+                    width: 100%;
+                    float: none;
                 }
-                i{
-                    display:block;
-                    width:100px;
-                    height:100px;
-                    border-radius:100%;
-                    line-height:100px;
-                    background-color:#131313;
-                    margin:0 auto 30px;
-                    color:#fff;
-                    font-size:2.5rem;
+                i {
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 100%;
+                    line-height: 100px;
+                    background-color: #131313;
+                    margin: 0 auto 30px;
+                    color: #fff;
+                    font-size: 2.5rem;
                     @include media("(min-width: 1200px)") {
-                        width:get-vw(100px);
-                        height:get-vw(100px);
-                        line-height:get-vw(100px);
-                        margin-bottom:get-vw(30px);
+                        width: get-vw(100px);
+                        height: get-vw(100px);
+                        line-height: get-vw(100px);
+                        margin-bottom: get-vw(30px);
                     }
                 }
-                span{
-                    font-family:'Lato-Black';
+                span {
+                    font-family: 'Lato-Black';
+                }
+            }
+        }
+        /*FAQs*/
+        .faq-wrp {
+            margin-top: 20px;
+            @include media("(min-width: 1200px)") {
+                margin-top: get-vw(20px);
+            }
+            .faq-item {
+                float: none;
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+                @include media("(min-width: 1200px)") {
+                    margin-bottom: get-vw(20px);
+                }
+                h3 {
+                    font: 1.3rem 'Lato-Bold';
+                    margin-bottom: 15px;
+                }
+                p {
+                    font: 1.2rem 'Lato-Regular';
+                    color: #777;
+                }
+                .mark {
+                    background-color: yellow;
+                    vertical-align: top;
+                }
+            }
+        }
+        .faq-search {
+            input {
+                width: 100%;
+                border: 2px solid #131313;
+                padding: 10px;
+                box-sizing: border-box;
+                font: 1rem 'Lato-Bold';
+                color: #131313;
+                outline: 0;
+                border-radius: 100vw;
+                @include media("(min-width: 1200px)") {
+                    border-width: get-vw(2px);
+                    padding: get-vw(10px);
+                }
+            }
+        }
+        .faq-search-result-wrp {
+            display: none;
+        }
+        .faq-category-wrp {
+            .faq-category {
+                padding-bottom: 20px;
+                box-sizing: border-box;
+                @include media("(min-width: 1200px)") {
+                    padding-bottom: get-vw(20px);
+                }
+                &:last-child {
+                    padding-bottom: 0 !important;
+                }
+                h2 {
+                    font-size: 2rem;
+                    position: relative;
+                    cursor: pointer;
+                    padding-right: 25px;
+                    box-sizing: border-box;
+                    @include media("(min-width: 1200px)") {
+                        padding-right: get-vw(25px);
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        right: 0;
+                        display: block;
+                        border-top: 8px solid #000;
+                        border-right: 8px solid transparent;
+                        border-left: 8px solid transparent;
+                        top: 50%;
+                        @include transform(translateY(-50%) rotateX(0deg));
+                        @include transition(all 0.3s);
+                        @include media("(min-width: 1200px)") {
+                            border-width: get-vw(8px) get-vw(8px) 0 get-vw(8px);
+                        }
+                    }
+                }
+                .faq-wrp {
+                    display: none;
+                }
+                &.active {
+                    h2 {
+                        &:after {
+                            @include transform(translateY(-50%) rotateX(180deg));
+                        }
+                    }
                 }
             }
         }

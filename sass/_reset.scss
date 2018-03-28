@@ -92,7 +92,7 @@ video {
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline
+    vertical-align: middle
 }
 
 
@@ -154,5 +154,9 @@ table {
     border-spacing: 0
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
 /*Reset End*/
