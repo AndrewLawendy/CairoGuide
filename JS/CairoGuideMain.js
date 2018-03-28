@@ -562,7 +562,7 @@ var initCalendarView = function (calendarView) {
             $('.calendar-head-body').removeClass('leaving');
         }, 300);
         $('#calendar-wrp').data('currentDate', [newDayLimit, dateObj.getMonth(), dateObj.getFullYear()]);
-        $('.calendar-overview').attr('class') != 'calendar-overview' && initWeekView($('.calendar-month-wrp.active .day:contains(1)').first());
+        "calendar-overview" != $(".calendar-overview").attr("class") && ($(".calendar-month-wrp.active .day").removeClass("active"), initWeekView($(".calendar-month-wrp.active .day:contains(1)").first().addClass("active")));
     }
 
     var setYear = function () {
@@ -830,7 +830,7 @@ var initCalendarView = function (calendarView) {
         } else if (calendarView == 'weekend') {
             $('#weekend-view').siblings().slideUp(150, function () {
                 $('#weekend-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(7, $('.day.today').index());
+                    var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                     weekIndex == 0 && (weekIndex = 7);
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-weekend').siblings().fadeOut(function () {
@@ -842,7 +842,7 @@ var initCalendarView = function (calendarView) {
         } else {
             $('#week-view').siblings().slideUp(150, function () {
                 $('#week-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(7, $('.day.today').index());
+                    var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                     weekIndex == 0 && (weekIndex = 7);
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-week').siblings().fadeOut(function () {
@@ -871,11 +871,11 @@ var initCalendarView = function (calendarView) {
     $('.calendar-this .control-btn').on('click', function () {
         var currentMonth = $('.current-month'),
             currentMonthData = currentMonth.data();
+        $('#calendar-wrp').data('currentDate', [currentMonthData.day, currentMonthData.month, currentMonthData.year]);
+        $('.day.today').click();
         scrollToMonth(currentMonth);
         updateDay(currentMonthData.monthName, currentMonthData.day, currentMonthData.year);
-        posWeekIndicator($('.day.today'));
-        $('.day.today').click();
-
+        initWeekView($('.day.today'));
     })
     $('#calendar-wrp .calendar-months-body-wrp').off().on('click', '.day:not(:empty)', setCalendarDate);
     //Month view
