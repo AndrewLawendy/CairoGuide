@@ -19,6 +19,25 @@ var ifInfiniteLoop = function (max) {
     return false;
 }
 
+//Lazy Loading
+var lazyLoading = function () {
+    $(document).scroll(lazyGet);
+    $(document).scroll();
+    function lazyGet() {
+        $('[data-src]').each(function () {
+            var windowHeight = $(window).height() * 2,
+                thisPos = $(this).offset().top - $(document).scrollTop();
+            if (thisPos <= windowHeight) {
+                var src = $(this).data('src');
+                $(this).attr('src', src);
+                $(this).on('load', function () {
+                    $(this).removeAttr('data-src');
+                });
+            }
+        });
+    }
+}
+
 //rippleEffect
 var rippleEffect = function (e, _this) {
     var circle = $('<span class="circle"></span>'),
@@ -1693,6 +1712,8 @@ $(document).ready(function () {
             rippleEffect(e, $(this));
         });
     }
+
+    $('[data-src]').length && lazyLoading();
 
     //Details Carousel
     if ($('.details-carousel').length) detailsCarousel();
