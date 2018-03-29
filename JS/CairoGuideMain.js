@@ -474,18 +474,21 @@ var initCalendarView = function (calendarView) {
                 generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
             $('.calendar-controls-wrp').addClass('years-view');
             $(this).find('.calendar-month-year').fadeOut();
-            // $(this).find('.calendar-month-year').stop().animate({
-            //     width: 'hide'
-            // }, {
-            //     duration: 'fast'
-            // });
             $(this).find('.calendar-year-range').fadeIn();
-            $('.calendar-overview .calendar-months-view-wrp').fadeOut('fast').addClass('leaving')
-            setTimeout(function () {
-                $('.calendar-overview .calendar-years-view-wrp').fadeIn(500).css('display', 'flex').addClass('entering').find('.year:contains(' + thisYear + ')').addClass('this-year');
-                $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
-                $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
-            }, 300);
+            $('.calendar-overview .calendar-months-view-wrp').addClass('leaving').fadeOut('fast');
+            $('.calendar-overview .calendar-years-view-wrp').css({
+                'opacity': 0,
+                'display': 'flex'
+            }).animate({
+                opacity: 1
+            }, {
+                duration: 40,
+                complete: function () {
+                    $(this).addClass('entering')
+                }
+            }).find('.year:contains(' + thisYear + ')').addClass('this-year');
+            $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
+            $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
         }
     }
 
@@ -841,8 +844,8 @@ var initCalendarView = function (calendarView) {
         if (calendarView == 'today') {
             $('#month-view').siblings().slideUp(150, function () {
                 $('#month-view').slideDown(150);
-                $('.calendar-this .this-day').siblings().fadeOut(function () {
-                    $('.calendar-this .this-day').fadeIn();
+                $('.calendar-this .this-day').siblings().hide().promise().done(function(){
+                    $('.calendar-this .this-day').show();
                 });
             });
             $('.calendar-overview').attr('class', 'calendar-overview');
@@ -852,8 +855,8 @@ var initCalendarView = function (calendarView) {
                     var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                     weekIndex == 0 && (weekIndex = 7);
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
-                    $('.calendar-this .this-weekend').siblings().fadeOut(function () {
-                        $('.calendar-this .this-weekend').fadeIn();
+                    $('.calendar-this .this-weekend').siblings().hide().promise().done(function () {
+                        $('.calendar-this .this-weekend').show();
                     });
                 });
             });
@@ -864,13 +867,14 @@ var initCalendarView = function (calendarView) {
                     var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                     weekIndex == 0 && (weekIndex = 7);
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
-                    $('.calendar-this .this-week').siblings().fadeOut(function () {
-                        $('.calendar-this .this-week').fadeIn();
-                    })
+                    $('.calendar-this .this-week').siblings().hide().promise().done(function () {
+                        $('.calendar-this .this-week').show();
+                    });
                 });
             });
             $('.calendar-overview').attr('class', 'calendar-overview week-view');
         }
+        $(document).scroll();
     }
 
     //Views controls
