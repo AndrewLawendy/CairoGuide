@@ -754,6 +754,10 @@ body {
     content: "\e922";
 }
 
+.icon-star:before {
+    content: "\e923";
+}
+
 /*General Declarations*/
 
 #hidden-title {
@@ -1295,14 +1299,15 @@ input[type="radio"] {
     }
 }
 
-img:not([data-src]),iframe:not([data-src]){
+img:not([data-src]),
+iframe:not([data-src]) {
     opacity: 1;
     @include transition(opacity 0.3s);
 }
 
 [data-src] {
     opacity: 0;
-  }
+}
 
 .default-link {
     display: inline-block;
@@ -2877,7 +2882,7 @@ header {
             }
             img {
                 width: 100%;
-                height:100%;
+                height: 100%;
             }
         }
         .main-nav {
@@ -3448,8 +3453,7 @@ header {
             }
         }
         ul {
-            display: inline-block;
-            //width: 100%;
+            display: inline-block; //width: 100%;
             position: absolute;
             top: calc(100% + 40px);
             opacity: 0; //background-color: #131313;

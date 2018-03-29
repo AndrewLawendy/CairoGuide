@@ -1231,17 +1231,16 @@ Contains all styles of inner pages
                                 }
                             }
                             .item-exclusive {
-                                padding: 5px;
+                                padding: 5px 10px;
                                 box-sizing: border-box;
                                 line-height: 1em;
                                 font: 1rem 'Lato-Light';
                                 color: #fff;
                                 margin-top: 10px;
-                                border-radius: 5px; //border: 1px solid;
+                                border-radius: 100vw; //border: 1px solid;
                                 @include media("(min-width: 1200px)") {
-                                    padding: get-vw(5px);
+                                    padding: get-vw(5px) get-vw(10px);
                                     margin-top: get-vw(10px);
-                                    border-radius: get-vw(5px); //border-width: get-vw(1px);
                                 }
                                 i,
                                 span {
@@ -1251,13 +1250,17 @@ Contains all styles of inner pages
                                 }
                                 span {
                                     white-space: nowrap;
-                                    margin-left: 5px;
+                                    margin-left: 3px;
                                     @include media("(min-width: 1200px)") {
-                                        margin-left: get-vw(5px);
+                                        margin-left:get-vw(3px);
                                     }
                                 }
                                 i {
                                     font-size: 1.2rem;
+                                    margin: 0 2px;
+                                    @include media("(min-width: 1200px)") {
+                                        margin:0 get-vw(2px);
+                                    }
                                 }
                             }
                             p {
