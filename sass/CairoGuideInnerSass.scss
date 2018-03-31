@@ -247,7 +247,7 @@ Contains all styles of inner pages
             }
         }
         &.image-slider {
-            .location-map-wrp {
+            .iframe-wrp-div {
                 display: none
             }
             .image-slider-wrp {
@@ -412,20 +412,19 @@ Contains all styles of inner pages
                 }
             }
         }
-        &.location-map {
-            text-align: center;
+        &.iframe-wrp {
             .image-slider-wrp {
                 display: none
             }
-            .location-map-wrp {
-                position: relative;
-                display: inline-block;
+            .iframe-wrp-div {
+                position: absolute;
                 box-sizing: border-box;
                 width: 708px;
                 height: 60%;
                 top: 50%;
+                left: 50%;
                 border: 20px solid #fff;
-                @include transform(translateY(-50%));
+                @include transform(translate(-50%,-50%));
                 @include media("(max-width: 768px)") {
                     width: 100%;
                     height: 65vh;
@@ -449,6 +448,10 @@ Contains all styles of inner pages
         }
     }
 
+    .open-iframe-lightbox{
+        cursor: pointer;
+    }
+    
     .attach-to-footer {
         margin-bottom: -30px;
         padding-bottom: 30px;

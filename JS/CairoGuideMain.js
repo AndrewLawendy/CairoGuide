@@ -1784,10 +1784,10 @@ $(document).ready(function () {
         })
     }
 
-    if ($('.open-location-box').length && $('#lightbox-popup').length) {
-        $('.open-location-box').on('click', function (e) {
+    if ($('.open-iframe-lightbox').length) {
+        $('.open-iframe-lightbox').on('click', function (e) {
             e.preventDefault();
-            $('#lightbox-popup').addClass('active location-map');
+            $('#lightbox-popup').addClass('active iframe-wrp');
         });
     }
 
