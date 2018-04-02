@@ -241,6 +241,7 @@ $colorList: "nightlife" #f90000,
 
 .show-onscroll {
     flex: 0 0 25%;
+    width: 25%;
     opacity: 0;
     @include transform(translateY(10%));
     @include transition(all 0.3s ease-out);

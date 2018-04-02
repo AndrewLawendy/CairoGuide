@@ -451,7 +451,7 @@ Contains all styles of inner pages
     .open-iframe-lightbox{
         cursor: pointer;
     }
-    
+
     .attach-to-footer {
         margin-bottom: -30px;
         padding-bottom: 30px;
@@ -2896,7 +2896,6 @@ Contains all styles of inner pages
                     width: 33.33%;
                     padding: 15px 5px;
                     box-sizing: border-box;
-                    color: #ccc;
                     cursor: pointer;
                     @include transition(all .15s);
                     @include media("(min-width: 1200px)") {
@@ -2907,17 +2906,21 @@ Contains all styles of inner pages
                         overflow: hidden;
                         display: inline-block;
                         vertical-align: middle;
+                        color:#000;
                         &::before {
                             content: attr(data-title);
                             position: absolute;
-                            color: #000;
+                            color: $calendar-color;
+                            background: #fff;
+                            opacity: 0;
                             @include transform(translateX(-100%));
-                            @include transition(all .3s);
+                            @include transition(opacity .3s,transform .3s .3s);
                         }
                     }
                     &.active {
-                        color: $calendar-color;
                         span {
+                            background: transparent;
+                            color: $calendar-color;
                             z-index: 1;
                             &::before {
                                 display: none;
@@ -2927,6 +2930,8 @@ Contains all styles of inner pages
                     &:hover {
                         span {
                             &::before {
+                                opacity: 1;
+                                @include transition-delay(0s);
                                 @include transform(translateX(0));
                             }
                         }
@@ -3022,6 +3027,7 @@ Contains all styles of inner pages
                     box-sizing: border-box;
                     overflow: hidden;
                     background: #fff;
+                    border-radius:50%;
                     &::before {
                         content: '';
                         position: absolute;
@@ -3039,6 +3045,7 @@ Contains all styles of inner pages
                         height: 100%;
                         background: inherit;
                         @include transition(all .5s);
+                        border-radius: 50%;
                         &:not(:empty) {
                             cursor: pointer;
                         }
@@ -3144,24 +3151,28 @@ Contains all styles of inner pages
                     text-align: center;
                     z-index: 1;
                     top: 0;
-                    left: 0;
-                    height: 58px;
+                    right: 0;
+                    width: 30px;
+                    height: 30px;
                     box-sizing: border-box;
-                    border-radius: 1px;
+                    border-radius: 100%;
                     background: $calendar-color;
                     font: .8rem 'Lato-Bold';
                     color: #fff;
                     padding: 5px;
                     @include user-select(none);
-                    @include transform(translateX(-100%));
+                    @include transform(translateX(100%));
                     &::after {
                         content: '';
                         position: absolute;
-                        top: 0;
-                        right: -15px;
-                        border-bottom: 29px solid transparent;
-                        border-top: 29px solid transparent;
-                        border-left: 15px solid $calendar-color;
+                        top: 5px;
+                        left: -10px;
+                        border-bottom: 10px solid transparent;
+                        border-top: 10px solid transparent;
+                        border-right: 15px solid $calendar-color;
+                    }
+                    span{
+                        line-height: 21px;
                     }
                 }
                 &.weekend-view,
@@ -3169,17 +3180,12 @@ Contains all styles of inner pages
                     .week-indicator {
                         display: block;
                     }
-                    .day:not(.this-week) {
-                        opacity: .2;
-                        pointer-events: none;
-                        @include transition(all .15s);
-                    }
                 }
                 &.weekend-view {
-                    .day.this-week:nth-of-type(7n+1),
-                    .day.this-week:nth-of-type(7n+2),
-                    .day.this-week:nth-of-type(7n+3),
-                    .day.this-week:nth-of-type(7n+4) {
+                    .day:nth-of-type(7n+1),
+                    .day:nth-of-type(7n+2),
+                    .day:nth-of-type(7n+3),
+                    .day:nth-of-type(7n+4) {
                         opacity: .2;
                         pointer-events: none;
                         @include transition(all .15s);
