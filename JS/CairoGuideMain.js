@@ -29,8 +29,12 @@ var lazyLoading = function () {
             var windowHeight = $(window).height() * 2,
                 thisPos = $(this).offset().top - $(document).scrollTop();
             if (thisPos <= windowHeight) {
-                var src = $(this).data('src');
+                var src = $(this).data('src'),
+                failSrc = $(this).attr('src');
                 $(this).attr('src', src);
+                $(this).on('error',function(){
+                    $(this).attr('src', failSrc);
+                });
                 $(this).on('load', function () {
                     $(this).removeAttr('data-src');
                 });
