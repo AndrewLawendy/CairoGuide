@@ -687,7 +687,6 @@ var initCalendarView = function (calendarView) {
                 indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
                 stopIndicatorDrag = function (e) {
                     //var dayHeight = $('.day').height(),
-                    $('.week-indicator').css('z-index','');
                     var mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
                         hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
                             return mouseUpPos > $(this).offset().top;
@@ -739,6 +738,10 @@ var initCalendarView = function (calendarView) {
             top: dayPos,
             height: dayHeight,
             width: weekWidth
+        },{
+            complete:function(){
+                $('.week-indicator').css('z-index','');
+            }
         });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
     };
