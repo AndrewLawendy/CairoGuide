@@ -1,4 +1,3 @@
-"use strict";
 var newScreenSize = 0; //Last screen size, changes when screen size changes, takes values 1,2 or 3
 //var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
@@ -679,10 +678,12 @@ var initCalendarView = function (calendarView) {
     var setWeek = function (e) {
         if (e.which == 1 || e.which === 0) {
             e.preventDefault();
+            $('.week-indicator').css('z-index',10);
             var startGrab = e.pageY || e.originalEvent.touches[0].pageY,
                 indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
                 stopIndicatorDrag = function (e) {
                     //var dayHeight = $('.day').height(),
+                    $('.week-indicator').css('z-index','');
                     var mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
                         hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
                             return mouseUpPos > $(this).offset().top;
@@ -724,10 +725,16 @@ var initCalendarView = function (calendarView) {
     };
 
     var posWeekIndicator = function (day) {
-        var dayPos = day.position().top + (day.height() * 0.5) - 15,
+        var dayPos = day.position().top,
+            dayHeight = day.outerHeight(),
+            dayWidth = day.outerWidth(),
+            weekWidth = dayWidth * 7+2,
             current = $('#calendar-wrp').data('currentDate');
+        if ($('.calendar-overview').hasClass('weekend-view')) weekWidth = dayWidth * 3+2;
         $('.week-indicator').stop().animate({
-            top: dayPos
+            top: dayPos,
+            height: dayHeight,
+            width: weekWidth
         });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
     };
@@ -867,7 +874,7 @@ var initCalendarView = function (calendarView) {
             if (thisWeek.length < 5) {
                 var index = dayInWeek.index(),
                     dayInLastWeek = $('.calendar-month-wrp.active .day').eq(index - 7);
-                //return initWeekView(dayInLastWeek);
+                return initWeekView(dayInLastWeek);
             }
             if (dayActive < 4) dayActive = 4;
         }
