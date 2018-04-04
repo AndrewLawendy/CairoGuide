@@ -3139,9 +3139,7 @@ Contains all styles of inner pages
                 }
                 .calendar-years-view-wrp {
                     .years-range-wrp {
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                        flex-basis: 100%;
+                        flex:0 0 100%;
                         width: 100%;
                     }
                 }
@@ -3149,6 +3147,7 @@ Contains all styles of inner pages
                     position: absolute;
                     right:0;
                     overflow: visible!important;
+                    display: none;
                     .week-number{
                         cursor: pointer;
                         position: absolute;

@@ -611,6 +611,7 @@ var initCalendarView = function (calendarView) {
             dateObj = new Date(year, month),
             currentDay = $('#calendar-wrp').data('currentDate')[0],
             newDayLimit = ifCurrentExceedsOther(dateObj, currentDay);
+        if ($('calendar-overview').attr('class') != 'calendar-overview') newDayLimit = '1';
         if (date !== undefined) dateObj = date;
         var checkMonth = checkMonthBefore(dateObj);
         if (checkMonth !== false) initCalendar(dateObj, checkMonth[0], checkMonth[1]);
@@ -625,9 +626,10 @@ var initCalendarView = function (calendarView) {
         });
         $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
         $('.calendar-month-wrp .day').removeClass('active');
-        $('.calendar-month-wrp').each(function () {
-            $(this).find('.day:contains(' + newDayLimit + ')').first().addClass('active');
-        });
+        $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first().click();
+        // $('.calendar-month-wrp').each(function () {
+        //     $(this).find('.day:contains(' + newDayLimit + ')').first().addClass('active');
+        // });
         setTimeout(function () {
             $('.calendar-head-body').removeClass('leaving');
         }, 300);
@@ -656,8 +658,17 @@ var initCalendarView = function (calendarView) {
         }, 300);
     };
 
-    var setCalendarDate = function () {
-        var _this = $(this);
+    var setCalendarDate = function (e, initWeek) {
+        if ($(this).hasClass('active')) return;
+        var _this = $(this),
+            lastInWeekIndex = ceilToNearestValue(7, _this.index()),
+            lastInWeek;
+        if (lastInWeekIndex === 0) {
+            lastInWeekIndex = 7
+        } else if (lastInWeekIndex > $('.calendar-month-wrp.active .day').length) {
+            lastInWeekIndex = $('.calendar-month-wrp.active .day').length;
+        };
+        lastInWeek = $('.calendar-month-wrp.active .day:nth-child(' + lastInWeekIndex + ')');
         if (_this.text().trim() === '') return;
         $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
         _this.addClass('active');
@@ -668,7 +679,7 @@ var initCalendarView = function (calendarView) {
         } else if ($('.calendar-overview').hasClass('week-view')) {
             $('#week-view .tabs-items li').eq(_this.index() % 7).click();
         }
-        //if($('.calendar-overview').attr('class') != "calendar-overview") initWeekView(_this);
+        if ($('.calendar-overview').attr('class') != "calendar-overview" && initWeek === undefined) initWeekView(lastInWeek);
         $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
             opacity: 0
         }, {
@@ -692,18 +703,13 @@ var initCalendarView = function (calendarView) {
             var startGrab = e.pageY || e.originalEvent.touches[0].pageY,
                 indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
                 stopIndicatorDrag = function (e) {
-                    console.log('george');
                     //var dayHeight = $('.day').height(),
                     var mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
                         hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
                             return mouseUpPos > $(this).offset().top;
                         }).last();
                     if (!hoveredWeek.length) hoveredWeek = $('.day:contains(1)').first();
-                    //if(setWeekInd){
-                        
                     initWeekView(hoveredWeek);
-                    //setWeekInd = false;
-                    //}
                     $('#calendar-wrp').off('mousemove mouseup mouseleave touchmove touchend');
                 };
                 $('#calendar-wrp').on('mouseup mouseleave touchend', stopIndicatorDrag);
@@ -739,6 +745,7 @@ var initCalendarView = function (calendarView) {
     };
 
     var posWeekIndicator = function (day) {
+        $('.week-indicator').css('z-index','1');
         var dayPos = day.position().top,
             dayHeight = day.outerHeight(),
             dayWidth = day.outerWidth(),
@@ -863,7 +870,7 @@ var initCalendarView = function (calendarView) {
             'monthName': currentMonth,
             'day': dayDate,
             'totalDays': days
-        }).addClass('active').find('.day:contains(' + dayDate + ')').first().addClass('active');
+        }).addClass('active').find('.day:contains(' + dayDate + ')').first().click();
         if (!todaySet) {
             todaySet = true;
             $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
@@ -879,7 +886,6 @@ var initCalendarView = function (calendarView) {
     };
 
     var initWeekView = function (dayInWeek) {
-        console.log('andrew');
         var weekPos = dayInWeek.position().top,
             dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
@@ -888,7 +894,7 @@ var initCalendarView = function (calendarView) {
             posWeekDayIndex = ceilToNearestValue(7, dayInWeek.index());
         posWeekDayIndex === 0 && (posWeekDayIndex = 7);
         posWeekDayIndex > $('.calendar-month-wrp.active .day').length && (posWeekDayIndex = $('.calendar-month-wrp.active .day').length);
-        $('.calendar-month-wrp.active .day').removeClass('this-week active');
+        $('.calendar-month-wrp.active .day').removeClass('this-week');
         if ($('.calendar-overview.weekend-view').length) {
             if (thisWeek.length < 5) {
                 var index = dayInWeek.index(),
@@ -902,7 +908,7 @@ var initCalendarView = function (calendarView) {
                 dayActive++;
             }
         }
-        thisWeek.addClass('this-week').eq(dayActive).click();
+        thisWeek.addClass('this-week').eq(dayActive).trigger('click', [false]);
         dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + posWeekDayIndex + ')');
         posWeekIndicator(dayInWeek);
     };
