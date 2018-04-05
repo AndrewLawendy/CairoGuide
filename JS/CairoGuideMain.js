@@ -500,7 +500,6 @@ var initCalendarView = function (calendarView) {
     };
 
     var switchViews = function (calendarView) {
-
         if (calendarView == 'today') {
             $('#month-view').siblings().slideUp(150, function () {
                 $('#month-view').slideDown(150);
@@ -512,11 +511,9 @@ var initCalendarView = function (calendarView) {
         } else if (calendarView == 'weekend') {
 
             $('#weekend-view').siblings().slideUp(150).promise().done(function () {
-
                 $('#weekend-view').slideDown(150);
                 var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                 weekIndex === 0 && (weekIndex = 7);
-
                 initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                 $('.calendar-this .this-weekend').siblings().hide().promise().done(function () {
                     $('.calendar-this .this-weekend').show();
@@ -528,7 +525,6 @@ var initCalendarView = function (calendarView) {
                 $('#week-view').slideDown(150, function () {
                     var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
                     weekIndex === 0 && (weekIndex = 7);
-
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-week').siblings().hide().promise().done(function () {
                         $('.calendar-this .this-week').show();
@@ -661,7 +657,7 @@ var initCalendarView = function (calendarView) {
     var setCalendarDate = function (e, initWeek) {
         if ($(this).hasClass('active')) return;
         var _this = $(this),
-            lastInWeekIndex = ceilToNearestValue(7, _this.index()),
+            lastInWeekIndex = ceilToNearestValue(7,(_this.index()+1)),
             lastInWeek;
         if (lastInWeekIndex === 0) {
             lastInWeekIndex = 7
@@ -673,13 +669,13 @@ var initCalendarView = function (calendarView) {
         $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
         _this.addClass('active');
         $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
-        if ($('.calendar-overview').hasClass('weekend-view')) {
-            var tabIndex = (_this.index() % 7) - 4;
-            $('#weekend-view .tabs-items li').eq(tabIndex).click();
-        } else if ($('.calendar-overview').hasClass('week-view')) {
-            $('#week-view .tabs-items li').eq(_this.index() % 7).click();
+        if ($('.calendar-overview').attr('class') != "calendar-overview") {
+            if (initWeek === undefined) initWeekView(lastInWeek,true);
+            var tabIndex = _this.index() % 7;
+            if($('.calendar-overview').hasClass('weekend-view')) tabIndex = (_this.index() % 7) - 4;
+            var tab = $('#week-view .tabs-items li').eq(_this.index() % 7);
+            if(!tab.hasClass('active')) tab.trigger('click',[true]);
         }
-        if ($('.calendar-overview').attr('class') != "calendar-overview" && initWeek === undefined) initWeekView(lastInWeek);
         $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
             opacity: 0
         }, {
@@ -870,11 +866,11 @@ var initCalendarView = function (calendarView) {
             'monthName': currentMonth,
             'day': dayDate,
             'totalDays': days
-        }).addClass('active').find('.day:contains(' + dayDate + ')').first().click();
+        }).addClass('active').find('.day:contains(' + dayDate + ')').first().trigger('click',[false]);
         if (!todaySet) {
             todaySet = true;
             $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
-            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today').click();
+            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today');
         }
         updateDay(currentMonth, dayDate, year);
         if (monthPrev) {
@@ -885,7 +881,7 @@ var initCalendarView = function (calendarView) {
         scrollToMonth(monthView);
     };
 
-    var initWeekView = function (dayInWeek) {
+    var initWeekView = function (dayInWeek,stop) {
         var weekPos = dayInWeek.position().top,
             dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
@@ -908,7 +904,8 @@ var initCalendarView = function (calendarView) {
                 dayActive++;
             }
         }
-        thisWeek.addClass('this-week').eq(dayActive).trigger('click', [false]);
+        thisWeek.addClass('this-week');
+        if(!stop) thisWeek.eq(dayActive).trigger('click', [false]);
         dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + posWeekDayIndex + ')');
         posWeekIndicator(dayInWeek);
     };
@@ -994,8 +991,18 @@ var initCalendarView = function (calendarView) {
     //setWeek
 
     $('.week-indicator').on('mousedown touchstart', function (e) {
-        //setWeekInd = true;
         setWeek(e);
+    });
+    //Day in Week
+    $('#weekend-view .tabs-items li').on('click', function (e,stop) {
+        if(stop) return;
+        var index = $(this).index() + 4;
+        $('.this-week').eq(index).removeClass('active').trigger('click',[false]);
+    });
+    $('#week-view .tabs-items li').on('click', function (e,stop) {
+        if(stop) return;
+        var index = $(this).index();
+        $('.this-week').eq(index).removeClass('active').click();
     });
 
     initCalendar();
