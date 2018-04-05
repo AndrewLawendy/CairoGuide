@@ -43,12 +43,12 @@ main {
                         &.#{nth($item,1)}-item {
                             .section-title {
                                 &::before {
-                                    background: nth($item, 2) !important;
+                                    background-color: nth($item, 2) !important;
                                 }
                             }
                             .carousel-read-more {
                                 &:hover {
-                                    background: nth($item, 2) !important;
+                                    background-color: nth($item, 2) !important;
                                     border-color: nth($item, 2) !important;
                                     @include transition(all .1s);
                                 }
@@ -143,7 +143,7 @@ main {
                             border: 1px solid #fff;
                             text-decoration: none;
                             margin-top: 25px;
-                            background: transparent;
+                            background-color: transparent;
                             @include transition(all .15s);
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(10px);
@@ -182,12 +182,12 @@ main {
                 margin-top: 15px;
                 position: relative;
                 padding: 0 15px;
-                background: transparent;
+                background-color: transparent;
                 &::before {
                     position: absolute;
                     top: -5px;
                     left: 10%;
-                    background: #eee;
+                    background-color: #eee;
                     border-radius: 100%;
                     height: 2px;
                     width: 80%;
@@ -425,9 +425,9 @@ main {
                         }
                         @each $i in $colorList {
                             &.#{nth($i,1)}-bg {
-                                background: rgba(nth($i, 2), 0.8);
+                                background-color: rgba(nth($i, 2), 0.8);
                                 /*@include media("(max-width: 768px)") {
-                                    background: nth($i, 2);
+                                    background-color: nth($i, 2);
                                 }*/
                                 a:hover {
                                     color: nth($i, 2);
@@ -435,7 +435,7 @@ main {
                             }
                         }
                         @include media("(max-width: 768px)") {
-                            background: transparent !important;
+                            background-color: transparent !important;
                         }
                     }
                     &:hover {
@@ -1076,7 +1076,7 @@ main {
                             @include transition(all .5s);
                             @each $i in $colorList {
                                 &.best-#{nth($i,1)} {
-                                    background: nth($i, 2);
+                                    background-color: nth($i, 2);
                                 }
                             }
                             @include media("(max-width: 768px)") {
@@ -1149,7 +1149,7 @@ main {
                         &::after {
                             position: absolute;
                             right: 0;
-                            background: #fff;
+                            background-color: #fff;
                         }
                         &::before {
                             content: '...';
@@ -1698,7 +1698,7 @@ main {
         .attractions-index {
             width: 100px;
             height: 15px;
-            background: $logo-yellow;
+            background-color: $logo-yellow;
             overflow: visible !important;
             position: absolute;
             z-index: 3;

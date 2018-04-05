@@ -1376,7 +1376,7 @@ iframe:not([data-src]) {
         display: block;
         width: 70%;
         height: 1px;
-        background: #fff;
+        background-color: #fff;
         position: absolute;
         top: 50%;
         left: 0;
@@ -1414,7 +1414,7 @@ iframe:not([data-src]) {
     .burger-menu-btn {
         width: 2px;
         height: 15px;
-        background: #fff;
+        background-color: #fff;
         position: absolute;
         left: 0;
         right: 0;
@@ -1517,7 +1517,7 @@ iframe:not([data-src]) {
 }
 
 .register-form {
-    background: #fff;
+    background-color: #fff;
     padding: 20px;
     margin: 0 auto;
     border-radius: 5px;
@@ -1535,7 +1535,7 @@ iframe:not([data-src]) {
         } // &::before {
         //     content: '';
         //     height: 1px;
-        //     background: $header-footer-primary-background-color;
+        //     background-color: $header-footer-primary-background-color;
         //     width: 50%;
         //     position: absolute;
         //     left: 0;
@@ -1580,7 +1580,7 @@ iframe:not([data-src]) {
         margin-left: 10px;
         border-radius: 7px;
         padding: 7px 10px 5px; //line-height: 2rem;
-        background: $header-footer-primary-background-color;
+        background-color: $header-footer-primary-background-color;
         color: #fff;
         border: 1px solid #131313;
         font-size: 1rem; //border: 0;
@@ -1604,19 +1604,19 @@ iframe:not([data-src]) {
 
 .clear-btn {
     color: #fff;
-    background: transparent;
+    background-color: transparent;
     vertical-align: middle;
     @include btn-base();
     @include transition(all .15s);
     &:hover {
-        background: #fff;
+        background-color: #fff;
         color: #000;
     }
     &.inverse {
         color: #000;
         border-color: #131313;
         &:hover {
-            background: #131313;
+            background-color: #131313;
             color: #fff;
         }
     }
@@ -1634,7 +1634,7 @@ iframe:not([data-src]) {
             position: absolute;
             top: 0;
             left: 0;
-            background: #fff;
+            background-color: #fff;
             width: 100%;
             height: 100%;
             border-radius: 100%;
@@ -1690,7 +1690,7 @@ iframe:not([data-src]) {
                     top: 0;
                     left: 0;
                     opacity: 0;
-                    background: #fff;
+                    background-color: #fff;
                     @include transform(translateX(-100%));
                     @include transition(opacity .15s,
                     transform .3s .15s)
@@ -1788,7 +1788,7 @@ iframe:not([data-src]) {
                     box-sizing: border-box;
                     border-radius: 100%;
                     padding: 0;
-                    background: #ccc;
+                    background-color: #ccc;
                     margin: 0 5px 10px;
                     overflow: hidden;
                     &::before {
@@ -2010,7 +2010,7 @@ iframe:not([data-src]) {
             vertical-align: middle;
             border-radius: 100%;
             cursor: pointer;
-            background: #fff;
+            background-color: #fff;
             width: 10px;
             height: 10px;
             margin: 10px;
@@ -2034,7 +2034,7 @@ iframe:not([data-src]) {
         padding: 15px;
         font-size: 4rem;
         opacity: .7;
-        background: transparent;
+        background-color: transparent;
         color: #000;
         @include transition(all .3s);
         @include transform(translateY(-50%));
@@ -2532,7 +2532,7 @@ iframe:not([data-src]) {
                 }
                 .autocomplete-keywords {
                     padding: 5px 0;
-                    background: $background-midcolor;
+                    background-color: $background-midcolor;
                     border-bottom: 2px solid #000;
                     max-height: calc(((1rem + 20px) * 7) + 10px);
                     overflow: auto;
@@ -2547,7 +2547,7 @@ iframe:not([data-src]) {
                         padding: 10px 15px;
                         cursor: pointer;
                         color: #555;
-                        background: transparent;
+                        background-color: transparent;
                         @include transition(all .15s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(10px) get-vw(15px);
@@ -2557,7 +2557,7 @@ iframe:not([data-src]) {
                         }
                         &:hover {
                             color: #fff;
-                            background: #131313;
+                            background-color: #131313;
                             .bold {
                                 color: #fff;
                             }
@@ -2818,7 +2818,7 @@ iframe:not([data-src]) {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, .7);
     }
     >img {
         position: absolute;

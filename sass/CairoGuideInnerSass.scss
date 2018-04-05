@@ -17,9 +17,9 @@ Contains all styles of inner pages
             @include themify-inner-page(#{nth($i,1)},
             nth($i, 2));
             .advanced-search-filters-wrp {
-                background: nth($i, 2);
+                background-color: nth($i, 2);
                 .column-index {
-                    background: nth($i, 2);
+                    background-color: nth($i, 2);
                 }
                 .filter-field-input,
                 input {
@@ -30,7 +30,7 @@ Contains all styles of inner pages
                             color: nth($i, 2);
                             &:hover {
                                 color: #fff;
-                                background: nth($i, 2);
+                                background-color: nth($i, 2);
                                 * {
                                     color: #fff;
                                 }
@@ -40,14 +40,14 @@ Contains all styles of inner pages
                 }
                 .inline-radio {
                     label::after {
-                        background: nth($i, 2);
+                        background-color: nth($i, 2);
                     }
                 }
                 .search-go-event {
-                    background: nth($i, 2);
+                    background-color: nth($i, 2);
                     color: nth($i, 2);
                     &:hover {
-                        background: nth($i, 2);
+                        background-color: nth($i, 2);
                         color: #fff;
                         @include transition(all .15s);
                     }
@@ -62,13 +62,13 @@ Contains all styles of inner pages
                 }
                 .item-facilities-container {
                     .facility-unit {
-                        background: nth($i, 2);
+                        background-color: nth($i, 2);
                     }
                 }
                 .item-rating-details-container {
                     .rating-owl-wrp {
                         span {
-                            background: nth($i, 2);
+                            background-color: nth($i, 2);
                         }
                     }
                 }
@@ -181,12 +181,12 @@ Contains all styles of inner pages
                 }
             }
             .circle {
-                background: nth($i, 2);
+                background-color: nth($i, 2);
             }
             ul.tabs-items li {
                 &::before,
                 &::after {
-                    background: nth($i, 2);
+                    background-color: nth($i, 2);
                 }
             }
             &.accommodation-theme {
@@ -213,7 +213,7 @@ Contains all styles of inner pages
     #lightbox-popup {
         position: fixed;
         z-index: 200;
-        background: rgba(0, 0, 0, 0.95);
+        background-color: rgba(0, 0, 0, 0.95);
         width: 100%;
         height: 100vh;
         position: fixed;
@@ -568,7 +568,7 @@ Contains all styles of inner pages
                 .settings-column {
                     height: 25px;
                     width: 1px;
-                    background: #fff;
+                    background-color: #fff;
                     position: relative;
                     float: left;
                     @include media("(min-width: 1200px)") {
@@ -601,6 +601,7 @@ Contains all styles of inner pages
                         width: 5px;
                         height: 6px;
                         border: 1px solid #fff;
+                        background-color:$logo-green;
                         @include transition(all .3s);
                         @include media("(min-width: 1200px)") {
                             left: get-vw(-2px);
@@ -673,7 +674,7 @@ Contains all styles of inner pages
                 position: relative;
                 @include user-select(none);
                 box-sizing: border-box;
-                background: #fff;
+                background-color: #fff;
                 width: 100%;
                 height: 40px;
                 border-radius: 3px;
@@ -740,7 +741,7 @@ Contains all styles of inner pages
                 }
                 .dropdown-options {
                     opacity: 0;
-                    background: #fff;
+                    background-color: #fff;
                     width: 100%;
                     position: absolute;
                     left: 0;
@@ -753,7 +754,7 @@ Contains all styles of inner pages
                         border-bottom: get-vw(2px) solid;
                     }
                     li {
-                        background: #fff;
+                        background-color: #fff;
                         cursor: pointer;
                         input[type="checkbox"] {
                             &:checked {
@@ -973,7 +974,7 @@ Contains all styles of inner pages
                     height: 60px;
                     line-height: 60px;
                     border-radius: 100%;
-                    background: #fff;
+                    background-color: #fff;
                     border: 1px solid #fff;
                     box-sizing: border-box;
                     text-align: center;
@@ -1166,7 +1167,7 @@ Contains all styles of inner pages
                             img {
                                 min-height: 50%;
                                 display: block;
-                                background: #eee;
+                                background-color: #eee;
                                 text-indent: 5px;
                                 font-family: 'Lato-Light';
                                 @include object-fit-img();
@@ -1821,7 +1822,7 @@ Contains all styles of inner pages
                 content: 'Offer';
                 position: absolute;
                 left: -8px;
-                background: #fff;
+                background-color: #fff;
                 padding: 10px;
                 box-sizing: border-box;
                 font: 20px 'Lato-Black';
@@ -1927,7 +1928,7 @@ Contains all styles of inner pages
                         border: 0;
                         border-radius: 5px;
                         padding: 20px;
-                        background: #eee;
+                        background-color: #eee;
                         font-size: 1rem;
                         @include media("(min-width: 1200px)") {
                             height: get-vw(95px);
@@ -1972,7 +1973,7 @@ Contains all styles of inner pages
                         padding-left: get-vw(20px);
                     }
                     .comment-container {
-                        background: #f8f8f8;
+                        background-color: #f8f8f8;
                         border-radius: 3px;
                         padding: 15px 20px 20px 65px;
                         margin-bottom: 40px;
@@ -2137,7 +2138,7 @@ Contains all styles of inner pages
                                     left: 0;
                                     width: 100%;
                                     height: 100%;
-                                    background: rgba(0, 0, 0, .7);
+                                    background-color: rgba(0, 0, 0, .7);
                                     text-align: center;
                                     color: #fff;
                                     line-height: 150px;
@@ -2225,7 +2226,7 @@ Contains all styles of inner pages
                     width: 100%;
                     text-align: left;
                     padding-right: 30px;
-                    background: #fff;
+                    background-color: #fff;
                     border-radius: 5px;
                     @include media("(min-width: 1200px)") {
                         padding-right: get-vw(30px);
@@ -2383,7 +2384,7 @@ Contains all styles of inner pages
                 .team-member {
                     box-sizing: border-box;
                     border: 15px solid #fff;
-                    background: #131313;
+                    background-color: #131313;
                     @include transition(all .3s ease-out);
                     @include media("(min-width: 1200px)") {
                         border-width: get-vw(15px);
@@ -2401,7 +2402,7 @@ Contains all styles of inner pages
                         }
                     }
                     .member-details {
-                        background: #131313;
+                        background-color: #131313;
                         color: #fff;
                         text-align: center;
                         padding: 10px;
@@ -2807,7 +2808,7 @@ Contains all styles of inner pages
                             left: 0;
                             width: 100%;
                             height: 999px;
-                            background: #131313;
+                            background-color: #131313;
                             @include transform(skewY(2deg));
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(25px);
@@ -2836,7 +2837,7 @@ Contains all styles of inner pages
                                 width: 1em;
                                 height: 1em;
                                 margin-top: 0.2em;
-                                background: #131313;
+                                background-color: #131313;
                             }
                         }
                     }
@@ -2871,18 +2872,18 @@ Contains all styles of inner pages
                     .details-carousel-content {
                         color: #fff;
                         border-color: $calendar-color;
-                        background: #131313;
+                        background-color: #131313;
                     }
                 }
                 .details-carousel-dot {
                     &:hover,
                     &.active {
-                        background: $calendar-color;
+                        background-color: $calendar-color;
                     }
                 }
                 .details-carousel-controls {
                     &:hover {
-                        background: #131313;
+                        background-color: #131313;
                         color: $calendar-color
                     }
                 }
@@ -2912,7 +2913,7 @@ Contains all styles of inner pages
                             content: attr(data-title);
                             position: absolute;
                             color: $calendar-color;
-                            background: #fff;
+                            background-color: #fff;
                             opacity: 0;
                             @include transform(translateX(-100%));
                             @include transition(opacity .3s,transform .3s .3s);
@@ -2920,7 +2921,7 @@ Contains all styles of inner pages
                     }
                     &.active {
                         span {
-                            background: transparent;
+                            background-color: transparent;
                             color: $calendar-color;
                             z-index: 1;
                             &::before {
@@ -2941,7 +2942,7 @@ Contains all styles of inner pages
                 .calendar-views-index {
                     position: absolute;
                     top: 0;
-                    background: #131313;
+                    background-color: #131313;
                     margin: 10px 0;
                     padding: 5px 10px;
                     border-radius: 40px;
@@ -2958,11 +2959,11 @@ Contains all styles of inner pages
                 >* {
                     cursor: pointer;
                     padding: 15px;
-                    background: transparent;
+                    background-color: transparent;
                     text-align: center;
                     @include transition(all .5s);
                     &:hover {
-                        background: #eee;
+                        background-color: #eee;
                     }
                 }
                 .calendar-controls {
@@ -3027,7 +3028,7 @@ Contains all styles of inner pages
                     padding: 2px;
                     box-sizing: border-box;
                     overflow: hidden;
-                    background: #fff;
+                    background-color: #fff;
                     border-radius:50%;
                     margin: 2px 0;
                     &::before {
@@ -3037,7 +3038,7 @@ Contains all styles of inner pages
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: $calendar-color;
+                        background-color: $calendar-color;
                         @include transform(translate(-100%, -100%));
                         @include transition(all .15s);
                     }
@@ -3119,7 +3120,7 @@ Contains all styles of inner pages
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: #fff;
+                    background-color: #fff;
                     display: none;
                     @include transition(all .3s);
                     @include transform(scale(1.3));
@@ -3160,7 +3161,7 @@ Contains all styles of inner pages
                         height: 30px;
                         box-sizing: border-box;
                         border-radius: 100%;
-                        background: $calendar-color;
+                        background-color: $calendar-color;
                         font: .8rem 'Lato-Bold';
                         color: #fff;
                         padding: 5px;
@@ -3228,13 +3229,13 @@ Contains all styles of inner pages
                 .tabs-items {
                     li::before,
                     li::after {
-                        background: #131313;
+                        background-color: #131313;
                     }
                 }
             }
             .calendar-day-events-wrp {
                 padding: 15px 0;
-                background: #f8f8f8;
+                background-color: #f8f8f8;
                 display: flex;
                 flex-wrap: wrap;
                 @include media("(min-width: 1200px)") {
@@ -3268,7 +3269,7 @@ Contains all styles of inner pages
                         box-shadow: 0px 0px 1px 1px #f0f0f0;
                         border-radius: 3px;
                         overflow: hidden;
-                        background: #fff;
+                        background-color: #fff;
                         height: 100%;
                         .calendar-event-photo {
                             display: block;
@@ -3434,7 +3435,7 @@ Contains all styles of inner pages
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(227, 27, 35, 0.8);
+                background-color: rgba(227, 27, 35, 0.8);
             }
             @include media("(max-width: 768px)") {
                 padding: 45px 15px;
@@ -3449,7 +3450,7 @@ Contains all styles of inner pages
                 border-radius: 7px;
                 margin: 0 auto;
                 box-sizing: border-box;
-                background: #fff;
+                background-color: #fff;
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(15px);
                 }
@@ -3474,7 +3475,7 @@ Contains all styles of inner pages
                     position: relative;
                     margin-top: 120px;
                     padding: 20px;
-                    background: #fff;
+                    background-color: #fff;
                     @include media("(max-width: 640px)") {
                         margin-top: 20px;
                     }
