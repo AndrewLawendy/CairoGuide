@@ -1208,6 +1208,7 @@ Contains all styles of inner pages
                                     box-sizing: border-box;
                                     float: right;
                                     color: #fff;
+                                    border-radius: 100vw 0 0 100vw;
                                     @include media("(min-width: 1200px)") {
                                         padding: get-vw(15px) get-vw(15px) get-vw(12px);
                                     }
