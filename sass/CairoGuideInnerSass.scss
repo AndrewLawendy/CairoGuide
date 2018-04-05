@@ -10,14 +10,22 @@ Contains all styles of inner pages
             background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
             background-size: cover;
         }
+        .advanced-search-filters-wrp {
+            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center !important;
+            background-size: cover; //background-blend-mode: multiply;
+        }
     }
 
     @each $i in $colorList {
         body.#{nth($i,1)}-theme {
             @include themify-inner-page(#{nth($i,1)},
-            nth($i, 2));
+            nth($i,
+            2));
             .advanced-search-filters-wrp {
                 background-color: nth($i, 2);
+                &:before{
+                    @include background-opacity(darken(nth($i, 2),25%), 0.75);
+                }
                 .column-index {
                     background-color: nth($i, 2);
                 }
@@ -114,7 +122,8 @@ Contains all styles of inner pages
                                     color: nth($i, 2);
                                     a,
                                     a:visited {
-                                        @include theme-link-color(nth($i, 2));
+                                        @include theme-link-color(nth($i,
+                                        2));
                                     }
                                 }
                                 .item-exclusive {
@@ -167,7 +176,8 @@ Contains all styles of inner pages
                     color: nth($i, 2);
                     a,
                     a:visited {
-                        @include theme-link-color(nth($i, 2));
+                        @include theme-link-color(nth($i,
+                        2));
                     }
                 }
             }
@@ -424,7 +434,8 @@ Contains all styles of inner pages
                 top: 50%;
                 left: 50%;
                 border: 20px solid #fff;
-                @include transform(translate(-50%,-50%));
+                @include transform(translate(-50%,
+                -50%));
                 @include media("(max-width: 768px)") {
                     width: 100%;
                     height: 65vh;
@@ -448,7 +459,7 @@ Contains all styles of inner pages
         }
     }
 
-    .open-iframe-lightbox{
+    .open-iframe-lightbox {
         cursor: pointer;
     }
 
@@ -542,10 +553,25 @@ Contains all styles of inner pages
             z-index: 1;
             box-sizing: border-box;
             border-radius: 7px;
+            position: relative;
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px);
                 margin-bottom: get-vw(30px);
                 border-radius: get-vw(7px);
+            }
+            &:before {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                border-radius: 7px;
+                @include media("(min-width: 1200px)") {
+                    border-radius: get-vw(7px);
+                }
             }
             .advanced-search-filters {
                 cursor: pointer;
@@ -601,7 +627,6 @@ Contains all styles of inner pages
                         width: 5px;
                         height: 6px;
                         border: 1px solid #fff;
-                        background-color:$logo-green;
                         @include transition(all .3s);
                         @include media("(min-width: 1200px)") {
                             left: get-vw(-2px);
@@ -1257,14 +1282,14 @@ Contains all styles of inner pages
                                     white-space: nowrap;
                                     margin-left: 3px;
                                     @include media("(min-width: 1200px)") {
-                                        margin-left:get-vw(3px);
+                                        margin-left: get-vw(3px);
                                     }
                                 }
                                 i {
                                     font-size: 1.2rem;
                                     margin: 0 2px;
                                     @include media("(min-width: 1200px)") {
-                                        margin:0 get-vw(2px);
+                                        margin: 0 get-vw(2px);
                                     }
                                 }
                             }
@@ -2908,7 +2933,7 @@ Contains all styles of inner pages
                         overflow: hidden;
                         display: inline-block;
                         vertical-align: middle;
-                        color:#000;
+                        color: #000;
                         &::before {
                             content: attr(data-title);
                             position: absolute;
@@ -2916,7 +2941,8 @@ Contains all styles of inner pages
                             background-color: #fff;
                             opacity: 0;
                             @include transform(translateX(-100%));
-                            @include transition(opacity .3s,transform .3s .3s);
+                            @include transition(opacity .3s,
+                            transform .3s .3s);
                         }
                     }
                     &.active {
@@ -3029,7 +3055,7 @@ Contains all styles of inner pages
                     box-sizing: border-box;
                     overflow: hidden;
                     background-color: #fff;
-                    border-radius:50%;
+                    border-radius: 50%;
                     margin: 2px 0;
                     &::before {
                         content: '';
@@ -3039,7 +3065,8 @@ Contains all styles of inner pages
                         width: 100%;
                         height: 100%;
                         background-color: $calendar-color;
-                        @include transform(translate(-100%, -100%));
+                        @include transform(translate(-100%,
+                        -100%));
                         @include transition(all .15s);
                     }
                     div {
@@ -3067,12 +3094,14 @@ Contains all styles of inner pages
                     &:hover {
                         &::before {
                             @include transition(all .5s);
-                            @include transform(translate(50%, 50%));
+                            @include transform(translate(50%,
+                            50%));
                         }
                     }
                     &.active {
                         &::before {
-                            @include transform(translate(-50%, -50%));
+                            @include transform(translate(-50%,
+                            -50%));
                         }
                     }
                 }
@@ -3141,16 +3170,16 @@ Contains all styles of inner pages
                 }
                 .calendar-years-view-wrp {
                     .years-range-wrp {
-                        flex:0 0 100%;
+                        flex: 0 0 100%;
                         width: 100%;
                     }
                 }
                 .week-indicator {
                     position: absolute;
-                    right:0;
-                    overflow: visible!important;
+                    right: 0;
+                    overflow: visible !important;
                     display: none;
-                    .week-number{
+                    .week-number {
                         cursor: pointer;
                         position: absolute;
                         text-align: center;
@@ -3166,7 +3195,8 @@ Contains all styles of inner pages
                         color: #fff;
                         padding: 5px;
                         @include user-select(none);
-                        @include transform(translate(100%,-50%));
+                        @include transform(translate(100%,
+                        -50%));
                         &::after {
                             content: '';
                             position: absolute;
@@ -3176,15 +3206,15 @@ Contains all styles of inner pages
                             border-top: 10px solid transparent;
                             border-right: 15px solid $calendar-color;
                         }
-                        span{
+                        span {
                             line-height: 21px;
                         }
                     }
-                    .week-wrapper{
-                        width:100%;
-                        height:100%;
-                        border-radius:7px;
-                        border:2px solid $calendar-color;
+                    .week-wrapper {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 7px;
+                        border: 2px solid $calendar-color;
                     }
                 }
                 &.weekend-view,
