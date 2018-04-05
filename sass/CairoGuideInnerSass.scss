@@ -3190,7 +3190,7 @@ Contains all styles of inner pages
                 &.weekend-view,
                 &.week-view {
                     .week-indicator {
-                        display: block;
+                        display: block!important;
                     }
                 }
                 &.weekend-view {
