@@ -178,24 +178,28 @@ $colorList: "nightlife" #f90000,
 
 @mixin link-hover() {
     & {
-        text-decoration: none;
+        text-decoration: underline;
         max-width: 100%;
     }
-    &:after {
-        content: '';
-        display: block;
-        height: 1px;
-        width: 20%;
-        margin-top: 1px;
-        @include transition(all 0.3s);
-        @include media("(min-width: 1200px)") {
-            height: get-vw(1px);
-            margin-top: get-vw(1px);
-        }
+    &:hover{
+        text-decoration: none;
     }
-    &:hover:after {
-        width: 100%;
-    }
+    // &:after {
+    //     display:none!important;
+    //     content: '';
+    //     display: block;
+    //     height: 1px;
+    //     width: 20%;
+    //     margin-top: 1px;
+    //     @include transition(all 0.3s);
+    //     @include media("(min-width: 1200px)") {
+    //         height: get-vw(1px);
+    //         margin-top: get-vw(1px);
+    //     }
+    // }
+    // &:hover:after {
+    //     width: 100%;
+    // }
 }
 
 @mixin theme-link-color($category-color) {
