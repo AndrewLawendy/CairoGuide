@@ -907,6 +907,12 @@ var initCalendarView = function (calendarView) {
         posWeekIndicator(dayInWeek);
     };
 
+    function readjustCalendar(){
+        setTimeout(function(){
+            $('.calendar-views-wrp p.active').click();
+        },300);
+    }
+
     //Views controls
     $('.calendar-views-wrp p').on('click', function () {
         var spanLeft = $(this).find('span').position().left,
@@ -1012,6 +1018,7 @@ var initCalendarView = function (calendarView) {
     $('.calendar-views-wrp p').filter(function () {
         return $(this).text().trim().toLowerCase() == calendarView;
     }).click();
+    $(window).resize(readjustCalendar);
 };
 
 //ifArabic
