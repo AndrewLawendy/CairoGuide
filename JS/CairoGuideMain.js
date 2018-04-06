@@ -533,6 +533,7 @@ var initCalendarView = function (calendarView) {
             $('.calendar-overview').attr('class', 'calendar-overview week-view');
         }
         $(document).scroll();
+        $('.calendar-month-wrp.active .day.active').removeClass('active').trigger('click',[false]);
     };
     //Check
     var checkMonthBefore = function (dateObj) {
@@ -621,7 +622,9 @@ var initCalendarView = function (calendarView) {
             });
         $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
         $('.calendar-month-wrp .day').removeClass('active');
-        $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first().click();
+        var newLimitDiv = $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first();
+        if($('.calendar-overview').hasClass('weekend-view')) initWeekView(newLimitDiv,false);
+        else newLimitDiv.click();
         if($('.calendar-head-body').hasClass('leaving')){
             setTimeout(function () {
                 $('.calendar-head-body').removeClass('leaving');
@@ -995,19 +998,19 @@ var initCalendarView = function (calendarView) {
     $('#weekend-view .tabs-items li').on('click', function (e,stop) {
         if(stop) return;
         var index = $(this).index() + 4;
-        $('.this-week').eq(index).removeClass('active').trigger('click',[false]);
+        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').trigger('click',[false]);
     });
     $('#week-view .tabs-items li').on('click', function (e,stop) {
         if(stop) return;
         var index = $(this).index();
-        $('.this-week').eq(index).removeClass('active').click();
+        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').click();
     });
 
     initCalendar();
     if (calendarView != 'today') {
-        var weekIndex = Math.floor(Math.ceil($('.day.today').index() / 6.9) * 6.9);
-
-        initWeekView($('.day').eq(weekIndex));
+        var weekIndex = ceilToNearestValue(7, $('.day.today').index());
+        if (weekIndex === 0) weekIndex = 7;
+        initWeekView($('.day:nth-child(' + weekIndex + ')'));
     }
 
     switchViews(calendarView);
