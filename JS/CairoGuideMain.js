@@ -423,8 +423,8 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
 //Event Calendar
 //var setWeekInd = false;
 var monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-],
+        "July", "August", "September", "October", "November", "December"
+    ],
     //daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     creatingCalendar = false,
     creatingRange = false,
@@ -465,8 +465,8 @@ var initCalendarView = function (calendarView) {
             $(this).find('.calendar-month-name').stop().animate({
                 width: 'hide'
             }, {
-                    duration: 'fast'
-                });
+                duration: 'fast'
+            });
             $('.calendar-overview .calendar-head-body').addClass('leaving');
             setTimeout(function () {
                 $('.calendar-overview .calendar-months-view-wrp').fadeIn(500).addClass('entering').find('.month:contains(' + thisMonth + ')').addClass('this-month');
@@ -489,11 +489,11 @@ var initCalendarView = function (calendarView) {
             }).animate({
                 opacity: 1
             }, {
-                    duration: 40,
-                    complete: function () {
-                        $(this).addClass('entering');
-                    }
-                }).find('.year:contains(' + thisYear + ')').addClass('this-year');
+                duration: 40,
+                complete: function () {
+                    $(this).addClass('entering');
+                }
+            }).find('.year:contains(' + thisYear + ')').addClass('this-year');
             $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
             $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
         }
@@ -511,8 +511,7 @@ var initCalendarView = function (calendarView) {
         } else if (calendarView == 'weekend') {
             $('#weekend-view').siblings().slideUp(150).promise().done(function () {
                 $('#weekend-view').slideDown(150);
-                var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
-                weekIndex === 0 && (weekIndex = 7);
+                var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
                 initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                 $('.calendar-this .this-weekend').siblings().hide().promise().done(function () {
                     $('.calendar-this .this-weekend').show();
@@ -522,8 +521,7 @@ var initCalendarView = function (calendarView) {
         } else {
             $('#week-view').siblings().slideUp(150).promise().done(function () {
                 $('#week-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
-                    weekIndex === 0 && (weekIndex = 7);
+                    var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-week').siblings().hide().promise().done(function () {
                         $('.calendar-this .this-week').show();
@@ -533,7 +531,7 @@ var initCalendarView = function (calendarView) {
             $('.calendar-overview').attr('class', 'calendar-overview week-view');
         }
         $(document).scroll();
-        $('.calendar-month-wrp.active .day.active').removeClass('active').trigger('click',[false]);
+        $('.calendar-month-wrp.active .day.active').removeClass('active').trigger('click', [false]);
     };
     //Check
     var checkMonthBefore = function (dateObj) {
@@ -546,8 +544,8 @@ var initCalendarView = function (calendarView) {
             });
             if (monthAfter.length) {
                 var monthDiv = $('.calendar-month-wrp').filter(function () {
-                    return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
-                }),
+                        return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
+                    }),
                     activeMonthDateObj = new Date($('.calendar-month-wrp.active').data('year'), $('.calendar-month-wrp.active').data('month')),
                     isPrevWindow = dateObj < activeMonthDateObj;
                 return [monthDiv, isPrevWindow];
@@ -614,23 +612,26 @@ var initCalendarView = function (calendarView) {
         $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
             width: 'show'
         }, {
-                duration: 'fast'
-            }, {
-                complete: function () {
-                    $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
-                }
-            });
+            duration: 'fast'
+        }, {
+            complete: function () {
+                $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
+            }
+        });
         $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
         $('.calendar-month-wrp .day').removeClass('active');
-        var newLimitDiv = $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first();
-        if($('.calendar-overview').hasClass('weekend-view')) initWeekView(newLimitDiv,false);
-        else newLimitDiv.click();
-        if($('.calendar-head-body').hasClass('leaving')){
+        if ($('.calendar-head-body').hasClass('leaving')) {
             setTimeout(function () {
                 $('.calendar-head-body').removeClass('leaving');
             }, 300);
         }
         $('#calendar-wrp').data('currentDate', [newDayLimit, dateObj.getMonth(), dateObj.getFullYear()]);
+        $('.calendar-months-body-wrp').css({
+            height: Math.ceil($('.calendar-month-wrp.active .day').length / 7) * ($('.calendar-month-wrp.active .day').outerHeight()+4)
+        });
+        var newLimitDiv = $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first();
+        if ($('.calendar-overview').hasClass('weekend-view')) initWeekView(newLimitDiv, false);
+        else newLimitDiv.click();
     };
 
     var setYear = function () {
@@ -642,11 +643,11 @@ var initCalendarView = function (calendarView) {
             $('.calendar-controls-wrp').removeClass('years-view').find('.calendar-month-year').stop().animate({
                 width: 'show'
             }, {
-                    duration: 'fast',
-                    complete: function () {
-                        $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
-                    }
-                });
+                duration: 'fast',
+                complete: function () {
+                    $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
+                }
+            });
         });
         $('.calendar-overview .calendar-years-view-wrp').fadeOut('fast').removeClass('entering').find('.year').removeClass('this-year active');
         setTimeout(function () {
@@ -657,40 +658,36 @@ var initCalendarView = function (calendarView) {
     var setCalendarDate = function (e, initWeek) {
         if ($(this).hasClass('active')) return;
         var _this = $(this),
-            lastInWeekIndex = ceilToNearestValue(7,(_this.index()+1)),
+            lastInWeekIndex = ceilToNearestValue(7, (_this.index() + 1)),
             lastInWeek;
-        if (lastInWeekIndex === 0) {
-            lastInWeekIndex = 7
-        } else if (lastInWeekIndex > $('.calendar-month-wrp.active .day').length) {
-            lastInWeekIndex = $('.calendar-month-wrp.active .day').length;
-        };
+        if (lastInWeekIndex > $('.calendar-month-wrp.active .day').length) lastInWeekIndex = $('.calendar-month-wrp.active .day').length;
         lastInWeek = $('.calendar-month-wrp.active .day:nth-child(' + lastInWeekIndex + ')');
         if (_this.text().trim() === '') return;
         $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
         _this.addClass('active');
         $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
         if ($('.calendar-overview').attr('class') != "calendar-overview") {
-            if (initWeek === undefined) initWeekView(lastInWeek,true);
+            if (initWeek === undefined) initWeekView(lastInWeek, true);
             var tabIndex = _this.index() % 7,
-            tabContainer = '#week-view';
-            $('.calendar-overview').hasClass('weekend-view')&&(tabIndex = (_this.index() % 7) - 4,tabContainer='#weekend-view');
+                tabContainer = '#week-view';
+            $('.calendar-overview').hasClass('weekend-view') && (tabIndex = (_this.index() % 7) - 4, tabContainer = '#weekend-view');
             var tab = $(tabContainer).find('.tabs-items li').eq(tabIndex);
-            if(!tab.hasClass('active')) tab.trigger('click',[true]);
+            if (!tab.hasClass('active')) tab.trigger('click', [true]);
         }
         $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
             opacity: 0
         }, {
-                duration: 150,
-                complete: function () {
-                    $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
-                    $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
-                    $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
-                        opacity: 1
-                    }, {
-                            duration: 150
-                        });
-                }
-            });
+            duration: 150,
+            complete: function () {
+                $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
+                $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
+                $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
+                    opacity: 1
+                }, {
+                    duration: 150
+                });
+            }
+        });
     };
 
     var setWeek = function (e) {
@@ -754,10 +751,10 @@ var initCalendarView = function (calendarView) {
             height: dayHeight,
             width: weekWidth
         }, {
-                complete: function () {
-                    $('.week-indicator').css('z-index', '');
-                }
-            });
+            complete: function () {
+                $('.week-indicator').css('z-index', '');
+            }
+        });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
     };
     //Update
@@ -765,36 +762,36 @@ var initCalendarView = function (calendarView) {
         $('#calendar-wrp .calendar-today>span').stop().animate({
             opacity: 0
         }, {
-                duration: 150,
-                complete: function () {
-                    $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
-                    $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
-                    $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
-                    $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
-                    $('#calendar-wrp .calendar-today>span').stop().animate({
-                        opacity: 1
-                    }, {
-                            duration: 150
-                        });
-                }
-            });
+            duration: 150,
+            complete: function () {
+                $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
+                $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
+                $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
+                $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
+                $('#calendar-wrp .calendar-today>span').stop().animate({
+                    opacity: 1
+                }, {
+                    duration: 150
+                });
+            }
+        });
     };
 
     var updateCalControls = function (year) {
         $('.calendar-controls-wrp .calendar-today>span').stop().animate({
             opacity: 0
         }, {
-                duration: 150,
-                complete: function () {
-                    $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
-                    $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
-                    $('#calendar-wrp .calendar-today>span').stop().animate({
-                        opacity: 1
-                    }, {
-                            duration: 150
-                        });
-                }
-            });
+            duration: 150,
+            complete: function () {
+                $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
+                $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
+                $('#calendar-wrp .calendar-today>span').stop().animate({
+                    opacity: 1
+                }, {
+                    duration: 150
+                });
+            }
+        });
     };
 
     var updateWeekNumber = function (date) {
@@ -867,7 +864,7 @@ var initCalendarView = function (calendarView) {
             'monthName': currentMonth,
             'day': dayDate,
             'totalDays': days
-        }).addClass('active').find('.day:contains(' + dayDate + ')').first().trigger('click',[false]);
+        }).addClass('active').find('.day:contains(' + dayDate + ')').first().trigger('click', [false]);
         if (!todaySet) {
             todaySet = true;
             $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
@@ -882,14 +879,13 @@ var initCalendarView = function (calendarView) {
         scrollToMonth(monthView);
     };
 
-    var initWeekView = function (dayInWeek,stop) {
+    var initWeekView = function (dayInWeek, stop) {
         var weekPos = dayInWeek.position().top,
             dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
                 return $(this).position().top == weekPos;
             }),
-            posWeekDayIndex = ceilToNearestValue(7, dayInWeek.index());
-        posWeekDayIndex === 0 && (posWeekDayIndex = 7);
+            posWeekDayIndex = ceilToNearestValue(7, (dayInWeek.index()+1));
         posWeekDayIndex > $('.calendar-month-wrp.active .day').length && (posWeekDayIndex = $('.calendar-month-wrp.active .day').length);
         $('.calendar-month-wrp.active .day').removeClass('this-week');
         if ($('.calendar-overview.weekend-view').length) {
@@ -906,7 +902,7 @@ var initCalendarView = function (calendarView) {
             }
         }
         thisWeek.addClass('this-week');
-        if(!stop) thisWeek.eq(dayActive).trigger('click', [false]);
+        if (!stop) thisWeek.eq(dayActive).trigger('click', [false]);
         dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + posWeekDayIndex + ')');
         posWeekIndicator(dayInWeek);
     };
@@ -995,21 +991,20 @@ var initCalendarView = function (calendarView) {
         setWeek(e);
     });
     //Day in Week
-    $('#weekend-view .tabs-items li').on('click', function (e,stop) {
-        if(stop) return;
+    $('#weekend-view .tabs-items li').on('click', function (e, stop) {
+        if (stop) return;
         var index = $(this).index() + 4;
-        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').trigger('click',[false]);
+        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').trigger('click', [false]);
     });
-    $('#week-view .tabs-items li').on('click', function (e,stop) {
-        if(stop) return;
+    $('#week-view .tabs-items li').on('click', function (e, stop) {
+        if (stop) return;
         var index = $(this).index();
         $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').click();
     });
 
     initCalendar();
     if (calendarView != 'today') {
-        var weekIndex = ceilToNearestValue(7, $('.day.today').index());
-        if (weekIndex === 0) weekIndex = 7;
+        var weekIndex = ceilToNearestValue(7, ($('.day.today').index()+1));
         initWeekView($('.day:nth-child(' + weekIndex + ')'));
     }
 
@@ -1593,8 +1588,8 @@ var SearchAutocomplete = function () {
     $('#popup-base .autocomplete-keywords').stop().animate({
         height: allKeywordsHeights
     }, {
-            duration: 'fast'
-        });
+        duration: 'fast'
+    });
 };
 
 //Change selected category
@@ -1776,7 +1771,9 @@ $(document).ready(function () {
                 bottomHeaderHeight = $('.bottom-header').height();
             }
             heightToSub = bottomHeaderHeight + attachedMenuHeight + additionalHeight;
-            $('html,body').animate({ scrollTop: $('#' + strSubFraction).offset().top - heightToSub }, 500);
+            $('html,body').animate({
+                scrollTop: $('#' + strSubFraction).offset().top - heightToSub
+            }, 500);
         }
     }
 
@@ -2030,27 +2027,27 @@ $(document).ready(function () {
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: '-650'
                     }, {
-                            duration: 600,
-                            easing: 'easeOutExpo'
-                        });
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                         left: 0
                     }, {
-                            duration: 850,
-                            easing: 'easeOutExpo'
-                        });
+                        duration: 850,
+                        easing: 'easeOutExpo'
+                    });
                     $('.carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
                     }, {
-                            duration: 750,
-                            easing: 'easeOutExpo',
-                            complete: function () {
-                                setTimeout(function () {
-                                    $('.carousel-data').css('left', '0px');
-                                }, 150);
-                                carouselAnimation = false;
-                            }
-                        });
+                        duration: 750,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            setTimeout(function () {
+                                $('.carousel-data').css('left', '0px');
+                            }, 150);
+                            carouselAnimation = false;
+                        }
+                    });
                     selectedIndexControl = activeItemIndex;
                     if (selectedIndexControl == carouselItemCount - 1) {
                         selectedIndexControl = 1;
@@ -2075,27 +2072,27 @@ $(document).ready(function () {
                     activeScrollItem.find('.carousel-data').stop().animate({
                         left: fullScroll
                     }, {
-                            duration: 600,
-                            easing: 'easeOutExpo'
-                        });
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
                     activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                         $(this).stop().animate({
                             left: 0
                         }, {
-                                duration: 500,
-                                easing: 'easeOutExpo'
-                            }).dequeue();
+                            duration: 500,
+                            easing: 'easeOutExpo'
+                        }).dequeue();
                     });
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
                     }, {
-                            duration: 600,
-                            easing: 'easeOutExpo',
-                            complete: function () {
-                                $('#main-carousel .carousel-data').css('left', '0px');
-                                carouselAnimation = false;
-                            }
-                        });
+                        duration: 600,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            $('#main-carousel .carousel-data').css('left', '0px');
+                            carouselAnimation = false;
+                        }
+                    });
                     selectedIndexControl = activeItemIndex - 2;
                     if (selectedIndexControl === 0) {
                         var indexControlMax = $('#main-carousel .carousel-indexes div').length;
@@ -2137,43 +2134,43 @@ $(document).ready(function () {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
                         }, {
-                                duration: 600,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                         newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                             left: 0
                         }, {
-                                duration: 600,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                     } else {
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
                         }, {
-                                duration: 400,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 400,
+                            easing: 'easeOutExpo'
+                        });
                         newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                             $(this).stop().animate({
                                 left: 0
                             }, {
-                                    duration: 600,
-                                    easing: 'easeOutExpo'
-                                }).dequeue();
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            }).dequeue();
                         });
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
                     }, {
-                            duration: 400,
-                            easing: 'easeOutExpo',
-                            complete: function () {
-                                carouselAnimation = false;
-                                setTimeout(function () {
-                                    $('.carousel-data').css('left', '0px');
-                                }, 200);
-                            }
-                        });
+                        duration: 400,
+                        easing: 'easeOutExpo',
+                        complete: function () {
+                            carouselAnimation = false;
+                            setTimeout(function () {
+                                $('.carousel-data').css('left', '0px');
+                            }, 200);
+                        }
+                    });
                     activeItemIndex = indexValue;
                 }
             });
@@ -2670,12 +2667,12 @@ $(document).ready(function () {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                             }, {
-                                    duration: 750,
-                                    easing: 'easeOutExpo',
-                                    complete: function () {
-                                        carouselAnimation = false;
-                                    }
-                                });
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
+                            });
                             var controlsIndex = activeItemIndex;
                             if (controlsIndex == carouselItemCount - 2) {
                                 controlsIndex = 0;
@@ -2687,18 +2684,18 @@ $(document).ready(function () {
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
                             }, {
-                                    duration: 750,
-                                    easing: 'easeOutExpo',
-                                    complete: function () {
-                                        carouselAnimation = false;
-                                    }
-                                });
+                                duration: 750,
+                                easing: 'easeOutExpo',
+                                complete: function () {
+                                    carouselAnimation = false;
+                                }
+                            });
                             carouselItemTarget.find('.carousel-data').stop().animate({
                                 left: (fullScroll * 3) / 4
                             }, {
-                                    duration: 750,
-                                    easing: 'easeOutExpo'
-                                });
+                                duration: 750,
+                                easing: 'easeOutExpo'
+                            });
                             activeItemIndex = carouselItemTarget.index() + 1;
                             var controlsIndex = activeItemIndex - 1;
                             if (controlsIndex == 1) {
@@ -2713,10 +2710,10 @@ $(document).ready(function () {
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
                         }, {
-                                easing: 'easeOutExpo'
-                            }, function () {
-                                carouselAnimation = false;
-                            });
+                            easing: 'easeOutExpo'
+                        }, function () {
+                            carouselAnimation = false;
+                        });
                     }
                     carouselPosDiff = undefined;
                     entered = false;
@@ -2724,11 +2721,11 @@ $(document).ready(function () {
                     $('#main-carousel .carousel-data').stop().animate({
                         left: 0
                     }, {
-                            duration: 1000,
-                            easing: 'easeOutExpo'
-                        }, function () {
-                            carouselAnimation = false;
-                        });
+                        duration: 1000,
+                        easing: 'easeOutExpo'
+                    }, function () {
+                        carouselAnimation = false;
+                    });
                 }
             }
             //End of Carousel Autocomplete
@@ -2816,7 +2813,7 @@ $(document).ready(function () {
                 ToggleMainNav();
             }
         } else if (e.keyCode == 13) { //Enter button
-            if ($('#popup-base .search-input input').hasClass('field-focus')) { }
+            if ($('#popup-base .search-input input').hasClass('field-focus')) {}
         } else if (e.keyCode == 9) {
             if ($('#popup-base').hasClass('popup-active')) {
                 $('#popup-base .search-input input').focus();

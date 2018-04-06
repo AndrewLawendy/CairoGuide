@@ -3127,6 +3127,7 @@ Contains all styles of inner pages
                     .calendar-months-body-wrp {
                         overflow: hidden;
                         display: flex;
+                        @include transition(height .15s);
                         .calendar-month-wrp {
                             flex-grow: 0;
                             flex-shrink: 0;
