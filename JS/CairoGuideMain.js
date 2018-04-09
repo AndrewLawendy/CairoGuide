@@ -1914,6 +1914,8 @@ $(document).ready(function () {
                     var interval = SetTrendingInterval(trendItem, randomIntervalTime);
                     trendItem.data('trend-interval', interval);
                 });
+            }else{
+                trendItem.find('.trend-slide').addClass('active');
             }
         });
     }

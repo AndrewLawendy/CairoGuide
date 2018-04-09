@@ -326,9 +326,6 @@ main {
                 position: relative;
                 overflow: hidden;
                 height: 100%;
-                @include media("(max-width: 768px)") {
-                    background-color: #000;
-                }
                 img {
                     @include transform(scale(1));
                     @include transition(transform 0s linear 1s);
@@ -359,23 +356,92 @@ main {
                     width: 100%;
                     position: absolute;
                     top: 0;
+                    overflow: hidden;
+                    @include media("(max-width: 768px)") {
+                        background-color: #000;
+                    }
+                    &.sponsored-slide {
+                        .sponsored-label {
+                            position: absolute;
+                            top: 10px;
+                            right: 0px; //width: 50%;
+                            background-color: #131313;
+                            text-transform: uppercase;
+                            padding: 7px 10px 4px;
+                            box-sizing: border-box;
+                            border-top-left-radius: 100vw;
+                            border-bottom-left-radius: 100vw;
+                            z-index: 50;
+                            overflow: hidden;
+                            border-width: 1px 0 1px 1px;
+                            border-style: solid;
+                            font-family: 'Lato-Regular' !important;
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(10px);
+                                padding: get-vw(7px) get-vw(10px) get-vw(4px);
+                                border-width: get-vw(1px) 0 get-vw(1px) get-vw(1px);
+                            }
+                            &:before {
+                                content: '';
+                                display: block;
+                                width: 2px;
+                                height: 100%;
+                                //background-color: #fff;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                z-index: 100;
+                                @include transform(skewX(-20deg)); //@include box-shadow(0px -1px 3px 1px rgba(19, 19, 19, 1));
+                                @include animation(sponsored-gloss 4s infinite ease-in-out);
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(2px); //@include box-shadow(0px get-vw(-1px) get-vw(6px) get-vw(2px) rgba(19, 19, 19, 1));
+                                }
+                            }
+                        }
+                        &.active {
+                            &~a {
+                                left: -30px;
+                                opacity: 0;
+                                z-index: -1;
+                                @include transition(opacity 0.3s, left 0.3s, z-index 0s ease 0.3s);
+                                @include media("(min-width: 1200px)") {
+                                    left: get-vw(-30px);
+                                }
+                                @include media("(max-width: 768px)") {
+                                    left: auto;
+                                    right: -30px;
+                                    @include transition(opacity 0.3s, right 0.3s, z-index 0s ease 0.3s);
+                                }
+                            }
+                        }
+                        .trend-info {
+                            padding-top: 45px;
+                            @include media("(min-width: 1200px)") {
+                                padding-top: get-vw(45px);
+                            }
+                        }
+                    }
                     .trend-info {
                         position: absolute;
-                        top: 100%;
-                        left: 0;
+                        top: 0;
+                        left: -30px;
+                        opacity: 0;
                         width: 100%;
                         height: 100%;
                         padding: 25px 10px 0;
                         box-sizing: border-box;
                         color: #fff;
-                        @include transition(all 0.2s ease 0.2s);
+                        @include transition(all 0.5s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(25px) get-vw(10px) 0;
+                            left: get-vw(-30px);
                         }
                         @include media("(max-width: 768px)") {
                             height: auto;
                             top: auto !important;
                             bottom: 0;
+                            left: 0;
+                            opacity: 1;
                             padding: 25px 10px;
                         }
                         p,
@@ -385,16 +451,23 @@ main {
                         }
                         h3,
                         p {
-                            margin-left: -110%;
-                            @include transition(margin-left 0.2s ease);
+                            width: 100%;
+                            margin-left: -30px;
+                            opacity: 0;
+                            @include transition(all 0.2s);
+                            @include media("(min-width: 1200px)") {
+                                margin-left: get-vw(-30px);
+                            }
                             @include media("(max-width: 768px)") {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                         }
                         h3 {
                             margin-bottom: 15px; //max-height: 150px;
                             overflow: hidden;
                             font-size: 2em;
+                            text-transform: capitalize;
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(15px);
                             }
@@ -413,48 +486,67 @@ main {
                         }
                         a,
                         a:visited {
-                            margin-left: -110%;
+                            margin-left: -30px;
+                            opacity: 0;
                             @include btn-base();
+                            @include transition(margin-left 0.2s, opacity 0.2s, background-color 0.15s, color 0.15s);
+                            @include media("(min-width: 1200px)") {
+                                margin-left: get-vw(-30px);
+                            }
                             @include media("(max-width: 768px)") {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                         }
                         a:hover {
                             background-color: #fff;
                             @include transition(background-color 0.15s ease, color 0.15s ease);
                         }
-                        @each $i in $colorList {
-                            &.#{nth($i,1)}-bg {
-                                background-color: rgba(nth($i, 2), 0.8);
+                        @include media("(max-width: 768px)") {
+                            background-color: transparent !important;
+                        }
+                    }
+                    @each $i in $colorList {
+                        &.#{nth($i,1)}-slide {
+                            &.sponsored-slide {
+                                .sponsored-label {
+                                    color: nth($i, 2);
+                                    border-color: nth($i, 2);
+                                    &:before {
+                                        background-color: nth($i, 2);
+                                    }
+                                }
+                            }
+                            .trend-info {
+                                @include background-opacity(nth($i, 2), 0.8); //background-color: rgba(nth($i, 2), 0.8);
                                 /*@include media("(max-width: 768px)") {
-                                    background-color: nth($i, 2);
-                                }*/
+                                background-color: nth($i, 2);
+                            }*/
                                 a:hover {
                                     color: nth($i, 2);
                                 }
                             }
                         }
-                        @include media("(max-width: 768px)") {
-                            background-color: transparent !important;
-                        }
                     }
                     &:hover {
                         .trend-info {
-                            top: 0;
-                            @include transition(all 0.2s ease);
+                            left: 0;
+                            opacity: 1;
+                            @include transition(all 0.5s);
                             h3,
                             p,
                             a {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                             h3 {
-                                @include transition(margin-left 0.2s ease 0.2s);
+                                @include transition(margin-left 0.2s ease 0.1s, opacity 0.2s ease 0.1s);
                             }
                             p {
-                                @include transition(margin-left 0.2s ease 0.3s);
+                                @include transition(margin-left 0.2s ease 0.3s, opacity 0.2s ease 0.3s);
                             }
                             a {
-                                @include transition(margin-left 0.2s ease 0.5s, background-color 0.15s ease, color 0.15s ease);
+                                @include transition(margin-left 0.2s ease 0.5s, opacity 0.2s ease 0.5s, background-color 0.15s, color 0.15s);
                             }
                         }
                     }
@@ -472,6 +564,9 @@ main {
                     left: 15px;
                     color: #fff;
                     text-decoration: underline;
+                    opacity: 1;
+                    z-index: 50;
+                    @include transition(opacity 0.3s, left 0.3s, z-index 0s);
                     @include media("(min-width: 1200px)") {
                         bottom: get-vw(15px);
                         left: get-vw(15px);

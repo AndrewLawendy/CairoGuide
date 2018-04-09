@@ -479,13 +479,13 @@ body {
 
 @include key-frame(pop-in) {
     0% {
-        transform: scale(0);
+        @include transform(scale(0));
     }
     50% {
-        transform: scale(1.4);
+        @include transform(scale(1.4));
     }
     100% {
-        transform: scale(1);
+        @include transform(scale(1));
     }
 }
 
@@ -493,13 +493,13 @@ body {
 
 @include key-frame(pop-out) {
     0% {
-        transform: scale(1);
+        @include transform(scale(1));
     }
     50% {
-        transform: scale(1.4);
+        @include transform(scale(1.4));
     }
     100% {
-        transform: scale(0);
+        @include transform(scale(0));
     }
 }
 
@@ -590,6 +590,37 @@ body {
     100% {
         @include transform(translate(0,
         0))
+    }
+}
+
+/*Trending sponsered effect*/
+@include key-frame(sponsored-gloss){
+    0% {
+        width: 1px;
+        right:-10%;
+        @include media("(min-width: 1200px)") {
+            width: get-vw(1px);
+        }
+    }
+    13%{
+        width: 3px;
+        @include media("(min-width: 1200px)") {
+            width: get-vw(3px);
+        }
+    }
+    25%{
+        width: 1px;
+        right:110%;
+        @include media("(min-width: 1200px)") {
+            width: get-vw(1px);
+        }
+    }
+    100% {
+        width: 1px;
+        right:110%;
+        @include media("(min-width: 1200px)") {
+            width: get-vw(1px);
+        }
     }
 }
 
