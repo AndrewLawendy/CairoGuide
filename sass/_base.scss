@@ -594,7 +594,7 @@ body {
 }
 
 /*Trending sponsered effect*/
-@include key-frame(sponsored-gloss){
+/*@include key-frame(sponsored-gloss){
     0% {
         width: 1px;
         right:-10%;
@@ -620,6 +620,24 @@ body {
         right:110%;
         @include media("(min-width: 1200px)") {
             width: get-vw(1px);
+        }
+    }
+}*/
+
+@each $i in $colorList {
+    @include key-frame(#{nth($i,1)}-neon){
+        0%,5%,7%,9%,15%,17%,29%,100%{
+            color:#fff;
+            text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #{nth($i,2)}, 0 0 5px #{nth($i,2)}, 0 0 6px #{nth($i,2)}, 0 0 7px #{nth($i,2)}, 0 0 8px #{nth($i,2)};
+            border-color:#fff;
+            @include box-shadow(0 0 1px #fff, 0 0 2px #fff, 0 0 3px #{nth($i,2)}, 0 0 4px #{nth($i,2)}, 0 0 5px #{nth($i,2)}, 0 0 6px #{nth($i,2)},
+            inset 0 0 1px #fff,inset 0 0 2px #fff,inset 0 0 3px #{nth($i,2)},inset 0 0 4px #{nth($i,2)},inset 0 0 5px #{nth($i,2)},inset 0 0 6px #{nth($i,2)});
+        }
+        6%,8%,16%,18%,28%{
+            color:#{nth($i,2)};
+            text-shadow:0 0 0 #000;
+            border-color:#{nth($i,2)};
+            @include box-shadow(0 0 0 #000);
         }
     }
 }

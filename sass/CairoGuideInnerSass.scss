@@ -23,8 +23,10 @@ Contains all styles of inner pages
             2));
             .advanced-search-filters-wrp {
                 background-color: nth($i, 2);
-                &:before{
-                    @include background-opacity(darken(nth($i, 2),25%), 0.75);
+                &:before {
+                    @include background-opacity(darken(nth($i, 2),
+                    25%),
+                    0.75);
                 }
                 .column-index {
                     background-color: nth($i, 2);
@@ -294,6 +296,7 @@ Contains all styles of inner pages
                         font-size: 3rem;
                         line-height: 1rem;
                         height: 0;
+                        z-index: 50;
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(30px);
                         }
@@ -2668,6 +2671,7 @@ Contains all styles of inner pages
             }
         }
         .achievements-wrp {
+            position: relative;
             @include media("(max-width: 768px)") {
                 margin-bottom: 30px;
             }
@@ -2678,6 +2682,8 @@ Contains all styles of inner pages
                 box-sizing: border-box;
                 text-align: center;
                 text-transform: capitalize;
+                position: relative;
+                cursor: pointer;
                 &:nth-of-type(3n-2) {
                     clear: left;
                 }
@@ -2717,9 +2723,66 @@ Contains all styles of inner pages
                         margin-top: get-vw(10px);
                     }
                 }
+                P {
+                    position: absolute;
+                    top: 70%;
+                    left: -30px;
+                    min-width: 29vw;
+                    color: #fff;
+                    background: #131313;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    border-radius: 3px;
+                    opacity: 0;
+                    z-index: -1;
+                    text-align: left; //@include transform(translateY(-50%));
+                    @include transition(left 0.15s,
+                    opacity 0.15s,
+                    z-index 0s ease 0.2s);
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        border-bottom: 5px solid #131313;
+                        border-right: 5px solid transparent;
+                        border-left: 5px solid transparent;
+                        left: 15%;
+                        right: auto;
+                        margin: 0 auto;
+                        top: -5px;
+                    }
+                    @include media("(min-width: 1200px)") {
+                        left: get-vw(-30px);
+                        padding: get-vw(10px);
+                        border-radius: get-vw(3px);
+                        &:before {
+                            border-width: 0 get-vw(5px) get-vw(5px);
+                            top: get-vw(-5px);
+                        }
+                    }
+                    @include media("(max-width: 768px)") {
+                        min-width: 100%;
+                        &:before {
+                            left: 0;
+                            right: 0;
+                        }
+                    }
+                }
                 &.active {
                     img {
                         opacity: 1;
+                    }
+                }
+                &:hover,&:active {
+                    p {
+                        left: 0;
+                        opacity: 1;
+                        z-index: 50;
+                        @include transition(left 0.15s,
+                        opacity 0.15s,
+                        z-index 0s);
                     }
                 }
             }
@@ -3221,7 +3284,7 @@ Contains all styles of inner pages
                 &.weekend-view,
                 &.week-view {
                     .week-indicator {
-                        display: block!important;
+                        display: block !important;
                     }
                 }
                 &.weekend-view {

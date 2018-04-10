@@ -361,13 +361,17 @@ main {
                         background-color: #000;
                     }
                     &.sponsored-slide {
-                        .sponsored-label {
+                        position: relative;
+                        overflow: hidden;
+                        &:before {
+                            content:'Sponsored';
+                            display:block;
                             position: absolute;
-                            top: 10px;
-                            right: 0px; //width: 50%;
-                            background-color: #131313;
+                            top: 15px;
+                            right: -10px; //width: 50%;
+                            background-color: #000;
                             text-transform: uppercase;
-                            padding: 7px 10px 4px;
+                            padding: 12px 20px 10px 15px;
                             box-sizing: border-box;
                             border-top-left-radius: 100vw;
                             border-bottom-left-radius: 100vw;
@@ -375,15 +379,20 @@ main {
                             overflow: hidden;
                             border-width: 1px 0 1px 1px;
                             border-style: solid;
-                            font-family: 'Lato-Regular' !important;
+                            //border-color:#fff;
+                            font-family: 'Lato-Bold' !important;
+                            letter-spacing: 1px;
+                            //color:#fff;
                             @include media("(min-width: 1200px)") {
-                                top: get-vw(10px);
-                                padding: get-vw(7px) get-vw(10px) get-vw(4px);
+                                top: get-vw(15px);
+                                right: get-vw(-10px);
+                                padding: get-vw(12px) get-vw(20px) get-vw(10px) get-vw(15px);
                                 border-width: get-vw(1px) 0 get-vw(1px) get-vw(1px);
+                                letter-spacing: get-vw(1px);
                             }
-                            &:before {
+                            /*&:before {
                                 content: '';
-                                display: block;
+                                display: none;
                                 width: 2px;
                                 height: 100%;
                                 //background-color: #fff;
@@ -392,11 +401,11 @@ main {
                                 right: 0;
                                 z-index: 100;
                                 @include transform(skewX(-20deg)); //@include box-shadow(0px -1px 3px 1px rgba(19, 19, 19, 1));
-                                @include animation(sponsored-gloss 4s infinite ease-in-out);
+                                //@include animation(sponsored-gloss 4s infinite ease-in-out);
                                 @include media("(min-width: 1200px)") {
                                     width: get-vw(2px); //@include box-shadow(0px get-vw(-1px) get-vw(6px) get-vw(2px) rgba(19, 19, 19, 1));
                                 }
-                            }
+                            }*/
                         }
                         &.active {
                             &~a {
@@ -415,9 +424,9 @@ main {
                             }
                         }
                         .trend-info {
-                            padding-top: 45px;
+                            padding-top: 70px;
                             @include media("(min-width: 1200px)") {
-                                padding-top: get-vw(45px);
+                                padding-top: get-vw(70px);
                             }
                         }
                     }
@@ -509,12 +518,13 @@ main {
                     @each $i in $colorList {
                         &.#{nth($i,1)}-slide {
                             &.sponsored-slide {
-                                .sponsored-label {
+                                &:before {
                                     color: nth($i, 2);
                                     border-color: nth($i, 2);
-                                    &:before {
-                                        background-color: nth($i, 2);
-                                    }
+                                    @include animation(#{nth($i,1)}-neon 4s infinite ease-in-out);
+                                    // &:before {
+                                    //     background-color: nth($i, 2);
+                                    // }
                                 }
                             }
                             .trend-info {
