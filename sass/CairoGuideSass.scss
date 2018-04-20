@@ -88,7 +88,7 @@ main {
                         padding-left: 30px;
                         padding-right: 25%;
                         box-sizing: border-box;
-                        @include transform(translateY(-50%));
+                        @include transform(translate3d(0,-50%,0));
                         @include transition(top .7s);
                         @include media("(min-width: 1200px)") {
                             padding-left: get-vw(30px);
@@ -99,7 +99,7 @@ main {
                             position: relative;
                             top: 0;
                             margin-top: 0 !important;
-                            @include transform(translateY(0));
+                            @include transform(translate3d(0,0,0));
                         }
                         .section-title {
                             margin-bottom: 10px;
@@ -672,7 +672,7 @@ main {
                 text-transform: uppercase;
                 width: 100%;
                 text-align: center;
-                @include transform(translate(0)); //@include transition(all 3s);
+                @include transform(translate3d(0,0,0)); //@include transition(all 3s);
                 @include media("(max-width: 768px)") {
                     font-size: 4.5rem;
                 }
@@ -946,14 +946,14 @@ main {
                         bottom: 0; //height: 35%;
                         padding: 0 15px 15px 15px;
                         box-sizing: border-box;
-                        @include transform(translateY(100%));
+                        @include transform(translate3d(0,100%,0));
                         @include transition(all 0.3s ease);
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
                         }
                         @include media("(max-width: 768px)") {
                             background-color: transparent !important;
-                            @include transform(translateY(0) !important);
+                            @include transform(translate3d(0,0,0) !important);
                         }
                         &:before {
                             content: '';
@@ -1023,7 +1023,7 @@ main {
                     }
                     &:hover {
                         .news-info {
-                            @include transform(translateY(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all 0.3s ease);
                             h3 {
                                 height: 2.4em;
@@ -1206,7 +1206,7 @@ main {
                         opacity: 0;
                         padding-left: 150px;
                         @include transition(all .3s);
-                        @include transform(translateX(50%));
+                        @include transform(translate3d(50%,0,0));
                         z-index: 2;
                         @include media("(min-width: 1200px)") {
                             top: get-vw(110px);
@@ -1224,7 +1224,7 @@ main {
                         left: 0;
                         opacity: 0;
                         @include transition(all .3s);
-                        @include transform(translateX(100%));
+                        @include transform(translate3d(100%,0,0));
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(190px);
                         }
@@ -1267,7 +1267,7 @@ main {
                             height: 1.2rem;
                         }
                         @include transition(all .3s);
-                        @include transform(translateX(50%));
+                        @include transform(translate3d(50%,0,0));
                         z-index: 1;
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(218px);
@@ -1291,18 +1291,18 @@ main {
                             @include transition(all .15s);
                         }
                         h2 {
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             opacity: .1;
                             @include transition(all .5s);
                         }
                         h6 {
                             opacity: 1;
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all .7s ease-out .15s);
                         }
                         .best-description-frame {
                             opacity: 1;
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all .7s ease-out .15s);
                         }
                         &:nth-of-type(1) {
@@ -1382,7 +1382,7 @@ main {
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(100px, 150%));
+                                    @include transform(rotate(-45deg) translate3d(100px, 150%,0));
                                     left: 0;
                                     bottom: 0;
                                 }
@@ -1390,7 +1390,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-70%, 150%));
+                                        @include transform(rotate(-45deg) translate3d(-70%, 150%,0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1410,11 +1410,11 @@ main {
                                 height: get-vw(360px);
                             }
                             img {
-                                @include transform(rotate(-45deg) translate(-25%, -25%));
+                                @include transform(rotate(-45deg) translate3d(-25%, -25%,0));
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(0, 42%));
+                                    @include transform(rotate(-45deg) translate3d(0, 42%,0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1422,7 +1422,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-80%, 42%));
+                                        @include transform(rotate(-45deg) translate3d(-80%, 42%,0));
                                         @include transition(all 4s);
                                     }
                                 }
@@ -1443,13 +1443,13 @@ main {
                                 height: get-vw(380px);
                             }
                             img {
-                                @include transform(rotate(-45deg) translateY(-25%));
+                                @include transform(rotate(-45deg) translate3d(0,-25%,0));
                                 top: 0;
                                 left: 0;
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(100px, -30%));
+                                    @include transform(rotate(-45deg) translate3d(100px, -30%,0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1457,7 +1457,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-70%, -30%));
+                                        @include transform(rotate(-45deg) translate3d(-70%, -30%,0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1470,7 +1470,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 0;
-                                @include transform(translateY(-100%));
+                                @include transform(translate3d(0,-100%,0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1501,7 +1501,7 @@ main {
                     h6,
                     .best-description-frame {
                         opacity: 0 !important;
-                        @include transform(translateX(-150%) !important);
+                        @include transform(translate3d(-150%,0,0) !important);
                         @include transition(all 1.5s !important);
                     }
                 }
@@ -1510,7 +1510,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 1;
-                                @include transform(translateY(0));
+                                @include transform(translate3d(0,0,0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1641,13 +1641,13 @@ main {
     }
     @include key-frame(bestLeaveOne) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0, 0,0))
         }
         20% {
-            @include transform(rotate(45deg) translate(2%, 2%))
+            @include transform(rotate(45deg) translate3d(2%, 2%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(-50%, -50%))
+            @include transform(rotate(45deg) translate3d(-50%, -50%,0))
         }
     }
     @include key-frame(bestEnterOne) {
@@ -1663,13 +1663,13 @@ main {
     }
     @include key-frame(bestLeaveTwo) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0, 0,0))
         }
         20% {
-            @include transform(rotate(45deg) translate(-3%, 3%))
+            @include transform(rotate(45deg) translate3d(-3%, 3%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(50%, -50%))
+            @include transform(rotate(45deg) translate3d(50%, -50%,0))
         }
     }
     @include key-frame(bestEnterTwo) {
@@ -1685,13 +1685,13 @@ main {
     }
     @include key-frame(bestLeaveThree) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0,0, 0))
         }
         20% {
-            @include transform(rotate(45deg) translate(-2%, -2%))
+            @include transform(rotate(45deg) translate3d(-2%, -2%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(50%, 50%))
+            @include transform(rotate(45deg) translate3d(50%, 50%,0))
         }
     }
     @include key-frame(bestEnterThree) {

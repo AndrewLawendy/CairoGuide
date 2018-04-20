@@ -560,36 +560,36 @@ body {
 
 @include key-frame(icon-hover) {
     0% {
-        @include transform(translate(0,
-        0))
+        @include transform(translate3d(0,
+        0,0))
     }
     10% {
-        @include transform(translate(-10%,
-        0))
+        @include transform(translate3d(-10%,
+        0,0))
     }
     49% {
-        @include transform(translate(150%,
-        0))
+        @include transform(translate3d(150%,
+        0,0))
     }
     50% {
-        @include transform(translate(150%,
-        150%))
+        @include transform(translate3d(150%,
+        150%,0))
     }
     51% {
-        @include transform(translate(-150%,
-        150%))
+        @include transform(translate3d(-150%,
+        150%,0))
     }
     52% {
-        @include transform(translate(-150%,
-        0))
+        @include transform(translate3d(-150%,
+        0,0))
     }
     90% {
-        @include transform(translate(10%,
-        0))
+        @include transform(translate3d(10%,
+        0,0))
     }
     100% {
-        @include transform(translate(0,
-        0))
+        @include transform(translate3d(0,
+        0,0))
     }
 }
 
@@ -1560,8 +1560,8 @@ iframe:not([data-src]) {
         position: absolute;
         top: 0;
         left: 50%;
-        @include transform(translate(-50%,
-        -90%));
+        @include transform(translate3d(-50%,
+        -90%,0));
     }
     &.entering {
         @include transform(translateY(130%));
@@ -1744,7 +1744,7 @@ iframe:not([data-src]) {
                     left: 0;
                     opacity: 0;
                     background-color: #fff;
-                    @include transform(translateX(-100%));
+                    @include transform(translate3d(-100%,0,0));
                     @include transition(opacity .15s,
                     transform .3s .15s)
                 }
@@ -1774,7 +1774,7 @@ iframe:not([data-src]) {
                 left: 0;
                 height: 2px;
                 width: 0;
-                @include transform(translateX(0));
+                @include transform(translate3d(0,0,0));
                 @include transition(all .3s);
                 @include media("(min-width: 1200px)") {
                     height: get-vw(2px);
@@ -1794,7 +1794,7 @@ iframe:not([data-src]) {
                 }
                 &::before {
                     width: 200vw;
-                    @include transform(translateX(-50%));
+                    @include transform(translate3d(-50%,0,0));
                     @include transition(all 1s .3s);
                 }
             }
@@ -1802,7 +1802,7 @@ iframe:not([data-src]) {
                 span {
                     &::after {
                         opacity: 1;
-                        @include transform(translateX(0));
+                        @include transform(translate3d(0,0,0));
                         @include transition(opacity .001s,
                         transform .3s);
                     }
@@ -2003,7 +2003,7 @@ iframe:not([data-src]) {
         height: 100%;
         top: 0;
         left: 0;
-        @include transform(translateX(0));
+        @include transform(translate3d(0,0,0));
         @include transition(transform .55s .5s);
         .details-carousel-img,
         .details-carousel-content {
@@ -2045,7 +2045,7 @@ iframe:not([data-src]) {
         }
         &.leaving-left {
             z-index: 9;
-            @include transform(translateX(-100%));
+            @include transform(translate3d(-100%,0,0));
             .details-carousel-content {
                 left: -25%;
             }
@@ -2205,17 +2205,17 @@ iframe:not([data-src]) {
         left: 100vw;
         margin: 0 auto;
         opacity: 0;
-        @include transform(translateX(10px));
+        @include transform(translate3d(10px,0,0));
         @include transition(opacity 0.3s ease,
         transform 0.3s ease);
         @include media("(min-width: 1200px)") {
             bottom: get-vw(20px);
-            @include transform(translateX(get-vw(10px)));
+            @include transform(translate3d(get-vw(10px)),0,0);
         }
         &.active {
             left: 0;
             opacity: 1;
-            @include transform(translateX(0)); // @include transition(opacity 0.3s ease);
+            @include transform(translate3d(0,0,0)); // @include transition(opacity 0.3s ease);
         }
         a,
         a:visited {
@@ -3390,7 +3390,7 @@ header {
             box-sizing: border-box;
             right: 0;
             top: 100%; //opacity: 0;
-            @include transform(translateX(115%));
+            @include transform(translate3d(115%,0,0));
             @include transition(all 0.3s ease 0.2s);
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px) get-vw(25px); //right: get-vw(-50px);
@@ -3512,7 +3512,7 @@ header {
             .attached-menu {
                 //right: 0;
                 //opacity: 1;
-                @include transform(translateX(0));
+                @include transform(translate3d(0,0,0));
                 @include transition(all 0.3s ease 0.2s);
                 @include media("(min-width: 1200px)") {
                     //right: 0;
