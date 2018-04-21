@@ -7,10 +7,10 @@ Contains all styles of inner pages
     @import 'base'; //Base file import
     @mixin themify-inner-page($theme, $color) {
         .category-banner {
-            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg');
+            background-image:  url('../images/category-banners/'+$theme+'-banner.jpg');
         }
         .advanced-search-filters-wrp {
-            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
+            background-image:url('../images/category-banners/'+$theme+'-banner.jpg');
             //background-blend-mode: multiply;
         }
     }
