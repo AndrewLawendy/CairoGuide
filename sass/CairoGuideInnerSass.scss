@@ -395,7 +395,7 @@ Contains all styles of inner pages
                                 cursor: pointer;
                                 background-color: rgba(0, 0, 0, 0.8);
                                 opacity: 0.4;
-                                @include object-fit-img();
+                                @extend %object-fit-img;
                                 @include transition(all 0.3s ease);
                                 @include media("(max-width: 768px)") {
                                     opacity: 1;
@@ -546,7 +546,7 @@ Contains all styles of inner pages
                 margin-bottom: get-vw(30px);
             }
             img {
-                @include object-fit-img();
+                @extend %object-fit-img;
                 object-position: center;
             }
         }
@@ -1200,7 +1200,7 @@ Contains all styles of inner pages
                                 background-color: #eee;
                                 text-indent: 5px;
                                 font-family: 'Lato-Light';
-                                @include object-fit-img();
+                                @extend %object-fit-img;
                                 object-position: center;
                                 @include media("(min-width: 1200px)") {
                                     text-indent: get-vw(5px);
@@ -1385,7 +1385,7 @@ Contains all styles of inner pages
                             height: 125px;
                         }
                         img {
-                            @include object-fit-img();
+                            @extend %object-fit-img;
                         }
                     }
                     .olis-choice-item-info {
@@ -1487,7 +1487,7 @@ Contains all styles of inner pages
             .main-slide-wrp,
             .side-slides-wrp {
                 img {
-                    @include object-fit-img();
+                    @extend %object-fit-img;
                     display: block;
                 }
             }
@@ -2391,7 +2391,7 @@ Contains all styles of inner pages
                         }
                         img {
                             display: block;
-                            @include object-fit-img();
+                            @extend %object-fit-img;
                         }
                     }
                 }
@@ -2455,7 +2455,7 @@ Contains all styles of inner pages
                             position: absolute;
                             top: 0;
                             left: 0;
-                            @include object-fit-img();
+                            @extend %object-fit-img;
                         }
                     }
                     .member-details {
@@ -2624,7 +2624,7 @@ Contains all styles of inner pages
             height: get-vw(335px);
         }
         img {
-            @include object-fit-img();
+            @extend %object-fit-img;
         }
     }*/
         .profile-user-header {
@@ -2648,7 +2648,7 @@ Contains all styles of inner pages
                     height: get-vw(150px);
                 }
                 img {
-                    @include object-fit-img();
+                    @extend %object-fit-img;
                 }
             }
             .profile-data-holder {
@@ -2893,7 +2893,7 @@ Contains all styles of inner pages
                         left: get-vw(5px);
                     }
                     img {
-                        @include object-fit-img();
+                        @extend %object-fit-img;
                         object-position: center;
                         @include transform(scale(1));
                         @include transition(transform 0.3s linear);
@@ -3426,7 +3426,7 @@ Contains all styles of inner pages
                                 border-left: get-vw(184.5px) solid transparent;
                             }
                             img {
-                                @include object-fit-img();
+                                @extend %object-fit-img;
                                 position: absolute;
                                 top: 0;
                                 left: 0;
@@ -3792,7 +3792,7 @@ Contains all styles of inner pages
         //                     }
         //                     img {
         //                         position: absolute;
-        //                         @include object-fit-img();
+        //                         @extend %object-fit-img;
         //                     }
         //                     &:nth-of-type(4n) {
         //                         img {
@@ -3853,7 +3853,7 @@ Contains all styles of inner pages
                     img {
                         position: absolute;
                         object-position: top;
-                        @include object-fit-img();
+                        @extend %object-fit-img;
                     }
                     .gallery-events-item-info{
                         position: absolute;

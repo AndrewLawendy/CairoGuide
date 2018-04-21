@@ -319,7 +319,7 @@ main {
             }
             .trend-item img,
             .ad-item img {
-                @include object-fit-img();
+                @extend %object-fit-img;
                 object-position: center;
             }
             .trend-item {
@@ -911,7 +911,7 @@ main {
                         }
                     }
                     img {
-                        @include object-fit-img();
+                        @extend %object-fit-img;
                         object-position: center 0;
                     }
                     .img-dark-overlay {
@@ -1766,7 +1766,7 @@ main {
                 }
             }
             img {
-                @include object-fit-img();
+                @extend %object-fit-img;
                 position: absolute;
                 top: 0;
                 left: 0;
