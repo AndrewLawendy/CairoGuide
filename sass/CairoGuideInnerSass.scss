@@ -7,11 +7,11 @@ Contains all styles of inner pages
     @import 'base'; //Base file import
     @mixin themify-inner-page($theme, $color) {
         .category-banner {
-            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
+            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg');
             background-size: cover;
         }
         .advanced-search-filters-wrp {
-            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center !important;
+            background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
             background-size: cover !important; //background-blend-mode: multiply;
         }
     }
@@ -22,7 +22,7 @@ Contains all styles of inner pages
             nth($i,
             2));
             .advanced-search-filters-wrp {
-                background-color: nth($i, 2);
+                //background-color: nth($i, 2);
                 &:before {
                     @include background-opacity(darken(nth($i, 2),
                     25%),
@@ -483,7 +483,9 @@ Contains all styles of inner pages
             height: 335px;
             overflow: hidden;
             margin-bottom: 30px;
-            background-position-y: 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
             position: relative;
             text-align: center;
             &::before {
@@ -1260,7 +1262,7 @@ Contains all styles of inner pages
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
-                                    @include link-hover();
+                                    @extend %link-hover;;
                                 }
                             }
                             .item-exclusive {
@@ -1315,7 +1317,7 @@ Contains all styles of inner pages
                                 a,
                                 a:visited {
                                     float: right;
-                                    margin-left: 10px; //@include link-hover();
+                                    margin-left: 10px; //@extend %link-hover;;
                                     @include media("(min-width: 1200px)") {
                                         margin-left: get-vw(10px);
                                     }
@@ -1444,7 +1446,7 @@ Contains all styles of inner pages
                     }
                 }
                 a {
-                    @include link-hover();
+                    @extend %link-hover;;
                 }
                 >[class$="wrp"] {
                     margin-right: 15px;
@@ -2411,9 +2413,36 @@ Contains all styles of inner pages
                 }
                 .team-member {
                     box-sizing: border-box;
-                    border: 15px solid #fff;
-                    background-color: #131313;
-                    @include transition(all .3s ease-out);
+                    @include flex(0 0 50%);
+                    .member-details{
+                        display: none;
+                    }
+                    .member-details-wrp{
+                        width:55%;
+                    }
+                    &:nth-child(3n+1){
+                        .member-details-wrp{
+                            width:70%;
+                        }
+                    }
+                    &:nth-child(odd){
+                        .member-details-wrp{
+                            float: right;
+                        }
+                        @include transform(translate3d(-50%,-10%,0));
+                        &.active{
+                            @include transform(translate3d(7%,0,0));
+                        }
+                    }
+                    &:nth-child(even){
+                        .member-details-wrp{
+                            float: left;
+                        }
+                        @include transform(translate3d(50%,-10%,0));
+                        &.active{
+                            @include transform(translate3d(-7%,5%,0));
+                        }
+                    }
                     @include media("(min-width: 1200px)") {
                         border-width: get-vw(15px);
                     }
@@ -2538,7 +2567,7 @@ Contains all styles of inner pages
                 z-index: 100;
                 outline: 0 !important;
                 font-size: 1rem;
-                @include reset-appearance();
+                @extend %reset-appearance;
                 @include media("(min-width: 1200px)") {
                     height: get-vw(40px);
                     border-bottom-width: get-vw(2px);
@@ -2579,7 +2608,7 @@ Contains all styles of inner pages
                 float: left;
                 clear: both;
                 margin-bottom: 10px;
-                @include link-hover();
+                @extend %link-hover;;
                 @include theme-link-color(#000);
                 @include media("(min-width: 1200px)") {
                     margin-bottom: get-vw(10px);

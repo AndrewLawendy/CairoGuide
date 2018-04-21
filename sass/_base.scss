@@ -104,13 +104,6 @@ $colorList: "nightlife" #f90000,
     animation-direction: $animation;
 }
 
-@mixin reset-appearance() {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
-}
-
 @mixin user-select($value) {
     -webkit-touch-callout: $value;
     -webkit-user-select: $value;
@@ -176,32 +169,6 @@ $colorList: "nightlife" #f90000,
     background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
 }
 
-@mixin link-hover() {
-    & {
-        text-decoration: underline;
-        max-width: 100%;
-    }
-    &:hover{
-        text-decoration: none;
-    }
-    // &:after {
-    //     display:none!important;
-    //     content: '';
-    //     display: block;
-    //     height: 1px;
-    //     width: 20%;
-    //     margin-top: 1px;
-    //     @include transition(all 0.3s);
-    //     @include media("(min-width: 1200px)") {
-    //         height: get-vw(1px);
-    //         margin-top: get-vw(1px);
-    //     }
-    // }
-    // &:hover:after {
-    //     width: 100%;
-    // }
-}
-
 @mixin theme-link-color($category-color) {
     & {
         color: $category-color;
@@ -229,65 +196,6 @@ $colorList: "nightlife" #f90000,
     background-color: $color;
     /* The Fallback */
     background-color: rgba($color, $opacity);
-}
-
-@mixin object-fit-img() {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-@mixin text-overflow() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.show-onscroll {
-    flex: 0 0 25%;
-    width: 25%;
-    opacity: 0;
-    @include transform(translateY(10%));
-    @include transition(all 0.3s ease-out);
-    &.active {
-        opacity: 1;
-        @include transform(translateY(0));
-    }
-    &:nth-of-type(9n+2),
-    &:nth-of-type(9n+7) {
-        @include transition-delay(.15s)
-    }
-    &:nth-of-type(9n+3),
-    &:nth-of-type(9n+6) {
-        @include transition-delay(.3s)
-    }
-    &:nth-of-type(9n+4),
-    &:nth-of-type(9n+5) {
-        @include transition-delay(.45s)
-    }
-    @include media("(max-width: 768px)") {
-        flex-basis: 33.33%;
-        &:nth-of-type(9n+2),
-        &:nth-of-type(9n+7),
-        &:nth-of-type(9n+3),
-        &:nth-of-type(9n+6),
-        &:nth-of-type(9n+4),
-        &:nth-of-type(9n+5) {
-            @include transition-delay(0s)
-        }
-        &:nth-of-type(7n+2),
-        &:nth-of-type(7n+6) {
-            @include transition-delay(.15s);
-        }
-        &:nth-of-type(7n+3),
-        &:nth-of-type(7n+5) {
-            @include transition-delay(.3s);
-        }
-    }
-    @include media("(max-width: 640px)") {
-        flex-basis: 100%;
-        @include transition-delay(0s);
-    }
 }
 
 @mixin active-popup($prefix) {
@@ -338,13 +246,7 @@ $colorList: "nightlife" #f90000,
     }
 }
 
-@mixin flexbox() {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-}
+
 
 @mixin flex($values) {
     -webkit-box-flex: $values;
@@ -354,7 +256,61 @@ $colorList: "nightlife" #f90000,
     flex: $values;
 }
 
-@mixin btn-base() {
+@mixin object-fit-img() {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+//Placeholders
+%reset-appearance {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+%link-hover {
+    & {
+        text-decoration: underline;
+        max-width: 100%;
+    }
+    &:hover{
+        text-decoration: none;
+    }
+    // &:after {
+    //     display:none!important;
+    //     content: '';
+    //     display: block;
+    //     height: 1px;
+    //     width: 20%;
+    //     margin-top: 1px;
+    //     @include transition(all 0.3s);
+    //     @include media("(min-width: 1200px)") {
+    //         height: get-vw(1px);
+    //         margin-top: get-vw(1px);
+    //     }
+    // }
+    // &:hover:after {
+    //     width: 100%;
+    // }
+}
+
+%text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+%flexbox {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+%btn-base {
     text-decoration: none;
     padding: 7px 10px 5px;
     box-sizing: border-box;
@@ -1251,6 +1207,53 @@ p {
     text-transform: uppercase;
 }
 
+.show-onscroll {
+    flex: 0 0 25%;
+    width: 25%;
+    opacity: 0;
+    @include transform(translate3d(0,10%,0));
+    @include transition(all 0.3s ease-out);
+    &.active {
+        opacity: 1;
+        @include transform(translate3d(0,0,0));
+    }
+    &:nth-of-type(9n+2),
+    &:nth-of-type(9n+7) {
+        @include transition-delay(.15s)
+    }
+    &:nth-of-type(9n+3),
+    &:nth-of-type(9n+6) {
+        @include transition-delay(.3s)
+    }
+    &:nth-of-type(9n+4),
+    &:nth-of-type(9n+5) {
+        @include transition-delay(.45s)
+    }
+    @include media("(max-width: 768px)") {
+        flex-basis: 33.33%;
+        &:nth-of-type(9n+2),
+        &:nth-of-type(9n+7),
+        &:nth-of-type(9n+3),
+        &:nth-of-type(9n+6),
+        &:nth-of-type(9n+4),
+        &:nth-of-type(9n+5) {
+            @include transition-delay(0s)
+        }
+        &:nth-of-type(7n+2),
+        &:nth-of-type(7n+6) {
+            @include transition-delay(.15s);
+        }
+        &:nth-of-type(7n+3),
+        &:nth-of-type(7n+5) {
+            @include transition-delay(.3s);
+        }
+    }
+    @include media("(max-width: 640px)") {
+        flex-basis: 100%;
+        @include transition-delay(0s);
+    }
+}
+
 .mobile-show {
     display: none;
     @include media("(max-width: 768px)") {
@@ -1407,7 +1410,7 @@ iframe:not([data-src]) {
 
 .default-link {
     display: inline-block;
-    @include link-hover();
+    @extend %link-hover;;
     @include theme-link-color(#000);
 }
 
@@ -1659,7 +1662,7 @@ iframe:not([data-src]) {
     color: #fff;
     background-color: transparent;
     vertical-align: middle;
-    @include btn-base();
+    @extend %btn-base;
     @include transition(all .15s);
     &:hover {
         background-color: #fff;
@@ -2506,7 +2509,7 @@ iframe:not([data-src]) {
                         position: relative;
                         z-index: 100;
                         font-size: 1rem;
-                        @include reset-appearance();
+                        @extend %reset-appearance;
                         @include media("(min-width: 1200px)") {
                             border-bottom-width: get-vw(2px);
                             height: get-vw(40px);
@@ -3623,14 +3626,14 @@ main {
     .boc-carousel {
         overflow: hidden;
         @include user-select(none);
-        @include flexbox(); //flex-flow: row nowrap;
+        @extend %flexbox; //flex-flow: row nowrap;
     }
     /*Highlights*/
     #highlights {
         .highlights-carousel-wrp,
         .category-highlights-carousel-wrp {
             //overflow: hidden;
-            //@include flexbox();
+            //@extend %flexbox;
             //justify-content: space-around;
             //flex-flow: row nowrap;
             /*.highlights-wrp {
@@ -3741,7 +3744,7 @@ main {
         }
         .category-highlights-carousel-wrp {
             overflow: hidden;
-            @include flexbox(); //flex-flow: row nowrap;
+            @extend %flexbox; //flex-flow: row nowrap;
             @include media("(max-width: 1024px)") {
                 flex-flow: row wrap;
                 height: 100vh;

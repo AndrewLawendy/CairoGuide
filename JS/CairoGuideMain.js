@@ -23,25 +23,24 @@ var ifInfiniteLoop = function (max) {
 var lazyLoading = function () {
     $(document).scroll(lazyGet);
     $(document).scroll();
-
     function lazyGet() {
+        //var error = '../Content/Images/blank-src.gif';
         $('[data-src]').each(function () {
             var windowHeight = $(window).height() * 2,
                 thisPos = $(this).offset().top - $(document).scrollTop();
             if (thisPos <= windowHeight) {
-                var src = $(this).data('src'),
-                    failSrc = $(this).attr('src');
+                var src = $(this).data('src');
                 $(this).attr('src', src);
-                $(this).on('error', function () {
-                    $(this).attr('src', failSrc);
-                });
                 $(this).on('load', function () {
                     $(this).removeAttr('data-src');
                 });
+                // $(this).on('error', function () {
+                //     $(this).attr('src', error);
+                // })
             }
         });
     }
-};
+}
 
 //rippleEffect
 var rippleEffect = function (e, _this) {
