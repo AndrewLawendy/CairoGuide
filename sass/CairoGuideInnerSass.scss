@@ -8,11 +8,10 @@ Contains all styles of inner pages
     @mixin themify-inner-page($theme, $color) {
         .category-banner {
             background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg');
-            background-size: cover;
         }
         .advanced-search-filters-wrp {
             background: #ccc url('../images/category-banners/'+$theme+'-banner.jpg') no-repeat center;
-            background-size: cover !important; //background-blend-mode: multiply;
+            //background-blend-mode: multiply;
         }
     }
 
@@ -438,7 +437,8 @@ Contains all styles of inner pages
                 left: 50%;
                 border: 20px solid #fff;
                 @include transform(translate3d(-50%,
-                -50%,0));
+                -50%,
+                0));
                 @include media("(max-width: 768px)") {
                     width: 100%;
                     height: 65vh;
@@ -559,6 +559,9 @@ Contains all styles of inner pages
             box-sizing: border-box;
             border-radius: 7px;
             position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px);
                 margin-bottom: get-vw(30px);
@@ -735,12 +738,16 @@ Contains all styles of inner pages
                         content: '...';
                         display: block;
                         opacity: 0;
-                        @include transform(translate3d(0,-20px,0));
+                        @include transform(translate3d(0,
+                        -20px,
+                        0));
                         @include transition(all .15s);
                     }
                     &.exceeds::after {
                         opacity: 1;
-                        @include transform(translate3d(0,0,0));
+                        @include transform(translate3d(0,
+                        0,
+                        0));
                         @include transition(all .15s);
                     }
                     >span {
@@ -778,7 +785,9 @@ Contains all styles of inner pages
                     top: calc(100% + 1px);
                     border-bottom: 2px solid;
                     z-index: 2;
-                    @include transform(translate3d(0,20px,0));
+                    @include transform(translate3d(0,
+                    20px,
+                    0));
                     @include transition(all .5s);
                     @include media("(min-width: 1200px)") {
                         border-bottom: get-vw(2px) solid;
@@ -894,7 +903,9 @@ Contains all styles of inner pages
                         }
                         .dropdown-options {
                             opacity: 1;
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0,
+                            0,
+                            0));
                             @include transition(all .3s);
                         }
                     }
@@ -1067,7 +1078,9 @@ Contains all styles of inner pages
                         height: 100%;
                         object-fit: cover;
                         object-position: center;
-                        @include transform(translate3s(-5%,0,0));
+                        @include transform(translate3s(-5%,
+                        0,
+                        0));
                         @include transition(transform 5s ease-out);
                     }
                     h2 {
@@ -1079,7 +1092,9 @@ Contains all styles of inner pages
                         width: 100%;
                         line-height: 1em;
                         top: 50%;
-                        @include transform(translate3d(0,-50%,0));
+                        @include transform(translate3d(0,
+                        -50%,
+                        0));
                         @include media("(max-width: 768px)") {
                             font-size: 9vw;
                         }
@@ -1087,7 +1102,9 @@ Contains all styles of inner pages
                 }
                 a:hover {
                     img {
-                        @include transform(translate3d(-15%,0,0));
+                        @include transform(translate3d(-15%,
+                        0,
+                        0));
                         @include transition(transform 20s ease-out);
                     }
                 }
@@ -1262,7 +1279,8 @@ Contains all styles of inner pages
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;
-                                    @extend %link-hover;;
+                                    @extend %link-hover;
+                                    ;
                                 }
                             }
                             .item-exclusive {
@@ -1446,7 +1464,8 @@ Contains all styles of inner pages
                     }
                 }
                 a {
-                    @extend %link-hover;;
+                    @extend %link-hover;
+                    ;
                 }
                 >[class$="wrp"] {
                     margin-right: 15px;
@@ -1622,7 +1641,9 @@ Contains all styles of inner pages
                                 display: block;
                                 position: absolute;
                                 top: 50%;
-                                @include transform(translate3d(0,-50%,0));
+                                @include transform(translate3d(0,
+                                -50%,
+                                0));
                             }
                         }
                     }
@@ -2306,7 +2327,9 @@ Contains all styles of inner pages
                         border-radius: 100%;
                         border: 1px solid $header-footer-primary-background-color;
                         @include box-shadow(0px 0px 0 2px #fff);
-                        @include transform(translate3d(0,-50%,0));
+                        @include transform(translate3d(0,
+                        -50%,
+                        0));
                         @include media("(min-width: 1200px)") {
                             width: get-vw(40px);
                             height: get-vw(40px);
@@ -2414,33 +2437,41 @@ Contains all styles of inner pages
                 .team-member {
                     box-sizing: border-box;
                     @include flex(0 0 50%);
-                    .member-details{
+                    .member-details {
                         display: none;
                     }
-                    .member-details-wrp{
-                        width:55%;
+                    .member-details-wrp {
+                        width: 55%;
                     }
-                    &:nth-child(3n+1){
-                        .member-details-wrp{
-                            width:70%;
+                    &:nth-child(3n+1) {
+                        .member-details-wrp {
+                            width: 70%;
                         }
                     }
-                    &:nth-child(odd){
-                        .member-details-wrp{
+                    &:nth-child(odd) {
+                        .member-details-wrp {
                             float: right;
                         }
-                        @include transform(translate3d(-50%,-10%,0));
-                        &.active{
-                            @include transform(translate3d(7%,0,0));
+                        @include transform(translate3d(-50%,
+                        -10%,
+                        0));
+                        &.active {
+                            @include transform(translate3d(7%,
+                            0,
+                            0));
                         }
                     }
-                    &:nth-child(even){
-                        .member-details-wrp{
+                    &:nth-child(even) {
+                        .member-details-wrp {
                             float: left;
                         }
-                        @include transform(translate3d(50%,-10%,0));
-                        &.active{
-                            @include transform(translate3d(-7%,5%,0));
+                        @include transform(translate3d(50%,
+                        -10%,
+                        0));
+                        &.active {
+                            @include transform(translate3d(-7%,
+                            5%,
+                            0));
                         }
                     }
                     @include media("(min-width: 1200px)") {
@@ -2608,7 +2639,8 @@ Contains all styles of inner pages
                 float: left;
                 clear: both;
                 margin-bottom: 10px;
-                @extend %link-hover;;
+                @extend %link-hover;
+                ;
                 @include theme-link-color(#000);
                 @include media("(min-width: 1200px)") {
                     margin-bottom: get-vw(10px);
@@ -2642,7 +2674,9 @@ Contains all styles of inner pages
                 top: 0;
                 left: 0;
                 overflow: hidden;
-                @include transform(translate3d(0,-50%,0));
+                @include transform(translate3d(0,
+                -50%,
+                0));
                 @include media("(min-width: 1200px)") {
                     width: get-vw(150px);
                     height: get-vw(150px);
@@ -2909,14 +2943,20 @@ Contains all styles of inner pages
                         overflow: hidden;
                         text-transform: capitalize;
                         opacity: 0;
-                        @include transform(translate3d(0,20px,0));
+                        @include transform(translate3d(0,
+                        20px,
+                        0));
                         @include transition(all 0.15s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(40px) get-vw(10px) get-vw(10px);
-                            @include transform(translate3d(0,get-vw(20px),0));
+                            @include transform(translate3d(0,
+                            get-vw(20px),
+                            0));
                         }
                         @include media("(max-width: 768px)") {
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0,
+                            0,
+                            0));
                             opacity: 1;
                         }
                         &:before {
@@ -2927,7 +2967,8 @@ Contains all styles of inner pages
                             width: 100%;
                             height: 999px;
                             background-color: #131313;
-                            @include transform(skew(0,2deg));
+                            @include transform(skew(0,
+                            2deg));
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(25px);
                                 height: get-vw(999px);
@@ -2968,7 +3009,9 @@ Contains all styles of inner pages
                         }
                         .favourite-item-title {
                             opacity: 1;
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0,
+                            0,
+                            0));
                         }
                     }
                 }
@@ -3033,7 +3076,9 @@ Contains all styles of inner pages
                             color: $calendar-color;
                             background-color: #fff;
                             opacity: 0;
-                            @include transform(translate3d(-100%,0,0));
+                            @include transform(translate3d(-100%,
+                            0,
+                            0));
                             @include transition(opacity .3s,
                             transform .3s .3s);
                         }
@@ -3053,7 +3098,9 @@ Contains all styles of inner pages
                             &::before {
                                 opacity: 1;
                                 @include transition-delay(0s);
-                                @include transform(translate3d(0,0,0));
+                                @include transform(translate3d(0,
+                                0,
+                                0));
                             }
                         }
                     }
@@ -3065,11 +3112,15 @@ Contains all styles of inner pages
                     margin: 10px 0;
                     padding: 5px 10px;
                     border-radius: 40px;
-                    @include transform(translate3d(-10px,0,0));
+                    @include transform(translate3d(-10px,
+                    0,
+                    0));
                     @include media("(min-width: 1200px)") {
                         margin: get-vw(10px) 0;
                         padding: get-vw(5px) get-vw(10px);
-                        @include transform(translate3d(-.769vw,0,0));
+                        @include transform(translate3d(-.769vw,
+                        0,
+                        0));
                     }
                     @include transition(all .3s);
                 }
@@ -3112,7 +3163,9 @@ Contains all styles of inner pages
                     .calendar-today {
                         .calendar-month-name {
                             @include transition(transform .5s);
-                            @include transform(translate3d(0,-60px,0));
+                            @include transform(translate3d(0,
+                            -60px,
+                            0));
                         }
                         .calendar-month-year::before {
                             display: none;
@@ -3132,7 +3185,9 @@ Contains all styles of inner pages
                     }
                     .calendar-month-year {
                         @include transition(transform .5s);
-                        @include transform(translate3d(0,-60px,0));
+                        @include transform(translate3d(0,
+                        -60px,
+                        0));
                     }
                     .calendar-today {
                         cursor: default;
@@ -3159,7 +3214,8 @@ Contains all styles of inner pages
                         height: 100%;
                         background-color: $calendar-color;
                         @include transform(translate3d(-100%,
-                        -100%,0));
+                        -100%,
+                        0));
                         @include transition(all .15s);
                     }
                     div {
@@ -3188,13 +3244,15 @@ Contains all styles of inner pages
                         &::before {
                             @include transition(all .5s);
                             @include transform(translate3d(50%,
-                            50%,0));
+                            50%,
+                            0));
                         }
                     }
                     &.active {
                         &::before {
                             @include transform(translate3d(-50%,
-                            -50%,0));
+                            -50%,
+                            0));
                         }
                     }
                 }
@@ -3290,7 +3348,8 @@ Contains all styles of inner pages
                         padding: 5px;
                         @include user-select(none);
                         @include transform(translate3d(100%,
-                        -50%,0));
+                        -50%,
+                        0));
                         &::after {
                             content: '';
                             position: absolute;
@@ -3336,7 +3395,9 @@ Contains all styles of inner pages
                         display: inline-block;
                         overflow: hidden;
                         vertical-align: middle;
-                        @include transform(translate3d(0,0,0));
+                        @include transform(translate3d(0,
+                        0,
+                        0));
                         &.calendar-month-year::before {
                             content: ', ';
                         }
@@ -3504,7 +3565,9 @@ Contains all styles of inner pages
                                 padding-left: inherit; //@include transform(translateY(100%));
                                 @include media("(max-width: 768px)") {
                                     position: static;
-                                    @include transform(translate3d(0,0,0));
+                                    @include transform(translate3d(0,
+                                    0,
+                                    0));
                                 }
                                 @include media("(max-width: 640px)") {
                                     margin-top: 15px;
@@ -3581,7 +3644,9 @@ Contains all styles of inner pages
                 img,
                 .event-details-content * {
                     opacity: 0;
-                    @include transform(translate3d(50px,0,0));
+                    @include transform(translate3d(50px,
+                    0,
+                    0));
                     @include animation(event-detail-entering .75s forwards $out-cubic)
                 }
                 img {
@@ -3732,7 +3797,9 @@ Contains all styles of inner pages
                         border-right: 8px solid transparent;
                         border-left: 8px solid transparent;
                         top: 50%;
-                        @include transform(translate3d(0,-50%,0) rotateX(0deg));
+                        @include transform(translate3d(0,
+                        -50%,
+                        0) rotateX(0deg));
                         @include transition(all 0.3s);
                         @include media("(min-width: 1200px)") {
                             border-width: get-vw(8px) get-vw(8px) 0 get-vw(8px);
@@ -3745,7 +3812,9 @@ Contains all styles of inner pages
                 &.active {
                     h2 {
                         &:after {
-                            @include transform(translate3d(0,-50%,0) rotateX(180deg));
+                            @include transform(translate3d(0,
+                            -50%,
+                            0) rotateX(180deg));
                         }
                     }
                 }
@@ -3824,30 +3893,37 @@ Contains all styles of inner pages
                 float: left;
                 width: calc(100% / 4);
                 padding: 0 15px;
-                box-sizing: border-box;
-                //overflow: hidden;
-                margin-bottom:30px;
+                box-sizing: border-box; //overflow: hidden;
+                margin-bottom: 30px;
                 @include media("(min-width: 1200px)") {
                     padding: 0 get-vw(15px);
-                    margin-bottom:get-vw(30px);
+                    margin-bottom: get-vw(30px);
                 }
                 .gallery-events-item-content {
                     position: relative;
                     @each $i in $colorList {
-                        @if nth($i,1) == "more" {
-                            background-color: nth($i,2);
+                        @if nth($i,
+                        1)=="more" {
+                            background-color: nth($i, 2);
                         }
                     }
-                    @include box-shadow(-10px 10px 18px -15px rgba(0,0,0,0.4));
+                    @include box-shadow(-10px 10px 18px -15px rgba(0,
+                    0,
+                    0,
+                    0.4));
                     @include media("(min-width: 1200px)") {
-                        @include box-shadow(get-vw(-10px) get-vw(10px) get-vw(18px) get-vw(-15px) rgba(0,0,0,0.4));
+                        @include box-shadow(get-vw(-10px) get-vw(10px) get-vw(18px) get-vw(-15px) rgba(0,
+                        0,
+                        0,
+                        0.4));
                     }
                     &:after {
                         content: '';
                         padding-bottom: 100%;
                         display: block;
                     }
-                    img,.gallery-events-item-info{
+                    img,
+                    .gallery-events-item-info {
                         @include transition(all 0.25s);
                     }
                     img {
@@ -3855,41 +3931,41 @@ Contains all styles of inner pages
                         object-position: top;
                         @extend %object-fit-img;
                     }
-                    .gallery-events-item-info{
+                    .gallery-events-item-info {
                         position: absolute;
-                        height: 50%;
-                        //background: #fafafa;
+                        height: 50%; //background: #fafafa;
                         background: #131313;
-                        bottom:0;
-                        left:0;
-                        width:50%;
-                        padding:10px;
-                        box-sizing:border-box;
-                        color:#fff;
+                        bottom: 0;
+                        left: 0;
+                        width: 50%;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        color: #fff;
                         @include media("(min-width: 1200px)") {
-                            padding:get-vw(10px);
+                            padding: get-vw(10px);
                             /*bottom:get-vw(-10px);
                         left:get-vw(-10px);*/
                         }
                     }
-                    &:hover{
+                    &:hover {
                         //img{
-                            //opacity:0.3;
+                        //opacity:0.3;
                         //}
-                        .gallery-events-item-info{
-                            width:90%;
-                            height:90%;
-                            bottom:-15px;
-                        left:-15px;
-                        @each $i in $colorList {
-                            @if nth($i,1) == "more" {
-                                background-color: darken(nth($i,2),13%);
+                        .gallery-events-item-info {
+                            width: 90%;
+                            height: 90%;
+                            bottom: -15px;
+                            left: -15px;
+                            @each $i in $colorList {
+                                @if nth($i,
+                                1)=="more" {
+                                    background-color: darken(nth($i, 2), 13%);
+                                }
                             }
-                        }
-                        @include media("(min-width: 1200px)") {
-                            bottom:get-vw(-15px);
-                            left:get-vw(-15px);
-                        }
+                            @include media("(min-width: 1200px)") {
+                                bottom: get-vw(-15px);
+                                left: get-vw(-15px);
+                            }
                         }
                     }
                 }
@@ -3900,11 +3976,14 @@ Contains all styles of inner pages
     @include key-frame(event-detail-entering) {
         from {
             opacity: 0;
-            @include transform(translate3d(50px,0))
+            @include transform(translate3d(50px,
+            0))
         }
         to {
             opacity: 1;
-            @include transform(translate3d(0,0,0))
+            @include transform(translate3d(0,
+            0,
+            0))
         }
     }
 
