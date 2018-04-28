@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/CairoGuideInnerSass.css" />
 </head>
 
-<body class="more-theme">
+<body class="more-theme gallery-page">
     <div id="hidden-title">
         <h1>Best of Cairo | Events Gallery</h1>
     </div>
@@ -817,344 +817,121 @@
                 <h1>Art events</h1>
             </section>
             <section class="container">
-                <div class="advanced-search-filters-wrp" style="background:#ccc url('../images/banners/art-events-gallery-banner.jpg') no-repeat center!important;background-size:cover!important">
-                    <div class="hundred-width">
-                        <div class="seventy-width advanced-search-filters responsive">
-                            <div class="dynamic-settings-wrp">
-                                <div class="settings-column">
-                                    <div class="column-index"></div>
-                                </div>
-                                <div class="settings-column">
-                                    <div class="column-index"></div>
-                                </div>
-                                <div class="settings-column">
-                                    <div class="column-index"></div>
-                                </div>
-                            </div>
-                            <div class="filter-result-wrp">
-                                <div class="filter-result-item" title="Rating">
-                                    <span>Rating : </span>
-                                    <span class="rating-value">
-                                        <span>Excellent</span>
-                                        <span>Good</span>
-                                    </span>
-                                </div>
-                                <div class="filter-result-item" title="Facilities">
-                                    <span>Facilities : </span>
-                                    <span class="facilities-value">
-                                        <span>Parking</span>
-                                        <span>Music</span>
-                                        <span>Bar</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thirty-width responsive">
-                            <div class="filter-sorting-wrp">
-                                <div class="filter-field-input dropdown-input" title="Please choose among options">
-                                    <span class="selected-value">Price (Low to High)</span>
-                                    <i class="icon-triangular-arrow"></i>
-                                    <ul class="dropdown-options">
-                                        <li title="Rating">
-                                            <input type="radio" name="Sort" id="sorting-rating">
-                                            <label for="sorting-rating">Rating</label>
-                                        </li>
-                                        <li title="Price and rating">
-                                            <input type="radio" name="Sort" id="sorting-price">
-                                            <label for="sorting-price">Price and rating</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <i class="icon-filter-sort"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="collapsable-filter-wrp">
-                        <div class="filter-set-item">
-                            <p>Category</p>
-                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose category">
-                                <span class="selected-value">Please choose</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <li>
-                                        <input id="filter0-all" type="checkbox" />
-                                        <label for="filter0-all" title="All">
-                                            <span class="filter-label">All</span>
-                                            <span class="filter-rating-count">280</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input id="filter0-accommodation" type="checkbox" />
-                                        <label for="filter0-accommodation" title="Accommodation">
-                                            <span class="filter-label">Accommodation</span>
-                                            <span class="filter-rating-count">190</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input id="filter0-dinning" type="checkbox">
-                                        <label for="filter0-dinning" title="Dinning">
-                                            <span class="filter-label">Dinning</span>
-                                            <span class="filter-rating-count">100</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Rating</p>
-                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
-                                <span class="selected-value">Please choose</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <li>
-                                        <input id="filter1-excellent" type="checkbox" />
-                                        <label for="filter1-excellent" title="Excellent">
-                                            <span class="filter-label">Excellent</span>
-                                            <span class="filter-rating-count">190</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input id="filter1-good" type="checkbox">
-                                        <label for="filter1-good" title="Good">
-                                            <span class="filter-label">Good</span>
-                                            <span class="filter-rating-count">100</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-pleasant">
-                                        <label for="filter1-pleasant" title="Pleasant">
-                                            <span class="filter-label">Pleasant</span>
-                                            <span class="filter-rating-count">40</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-not-rated">
-                                        <label for="filter1-not-rated" title="Not rated">
-                                            <span class="filter-label">Not rated</span>
-                                            <span class="filter-rating-count">3</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Facilities</p>
-                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
-                                <span class="selected-value">Please choose</span>
-                                <i class="icon-triangular-arrow"></i>
-                                <ul class="dropdown-options">
-                                    <li>
-                                        <input type="checkbox" id="filter1-parking" />
-                                        <label for="filter1-parking" title="Parking">
-                                            <span class="filter-label">Parking</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-music" />
-                                        <label for="filter1-music" title="Music">
-                                            <span class="filter-label">Music</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-car" />
-                                        <label for="filter1-car" title="Car">
-                                            <span class="filter-label">Car</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-wifi" />
-                                        <label for="filter1-wifi" title="WiFi">
-                                            <span class="filter-label">WiFi</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-food" />
-                                        <label for="filter1-food" title="Food">
-                                            <span class="filter-label">Food</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="filter1-beverages" />
-                                        <label for="filter1-beverages" title="Beverages">
-                                            <span class="filter-label">Beverages</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="filter-set-item">
-                            <p>Offers</p>
-                            <div class="radio-container">
-                                <div class="inline-radio">
-                                    <input type="radio" name="filter1-offers" id="filter1-both" checked>
-                                    <label for="filter1-both" title="Both">Both</label>
-                                </div>
-                                <div class="inline-radio text-center">
-                                    <input type="radio" name="filter1-offers" id="filter1-yes">
-                                    <label for="filter1-yes" title="Yes">Yes</label>
-                                </div>
-                                <div class="inline-radio text-right">
-                                    <input type="radio" name="filter1-offers" id="filter1-no">
-                                    <label for="filter1-no" title="No">No</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-set-item float-right" title="Go">
-                            <button type="submit" class="search-go-event">Go</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="items-list-info display-inline-block full-width">
-                    <i class="icon-search-results"></i>
-                    <span>103265 Results found</span>
-                </div>
-                <div class="items-list-info display-inline-block full-width">
-                    <i class="icon-search-results"></i>
-                    <span>No data can be found</span>
-                </div>
-                <!-- <div class="gallery-events-wrp hundred-width">
-                    <div class="gallery-events-item">
-                        <div class="gallery-events-item-content">
-                            <div class="gallery-events-img-placeholder">
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img9.jpg" alt="gallery events image 1" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img10.jpg" alt="gallery events image 2" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img11.jpg" alt="gallery events image 3" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img12.jpg" alt="gallery events image 4" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-events-item">
-                        <div class="gallery-events-item-content">
-                            <div class="gallery-events-img-placeholder">
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img13.jpg" alt="gallery events image 5" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img14.jpg" alt="gallery events image 6" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img15.jpg" alt="gallery events image 7" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img16.jpg" alt="gallery events image 8" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-events-item">
-                        <div class="gallery-events-item-content">
-                            <div class="gallery-events-img-placeholder">
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img17.jpg" alt="gallery events image 5" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img18.jpg" alt="gallery events image 1" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img19.jpg" alt="gallery events image 6" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img20.jpg" alt="gallery events image 2" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-events-item">
-                        <div class="gallery-events-item-content">
-                            <div class="gallery-events-img-placeholder">
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img7.jpg" alt="gallery events image 7" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img3.jpg" alt="gallery events image 3" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img8.jpg" alt="gallery events image 8" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img4.jpg" alt="gallery events image 4" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-events-item">
-                        <div class="gallery-events-item-content">
-                            <div class="gallery-events-img-placeholder">
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img4.jpg" alt="gallery events image 4" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img3.jpg" alt="gallery events image 3" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img2.jpg" alt="gallery events image 2" />
-                                </div>
-                                <div class="gallery-events-img-item">
-                                    <img src="../images/gallery-events/gallery-events-img1.jpg" alt="gallery events image 1" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="gallery-events-wrp hundred-width">
-                    <div class="gallery-events-item">
+                <div class="gallery-events-wrp">
+                    <a href="#" title="#" class="gallery-events-item">
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img1.jpg" alt="gallery events image 1" />
                             <div class="gallery-events-item-info">
-
+                                <h3>Lorem Ipsum</h3>
+                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
+                                    tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
+                                    tristique, sit amet convallis risus dictum. Cras dignissim urna et laoreet tristique.
+                                    Phasellus nec placerat mi. Nam risus magna, volutpat sit amet quam et, maximus maximus
+                                    est. In hac habitasse platea dictumst. Aliquam maximus pulvinar velit, in interdum nisi
+                                    facilisis vel. Phasellus posuere nec risus et semper.</p> -->
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="gallery-events-item">
+                    </a>
+                    <a href="#" title="#" class="gallery-events-item">
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img5.jpg" alt="gallery events image 5" />
                             <div class="gallery-events-item-info">
-
+                                <h3>Lorem Ipsum</h3>
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="gallery-events-item">
+                    </a>
+                    <a href="#" title="#" class="gallery-events-item">
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img4.jpg" alt="gallery events image 4" />
                             <div class="gallery-events-item-info">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-events-item">
-                            <div class="gallery-events-item-content">
-                                <img src="../images/gallery-events/gallery-events-img20.jpg" alt="gallery events image 1" />
-                                <div class="gallery-events-item-info">
-    
+                                <h3>Lorem Ipsum</h3>
+                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
+                                    tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
+                                    tristique, sit amet convallis risus dictum. Cras dignissim</p> -->
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="gallery-events-item">
-                            <div class="gallery-events-item-content">
-                                <img src="../images/gallery-events/gallery-events-img15.jpg" alt="gallery events image 5" />
-                                <div class="gallery-events-item-info">
-    
+                    </a>
+                    <a href="#" title="#" class="gallery-events-item">
+                        <div class="gallery-events-item-content">
+                            <img src="../images/gallery-events/gallery-events-img20.jpg" alt="gallery events image 1" />
+                            <div class="gallery-events-item-info">
+                                <h3>Lorem Ipsum</h3>
+                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="gallery-events-item">
-                            <div class="gallery-events-item-content">
-                                <img src="../images/gallery-events/gallery-events-img10.jpg" alt="gallery events image 4" />
-                                <div class="gallery-events-item-info">
-    
+                    </a>
+                    <a href="#" title="#" class="gallery-events-item">
+                        <div class="gallery-events-item-content">
+                            <img src="../images/gallery-events/gallery-events-img15.jpg" alt="gallery events image 5" />
+                            <div class="gallery-events-item-info">
+                                <h3>Lorem Ipsum</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
+                                    tortor.
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
                                 </div>
                             </div>
                         </div>
+                    </a>
+                    <a href="#" title="#" class="gallery-events-item">
+                        <div class="gallery-events-item-content">
+                            <img src="../images/gallery-events/gallery-events-img10.jpg" alt="gallery events image 4" />
+                            <div class="gallery-events-item-info">
+                                <h3>Lorem Ipsum</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
+                                    tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
+                                    tristique, sit amet convallis risus dictum. Cras dignissim urna et laoreet tristique.
+                                    Phasellus nec placerat mi. Nam risus magna, volutpat sit amet quam et, maximus maximus
+                                    est. In hac habitasse platea dictumst. Aliquam maximus pulvinar velit, in interdum nisi
+                                    facilisis vel. Phasellus posuere nec risus et semper.</p>
+                                <div>
+                                    <i class="icon-map-location"></i>
+                                    <span>Grand Cafe</span>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar"></i>
+                                    <span>9/2/2018</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </section>
         </article>

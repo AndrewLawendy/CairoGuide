@@ -233,7 +233,7 @@ $colorList: "nightlife" #f90000,
         font-size: 1.2rem;
         /*border-top: 1px solid #ccc;
         border-bottom: 3px solid #ccc;*/
-        @include transform(translate3d(0,-50%,0));
+        @include transform(translate3d(0, -50%, 0));
         @include media("(min-width: 1200px)") {
             padding: get-vw(5px) get-vw(30px);
             /*border-top-width: get-vw(1px);
@@ -245,8 +245,6 @@ $colorList: "nightlife" #f90000,
         z-index: 10;
     }
 }
-
-
 
 @mixin flex($values) {
     -webkit-box-flex: $values;
@@ -263,7 +261,6 @@ $colorList: "nightlife" #f90000,
 }
 
 //Placeholders
-
 %object-fit-img {
     width: 100%;
     height: 100%;
@@ -282,10 +279,9 @@ $colorList: "nightlife" #f90000,
         text-decoration: underline;
         max-width: 100%;
     }
-    &:hover{
+    &:hover {
         text-decoration: none;
-    }
-    // &:after {
+    } // &:after {
     //     display:none!important;
     //     content: '';
     //     display: block;
@@ -524,39 +520,48 @@ body {
 @include key-frame(icon-hover) {
     0% {
         @include transform(translate3d(0,
-        0,0))
+        0,
+        0))
     }
     10% {
         @include transform(translate3d(-10%,
-        0,0))
+        0,
+        0))
     }
     49% {
         @include transform(translate3d(150%,
-        0,0))
+        0,
+        0))
     }
     50% {
         @include transform(translate3d(150%,
-        150%,0))
+        150%,
+        0))
     }
     51% {
         @include transform(translate3d(-150%,
-        150%,0))
+        150%,
+        0))
     }
     52% {
         @include transform(translate3d(-150%,
-        0,0))
+        0,
+        0))
     }
     90% {
         @include transform(translate3d(10%,
-        0,0))
+        0,
+        0))
     }
     100% {
         @include transform(translate3d(0,
-        0,0))
+        0,
+        0))
     }
 }
 
 /*Trending sponsered effect*/
+
 /*@include key-frame(sponsored-gloss){
     0% {
         width: 1px;
@@ -588,17 +593,45 @@ body {
 }*/
 
 @each $i in $colorList {
-    @include key-frame(#{nth($i,1)}-neon){
-        0%,5%,7%,9%,15%,17%,29%,100%{
-            color:#fff;
-            text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #{nth($i,2)}, 0 0 5px #{nth($i,2)}, 0 0 6px #{nth($i,2)}, 0 0 7px #{nth($i,2)}, 0 0 8px #{nth($i,2)};
-            border-color:#fff;
-            @include box-shadow(0 0 1px #fff, 0 0 2px #fff, 0 0 3px #{nth($i,2)}, 0 0 4px #{nth($i,2)}, 0 0 5px #{nth($i,2)}, 0 0 6px #{nth($i,2)},
-            inset 0 0 1px #fff,inset 0 0 2px #fff,inset 0 0 3px #{nth($i,2)},inset 0 0 4px #{nth($i,2)},inset 0 0 5px #{nth($i,2)},inset 0 0 6px #{nth($i,2)});
+    @include key-frame(#{nth($i,1)}-neon) {
+        0%,
+        5%,
+        7%,
+        9%,
+        15%,
+        17%,
+        29%,
+        100% {
+            color: #fff;
+            text-shadow:0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px #fff,
+            0 0 4px #{nth($i,2)},
+            0 0 5px #{nth($i,2)},
+            0 0 6px #{nth($i,2)},
+            0 0 7px #{nth($i,2)},
+            0 0 8px #{nth($i,2)};
+            border-color: #fff;
+            @include box-shadow(0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px #{nth($i,2)},
+            0 0 4px #{nth($i,2)},
+            0 0 5px #{nth($i,2)},
+            0 0 6px #{nth($i,2)},
+            inset 0 0 1px #fff,
+            inset 0 0 2px #fff,
+            inset 0 0 3px #{nth($i,2)},
+            inset 0 0 4px #{nth($i,2)},
+            inset 0 0 5px #{nth($i,2)},
+            inset 0 0 6px #{nth($i,2)});
         }
-        6%,8%,16%,18%,28%{
+        6%,
+        8%,
+        16%,
+        18%,
+        28% {
             color:#{nth($i,2)};
-            text-shadow:0 0 0 #000;
+            text-shadow: 0 0 0 #000;
             border-color:#{nth($i,2)};
             @include box-shadow(0 0 0 #000);
         }
@@ -773,6 +806,10 @@ body {
 
 .icon-star:before {
     content: "\e923";
+}
+
+.icon-calendar:before {
+    content: "\e924";
 }
 
 /*General Declarations*/
@@ -1218,11 +1255,15 @@ p {
     flex: 0 0 25%;
     width: 25%;
     opacity: 0;
-    @include transform(translate3d(0,10%,0));
+    @include transform(translate3d(0,
+    10%,
+    0));
     @include transition(all 0.3s ease-out);
     &.active {
         opacity: 1;
-        @include transform(translate3d(0,0,0));
+        @include transform(translate3d(0,
+        0,
+        0));
     }
     &:nth-of-type(9n+2),
     &:nth-of-type(9n+7) {
@@ -1417,7 +1458,8 @@ iframe:not([data-src]) {
 
 .default-link {
     display: inline-block;
-    @extend %link-hover;;
+    @extend %link-hover;
+    ;
     @include theme-link-color(#000);
 }
 
@@ -1450,10 +1492,14 @@ iframe:not([data-src]) {
         }
     }
     &:before {
-        @include transform(translate3d(0,-50%,0) rotate(45deg));
+        @include transform(translate3d(0,
+        -50%,
+        0) rotate(45deg));
     }
     &:after {
-        @include transform(translate3d(0,-50%,0) rotate(-45deg));
+        @include transform(translate3d(0,
+        -50%,
+        0) rotate(-45deg));
     }
 }
 
@@ -1557,7 +1603,9 @@ iframe:not([data-src]) {
             border-radius: get-vw(7px);
         }
     }
-    @include transform(translate3d(0,150%,0));
+    @include transform(translate3d(0,
+    150%,
+    0));
     @include transition(transform .3s);
     &::after {
         content: '';
@@ -1571,10 +1619,13 @@ iframe:not([data-src]) {
         top: 0;
         left: 50%;
         @include transform(translate3d(-50%,
-        -90%,0));
+        -90%,
+        0));
     }
     &.entering {
-        @include transform(translate3d(0,130%,0));
+        @include transform(translate3d(0,
+        130%,
+        0));
         @include transition(transform .3s);
     }
 }
@@ -1754,7 +1805,9 @@ iframe:not([data-src]) {
                     left: 0;
                     opacity: 0;
                     background-color: #fff;
-                    @include transform(translate3d(-100%,0,0));
+                    @include transform(translate3d(-100%,
+                    0,
+                    0));
                     @include transition(opacity .15s,
                     transform .3s .15s)
                 }
@@ -1784,7 +1837,9 @@ iframe:not([data-src]) {
                 left: 0;
                 height: 2px;
                 width: 0;
-                @include transform(translate3d(0,0,0));
+                @include transform(translate3d(0,
+                0,
+                0));
                 @include transition(all .3s);
                 @include media("(min-width: 1200px)") {
                     height: get-vw(2px);
@@ -1804,7 +1859,9 @@ iframe:not([data-src]) {
                 }
                 &::before {
                     width: 200vw;
-                    @include transform(translate3d(-50%,0,0));
+                    @include transform(translate3d(-50%,
+                    0,
+                    0));
                     @include transition(all 1s .3s);
                 }
             }
@@ -1812,7 +1869,9 @@ iframe:not([data-src]) {
                 span {
                     &::after {
                         opacity: 1;
-                        @include transform(translate3d(0,0,0));
+                        @include transform(translate3d(0,
+                        0,
+                        0));
                         @include transition(opacity .001s,
                         transform .3s);
                     }
@@ -1900,7 +1959,9 @@ iframe:not([data-src]) {
         position: absolute;
         top: 50%;
         left: 0;
-        @include transform(translate3d(0,-50%,0))
+        @include transform(translate3d(0,
+        -50%,
+        0))
     }
     @include media("(max-width: 640px)") {
         width: 80%;
@@ -2013,7 +2074,9 @@ iframe:not([data-src]) {
         height: 100%;
         top: 0;
         left: 0;
-        @include transform(translate3d(0,0,0));
+        @include transform(translate3d(0,
+        0,
+        0));
         @include transition(transform .55s .5s);
         .details-carousel-img,
         .details-carousel-content {
@@ -2055,7 +2118,9 @@ iframe:not([data-src]) {
         }
         &.leaving-left {
             z-index: 9;
-            @include transform(translate3d(-100%,0,0));
+            @include transform(translate3d(-100%,
+            0,
+            0));
             .details-carousel-content {
                 left: -25%;
             }
@@ -2100,7 +2165,9 @@ iframe:not([data-src]) {
         background-color: transparent;
         color: #000;
         @include transition(all .3s);
-        @include transform(translate3d(0,-50%,0));
+        @include transform(translate3d(0,
+        -50%,
+        0));
         &:hover {
             opacity: 1;
         }
@@ -2157,7 +2224,9 @@ iframe:not([data-src]) {
             top: 50%;
             opacity: 0;
             overflow: hidden;
-            @include transform(translat3d(0,-50%,0)); //@include transition(all 0.2s ease);
+            @include transform(translat3d(0,
+            -50%,
+            0)); //@include transition(all 0.2s ease);
             @include media("(max-width: 1200px)") {
                 width: 95%;
             }
@@ -2215,17 +2284,23 @@ iframe:not([data-src]) {
         left: 100vw;
         margin: 0 auto;
         opacity: 0;
-        @include transform(translate3d(10px,0,0));
+        @include transform(translate3d(10px,
+        0,
+        0));
         @include transition(opacity 0.3s ease,
         transform 0.3s ease);
         @include media("(min-width: 1200px)") {
             bottom: get-vw(20px);
-            @include transform(translate3d(get-vw(10px)),0,0);
+            @include transform(translate3d(get-vw(10px)),
+            0,
+            0);
         }
         &.active {
             left: 0;
             opacity: 1;
-            @include transform(translate3d(0,0,0)); // @include transition(opacity 0.3s ease);
+            @include transform(translate3d(0,
+            0,
+            0)); // @include transition(opacity 0.3s ease);
         }
         a,
         a:visited {
@@ -2311,7 +2386,9 @@ iframe:not([data-src]) {
         span {
             position: absolute;
             top: 50%;
-            @include transform(translate3d(0,-50%,0));
+            @include transform(translate3d(0,
+            -50%,
+            0));
             width: 10px;
             word-break: break-all;
             text-transform: uppercase;
@@ -2656,7 +2733,9 @@ iframe:not([data-src]) {
                         border-top: 8px solid #131313;
                         border-right: 8px solid transparent;
                         border-left: 8px solid transparent;
-                        @include transform(translate3d(0,-50%,0));
+                        @include transform(translate3d(0,
+                        -50%,
+                        0));
                         @include transition(all 0.3s);
                         @include media("(min-width: 1200px)") {
                             border-top-width: get-vw(8px);
@@ -2675,7 +2754,9 @@ iframe:not([data-src]) {
                     z-index: -1;
                     @include transition(all 0.3s,
                     width 0s 0.3s);
-                    @include transform(translate3d(0,20px,0));
+                    @include transform(translate3d(0,
+                    20px,
+                    0));
                     @include media("(min-width: 1200px)") {
                         border-bottom-width: get-vw(2px);
                         max-height: get-vw(225px);
@@ -2715,14 +2796,18 @@ iframe:not([data-src]) {
                 &.active {
                     .search-filter-display {
                         &::after {
-                            @include transform(translate3d(0,-50%,0) rotateX(180deg));
+                            @include transform(translate3d(0,
+                            -50%,
+                            0) rotateX(180deg));
                         }
                     }
                     .search-filter-menu {
                         opacity: 1;
                         z-index: 400;
                         width: 100%;
-                        @include transform(translate3d(0,0,0));
+                        @include transform(translate3d(0,
+                        0,
+                        0));
                         @include transition(all 0.3s,
                         width 0s);
                     }
@@ -3178,9 +3263,13 @@ header {
                             }
                         }
                         &>ul {
-                            @include transform(translate3d(0,20px,0) !important);
+                            @include transform(translate3d(0,
+                            20px,
+                            0) !important);
                             @include media("(min-width: 1200px)") {
-                                @include transform(translate3d(0,get-vw(20px),0) !important);
+                                @include transform(translate3d(0,
+                                get-vw(20px),
+                                0) !important);
                             }
                         }
                         &:last-child {
@@ -3235,8 +3324,9 @@ header {
                                 }
                             }
                             &>ul {
-                                @include transform(translate3d(0,0,0) !important);
-                                // @include media("(min-width: 1200px)") {
+                                @include transform(translate3d(0,
+                                0,
+                                0) !important); // @include media("(min-width: 1200px)") {
                                 //     @include transform(translateY(get-vw(0px)) !important);
                                 // }
                             }
@@ -3278,7 +3368,9 @@ header {
                             overflow: visible;
                             &>ul {
                                 opacity: 1;
-                                @include transform(translate3d(0,0,0));
+                                @include transform(translate3d(0,
+                                0,
+                                0));
                                 @include transition(all 0.3s ease);
                                 @include media("(max-width: 1024px)") {
                                     @include transition(unset);
@@ -3293,7 +3385,9 @@ header {
                             white-space: nowrap;
                             opacity: 0;
                             background-color: $header-footer-secondary-background-color;
-                            @include transform(translate3d(0,20px,0));
+                            @include transform(translate3d(0,
+                            20px,
+                            0));
                             @include transition(all 0.3s ease);
                             /*display: none;*/
                             @include media("(min-width: 1200px)") {
@@ -3308,7 +3402,9 @@ header {
                                 @include background-opacity(#fff,
                                 0.05);
                                 @include box-shadow(0px 15px 80px #000);
-                                @include transform(translate3d(0,0,0) !important);
+                                @include transform(translate3d(0,
+                                0,
+                                0) !important);
                                 @include transition(unset); // &:before{
                                 //     content: '';
                                 //     display: inline-block;
@@ -3399,7 +3495,9 @@ header {
             box-sizing: border-box;
             right: 0;
             top: 100%; //opacity: 0;
-            @include transform(translate3d(115%,0,0));
+            @include transform(translate3d(115%,
+            0,
+            0));
             @include transition(all 0.3s ease 0.2s);
             @include media("(min-width: 1200px)") {
                 padding: get-vw(10px) get-vw(25px); //right: get-vw(-50px);
@@ -3411,7 +3509,9 @@ header {
                 width: 100%;
                 left: 0;
                 right: auto;
-                @include transform(translat3d(0,-115%,0));
+                @include transform(translat3d(0,
+                -115%,
+                0));
             }
             &:after {
                 content: '';
@@ -3521,13 +3621,17 @@ header {
             .attached-menu {
                 //right: 0;
                 //opacity: 1;
-                @include transform(translate3d(0,0,0));
+                @include transform(translate3d(0,
+                0,
+                0));
                 @include transition(all 0.3s ease 0.2s);
                 @include media("(min-width: 1200px)") {
                     //right: 0;
                 }
                 @include media("(max-width: 640px)") {
-                    @include transform(translate3d(0,0,0));
+                    @include transform(translate3d(0,
+                    0,
+                    0));
                 }
             }
         }
@@ -3550,7 +3654,9 @@ header {
                 border-top: 7px solid #131313;
                 left: 0;
                 top: 50%;
-                @include transform(translate3d(0,-50%,0) rotateX(0deg));
+                @include transform(translate3d(0,
+                -50%,
+                0) rotateX(0deg));
                 @include transition(all 0.3s);
                 @include media("(min-width: 1200px)") {
                     border-width: get-vw(7px) get-vw(7px) 0 get-vw(7px);
@@ -3566,7 +3672,9 @@ header {
             z-index: -1;
             border: 1px solid #fff;
             border-top: 0;
-            @include transform(translate3d(0,100vh,0));
+            @include transform(translate3d(0,
+            100vh,
+            0));
             @include transition(top 0.3s,
             opacity 0.3s,
             z-index 0s ease 0.3s,
@@ -3604,14 +3712,18 @@ header {
         &.active {
             .account-name {
                 &:after {
-                    @include transform(translate3d(0,-50%,0) rotateX(180deg));
+                    @include transform(translate3d(0,
+                    -50%,
+                    0) rotateX(180deg));
                 }
             }
             ul {
                 top: calc(100% + 10px);
                 opacity: 1;
                 z-index: 200;
-                @include transform(translate3d(0,0,0));
+                @include transform(translate3d(0,
+                0,
+                0));
                 @include transition(top 0.3s,
                 opacity 0.3s,
                 z-index 0s,
@@ -3771,7 +3883,9 @@ main {
                     .title-wrp {
                         background-color: transparent !important;
                         bottom: 50%;
-                        @include transform(translate3d(0,50%,0));
+                        @include transform(translate3d(0,
+                        50%,
+                        0));
                         h3 {
                             font-family: 'Lato-Black';
                             @include media("(max-width: 1024px)") {
@@ -4041,7 +4155,7 @@ footer {
             }
             .third-width {
                 width: calc(100% / 3);
-                clear:none;
+                clear: none;
             }
             .mag-info {
                 margin-top: 30px;
@@ -4056,7 +4170,7 @@ footer {
 
 @include media("(max-width: 640px)") {
     .third-width {
-        width: 100%!important;
+        width: 100% !important;
         float: none;
         clear: both;
     }
