@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/CairoGuideInnerSass.css" />
 </head>
 
-<body>
+<body class="logo-green-theme">
     <div id="hidden-title">
         <h1>Best of Cairo | Listing</h1>
     </div>
@@ -23,7 +23,7 @@
                 <div class="fill"></div>
             </a>
             <div class="popup-logo-wrp float-left">
-                <img src="../Images/blank-src.gif" data-src="../Images/logo.png" alt="Best of Cairo Guide Logo" class="float-left" />
+                <img src="../Images/logo.png" alt="Best of Cairo Guide Logo" class="float-left" />
                 <span class="float-left">Simply the best</span>
             </div>
             <h2>Best of Cairo</h2>
@@ -99,7 +99,7 @@
     </div>
     <div id="lightbox-popup">
         <div class="default-close-btn"></div>
-        <div class="location-map-wrp">
+        <div class="iframe-wrp-div">
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13815.189871479213!2d31.2239883!3d30.0426678!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xde3e1b56b22e91f8!2sCairo+Opera+House!5e0!3m2!1sen!2seg!4v1518341562196"
                 allowfullscreen></iframe>
         </div>
@@ -908,6 +908,36 @@
                             </div>
                         </div> -->
                         <div class="filter-set-item">
+                            <p>Category</p>
+                            <div class="filter-field-input dropdown-input multiple-choice" title="Please choose category">
+                                <span class="selected-value">Please choose</span>
+                                <i class="icon-triangular-arrow"></i>
+                                <ul class="dropdown-options">
+                                    <li>
+                                        <input id="filter0-all" type="checkbox" />
+                                        <label for="filter0-all" title="All">
+                                            <span class="filter-label">All</span>
+                                            <span class="filter-rating-count">280</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter0-accommodation" type="checkbox" />
+                                        <label for="filter0-accommodation" title="Accommodation">
+                                            <span class="filter-label">Accommodation</span>
+                                            <span class="filter-rating-count">190</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter0-dinning" type="checkbox">
+                                        <label for="filter0-dinning" title="Dinning">
+                                            <span class="filter-label">Dinning</span>
+                                            <span class="filter-rating-count">100</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="filter-set-item">
                             <p>Rating</p>
                             <div class="filter-field-input dropdown-input multiple-choice" title="Please choose among options">
                                 <span class="selected-value">Please choose</span>
@@ -1038,7 +1068,7 @@
                                         </div>
                                         <h2>Cairo Opera House </h2>
                                     </div>
-                                    <div class="item-location open-location-box">
+                                    <div class="item-location open-iframe-lightbox">
                                         <i class="icon-map-location"></i>
                                         <div class="overflow-hidden">
                                             <a href="#" title="#">Opera Land, EL GEZIRAH, Zamalek, Cairo Governorate - Show on map
@@ -1046,6 +1076,11 @@
                                         </a>
                                     </div>
                                     <div class="clear"></div>
+                                    <div class="display-inline-block item-exclusive marg-t10">
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                    </div>
                                     <div class="display-inline-block item-exclusive marg-t10">
                                         <i class="icon-offer"></i>
                                         <span>Offer</span>
@@ -1061,8 +1096,8 @@
                                     <p>The Cairo Opera House, part of Cairo's National Cultural Center, is the main performing
                                         arts venue in the Egyptian capital.</p>
                                     <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
-                                        <a href="#" title="Buy Tickets">Buy Tickets</a>
+                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More" class="clear-btn">Read More</a>
+                                        <a href="javascript:void(0);" title="Book now" class="clear-btn">Book now</a>
                                     </div>
                                 </div>
                             </div>
@@ -1079,7 +1114,7 @@
                                         </div>
                                         <h2>Dublin pub</h2>
                                     </div>
-                                    <div class="item-location open-location-box">
+                                    <div class="item-location open-iframe-lightbox">
                                         <i class="icon-map-location"></i>
                                         <div class="overflow-hidden">
                                             <a href="#" title="#">Zamalek, Cairo Governorate - Show on map</a>
@@ -1088,7 +1123,7 @@
                                     <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
                                         consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
                                     <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
+                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More" class="clear-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -1105,10 +1140,10 @@
                                         </div>
                                         <h2>Deals pub</h2>
                                     </div>
-                                    <div class="item-location open-location-box">
+                                    <div class="item-location">
                                         <i class="icon-map-location"></i>
                                         <div class="overflow-hidden">
-                                            <a href="#" title="#">Maadi, Cairo Governorate - Show on map</a>
+                                            <a href="item-details.html?category=nightlife&subcategory=bars and pubs&scrollto=branches-center" title="#">Check out our branches</a>
                                         </div>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -1116,8 +1151,8 @@
                                         ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                     <div class="item-links">
-                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More">Read More</a>
-                                        <a href="#" title="Buy Tickets">Buy Tickets</a>
+                                        <a href="item-details.html?category=nightlife&subcategory=bars and pubs" title="Read More" class="clear-btn">Read More</a>
+                                        <a href="javascript:void(0);" title="Book now" class="clear-btn">Book now</a>
                                     </div>
                                 </div>
                             </div>
@@ -1184,54 +1219,50 @@
     <footer>
         <div class="footer-container">
             <h6 class="marg-b30">Your best guide to the city</h6>
-            <div class="half-width responsive mag-links">
-                <div class="half-width responsive">
-                    <ul>
-                        <li>
-                            <a href="home.html" title="Home">Home</a>
-                        </li>
-                        <li>
-                            <a href="category.html?category=accommodation" title="Accommodation">Accommodation</a>
-                        </li>
-                        <li>
-                            <a href="category.html?category=dining" title="Dining">Dining</a>
-                        </li>
-                        <li>
-                            <a href="category.html?category=nightlife" title="Nightlife">Nightlife</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="half-width responsive">
-                    <ul>
-                        <li>
-                            <a href="about.html" title="About">About</a>
-                        </li>
-                        <li>
-                            <a href="contact.html" title="Contact">Contact</a>
-                        </li>
-                        <li>
-                            <a href="faqs.html" title="FAQ'S">FAQ'S</a>
-                        </li>
-                        <li>
-                            <a href="#" title="Legal">Legal</a>
-                        </li>
-                        <li>
-                            <a href="#" title="Privacy">Privacy</a>
-                        </li>
-                        <li>
-                            <a href="sitemap.html" title="Sitemap">Sitemap</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="third-width responsive mag-links">
+                <ul>
+                    <li>
+                        <a href="home.html" title="Home">Home</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=accommodation" title="Accommodation">Accommodation</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=dining" title="Dining">Dining</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=nightlife" title="Nightlife">Nightlife</a>
+                    </li>
+                </ul>
             </div>
-            <div class="half-width responsive">
-                <div class="half-width responsive mag-info">
-                    <div>
-                        <span class="info-title">Email</span>
-                        <span class="info-data">example&shy;@bestofcairo.com</span>
-                    </div>
+            <div class="third-width responsive mag-links">
+                <ul>
+                    <li>
+                        <a href="about.html" title="About">About</a>
+                    </li>
+                    <li>
+                        <a href="contact.html" title="Contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="faqs.html" title="FAQ'S">FAQ'S</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Legal">Legal</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Privacy">Privacy</a>
+                    </li>
+                    <li>
+                        <a href="sitemap.html" title="Sitemap">Sitemap</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="third-width responsive">
+                <div class="mag-info">
+                    <span class="info-title">Email</span>
+                    <span class="info-data">example&shy;@bestofcairo.com</span>
                 </div>
-                <div class="half-width responsive mag-social">
+                <div class="mag-social marg-t20">
                     <a href="#" class="icon-btn">
                         <i class="icon-social-facebook" title="Follow us on Facebook"></i>
                     </a>
@@ -1249,7 +1280,7 @@
     </footer>
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/jquery-ui.min.js"></script>
-    <script src="../JS/CairoGuideMain.js"></script>
+    <script src="../JS/CairoGuideMain.min.js"></script>
 </body>
 
 </html>

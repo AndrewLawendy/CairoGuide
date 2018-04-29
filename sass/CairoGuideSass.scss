@@ -43,12 +43,12 @@ main {
                         &.#{nth($item,1)}-item {
                             .section-title {
                                 &::before {
-                                    background: nth($item, 2) !important;
+                                    background-color: nth($item, 2) !important;
                                 }
                             }
                             .carousel-read-more {
                                 &:hover {
-                                    background: nth($item, 2) !important;
+                                    background-color: nth($item, 2) !important;
                                     border-color: nth($item, 2) !important;
                                     @include transition(all .1s);
                                 }
@@ -88,7 +88,7 @@ main {
                         padding-left: 30px;
                         padding-right: 25%;
                         box-sizing: border-box;
-                        @include transform(translateY(-50%));
+                        @include transform(translate3d(0,-50%,0));
                         @include transition(top .7s);
                         @include media("(min-width: 1200px)") {
                             padding-left: get-vw(30px);
@@ -99,7 +99,7 @@ main {
                             position: relative;
                             top: 0;
                             margin-top: 0 !important;
-                            @include transform(translateY(0));
+                            @include transform(translate3d(0,0,0));
                         }
                         .section-title {
                             margin-bottom: 10px;
@@ -143,7 +143,7 @@ main {
                             border: 1px solid #fff;
                             text-decoration: none;
                             margin-top: 25px;
-                            background: transparent;
+                            background-color: transparent;
                             @include transition(all .15s);
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(10px);
@@ -182,12 +182,12 @@ main {
                 margin-top: 15px;
                 position: relative;
                 padding: 0 15px;
-                background: transparent;
+                background-color: transparent;
                 &::before {
                     position: absolute;
                     top: -5px;
                     left: 10%;
-                    background: #eee;
+                    background-color: #eee;
                     border-radius: 100%;
                     height: 2px;
                     width: 80%;
@@ -319,16 +319,13 @@ main {
             }
             .trend-item img,
             .ad-item img {
-                @include object-fit-img();
+                @extend %object-fit-img;
                 object-position: center;
             }
             .trend-item {
                 position: relative;
                 overflow: hidden;
                 height: 100%;
-                @include media("(max-width: 768px)") {
-                    background-color: #000;
-                }
                 img {
                     @include transform(scale(1));
                     @include transition(transform 0s linear 1s);
@@ -359,23 +356,101 @@ main {
                     width: 100%;
                     position: absolute;
                     top: 0;
+                    overflow: hidden;
+                    @include media("(max-width: 768px)") {
+                        background-color: #000;
+                    }
+                    &.sponsored-slide {
+                        position: relative;
+                        overflow: hidden;
+                        &:before {
+                            content:'Sponsored';
+                            display:block;
+                            position: absolute;
+                            top: 15px;
+                            right: -10px; //width: 50%;
+                            background-color: #000;
+                            text-transform: uppercase;
+                            padding: 12px 20px 10px 15px;
+                            box-sizing: border-box;
+                            border-top-left-radius: 100vw;
+                            border-bottom-left-radius: 100vw;
+                            z-index: 50;
+                            overflow: hidden;
+                            border-width: 1px 0 1px 1px;
+                            border-style: solid;
+                            //border-color:#fff;
+                            font-family: 'Lato-Bold' !important;
+                            letter-spacing: 1px;
+                            //color:#fff;
+                            @include media("(min-width: 1200px)") {
+                                top: get-vw(15px);
+                                right: get-vw(-10px);
+                                padding: get-vw(12px) get-vw(20px) get-vw(10px) get-vw(15px);
+                                border-width: get-vw(1px) 0 get-vw(1px) get-vw(1px);
+                                letter-spacing: get-vw(1px);
+                            }
+                            /*&:before {
+                                content: '';
+                                display: none;
+                                width: 2px;
+                                height: 100%;
+                                //background-color: #fff;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                z-index: 100;
+                                @include transform(skewX(-20deg)); //@include box-shadow(0px -1px 3px 1px rgba(19, 19, 19, 1));
+                                //@include animation(sponsored-gloss 4s infinite ease-in-out);
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(2px); //@include box-shadow(0px get-vw(-1px) get-vw(6px) get-vw(2px) rgba(19, 19, 19, 1));
+                                }
+                            }*/
+                        }
+                        &.active {
+                            &~a {
+                                left: -30px;
+                                opacity: 0;
+                                z-index: -1;
+                                @include transition(opacity 0.3s, left 0.3s, z-index 0s ease 0.3s);
+                                @include media("(min-width: 1200px)") {
+                                    left: get-vw(-30px);
+                                }
+                                @include media("(max-width: 768px)") {
+                                    left: auto;
+                                    right: -30px;
+                                    @include transition(opacity 0.3s, right 0.3s, z-index 0s ease 0.3s);
+                                }
+                            }
+                        }
+                        .trend-info {
+                            padding-top: 70px;
+                            @include media("(min-width: 1200px)") {
+                                padding-top: get-vw(70px);
+                            }
+                        }
+                    }
                     .trend-info {
                         position: absolute;
-                        top: 100%;
-                        left: 0;
+                        top: 0;
+                        left: -30px;
+                        opacity: 0;
                         width: 100%;
                         height: 100%;
                         padding: 25px 10px 0;
                         box-sizing: border-box;
                         color: #fff;
-                        @include transition(all 0.2s ease 0.2s);
+                        @include transition(all 0.5s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(25px) get-vw(10px) 0;
+                            left: get-vw(-30px);
                         }
                         @include media("(max-width: 768px)") {
                             height: auto;
                             top: auto !important;
                             bottom: 0;
+                            left: 0;
+                            opacity: 1;
                             padding: 25px 10px;
                         }
                         p,
@@ -385,16 +460,23 @@ main {
                         }
                         h3,
                         p {
-                            margin-left: -110%;
-                            @include transition(margin-left 0.2s ease);
+                            width: 100%;
+                            margin-left: -30px;
+                            opacity: 0;
+                            @include transition(all 0.2s);
+                            @include media("(min-width: 1200px)") {
+                                margin-left: get-vw(-30px);
+                            }
                             @include media("(max-width: 768px)") {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                         }
                         h3 {
                             margin-bottom: 15px; //max-height: 150px;
                             overflow: hidden;
                             font-size: 2em;
+                            text-transform: capitalize;
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(15px);
                             }
@@ -413,48 +495,68 @@ main {
                         }
                         a,
                         a:visited {
-                            margin-left: -110%;
-                            @include btn-base();
+                            margin-left: -30px;
+                            opacity: 0;
+                            @extend %btn-base;
+                            @include transition(margin-left 0.2s, opacity 0.2s, background-color 0.15s, color 0.15s);
+                            @include media("(min-width: 1200px)") {
+                                margin-left: get-vw(-30px);
+                            }
                             @include media("(max-width: 768px)") {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                         }
                         a:hover {
                             background-color: #fff;
                             @include transition(background-color 0.15s ease, color 0.15s ease);
                         }
-                        @each $i in $colorList {
-                            &.#{nth($i,1)}-bg {
-                                background: rgba(nth($i, 2), 0.8);
+                        @include media("(max-width: 768px)") {
+                            background-color: transparent !important;
+                        }
+                    }
+                    @each $i in $colorList {
+                        &.#{nth($i,1)}-slide {
+                            &.sponsored-slide {
+                                &:before {
+                                    color: nth($i, 2);
+                                    border-color: nth($i, 2);
+                                    @include animation(#{nth($i,1)}-neon 4s infinite ease-in-out);
+                                    // &:before {
+                                    //     background-color: nth($i, 2);
+                                    // }
+                                }
+                            }
+                            .trend-info {
+                                @include background-opacity(nth($i, 2), 0.8); //background-color: rgba(nth($i, 2), 0.8);
                                 /*@include media("(max-width: 768px)") {
-                                    background: nth($i, 2);
-                                }*/
+                                background-color: nth($i, 2);
+                            }*/
                                 a:hover {
                                     color: nth($i, 2);
                                 }
                             }
                         }
-                        @include media("(max-width: 768px)") {
-                            background: transparent !important;
-                        }
                     }
                     &:hover {
                         .trend-info {
-                            top: 0;
-                            @include transition(all 0.2s ease);
+                            left: 0;
+                            opacity: 1;
+                            @include transition(all 0.5s);
                             h3,
                             p,
                             a {
                                 margin-left: 0;
+                                opacity: 1;
                             }
                             h3 {
-                                @include transition(margin-left 0.2s ease 0.2s);
+                                @include transition(margin-left 0.2s ease 0.1s, opacity 0.2s ease 0.1s);
                             }
                             p {
-                                @include transition(margin-left 0.2s ease 0.3s);
+                                @include transition(margin-left 0.2s ease 0.3s, opacity 0.2s ease 0.3s);
                             }
                             a {
-                                @include transition(margin-left 0.2s ease 0.5s, background-color 0.15s ease, color 0.15s ease);
+                                @include transition(margin-left 0.2s ease 0.5s, opacity 0.2s ease 0.5s, background-color 0.15s, color 0.15s);
                             }
                         }
                     }
@@ -472,6 +574,9 @@ main {
                     left: 15px;
                     color: #fff;
                     text-decoration: underline;
+                    opacity: 1;
+                    z-index: 50;
+                    @include transition(opacity 0.3s, left 0.3s, z-index 0s);
                     @include media("(min-width: 1200px)") {
                         bottom: get-vw(15px);
                         left: get-vw(15px);
@@ -567,7 +672,7 @@ main {
                 text-transform: uppercase;
                 width: 100%;
                 text-align: center;
-                @include transform(translate(0)); //@include transition(all 3s);
+                @include transform(translate3d(0,0,0)); //@include transition(all 3s);
                 @include media("(max-width: 768px)") {
                     font-size: 4.5rem;
                 }
@@ -737,7 +842,7 @@ main {
             //height:75vh;
             overflow: hidden;
             flex-wrap: wrap;
-            @include flexbox();
+            @extend %flexbox;
             .news-box {
                 height: 25vw;
                 padding: get-vw(10px);
@@ -806,7 +911,7 @@ main {
                         }
                     }
                     img {
-                        @include object-fit-img();
+                        @extend %object-fit-img;
                         object-position: center 0;
                     }
                     .img-dark-overlay {
@@ -841,14 +946,14 @@ main {
                         bottom: 0; //height: 35%;
                         padding: 0 15px 15px 15px;
                         box-sizing: border-box;
-                        @include transform(translateY(100%));
+                        @include transform(translate3d(0,100%,0));
                         @include transition(all 0.3s ease);
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
                         }
                         @include media("(max-width: 768px)") {
                             background-color: transparent !important;
-                            @include transform(translateY(0) !important);
+                            @include transform(translate3d(0,0,0) !important);
                         }
                         &:before {
                             content: '';
@@ -918,7 +1023,7 @@ main {
                     }
                     &:hover {
                         .news-info {
-                            @include transform(translateY(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all 0.3s ease);
                             h3 {
                                 height: 2.4em;
@@ -1076,7 +1181,7 @@ main {
                             @include transition(all .5s);
                             @each $i in $colorList {
                                 &.best-#{nth($i,1)} {
-                                    background: nth($i, 2);
+                                    background-color: nth($i, 2);
                                 }
                             }
                             @include media("(max-width: 768px)") {
@@ -1101,7 +1206,7 @@ main {
                         opacity: 0;
                         padding-left: 150px;
                         @include transition(all .3s);
-                        @include transform(translateX(50%));
+                        @include transform(translate3d(50%,0,0));
                         z-index: 2;
                         @include media("(min-width: 1200px)") {
                             top: get-vw(110px);
@@ -1119,7 +1224,7 @@ main {
                         left: 0;
                         opacity: 0;
                         @include transition(all .3s);
-                        @include transform(translateX(100%));
+                        @include transform(translate3d(100%,0,0));
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(190px);
                         }
@@ -1149,7 +1254,7 @@ main {
                         &::after {
                             position: absolute;
                             right: 0;
-                            background: #fff;
+                            background-color: #fff;
                         }
                         &::before {
                             content: '...';
@@ -1162,7 +1267,7 @@ main {
                             height: 1.2rem;
                         }
                         @include transition(all .3s);
-                        @include transform(translateX(50%));
+                        @include transform(translate3d(50%,0,0));
                         z-index: 1;
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(218px);
@@ -1186,18 +1291,18 @@ main {
                             @include transition(all .15s);
                         }
                         h2 {
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             opacity: .1;
                             @include transition(all .5s);
                         }
                         h6 {
                             opacity: 1;
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all .7s ease-out .15s);
                         }
                         .best-description-frame {
                             opacity: 1;
-                            @include transform(translateX(0));
+                            @include transform(translate3d(0,0,0));
                             @include transition(all .7s ease-out .15s);
                         }
                         &:nth-of-type(1) {
@@ -1277,7 +1382,7 @@ main {
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(100px, 150%));
+                                    @include transform(rotate(-45deg) translate3d(100px, 150%,0));
                                     left: 0;
                                     bottom: 0;
                                 }
@@ -1285,7 +1390,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-70%, 150%));
+                                        @include transform(rotate(-45deg) translate3d(-70%, 150%,0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1305,11 +1410,11 @@ main {
                                 height: get-vw(360px);
                             }
                             img {
-                                @include transform(rotate(-45deg) translate(-25%, -25%));
+                                @include transform(rotate(-45deg) translate3d(-25%, -25%,0));
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(0, 42%));
+                                    @include transform(rotate(-45deg) translate3d(0, 42%,0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1317,7 +1422,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-80%, 42%));
+                                        @include transform(rotate(-45deg) translate3d(-80%, 42%,0));
                                         @include transition(all 4s);
                                     }
                                 }
@@ -1338,13 +1443,13 @@ main {
                                 height: get-vw(380px);
                             }
                             img {
-                                @include transform(rotate(-45deg) translateY(-25%));
+                                @include transform(rotate(-45deg) translate3d(0,-25%,0));
                                 top: 0;
                                 left: 0;
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate(100px, -30%));
+                                    @include transform(rotate(-45deg) translate3d(100px, -30%,0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1352,7 +1457,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate(-70%, -30%));
+                                        @include transform(rotate(-45deg) translate3d(-70%, -30%,0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1365,7 +1470,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 0;
-                                @include transform(translateY(-100%));
+                                @include transform(translate3d(0,-100%,0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1396,7 +1501,7 @@ main {
                     h6,
                     .best-description-frame {
                         opacity: 0 !important;
-                        @include transform(translateX(-150%) !important);
+                        @include transform(translate3d(-150%,0,0) !important);
                         @include transition(all 1.5s !important);
                     }
                 }
@@ -1405,7 +1510,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 1;
-                                @include transform(translateY(0));
+                                @include transform(translate3d(0,0,0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1536,13 +1641,13 @@ main {
     }
     @include key-frame(bestLeaveOne) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0, 0,0))
         }
         20% {
-            @include transform(rotate(45deg) translate(2%, 2%))
+            @include transform(rotate(45deg) translate3d(2%, 2%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(-50%, -50%))
+            @include transform(rotate(45deg) translate3d(-50%, -50%,0))
         }
     }
     @include key-frame(bestEnterOne) {
@@ -1558,13 +1663,13 @@ main {
     }
     @include key-frame(bestLeaveTwo) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0, 0,0))
         }
         20% {
-            @include transform(rotate(45deg) translate(-3%, 3%))
+            @include transform(rotate(45deg) translate3d(-3%, 3%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(50%, -50%))
+            @include transform(rotate(45deg) translate3d(50%, -50%,0))
         }
     }
     @include key-frame(bestEnterTwo) {
@@ -1580,13 +1685,13 @@ main {
     }
     @include key-frame(bestLeaveThree) {
         0% {
-            @include transform(rotate(45deg) translate(0, 0))
+            @include transform(rotate(45deg) translate3d(0,0, 0))
         }
         20% {
-            @include transform(rotate(45deg) translate(-2%, -2%))
+            @include transform(rotate(45deg) translate3d(-2%, -2%,0))
         }
         100% {
-            @include transform(rotate(45deg) translate(50%, 50%))
+            @include transform(rotate(45deg) translate3d(50%, 50%,0))
         }
     }
     @include key-frame(bestEnterThree) {
@@ -1661,7 +1766,7 @@ main {
                 }
             }
             img {
-                @include object-fit-img();
+                @extend %object-fit-img;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -1698,7 +1803,7 @@ main {
         .attractions-index {
             width: 100px;
             height: 15px;
-            background: $logo-yellow;
+            background-color: $logo-yellow;
             overflow: visible !important;
             position: absolute;
             z-index: 3;

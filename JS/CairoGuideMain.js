@@ -1,14 +1,14 @@
 var newScreenSize = 0; //Last screen size, changes when screen size changes, takes values 1,2 or 3
-var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
+//var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
 //ifNotDesktop
 var ifNotDesktop = function () {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
         return true;
     return false;
-}
+};
 
-//ifInfiniteLoop
+//If Infinite Loop
 var maxIteration = 0;
 var ifInfiniteLoop = function (max) {
     maxIteration++;
@@ -17,13 +17,14 @@ var ifInfiniteLoop = function (max) {
         return true;
     }
     return false;
-}
+};
 
 //Lazy Loading
 var lazyLoading = function () {
     $(document).scroll(lazyGet);
     $(document).scroll();
     function lazyGet() {
+        //var error = '../Content/Images/blank-src.gif';
         $('[data-src]').each(function () {
             var windowHeight = $(window).height() * 2,
                 thisPos = $(this).offset().top - $(document).scrollTop();
@@ -33,6 +34,9 @@ var lazyLoading = function () {
                 $(this).on('load', function () {
                     $(this).removeAttr('data-src');
                 });
+                // $(this).on('error', function () {
+                //     $(this).attr('src', error);
+                // })
             }
         });
     }
@@ -51,48 +55,48 @@ var rippleEffect = function (e, _this) {
         circle.css({
             'top': e.pageY - posTop - (max / 2),
             'left': e.pageX - posLeft - (max / 2)
-        })
+        });
     }
     circle.width(max).height(max);
     setTimeout(function () {
         circle.remove();
     }, 800);
-}
+};
 
 //initTypewriter
 var initTypewriter = function () {
     $('[data-typewriter]').each(function () {
         var data = $(this).data('typewriter').split(';'),
-            _this = $(this);
-        updateChar = function (str, timeOut) {
-            setTimeout(function () {
-                _this.text(str);
-            }, timeOut)
-        }
-        loopingData = function (data) {
-            var timeOut = 100;
-            for (var i = 0; i < data.length; i++) {
-                for (var j = 1; j <= data[i].length; j++) {
-                    var newStr = data[i].slice(0, j);
-                    updateChar(newStr, timeOut);
-                    timeOut += 100;
-                }
-                timeOut += 1000;
-                for (var e = data[i].length; e >= 0; e--) {
-                    var newStr = data[i].slice(0, e);
-                    updateChar(newStr, timeOut);
-                    timeOut += 75;
+            _this = $(this),
+            updateChar = function (str, timeOut) {
+                setTimeout(function () {
+                    _this.text(str);
+                }, timeOut);
+            },
+            loopingData = function (data) {
+                var timeOut = 100;
+                for (var i = 0; i < data.length; i++) {
+                    for (var j = 1; j <= data[i].length; j++) {
+                        var newStr = data[i].slice(0, j);
+                        updateChar(newStr, timeOut);
+                        timeOut += 100;
+                    }
+                    timeOut += 1000;
+                    for (var e = data[i].length; e >= 0; e--) {
+                        var newStr = data[i].slice(0, e);
+                        updateChar(newStr, timeOut);
+                        timeOut += 75;
+                    }
+                    timeOut += 150;
                 }
                 timeOut += 150;
-            }
-            timeOut += 150;
-            setTimeout(function () {
-                loopingData(data);
-            }, timeOut);
-        }
+                setTimeout(function () {
+                    loopingData(data);
+                }, timeOut);
+            };
         loopingData(data);
     });
-}
+};
 
 //Calculate last screen size
 var CalcLastScreenSize = function (screenSize) {
@@ -104,17 +108,17 @@ var CalcLastScreenSize = function (screenSize) {
         screenSize = 3;
     }
     return screenSize;
-}
+};
 
 //Round to nearest value
 var roundToNearestValue = function (reference, newVal) {
     return reference * Math.round((newVal) / reference);
-}
+};
 
 //Ceil to nearest value
 var ceilToNearestValue = function (reference, newVal) {
     return reference * Math.ceil((newVal) / reference);
-}
+};
 
 //getQueryString
 var getQueryString = function (field) {
@@ -126,7 +130,7 @@ var getQueryString = function (field) {
 
 //Apply loader interval time
 var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount) {
-    if (loaderLoopCount == true) {
+    if (loaderLoopCount === true) {
         loaderLoop = setTimeout(function () {
             loopCount--;
             loaderTextContainer.find('.loader-text-white-bg[data-category="' + categories[catIndex] + '"]').addClass('active').css('animation-duration', intervalTiming + 'ms').delay(intervalTiming).queue(function () {
@@ -157,7 +161,7 @@ var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTex
             if (catIndex == categories.length) {
                 catIndex = 0;
             }
-            if (loopCount == 0 && windowLoaded == true) {
+            if (loopCount === 0 && windowLoaded === true) {
                 $('#loader-wrp').addClass('fade-away');
                 $('html,body').removeClass('popup-in-motion');
                 clearInterval(finishInterval);
@@ -165,7 +169,7 @@ var SetLoaderTimeOut = function (catIndex, intervalTiming, categories, loaderTex
         }, 700);
         return;
     }
-}
+};
 
 //Initialize loader
 var InitLoader = function () {
@@ -189,7 +193,7 @@ var InitLoader = function () {
         $('html,body').removeClass('popup-in-motion');
     });
     SetLoaderTimeOut(catIndex, intervalTiming, categories, loaderTextContainer, decreasedTime, loaderLoopCount, loaderLoop, loopCount);
-}
+};
 if ($('#loader-wrp').length) {
     InitLoader();
 }
@@ -206,7 +210,7 @@ var FixHeaderMenusPosition = function () {
             }
         }
     });
-}
+};
 
 //Initiate trending sliders
 var ResetTrendingSlides = function (trendItem) {
@@ -215,7 +219,7 @@ var ResetTrendingSlides = function (trendItem) {
         trendSlide.css('left', (trendSlide.index() * trendItem.innerWidth()));
     });
     trendItem.find('.trend-slide').eq(0).addClass('active');
-}
+};
 
 //Setting trending sliders intervals
 var SetTrendingInterval = function (trendItem, randomIntervalTime) {
@@ -233,10 +237,10 @@ var SetTrendingInterval = function (trendItem, randomIntervalTime) {
         });
         setTimeout(function () {
             trendItem.find('.trend-slide').eq(0).insertBefore($(trendItem).children('a')).css('left', ((trendItem.find('.trend-slide').length - 1) * trendItem.innerWidth()));
-        }, 1100)
+        }, 1100);
     }, randomIntervalTime);
     return interval;
-}
+};
 
 //scroll highlights
 var ScrollHighlights = function (highlightsItemWidth, direction) {
@@ -249,19 +253,19 @@ var ScrollHighlights = function (highlightsItemWidth, direction) {
     $('.highlights-carousel-wrp').animate({
         scrollLeft: calculatedScroll
     }, checkHighlightLimit);
-}
+};
 
 //Drag highlights with Mouse
 var DragHighlights = function (actualScroll, baseClick, newMousePos) {
     HighlightDiff = newMousePos - baseClick;
     $('.highlights-carousel-wrp').scrollLeft(actualScroll - HighlightDiff);
-}
+};
 
 //Check highlights limit
 var checkHighlightLimit = function () {
     highlightsCarouselWrpPos = $('.highlights-carousel-wrp').scrollLeft(),
         maxScroll = $('.highlights-carousel-wrp')[0].scrollWidth - $('.highlights-carousel-wrp').width();
-    if (highlightsCarouselWrpPos == 0) {
+    if (highlightsCarouselWrpPos === 0) {
         $('.highlights-controls a').removeClass('disabled');
         $('.highlights-controls .prev-btn').addClass('disabled');
     } else if (highlightsCarouselWrpPos >= (maxScroll - 20)) {
@@ -270,13 +274,13 @@ var checkHighlightLimit = function () {
     } else {
         $('.highlights-controls a').removeClass('disabled');
     }
-}
+};
 
 //Transform header during document scroll
 var TransformHeader = function (scrollPos, breakPos) {
     var topHeader = $('.top-header'),
         stickyHeader = $('.sticky-header'),
-        bottomHeader = $('.bottom-header'),
+        //bottomHeader = $('.bottom-header'),
         mainContent = $('main');
     if (scrollPos >= breakPos) {
         if ($('.top-header .account-wrp').length) {
@@ -295,13 +299,13 @@ var TransformHeader = function (scrollPos, breakPos) {
     } else {
         mainContent.css('margin-top', (breakPos - 1) + 'px');
     }
-}
+};
 
 //Add see all at the end of submenu in main nav
 var AddSeeAll = function (listItem) {
     if (listItem.children('ul').length) {
-        var childList = listItem.children('ul');
-        /*childList.children('li').each(function () {
+        /*var childList = listItem.children('ul');
+        childList.children('li').each(function () {
             AddSeeAll($(this));
         });*/
         var seeAllLink = listItem.children('a').attr('href'),
@@ -310,13 +314,13 @@ var AddSeeAll = function (listItem) {
         listItem.children('ul').prepend(seeAllItem);
         listItem.children('a').attr('href', 'javascript:void(0);');
     }
-}
+};
 var RemoveSeeAll = function (listItem) {
     var seeAllLink = listItem.find('a').attr('href'),
         seeAllTitle = listItem.find('a').attr('title');
     listItem.closest('ul').siblings('a').attr('href', seeAllLink).attr('title', seeAllTitle);
     listItem.remove();
-}
+};
 
 //Change menu header in smaller screen
 var ManipulateMainNav = function () {
@@ -342,7 +346,7 @@ var ManipulateMainNav = function () {
             $('.close-mobile-menu-btn').off();
         }
     }
-}
+};
 
 //Toggle main menu on smaller screens
 var ToggleMainNav = function () {
@@ -363,14 +367,14 @@ var ToggleMainNav = function () {
         $('.bottom-header .category-nav').find('li').find('a').off();
         $('.bottom-header .category-nav').find('ul').slideUp().removeClass('expand');
     }
-}
+};
 
 //Scroll back to top function
 var BackToTop = function () {
     $("html, body").animate({
         scrollTop: 0
     }, 700);
-}
+};
 
 //Main Carousel Parallax
 var MainBannerlParallax = function (scrollPos, breakPos) {
@@ -381,7 +385,7 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         if (scrollPos >= Math.floor(breakPos)) {
             if (newPaddingValue <= carouselBodyHeight) {
                 $('#main-carousel .carousel-body').css('padding-top', newPaddingValue);
-                $('.carousel-data').css('margin-top', (newTopValue * -.5));
+                $('.carousel-data').css('margin-top', (newTopValue * -0.5));
             }
         } else {
             $('#main-carousel .carousel-body').css('padding-top', 0);
@@ -392,10 +396,10 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         newBgPosition = scrollPos / 15;
         if (scrollPos >= breakPos) {
             if (newBgPosition <= categoryBannerHeight) {
-                $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
+                $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%');
             }
         } else {
-            $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%')
+            $('.category-banner').css('background-position-y', (50 - newBgPosition) + '%');
         }
     } else if ($('.article-with-bg').length) {
         var newBgPosition = scrollPos / 15,
@@ -404,7 +408,7 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
         $('.article-with-bg  section').css('bottom', newTop);
     } else if ($('#calendar-carousel').length) {
         var carouselBodyHeight = $('.details-carousel').height(),
-            carouselOffsetTop = $('.details-carousel').offset().top * .75,
+            carouselOffsetTop = $('.details-carousel').offset().top * 0.75,
             newTopValue = (scrollPos - carouselOffsetTop) / 3.5;
         if (scrollPos >= Math.floor(carouselOffsetTop)) {
             if (newTopValue <= carouselBodyHeight) {
@@ -414,12 +418,13 @@ var MainBannerlParallax = function (scrollPos, breakPos) {
             $('.details-carousel .details-carousel-item-wrp').css('top', 0);
         }
     }
-}
+};
 //Event Calendar
+//var setWeekInd = false;
 var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ],
-    daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    //daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     creatingCalendar = false,
     creatingRange = false,
     todaySet = false,
@@ -436,20 +441,21 @@ var getOrdinalIndicator = function (num) {
     if (lastNumber == 2 && num != 12) return 'nd';
     if (lastNumber == 3 && num != 13) return 'rd';
     return 'th';
-}
+};
 
 var ifCurrentExceedsOther = function (date, currentDay) {
     var monthDays = getDaysInMonth(date.getFullYear(), date.getMonth());
     if (currentDay <= monthDays) return currentDay;
     return monthDays;
-}
+};
 
 var getWeekNumber = function (date) {
     var yearStart = new Date(date.getFullYear(), 0, 1);
     return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-}
+};
 //Calendar Main Function
 var initCalendarView = function (calendarView) {
+    //Switch
     var switchControlView = function () {
         if (!$('.calendar-controls-wrp').hasClass('months-view')) {
             $('.calendar-controls-wrp').addClass('months-view');
@@ -470,29 +476,67 @@ var initCalendarView = function (calendarView) {
             var thisYear = $('#calendar-wrp').data('thisDate')[3],
                 currentYear = $('#calendar-wrp').data('currentDate')[2],
                 checkYearBefore = checkYearRangeBefore(currentYear);
-            if (checkYearBefore != false)
+            if (checkYearBefore !== false)
                 generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
             $('.calendar-controls-wrp').addClass('years-view');
             $(this).find('.calendar-month-year').fadeOut();
-            // $(this).find('.calendar-month-year').stop().animate({
-            //     width: 'hide'
-            // }, {
-            //     duration: 'fast'
-            // });
             $(this).find('.calendar-year-range').fadeIn();
-            $('.calendar-overview .calendar-months-view-wrp').fadeOut('fast').addClass('leaving')
-            setTimeout(function () {
-                $('.calendar-overview .calendar-years-view-wrp').fadeIn(500).css('display', 'flex').addClass('entering').find('.year:contains(' + thisYear + ')').addClass('this-year');
-                $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
-                $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
-            }, 300);
+            $('.calendar-overview .calendar-months-view-wrp').addClass('leaving').fadeOut('fast');
+            $('.calendar-overview .calendar-years-view-wrp').css({
+                'opacity': 0,
+                'display': 'flex'
+            }).animate({
+                opacity: 1
+            }, {
+                duration: 40,
+                complete: function () {
+                    $(this).addClass('entering');
+                }
+            }).find('.year:contains(' + thisYear + ')').addClass('this-year');
+            $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
+            $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
         }
-    }
+    };
 
+    var switchViews = function (calendarView) {
+        if (calendarView == 'today') {
+            $('#month-view').siblings().slideUp(150, function () {
+                $('#month-view').slideDown(150);
+                $('.calendar-this .this-day').siblings().hide().promise().done(function () {
+                    $('.calendar-this .this-day').show();
+                });
+            });
+            $('.calendar-overview').attr('class', 'calendar-overview');
+        } else if (calendarView == 'weekend') {
+            $('#weekend-view').siblings().slideUp(150).promise().done(function () {
+                $('#weekend-view').slideDown(150);
+                var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
+                initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
+                $('.calendar-this .this-weekend').siblings().hide().promise().done(function () {
+                    $('.calendar-this .this-weekend').show();
+                });
+            });
+            $('.calendar-overview').attr('class', 'calendar-overview weekend-view');
+        } else {
+            $('#week-view').siblings().slideUp(150).promise().done(function () {
+                $('#week-view').slideDown(150, function () {
+                    var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
+                    initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
+                    $('.calendar-this .this-week').siblings().hide().promise().done(function () {
+                        $('.calendar-this .this-week').show();
+                    });
+                });
+            });
+            $('.calendar-overview').attr('class', 'calendar-overview week-view');
+        }
+        $(document).scroll();
+        $('.calendar-month-wrp.active .day.active').removeClass('active').trigger('click', [false]);
+    };
+    //Check
     var checkMonthBefore = function (dateObj) {
         var monthsCreatedArr = monthsCreated.map(function (m) {
             return m.toDateString();
-        })
+        });
         if (monthsCreatedArr.indexOf(dateObj.toDateString()) == -1) {
             var monthAfter = monthsCreated.filter(function (m) {
                 return dateObj < m;
@@ -503,9 +547,9 @@ var initCalendarView = function (calendarView) {
                     }),
                     activeMonthDateObj = new Date($('.calendar-month-wrp.active').data('year'), $('.calendar-month-wrp.active').data('month')),
                     isPrevWindow = dateObj < activeMonthDateObj;
-                return [monthDiv, isPrevWindow]
+                return [monthDiv, isPrevWindow];
             }
-            return [undefined, false]
+            return [undefined, false];
         }
         var monthIndex = monthsCreatedArr.indexOf(dateObj.toDateString()),
             choosenMonth = $('.calendar-month-wrp').eq(monthIndex);
@@ -514,7 +558,7 @@ var initCalendarView = function (calendarView) {
         choosenMonth.find('.day').removeClass('active');
         choosenMonth.find('.day:contains(' + $('#calendar-wrp').data('currentDate')[0] + ')').first().addClass('active');
         return false;
-    }
+    };
 
     var checkYearRangeBefore = function (year) {
         var yearIndex = yearsCreated.indexOf(year),
@@ -527,7 +571,7 @@ var initCalendarView = function (calendarView) {
             });
             if (yearAfter.length) {
                 var yearAfterIndex = yearsCreated.indexOf(yearAfter[0]);
-                if (yearAfterIndex % 2 == 0) {
+                if (yearAfterIndex % 2 === 0) {
                     choosenYear = $('.years-range-wrp').filter(function () {
                         return $(this).data('startFrom') == yearAfter[0];
                     });
@@ -539,30 +583,31 @@ var initCalendarView = function (calendarView) {
                     return $(this).data('endAt') == yearAfter[0];
                 });
             } else {
-                return [startFrom, endAt, false]
+                return [startFrom, endAt, false];
             }
         }
-        if (choosenYear == undefined) choosenYear = $('.years-range-wrp').filter(function () {
+        if (choosenYear === undefined) choosenYear = $('.years-range-wrp').filter(function () {
             return $(this).data('startFrom') == year || $(this).data('endAt') == year;
         });
         updateCalControls(choosenYear.data('startFrom') + ' - ' + choosenYear.data('endAt'));
-        $('.years-range-wrp').removeClass('active')
+        $('.years-range-wrp').removeClass('active');
         choosenYear.addClass('active');
         $('.years-range-wrp .year').removeClass('active');
         choosenYear.find('.year:contains(' + year + ')').addClass('active');
         scrollToYear();
         return false;
-    }
-
+    };
+    //Set
     var setMonth = function (e, date) {
         var month = $(this).index(),
             year = $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(),
             dateObj = new Date(year, month),
             currentDay = $('#calendar-wrp').data('currentDate')[0],
             newDayLimit = ifCurrentExceedsOther(dateObj, currentDay);
-        if (date != undefined) dateObj = date;
+        if ($('calendar-overview').attr('class') != 'calendar-overview') newDayLimit = 1;
+        if (date !== undefined) dateObj = date;
         var checkMonth = checkMonthBefore(dateObj);
-        if (checkMonth != false) initCalendar(dateObj, checkMonth[0], checkMonth[1]);
+        if (checkMonth !== false) initCalendar(dateObj, checkMonth[0], checkMonth[1]);
         $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
             width: 'show'
         }, {
@@ -571,18 +616,22 @@ var initCalendarView = function (calendarView) {
             complete: function () {
                 $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
             }
-        })
+        });
         $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
         $('.calendar-month-wrp .day').removeClass('active');
-        $('.calendar-month-wrp').each(function () {
-            $(this).find('.day:contains(' + newDayLimit + ')').first().addClass('active');
-        });
-        setTimeout(function () {
-            $('.calendar-head-body').removeClass('leaving');
-        }, 300);
+        if ($('.calendar-head-body').hasClass('leaving')) {
+            setTimeout(function () {
+                $('.calendar-head-body').removeClass('leaving');
+            }, 300);
+        }
         $('#calendar-wrp').data('currentDate', [newDayLimit, dateObj.getMonth(), dateObj.getFullYear()]);
-        "calendar-overview" != $(".calendar-overview").attr("class") && ($(".calendar-month-wrp.active .day").removeClass("active"), initWeekView($(".calendar-month-wrp.active .day:contains(1)").first().addClass("active")));
-    }
+        $('.calendar-months-body-wrp').css({
+            height: Math.ceil($('.calendar-month-wrp.active .day').length / 7) * ($('.calendar-month-wrp.active .day').outerHeight()+4)
+        });
+        var newLimitDiv = $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first();
+        if ($('.calendar-overview').hasClass('weekend-view')) initWeekView(newLimitDiv, false);
+        else newLimitDiv.click();
+    };
 
     var setYear = function () {
         $('.calendar-years-view-wrp .year').removeClass('active');
@@ -602,9 +651,68 @@ var initCalendarView = function (calendarView) {
         $('.calendar-overview .calendar-years-view-wrp').fadeOut('fast').removeClass('entering').find('.year').removeClass('this-year active');
         setTimeout(function () {
             $('.calendar-overview .calendar-months-view-wrp').fadeIn().removeClass('leaving');
-        }, 300)
-    }
+        }, 300);
+    };
 
+    var setCalendarDate = function (e, initWeek) {
+        if ($(this).hasClass('active')) return;
+        var _this = $(this),
+            lastInWeekIndex = ceilToNearestValue(7, (_this.index() + 1)),
+            lastInWeek;
+        if (lastInWeekIndex > $('.calendar-month-wrp.active .day').length) lastInWeekIndex = $('.calendar-month-wrp.active .day').length;
+        lastInWeek = $('.calendar-month-wrp.active .day:nth-child(' + lastInWeekIndex + ')');
+        if (_this.text().trim() === '') return;
+        $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
+        _this.addClass('active');
+        $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
+        if ($('.calendar-overview').attr('class') != "calendar-overview") {
+            if (initWeek === undefined) initWeekView(lastInWeek, true);
+            var tabIndex = _this.index() % 7,
+                tabContainer = '#week-view';
+            $('.calendar-overview').hasClass('weekend-view') && (tabIndex = (_this.index() % 7) - 4, tabContainer = '#weekend-view');
+            var tab = $(tabContainer).find('.tabs-items li').eq(tabIndex);
+            if (!tab.hasClass('active')) tab.trigger('click', [true]);
+        }
+        $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
+            opacity: 0
+        }, {
+            duration: 150,
+            complete: function () {
+                $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
+                $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
+                $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
+                    opacity: 1
+                }, {
+                    duration: 150
+                });
+            }
+        });
+    };
+
+    var setWeek = function (e) {
+        if (e.which == 1 || e.which === 0) {
+            e.preventDefault();
+            $('.week-indicator').css('z-index', 10);
+            var startGrab = e.pageY || e.originalEvent.touches[0].pageY,
+                indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
+                stopIndicatorDrag = function (e) {
+                    //var dayHeight = $('.day').height(),
+                    var mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
+                        hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
+                            return mouseUpPos > $(this).offset().top;
+                        }).last();
+                    if (!hoveredWeek.length) hoveredWeek = $('.day:contains(1)').first();
+                    initWeekView(hoveredWeek);
+                    $('#calendar-wrp').off('mousemove mouseup mouseleave touchmove touchend');
+                };
+            $('#calendar-wrp').on('mouseup mouseleave touchend', stopIndicatorDrag);
+            $('#calendar-wrp').on('mousemove touchmove', function (e) {
+                var updatedPos = startGrab - (e.pageY || e.originalEvent.changedTouches[0].pageY);
+                $('.week-indicator').css('top', indicatorBasePos - updatedPos);
+            });
+        }
+    };
+    //Scroll
     var scrollToMonth = function (month) {
         var fullScroll = month.width(),
             allCalendars = month.prevAll().length,
@@ -616,7 +724,7 @@ var initCalendarView = function (calendarView) {
         }, function () {
             creatingCalendar = false;
         });
-    }
+    };
 
     var scrollToYear = function () {
         var fullScroll = $('.calendar-years-view-wrp').width(),
@@ -627,17 +735,28 @@ var initCalendarView = function (calendarView) {
         }, function () {
             creatingRange = false;
         });
-    }
+    };
 
     var posWeekIndicator = function (day) {
+        $('.week-indicator').css('z-index', '1');
         var dayPos = day.position().top,
+            dayHeight = day.outerHeight(),
+            dayWidth = day.outerWidth(),
+            weekWidth = dayWidth * 7 + 2,
             current = $('#calendar-wrp').data('currentDate');
+        if ($('.calendar-overview').hasClass('weekend-view')) weekWidth = dayWidth * 3 + 2;
         $('.week-indicator').stop().animate({
-            top: dayPos
+            top: dayPos,
+            height: dayHeight,
+            width: weekWidth
+        }, {
+            complete: function () {
+                $('.week-indicator').css('z-index', '');
+            }
         });
         updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
-    }
-
+    };
+    //Update
     var updateDay = function (currentMonth, dayDate, year) {
         $('#calendar-wrp .calendar-today>span').stop().animate({
             opacity: 0
@@ -655,7 +774,7 @@ var initCalendarView = function (calendarView) {
                 });
             }
         });
-    }
+    };
 
     var updateCalControls = function (year) {
         $('.calendar-controls-wrp .calendar-today>span').stop().animate({
@@ -672,19 +791,19 @@ var initCalendarView = function (calendarView) {
                 });
             }
         });
-    }
+    };
 
     var updateWeekNumber = function (date) {
         var weekNumber = getWeekNumber(date);
         if ($('.week-indicator span').text() == weekNumber) return;
         $('.week-indicator span').fadeOut(150, function () {
             $(this).text(weekNumber).fadeIn(150);
-        })
-    }
-
+        });
+    };
+    //Generate
     var generateYearsView = function (startFrom, endAt, yearPrev, insertBefore) {
         var yearsRangeWrp = $('<div class="years-range-wrp"></div>');
-        insertBefore != undefined ? yearsRangeWrp.insertBefore(insertBefore) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
+        insertBefore !== undefined ? yearsRangeWrp.insertBefore(insertBefore) : $('.calendar-overview .calendar-years-view-wrp').append(yearsRangeWrp);
         for (var i = startFrom; i <= endAt; i++) {
             yearsRangeWrp.append('<div class="calendar-unit year">\n<div>' + i + '</div>\n</div>');
         }
@@ -703,14 +822,14 @@ var initCalendarView = function (calendarView) {
         scrollToYear();
         yearsCreated.push(startFrom, endAt);
         yearsCreated.sort(function (a, b) {
-            return a - b
+            return a - b;
         });
-    }
+    };
 
     var initCalendar = function () {
         var date = new Date(),
             monthPrev = false,
-            prevCalendar = undefined;
+            prevCalendar;
         if (arguments.length) {
             date = arguments[0];
             prevCalendar = arguments[1],
@@ -727,14 +846,14 @@ var initCalendarView = function (calendarView) {
             emptyDays = [];
         emptyDays[firstDayIndex] = 1;
         var monthView = $('<div class="calendar-month-wrp"></div>');
-        prevCalendar != undefined ? monthView.insertBefore(prevCalendar) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
+        prevCalendar !== undefined ? monthView.insertBefore(prevCalendar) : $('#calendar-wrp .calendar-months-body-wrp').append(monthView);
         monthView.append('<div class="day calendar-unit">\n<div>' + emptyDays.join('</div>\n</div>\n<div class="day calendar-unit">\n<div>') + '</div\ndiv>\n');
         for (var i = 2; i <= days; i++) {
             monthView.append('<div class="day calendar-unit">\n<div>' + i + '</div>\n</div>\n');
         }
         monthsCreated.push(new Date(year, month));
         monthsCreated.sort(function (a, b) {
-            return a - b
+            return a - b;
         });
         $('#calendar-wrp').data('currentDate', [dayDate, month, year]);
         $('#calendar-wrp .calendar-month-wrp,#calendar-wrp .calendar-month-wrp .day').removeClass('active');
@@ -744,11 +863,11 @@ var initCalendarView = function (calendarView) {
             'monthName': currentMonth,
             'day': dayDate,
             'totalDays': days
-        }).addClass('active').find('.day:contains(' + dayDate + ')').first().addClass('active');
+        }).addClass('active').find('.day:contains(' + dayDate + ')').first().trigger('click', [false]);
         if (!todaySet) {
             todaySet = true;
             $('#calendar-wrp').data('thisDate', date.toDateString().split(' '));
-            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today').click();
+            monthView.addClass('current-month').find('.day:contains(' + dayDate + ')').first().addClass('today');
         }
         updateDay(currentMonth, dayDate, year);
         if (monthPrev) {
@@ -757,18 +876,17 @@ var initCalendarView = function (calendarView) {
             $('#calendar-wrp .calendar-months-body-wrp').scrollLeft(roundToNearestValue(fullScroll, (actualScroll + fullScroll)));
         }
         scrollToMonth(monthView);
-    }
+    };
 
-    var initWeekView = function (dayInWeek) {
+    var initWeekView = function (dayInWeek, stop) {
         var weekPos = dayInWeek.position().top,
             dayActive = $('.calendar-month-wrp.active .day.active').index() % 7,
             thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
                 return $(this).position().top == weekPos;
             }),
-            posWeekDayIndex = ceilToNearestValue(7, dayInWeek.index());
-        posWeekDayIndex == 0 && (posWeekDayIndex = 7);
+            posWeekDayIndex = ceilToNearestValue(7, (dayInWeek.index()+1));
         posWeekDayIndex > $('.calendar-month-wrp.active .day').length && (posWeekDayIndex = $('.calendar-month-wrp.active .day').length);
-        $('.calendar-month-wrp.active .day').removeClass('this-week active');
+        $('.calendar-month-wrp.active .day').removeClass('this-week');
         if ($('.calendar-overview.weekend-view').length) {
             if (thisWeek.length < 5) {
                 var index = dayInWeek.index(),
@@ -777,100 +895,21 @@ var initCalendarView = function (calendarView) {
             }
             if (dayActive < 4) dayActive = 4;
         }
-        if (thisWeek.length > 4 && thisWeek.eq(dayActive).text().trim() == '') {
-            while (thisWeek.eq(dayActive).text().trim() == '' && dayActive < 6) {
+        if (thisWeek.length > 4 && thisWeek.eq(dayActive).text().trim() === '') {
+            while (thisWeek.eq(dayActive).text().trim() === '' && dayActive < 6) {
                 dayActive++;
             }
         }
-        thisWeek.addClass('this-week').eq(dayActive).addClass('active').click();
+        thisWeek.addClass('this-week');
+        if (!stop) thisWeek.eq(dayActive).trigger('click', [false]);
         dayInWeek = $('.calendar-month-wrp.active .day:nth-of-type(' + posWeekDayIndex + ')');
         posWeekIndicator(dayInWeek);
-    }
+    };
 
-    var setCalendarDate = function () {
-        var _this = $(this);
-        $('#calendar-wrp .calendar-month-wrp .day').removeClass('active');
-        _this.addClass('active');
-        $('#calendar-wrp').data('currentDate')[0] = Number(_this.text());
-        if ($('.calendar-overview').hasClass('weekend-view')) {
-            var tabIndex = (_this.index() % 7) - 4;
-            $('#weekend-view .tabs-items li').eq(tabIndex).click();
-        } else if ($('.calendar-overview').hasClass('week-view')) {
-            $('#week-view .tabs-items li').eq(_this.index() % 7).click();
-        }
-        $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
-            opacity: 0
-        }, {
-            duration: 150,
-            complete: function () {
-                $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
-                $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
-                $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
-                    opacity: 1
-                }, {
-                    duration: 150
-                });
-            }
-        });
-    }
-
-    var setWeek = function (e) {
-        if (e.which == 1 || e.which == 0) {
-            e.preventDefault();
-            var startGrab = e.pageY || e.originalEvent.touches[0].pageY,
-                indicatorBasePos = parseInt($('.week-indicator').css('top'), 10),
-                stopIndicatorDrag = function (e) {
-                    var dayHeight = $('.day').height(),
-                        mouseUpPos = e.pageY || e.originalEvent.changedTouches[0].pageY,
-                        hoveredWeek = $('.calendar-month-wrp.active .day').filter(function () {
-                            return mouseUpPos > $(this).offset().top;
-                        }).last();
-                    if (!hoveredWeek.length) hoveredWeek = $('.day:contains(1)').first();
-                    initWeekView(hoveredWeek);
-                    $('#calendar-wrp').off('mousemove mouseup mouseleave touchmove touchend');
-                };
-            $('#calendar-wrp').on('mousemove touchmove', function (e) {
-                var updatedPos = startGrab - (e.pageY || e.originalEvent.changedTouches[0].pageY);
-                $('.week-indicator').css('top', indicatorBasePos - updatedPos);
-                $('#calendar-wrp').on('mouseup mouseleave touchend', stopIndicatorDrag)
-            });
-        }
-    }
-
-    var switchViews = function (calendarView) {
-        if (calendarView == 'today') {
-            $('#month-view').siblings().slideUp(150, function () {
-                $('#month-view').slideDown(150);
-                $('.calendar-this .this-day').siblings().fadeOut(function () {
-                    $('.calendar-this .this-day').fadeIn();
-                });
-            });
-            $('.calendar-overview').attr('class', 'calendar-overview');
-        } else if (calendarView == 'weekend') {
-            $('#weekend-view').siblings().slideUp(150, function () {
-                $('#weekend-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
-                    weekIndex == 0 && (weekIndex = 7);
-                    initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
-                    $('.calendar-this .this-weekend').siblings().fadeOut(function () {
-                        $('.calendar-this .this-weekend').fadeIn();
-                    });
-                });
-            });
-            $('.calendar-overview').attr('class', 'calendar-overview weekend-view');
-        } else {
-            $('#week-view').siblings().slideUp(150, function () {
-                $('#week-view').slideDown(150, function () {
-                    var weekIndex = ceilToNearestValue(7, $('.calendar-month-wrp .day.active').index());
-                    weekIndex == 0 && (weekIndex = 7);
-                    initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
-                    $('.calendar-this .this-week').siblings().fadeOut(function () {
-                        $('.calendar-this .this-week').fadeIn();
-                    })
-                });
-            });
-            $('.calendar-overview').attr('class', 'calendar-overview week-view');
-        }
+    function readjustCalendar(){
+        setTimeout(function(){
+            $('.calendar-views-wrp p.active').click();
+        },300);
     }
 
     //Views controls
@@ -885,6 +924,7 @@ var initCalendarView = function (calendarView) {
             height: spanHeight
         });
         $(this).addClass('active').siblings().removeClass('active');
+
         switchViews(calendarView);
     });
     $('.calendar-this .control-btn').on('click', function () {
@@ -894,8 +934,9 @@ var initCalendarView = function (calendarView) {
         $('.day.today').click();
         scrollToMonth(currentMonth);
         updateDay(currentMonthData.monthName, currentMonthData.day, currentMonthData.year);
+
         initWeekView($('.day.today'));
-    })
+    });
     $('#calendar-wrp .calendar-months-body-wrp').off().on('click', '.day:not(:empty)', setCalendarDate);
     //Month view
     $('.calendar-controls-wrp .calendar-prev').on('click', function (e) {
@@ -921,17 +962,17 @@ var initCalendarView = function (calendarView) {
         var prevYear = Number($('.calendar-controls-wrp .calendar-today .calendar-month-year').text()) - 1;
         $('#calendar-wrp').data('currentDate')[2] = prevYear;
         updateCalControls(prevYear);
-    })
+    });
     $('.calendar-controls-wrp .year-next').on('click', function () {
         var nextYear = Number($('.calendar-controls-wrp .calendar-today .calendar-month-year').text()) + 1;
         $('#calendar-wrp').data('currentDate')[2] = nextYear;
         updateCalControls(nextYear);
-    })
+    });
     //Year Range View
     $('.calendar-controls-wrp .year-range-prev').on('click', function () {
         var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('startFrom') - 12,
             checkYearBefore = checkYearRangeBefore(rangeStart);
-        if (checkYearBefore != false)
+        if (checkYearBefore !== false)
             generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
         $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
         $('.calendar-overview .calendar-years-view-wrp .year:contains(' + rangeStart + ')').addClass('active');
@@ -939,7 +980,7 @@ var initCalendarView = function (calendarView) {
     $('.calendar-controls-wrp .year-range-next').on('click', function () {
         var rangeStart = $('.calendar-years-view-wrp .years-range-wrp.active').data('endAt') + 1,
             checkYearBefore = checkYearRangeBefore(rangeStart);
-        if (checkYearBefore != false)
+        if (checkYearBefore !== false)
             generateYearsView(checkYearBefore[0], checkYearBefore[1], checkYearBefore[2], checkYearBefore[3]);
         $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
         $('.calendar-overview .calendar-years-view-wrp .year:contains(' + rangeStart + ')').addClass('active');
@@ -950,18 +991,34 @@ var initCalendarView = function (calendarView) {
     //set Year
     $('.calendar-years-view-wrp').on('click', '.year', setYear);
     //setWeek
-    $('.week-indicator').on('mousedown touchstart', setWeek);
+
+    $('.week-indicator').on('mousedown touchstart', function (e) {
+        setWeek(e);
+    });
+    //Day in Week
+    $('#weekend-view .tabs-items li').on('click', function (e, stop) {
+        if (stop) return;
+        var index = $(this).index() + 4;
+        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').trigger('click', [false]);
+    });
+    $('#week-view .tabs-items li').on('click', function (e, stop) {
+        if (stop) return;
+        var index = $(this).index();
+        $('.calendar-month-wrp.active .this-week').eq(index).removeClass('active').click();
+    });
 
     initCalendar();
     if (calendarView != 'today') {
-        var weekIndex = Math.floor(Math.ceil($('.day.today').index() / 6.9) * 6.9);
-        initWeekView($('.day').eq(weekIndex));
+        var weekIndex = ceilToNearestValue(7, ($('.day.today').index()+1));
+        initWeekView($('.day:nth-child(' + weekIndex + ')'));
     }
+
     switchViews(calendarView);
     $('.calendar-views-wrp p').filter(function () {
-        return $(this).text().trim().toLowerCase() == calendarView
+        return $(this).text().trim().toLowerCase() == calendarView;
     }).click();
-}
+    $(window).resize(readjustCalendar);
+};
 
 //ifArabic
 var ifArabic = function (input, strInput) {
@@ -973,7 +1030,7 @@ var ifArabic = function (input, strInput) {
         input.removeClass('arabic-input');
         return false;
     }
-}
+};
 
 //ifParagraphExceeds
 var ifParagraphExceeds = function (input, limit) {
@@ -985,7 +1042,7 @@ var ifParagraphExceeds = function (input, limit) {
     } else {
         return false;
     }
-}
+};
 
 //Continue Reading
 var ifContinueReading = function (input, limit) {
@@ -995,7 +1052,7 @@ var ifContinueReading = function (input, limit) {
     } else {
         input.siblings('.continue-reading').removeClass('exceeds');
     }
-}
+};
 
 //ifImagesExceeds
 var ifImagesExceeds = function (wrp) {
@@ -1010,7 +1067,7 @@ var ifImagesExceeds = function (wrp) {
             break;
         }
     }
-}
+};
 
 //showOnScroll
 var showOnScroll = function () {
@@ -1019,15 +1076,15 @@ var showOnScroll = function () {
             if ($(this).hasClass('active') || !$(this).is(':visible')) return;
             var docScroll = $(document).scrollTop(),
                 posTop = $(this).offset().top - docScroll,
-                startFadeIn = $(window).height() * .75;
+                startFadeIn = $(window).height() * 0.75;
             if (posTop < startFadeIn) {
                 $(this).addClass('active');
             }
         });
-    }
+    };
     checkPos();
     $(document).scroll(checkPos);
-}
+};
 
 //initTextScroll
 var initTextScroll = function () {
@@ -1035,8 +1092,8 @@ var initTextScroll = function () {
         $('.text-scroll .text-scroll-unit-content>*').each(function () {
             var docScroll = $(document).scrollTop(),
                 posTop = $(this).offset().top - docScroll,
-                startFadeIn = $(window).height() * .65,
-                startFadeOut = $(window).height() * .3,
+                startFadeIn = $(window).height() * 0.65,
+                startFadeOut = $(window).height() * 0.3,
                 newOpacity;
             if (posTop < startFadeIn) {
                 if (posTop > startFadeOut) {
@@ -1047,12 +1104,12 @@ var initTextScroll = function () {
             } else {
                 newOpacity = 1 - Math.abs(((startFadeIn - posTop) / 150));
             }
-            $(this).css('opacity', newOpacity)
+            $(this).css('opacity', newOpacity);
         });
-    }
+    };
     distributeOpacity();
     $(document).scroll(distributeOpacity);
-}
+};
 
 //isOpen
 var isOpen = function () {
@@ -1062,7 +1119,7 @@ var isOpen = function () {
         day = date.getDay().toString(),
         hour = convertTo_00(date.getHours().toString()),
         minutes = convertTo_00(date.getMinutes().toString());
-    if (day == 0 && $('.opening-details li:contains("Saturday") .hour .to').text().indexOf('AM') != -1)
+    if (day === 0 && $('.opening-details li:contains("Saturday") .hour .to').text().indexOf('AM') != -1)
         day = 7;
     var timeString = day + hour + minutes;
     $('.opening-details li').each(function () {
@@ -1088,7 +1145,7 @@ var isOpen = function () {
 var convertTo_00 = function (value) {
     value = '0' + value.toString();
     return value.slice(-2);
-}
+};
 
 var convertTo_24 = function (time) {
     if (time.toUpperCase().indexOf('PM') != -1 && time.split(':')[0] < 12) {
@@ -1096,7 +1153,7 @@ var convertTo_24 = function (time) {
         time = Number(arr[0]) + 12 + ':' + arr[1];
     }
     return time.replace(/[^0-9$:]/g, '');
-}
+};
 
 var getTimeValue = function (dayIndex, from, to) {
     var fromValue = dayIndex + from.split(':').join('');
@@ -1105,7 +1162,7 @@ var getTimeValue = function (dayIndex, from, to) {
         dayIndex++;
     var toValue = dayIndex + to.split(':').join('');
     return [fromValue, toValue];
-}
+};
 
 var ratingCircleResult = function () {
     $('.general-rating-container .circle-container').each(function () {
@@ -1115,7 +1172,7 @@ var ratingCircleResult = function () {
         var newDashOffsetValue = 290 - (ratingValue * 290 / 100);
         $(this).find('circle').css('stroke-dashoffset', newDashOffsetValue);
     });
-}
+};
 
 //Get Svg
 var getSvg = function (selector) {
@@ -1124,7 +1181,7 @@ var getSvg = function (selector) {
         var path = _this.find('img').attr('src');
         $.get(path, function (data) {
             _this.html(data);
-        }, 'text')
+        }, 'text');
     });
 };
 
@@ -1133,24 +1190,24 @@ var randomLimit = function (min, max) {
     var random = Math.random();
     var result = Math.round(random * (max - min) + min);
     return result;
-}
+};
 
 //Set Cursor Limit
-var setCursorLimit = function (input, charNumb, e) {
-    var limit = input.val().length - charNumb;
-    var cursorPos = input[0].selectionStart;
-    var cursorEnd = input[0].selectionEnd;
-    if (e) {
-        if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
-            e.preventDefault();
-        } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
-            e.preventDefault();
-        }
-    }
-    if (cursorPos > limit) {
-        input[0].setSelectionRange(limit, limit);
-    }
-}
+// var setCursorLimit = function (input, charNumb, e) {
+//     var limit = input.val().length - charNumb;
+//     var cursorPos = input[0].selectionStart;
+//     var cursorEnd = input[0].selectionEnd;
+//     if (e) {
+//         if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
+//             e.preventDefault();
+//         } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
+//             e.preventDefault();
+//         }
+//     }
+//     if (cursorPos > limit) {
+//         input[0].setSelectionRange(limit, limit);
+//     }
+// };
 
 //For Demo
 var GetParameterByName = function (name, url) {
@@ -1161,7 +1218,7 @@ var GetParameterByName = function (name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1169,9 +1226,9 @@ var GetParameterByName = function (name, url) {
 var SetActiveCategory = function () {
     if (location.pathname == "/") return;
     var cat = $('body').attr('class').split(' ')[0].replace('-theme', '');
-    if (cat != null && cat != 'null')
+    if (cat !== null && cat != 'null')
         $('.sticky-header .category-nav li a:contains(' + cat + ')').addClass('active');
-}
+};
 
 //Category names to inner pages
 var SetInnersCategory = function () {
@@ -1179,16 +1236,16 @@ var SetInnersCategory = function () {
     var SubCategory = GetParameterByName('subcategory');
     $('body').addClass(Category + '-theme');
     if ($('.category-banner').length) {
-        if (Category != null) {
+        if (Category !== null) {
             $('.category-banner h1').html(Category);
         }
-        if (SubCategory != null) {
+        if (SubCategory !== null) {
             $('.category-banner h1').html(SubCategory);
         }
     }
     if ($('.category-best-wrp').length) {
         $('.category-best-wrp h2 .category-name').html(Category);
-        if (SubCategory != null) {
+        if (SubCategory !== null) {
             $('.category-best-wrp h2 .category-name').html(SubCategory);
         }
     }
@@ -1204,7 +1261,7 @@ var SetInnersCategory = function () {
             $('.sub-category-name').attr('title', SubCategory).attr('href', 'items-listing.html?category=' + Category + '&subcategory=' + SubCategory);
         }
     }
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1219,13 +1276,13 @@ var MoveAd = function (scrollPos, breakPos, stopPos, stopBreakPos, customTop) {
     } else {
         adContainer.removeClass('fixed').removeAttr('style');
     }
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
-if ($('gallery-section-container').length) {
-    var mainSlideIndex = 0;
-}
+// if ($('gallery-section-container').length) {
+//     var mainSlideIndex = 0;
+// }
 
 //Initialize gallery slider
 var DetailsGallerySlides = [],
@@ -1252,7 +1309,7 @@ var InitDetailsGallerySlider = function () {
     }
     $('.side-slide-item:not(:last-child) a').off().on('click', function () {
         DisplayClickedDetailsGalleryItem($(this).find('img').attr('data-index'));
-    })
+    });
     $('.gallery-next').off().on('click', function () {
         NextDetailsGalleryItem();
     });
@@ -1271,7 +1328,7 @@ var InitDetailsGallerySlider = function () {
         InitPopupGallery();
     });
     AutoPlayDetailsGallery();
-}
+};
 
 //Display clicked gallery slide
 var DisplayClickedDetailsGalleryItem = function (imageIndex) {
@@ -1285,7 +1342,7 @@ var DisplayClickedDetailsGalleryItem = function (imageIndex) {
             $(this).remove().dequeue();
         });
     });
-}
+};
 
 //Display next gallery slide
 var NextDetailsGalleryItem = function () {
@@ -1295,7 +1352,7 @@ var NextDetailsGalleryItem = function () {
     } else {
         DisplayClickedDetailsGalleryItem(0);
     }
-}
+};
 
 //Display prev gallery slide
 var PrevDetailsGalleryItem = function () {
@@ -1305,15 +1362,15 @@ var PrevDetailsGalleryItem = function () {
     } else {
         DisplayClickedDetailsGalleryItem(DetailsGallerySlides.length - 1);
     }
-}
+};
 
 //Auto play details gallery
 var AutoPlayDetailsGallery = function () {
-    var detailsGalleryInterval = setInterval(function () {
-        if (!IsDetailsGalleryPaused && !$('#lightbox-popup').hasClass('active')) {
-            NextDetailsGalleryItem();
-        }
-    }, 2500)
+    // var detailsGalleryInterval = setInterval(function () {
+    //     if (!IsDetailsGalleryPaused && !$('#lightbox-popup').hasClass('active')) {
+    //         NextDetailsGalleryItem();
+    //     }
+    // }, 2500);
     $('.main-slide-wrp').on('mouseover mouseenter', function () {
         IsDetailsGalleryPaused = true;
     });
@@ -1323,7 +1380,7 @@ var AutoPlayDetailsGallery = function () {
             clearTimeout(IsDetailsGalleryPausedTimeout);
         }, 3000);
     });
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1351,7 +1408,7 @@ var DrawPopupGallery = function (galleryList, activeImgIndex) {
             DestroyPopupGallery();
         }, 300);
     });
-}
+};
 
 //Initialize popup gallery slider
 var InitPopupGallery = function () {
@@ -1374,7 +1431,7 @@ var InitPopupGallery = function () {
         }
         lastScreenSize = CalcLastScreenSize(lastScreenSize);
     }
-}
+};
 
 //Destroy popup gallery slide
 var DestroyPopupGallery = function () {
@@ -1388,7 +1445,7 @@ var DestroyPopupGallery = function () {
         clearTimeout(IsDetailsGalleryPausedTimeout);
     }, 3000);
     $('html,body').removeClass('popup-in-motion');
-}
+};
 
 //Populate gallery popup
 var PopulateGalleryPopup = function () {
@@ -1404,7 +1461,7 @@ var PopulateGalleryPopup = function () {
         imgSmallSliderContainerWidth += $(this).innerWidth();
     });
     imgSmallSliderContainer.innerWidth(imgSmallSliderContainerWidth);
-}
+};
 
 //Display clicked popup gallery slide
 var DisplayClickedPopupGalleryItem = function (imageIndex) {
@@ -1428,15 +1485,15 @@ var DisplayClickedPopupGalleryItem = function (imageIndex) {
     setTimeout(function () {
         MoveMarker();
     }, 200);
-}
+};
 
 //Move small image slider
 var MoveGalleryPopupSlider = function (prevImageIndex, clickedImageIndex) {
     if (PopupGallerySlides.length > 7) {
-        var imageSmallSliderWrpWidth = $('.image-small-slider-wrp').innerWidth();
-        var imgHolderWidth = $('.img-small-slider-container .img-holder').innerWidth();
-        var differenceToEnd = PopupGallerySlides.length - 1 - clickedImageIndex;
-        var differenceToStart = clickedImageIndex - 0;
+        //var imageSmallSliderWrpWidth = $('.image-small-slider-wrp').innerWidth();
+        var imgHolderWidth = $('.img-small-slider-container .img-holder').innerWidth(),
+            differenceToEnd = PopupGallerySlides.length - 1 - clickedImageIndex,
+            differenceToStart = clickedImageIndex - 0;
         if (clickedImageIndex >= prevImageIndex) {
             if (differenceToEnd < 3) {
                 imgSmallSliderContainer.css('margin-left', (PopupGallerySlides.length - 7) * imgHolderWidth * -1);
@@ -1451,7 +1508,7 @@ var MoveGalleryPopupSlider = function (prevImageIndex, clickedImageIndex) {
             }
         }
     }
-}
+};
 
 //Move marker on active image
 var MoveMarker = function () {
@@ -1467,7 +1524,7 @@ var MoveMarker = function () {
         'width': width,
         'height': height
     });*/
-}
+};
 
 //Display next popup gallery slide
 var NextPopupGalleryItem = function () {
@@ -1477,7 +1534,7 @@ var NextPopupGalleryItem = function () {
         var nextIndex = 0;
     }
     DisplayClickedPopupGalleryItem(nextIndex);
-}
+};
 
 //Display prev popup gallery slide
 var PrevPopupGalleryItem = function () {
@@ -1487,12 +1544,12 @@ var PrevPopupGalleryItem = function () {
         var prevIndex = parseInt(PopupGallerySlides.length) - 1;
     }
     DisplayClickedPopupGalleryItem(prevIndex);
-}
+};
 
 //Open gallery popup
 var ActivateGalleryPopup = function () {
     $('#lightbox-popup').addClass('active image-slider');
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1503,7 +1560,7 @@ var PopulatePopup = function (type, title) {
     $('#popup-base .popup-title span').html(title);
     $('#popup-base').find('.' + type + '-container').fadeIn(0);
     $('#popup-base').addClass('popup-active ' + type + '-popup-active').find('.close-btn').addClass('init');
-}
+};
 
 //Search Autocomplete
 var SearchAutocomplete = function () {
@@ -1517,7 +1574,7 @@ var SearchAutocomplete = function () {
         $('#popup-base .search-input input').val(keywordVal);
         $('#popup-base .autocomplete-keywords').removeClass('opened').slideUp('fast');
         $('#popup-base .search-input a').click();
-    })
+    });
     var searchKeyWord = $(this).val(),
         keywordRegExp = new RegExp("(" + searchKeyWord + ")", "gi"),
         allKeywordsHeights = 0;
@@ -1526,7 +1583,7 @@ var SearchAutocomplete = function () {
         $(this).text(autocompleteText);
         allKeywordsHeights += $(this).outerHeight();
         var ifMatch = autocompleteText.match(keywordRegExp);
-        if (ifMatch != null) {
+        if (ifMatch !== null) {
             var matchRegExp = new RegExp("(" + ifMatch[0] + ")", "gi"),
                 highlightedKeywords = $(this).text().replace(matchRegExp, function (x) {
                     return '<span class="bold">' + x + '</span>';
@@ -1538,8 +1595,8 @@ var SearchAutocomplete = function () {
         height: allKeywordsHeights
     }, {
         duration: 'fast'
-    })
-}
+    });
+};
 
 //Change selected category
 var ChangeSelectedCat = function (obj) {
@@ -1547,7 +1604,7 @@ var ChangeSelectedCat = function (obj) {
     var selectedCat = obj.closest('li').addClass('active').text().trim();
     $('.search-filter-display').text(selectedCat);
     $('.search-input-filter-wrp').removeClass('active');
-}
+};
 
 //Category dropdown initiation
 var InitCatDropdown = function () {
@@ -1559,7 +1616,7 @@ var InitCatDropdown = function () {
             ChangeSelectedCat($(this));
         });
     }
-}
+};
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1572,28 +1629,28 @@ var ArrangeSitemap = function (columnsCount) {
     var columnCounter = 0;
     var columnLeft = 0;
     var maxBottomOffset = 0;
-    var additionalMargin =
-        $('.sitemap-list-wrp').each(function () {
-            upperSiblingBottomIndex = parseInt($(this).index() - columnsCount);
-            columnLeft = columnCounter * columnWidth;
-            if (upperSiblingBottomIndex >= 0) {
-                upperSiblingBottomOffset = $('.sitemap-list-wrp').eq(upperSiblingBottomIndex).position().top + $('.sitemap-list-wrp').eq(upperSiblingBottomIndex).innerHeight() + 5;
-            }
-            $(this).css({
-                'left': columnLeft,
-                'top': upperSiblingBottomOffset
-            });
-            currentBottomOffset = $(this).position().top + $(this).innerHeight() + 5;
-            if (currentBottomOffset > maxBottomOffset) {
-                maxBottomOffset = currentBottomOffset
-            }
-            $('.sitemap-list-container').innerHeight(maxBottomOffset);
-            columnCounter++;
-            if (columnCounter == 4) {
-                columnCounter = 0;
-            }
+    //var additionalMargin =
+    $('.sitemap-list-wrp').each(function () {
+        upperSiblingBottomIndex = parseInt($(this).index() - columnsCount);
+        columnLeft = columnCounter * columnWidth;
+        if (upperSiblingBottomIndex >= 0) {
+            upperSiblingBottomOffset = $('.sitemap-list-wrp').eq(upperSiblingBottomIndex).position().top + $('.sitemap-list-wrp').eq(upperSiblingBottomIndex).innerHeight() + 5;
+        }
+        $(this).css({
+            'left': columnLeft,
+            'top': upperSiblingBottomOffset
         });
-}
+        currentBottomOffset = $(this).position().top + $(this).innerHeight() + 5;
+        if (currentBottomOffset > maxBottomOffset) {
+            maxBottomOffset = currentBottomOffset;
+        }
+        $('.sitemap-list-container').innerHeight(maxBottomOffset);
+        columnCounter++;
+        if (columnCounter == 4) {
+            columnCounter = 0;
+        }
+    });
+};
 
 //---------------------------------------------------------------------------------------------------
 //initDetailsCarousel
@@ -1621,13 +1678,13 @@ var detailsCarousel = function () {
         $('.details-carousel-item-wrp').eq(index).addClass('active').show();
         $('.details-carousel-dot').removeClass('active');
         $('.details-carousel-dot').eq(index).addClass('active');
-    }
+    };
 
     $('.details-carousel-dot').on('click', function () {
         var index = $(this).index();
         if ($('.details-carousel-item-wrp.active').index() == index) return;
         setActiveItem(index);
-    })
+    });
 
     detailsNext.on('click', function () {
         var index = $('.details-carousel-item-wrp.active').index() + 1;
@@ -1660,7 +1717,7 @@ var ExpandFaqCat = function (obj) {
     var faqCatClicked = obj.closest('.faq-category');
     $('.faq-category').not(faqCatClicked).removeClass('active').find('.faq-wrp').slideUp();
     faqCatClicked.toggleClass('active').find('.faq-wrp').slideToggle(300);
-}
+};
 
 //Search in FAQs
 var SearchFaq = function (searchWord) {
@@ -1673,10 +1730,10 @@ var SearchFaq = function (searchWord) {
             desc = item.find('p'),
             titleMatch = title.text().match(searchWordRegex),
             descMatch = desc.text().match(searchWordRegex);
-        if (searchWord != '' && searchWord != null && searchWord != undefined) {
+        if (searchWord !== '' && searchWord !== null && searchWord !== undefined) {
             $('.faq-category-wrp').hide();
             $('.faq-search-result-wrp').show();
-            if (titleMatch != null || descMatch != null) {
+            if (titleMatch !== null || descMatch !== null) {
                 haveRes = true;
                 titleHighlightedKeywords = title.text().replace(searchWordRegex, function (x) {
                     return '<span class="mark">' + x + '</span>';
@@ -1698,11 +1755,34 @@ var SearchFaq = function (searchWord) {
             $('.faq-category-wrp').show();
         }
     });
-}
+};
 
 var windowLoaded = false;
 //document ready
 $(document).ready(function () {
+    //Scroll to id
+    if (window.location.href.indexOf('scrollto=') > -1) {
+        var strMainFraction = window.location.href.split('scrollto=');
+        var strSubFraction = strMainFraction[1];
+        if (strMainFraction[1].indexOf('&') > -1) {
+            strSubFraction = strMainFraction[1].split('&');
+            strSubFraction = strSubFraction[0];
+        }
+        if ($('#' + strSubFraction).length) {
+            var heightToSub = 0;
+            var additionalHeight = 10;
+            var bottomHeaderHeight = 0;
+            var attachedMenuHeight = $('.attached-menu').height();
+            if ($(window).width() > 1024) {
+                bottomHeaderHeight = $('.bottom-header').height();
+            }
+            heightToSub = bottomHeaderHeight + attachedMenuHeight + additionalHeight;
+            $('html,body').animate({
+                scrollTop: $('#' + strSubFraction).offset().top - heightToSub
+            }, 500);
+        }
+    }
+
     if ($('.items-list-wrp').length && $('.items-list-wrp').find('.ads-wrp').length) {
         $('.items-list-wrp').css('min-height', $('.ads-wrp').height());
     }
@@ -1777,13 +1857,13 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('#lightbox-popup').removeAttr('class');
             }, 300);
-        })
+        });
     }
 
-    if ($('.open-location-box').length && $('#lightbox-popup').length) {
-        $('.open-location-box').on('click', function (e) {
+    if ($('.open-iframe-lightbox').length) {
+        $('.open-iframe-lightbox').on('click', function (e) {
             e.preventDefault();
-            $('#lightbox-popup').addClass('active location-map');
+            $('#lightbox-popup').addClass('active iframe-wrp');
         });
     }
 
@@ -1792,7 +1872,7 @@ $(document).ready(function () {
         field.addClass("field-focus");
     }).on('blur', function () {
         var field = $(this);
-        if (field.val() == null || field.val() == '' || field.val() == undefined) {
+        if (field.val() === null || field.val() === '' || field.val() === undefined) {
             field.removeClass("field-focus");
         }
     });
@@ -1825,7 +1905,7 @@ $(document).ready(function () {
                 trendItem.data('trend-interval', interval);
 
                 trendItem.on('mouseenter', function () {
-                    var hoveredIndex = trendItem.index();
+                    //var hoveredIndex = trendItem.index();
                     clearInterval(trendItem.data('trend-interval'));
                 });
 
@@ -1833,7 +1913,9 @@ $(document).ready(function () {
                     var interval = SetTrendingInterval(trendItem, randomIntervalTime);
                     trendItem.data('trend-interval', interval);
                 });
-            };
+            }else{
+                trendItem.find('.trend-slide').addClass('active');
+            }
         });
     }
 
@@ -1865,7 +1947,7 @@ $(document).ready(function () {
                     if (Math.abs((e.clientX || e.originalEvent.changedTouches[0].pageX) - baseClick) > 30) {
                         $(this).find('a').addClass('scrolling');
                     }
-                    DragHighlights(actualScroll, baseClick, (e.clientX || e.originalEvent.changedTouches[0].pageX))
+                    DragHighlights(actualScroll, baseClick, (e.clientX || e.originalEvent.changedTouches[0].pageX));
                     checkHighlightLimit();
                 }
             });
@@ -1896,13 +1978,12 @@ $(document).ready(function () {
             }
             $('#main-carousel .carousel-indexes div:first').addClass('selected');
             $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {
-                if (e.which == 1 || e.which == 0) {
+                if (e.which == 1 || e.which === 0) {
                     $('#main-carousel .carousel-container,#main-carousel .carousel-data').stop();
                     carouselDrag = true;
                     fullScroll = $('#main-carousel .carousel-item:first-child').width();
                     carouselItemTarget = $(e.target).closest('.carousel-item');
                     activeItemIndex = carouselItemTarget.index() + 1;
-                    var test = $('#main-carousel .carousel-data').not($(carouselItemTarget).find('.carousel-data'));
                     carouselBasePos = e.pageX || e.originalEvent.touches[0].pageX;
                     carouselScrollLeft = $(this).scrollLeft();
                     documentScrollOnTouch = $(document).scrollTop();
@@ -1924,18 +2005,18 @@ $(document).ready(function () {
                         if (activeItemIndex == (carouselItemCount - 1) && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                             carouselScrollLeft = fullScroll;
-                            carouselItemTarget = $('#main-carousel .carousel-item:nth-child(2)')
+                            carouselItemTarget = $('#main-carousel .carousel-item:nth-child(2)');
                             entered = true;
                         }
-                        carouselItemTarget.next().find('.carousel-data').css('left', fullScroll - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.next().find('.carousel-data').css('left', fullScroll - (carouselPosDiff * 0.5) + 'px');
                     } else {
-                        if (activeItemIndex == 0 && !entered) {
+                        if (activeItemIndex === 0 && !entered) {
                             $('#main-carousel .carousel-container').scrollLeft((carouselItemCount - 2) * fullScroll);
-                            carouselItemTarget = $('#main-carousel .carousel-item:nth-last-child(2)')
+                            carouselItemTarget = $('#main-carousel .carousel-item:nth-last-child(2)');
                             carouselScrollLeft = (carouselItemCount - 2) * fullScroll;
                             entered = true;
                         }
-                        carouselItemTarget.prev().find('.carousel-data').css('left', -650 - (carouselPosDiff * .5) + 'px');
+                        carouselItemTarget.prev().find('.carousel-data').css('left', -650 - (carouselPosDiff * 0.5) + 'px');
                     }
                     $(this).scrollLeft(carouselScrollLeft + carouselPosDiff);
                 }
@@ -1983,7 +2064,7 @@ $(document).ready(function () {
                     $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
                     activeItemIndex++;
                 }
-            }
+            };
 
             var movePrevious = function () {
                 if (!carouselAnimation) {
@@ -2009,7 +2090,7 @@ $(document).ready(function () {
                             duration: 500,
                             easing: 'easeOutExpo'
                         }).dequeue();
-                    })
+                    });
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
                     }, {
@@ -2021,7 +2102,7 @@ $(document).ready(function () {
                         }
                     });
                     selectedIndexControl = activeItemIndex - 2;
-                    if (selectedIndexControl == 0) {
+                    if (selectedIndexControl === 0) {
                         var indexControlMax = $('#main-carousel .carousel-indexes div').length;
                         selectedIndexControl = indexControlMax;
                     }
@@ -2029,7 +2110,7 @@ $(document).ready(function () {
                     $('#main-carousel .carousel-indexes div:nth-child(' + selectedIndexControl + ')').addClass('selected');
                     activeItemIndex--;
                 }
-            }
+            };
 
             $('#main-carousel .carousel-controls .next').on('click', moveNext);
 
@@ -2084,7 +2165,7 @@ $(document).ready(function () {
                                 duration: 600,
                                 easing: 'easeOutExpo'
                             }).dequeue();
-                        })
+                        });
                     }
                     $('#main-carousel .carousel-container').stop().animate({
                         scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
@@ -2144,7 +2225,7 @@ $(document).ready(function () {
                 var _this = $(this);
                 _this.addClass('clicked');
                 bestAnimaion = true;
-                if (actualFrameIndex == 0)
+                if (actualFrameIndex === 0)
                     actualFrameIndex = bestFrameCount;
                 $('#best-spots .best-frame-container').addClass('leaving').delay(700).queue(function () {
                     $('#best-spots .best-frame-container .best-item').removeClass('active shadow');
@@ -2205,7 +2286,7 @@ $(document).ready(function () {
                 scrollLeft: roundToNearestValue(bestFullScroll, (bestActualScroll - bestFullScroll))
             }, function () {
                 $('#best-spots .mobile-best-controls div').removeClass('last');
-                if ($('.best-spots-body').scrollLeft() == 0) _this.addClass('last');
+                if ($('.best-spots-body').scrollLeft() === 0) _this.addClass('last');
             });
         });
         $('#best-spots .mobile-best-controls .mobile-best-next').on('click', function () {
@@ -2230,7 +2311,7 @@ $(document).ready(function () {
         var titlePos = $('#attractions .attractions-body .attraction:first h3').position();
         var titleWidth = $('#attractions .attractions-body .attraction:first h3').width();
         var activeTitleIndex = 0;
-        var attractionOut = true;
+        //var attractionOut = true;
         $('#attractions .attractions-body .attraction:first').addClass('active');
         $('.attractions-index').css({
             'top': titlePos.top + 14,
@@ -2307,7 +2388,7 @@ $(document).ready(function () {
                 }, 50);
                 setTimeout(function () {
                     falseCheckbox.remove();
-                    if (filterValue.children().length == 0) {
+                    if (filterValue.children().length === 0) {
                         filterValue.text(baseText);
                     }
                     ifValueExceeds();
@@ -2330,7 +2411,7 @@ $(document).ready(function () {
                 valLength = val.length;
                 var selectionStart = $(this)[0].selectionStart;
                 var selectionEnd = $(this)[0].selectionEnd;
-                if (valLength < 6 || (selectionStart == 0 && selectionEnd == valLength - 4)) {
+                if (valLength < 6 || (selectionStart === 0 && selectionEnd == valLength - 4)) {
                     $(this).val('');
                 }
             }
@@ -2360,10 +2441,10 @@ $(document).ready(function () {
             var ratingChoices = parentCollapsable.find('p:contains("Rating")').siblings('.multiple-choice').find('.selected-value');
             var facilitiesChoices = parentCollapsable.find('p:contains("Facilities")').siblings('.multiple-choice').find('.selected-value');
             // var lowestPrice = parentCollapsable.find('p:contains("Lowest price")').siblings('input').val().replace(/\D/g, '');
-            // if (lowestPrice == '')
+            // if (lowestPrice === '')
             //     lowestPrice = 'The lowest possible';
             // var highestPrice = parentCollapsable.find('p:contains("Highest price")').siblings('input').val().replace(/\D/g, '');
-            // if (highestPrice == '')
+            // if (highestPrice === '')
             //     highestPrice = 'The highest possible';
             // if (!isNaN(lowestPrice) && !isNaN(highestPrice) && Number(lowestPrice) >= Number(highestPrice)) {
             //     parentCollapsable.find('p:contains("Lowest price")').siblings('.validation-msg').fadeIn().addClass('entering');
@@ -2372,7 +2453,7 @@ $(document).ready(function () {
             //     return;
             // }
 
-            if (ratingChoices.children().length == 0) {
+            if (ratingChoices.children().length === 0) {
                 parentSearchFilter.find('.rating-value').text('Any');
             } else {
                 var ratingCount = ratingChoices.children().length;
@@ -2382,7 +2463,7 @@ $(document).ready(function () {
                     parentSearchFilter.find('.rating-value').append('<span>' + ratingResult + '</span>');
                 }
             }
-            if (facilitiesChoices.children().length == 0) {
+            if (facilitiesChoices.children().length === 0) {
                 parentSearchFilter.find('.facilities-value').text('Any');
             } else {
                 var facilitiesCount = facilitiesChoices.children().length;
@@ -2405,7 +2486,7 @@ $(document).ready(function () {
         });
         $('.advanced-search-filters-wrp').off().on('click', function () {
             var childDynamicSettings = $(this).find('.dynamic-settings-wrp');
-            var childColumnHeight = childDynamicSettings.find('.settings-column').height();
+            //var childColumnHeight = childDynamicSettings.find('.settings-column').height();
             var randomPercentage = randomLimit(12, 65) + '%';
             childDynamicSettings.find('.settings-column').eq(0).find('.column-index').css('top', randomPercentage);
             var randomPercentage = randomLimit(12, 65) + '%';
@@ -2475,7 +2556,7 @@ $(document).ready(function () {
         $('.review-satisfaction-wrp').on('mouseleave', function () {
             $(this).find('i').removeClass('selected');
             heartsCount = $(this).data('rated') + 1;
-            if (heartsCount != undefined) {
+            if (heartsCount !== undefined) {
                 for (var i = 0; i < heartsCount; i++) {
                     $(this).find('i').eq(i).addClass('selected');
                 }
@@ -2581,10 +2662,10 @@ $(document).ready(function () {
         }
     });
     $(document).on('mouseup touchend', function (e) {
-        if (e.which == 1 || e.which == 0) {
+        if (e.which == 1 || e.which === 0) {
             //Carousel Autocomplete
             if ($('#main-carousel').length) {
-                if (carouselItemCount > 1 && carouselPosDiff != undefined && carouselDrag) {
+                if (carouselItemCount > 1 && carouselPosDiff !== undefined && carouselDrag) {
                     carouselDrag = false;
                     carouselScrollLeft = $('#main-carousel .carousel-container').scrollLeft();
                     var fullScroll = $('#main-carousel .carousel-item:first-child').width();
@@ -2762,13 +2843,13 @@ $(document).ready(function () {
     $(document).on('click', function (e) {
         if ($('.dropdown-input').hasClass('active')) {
             var _this = $('.dropdown-input.active');
-            if (!_this.is(e.target) && _this.has(e.target).length == 0) {
+            if (!_this.is(e.target) && _this.has(e.target).length === 0) {
                 _this.removeClass('active');
             }
         }
         if ($('.collapsable-filter-wrp').hasClass('open')) {
             var parentFilterWrapper = $('.collapsable-filter-wrp.open').closest('.advanced-search-filters-wrp');
-            if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length == 0) {
+            if (!parentFilterWrapper.is(e.target) && parentFilterWrapper.has(e.target).length === 0) {
                 $('.collapsable-filter-wrp.open').removeClass('open').slideUp('fast');
             }
         }
@@ -2784,7 +2865,7 @@ $(document).ready(function () {
         }
         if ($('.account-wrp').hasClass('active')) {
             var accountWrp = $('.account-wrp');
-            if (!accountWrp.is(e.target) && accountWrp.has(e.target).length == 0) {
+            if (!accountWrp.is(e.target) && accountWrp.has(e.target).length === 0) {
                 $('.account-wrp').removeClass('active');
             }
         }
