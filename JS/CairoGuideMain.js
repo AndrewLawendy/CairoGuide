@@ -1,4 +1,4 @@
-(function(){
+(function () {
     var newScreenSize = 0; //Last screen size, changes when screen size changes, takes values 1,2 or 3
     //var TrendingSliderIntervals = []; //array to hold intervals for each trending carousel
 
@@ -24,6 +24,7 @@
     var lazyLoading = function () {
         $(document).scroll(lazyGet);
         $(document).scroll();
+
         function lazyGet() {
             //var error = '../Content/Images/blank-src.gif';
             $('[data-src]').each(function () {
@@ -511,7 +512,7 @@
             } else if (calendarView == 'weekend') {
                 $('#weekend-view').siblings().slideUp(150).promise().done(function () {
                     $('#weekend-view').slideDown(150);
-                    var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
+                    var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index() + 1));
                     initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                     $('.calendar-this .this-weekend').siblings().hide().promise().done(function () {
                         $('.calendar-this .this-weekend').show();
@@ -521,7 +522,7 @@
             } else {
                 $('#week-view').siblings().slideUp(150).promise().done(function () {
                     $('#week-view').slideDown(150, function () {
-                        var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index()+1));
+                        var weekIndex = ceilToNearestValue(7, ($('.calendar-month-wrp .day.active').index() + 1));
                         initWeekView($('.calendar-month-wrp .day:nth-of-type(' + weekIndex + ')'));
                         $('.calendar-this .this-week').siblings().hide().promise().done(function () {
                             $('.calendar-this .this-week').show();
@@ -627,7 +628,7 @@
             }
             $('#calendar-wrp').data('currentDate', [newDayLimit, dateObj.getMonth(), dateObj.getFullYear()]);
             $('.calendar-months-body-wrp').css({
-                height: Math.ceil($('.calendar-month-wrp.active .day').length / 7) * ($('.calendar-month-wrp.active .day').outerHeight()+4)
+                height: Math.ceil($('.calendar-month-wrp.active .day').length / 7) * ($('.calendar-month-wrp.active .day').outerHeight() + 4)
             });
             var newLimitDiv = $('.calendar-month-wrp.active .day:contains(' + newDayLimit + ')').first();
             if ($('.calendar-overview').hasClass('weekend-view')) initWeekView(newLimitDiv, false);
@@ -885,7 +886,7 @@
                 thisWeek = $('.calendar-month-wrp.active .day').filter(function () {
                     return $(this).position().top == weekPos;
                 }),
-                posWeekDayIndex = ceilToNearestValue(7, (dayInWeek.index()+1));
+                posWeekDayIndex = ceilToNearestValue(7, (dayInWeek.index() + 1));
             posWeekDayIndex > $('.calendar-month-wrp.active .day').length && (posWeekDayIndex = $('.calendar-month-wrp.active .day').length);
             $('.calendar-month-wrp.active .day').removeClass('this-week');
             if ($('.calendar-overview.weekend-view').length) {
@@ -907,10 +908,10 @@
             posWeekIndicator(dayInWeek);
         };
 
-        function readjustCalendar(){
-            setTimeout(function(){
+        function readjustCalendar() {
+            setTimeout(function () {
                 $('.calendar-views-wrp p.active').click();
-            },300);
+            }, 300);
         }
 
         //Views controls
@@ -932,6 +933,8 @@
             var currentMonth = $('.current-month'),
                 currentMonthData = currentMonth.data();
             $('#calendar-wrp').data('currentDate', [currentMonthData.day, currentMonthData.month, currentMonthData.year]);
+            // if($('calendar-controls-wrp calendar-view').hasClass('.months-view')) $('.month.this-month').click();
+            // if($('calendar-controls-wrp calendar-view').hasClass('.years-view')) $('.year.this-year,.month.this-month').click();
             $('.day.today').click();
             scrollToMonth(currentMonth);
             updateDay(currentMonthData.monthName, currentMonthData.day, currentMonthData.year);
@@ -1010,7 +1013,7 @@
 
         initCalendar();
         if (calendarView != 'today') {
-            var weekIndex = ceilToNearestValue(7, ($('.day.today').index()+1));
+            var weekIndex = ceilToNearestValue(7, ($('.day.today').index() + 1));
             initWeekView($('.day:nth-child(' + weekIndex + ')'));
         }
 
@@ -1914,7 +1917,7 @@
                         var interval = SetTrendingInterval(trendItem, randomIntervalTime);
                         trendItem.data('trend-interval', interval);
                     });
-                }else{
+                } else {
                     trendItem.find('.trend-slide').addClass('active');
                 }
             });

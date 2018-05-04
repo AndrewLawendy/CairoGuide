@@ -9,6 +9,27 @@
     <title>Best of Cairo | Event Details</title>
     <link rel="icon" type="image/ico" sizes="16x16" href="../Images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../css/CairoGuideInnerSass.css" />
+    <style>
+        .add-this li {
+            display: inline-block;
+            vertical-align: middle;
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            color: #fff;
+            text-align: center;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .add-this li.icon-social-facebook {
+            background: rgb(59, 89, 152)
+        }
+
+        .add-this li.icon-social-twitter {
+            background: rgb(29, 161, 242)
+        }
+    </style>
 </head>
 
 <body>
@@ -840,12 +861,96 @@
                 </div>
             </section>
         </article>
-        <article class="marg-t30">
-            <section class="category-banner" style="background-image: url('../Images/calendar-carousel/massar-egbari.jpg')">
-            </section>
-        </article>
-        <article class="container marg-t30">
-
+        <article class="container marg-t30 calendar-event-details">
+            <div class="wrp">
+                <div class="half-width responsive event-image" style="background: url('../Images/calendar-carousel/massar-egbari.jpg') no-repeat 0% center / cover"></div>
+                <div class="half-width responsive event-details float-right marg-b20">
+                    <h3 class="marg-b10">Details</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="half-width responsive event-time wrp float-right marg-b20">
+                    <div class="half-width">
+                        <h3 class="marg-b10">From</h3>
+                        <p>02:00 PM</p>
+                        <p>11/05/2018</p>
+                    </div>
+                    <div class="half-width">
+                        <h3 class="marg-b10">To</h3>
+                        <p>03:00 AM</p>
+                        <p>12/05/2018</p>
+                    </div>
+                </div>
+                <div class="half-width responsive event-share float-right marg-b20">
+                    <h3 class="marg-b10">Spread the word</h3>
+                    <ul class="add-this">
+                        <li class="icon-social-facebook"></li>
+                        <li class="icon-social-twitter"></li>
+                    </ul>
+                </div>
+                <div class="half-width responsive event-control wrp float-right marg-b20">
+                    <h3 class="marg-b10">More?</h3>
+                    <a href="#" class="float-left" data-event=" : Zap Tharwat with Hany El Dakak and Hamza Namira in their new Album">Prev</a>
+                    <a href="#" class="float-right" data-event=" : Zap Tharwat with Hany El Dakak and Hamza Namira in their new Album">Next</a>
+                    <div class="next-prev-event overflow-hidden">
+                        <p class="prev">Zap Tharwat with Hany El Dakak and Hamza Namira in their new Album</p>
+                        <p class="next">Zap Tharwat with Hany El Dakak and Hamza Namira in their new Album</p>
+                    </div>
+                </div>
+            </div>
+            <div class="olis-choice-wrp">
+                <div class="section-title logo-yellow-title display-inline-block">
+                    <h2>
+                        More at this place
+                    </h2>
+                </div>
+                <div class="olis-choice-items-container">
+                    <div class="olis-choice-item">
+                        <a href="item-details.html?category=dining&amp;subcategory=cafés" title="Public circus festival">
+                            <div class="olis-choice-item-image">
+                                <img src="../images/item-listing-test-7.jpeg" alt="Public circus festival">
+                            </div>
+                            <div class="olis-choice-item-info">
+                                <h3>Public circus festival</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="olis-choice-item">
+                        <a href="item-details.html?category=dining&amp;subcategory=cafés" title="Casino le Roi">
+                            <div class="olis-choice-item-image">
+                                <img src="../images/item-listing-test-8.jpg" alt="Casino le Roi">
+                            </div>
+                            <div class="olis-choice-item-info">
+                                <h3>Casino le Roi</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="olis-choice-item">
+                        <a href="item-details.html?category=dining&amp;subcategory=cafés" title="Golf View Lounge">
+                            <div class="olis-choice-item-image">
+                                <img src="../images/item-listing-test-9.jpeg" alt="Golf View Lounge">
+                            </div>
+                            <div class="olis-choice-item-info">
+                                <h3>Golf View Lounge</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="olis-choice-item">
+                        <a href="item-details.html?category=dining&amp;subcategory=cafés" title="38 Pub">
+                            <div class="olis-choice-item-image">
+                                <img src="../images/item-listing-test-10.jpeg" alt="38 Pub">
+                            </div>
+                            <div class="olis-choice-item-info">
+                                <h3>38 Pub</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </article>
     </main>
     <!--Footer-->
@@ -913,7 +1018,7 @@
     </footer>
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/jquery-ui.min.js"></script>
-    <script src="../JS/CairoGuideMain.min.js"></script>
+    <script src="../JS/CairoGuideMain.js"></script>
 </body>
 
 </html>
