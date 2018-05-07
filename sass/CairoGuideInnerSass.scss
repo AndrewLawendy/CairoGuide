@@ -207,6 +207,22 @@ Contains all styles of inner pages
                 }
             }
         }
+        .favourits-wrp {
+            .favourits-item.#{nth($i,1)}-favourits-item {
+                a {
+                    .favourite-item-title {
+                        &:before {
+                            background-color: darken(nth($i,2),10%);
+                        }
+                        p {
+                            &:after {
+                                background-color: darken(nth($i,2),10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .sitemap-list-wrp.#{nth($i,1)}-list {
             .#{nth($i,1)}-list-container {
                 background-color: rgba(nth($i, 2), 0.1); //background-color:#fff;
@@ -2744,287 +2760,319 @@ Contains all styles of inner pages
                 }
             }
         }
-        .achievements-wrp {
+        .profile-container {
             position: relative;
-            @include media("(max-width: 768px)") {
-                margin-bottom: 30px;
-            }
-            .achievements-item {
-                width: calc(100% / 3);
-                float: left;
-                padding: 0 10px 20px;
-                box-sizing: border-box;
-                text-align: center;
-                text-transform: capitalize;
-                position: relative;
-                cursor: pointer;
-                &:nth-of-type(3n-2) {
-                    clear: left;
+            .achievements-container {
+                right:auto;
+                left:0;
+                display:block!important;
+                @include media("(max-width: 1024px)") {
+                    position: relative;
+                    top:0!important;
                 }
-                &:nth-of-type(3n) {
-                    clear: right;
-                }
-                @include media("(min-width: 1200px)") {
-                    padding: 0 gwt-vw(10px) get-vw(20px);
-                }
-                @include media("(max-width: 768px)") {
-                    @include media("(min-width: 400px)") {
-                        width: calc(100% / 4);
-                        &:nth-of-type(3n-2),
-                        &:nth-of-type(3n) {
-                            clear: none;
-                        }
-                        &:nth-of-type(4n-3) {
-                            clear: left;
-                        }
-                        &:nth-of-type(4n) {
-                            clear: right;
-                        }
-                    }
-                }
-                img {
-                    width: 50px;
-                    height: auto;
-                    opacity: 0.2;
-                    @include media("(min-width: 1200px)") {
-                        width: get-vw(50px);
-                    }
-                }
-                span {
-                    display: block;
-                    margin-top: 10px;
-                    @include media("(min-width: 1200px)") {
-                        margin-top: get-vw(10px);
-                    }
-                }
-                P {
-                    position: absolute;
-                    top: 70%;
-                    left: -30px;
-                    min-width: 29vw;
-                    color: #fff;
-                    background: #131313;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    border-radius: 3px;
-                    opacity: 0;
-                    z-index: -1;
-                    text-align: left; //@include transform(translateY(-50%));
-                    @include transition(left 0.15s,
-                    opacity 0.15s,
-                    z-index 0s ease 0.2s);
-                    &:before {
-                        content: '';
-                        position: absolute;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        border-bottom: 5px solid #131313;
-                        border-right: 5px solid transparent;
-                        border-left: 5px solid transparent;
-                        left: 15%;
-                        right: auto;
-                        margin: 0 auto;
-                        top: -5px;
-                    }
-                    @include media("(min-width: 1200px)") {
-                        left: get-vw(-30px);
-                        padding: get-vw(10px);
-                        border-radius: get-vw(3px);
-                        &:before {
-                            border-width: 0 get-vw(5px) get-vw(5px);
-                            top: get-vw(-5px);
-                        }
-                    }
+                .ads-wrp {
+                    background-color: #fff;
                     @include media("(max-width: 768px)") {
-                        min-width: 100%;
-                        &:before {
-                            left: 0;
-                            right: 0;
+                        position: relative;
+                        top:0!important;
+                    }
+                    &:before{
+                        display:none;
+                    }
+                    .achievements-wrp {
+                        position: relative;
+                        @include media("(max-width: 768px)") {
+                            margin-bottom: 30px;
+                        }
+                        .achievements-item {
+                            width: calc(100% / 3);
+                            float: left;
+                            padding: 0 10px 20px;
+                            box-sizing: border-box;
+                            text-align: center;
+                            text-transform: capitalize;
+                            position: relative;
+                            cursor: pointer;
+                            &:nth-of-type(3n-2) {
+                                clear: left;
+                            }
+                            &:nth-of-type(3n) {
+                                clear: right;
+                            }
+                            @include media("(min-width: 1200px)") {
+                                padding: 0 gwt-vw(10px) get-vw(20px);
+                            }
+                            @include media("(max-width: 768px)") {
+                                @include media("(min-width: 400px)") {
+                                    width: calc(100% / 4);
+                                    &:nth-of-type(3n-2),
+                                    &:nth-of-type(3n) {
+                                        clear: none;
+                                    }
+                                    &:nth-of-type(4n-3) {
+                                        clear: left;
+                                    }
+                                    &:nth-of-type(4n) {
+                                        clear: right;
+                                    }
+                                }
+                            }
+                            img {
+                                width: 50px;
+                                height: auto;
+                                opacity: 0.2;
+                                @include media("(min-width: 1200px)") {
+                                    width: get-vw(50px);
+                                }
+                            }
+                            span {
+                                display: block;
+                                margin-top: 10px;
+                                @include media("(min-width: 1200px)") {
+                                    margin-top: get-vw(10px);
+                                }
+                            }
+                            P {
+                                position: absolute;
+                                top: 70%;
+                                left: -30px;
+                                min-width: 29vw;
+                                color: #fff;
+                                background: #131313;
+                                padding: 10px;
+                                box-sizing: border-box;
+                                border-radius: 3px;
+                                opacity: 0;
+                                z-index: -1;
+                                text-align: left; //@include transform(translateY(-50%));
+                                @include transition(left 0.15s,
+                                opacity 0.15s,
+                                z-index 0s ease 0.2s);
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    display: block;
+                                    width: 0;
+                                    height: 0;
+                                    border-bottom: 5px solid #131313;
+                                    border-right: 5px solid transparent;
+                                    border-left: 5px solid transparent;
+                                    left: 15%;
+                                    right: auto;
+                                    margin: 0 auto;
+                                    top: -5px;
+                                }
+                                @include media("(min-width: 1200px)") {
+                                    left: get-vw(-30px);
+                                    padding: get-vw(10px);
+                                    border-radius: get-vw(3px);
+                                    &:before {
+                                        border-width: 0 get-vw(5px) get-vw(5px);
+                                        top: get-vw(-5px);
+                                    }
+                                }
+                                @include media("(max-width: 768px)") {
+                                    min-width: 100%;
+                                    &:before {
+                                        left: 0;
+                                        right: 0;
+                                    }
+                                }
+                            }
+                            &.active {
+                                img {
+                                    opacity: 1;
+                                }
+                            }
+                            &:hover,
+                            &:active {
+                                p {
+                                    left: 0;
+                                    opacity: 1;
+                                    z-index: 50;
+                                    @include transition(left 0.15s,
+                                    opacity 0.15s,
+                                    z-index 0s);
+                                }
+                            }
                         }
                     }
                 }
-                &.active {
-                    img {
-                        opacity: 1;
-                    }
-                }
-                &:hover,
-                &:active {
-                    p {
-                        left: 0;
-                        opacity: 1;
-                        z-index: 50;
-                        @include transition(left 0.15s,
-                        opacity 0.15s,
-                        z-index 0s);
-                    }
-                }
             }
-        }
-        .profile-numbers-wrp {
-            background-color: $logo-green;
-            padding: 10px;
-            box-sizing: border-box;
-            color: #fff;
-            text-transform: capitalize;
-            text-align: center;
-            border-radius: 5px;
-            @include media("(min-width: 1200px)") {
-                padding: get-vw(10px);
-                border-radius: get-vw(5px);
+            .seventy-width{
+                float:right;
             }
-            .profile-number-item {
-                width: calc(100% / 3);
-                float: left;
-                padding: 0 10px;
+            .profile-numbers-wrp {
+                background-color: $logo-green;
+                padding: 10px;
+                box-sizing: border-box;
+                color: #fff;
+                text-transform: capitalize;
+                text-align: center;
+                border-radius: 5px;
                 @include media("(min-width: 1200px)") {
-                    padding: 0 get-vw(10px);
+                    padding: get-vw(10px);
+                    border-radius: get-vw(5px);
                 }
-                box-sizing: border-box;
-                span {
-                    display: block;
-                    &.profile-number-title {
-                        margin-bottom: 15px;
-                        @include media("(min-width: 1200px)") {
-                            margin-bottom: get-vw(15px);
+                .profile-number-item {
+                    width: calc(100% / 3);
+                    float: left;
+                    padding: 0 10px;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(10px);
+                    }
+                    box-sizing: border-box;
+                    span {
+                        display: block;
+                        &.profile-number-title {
+                            margin-bottom: 15px;
+                            @include media("(min-width: 1200px)") {
+                                margin-bottom: get-vw(15px);
+                            }
+                        }
+                        &.profile-number {
+                            font: 2.5rem 'Lato-Bold';
                         }
                     }
-                    &.profile-number {
-                        font: 2.5rem 'Lato-Bold';
-                    }
                 }
             }
-        }
-        .favourits-wrp {
-            padding: 0 5px;
-            @include media("(min-width: 1200px)") {
-                padding: 0 get-vw(5px);
-            }
-            @include media("(max-width: 640px)") {
-                padding: 0 10px;
-            }
-            .favourits-item {
-                width: calc(100% / 3); //height: get-vw(165px,768px);
-                height: 180px;
-                float: left;
+            .favourits-wrp {
                 padding: 0 5px;
-                margin-bottom: 10px;
-                box-sizing: border-box;
-                position: relative;
-                overflow: hidden;
                 @include media("(min-width: 1200px)") {
                     padding: 0 get-vw(5px);
-                    margin-bottom: get-vw(10px); //height: get-vw(165px);
-                    height: get-vw(180px);
-                }
-                @include media("(max-width: 768px)") {
-                    width: calc((100vw - 20px) / 3); //height: calc((100vw - 20px) / 3);
                 }
                 @include media("(max-width: 640px)") {
-                    width: 100%;
-                    padding: 0;
+                    padding: 0 10px;
                 }
-                a {
-                    $margin: get-vw(10px);
-                    width: calc(100% - 10px);
-                    height: 100%;
+                .favourits-item {
+                    width: calc(100% / 3); //height: get-vw(165px,768px);
+                    height: 180px;
+                    float: left;
+                    padding: 0 5px;
+                    margin-bottom: 10px;
+                    box-sizing: border-box;
+                    position: relative;
                     overflow: hidden;
-                    position: absolute;
-                    top: 0;
-                    left: 5px;
                     @include media("(min-width: 1200px)") {
-                        width: calc(100% - #{$margin});
-                        left: get-vw(5px);
+                        padding: 0 get-vw(5px);
+                        margin-bottom: get-vw(10px); //height: get-vw(165px);
+                        height: get-vw(180px);
                     }
-                    img {
-                        @extend %object-fit-img;
-                        object-position: center;
-                        @include transform(scale(1));
-                        @include transition(transform 0.3s linear);
+                    @include media("(max-width: 768px)") {
+                        width: calc((100vw - 20px) / 3); //height: calc((100vw - 20px) / 3);
                     }
-                    .favourite-item-title {
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
+                    @include media("(max-width: 640px)") {
                         width: 100%;
-                        padding: 40px 10px 10px;
-                        box-sizing: border-box;
-                        color: #fff;
-                        overflow: hidden;
-                        text-transform: capitalize;
-                        opacity: 0;
-                        @include transform(translate3d(0,
-                        20px,
-                        0));
-                        @include transition(all 0.15s);
-                        @include media("(min-width: 1200px)") {
-                            padding: get-vw(40px) get-vw(10px) get-vw(10px);
-                            @include transform(translate3d(0,
-                            get-vw(20px),
-                            0));
-                        }
-                        @include media("(max-width: 768px)") {
-                            @include transform(translate3d(0,
-                            0,
-                            0));
-                            opacity: 1;
-                        }
-                        &:before {
-                            content: '';
-                            position: absolute;
-                            top: 25px;
-                            left: 0;
-                            width: 100%;
-                            height: 999px;
-                            background-color: #131313;
-                            @include transform(skew(0,
-                            2deg));
-                            @include media("(min-width: 1200px)") {
-                                top: get-vw(25px);
-                                height: get-vw(999px);
-                            }
-                        }
-                        p {
-                            position: relative;
-                            z-index: 10;
-                            font-size: 1.2rem;
-                            line-height: 1.5rem;
-                            overflow: hidden;
-                            max-height: 3rem; //text-align: justify;
-                            //margin-right: -1em;
-                            padding-right: 1em;
-                            &:before {
-                                content: '...';
-                                position: absolute;
-                                right: 0;
-                                bottom: 0;
-                            }
-                            &:after {
-                                content: '';
-                                position: absolute;
-                                right: 0;
-                                width: 1em;
-                                height: 1em;
-                                margin-top: 0.2em;
-                                background-color: #131313;
-                            }
-                        }
+                        padding: 0;
                     }
-                }
-                &:hover {
                     a {
+                        $margin: get-vw(10px);
+                        width: calc(100% - 10px);
+                        height: 100%;
+                        overflow: hidden;
+                        position: absolute;
+                        top: 0;
+                        left: 5px;
+                        @include media("(min-width: 1200px)") {
+                            width: calc(100% - #{$margin});
+                            left: get-vw(5px);
+                        }
                         img {
-                            @include transform(scale(1.05));
-                            @include transition(transform 6s linear);
+                            @extend %object-fit-img;
+                            object-position: center;
+                            @include transform(scale(1));
+                            @include transition(transform 0.3s linear);
                         }
                         .favourite-item-title {
-                            opacity: 1;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            padding: 40px 10px 10px;
+                            box-sizing: border-box;
+                            color: #fff;
+                            overflow: hidden;
+                            text-transform: capitalize;
+                            opacity: 0;
                             @include transform(translate3d(0,
-                            0,
+                            20px,
                             0));
+                            @include transition(all 0.15s);
+                            @include media("(min-width: 1200px)") {
+                                padding: get-vw(40px) get-vw(10px) get-vw(10px);
+                                @include transform(translate3d(0,
+                                get-vw(20px),
+                                0));
+                            }
+                            @include media("(max-width: 768px)") {
+                                @include transform(translate3d(0,
+                                0,
+                                0));
+                                opacity: 1;
+                            }
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                top: 25px;
+                                left: 0;
+                                width: 100%;
+                                height: 999px;
+                                //background-color: #131313;
+                                @include transform(skew(0,
+                                2deg));
+                                @include media("(min-width: 1200px)") {
+                                    top: get-vw(25px);
+                                    height: get-vw(999px);
+                                }
+                            }
+                            p {
+                                position: relative;
+                                z-index: 10;
+                                font-size: 1.2rem;
+                                line-height: 1.5rem;
+                                overflow: hidden;
+                                max-height: 3rem; //text-align: justify;
+                                //margin-right: -1em;
+                                padding-right: 1em;
+                                &:before {
+                                    content: '...';
+                                    position: absolute;
+                                    right: 0;
+                                    bottom: 0;
+                                }
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    right: 0;
+                                    width: 1em;
+                                    height: 1em;
+                                    margin-top: 0.2em;
+                                    //background-color: #131313;
+                                }
+                            }
                         }
                     }
+                    &:hover {
+                        a {
+                            img {
+                                @include transform(scale(1.05));
+                                @include transition(transform 6s linear);
+                            }
+                            .favourite-item-title {
+                                opacity: 1;
+                                @include transform(translate3d(0,
+                                0,
+                                0));
+                            }
+                        }
+                    }
+                }
+            }
+            .load-more-profile {
+                text-align: center;
+                .control-btn {
+                    float: none;
+                    display: inline-block;
                 }
             }
         }
