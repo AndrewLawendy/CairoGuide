@@ -3252,6 +3252,14 @@ Contains all styles of inner pages
                         cursor: default;
                     }
                 }
+                &.months-view,
+                &.years-view {
+                    &+.calendar-overview {
+                        .week-indicator {
+                            opacity: 0;
+                        }
+                    }
+                }
             }
             .calendar-overview {
                 position: relative;
@@ -3390,6 +3398,8 @@ Contains all styles of inner pages
                     right: 0;
                     overflow: visible !important;
                     display: none;
+                    opacity: 1;
+                    @include transition(opacity .15s);
                     .week-number {
                         cursor: pointer;
                         position: absolute;
@@ -3446,7 +3456,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-            #month-view {
+            .month-view {
                 .calendar-today {
                     overflow: hidden;
                     text-align: center;
@@ -3651,6 +3661,127 @@ Contains all styles of inner pages
                                         border-bottom-width: 50px;
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        } //Calendar Event Details
+        .calendar-event-details {
+            >.wrp {
+                >.half-width {
+                    box-sizing: border-box;
+                    opacity: 0;
+                    &:not(.event-image) {
+                        padding-left: 15px;
+                        @include animation(event-detail-entering 1s forwards);
+                        @include media("(min-width: 1200px)") {
+                            padding-left: get-vw(15px);
+                        }
+                        @include media("(max-width: 768px)") {
+                            padding-left: 0;
+                        }
+                    }
+                    @for $i from 1 through 6 {
+                        &:nth-child(#{$i}) {
+                            @include animation-delay($i*.15s);
+                        }
+                    }
+                }
+                .event-image {
+                    box-sizing: border-box;
+                    height: 435px;
+                    @include animation(event-detail-entering 1s forwards,
+                    event-detail-img 2.5s 10s ease-in-out);
+                    @include transition(all .3s ease-out);
+                    @include media("(min-width: 1200px)") {
+                        height: get-vw(435px);
+                    }
+                    &:hover {
+                        background-position: 100% center !important;
+                        @include transition(all 3s ease-in-out);
+                    }
+                    @include media("(max-width: 768px)") {
+                        margin-bottom: 20px;
+                        background-attachment: fixed !important;
+                    }
+                }
+                .event-control {
+                    a {
+                        height: 70px;
+                        line-height: 50px;
+                        padding: 10px;
+                        background: #131313;
+                        color: $calendar-color;
+                        box-sizing: border-box;
+                        @include media("(min-width: 1200px)") {
+                            height: get-vw(70px);
+                            line-height: get-vw(50px);
+                            padding: get-vw(10px);
+                        }
+                        &.float-left {
+                            border-top-left-radius: 7px;
+                            border-bottom-left-radius: 7px;
+                            border-top-right-radius: 3px;
+                            border-bottom-right-radius: 3px;
+                            &:hover+.next-prev-event{
+                                .prev{
+                                    margin-top: 0;
+                                }
+                            }
+                        }
+                        &.float-right {
+                            border-top-right-radius: 7px;
+                            border-bottom-right-radius: 7px;
+                            border-top-left-radius: 3px;
+                            border-bottom-left-radius: 3px;
+                            &:hover+.next-prev-event{
+                                .prev{
+                                    margin-top: -140px;
+                                    @include media("(min-width: 1200px)") {
+                                        margin-top: get-vw(-140px);
+                                    }
+                                }
+                            }
+                        }
+                        @include media("(max-width: 768px)") {
+                            width: 100%;
+                            height: auto;
+                            border-radius: 7px!important;
+                            line-height: 1.7rem;
+                            &::after{
+                                content: attr(data-event);
+                            }
+                            &.float-left{
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+                    .next-prev-event {
+                        height: 70px;
+                        @include media("(min-width: 1200px)") {
+                            height: get-vw(70px);
+                        }
+                        p {
+                            line-height: 70px;
+                            padding: 0 15px;
+                            @extend %text-overflow;
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(70px);
+                                padding: 0 get-vw(15px);
+                            }
+                            &.prev {
+                                margin: -70px 0 70px;
+                                @include transition(all .3s);
+                                @include media("(min-width: 1200px)") {
+                                    margin: get-vw(-70px) 0 get-vw(70px);
+                                }
+                                &::before {
+                                    content: 'Previous Event : ';
+                                }
+                            }
+                            &.next::before {
+                                content: 'Next Event : ';
                             }
                         }
                     }
@@ -4009,13 +4140,25 @@ Contains all styles of inner pages
         from {
             opacity: 0;
             @include transform(translate3d(50px,
+            0,
             0))
         }
         to {
             opacity: 1;
             @include transform(translate3d(0,
             0,
+            0,
             0))
+        }
+    }
+
+    @include key-frame(event-detail-img) {
+        0%,
+        100% {
+            background-position: 0 0;
+        }
+        80% {
+            background-position: 100% 0;
         }
     }
 
