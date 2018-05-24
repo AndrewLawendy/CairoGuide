@@ -855,7 +855,7 @@ a,
 p,
 p * {
     line-height: 1.2rem !important;
-    font-size:initial!important;
+    font-size:1rem!important;
 }
 
 .normal-text {
@@ -3222,6 +3222,7 @@ header {
                 padding: 15px 30px 30px;
                 box-sizing: border-box;
                 li {
+                    display:inline-block;
                     float: none !important;
                     a,
                     a:visited {

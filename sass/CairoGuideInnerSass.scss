@@ -212,11 +212,11 @@ Contains all styles of inner pages
                 a {
                     .favourite-item-title {
                         &:before {
-                            background-color: darken(nth($i,2),10%);
+                            background-color: darken(nth($i, 2), 10%);
                         }
                         p {
                             &:after {
-                                background-color: darken(nth($i,2),10%);
+                                background-color: darken(nth($i, 2), 10%);
                             }
                         }
                     }
@@ -2763,21 +2763,21 @@ Contains all styles of inner pages
         .profile-container {
             position: relative;
             .achievements-container {
-                right:auto;
-                left:0;
-                display:block!important;
+                right: auto;
+                left: 0;
+                display: block !important;
                 @include media("(max-width: 1024px)") {
                     position: relative;
-                    top:0!important;
+                    top: 0 !important;
                 }
                 .ads-wrp {
                     background-color: #fff;
                     @include media("(max-width: 768px)") {
                         position: relative;
-                        top:0!important;
+                        top: 0 !important;
                     }
-                    &:before{
-                        display:none;
+                    &:before {
+                        display: none;
                     }
                     .achievements-wrp {
                         position: relative;
@@ -2899,8 +2899,8 @@ Contains all styles of inner pages
                     }
                 }
             }
-            .seventy-width{
-                float:right;
+            .seventy-width {
+                float: right;
             }
             .profile-numbers-wrp {
                 background-color: $logo-green;
@@ -3016,8 +3016,7 @@ Contains all styles of inner pages
                                 top: 25px;
                                 left: 0;
                                 width: 100%;
-                                height: 999px;
-                                //background-color: #131313;
+                                height: 999px; //background-color: #131313;
                                 @include transform(skew(0,
                                 2deg));
                                 @include media("(min-width: 1200px)") {
@@ -3046,8 +3045,7 @@ Contains all styles of inner pages
                                     right: 0;
                                     width: 1em;
                                     height: 1em;
-                                    margin-top: 0.2em;
-                                    //background-color: #131313;
+                                    margin-top: 0.2em; //background-color: #131313;
                                 }
                             }
                         }
@@ -3724,8 +3722,8 @@ Contains all styles of inner pages
                             border-bottom-left-radius: 7px;
                             border-top-right-radius: 3px;
                             border-bottom-right-radius: 3px;
-                            &:hover+.next-prev-event{
-                                .prev{
+                            &:hover+.next-prev-event {
+                                .prev {
                                     margin-top: 0;
                                 }
                             }
@@ -3735,8 +3733,8 @@ Contains all styles of inner pages
                             border-bottom-right-radius: 7px;
                             border-top-left-radius: 3px;
                             border-bottom-left-radius: 3px;
-                            &:hover+.next-prev-event{
-                                .prev{
+                            &:hover+.next-prev-event {
+                                .prev {
                                     margin-top: -140px;
                                     @include media("(min-width: 1200px)") {
                                         margin-top: get-vw(-140px);
@@ -3747,12 +3745,12 @@ Contains all styles of inner pages
                         @include media("(max-width: 768px)") {
                             width: 100%;
                             height: auto;
-                            border-radius: 7px!important;
+                            border-radius: 7px !important;
                             line-height: 1.7rem;
-                            &::after{
+                            &::after {
                                 content: attr(data-event);
                             }
-                            &.float-left{
+                            &.float-left {
                                 margin-bottom: 20px;
                             }
                         }
@@ -4010,13 +4008,315 @@ Contains all styles of inner pages
                 }
             }
         }
+        .gallery-filters-wrp {
+            margin: 23px 0 20px;
+            padding: 0 3px;
+            text-align: center;
+            @include media("(min-width: 1200px)") {
+                margin: get-vw(23px) 0 get-vw(20px);
+                padding: 0 get-vw(3px);
+            }
+            .gallery-filters-icons {
+                display: inline-block;
+                text-align: left;
+                &>li {
+                    float: left;
+                    margin: 0 5px;
+                    position: relative; //@include transition(all 0.3s);
+                    @include media("(min-width: 1200px)") {
+                        margin: 0 get-vw(5px);
+                    }
+                    .gallery-filter-field {
+                        float: right;
+                        border: 2px inset #000;
+                        border-radius: 40px;
+                        height: 35px;
+                        width: 35px;
+                        overflow: hidden;
+                        padding-right: 31px;
+                        box-sizing: border-box;
+                        background-color: #131313;
+                        cursor: pointer;
+                        @include transition(all 0.3s);
+                        @include media("(min-width: 1200px)") {
+                            border-width: get-vw(2px);
+                            border-radius: get-vw(40px);
+                            height: get-vw(35px);
+                            width: get-vw(35px);
+                            padding-right: get-vw(31px);
+                        }
+                        span,
+                        input,
+                        a,
+                        a:visited {
+                            color: #fff;
+                            @include transition(all 0.3s);
+                        }
+                        input,
+                        .gallery-filter-dropdown-active {
+                            padding-right: 20px;
+                            box-sizing: border-box;
+                            @include media("(min-width: 1200px)") {
+                                padding-right: get-vw(20px);
+                            }
+                        }
+                        input {
+                            border: 0;
+                            height: 100%;
+                            width: 100%;
+                            text-indent: 10px;
+                            outline: 0 !important;
+                            font: 1rem 'Lato-Bold';
+                            background-color: #131313;
+                            @include transition(all 0.3s);
+                            @include media("(min-width: 1200px)") {
+                                text-indent: get-vw(10px);
+                            }
+                        }
+                        .remove-filter-btn {
+                            display: inline-block;
+                            line-height: 33px;
+                            position: absolute;
+                            right: 25px;
+                            padding: 0 10px;
+                            opacity: 0;
+                            z-index: -1;
+                            @include transition(all 0.5s);
+                            @include media("(min-width: 1200px)") {
+                                line-height: get-vw(33px);
+                                right: get-vw(25px);
+                                padding: 0 get-vw(10px);
+                            }
+                        }
+                        .gallery-filter-dropdown-active {
+                            min-width: 250px;
+                            height: 100%;
+                            line-height: 33px;
+                            padding-left: 19px;
+                            box-sizing: border-box;
+                            @include media("(min-width: 1200px)") {
+                                min-width: get-vw(250px);
+                                line-height: get-vw(33px);
+                                padding-left: get-vw(19px);
+                                padding-right: get-vw(20px);
+                            }
+                        }
+                        .expandableItem {
+                            position: absolute;
+                            top: 125%;
+                            left: 19px;
+                            right: 35px;
+                            z-index: 10;
+                            background-color: #fff;
+                            overflow: auto;
+                            opacity: 0;
+                            z-index: -1;
+                            @include box-shadow(0 2px 4px -1px rgba(0,
+                            0,
+                            0,
+                            .2),
+                            0 4px 5px 0 rgba(0,
+                            0,
+                            0,
+                            .14),
+                            0 1px 10px 0 rgba(0,
+                            0,
+                            0,
+                            .12));
+                            @include transition(all 0.3s,
+                            z-index 0.1s ease 0.3s);
+                            @include media("(min-width: 1200px)") {
+                                left: get-vw(19px);
+                                right: get-vw(35px);
+                            }
+                        }
+                        .gallery-filter-calender-wrp {
+                            $height: 250px;
+                            padding-top: 50px;
+                            max-height: initial;
+                            height: 300px;
+                            box-sizing: border-box;
+                            @include media("(min-width: 1200px)") {
+                                $height: get-vw(250px);
+                                padding-top: get-vw(50px);
+                                height: get-vw(300px);
+                            }
+                            .layer-wrp {
+                                $padding: 2px;
+                                @include media("(min-width: 1200px)") {
+                                    $padding: 2vw / 1200;
+                                }
+                                position: absolute;
+                                top: 50px;
+                                left: 2px;
+                                right: 2px; //width: 100%;
+                                height: $height;
+                                background: #fff;
+                                @include media("(min-width: 1200px)") {
+                                    top: get-vw(50px);
+                                    left: get-vw(2px);
+                                    right: get-vw(2px);
+                                }
+                                div {
+                                    float: left;
+                                    width: calc(100% / 3);
+                                    height: $height / 4;
+                                    text-align: center;
+                                    padding: $padding;
+                                    box-sizing: border-box;
+                                    a,
+                                    a:visited {
+                                        width: 80%;
+                                        height: 40px;
+                                        display: inline-block;
+                                        border-radius: 40px;
+                                        line-height: 40px;
+                                        opacity: 0.3;
+                                        cursor: default;
+                                        @include transition(all 0.2s);
+                                        @include media("(min-width: 1200px)") {
+                                            border-radius: get-vw(40px);
+                                            height: get-vw(40px);
+                                            line-height: get-vw(40px);
+                                        }
+                                    }
+                                    &:nth-of-type(3n) {
+                                        clear: right;
+                                    }
+                                    &:nth-of-type(3n-2) {
+                                        clear: left;
+                                    }
+                                    &.active {
+                                        a {
+                                            opacity: 1;
+                                            background-color: #ededed;
+                                            cursor: pointer;
+                                            &:hover {
+                                                background-color: #131313;
+                                                color: #fff;
+                                            }
+                                        }
+                                    }
+                                }
+                                &.days-wrp {
+                                    div {
+                                        width: calc(100% / 7);
+                                        height: $height / 5;
+                                        line-height: $height / 5;
+                                        &:nth-of-type(3n),
+                                        &:nth-of-type(3n-2) {
+                                            clear: none;
+                                        }
+                                        &:nth-of-type(7n) {
+                                            clear: right;
+                                        }
+                                        &:nth-of-type(7n-6) {
+                                            clear: left;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        ul {
+                            max-height: 170px;
+                            @include media("(min-width: 1200px)") {
+                                max-height: get-vw(170px);
+                            }
+                            li {
+                                a,
+                                a:visited {
+                                    color: #131313;
+                                    background-color: #fff;
+                                    display: block;
+                                    padding: 10px 15px;
+                                    box-sizing: border-box;
+                                    @include transition(all 0.3s);
+                                    @include media("(min-width: 1200px)") {
+                                        padding: get-vw(10px) get-vw(15px);
+                                    }
+                                    &:hover,
+                                    &.active {
+                                        background-color: #131313;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    i {
+                        position: absolute;
+                        top: 50%;
+                        width: 35px;
+                        right: 0;
+                        margin: 0 auto;
+                        padding: 11px 0;
+                        box-sizing: border-box;
+                        text-align: center;
+                        color: #fff;
+                        cursor: pointer;
+                        @include transform(translateY(-50%));
+                        @include transition(all 0.3s);
+                        @include media("(min-width: 1200px)") {
+                            width: get-vw(35px);
+                            padding: get-vw(11px) 0;
+                        }
+                    }
+                    &.active {
+                        .gallery-filter-field {
+                            background-color: #fff;
+                            @include transition(all 0.3s);
+                            span,
+                            input,
+                            a,
+                            a:visited {
+                                color: #131313;
+                            }
+                            .remove-filter-btn {
+                                opacity: 1;
+                                z-index: 30;
+                            }
+                            input {
+                                background-color: #fff;
+                                @include transition(all 0.3s);
+                            }
+                            .expandableItem.active {
+                                opacity: 1;
+                                top: 100%;
+                                z-index: 20;
+                                @include transition(all 0.3s,
+                                z-index 0s);
+                            }
+                        }
+                        i {
+                            color: #131313;
+                        }
+                    }
+                }
+            }
+        }
+        .events-gallery-no-results {
+            padding: 0 30px 15px;
+            box-sizing: border-box;
+            display: none;
+            text-align: center;
+            @include media("(min-width: 1200px)") {
+                padding: 0 get-vw(30px) get-vw(15px);
+            }
+            h3 {
+                font-size: 1rem;
+            }
+        }
         .gallery-events-wrp {
-            background-color: #fafafa;
+            //background-color: #fafafa;
             margin: 0 -3px;
             padding: 3px;
             @include media("(min-width: 1200px)") {
                 margin: 0 get-vw(-3px);
                 padding: get-vw(3px);
+            }
+            .mark {
+                color: $calendar-color;
+                vertical-align: top;
             }
             .gallery-events-item {
                 float: left;
@@ -4048,15 +4348,15 @@ Contains all styles of inner pages
                     .gallery-events-item-info {
                         position: absolute;
                         height: 50%;
-                        background: #fff;
+                        background: rgba(0, 0, 0, 0.85);
                         bottom: 2%;
                         left: 2%;
                         width: 50%;
                         padding: 10px;
                         box-sizing: border-box;
                         overflow: hidden;
-                        @include transition(height 0.3s ease,
-                        width 0.3s ease 0.3s);
+                        @include transition(height 0.25s ease,
+                        width 0.25s ease 0.25s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(10px); //left: get-vw(15px);
                         }
@@ -4069,42 +4369,44 @@ Contains all styles of inner pages
                         }
                         h3 {
                             font-size: 1.3rem;
-                            color: #131313 !important;
+                            color: #fff !important;
                             margin-bottom: 15px;
                             @include media("(min-width: 1200px)") {
                                 margin-bottom: get-vw(15px);
                             }
                         }
                         p {
-                            color: #aaa !important;
+                            color: #eee !important;
+                            font-family: 'Lato-Light' !important;
                             overflow: hidden;
                             height: 0;
                             margin-bottom: 0;
-                            @include transition(all 0.3s ease);
+                            @include transition(all 0.25s ease);
                         }
                         div {
-                            text-transform: uppercase;
+                            //text-transform: uppercase;
                             display: inline-block;
                             width: 100%;
+                            color: #eee;
                             i {
-                                margin-right: 3px;
+                                margin-right: 10px;
                                 float: left;
                                 @include media("(min-width: 1200px)") {
-                                    margin-right: get-vw(3px);
-                                }
-                                &.icon-map-location,
-                                &.icon-map-location~span {
-                                    color: #666;
-                                }
-                                &.icon-calendar,
-                                &.icon-calendar~span {
-                                    color: #999;
-                                }
+                                    margin-right: get-vw(10px);
+                                } // &.icon-map-location,
+                                // &.icon-map-location~span {
+                                //     color: #666;
+                                // }
+                                // &.icon-calendar,
+                                // &.icon-calendar~span {
+                                //     color: #999;
+                                // }
                             }
                             span {
                                 display: block;
                                 float: left;
                                 width: 80%;
+                                text-transform: capitalize;
                             }
                         }
                         &>div:last-child {
@@ -4118,13 +4420,13 @@ Contains all styles of inner pages
                             left: 2%;
                             bottom: 2%;
                             width: 96%;
-                            height: 96%;
-                            @include transition(height 0.3s ease 0.3s,
-                            width 0.3s ease);
+                            height: 66%;
+                            @include transition(height 0.25s ease 0.25s,
+                            width 0.25s ease);
                             p {
                                 height: 1.2rem * 3;
                                 margin-bottom: 10px;
-                                @include transition(all 0.3s ease 0.3s);
+                                @include transition(all 0.25s ease 0.25s);
                                 @include media("(min-width: 1200px)") {
                                     margin-bottom: get-vw(10px);
                                 }

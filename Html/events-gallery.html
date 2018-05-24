@@ -817,23 +817,131 @@
                 <h1>Art events</h1>
             </section>
             <section class="container">
+                <div class="gallery-filters-wrp">
+                    <ul class="gallery-filters-icons">
+                        <li class="gallery-search-by-title">
+                            <div class="gallery-filter-field">
+                                <a herf="javascript:void(0);" title="Remove filter" class="remove-filter-btn">X</a>
+                                <input type="text" placeholder="Search Event ..." />
+                            </div>
+                            <i class="icon-search filter-icon filter-title-icon"></i>
+                        </li>
+                        <li class="gallery-search-by-location">
+                            <div class="gallery-filter-field">
+                                <a herf="javascript:void(0);" title="Remove filter" class="remove-filter-btn">X</a>
+                                <div class="gallery-filter-dropdown-active"></div>
+                                <ul class="expandableItem">
+                                    <li>
+                                        <a href="javascript:void(0);" title="item 1">Item 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="item 2">Item 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="item 2">Item 2</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <i class="icon-map-location filter-icon filter-location-icon"></i>
+                        </li>
+                        <li class="gallery-search-by-date">
+                            <div class="gallery-filter-field">
+                                <a herf="javascript:void(0);" title="Remove filter" class="remove-filter-btn">X</a>
+                                <div class="gallery-filter-dropdown-active"></div>
+                                <div class="expandableItem gallery-filter-calender-wrp">
+                                    <div class="years-wrp layer-wrp">
+                                        <div class="active">
+                                        <a href="javascript:void(0);">2018</a>
+                                    </div>
+                                        <div><a href="javascript:void(0);">2017</div></a>
+                                        <div><a href="javascript:void(0);">2016</div></a>
+                                        <div><a href="javascript:void(0);">2015</div></a>
+                                        <div><a href="javascript:void(0);">2014</div></a>
+                                        <div><a href="javascript:void(0);">2013</div></a>
+                                        <div class="active"><a href="javascript:void(0);">2012</div></a>
+                                        <div class="active"><a href="javascript:void(0);">2011</div></a>
+                                        <div><a href="javascript:void(0);">2010</div></a>
+                                        <div><a href="javascript:void(0);">2009</div></a>
+                                        <div class="active"><a href="javascript:void(0);">2008</div></a>
+                                        <div><a href="javascript:void(0);">2007</div></a>
+                                    </div>
+                                    <div class="months-wrp layer-wrp">
+                                        <div><a href="javascript:void(0);">Jan</div></a>
+                                        <div class="active"><a href="javascript:void(0);">Feb</div></a>
+                                        <div><a href="javascript:void(0);">Mar</div></a>
+                                        <div class="active"><a href="javascript:void(0);">Apr</div></a>
+                                        <div class="active"><a href="javascript:void(0);">May</div></a>
+                                        <div><a href="javascript:void(0);">Jun</div></a>
+                                        <div><a href="javascript:void(0);">Jul</div></a>
+                                        <div class="active"><a href="javascript:void(0);">Aug</div></a>
+                                        <div><a href="javascript:void(0);">Sep</div></a>
+                                        <div><a href="javascript:void(0);">Oct</div></a>
+                                        <div><a href="javascript:void(0);">Nov</div></a>
+                                        <div><a href="javascript:void(0);">Dec</div></a>
+                                    </div>
+                                    <div class="days-wrp layer-wrp">
+                                        <div><a href="javascript:void(0);">1</div></a>
+                                        <div class="active"><a href="javascript:void(0);">2</div></a>
+                                        <div><a href="javascript:void(0);">3</div></a>
+                                        <div class="active"><a href="javascript:void(0);">4</div></a>
+                                        <div><a href="javascript:void(0);">5</div></a>
+                                        <div><a href="javascript:void(0);">6</div></a>
+                                        <div class="active"><a href="javascript:void(0);">7</div></a>
+                                        <div class="active"><a href="javascript:void(0);">8</div></a>
+                                        <div class="active"><a href="javascript:void(0);">9</div></a>
+                                        <div><a href="javascript:void(0);">11</div></a>
+                                        <div><a href="javascript:void(0);">12</div></a>
+                                        <div><a href="javascript:void(0);">13</div></a>
+                                        <div><a href="javascript:void(0);">14</div></a>
+                                        <div class="active"><a href="javascript:void(0);">15</div></a>
+                                        <div><a href="javascript:void(0);">16</div></a>
+                                        <div><a href="javascript:void(0);">17</div></a>
+                                        <div><a href="javascript:void(0);">18</div></a>
+                                        <div><a href="javascript:void(0);">19</div></a>
+                                        <div><a href="javascript:void(0);">21</div></a>
+                                        <div class="active"><a href="javascript:void(0);">22</div></a>
+                                        <div class="active"><a href="javascript:void(0);">23</div></a>
+                                        <div><a href="javascript:void(0);">24</div></a>
+                                        <div><a href="javascript:void(0);">25</div></a>
+                                        <div><a href="javascript:void(0);">26</div></a>
+                                        <div><a href="javascript:void(0);">27</div></a>
+                                        <div><a href="javascript:void(0);">28</div></a>
+                                        <div class="active"><a href="javascript:void(0);">29</div></a>
+                                        <div class="active"><a href="javascript:void(0);">30</div></a>
+                                        <div><a href="javascript:void(0);">31</div></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="icon-calendar filter-icon filter-date-icon"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="events-gallery-no-results">
+                    <h3>
+                        No results found
+                    </h3>
+                </div>
+                <div class="gallery-events-wrp gallery-filtered-events-wrp">
+
+                </div>
+
                 <div class="gallery-events-wrp">
                     <a href="#" title="#" class="gallery-events-item">
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img1.jpg" alt="gallery events image 1" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
+                                <h3>Concert</h3>
                                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
                                     tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
                                     tristique, sit amet convallis risus dictum. Cras dignissim urna et laoreet tristique.
                                     Phasellus nec placerat mi. Nam risus magna, volutpat sit amet quam et, maximus maximus
                                     est. In hac habitasse platea dictumst. Aliquam maximus pulvinar velit, in interdum nisi
                                     facilisis vel. Phasellus posuere nec risus et semper.</p> -->
-                                <div>
+                                <div class="gallery-item-map-location">
                                     <i class="icon-map-location"></i>
                                     <span>Grand Cafe</span>
                                 </div>
-                                <div>
+                                <div class="gallery-item-calendar">
                                     <i class="icon-calendar"></i>
                                     <span>9/2/2018</span>
                                 </div>
@@ -844,12 +952,12 @@
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img5.jpg" alt="gallery events image 5" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
-                                <div>
+                                <h3>Poetry</h3>
+                                <div class="gallery-item-map-location">
                                     <i class="icon-map-location"></i>
-                                    <span>Grand Cafe</span>
+                                    <span>The Tap</span>
                                 </div>
-                                <div>
+                                <div class="gallery-item-calendar">
                                     <i class="icon-calendar"></i>
                                     <span>9/2/2018</span>
                                 </div>
@@ -860,15 +968,15 @@
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img4.jpg" alt="gallery events image 4" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
+                                <h3>Dance</h3>
                                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
                                     tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
                                     tristique, sit amet convallis risus dictum. Cras dignissim</p> -->
-                                <div>
+                                <div class="gallery-item-map-location">
                                     <i class="icon-map-location"></i>
-                                    <span>Grand Cafe</span>
+                                    <span>Masr theatre</span>
                                 </div>
-                                <div>
+                                <div class="gallery-item-calendar">
                                     <i class="icon-calendar"></i>
                                     <span>9/2/2018</span>
                                 </div>
@@ -879,15 +987,15 @@
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img20.jpg" alt="gallery events image 1" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
+                                <h3>Rap</h3>
                                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
-                                <div>
+                                <div class="gallery-item-map-location">
                                     <i class="icon-map-location"></i>
                                     <span>Grand Cafe</span>
                                 </div>
-                                <div>
+                                <div class="gallery-item-calendar">
                                     <i class="icon-calendar"></i>
-                                    <span>9/2/2018</span>
+                                    <span>Sakyet El Sawy</span>
                                 </div>
                             </div>
                         </div>
@@ -896,17 +1004,17 @@
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img15.jpg" alt="gallery events image 5" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
+                                <h3>DJ</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
                                     tortor.
-                                <div>
-                                    <i class="icon-map-location"></i>
-                                    <span>Grand Cafe</span>
-                                </div>
-                                <div>
-                                    <i class="icon-calendar"></i>
-                                    <span>9/2/2018</span>
-                                </div>
+                                    <div class="gallery-item-map-location">
+                                        <i class="icon-map-location"></i>
+                                        <span>The opera house</span>
+                                    </div>
+                                    <div class="gallery-item-calendar">
+                                        <i class="icon-calendar"></i>
+                                        <span>9/2/2018</span>
+                                    </div>
                             </div>
                         </div>
                     </a>
@@ -914,18 +1022,18 @@
                         <div class="gallery-events-item-content">
                             <img src="../images/gallery-events/gallery-events-img10.jpg" alt="gallery events image 4" />
                             <div class="gallery-events-item-info">
-                                <h3>Lorem Ipsum</h3>
+                                <h3>Flying</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis sagittis ipsum, ac ultrices
                                     tortor. Proin commodo diam quis tincidunt efficitur. Duis scelerisque lectus eget nibh
                                     tristique, sit amet convallis risus dictum. Cras dignissim urna et laoreet tristique.
                                     Phasellus nec placerat mi. Nam risus magna, volutpat sit amet quam et, maximus maximus
                                     est. In hac habitasse platea dictumst. Aliquam maximus pulvinar velit, in interdum nisi
                                     facilisis vel. Phasellus posuere nec risus et semper.</p>
-                                <div>
+                                <div class="gallery-item-map-location">
                                     <i class="icon-map-location"></i>
-                                    <span>Grand Cafe</span>
+                                    <span>Cairo Festival</span>
                                 </div>
-                                <div>
+                                <div class="gallery-item-calendar">
                                     <i class="icon-calendar"></i>
                                     <span>9/2/2018</span>
                                 </div>

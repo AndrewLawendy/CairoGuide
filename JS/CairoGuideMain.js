@@ -1761,6 +1761,203 @@
         });
     };
 
+    //-------------------------------------------------------------------------------------------------
+    //Init events gallery
+    var EventSearchTitle = '',
+        EventSearchLoc = '',
+        EventSearchDate = '',
+        YearMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var InitEventsGallery = function () {
+        $('.gallery-filters-wrp .gallery-filters-icons').find('.filter-icon').each(function () {
+            $(this).off().on('click', function () {
+                ToggleGalleryFilter($(this));
+            });
+            $(this).siblings('.gallery-filter-field').off().on('click', function () {
+                $('.gallery-filters-wrp .gallery-filter-field .expandableItem').removeClass('active');
+                if ($(this).find('.expandableItem').length) {
+                    $(this).find('.expandableItem').toggleClass('active');
+                }
+            })
+        });
+
+        $('.gallery-filters-wrp .gallery-filters-icons .gallery-search-by-title input').off().on('input', function (e) {
+            e.stopPropagation();
+            EventSearchTitle = $(this).val();
+            FilterGalleryEvents();
+        });
+        $('.gallery-filters-wrp .gallery-search-by-location ul').html('');
+        $('.gallery-filters-wrp .remove-filter-btn').on('click', function (e) {
+            e.stopPropagation();
+            if ($(this).closest('.gallery-search-by-title').length) {
+                $(this).closest('.gallery-search-by-title').find('input').val('');
+                EventSearchTitle = $(this).val();
+            FilterGalleryEvents();
+            }
+            if ($(this).closest('.gallery-search-by-location').length) {
+                if ($(this).siblings('ul').find('a.active').length) {
+                    $(this).siblings('ul').find('a.active').click();
+                }
+            }
+            CollapseGalleryFilter($(this).closest('li').find('.filter-icon'));
+        })
+        $('.gallery-events-wrp').not('.gallery-filtered-events-wrp').find('.gallery-events-item').each(function () {
+            PopulateLocationFilter($(this));
+        }).delay().queue(function () {
+            $('.gallery-filters-wrp .gallery-search-by-location ul a').off().on('click', function (e) {
+                e.stopPropagation();
+                SelectEventLoc($(this));
+                FilterGalleryEvents();
+            }).dequeue();
+        });
+    }
+
+    //Populate gallery locations filter
+    var PopulateLocationFilter = function (obj) {
+        var eventLoc = obj.find('.gallery-item-map-location span').text();
+        var menuItem = '<li><a href="javascript:void(0);" title="' + eventLoc + '">' + eventLoc + '</a></li>';
+        $('.gallery-filters-wrp .gallery-search-by-location ul').append(menuItem);
+    }
+
+    var SelectEventLoc = function (obj) {
+        $('.gallery-filters-wrp .gallery-search-by-location ul a').not(obj).removeClass('active').closest('.gallery-filter-field').find('.gallery-filter-dropdown-active').html('');
+        obj.toggleClass('active');
+        if (obj.hasClass('active')) {
+            obj.closest('.expandableItem').removeClass('active').siblings('.gallery-filter-dropdown-active').append('<span>' + obj.html() + '</span>');
+            EventSearchLoc = obj.text();
+        } else {
+            EventSearchLoc = '';
+        }
+    }
+
+    //Toggle gallery filter item
+    var ToggleGalleryFilter = function (obj) {
+        if (EventSearchTitle != '' && !obj.hasClass('filter-title-icon')) {
+            var searchInputWidth = $('.gallery-filters-wrp .gallery-filters-icons').find('.filter-icon').outerWidth();
+            searchInputWidth = $('.gallery-filters-wrp .gallery-search-by-title .gallery-filter-field').css('width', 'auto').outerWidth();
+            $('.gallery-filters-wrp .gallery-search-by-title .gallery-filter-field').animate({
+                width: searchInputWidth
+            }, 300, function () {});
+        }
+        if (EventSearchLoc != '' && !obj.hasClass('filter-location-icon')) {
+            searchLocWidth = $('.gallery-filters-wrp .gallery-search-by-location .gallery-filter-field').css('width', 'auto').outerWidth();
+            $('.gallery-filters-wrp .gallery-search-by-location .gallery-filter-field').animate({
+                width: searchLocWidth
+            }, 300, function () {});
+        }
+        if (EventSearchDate != '' && !obj.hasClass('filter-date-icon')) {
+            searchDateWidth = $('.gallery-filters-wrp .gallery-search-by-date .gallery-filter-field').css('width', 'auto').outerWidth();
+            $('.gallery-filters-wrp .gallery-search-by-date .gallery-filter-field').animate({
+                width: searchDateWidth
+            }, 300, function () {});
+        }
+        var parent = obj.closest('li');
+        if (!parent.hasClass('active')) {
+            ExpandGalleryFilter(obj);
+        } else {
+            CollapseGalleryFilter(obj);
+        }
+    }
+
+    //Open gallery filter item
+    var ExpandGalleryFilter = function (obj) {
+        var parent = obj.closest('li');
+        var sibling = obj.siblings('.gallery-filter-field');
+        $('.gallery-filters-wrp .gallery-filters-icons .expandableItem').removeClass('active');
+        $('.gallery-filters-wrp .gallery-filters-icons').children('li.active').not(parent).removeClass('active').find('.gallery-filter-field').removeAttr('style');
+        parent.addClass('active');
+        var galleryFilterField = sibling.css('width', 'auto').outerWidth();
+        sibling.removeAttr('style');
+        sibling.animate({
+            width: galleryFilterField
+        }, 300, function () {});
+    }
+
+    //Collapse gallery filter item
+    var CollapseGalleryFilter = function (obj) {
+        var parent = obj.closest('li');
+        var sibling = obj.siblings('.gallery-filter-field');
+        parent.removeClass('active');
+        var galleryFilterFieldIcon = obj.outerWidth();
+        sibling.animate({
+            width: galleryFilterFieldIcon
+        }, 300, function () {});
+    }
+
+    //Filter gallery
+    var FilterGalleryEvents = function () {
+        $('.gallery-filtered-events-wrp').html('');
+        var filteredFound = false;
+        //filteredItems = [];
+        if (EventSearchTitle != '') {
+            var EventSearchTitleRegex = new RegExp("(" + EventSearchTitle + ")", "gi");
+        }
+        if (EventSearchLoc != '') {
+            var EventSearchLocsRegex = new RegExp("(" + EventSearchLoc + ")", "gi");
+        }
+        $('.gallery-events-item').each(function () {
+            var haveRes = false,
+                item = $(this).clone(),
+                title = item.find('h3'),
+                loc = item.find('.gallery-item-map-location span'),
+                date = item.find('.gallery-item-calendar span'),
+                titleMatch = null,
+                locMatch = null;
+            if (EventSearchTitle != '') {
+                titleMatch = title.text().match(EventSearchTitleRegex);
+            }
+            if (EventSearchLoc != '') {
+                locMatch = loc.text().match(EventSearchLocsRegex);
+            }
+            if (EventSearchTitle != '' || EventSearchLoc != '' || EventSearchDate != '') {
+                $('.gallery-events-wrp').not('.gallery-filtered-events-wrp').hide();
+                $('.gallery-filtered-events-wrp').show();
+                if (titleMatch !== null) {
+                    haveRes = true;
+                    titleHighlightedKeywords = title.text().replace(EventSearchTitleRegex, function (x) {
+                        return '<span class="mark">' + x + '</span>';
+                    });
+                    title.html(titleHighlightedKeywords);
+                }
+
+                if (locMatch !== null) {
+                    haveRes = true;
+                    locHighlightedKeywords = loc.text().replace(EventSearchLocsRegex, function (x) {
+                        return '<span class="mark">' + x + '</span>';
+                    });
+                    loc.html(locHighlightedKeywords);
+                }
+
+                if (EventSearchDate == date) {
+                    haveRes = true;
+                    dateHighlightedKeywords = date.text().replace(date, function (x) {
+                        return '<span class="mark">' + x + '</span>';
+                    });
+                    date.html(dateHighlightedKeywords);
+                }
+                if (haveRes) {
+                    item.appendTo('.gallery-filtered-events-wrp');
+                    filteredFound = true;
+                }
+            } else {
+                $('.gallery-filtered-events-wrp').hide();
+                $('.gallery-events-wrp').not('.gallery-filtered-events-wrp').show();
+                //EventSearchTitle = '';
+            }
+        });
+
+        if (filteredFound) {
+            $('.events-gallery-no-results').hide();
+        } else if (!filteredFound && (EventSearchTitle != '' || EventSearchLoc != '' || EventSearchDate != '')) {
+            $('.events-gallery-no-results').show();
+        }
+    }
+
+    //Gallery calender functions
+    //get days in month
+    var getDaysInMonth = function (month, year) {
+        return new Date(year, month, 0).getDate();
+    };
+
     var windowLoaded = false;
     //document ready
     $(document).ready(function () {
@@ -2658,6 +2855,12 @@
             });
         }
         //End of FAQs
+
+        //Start of Events Gallery
+        if ($('.gallery-filters-wrp').length) {
+            InitEventsGallery();
+        }
+        //End of Events Gallery
         $(document).on('mousedown touchstart', function (e) {
             if (newScreenSize == 1) {
                 if ($('#lightbox-popup.active.image-slider').length) {
