@@ -830,8 +830,9 @@ h5 {
 }
 
 h6,
-p {
-    font-family: "Lato-Regular"
+p,
+p * {
+    font-family: "Lato-Regular" !important;
 }
 
 h2 {
@@ -851,8 +852,10 @@ a,
     cursor: pointer
 }
 
-p {
-    line-height: 1.2rem;
+p,
+p * {
+    line-height: 1.2rem !important;
+    font-size:1rem!important;
 }
 
 .normal-text {
@@ -1957,11 +1960,11 @@ iframe:not([data-src]) {
         width: 300px;
         height: 60px;
         position: absolute;
-        top: 50%;
+        top: -10px;
         left: 0;
-        @include transform(translate3d(0,
-        -50%,
-        0))
+        // @include transform(translate3d(0,
+        // -50%,
+        // 0))
     }
     @include media("(max-width: 640px)") {
         width: 80%;
@@ -3219,6 +3222,7 @@ header {
                 padding: 15px 30px 30px;
                 box-sizing: border-box;
                 li {
+                    display:inline-block;
                     float: none !important;
                     a,
                     a:visited {
