@@ -4436,6 +4436,17 @@ Contains all styles of inner pages
                 }
             }
         }
+        //Pagination
+        .pagination-container{
+            text-align: center;
+            .pagination-body{
+                display: inline-block;
+                vertical-align: middle;
+                background-color: #131313;
+                padding: 7px 10px;
+                border-radius: 20px;
+            }
+        }
     }
 
     @include key-frame(event-detail-entering) {
