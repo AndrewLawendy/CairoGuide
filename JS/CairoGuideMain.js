@@ -1766,7 +1766,7 @@
     var EventSearchTitle = '',
         EventSearchLoc = '',
         EventSearchDate = '',
-        YearMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        YearMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var InitEventsGallery = function () {
         $('.gallery-filters-wrp .gallery-filters-icons').find('.filter-icon').each(function () {
             $(this).off().on('click', function () {
@@ -1791,7 +1791,7 @@
             if ($(this).closest('.gallery-search-by-title').length) {
                 $(this).closest('.gallery-search-by-title').find('input').val('');
                 EventSearchTitle = $(this).val();
-            FilterGalleryEvents();
+                FilterGalleryEvents();
             }
             if ($(this).closest('.gallery-search-by-location').length) {
                 if ($(this).siblings('ul').find('a.active').length) {
@@ -1809,6 +1809,17 @@
                 FilterGalleryEvents();
             }).dequeue();
         });
+
+        //         var array = ["26/12/2016", "27/12/2016", "28/12/2016", "29/12/2016"];
+        // var value1 = "26/12/2016";  //exists
+        // var value2 = "26/12/2026";  //doesn't exist
+
+        // function isInArray(array, value) {
+        //   return (array.find(item => {return item == value}) || []).length > 0;
+        // }
+
+        // console.log(isInArray(array, value1));
+        // console.log(isInArray(array, value2));
     }
 
     //Populate gallery locations filter
@@ -1952,11 +1963,15 @@
         }
     }
 
-    //Gallery calender functions
+    //Gallery calendar functions
     //get days in month
-    var getDaysInMonth = function (month, year) {
+    var GetDaysInMonth = function (month, year) {
         return new Date(year, month, 0).getDate();
     };
+
+    var PopulateGalleryCalendar = function (month, year) {
+        var daysInCurrentMonth = GetDaysInMonth(month, year);
+    }
 
     var windowLoaded = false;
     //document ready
@@ -2023,7 +2038,9 @@
             var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
                 stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
                 stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
-            $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+            if (!$('.side-ads.thirty-width').hasClass('achievements-container')) {
+                $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+            }
             MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
         }
         SetInnersCategory();
@@ -3089,7 +3106,9 @@
                 var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
                     stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
                     stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
-                $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+                if (!$('.side-ads.thirty-width').hasClass('achievements-container')) {
+                    $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+                }
                 MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
             }
         });
@@ -3104,13 +3123,15 @@
             }
             newScreenSize = CalcLastScreenSize(newScreenSize);
 
-            /*if ($('.side-ads.thirty-width').length) {
+            /*if ($('.side-ads.thirty-width').length && $(window).width() > 768) {
                 var adMargin = 30;
                 adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
                 var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
                     stopPos = $('.side-ads.thirty-width').siblings('.seventy-width').outerHeight() - $('.side-ads.thirty-width .ads-wrp').outerHeight(),
                     stopBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top + stopPos - customTop;
-                $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+                if (!$('.side-ads.thirty-width').hasClass('achievements-container')) {
+                    $('.side-ads.thirty-width img').width($('.side-ads.thirty-width img').width());
+                }
                 MoveAd(scrollPos, adBreakPos, stopPos, stopBreakPos, customTop);
             }*/
 

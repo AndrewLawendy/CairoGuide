@@ -1735,18 +1735,33 @@ Contains all styles of inner pages
                         }
                         div[class^="rating"] {
                             float: left;
-                            text-align: center;
-                            width: 78px;
-                            margin: 10px 8px 0;
+                            //text-align: center;
+                            text-align: left;
+                            //width: 78px;
+                            width:calc(100% / 5);
+                            //margin: 10px 8px 0;
+                            padding: 10px 8px 0;
+                            box-sizing:border-box;
                             @include media("(min-width: 1200px)") {
-                                width: get-vw(78px);
-                                margin: get-vw(10px) get-vw(8px) 0;
+                                //width: get-vw(78px);
+                                //margin: get-vw(10px) get-vw(8px) 0;
+                                padding: get-vw(10px) get-vw(8px) 0;
+                            }
+                            &:nth-of-type(5n - 4){
+                                clear:left;
+                            }
+                            &:nth-of-type(5n){
+                                clear:right;
                             }
                             p {
                                 font: 1rem 'Lato-Bold';
-                                margin-bottom: 5px;
+                                //margin-bottom: 5px;
+                                margin-bottom: 10px;
+                                height:2.4rem;
+                                overflow:hidden;
                                 @include media("(min-width: 1200px)") {
-                                    margin-bottom: get-vw(5px);
+                                    //margin-bottom: get-vw(5px);
+                                    margin-bottom: get-vw(10px);
                                 }
                             }
                             img {
@@ -1779,9 +1794,13 @@ Contains all styles of inner pages
                         .open-status {
                             font-size: .857rem;
                             position: relative;
-                            bottom: 2px;
+                            //bottom: 2px;
+                            line-height:1rem;
+                            top: 2px;
+                            color:#999;
                             @include media("(min-width: 1200px)") {
-                                bottom: get-vw(2px);
+                                //bottom: get-vw(2px);
+                                top: get-vw(2px);
                             }
                         }
                     }
@@ -1805,9 +1824,9 @@ Contains all styles of inner pages
                                     margin-top: get-vw(5px);
                                 }
                             }
-                            .day {
-                                float: left;
-                            }
+                            // .day {
+                            //     float: left;
+                            // }
                             .hour {
                                 float: right;
                                 text-align: right;
@@ -1836,9 +1855,11 @@ Contains all styles of inner pages
                     float: left;
                     text-align: center;
                     p {
-                        margin-bottom: 10px;
+                        //margin-bottom: 10px;
+                        margin-top: 10px;
                         @include media("(min-width: 1200px)") {
-                            margin-bottom: get-vw(10px);
+                            //margin-bottom: get-vw(10px);
+                            margin-top: get-vw(10px);
                         }
                     }
                     .circle-container {
@@ -2031,7 +2052,7 @@ Contains all styles of inner pages
                             }
                             p {
                                 font: 1rem 'Lato-Regular';
-                                float: left;
+                                //float: left;
                             }
                             .review-satisfaction-wrp {
                                 float: right;
