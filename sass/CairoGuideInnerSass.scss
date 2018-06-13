@@ -1691,6 +1691,16 @@ Contains all styles of inner pages
             }
             .overview-details {
                 .item-description-container {
+                    h6,
+                    p,
+                    p * {
+                        font-family: "Lato-Regular" !important;
+                    }
+                    p,
+                    p * {
+                        line-height: 1.2rem !important;
+                        font-size: 1rem !important;
+                    }
                     p.overview-brief {
                         text-align: justify;
                         font-size: 1rem;
@@ -1734,31 +1744,27 @@ Contains all styles of inner pages
                             margin: 0 get-vw(-8px);
                         }
                         div[class^="rating"] {
-                            float: left;
-                            //text-align: center;
-                            text-align: left;
-                            //width: 78px;
-                            width:calc(100% / 5);
-                            //margin: 10px 8px 0;
+                            float: left; //text-align: center;
+                            text-align: left; //width: 78px;
+                            width: calc(100% / 5); //margin: 10px 8px 0;
                             padding: 10px 8px 0;
-                            box-sizing:border-box;
+                            box-sizing: border-box;
                             @include media("(min-width: 1200px)") {
                                 //width: get-vw(78px);
                                 //margin: get-vw(10px) get-vw(8px) 0;
                                 padding: get-vw(10px) get-vw(8px) 0;
                             }
-                            &:nth-of-type(5n - 4){
-                                clear:left;
+                            &:nth-of-type(5n - 4) {
+                                clear: left;
                             }
-                            &:nth-of-type(5n){
-                                clear:right;
+                            &:nth-of-type(5n) {
+                                clear: right;
                             }
                             p {
-                                font: 1rem 'Lato-Bold';
-                                //margin-bottom: 5px;
+                                font: 1rem 'Lato-Bold'; //margin-bottom: 5px;
                                 margin-bottom: 10px;
-                                height:2.4rem;
-                                overflow:hidden;
+                                height: 2.4rem;
+                                overflow: hidden;
                                 @include media("(min-width: 1200px)") {
                                     //margin-bottom: get-vw(5px);
                                     margin-bottom: get-vw(10px);
@@ -1793,11 +1799,10 @@ Contains all styles of inner pages
                         text-align: right;
                         .open-status {
                             font-size: .857rem;
-                            position: relative;
-                            //bottom: 2px;
-                            line-height:1rem;
+                            position: relative; //bottom: 2px;
+                            line-height: 1rem;
                             top: 2px;
-                            color:#999;
+                            color: #999;
                             @include media("(min-width: 1200px)") {
                                 //bottom: get-vw(2px);
                                 top: get-vw(2px);
@@ -1823,8 +1828,7 @@ Contains all styles of inner pages
                                 @include media("(min-width: 1200px)") {
                                     margin-top: get-vw(5px);
                                 }
-                            }
-                            // .day {
+                            } // .day {
                             //     float: left;
                             // }
                             .hour {
@@ -2051,8 +2055,7 @@ Contains all styles of inner pages
                                 margin-bottom: get-vw(10px);
                             }
                             p {
-                                font: 1rem 'Lato-Regular';
-                                //float: left;
+                                font: 1rem 'Lato-Regular'; //float: left;
                             }
                             .review-satisfaction-wrp {
                                 float: right;
@@ -4456,11 +4459,10 @@ Contains all styles of inner pages
                     }
                 }
             }
-        }
-        //Pagination
-        .pagination-container{
+        } //Pagination
+        .pagination-container {
             text-align: center;
-            .pagination-body{
+            .pagination-body {
                 display: inline-block;
                 vertical-align: middle;
                 background-color: #131313;
