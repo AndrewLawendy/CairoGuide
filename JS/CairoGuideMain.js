@@ -2001,6 +2001,9 @@
     var windowLoaded = false;
     //document ready
     $(document).ready(function () {
+        //Scroll tot top
+        $('#backToTopBtn').on('click',BackToTop);
+
         //Scroll to id
         if (window.location.href.indexOf('scrollto=') > -1) {
             var strMainFraction = window.location.href.split('scrollto=');
