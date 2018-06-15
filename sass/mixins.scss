@@ -1,0 +1,218 @@
+@mixin apply-color($prop, $color) {
+    #{$prop}: $color;
+}
+
+@mixin transition($transition...) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transition-delay($transition-delay...) {
+    -webkit-transition-delay: $transition-delay;
+    -moz-transition-delay: $transition-delay;
+    -ms-transition-delay: $transition-delay;
+    -o-transition-delay: $transition-delay;
+    transition-delay: $transition-delay;
+}
+
+@mixin transform($transform...) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+
+@mixin transform-origin($transform-origin...) {
+    -webkit-transform-origin: $transform-origin;
+    -moz-transform-origin: $transform-origin;
+    -ms-transform-origin: $transform-origin;
+    -o-transform-origin: $transform-origin;
+    transform-origin: $transform-origin;
+}
+
+@mixin animation($animation...) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    -o-animation: $animation;
+    animation: $animation;
+}
+
+@mixin animation-delay($animation...) {
+    -webkit-animation-delay: $animation;
+    -moz-animation-delay: $animation;
+    -o-animation-delay: $animation;
+    animation-delay: $animation;
+}
+
+@mixin animation-direction($animation...) {
+    -webkit-animation-direction: $animation;
+    -moz-animation-direction: $animation;
+    -o-animation-direction: $animation;
+    animation-direction: $animation;
+}
+
+@mixin user-select($value) {
+    -webkit-touch-callout: $value;
+    -webkit-user-select: $value;
+    -webkit-user-drag: $value;
+    -khtml-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+}
+
+@mixin box-shadow($box-shadow...) {
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+@mixin image-filter($filter) {
+    -webkit-filter: #{$filter};
+    /* Safari 6.0 - 9.0 */
+    filter: #{$filter};
+}
+
+@mixin placeholder {
+    input::-webkit-input-placeholder {
+        @content
+    }
+    input::-moz-placeholder {
+        @content
+    }
+    input:-ms-input-placeholder {
+        @content
+    }
+    input:-moz-placeholder {
+        @content
+    }
+}
+
+@mixin key-frame($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    /* Standard syntax */
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin media($queryString) {
+    @media #{$queryString} {
+        @content;
+    }
+}
+
+@mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
+    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+}
+
+@mixin theme-link-color($category-color) {
+    & {
+        color: $category-color;
+    }
+    &:after {
+        background-color: $category-color;
+    }
+}
+
+@mixin limit-text-lines($number-of-lines, $line-height) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $number-of-lines;
+    /* number of lines to show */
+    line-height: $line-height;
+    /* fallback */
+    max-height: $line-height*$number-of-lines;
+    /* fallback */
+}
+
+//Mixing to give color opacity
+@mixin background-opacity($color, $opacity: 1) {
+    background-color: $color;
+    /* The Fallback */
+    background-color: rgba($color, $opacity);
+}
+
+@mixin active-popup($prefix) {
+    &.#{$prefix}-popup-active {
+        .popup-body {
+            .popup-body-container.#{$prefix}-container {
+                margin: 21vh 0 0 140px;
+                opacity: 1;
+                @include transition(all 0.3s ease 1.1s);
+                @include media("(min-width: 1200px)") {
+                    margin: 21vh 0 0 get-vw(140px);
+                }
+                @content;
+            }
+        }
+    }
+}
+
+@mixin default-no-ad($isPosRel: true) {
+    background-color: #eee;
+    @if $isPosRel==true {
+        position: relative;
+    }
+    &:before {
+        content: 'Advertisement area';
+        color: #aaa;
+        text-transform: capitalize;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        padding: 5px 30px;
+        box-sizing: border-box;
+        display: block;
+        font-size: 1.2rem;
+        /*border-top: 1px solid #ccc;
+        border-bottom: 3px solid #ccc;*/
+        @include transform(translate3d(0, -50%, 0));
+        @include media("(min-width: 1200px)") {
+            padding: get-vw(5px) get-vw(30px);
+            /*border-top-width: get-vw(1px);
+        border-bottom-width: get-vw(3px);*/
+        }
+    }
+    img {
+        position: relative;
+        z-index: 10;
+    }
+}
+
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex: $values;
+    -webkit-flex: $values;
+    -ms-flex: $values;
+    flex: $values;
+}
+
+@mixin object-fit-img() {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@mixin init-pos($position){
+    position: $position;
+    top:0;
+    left: 0;
+}

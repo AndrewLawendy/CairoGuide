@@ -1,0 +1,48 @@
+/*Variable Declaration*/
+
+$bounce:cubic-bezier(0.68, -0.55, 0.27, 1.55);
+$mountain-ease: cubic-bezier(0.53, 0.21, 0.29, 0.67);
+$in-out-cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
+$in-cubic:cubic-bezier(0.55, 0.06, 0.68, 0.19);
+$out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
+$out-quadratic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/*Main Colors*/
+
+$header-footer-primary-background-color:#131313;
+$header-footer-secondary-background-color:#fff;
+$header-footer-primary-text-color:#000;
+$header-footer-secondary-text-color:#fff;
+$background-midcolor: #f4f7f6;
+$logo-pink:#db2b4a;
+$logo-yellow:#f3a41e;
+$logo-green:#5daa46;
+$success:#5cb85c;
+$danger:#d9534f;
+$calendar-color:#f3a41e;
+$mid-grey:#eee;
+/*Category Colors*/
+
+/*$colorList: "nightlife" desaturate(lighten(#f90000, 10%), 30%),
+"tourism" desaturate(lighten(#00a79d, 10%), 30%),
+"shopping" desaturate(lighten(#ec008c, 10%), 30%),
+"beauty" desaturate(lighten(#154a93, 10%), 30%),
+"dining" desaturate(lighten(#e31b23, 10%), 30%),
+"services" desaturate(lighten(#f57f2a, 10%), 30%),
+"accommodation" desaturate(lighten(#069347, 10%), 30%),
+"fitness" desaturate(lighten(#0f82b7, 10%), 30%),
+"entertainment" desaturate(lighten(#7f3f98, 10%), 30%),
+"more" desaturate(lighten(#9a1c52, 10%), 30%);*/
+
+$colorList: "nightlife" #f90000,
+"tourism" #00a79d,
+"shopping" #ec008c,
+"beauty" #154a93,
+"dining" #e31b23,
+"services" #f57f2a,
+"accommodation" #069347,
+"fitness" #0f82b7,
+"entertainment" #7f3f98,
+"more" #9a1c52,
+"logo-pink" #db2b4a,
+"logo-yellow" #f3a41e,
+"logo-green" #5daa46;

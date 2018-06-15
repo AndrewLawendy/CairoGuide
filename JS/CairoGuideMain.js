@@ -1236,6 +1236,7 @@
             pagerItemsParent = pagerItems.parent(),
             maxItemsPerPage = _this.data('pagination-max');
             if(pagerItems.length<=maxItemsPerPage) return;
+            _this.addClass('marg-t20');
             var pages = Math.ceil(pagerItems.length/maxItemsPerPage),
             pagesButtons = [];
             for(var i = 1;i<=pages;i++){
@@ -1246,7 +1247,7 @@
             pagerFirst = $('<button type="button" class="pagination-first">&lt;&lt;</button>'),
             pagerPrev = $('<button type="button" class="pagination-prev">&lt;</button>'),
             pagerNext = $('<button type="button" class="pagination-next">&gt;</button>'),
-            pagerLast = $('<button type="button" class="pagination-last">&gt;&gt;</button>');
+            pagerLast = $('<button type="button" class="pagination-last ">&gt;&gt;</button>');
             _this.append(pagerBody);
             pagerBody.append(pagerIndex,pagerFirst,pagerPrev,pagesButtons,pagerNext,pagerLast);
             pagesButtons = pagerBody.find('.page');
@@ -1261,6 +1262,7 @@
                 var filtered = pagerItems.slice(startFrom, endAt);
                 pagerItemsParent.find(_this.data('pagination-items')).remove();
                 pagerItemsParent.prepend(filtered);
+                $('body').scroll();
             }
             function setPage(){
                 if($(this).hasClass('active')) return;
@@ -2078,12 +2080,6 @@
 
         if ($('.items-list-wrp').length && $('.items-list-wrp').find('.ads-wrp').length) {
             $('.items-list-wrp').css('min-height', $('.ads-wrp').height());
-        }
-        //Ripple Effect
-        if ($('.ripple').length) {
-            $('.ripple').on('click', function (e) {
-                rippleEffect(e, $(this));
-            });
         }
 
         $('[data-src]').length && lazyLoading();
@@ -3257,5 +3253,11 @@
                 $('#loader-wrp').find('.loader-skip-link').addClass('active');
             }
         });
+        //Ripple Effect
+        if ($('.ripple').length) {
+            $('.ripple').on('click', function (e) {
+                rippleEffect(e, $(this));
+            });
+        }
     });
 })();
