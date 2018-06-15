@@ -122,6 +122,11 @@
         return reference * Math.ceil((newVal) / reference);
     };
 
+    //Floor to nearest value
+    var floorToNearestValue = function (reference, newVal) {
+        return reference * Math.floor((newVal) / reference);
+    };
+
     //getQueryString
     var getQueryString = function (field) {
         var href = window.location.href,
@@ -1227,25 +1232,70 @@
     var paginate = function(){
         $('.pagination-container').each(function(){
             var _this = $(this),
-            items = $(_this.data('pagination-items')),
-            itemsParent = items.parent(),
+            pagerItems = $(_this.data('pagination-items')),
+            pagerItemsParent = pagerItems.parent(),
             maxItemsPerPage = _this.data('pagination-max');
-            if(items.length<=maxItemsPerPage) return;
-            var pages = Math.ceil(items.length/maxItemsPerPage),
+            if(pagerItems.length<=maxItemsPerPage) return;
+            var pages = Math.ceil(pagerItems.length/maxItemsPerPage),
             pagesButtons = [];
             for(var i = 1;i<=pages;i++){
                 pagesButtons.push('<button type="button" class="page">'+i+'</button>');
             }
-            var body = $('<div class="pagination-body"></div>'),
-            index = $('<div class="pagination-index"></div>'),
-            first = $('<button type="button" class="pagination-first">&lt;&lt;</button>'),
-            prev = $('<button type="button" class="pagination-prev">&lt;&lt;</button>'),
-            next = $('<button type="button" class="pagination-next">&gt;</button>'),
-            last = $('<button type="button" class="pagination-last">&gt;&gt;</button>');
-            _this.append(body);
-            body.append(index,first,prev,pagesButtons,next,last);
-            pagesButtons = body.find('.page');
-            pagesButtons.first().addClass('active');
+            var pagerBody = $('<div class="pagination-body"></div>'),
+            pagerIndex = $('<div class="pagination-index"></div>'),
+            pagerFirst = $('<button type="button" class="pagination-first">&lt;&lt;</button>'),
+            pagerPrev = $('<button type="button" class="pagination-prev">&lt;</button>'),
+            pagerNext = $('<button type="button" class="pagination-next">&gt;</button>'),
+            pagerLast = $('<button type="button" class="pagination-last">&gt;&gt;</button>');
+            _this.append(pagerBody);
+            pagerBody.append(pagerIndex,pagerFirst,pagerPrev,pagesButtons,pagerNext,pagerLast);
+            pagesButtons = pagerBody.find('.page');
+            pagesButtons.on('click',setPage);
+            pagerPrev.on('click',previousPage);
+            pagerNext.on('click',nextPage);
+            pagerFirst.on('click',firstPage);
+            pagerLast.on('click',lastPage);
+            pagesButtons.first().click();
+            pagerItemsParent.css('height',pagerItemsParent.height());
+            function initiatePagination(startFrom, endAt) {
+                var filtered = pagerItems.slice(startFrom, endAt);
+                pagerItemsParent.find(_this.data('pagination-items')).remove();
+                pagerItemsParent.prepend(filtered);
+            }
+            function setPage(){
+                if($(this).hasClass('active')) return;
+                var startFrom = startFrom || (Number($(this).text())-1)*maxItemsPerPage,
+                endAt = endAt || startFrom + maxItemsPerPage;
+                pagesButtons.removeClass('active');
+                $(this).addClass('active');
+                initiatePagination(startFrom,endAt);
+                setIndexPos($(this));
+            }
+            function previousPage() {
+                var active = pagesButtons.filter('.active');
+                if (active.text() == 0) return;
+                var prev = active.prev();
+                prev.click();
+            }
+            function nextPage() {
+                var active = pagesButtons.filter('.active');
+                if (active.text() == pages) return;
+                var next = active.next();
+                next.click();
+            }
+            function firstPage(){
+                if(pagesButtons.first().hasClass('active')) return;
+                pagesButtons.first().click();
+            }
+            function lastPage(){
+                if(pagesButtons.last().hasClass('active')) return;
+                pagesButtons.last().click();
+            }
+
+            function setIndexPos(active) {
+                var posLeft = active.position().left;
+                pagerIndex.css('left',posLeft);
+            }
         });
     };
 
@@ -1421,7 +1471,6 @@
     var sliderMainImage = $('#lightbox-popup').find('.slider-main-image').not('.cloned');
     var imgSmallSliderContainer = $('#lightbox-popup').find('.img-small-slider-container');
     var lastScreenSize = 0;
-    console.log(lastScreenSize);
 
     //Draw popup gallery slider
     var DrawPopupGallery = function (galleryList, activeImgIndex) {
