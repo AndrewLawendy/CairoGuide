@@ -1054,11 +1054,10 @@ main {
     /*Best Spots*/
     #best-spots {
         margin-right: -30px;
-        height: 600px;
+        height: calc(100vh - 58px);
         position: relative;
         @include media("(min-width: 1200px)") {
             margin-right: get-vw(-30px);
-            height: get-vw(600px);
         }
         @include media("(max-width: 768px)") {
             margin-right: 0;
@@ -1143,8 +1142,8 @@ main {
                         @include transition(all .3s ease);
                         z-index: 3;
                         @include media("(min-width: 1200px)") {
-                            width: get-vw(350px);
-                            height: get-vw(350px);
+                            width: get-vw(320px);
+                            height: get-vw(320px);
                             border-radius: get-vw(20px);
                         }
                         @include media("(max-width: 768px)") {
@@ -1327,23 +1326,23 @@ main {
                                 height: 425px;
                                 right: 12px;
                                 @include media("(min-width: 1200px)") {
-                                    width: get-vw(450px);
-                                    height: get-vw(450px);
+                                    width: get-vw(425px);
+                                    height: get-vw(425px);
                                     right: get-vw(12px);
                                 }
                             }
                         }
                         &:nth-of-type(2) {
                             .best-image-frame {
-                                width: 480px;
-                                height: 480px;
-                                top: -65px;
-                                right: -480px;
+                                width: 490px;
+                                height: 490px;
+                                top: -55px;
+                                right: -490px;
                                 @include media("(min-width: 1200px)") {
-                                    width: get-vw(480px);
-                                    height: get-vw(480px);
-                                    top: get-vw(-65px);
-                                    right: get-vw(-480px);
+                                    width: get-vw(430px);
+                                    height: get-vw(430px);
+                                    top: get-vw(-60px);
+                                    right: get-vw(-430px);
                                 }
                             }
                         }
@@ -1417,14 +1416,12 @@ main {
                         .best-image-frame {
                             @include transform-origin(top left);
                             top: 0px;
-                            right: -365px;
-                            width: 360px;
-                            height: 360px;
-                            @include media("(min-width: 1200px)") {
-                                right: get-vw(-365px);
-                                width: get-vw(360px);
-                                height: get-vw(360px);
-                            }
+                            right: -54vh;
+                            width: 55vh;
+                            height: 55vh;
+                            // @include media("(min-width: 1200px)") {
+                            //     right: get-vw(-365px);
+                            // }
                             img {
                                 @include transform(rotate(-45deg) translate3d(-25%, -25%,0));
                             }
