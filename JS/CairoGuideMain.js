@@ -1201,34 +1201,7 @@
         return result;
     };
 
-    //Set Cursor Limit
-    // var setCursorLimit = function (input, charNumb, e) {
-    //     var limit = input.val().length - charNumb;
-    //     var cursorPos = input[0].selectionStart;
-    //     var cursorEnd = input[0].selectionEnd;
-    //     if (e) {
-    //         if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
-    //             e.preventDefault();
-    //         } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
-    //             e.preventDefault();
-    //         }
-    //     }
-    //     if (cursorPos > limit) {
-    //         input[0].setSelectionRange(limit, limit);
-    //     }
-    // };
-
-    //For Demo
-    var GetParameterByName = function (name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-
+    //Pagination
     var paginate = function(){
         $('.pagination-container').each(function(){
             var _this = $(this),
@@ -1299,6 +1272,34 @@
                 pagerIndex.css('left',posLeft);
             }
         });
+    };
+
+    //Set Cursor Limit
+    // var setCursorLimit = function (input, charNumb, e) {
+    //     var limit = input.val().length - charNumb;
+    //     var cursorPos = input[0].selectionStart;
+    //     var cursorEnd = input[0].selectionEnd;
+    //     if (e) {
+    //         if ((e.keyCode == 46) && (cursorPos >= limit || cursorEnd > limit)) {
+    //             e.preventDefault();
+    //         } else if (e.keyCode == 8 && (cursorPos > limit || cursorEnd > limit)) {
+    //             e.preventDefault();
+    //         }
+    //     }
+    //     if (cursorPos > limit) {
+    //         input[0].setSelectionRange(limit, limit);
+    //     }
+    // };
+
+    //For Demo
+    var GetParameterByName = function (name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
 
     //-------------------------------------------------------------------------------------------------
