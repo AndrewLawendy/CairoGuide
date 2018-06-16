@@ -2,7 +2,6 @@
 @import 'functions';
 @import 'mixins';
 @import 'placeholders';
-
 @each $i in $colorList {
     .#{nth($i,1)}-text {
         color: nth($i, 2);
@@ -306,6 +305,22 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-first:before {
+    content: "\e925";
+}
+
+.icon-prev:before {
+    content: "\e926";
+}
+
+.icon-next:before {
+    content: "\e927";
+}
+
+.icon-last:before {
+    content: "\e928";
+}
+
 .icon-social-facebook:before {
     content: "\e900";
 }
@@ -505,7 +520,7 @@ a,
 p,
 p * {
     line-height: 1.2rem;
-    font-size:1rem;
+    font-size: 1rem;
 }
 
 .normal-text {
@@ -664,7 +679,7 @@ p * {
     position: absolute;
     right: 0;
     top: 0;
-    z-index:50;
+    z-index: 50;
     padding-left: 20px;
     box-sizing: border-box;
     @include media("(min-width: 1200px)") {
@@ -1612,8 +1627,7 @@ iframe:not([data-src]) {
         height: 60px;
         position: absolute;
         top: -10px;
-        left: 0;
-        // @include transform(translate3d(0,
+        left: 0; // @include transform(translate3d(0,
         // -50%,
         // 0))
     }
@@ -2873,7 +2887,7 @@ header {
                 padding: 15px 30px 30px;
                 box-sizing: border-box;
                 li {
-                    display:inline-block;
+                    display: inline-block;
                     float: none !important;
                     a,
                     a:visited {
@@ -3395,12 +3409,11 @@ header {
 
 main {
     background-color: #fff;
-    h6{
-        font: 1.286rem 'Lato-Black'!important;
+    h6 {
+        font: 1.286rem 'Lato-Black' !important;
         text-transform: uppercase;
-        color:#131313;
+        color: #131313;
     }
-
     /*boc-carousel*/
     .boc-carousel {
         overflow: hidden;

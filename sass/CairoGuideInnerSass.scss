@@ -4474,9 +4474,9 @@ Contains all styles of inner pages
                 button{
                     @extend %reset-appearance;
                     position: relative;
-                    top:-5px;
+                    top:-6px;
                     cursor: pointer;
-                    padding: 7px 16px;
+                    padding: 7px 0;
                     box-sizing: border-box;
                     width: 40px;
                     height: 40px;
@@ -4484,10 +4484,13 @@ Contains all styles of inner pages
                     &.active{
                         color: #fff;
                     }
+                    &.page{
+                        padding: 7px 16px;
+                    }
                 }
                 .pagination-index{
                     position: absolute;
-                    top:-5px;
+                    top:-6px;
                     width:40px;
                     height: 40px;
                     border-radius: 50%;

@@ -1244,10 +1244,10 @@
             }
             var pagerBody = $('<div class="pagination-body"></div>'),
             pagerIndex = $('<div class="pagination-index"></div>'),
-            pagerFirst = $('<button type="button" class="pagination-first">&lt;&lt;</button>'),
-            pagerPrev = $('<button type="button" class="pagination-prev">&lt;</button>'),
-            pagerNext = $('<button type="button" class="pagination-next">&gt;</button>'),
-            pagerLast = $('<button type="button" class="pagination-last ">&gt;&gt;</button>');
+            pagerFirst = $('<button type="button" class="pagination-first">\n<i class="icon-first"></i>\n</button>'),
+            pagerPrev = $('<button type="button" class="pagination-prev">\n<i class="icon-prev"></i>\n</button>'),
+            pagerNext = $('<button type="button" class="pagination-next">\n<i class="icon-next"></i>\n</button>'),
+            pagerLast = $('<button type="button" class="pagination-last ">\n<i class="icon-last"></i>\n</button>');
             _this.append(pagerBody);
             pagerBody.append(pagerIndex,pagerFirst,pagerPrev,pagesButtons,pagerNext,pagerLast);
             pagesButtons = pagerBody.find('.page');
