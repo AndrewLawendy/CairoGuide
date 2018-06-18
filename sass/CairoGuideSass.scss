@@ -43,7 +43,7 @@ main {
                         &.#{nth($item,1)}-item {
                             .section-title {
                                 @include media("(max-width: 768px)") {
-                                    border-left-color:nth($item, 2)!important;
+                                    border-left-color: nth($item, 2) !important;
                                 }
                                 &::before {
                                     background-color: nth($item, 2) !important;
@@ -91,7 +91,7 @@ main {
                         padding-left: 30px;
                         padding-right: 25%;
                         box-sizing: border-box;
-                        @include transform(translate3d(0,-50%,0));
+                        @include transform(translate3d(0, -50%, 0));
                         @include transition(top .7s);
                         @include media("(min-width: 1200px)") {
                             padding-left: get-vw(30px);
@@ -102,7 +102,7 @@ main {
                             position: relative;
                             top: 0;
                             margin-top: 0 !important;
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0, 0, 0));
                         }
                         .section-title {
                             margin-bottom: 10px;
@@ -120,7 +120,7 @@ main {
                                     // height: 3px;
                                     // top: auto;
                                     // bottom: -6px;
-                                    display:none;
+                                    display: none;
                                 }
                                 h2 {
                                     text-align: left;
@@ -128,7 +128,7 @@ main {
                                     letter-spacing: 0;
                                     font-size: 1.5rem;
                                     line-height: 2rem;
-                                    padding-left:0;
+                                    padding-left: 0;
                                 }
                             }
                         }
@@ -160,7 +160,7 @@ main {
                             @include media("(max-width: 768px)") {
                                 margin-top: 10px;
                                 &:hover {
-                                    color:#fff;
+                                    color: #fff;
                                 }
                             }
                             @include media("(max-width: 768px)") {
@@ -195,8 +195,7 @@ main {
                 padding: 0 15px;
                 background: transparent;
                 &::before {
-                    display:none;
-                    // position: absolute;
+                    display: none; // position: absolute;
                     // top: -5px;
                     // left: 10%;
                     // background-color: #eee;
@@ -230,7 +229,7 @@ main {
                         display: inline-block;
                         padding: 0;
                         color: #000;
-                        border:0;
+                        border: 0;
                     }
                     &.selected,
                     &:hover {
@@ -320,6 +319,7 @@ main {
             .ad-item {
                 border-right: 5px solid #fff;
                 border-bottom: 5px solid #fff;
+                box-sizing: border-box;
                 @include media("(min-width: 1200px)") {
                     border-right-width: get-vw(5px);
                     border-bottom-width: get-vw(5px);
@@ -360,7 +360,9 @@ main {
                         }
                         &>a,
                         &>a:visited {
-                            left: 10px !important;
+                            right:auto!important;
+                            //left: 10px !important;
+                            border-radius:0 100px 100px 0!important;
                         }
                     }
                 }
@@ -377,8 +379,8 @@ main {
                         position: relative;
                         overflow: hidden;
                         &:before {
-                            content:'Sponsored';
-                            display:block;
+                            content: 'Sponsored';
+                            display: block;
                             position: absolute;
                             top: 15px;
                             right: -10px; //width: 50%;
@@ -391,11 +393,9 @@ main {
                             z-index: 50;
                             overflow: hidden;
                             border-width: 1px 0 1px 1px;
-                            border-style: solid;
-                            //border-color:#fff;
+                            border-style: solid; //border-color:#fff;
                             font-family: 'Lato-Bold' !important;
-                            letter-spacing: 1px;
-                            //color:#fff;
+                            letter-spacing: 1px; //color:#fff;
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(15px);
                                 right: get-vw(-10px);
@@ -525,7 +525,7 @@ main {
                             @include transition(background-color 0.15s ease, color 0.15s ease);
                         }
                         @include media("(max-width: 768px)") {
-                            height:100%;
+                            height: 100%;
                         }
                     }
                     @each $i in $colorList {
@@ -534,8 +534,7 @@ main {
                                 &:before {
                                     color: nth($i, 2);
                                     border-color: nth($i, 2);
-                                    @include animation(#{nth($i,1)}-neon 4s infinite ease-in-out);
-                                    // &:before {
+                                    @include animation(#{nth($i,1)}-neon 4s infinite ease-in-out); // &:before {
                                     //     background-color: nth($i, 2);
                                     // }
                                 }
@@ -545,9 +544,9 @@ main {
                                 /*@include media("(max-width: 768px)") {
                                 background-color: nth($i, 2);
                             }*/
-                            @include media("(max-width: 768px)") {
-                                @include background-opacity(nth($i, 2), 0.25);
-                            }
+                                @include media("(max-width: 768px)") {
+                                    @include background-opacity(nth($i, 2), 0.25);
+                                }
                                 a:hover {
                                     color: nth($i, 2);
                                 }
@@ -587,24 +586,52 @@ main {
                 &>a:visited {
                     position: absolute;
                     bottom: 15px;
-                    left: 15px;
+                    left: 0;
                     color: #fff;
                     text-decoration: underline;
                     opacity: 1;
                     z-index: 50;
+                    padding: 10px 15px;
+                    box-sizing: border-box;
+                    background: #000;
+                    border-radius: 0 100px 100px 0;
                     @include transition(opacity 0.3s, left 0.3s, z-index 0s);
                     @include media("(min-width: 1200px)") {
                         bottom: get-vw(15px);
-                        left: get-vw(15px);
+                        padding: get-vw(10px) get-vw(15px);
+                        border-radius: 0 get-vw(100px) get-vw(100px) 0;
                     }
                     @include media("(max-width: 768px)") {
                         left: auto;
-                        right: 10px;
-                        bottom: 25px;
+                        right:0;
+                        bottom: 15px;
+                        border-radius: 100px 0 0 100px;
                     }
                 }
                 &>a:hover {
                     text-decoration: none;
+                    &~.trend-slide.active {
+                        .trend-info {
+                            left: 0;
+                            opacity: 1;
+                            @include transition(all 0.5s);
+                            h3,
+                            p,
+                            a {
+                                margin-left: 0;
+                                opacity: 1;
+                            }
+                            h3 {
+                                @include transition(margin-left 0.2s ease 0.1s, opacity 0.2s ease 0.1s);
+                            }
+                            p {
+                                @include transition(margin-left 0.2s ease 0.3s, opacity 0.2s ease 0.3s);
+                            }
+                            a {
+                                @include transition(margin-left 0.2s ease 0.5s, opacity 0.2s ease 0.5s, background-color 0.15s, color 0.15s);
+                            }
+                        }
+                    }
                 }
             }
             .ad-item {
@@ -688,7 +715,7 @@ main {
                 text-transform: uppercase;
                 width: 100%;
                 text-align: center;
-                @include transform(translate3d(0,0,0)); //@include transition(all 3s);
+                @include transform(translate3d(0, 0, 0)); //@include transition(all 3s);
                 @include media("(max-width: 768px)") {
                     font-size: 4.5rem;
                 }
@@ -962,14 +989,14 @@ main {
                         bottom: 0; //height: 35%;
                         padding: 0 15px 15px 15px;
                         box-sizing: border-box;
-                        @include transform(translate3d(0,100%,0));
+                        @include transform(translate3d(0, 100%, 0));
                         @include transition(all 0.3s ease);
                         @include media("(min-width: 1200px)") {
                             padding: 0 get-vw(15px) get-vw(15px) get-vw(15px);
                         }
                         @include media("(max-width: 768px)") {
                             background-color: transparent !important;
-                            @include transform(translate3d(0,0,0) !important);
+                            @include transform(translate3d(0, 0, 0) !important);
                         }
                         &:before {
                             content: '';
@@ -1039,7 +1066,7 @@ main {
                     }
                     &:hover {
                         .news-info {
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0, 0, 0));
                             @include transition(all 0.3s ease);
                             h3 {
                                 height: 2.4em;
@@ -1221,7 +1248,7 @@ main {
                         opacity: 0;
                         padding-left: 150px;
                         @include transition(all .3s);
-                        @include transform(translate3d(50%,0,0));
+                        @include transform(translate3d(50%, 0, 0));
                         z-index: 2;
                         @include media("(min-width: 1200px)") {
                             top: get-vw(110px);
@@ -1239,7 +1266,7 @@ main {
                         left: 0;
                         opacity: 0;
                         @include transition(all .3s);
-                        @include transform(translate3d(100%,0,0));
+                        @include transform(translate3d(100%, 0, 0));
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(190px);
                         }
@@ -1282,7 +1309,7 @@ main {
                             height: 1.2rem;
                         }
                         @include transition(all .3s);
-                        @include transform(translate3d(50%,0,0));
+                        @include transform(translate3d(50%, 0, 0));
                         z-index: 1;
                         @include media("(min-width: 1200px)") {
                             padding-top: get-vw(218px);
@@ -1306,18 +1333,18 @@ main {
                             @include transition(all .15s);
                         }
                         h2 {
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0, 0, 0));
                             opacity: .1;
                             @include transition(all .5s);
                         }
                         h6 {
                             opacity: 1;
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0, 0, 0));
                             @include transition(all .7s ease-out .15s);
                         }
                         .best-description-frame {
                             opacity: 1;
-                            @include transform(translate3d(0,0,0));
+                            @include transform(translate3d(0, 0, 0));
                             @include transition(all .7s ease-out .15s);
                         }
                         &:nth-of-type(1) {
@@ -1397,7 +1424,7 @@ main {
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate3d(100px, 150%,0));
+                                    @include transform(rotate(-45deg) translate3d(100px, 150%, 0));
                                     left: 0;
                                     bottom: 0;
                                 }
@@ -1405,7 +1432,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate3d(-70%, 150%,0));
+                                        @include transform(rotate(-45deg) translate3d(-70%, 150%, 0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1418,16 +1445,15 @@ main {
                             top: 0px;
                             right: -54vh;
                             width: 55vh;
-                            height: 55vh;
-                            // @include media("(min-width: 1200px)") {
+                            height: 55vh; // @include media("(min-width: 1200px)") {
                             //     right: get-vw(-365px);
                             // }
                             img {
-                                @include transform(rotate(-45deg) translate3d(-25%, -25%,0));
+                                @include transform(rotate(-45deg) translate3d(-25%, -25%, 0));
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate3d(0, 42%,0));
+                                    @include transform(rotate(-45deg) translate3d(0, 42%, 0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1435,7 +1461,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate3d(-80%, 42%,0));
+                                        @include transform(rotate(-45deg) translate3d(-80%, 42%, 0));
                                         @include transition(all 4s);
                                     }
                                 }
@@ -1456,13 +1482,13 @@ main {
                                 height: get-vw(380px);
                             }
                             img {
-                                @include transform(rotate(-45deg) translate3d(0,-25%,0));
+                                @include transform(rotate(-45deg) translate3d(0, -25%, 0));
                                 top: 0;
                                 left: 0;
                             }
                             .item-bg {
                                 p {
-                                    @include transform(rotate(-45deg) translate3d(100px, -30%,0));
+                                    @include transform(rotate(-45deg) translate3d(100px, -30%, 0));
                                     bottom: 0;
                                     left: 0;
                                 }
@@ -1470,7 +1496,7 @@ main {
                             &:hover {
                                 .item-bg {
                                     p {
-                                        @include transform(rotate(-45deg) translate3d(-70%, -30%,0));
+                                        @include transform(rotate(-45deg) translate3d(-70%, -30%, 0));
                                         @include transition(all 2s);
                                     }
                                 }
@@ -1483,7 +1509,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 0;
-                                @include transform(translate3d(0,-100%,0));
+                                @include transform(translate3d(0, -100%, 0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1514,7 +1540,7 @@ main {
                     h6,
                     .best-description-frame {
                         opacity: 0 !important;
-                        @include transform(translate3d(-150%,0,0) !important);
+                        @include transform(translate3d(-150%, 0, 0) !important);
                         @include transition(all 1.5s !important);
                     }
                 }
@@ -1523,7 +1549,7 @@ main {
                         .best-image-frame {
                             @include media("(max-width: 768px)") {
                                 opacity: 1;
-                                @include transform(translate3d(0,0,0));
+                                @include transform(translate3d(0, 0, 0));
                                 @include animation(none !important);
                                 @include transition(all .3s forwards);
                             }
@@ -1654,13 +1680,13 @@ main {
     }
     @include key-frame(bestLeaveOne) {
         0% {
-            @include transform(rotate(45deg) translate3d(0, 0,0))
+            @include transform(rotate(45deg) translate3d(0, 0, 0))
         }
         20% {
-            @include transform(rotate(45deg) translate3d(2%, 2%,0))
+            @include transform(rotate(45deg) translate3d(2%, 2%, 0))
         }
         100% {
-            @include transform(rotate(45deg) translate3d(-50%, -50%,0))
+            @include transform(rotate(45deg) translate3d(-50%, -50%, 0))
         }
     }
     @include key-frame(bestEnterOne) {
@@ -1676,13 +1702,13 @@ main {
     }
     @include key-frame(bestLeaveTwo) {
         0% {
-            @include transform(rotate(45deg) translate3d(0, 0,0))
+            @include transform(rotate(45deg) translate3d(0, 0, 0))
         }
         20% {
-            @include transform(rotate(45deg) translate3d(-3%, 3%,0))
+            @include transform(rotate(45deg) translate3d(-3%, 3%, 0))
         }
         100% {
-            @include transform(rotate(45deg) translate3d(50%, -50%,0))
+            @include transform(rotate(45deg) translate3d(50%, -50%, 0))
         }
     }
     @include key-frame(bestEnterTwo) {
@@ -1698,13 +1724,13 @@ main {
     }
     @include key-frame(bestLeaveThree) {
         0% {
-            @include transform(rotate(45deg) translate3d(0,0, 0))
+            @include transform(rotate(45deg) translate3d(0, 0, 0))
         }
         20% {
-            @include transform(rotate(45deg) translate3d(-2%, -2%,0))
+            @include transform(rotate(45deg) translate3d(-2%, -2%, 0))
         }
         100% {
-            @include transform(rotate(45deg) translate3d(50%, 50%,0))
+            @include transform(rotate(45deg) translate3d(50%, 50%, 0))
         }
     }
     @include key-frame(bestEnterThree) {
