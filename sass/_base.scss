@@ -1004,6 +1004,8 @@ p span {
     clear: both;
 }
 
+//Forms
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -1019,6 +1021,12 @@ input[type="radio"] {
     font-family: 'Adobe-Arabic' !important;
     direction: rtl;
 }
+
+textarea{
+    font:inherit;
+}
+
+//End of forms
 
 .ripple,
 .pos {
@@ -2905,7 +2913,6 @@ header {
                 padding: 15px 30px 30px;
                 box-sizing: border-box;
                 li {
-                    display: inline-block;
                     float: none !important;
                     a,
                     a:visited {

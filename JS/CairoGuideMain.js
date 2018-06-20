@@ -1230,7 +1230,6 @@
             pagerFirst.on('click',firstPage);
             pagerLast.on('click',lastPage);
             pagesButtons.first().click();
-            pagerItemsParent.css('height',pagerItemsParent.height());
             function initiatePagination(startFrom, endAt) {
                 var filtered = pagerItems.slice(startFrom, endAt);
                 pagerItemsParent.find(_this.data('pagination-items')).remove();
