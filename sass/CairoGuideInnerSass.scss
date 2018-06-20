@@ -208,7 +208,7 @@ Contains all styles of inner pages
             }
             .pagination-container {
                 .pagination-body {
-                    .pagination-index{
+                    .pagination-index {
                         background-color: nth($i, 2);
                     }
                 }
@@ -556,7 +556,8 @@ Contains all styles of inner pages
                 vertical-align: middle;
                 text-align: center;
                 line-height: 335px;
-                font: 3.5rem "Lato-Black";
+                font-size: 3.5rem;
+                font-weight: bolder;
                 color: #fff;
                 text-transform: uppercase;
                 position: relative;
@@ -1055,7 +1056,8 @@ Contains all styles of inner pages
                     text-align: center;
                     float: right;
                     outline: none;
-                    font: 1.43rem 'Lato-Black';
+                    font-size: 1.43rem;
+                    font-weight: bolder;
                     @include transition(background .3s);
                     @include media("(min-width: 1200px)") {
                         width: get-vw(60px);
@@ -1118,7 +1120,8 @@ Contains all styles of inner pages
                         @include transition(transform 5s ease-out);
                     }
                     h2 {
-                        font: 4.5vw "Lato-Black";
+                        font-size: 4.5vw;
+                        font-weight: bolder;
                         color: #fff;
                         text-transform: uppercase;
                         text-align: center;
@@ -1178,7 +1181,7 @@ Contains all styles of inner pages
                 display: block;
                 float: left;
                 margin-left: 10px;
-                font-family: 'Lato-Black';
+                font-weight: bolder;
                 text-transform: uppercase;
                 letter-spacing: 2px;
                 @include media("(min-width: 1200px)") {
@@ -1250,7 +1253,7 @@ Contains all styles of inner pages
                                 display: block;
                                 background-color: #eee;
                                 text-indent: 5px;
-                                font-family: 'Lato-Light';
+                                font-weight: lighter;
                                 @extend %object-fit-img;
                                 object-position: center;
                                 @include media("(min-width: 1200px)") {
@@ -1276,7 +1279,8 @@ Contains all styles of inner pages
                                 }
                                 h2 {
                                     color: #131313;
-                                    font: 2.14rem 'Lato-Black';
+                                    font-size: 2.14rem;
+                                    font-weight: bolder;
                                     margin-top: 5px;
                                     text-transform: capitalize;
                                     @include media("(min-width: 1200px)") {
@@ -1284,7 +1288,8 @@ Contains all styles of inner pages
                                     }
                                 }
                                 .item-rating {
-                                    font: 1.4rem 'Lato-Black';
+                                    font-size: 1.4rem;
+                                    font-weight: bolder;
                                     line-height: 1rem;
                                     padding: 15px 15px 12px;
                                     box-sizing: border-box;
@@ -1321,7 +1326,8 @@ Contains all styles of inner pages
                                 padding: 5px 10px;
                                 box-sizing: border-box;
                                 line-height: 1em;
-                                font: 1rem 'Lato-Light';
+                                font-size: 1rem;
+                                font-weight: lighter;
                                 color: #fff;
                                 margin-top: 10px;
                                 border-radius: 100vw; //border: 1px solid;
@@ -1447,7 +1453,8 @@ Contains all styles of inner pages
                             padding-top: get-vw(15px);
                         }
                         h3 {
-                            font: 1.4rem 'Lato-Bold';
+                            font-size: 1.4rem;
+                            font-weight: bold;
                             color: #131313;
                             margin-bottom: 15px;
                             @include media("(min-width: 1200px)") {
@@ -1455,7 +1462,8 @@ Contains all styles of inner pages
                             }
                         }
                         p {
-                            font: 1rem 'Lato-Regular';
+                            font-size: 1rem;
+                            font-weight: normal;
                             color: #555;
                         }
                     }
@@ -1467,7 +1475,7 @@ Contains all styles of inner pages
             .title-rating-wrp {
                 h1,
                 span {
-                    font-family: 'Lato-Black';
+                    font-weight: bolder;
                     display: inline-block;
                 }
                 h1 {
@@ -1701,7 +1709,7 @@ Contains all styles of inner pages
                     h6,
                     p,
                     p * {
-                        font-family: "Lato-Regular" !important;
+                        font-weight: normal !important;
                     }
                     p,
                     p * {
@@ -1768,7 +1776,8 @@ Contains all styles of inner pages
                                 clear: right;
                             }
                             p {
-                                font: 1rem 'Lato-Bold'; //margin-bottom: 5px;
+                                font-size: 1rem; //margin-bottom: 5px;
+                                font-weight: bold;
                                 margin-bottom: 10px;
                                 height: 2.4rem;
                                 overflow: hidden;
@@ -1857,7 +1866,8 @@ Contains all styles of inner pages
             .general-rating {
                 float: right;
                 text-align: right;
-                font: 1.428rem 'Lato-Black';
+                font-size: 1.428rem;
+                font-weight: bolder;
             }
             .rating-levels-container {
                 width: 100%;
@@ -1935,7 +1945,8 @@ Contains all styles of inner pages
                 background-color: #fff;
                 padding: 10px;
                 box-sizing: border-box;
-                font: 20px 'Lato-Black';
+                font-size: 20px;
+                font-weight: bolder;
                 line-height: 20px;
                 height: 35px;
                 border: 1px solid transparent;
@@ -1973,7 +1984,8 @@ Contains all styles of inner pages
                 }
             }
             p {
-                font: 1rem 'Lato-Bold';
+                font-size: 1rem;
+                font-weight: bold;
                 margin-bottom: 10px;
                 @include media("(min-width: 1200px)") {
                     margin-bottom: get-vw(10px);
@@ -2031,7 +2043,7 @@ Contains all styles of inner pages
                     }
                     textarea {
                         box-sizing: border-box;
-                        font-family: 'Lato-Regular';
+                        font-weight: normal;
                         width: 100%;
                         height: 95px;
                         resize: none;
@@ -2062,7 +2074,8 @@ Contains all styles of inner pages
                                 margin-bottom: get-vw(10px);
                             }
                             p {
-                                font: 1rem 'Lato-Regular'; //float: left;
+                                font-size: 1rem; //float: left;
+                                font-weight: normal;
                             }
                             .review-satisfaction-wrp {
                                 float: right;
@@ -2603,7 +2616,8 @@ Contains all styles of inner pages
                 }
                 .list-title,
                 .list-title:visited {
-                    font: 1rem 'Lato-Black';
+                    font-size: 1rem;
+                    font-weight: bolder;
                     text-transform: uppercase;
                     margin: 0 0 15px 0;
                     line-height: 1rem;
@@ -2753,7 +2767,8 @@ Contains all styles of inner pages
                         margin-bottom: get-vw(5px);
                     }
                     h2 {
-                        font: 1.7rem 'Lato-Regular';
+                        font-size: 1.7rem;
+                        font-weight: normal;
                         line-height: 1em;
                         float: left;
                         margin-right: 10px;
@@ -2956,7 +2971,8 @@ Contains all styles of inner pages
                             }
                         }
                         &.profile-number {
-                            font: 2.5rem 'Lato-Bold';
+                            font-size: 2.5rem;
+                            font-weight: bold;
                         }
                     }
                 }
@@ -3377,7 +3393,8 @@ Contains all styles of inner pages
                             .day {
                                 float: left;
                                 width: calc(100% / 7);
-                                font: 1.1em 'Lato-Black';
+                                font-size: 1.1rem;
+                                font-weight: bolder;
                                 line-height: inherit;
                             }
                         }
@@ -3435,7 +3452,8 @@ Contains all styles of inner pages
                         box-sizing: border-box;
                         border-radius: 100%;
                         background-color: $calendar-color;
-                        font: .8rem 'Lato-Bold';
+                        font-size: .8rem;
+                        font-weight: bold;
                         color: #fff;
                         padding: 5px;
                         @include user-select(none);
@@ -3747,7 +3765,7 @@ Contains all styles of inner pages
                             border-bottom-left-radius: 7px;
                             border-top-right-radius: 3px;
                             border-bottom-right-radius: 3px;
-                            &:hover+.next-prev-event {
+                            &:hover~.next-prev-event {
                                 .prev {
                                     margin-top: 0;
                                 }
@@ -3758,7 +3776,7 @@ Contains all styles of inner pages
                             border-bottom-right-radius: 7px;
                             border-top-left-radius: 3px;
                             border-bottom-left-radius: 3px;
-                            &:hover+.next-prev-event {
+                            &:hover~.next-prev-event {
                                 .prev {
                                     margin-top: -140px;
                                     @include media("(min-width: 1200px)") {
@@ -3929,7 +3947,7 @@ Contains all styles of inner pages
                     }
                 }
                 span {
-                    font-family: 'Lato-Black';
+                    font-weight: bolder;
                 }
             }
         }
@@ -3948,11 +3966,13 @@ Contains all styles of inner pages
                     margin-bottom: get-vw(20px);
                 }
                 h3 {
-                    font: 1.3rem 'Lato-Bold';
+                    font-size: 1.3rem;
+                    font-weight: bold;
                     margin-bottom: 15px;
                 }
                 p {
-                    font: 1.2rem 'Lato-Regular';
+                    font-size: 1.2rem;
+                    font-weight: normal;
                     color: #777;
                 }
                 .mark {
@@ -3967,7 +3987,8 @@ Contains all styles of inner pages
                 border: 2px solid #131313;
                 padding: 10px;
                 box-sizing: border-box;
-                font: 1rem 'Lato-Bold';
+                font-size: 1rem;
+                font-weight: bold;
                 color: #131313;
                 outline: 0;
                 border-radius: 100vw;
@@ -4032,8 +4053,7 @@ Contains all styles of inner pages
                     }
                 }
             }
-        }
-        // .gallery-filters-wrp {
+        } // .gallery-filters-wrp {
         //     margin: 23px 0 20px;
         //     padding: 0 3px;
         //     text-align: center;
@@ -4402,7 +4422,7 @@ Contains all styles of inner pages
                         }
                         p {
                             color: #eee !important;
-                            font-family: 'Lato-Light' !important;
+                            font-weight: lighter !important;
                             overflow: hidden;
                             height: 0;
                             margin-bottom: 0;
@@ -4471,27 +4491,27 @@ Contains all styles of inner pages
                 padding: 0 10px;
                 border-radius: 20px;
                 height: 28px;
-                button{
+                button {
                     @extend %reset-appearance;
                     position: relative;
-                    top:-6px;
+                    top: -6px;
                     cursor: pointer;
                     padding: 7px 0;
                     box-sizing: border-box;
                     width: 40px;
                     height: 40px;
                     border-radius: 50%;
-                    &.active{
+                    &.active {
                         color: #fff;
                     }
-                    &.page{
+                    &.page {
                         padding: 7px 16px;
                     }
                 }
-                .pagination-index{
+                .pagination-index {
                     position: absolute;
-                    top:-6px;
-                    width:40px;
+                    top: -6px;
+                    width: 40px;
                     height: 40px;
                     border-radius: 50%;
                     background-color: #131313;

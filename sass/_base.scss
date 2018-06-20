@@ -33,25 +33,33 @@
 /*Fonts*/
 
 @font-face {
-    font-family: 'Lato-Light';
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: lighter;
     src: url('../Fonts/Lato/Lato-Light.eot');
     src: url('../Fonts/Lato/Lato-Light.eot?#iefix') format('embedded-opentype'), url('../Fonts/Lato/Lato-Light.woff') format('woff'), url('../Fonts/Lato/Lato-Light.woff2') format('woff2'), url('../Fonts/Lato/Lato-Light.ttf') format('truetype')
 }
 
 @font-face {
-    font-family: 'Lato-Regular';
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: normal;
     src: url('../Fonts/Lato/Lato-Regular.eot');
     src: url('../Fonts/Lato/Lato-Regular.eot?#iefix') format('embedded-opentype'), url('../Fonts/Lato/Lato-Regular.woff') format('woff'), url('../Fonts/Lato/Lato-Regular.woff2') format('woff2'), url('../Fonts/Lato/Lato-Regular.ttf') format('truetype')
 }
 
 @font-face {
-    font-family: 'Lato-Bold';
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: bold;
     src: url('../Fonts/Lato/Lato-Bold.eot');
     src: url('../Fonts/Lato/Lato-Bold.eot?#iefix') format('embedded-opentype'), url('../Fonts/Lato/Lato-Bold.woff') format('woff'), url('../Fonts/Lato/Lato-Bold.woff2') format('woff2'), url('../Fonts/Lato/Lato-Bold.ttf') format('truetype')
 }
 
 @font-face {
     font-family: 'Lato-Black';
+    font-style: normal;
+    font-weight: bolder;
     src: url('../Fonts/Lato/Lato-Black.eot');
     src: url('../Fonts/Lato/Lato-Black.eot?#iefix') format('embedded-opentype'), url('../Fonts/Lato/Lato-Black.woff') format('woff'), url('../Fonts/Lato/Lato-Black.woff2') format('woff2'), url('../Fonts/Lato/Lato-Black.ttf') format('truetype')
 }
@@ -485,20 +493,19 @@ body {
 
 h1,
 h2 {
-    font-family: "Lato-Black"
+    font-weight: bold;
 }
 
 h3,
 h4,
 h5 {
-    font-family: "Lato-Bold"
+    font-weight:bold;
 }
 
-h6,
-p,
-p * {
-    font-family: "Lato-Regular";
-}
+// h6,
+// p {
+//     font-family: "Lato-Regular";
+// }
 
 h2 {
     font-size: 3.6rem;
@@ -517,10 +524,13 @@ a,
     cursor: pointer
 }
 
-p,
-p * {
+p {
     line-height: 1.2rem;
     font-size: 1rem;
+}
+
+p span {
+    font: inherit;
 }
 
 .normal-text {
@@ -755,7 +765,7 @@ p * {
 }
 
 .bold {
-    font-family: 'Lato-Bold';
+    font-weight: bold;
 }
 
 .marg-zero {
@@ -1054,7 +1064,7 @@ input[type="radio"] {
     display: inline-block;
     position: relative;
     text-transform: capitalize;
-    font-family: 'Lato-Light';
+    font-weight: lighter;
     @include transition(all 0.3s ease);
     &:before {
         content: "\e900";
@@ -1331,7 +1341,8 @@ iframe:not([data-src]) {
         label {
             display: inline-block;
             margin-bottom: 10px;
-            font: 1rem "Lato-Regular";
+            font-size: 1rem;
+            font-weight: normal;
             @include media("(min-width: 1200px)") {
                 margin-bottom: get-vw(10px);
             }
@@ -1342,7 +1353,8 @@ iframe:not([data-src]) {
             border-bottom: 1px solid #000;
             padding: 0 5px 5px 0;
             box-sizing: border-box;
-            font: 1rem 'Lato-Light';
+            font-size: 1rem;
+            font-weight: lighter;
             @include media("(min-width: 1200px)") {
                 padding: 0 get-vw(5px) get-vw(5px) 0;
                 border-bottom-width: get-vw(1px);
@@ -1907,7 +1919,8 @@ iframe:not([data-src]) {
                 color: #fff;
                 padding: 10px 10px 5px;
                 box-sizing: border-box;
-                font: 7vw 'Lato-Black';
+                font-size: 7vw;
+                font-weight: bolder;
                 letter-spacing: 1px;
                 line-height: 7vw;
                 border: 20px double #fff;
@@ -1973,7 +1986,8 @@ iframe:not([data-src]) {
         a,
         a:visited {
             color: #131313;
-            font: 1.2rem 'Lato-Black';
+            font-size: 1.2rem;
+            font-weight: bolder;
             text-transform: capitalize;
             /*letter-spacing: 3px;
             @include media("(min-width: 1200px)") {
@@ -2064,7 +2078,7 @@ iframe:not([data-src]) {
             background-color: #fff;
             padding: 10px;
             left: -15px;
-            font-family: "Lato-Regular";
+            font-weight: normal;
             line-height: 1.3rem;
             font-size: 1.2rem;
             text-align: center;
@@ -2165,7 +2179,8 @@ iframe:not([data-src]) {
                 }
             }
             span {
-                font: 1.4rem "Lato-Regular";
+                font-size: 1.4rem;
+                font-weight: normal;
                 text-transform: uppercase;
                 line-height: 40px;
                 @include media("(min-width: 1200px)") {
@@ -2271,7 +2286,8 @@ iframe:not([data-src]) {
                         }
                     }
                     label {
-                        font: 1.3rem "Lato-Light";
+                        font-size: 1.3rem;
+                        font-weight: lighter;
                         text-transform: uppercase;
                         letter-spacing: 5px;
                         position: absolute;
@@ -2282,14 +2298,16 @@ iframe:not([data-src]) {
                             top: get-vw(12px);
                         }
                         @include media("(max-width: 768px)") {
-                            font: 1rem 'Lato-Regular';
+                            font-size: 1rem;
+                            font-weight: normal;
                             text-transform: none;
                             letter-spacing: initial;
                         }
                     }
                     input.field-focus+label {
                         top: -22px;
-                        font: 1rem "Lato-Light";
+                        font-size: 1rem;
+                        font-weight: lighter;
                         @include transition(all 0.3s ease);
                         @include media("(min-width: 1200px)") {
                             top: get-vw(-22px);
@@ -2680,7 +2698,7 @@ iframe:not([data-src]) {
                     opacity: 0;
                 }
                 p {
-                    font-family: 'Lato-Black';
+                    font-weight: bolder;
                     font-size: 1.5rem;
                     line-height: 1.7rem;
                 }
@@ -3109,7 +3127,7 @@ header {
                                     }
                                     @include media("(max-width: 1024px)") {
                                         color: $header-footer-secondary-text-color;
-                                        font-family: 'Lato-Light';
+                                        font-weight: lighter;
                                     }
                                     &:after {
                                         display: none;
@@ -3410,7 +3428,8 @@ header {
 main {
     background-color: #fff;
     h6 {
-        font: 1.286rem 'Lato-Black' !important;
+        font-size: 1.286rem !important;
+        font-weight: bolder!important;
         text-transform: uppercase;
         color: #131313;
     }
@@ -3484,7 +3503,8 @@ main {
                         }
                         h3 {
                             @include user-select(none);
-                            font: 1.5rem "Lato-Light";
+                            font-size: 1.5rem;
+                            font-weight: lighter;
                             color: #fff;
                             text-transform: uppercase; //white-space: nowrap;
                             line-height: 1em; //margin-left: 40px;
@@ -3561,7 +3581,7 @@ main {
                         50%,
                         0));
                         h3 {
-                            font-family: 'Lato-Black';
+                            font-weight: bolder;
                             @include media("(max-width: 1024px)") {
                                 font-size: 4vw
                             }

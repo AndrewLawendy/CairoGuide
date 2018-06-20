@@ -136,7 +136,8 @@ main {
                             width: 100%;
                             padding: 5px 0;
                             text-align: justify;
-                            font: 1em 'Lato-Regular';
+                            font-size: 1em;
+                            font-weight: normal;
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(5px) 0;
                             }
@@ -394,7 +395,7 @@ main {
                             overflow: hidden;
                             border-width: 1px 0 1px 1px;
                             border-style: solid; //border-color:#fff;
-                            font-family: 'Lato-Bold' !important;
+                            font-weight: bold!important;
                             letter-spacing: 1px; //color:#fff;
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(15px);
@@ -709,7 +710,8 @@ main {
                 }
             }
             h2 {
-                font: 8.5rem Lato-Black;
+                font-size: 8.5rem;
+                font-weight: bolder;
                 color: #fff;
                 position: absolute;
                 text-transform: uppercase;
@@ -1013,7 +1015,8 @@ main {
                             }
                         }
                         h3 {
-                            font: 1.4rem "Lato-Bold";
+                            font-size: 1.4rem;
+                            font-weight: bold;
                             color: #fff;
                             margin: -35px 0 15px;
                             position: relative;
@@ -1029,7 +1032,8 @@ main {
                         }
                         p {
                             color: #fff;
-                            font: 1em "Lato-Light";
+                            font-size: 1em;
+                            font-weight: lighter;
                             @include limit-text-lines(3, 1.2rem);
                             @include media("(max-width: 768px)") {
                                 @include limit-text-lines(2, 1.2rem);
@@ -1232,7 +1236,8 @@ main {
                             p {
                                 color: #fff;
                                 position: absolute;
-                                font: 5.14em "Lato-Black";
+                                font-size: 5.14em;
+                                font-weight: bolder;
                                 white-space: nowrap;
                                 text-transform: uppercase;
                                 @include transform-origin(left);
@@ -1833,7 +1838,8 @@ main {
                 }
                 h3 {
                     display: inline-block;
-                    font: 1.2em "Lato-Bold";
+                    font-size: 1.2em;
+                    font-weight: bold;
                     vertical-align: middle;
                     max-width: 95%;
                 }
