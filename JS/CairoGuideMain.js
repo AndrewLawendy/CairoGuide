@@ -1280,8 +1280,8 @@
 
             function setIndexPos(active) {
                 var posLeft = active.position().left,
-                nearestpagerIndex = active.closest('.pagination-body').find('.pagination-index');
-                nearestpagerIndex.css('left',posLeft);
+                nearestPagerIndex = active.closest('.pagination-body').find('.pagination-index');
+                nearestPagerIndex.css('left',posLeft);
             }
         });
     };
