@@ -1249,7 +1249,7 @@
                 endAt = endAt || startFrom + maxItemsPerPage;
                 pagesButtons.removeClass('active'),
                 pagerContainer = $(this).closest('.pagination-container'),
-                other = pagerContainer[0] == replica[0]?_this:replica,
+                other = pagerContainer[0] === replica[0]?_this:replica,
                 thisIndex =pagerContainer.find('.page').index($(this)),
                 otherEquivalent = other.find('.page').eq(thisIndex);
                 $(this).add(otherEquivalent).addClass('active');
