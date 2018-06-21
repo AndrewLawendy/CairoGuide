@@ -1209,41 +1209,53 @@
             pagerItemsParent = pagerItems.parent(),
             maxItemsPerPage = _this.data('pagination-max');
             if(pagerItems.length<=maxItemsPerPage) return;
-            _this.addClass('marg-t20');
+            _this.addClass('marg-b20');
             var pages = Math.ceil(pagerItems.length/maxItemsPerPage),
             pagesButtons = [];
             for(var i = 1;i<=pages;i++){
                 pagesButtons.push('<button type="button" class="page">'+i+'</button>');
             }
-            var pagerBody = $('<div class="pagination-body"></div>'),
-            pagerIndex = $('<div class="pagination-index"></div>'),
+            var pagerIndex = $('<div class="pagination-index"></div>'),
             pagerFirst = $('<button type="button" class="pagination-first">\n<i class="icon-first"></i>\n</button>'),
             pagerPrev = $('<button type="button" class="pagination-prev">\n<i class="icon-prev"></i>\n</button>'),
             pagerNext = $('<button type="button" class="pagination-next">\n<i class="icon-next"></i>\n</button>'),
-            pagerLast = $('<button type="button" class="pagination-last ">\n<i class="icon-last"></i>\n</button>');
-            _this.append(pagerBody);
+            pagerLast = $('<button type="button" class="pagination-last ">\n<i class="icon-last"></i>\n</button>'),
+            replica = $('<div class="pagination-container marg-t20"></div>');
+            replica.insertAfter(pagerItemsParent);
+            _this.add(replica).append($('<div class="pagination-body"></div>'));
+            var pagerBody = _this.add(replica).find('.pagination-body');
             pagerBody.append(pagerIndex,pagerFirst,pagerPrev,pagesButtons,pagerNext,pagerLast);
             pagesButtons = pagerBody.find('.page');
+            pagerFirst = pagerBody.find('.pagination-first');
+            pagerPrev = pagerBody.find('.pagination-prev');
+            pagerNext = pagerBody.find('.pagination-next');
+            pagerLast = pagerBody.find('.pagination-last');
             pagesButtons.on('click',setPage);
+            pagerFirst.on('click',firstPage);
             pagerPrev.on('click',previousPage);
             pagerNext.on('click',nextPage);
-            pagerFirst.on('click',firstPage);
             pagerLast.on('click',lastPage);
             pagesButtons.first().click();
             function initiatePagination(startFrom, endAt) {
-                var filtered = pagerItems.slice(startFrom, endAt);
+                var filtered = pagerItems.slice(startFrom, endAt),
+                thisPos = _this.offset().top - $('.sticky-header.fixed').height() - 10;
                 pagerItemsParent.find(_this.data('pagination-items')).remove();
                 pagerItemsParent.prepend(filtered);
-                $('body').scroll();
+                $('html,body').animate({scrollTop:thisPos},{duration:300});
             }
             function setPage(){
                 if($(this).hasClass('active')) return;
                 var startFrom = startFrom || (Number($(this).text())-1)*maxItemsPerPage,
                 endAt = endAt || startFrom + maxItemsPerPage;
-                pagesButtons.removeClass('active');
-                $(this).addClass('active');
+                pagesButtons.removeClass('active'),
+                pagerContainer = $(this).closest('.pagination-container'),
+                other = pagerContainer[0] == replica[0]?_this:replica,
+                thisIndex =pagerContainer.find('.page').index($(this)),
+                otherEquivalent = other.find('.page').eq(thisIndex);
+                $(this).add(otherEquivalent).addClass('active');
                 initiatePagination(startFrom,endAt);
                 setIndexPos($(this));
+                setIndexPos(otherEquivalent);
             }
             function previousPage() {
                 var active = pagesButtons.filter('.active');
@@ -1267,8 +1279,9 @@
             }
 
             function setIndexPos(active) {
-                var posLeft = active.position().left;
-                pagerIndex.css('left',posLeft);
+                var posLeft = active.position().left,
+                nearestpagerIndex = active.closest('.pagination-body').find('.pagination-index');
+                nearestpagerIndex.css('left',posLeft);
             }
         });
     };
