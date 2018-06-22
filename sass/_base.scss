@@ -1650,6 +1650,11 @@ iframe:not([data-src]) {
         left: 0; // @include transform(translate3d(0,
         // -50%,
         // 0))
+        @include media("(min-width: 1200px)") {
+            width: get-vw(300px);
+            height: get-vw(60px);
+            top: get-vw(-10px);
+        }
     }
     @include media("(max-width: 640px)") {
         width: 80%;
