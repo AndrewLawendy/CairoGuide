@@ -355,15 +355,25 @@ main {
                     iframe {
                         background-color: #000;
                     }
+                    &>a,
+                    &>a:visited {
+                        top: 15px !important;
+                        bottom: auto !important;
+                        @include media("(min-width: 1200px)") {
+                            top: get-vw(15px) !important;
+                        }
+                        @include media("(max-width: 768px)") {
+                            top: 15px !important;
+                        }
+                    }
                     @include media("(max-width: 768px)") {
                         .trend-info {
                             display: none;
                         }
                         &>a,
                         &>a:visited {
-                            right:auto!important;
-                            //left: 10px !important;
-                            border-radius:0 100px 100px 0!important;
+                            right: auto !important; //left: 10px !important;
+                            border-radius: 0 100px 100px 0 !important;
                         }
                     }
                 }
@@ -395,7 +405,7 @@ main {
                             overflow: hidden;
                             border-width: 1px 0 1px 1px;
                             border-style: solid; //border-color:#fff;
-                            font-weight: bold!important;
+                            font-weight: bold !important;
                             letter-spacing: 1px; //color:#fff;
                             @include media("(min-width: 1200px)") {
                                 top: get-vw(15px);
@@ -604,7 +614,7 @@ main {
                     }
                     @include media("(max-width: 768px)") {
                         left: auto;
-                        right:0;
+                        right: 0;
                         bottom: 15px;
                         border-radius: 100px 0 0 100px;
                     }
