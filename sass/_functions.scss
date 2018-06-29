@@ -7,6 +7,7 @@
     @return (($value * 100) / $screen-size) * 1vw;
 }
 
+
 @function opposite-direction($directions) {
     $opposite-directions: ();
     $direction-map: ( 'top': 'bottom', 'right': 'left', 'bottom': 'top', 'left': 'right', 'center': 'center', 'ltr': 'rtl', 'rtl': 'ltr');

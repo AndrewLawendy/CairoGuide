@@ -362,6 +362,7 @@ main {
                         @include media("(min-width: 1200px)") {
                             top: get-vw(15px) !important;
                         }
+                        
                         @include media("(max-width: 768px)") {
                             top: 15px !important;
                         }

@@ -1641,6 +1641,7 @@ iframe:not([data-src]) {
         width: get-vw(400px);
         margin: get-vw(30px) 0;
     }
+    
     &::before {
         content: '';
         width: 300px;
