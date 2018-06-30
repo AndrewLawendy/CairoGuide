@@ -5,8 +5,8 @@
 
 @function get-vw($value, $screen-size: 1200px) {
     @return (($value * 100) / $screen-size) * 1vw;
+    //@return $value;
 }
-
 
 @function opposite-direction($directions) {
     $opposite-directions: ();

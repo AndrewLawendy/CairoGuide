@@ -2185,7 +2185,7 @@
 
         FixHeaderMenusPosition();
 
-        if ($('.facilities-wrp').length) getSvg('.facility-unit');
+        if ($('.facilities-wrp').length) getSvg('.facility-icon');
 
         if ($('.opening-hours-container').length) isOpen();
 
