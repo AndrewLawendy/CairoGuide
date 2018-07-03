@@ -2119,6 +2119,7 @@
         newScreenSize = CalcLastScreenSize(newScreenSize);
         MainBannerlParallax(scrollPos, breakPos);
         if ($('.side-ads.thirty-width').length) {
+		$('.side-ads.thirty-width').siblings('.seventy-width').css('min-height', $('.side-ads.thirty-width').height());
             var adMargin = 30;
             adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
             var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
@@ -3189,6 +3190,7 @@
             TransformHeader(scrollPos, breakPos);
             MainBannerlParallax(scrollPos, breakPos);
             if ($('.side-ads.thirty-width').length) {
+			$('.side-ads.thirty-width').siblings('.seventy-width').css('min-height', $('.side-ads.thirty-width').height());
                 var adMargin = 30;
                 adBreakPos = $('.side-ads.thirty-width').siblings('.seventy-width').offset().top - ($('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin);
                 var customTop = $('.bottom-header').outerHeight() + $('.attached-menu').outerHeight() + adMargin,
