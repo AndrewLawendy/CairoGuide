@@ -62,11 +62,16 @@
     padding: 7px 10px 5px;
     box-sizing: border-box;
     border: 1px solid #fff;
-    display: inline-block;
     border-radius: 100vw;
     font-size: 1rem;
     text-transform: uppercase;
+    @extend %inline-block;
     @include media("(min-width: 1200px)") {
         padding: get-vw(7px) get-vw(10px) get-vw(5px); //font-size: 0.7rem;
     }
+}
+
+%inline-block{
+    display: inline-block;
+    vertical-align: middle;
 }

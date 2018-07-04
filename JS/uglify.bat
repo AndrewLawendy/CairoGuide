@@ -1,1 +1,0 @@
-uglifyjs js/CairoGuideMain.js -c -m toplevel -o js/CairoGuideMain.min.js --source-map -o js/CairoGuideMain.min.js

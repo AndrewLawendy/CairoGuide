@@ -429,8 +429,8 @@
     //Event Calendar
     //var setWeekInd = false;
     var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ],
+            "July", "August", "September", "October", "November", "December"
+        ],
         //daysNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         creatingCalendar = false,
         creatingRange = false,
@@ -471,8 +471,8 @@
                 $(this).find('.calendar-month-name').stop().animate({
                     width: 'hide'
                 }, {
-                        duration: 'fast'
-                    });
+                    duration: 'fast'
+                });
                 $('.calendar-overview .calendar-head-body').addClass('leaving');
                 setTimeout(function () {
                     $('.calendar-overview .calendar-months-view-wrp').fadeIn(500).addClass('entering').find('.month:contains(' + thisMonth + ')').addClass('this-month');
@@ -495,11 +495,11 @@
                 }).animate({
                     opacity: 1
                 }, {
-                        duration: 40,
-                        complete: function () {
-                            $(this).addClass('entering');
-                        }
-                    }).find('.year:contains(' + thisYear + ')').addClass('this-year');
+                    duration: 40,
+                    complete: function () {
+                        $(this).addClass('entering');
+                    }
+                }).find('.year:contains(' + thisYear + ')').addClass('this-year');
                 $('.calendar-overview .calendar-years-view-wrp .year').removeClass('active');
                 $('.calendar-overview .calendar-years-view-wrp .year:contains(' + currentYear + ')').addClass('active');
             }
@@ -550,8 +550,8 @@
                 });
                 if (monthAfter.length) {
                     var monthDiv = $('.calendar-month-wrp').filter(function () {
-                        return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
-                    }),
+                            return $(this).data('year') == monthAfter[0].getFullYear() && $(this).data('month') == monthAfter[0].getMonth();
+                        }),
                         activeMonthDateObj = new Date($('.calendar-month-wrp.active').data('year'), $('.calendar-month-wrp.active').data('month')),
                         isPrevWindow = dateObj < activeMonthDateObj;
                     return [monthDiv, isPrevWindow];
@@ -618,12 +618,12 @@
             $('.calendar-controls-wrp').removeClass('months-view').find('.calendar-month-name').animate({
                 width: 'show'
             }, {
-                    duration: 'fast'
-                }, {
-                    complete: function () {
-                        $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
-                    }
-                });
+                duration: 'fast'
+            }, {
+                complete: function () {
+                    $('.calendar-controls-wrp .calendar-month-name').css('width', 'auto');
+                }
+            });
             $('.calendar-months-view-wrp').fadeOut('fast').removeClass('entering leaving');
             $('.calendar-month-wrp .day').removeClass('active');
             if ($('.calendar-head-body').hasClass('leaving')) {
@@ -649,11 +649,11 @@
                 $('.calendar-controls-wrp').removeClass('years-view').find('.calendar-month-year').stop().animate({
                     width: 'show'
                 }, {
-                        duration: 'fast',
-                        complete: function () {
-                            $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
-                        }
-                    });
+                    duration: 'fast',
+                    complete: function () {
+                        $('.calendar-controls-wrp .calendar-month-year').css('width', 'auto');
+                    }
+                });
             });
             $('.calendar-overview .calendar-years-view-wrp').fadeOut('fast').removeClass('entering').find('.year').removeClass('this-year active');
             setTimeout(function () {
@@ -683,17 +683,17 @@
             $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').stop().animate({
                 opacity: 0
             }, {
-                    duration: 150,
-                    complete: function () {
-                        $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
-                        $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
-                        $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
-                            opacity: 1
-                        }, {
-                                duration: 150
-                            });
-                    }
-                });
+                duration: 150,
+                complete: function () {
+                    $('h3.calendar-today .calendar-month-day').text(_this.text().trim());
+                    $('h3.calendar-today .ordinal-indicator').text(getOrdinalIndicator(_this.text().trim()));
+                    $('h3.calendar-today .calendar-month-day,h3.calendar-today .ordinal-indicator').animate({
+                        opacity: 1
+                    }, {
+                        duration: 150
+                    });
+                }
+            });
         };
 
         var setWeek = function (e) {
@@ -757,10 +757,10 @@
                 height: dayHeight,
                 width: weekWidth
             }, {
-                    complete: function () {
-                        $('.week-indicator').css('z-index', '');
-                    }
-                });
+                complete: function () {
+                    $('.week-indicator').css('z-index', '');
+                }
+            });
             updateWeekNumber(new Date(current[2], current[1], day.text().trim()));
         };
         //Update
@@ -768,36 +768,36 @@
             $('#calendar-wrp .calendar-today>span').stop().animate({
                 opacity: 0
             }, {
-                    duration: 150,
-                    complete: function () {
-                        $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
-                        $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
-                        $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
-                        $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
-                        $('#calendar-wrp .calendar-today>span').stop().animate({
-                            opacity: 1
-                        }, {
-                                duration: 150
-                            });
-                    }
-                });
+                duration: 150,
+                complete: function () {
+                    $('#calendar-wrp .calendar-today .calendar-month-name').text(currentMonth);
+                    $('#calendar-wrp .calendar-today .calendar-month-day').text(dayDate);
+                    $('#calendar-wrp .calendar-today .ordinal-indicator').text(getOrdinalIndicator(dayDate));
+                    $('#calendar-wrp .calendar-today .calendar-month-year').text(year);
+                    $('#calendar-wrp .calendar-today>span').stop().animate({
+                        opacity: 1
+                    }, {
+                        duration: 150
+                    });
+                }
+            });
         };
 
         var updateCalControls = function (year) {
             $('.calendar-controls-wrp .calendar-today>span').stop().animate({
                 opacity: 0
             }, {
-                    duration: 150,
-                    complete: function () {
-                        $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
-                        $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
-                        $('#calendar-wrp .calendar-today>span').stop().animate({
-                            opacity: 1
-                        }, {
-                                duration: 150
-                            });
-                    }
-                });
+                duration: 150,
+                complete: function () {
+                    $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
+                    $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
+                    $('#calendar-wrp .calendar-today>span').stop().animate({
+                        opacity: 1
+                    }, {
+                        duration: 150
+                    });
+                }
+            });
         };
 
         var updateWeekNumber = function (date) {
@@ -1220,8 +1220,10 @@
                 pagerPrev = $('<button type="button" class="pagination-prev">\n<i class="icon-prev"></i>\n</button>'),
                 pagerNext = $('<button type="button" class="pagination-next">\n<i class="icon-next"></i>\n</button>'),
                 pagerLast = $('<button type="button" class="pagination-last ">\n<i class="icon-last"></i>\n</button>'),
-                replica = $('<div class="pagination-container marg-t20"></div>');
-            replica.insertAfter(pagerItemsParent);
+                replica = $('<div class="pagination-container marg-t20"></div>'),
+                loadMoreBtn = $('<div class="pagination-more controls-btn-container marg-t20">\n<button type="button" class="control-btn ripple pos white">Load More</button>\n</div>'),
+                loadMoreEndAt = maxItemsPerPage;
+            replica.add(loadMoreBtn).insertAfter(pagerItemsParent);
             _this.add(replica).append($('<div class="pagination-body"></div>'));
             var pagerBody = _this.add(replica).find('.pagination-body');
             pagerBody.append(pagerIndex, pagerFirst, pagerPrev, pagesButtons, pagerNext, pagerLast);
@@ -1236,13 +1238,20 @@
             pagerNext.on('click', nextPage);
             pagerLast.on('click', lastPage);
             pagesButtons.first().click();
+            loadMoreBtn.find('button').on('click', loadMore);
+
             function initiatePagination(startFrom, endAt) {
                 var filtered = pagerItems.slice(startFrom, endAt),
                     thisPos = _this.offset().top - $('.sticky-header.fixed').height() - 10;
                 pagerItemsParent.find(_this.data('pagination-items')).remove();
                 pagerItemsParent.prepend(filtered);
-                $('html,body').animate({ scrollTop: thisPos }, { duration: 300 });
+                $('html,body').animate({
+                    scrollTop: thisPos
+                }, {
+                    duration: 300
+                });
             }
+
             function setPage() {
                 if ($(this).hasClass('active')) return;
                 var startFrom = startFrom || (Number($(this).text()) - 1) * maxItemsPerPage,
@@ -1257,22 +1266,26 @@
                 setIndexPos($(this));
                 setIndexPos(otherEquivalent);
             }
+
             function previousPage() {
                 var active = pagesButtons.filter('.active');
                 if (active.text() == 0) return;
                 var prev = active.prev();
                 prev.click();
             }
+
             function nextPage() {
                 var active = pagesButtons.filter('.active');
                 if (active.text() == pages) return;
                 var next = active.next();
                 next.click();
             }
+
             function firstPage() {
                 if (pagesButtons.first().hasClass('active')) return;
                 pagesButtons.first().click();
             }
+
             function lastPage() {
                 if (pagesButtons.last().hasClass('active')) return;
                 pagesButtons.last().click();
@@ -1283,6 +1296,17 @@
                     nearestPagerIndex = active.closest('.pagination-body').find('.pagination-index');
                 nearestPagerIndex.css('left', posLeft);
             }
+
+            function loadMore() {
+                loadMoreEndAt += maxItemsPerPage;
+                var filtered = pagerItems.slice(0, loadMoreEndAt);
+                pagerItemsParent.find(_this.data('pagination-items')).remove();
+                pagerItemsParent.prepend(filtered);
+                if (filtered.length == pagerItems.length) loadMoreBtn.hide();
+            }
+            $(window).on('resize', function () {
+                pagesButtons.first().click();
+            });
         });
     };
 
@@ -1687,8 +1711,8 @@
         $('#popup-base .autocomplete-keywords').stop().animate({
             height: allKeywordsHeights
         }, {
-                duration: 'fast'
-            });
+            duration: 'fast'
+        });
     };
 
     //Change selected category
@@ -1712,12 +1736,12 @@
     };
 
     var UploadedFiles = [];
-    var RemoveUploadedImage = function(index){
-        if($('#image-upload-preview').length){
-            UploadedFiles.splice(index,1);
+    var RemoveUploadedImage = function (index) {
+        if ($('#image-upload-preview').length) {
+            UploadedFiles.splice(index, 1);
             $('#image-upload-preview .image-uploaded').eq(index).remove();
             console.log(UploadedFiles);
-    }
+        }
     }
 
     //-------------------------------------------------------------------------------------------------
@@ -2168,7 +2192,7 @@
             });
             $('#image-upload-preview').html(images);
 
-            $('.remove-image-btn').on('click',function(){
+            $('.remove-image-btn').on('click', function () {
                 var index = $(this).parent().index();
                 RemoveUploadedImage(index);
             });
@@ -2180,7 +2204,7 @@
             if ($('.search-input-filter-wrp').length) {
                 $('.search-input-filter-wrp').removeClass('active');
             }
-            if($('#image-upload-preview .image-uploaded').length){
+            if ($('#image-upload-preview .image-uploaded').length) {
                 UploadedFiles.length = 0;
                 $('#image-upload-preview').html('');
             }
@@ -2380,27 +2404,27 @@
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: '-650'
                         }, {
-                                duration: 600,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                         activeScrollItem.next().find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                             left: 0
                         }, {
-                                duration: 850,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 850,
+                            easing: 'easeOutExpo'
+                        });
                         $('.carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((actualScroll + fullScroll) / fullScroll)
                         }, {
-                                duration: 750,
-                                easing: 'easeOutExpo',
-                                complete: function () {
-                                    setTimeout(function () {
-                                        $('.carousel-data').css('left', '0px');
-                                    }, 150);
-                                    carouselAnimation = false;
-                                }
-                            });
+                            duration: 750,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                setTimeout(function () {
+                                    $('.carousel-data').css('left', '0px');
+                                }, 150);
+                                carouselAnimation = false;
+                            }
+                        });
                         selectedIndexControl = activeItemIndex;
                         if (selectedIndexControl == carouselItemCount - 1) {
                             selectedIndexControl = 1;
@@ -2425,27 +2449,27 @@
                         activeScrollItem.find('.carousel-data').stop().animate({
                             left: fullScroll
                         }, {
-                                duration: 600,
-                                easing: 'easeOutExpo'
-                            });
+                            duration: 600,
+                            easing: 'easeOutExpo'
+                        });
                         activeScrollItem.prev().find('.carousel-data').css('left', '-650px').delay(150).queue(function () {
                             $(this).stop().animate({
                                 left: 0
                             }, {
-                                    duration: 500,
-                                    easing: 'easeOutExpo'
-                                }).dequeue();
+                                duration: 500,
+                                easing: 'easeOutExpo'
+                            }).dequeue();
                         });
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((actualScroll - fullScroll) / fullScroll)
                         }, {
-                                duration: 600,
-                                easing: 'easeOutExpo',
-                                complete: function () {
-                                    $('#main-carousel .carousel-data').css('left', '0px');
-                                    carouselAnimation = false;
-                                }
-                            });
+                            duration: 600,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                $('#main-carousel .carousel-data').css('left', '0px');
+                                carouselAnimation = false;
+                            }
+                        });
                         selectedIndexControl = activeItemIndex - 2;
                         if (selectedIndexControl === 0) {
                             var indexControlMax = $('#main-carousel .carousel-indexes div').length;
@@ -2487,43 +2511,43 @@
                             activeScrollItem.find('.carousel-data').stop().animate({
                                 left: '-650'
                             }, {
-                                    duration: 600,
-                                    easing: 'easeOutExpo'
-                                });
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                             newActiveScrollItem.find('.carousel-data').css('left', ((fullScroll * 3) / 4) + 'px').stop().animate({
                                 left: 0
                             }, {
-                                    duration: 600,
-                                    easing: 'easeOutExpo'
-                                });
+                                duration: 600,
+                                easing: 'easeOutExpo'
+                            });
                         } else {
                             activeScrollItem.find('.carousel-data').stop().animate({
                                 left: fullScroll
                             }, {
-                                    duration: 400,
-                                    easing: 'easeOutExpo'
-                                });
+                                duration: 400,
+                                easing: 'easeOutExpo'
+                            });
                             newActiveScrollItem.find('.carousel-data').css('left', '-650px').delay(50).queue(function () {
                                 $(this).stop().animate({
                                     left: 0
                                 }, {
-                                        duration: 600,
-                                        easing: 'easeOutExpo'
-                                    }).dequeue();
+                                    duration: 600,
+                                    easing: 'easeOutExpo'
+                                }).dequeue();
                             });
                         }
                         $('#main-carousel .carousel-container').stop().animate({
                             scrollLeft: fullScroll * Math.round((actualScroll + targetItemPos) / fullScroll)
                         }, {
-                                duration: 400,
-                                easing: 'easeOutExpo',
-                                complete: function () {
-                                    carouselAnimation = false;
-                                    setTimeout(function () {
-                                        $('.carousel-data').css('left', '0px');
-                                    }, 200);
-                                }
-                            });
+                            duration: 400,
+                            easing: 'easeOutExpo',
+                            complete: function () {
+                                carouselAnimation = false;
+                                setTimeout(function () {
+                                    $('.carousel-data').css('left', '0px');
+                                }, 200);
+                            }
+                        });
                         activeItemIndex = indexValue;
                     }
                 });
@@ -2887,26 +2911,44 @@
             //         title: 'Wow'
             //     }
             // ]
-            $('.review-satisfaction-wrp i').on('mouseenter', function () {
-                $(this).addClass('selected');
-                $(this).prevAll().addClass('selected');
-                $(this).nextAll().removeClass('selected');
+            $('.review-satisfaction-wrp .slider-index').on('mousedown touchstart', function () {
+                var parentSlider = $(this).closest('.review-satisfaction-wrp'),
+                    parentSliderContainer = $(this).closest('.slider-value-container'),
+                    slideStart = parentSlider.offset().left,
+                    sliderIndexValue = $(this).find('.slider-index-value');
+                    parentSlider.addClass('moving');
+                parentSlider.on('mousemove touchmove', function (e) {
+                    var indexPos = e.clientX || e.originalEvent.changedTouches[0].pageX,
+                    slideDiff = roundToNearestValue(10, (indexPos - slideStart) / parentSlider.width() * 100);
+                    parentSliderContainer.css('width', slideDiff + '%');
+                    if(slideDiff != sliderIndexValue) sliderIndexValue.text(slideDiff);
+                });
+                parentSlider.on('mouseup touchend', function () {
+                    parentSlider.off('mousemove touchmove');
+                    parentSlider.removeClass('moving');
+                });
             });
-            $('.review-satisfaction-wrp i').on('click', function () {
-                $(this).addClass('selected');
-                $(this).prevAll().addClass('selected');
-                $(this).nextAll().removeClass('selected');
-                $(this).parent().data('rated', $(this).index());
-            });
-            $('.review-satisfaction-wrp').on('mouseleave', function () {
-                $(this).find('i').removeClass('selected');
-                heartsCount = $(this).data('rated') + 1;
-                if (heartsCount !== undefined) {
-                    for (var i = 0; i < heartsCount; i++) {
-                        $(this).find('i').eq(i).addClass('selected');
-                    }
-                }
-            });
+
+            // $('.review-satisfaction-wrp i').on('mouseenter', function () {
+            //     $(this).addClass('selected');
+            //     $(this).prevAll().addClass('selected');
+            //     $(this).nextAll().removeClass('selected');
+            // });
+            // $('.review-satisfaction-wrp i').on('click', function () {
+            //     $(this).addClass('selected');
+            //     $(this).prevAll().addClass('selected');
+            //     $(this).nextAll().removeClass('selected');
+            //     $(this).parent().data('rated', $(this).index());
+            // });
+            // $('.review-satisfaction-wrp').on('mouseleave', function () {
+            //     $(this).find('i').removeClass('selected');
+            //     heartsCount = $(this).data('rated') + 1;
+            //     if (heartsCount !== undefined) {
+            //         for (var i = 0; i < heartsCount; i++) {
+            //             $(this).find('i').eq(i).addClass('selected');
+            //         }
+            //     }
+            // });
 
             // $('.item-rating-details-container .rating-owl-wrp div[class^="rating"]').each(function () {
             //     var ratingValue = parseInt($(this).data('rating') / 20);
@@ -3026,12 +3068,12 @@
                                 $('#main-carousel .carousel-container').stop().animate({
                                     scrollLeft: fullScroll * Math.round((carouselScrollLeft + scrollRemaining) / fullScroll)
                                 }, {
-                                        duration: 750,
-                                        easing: 'easeOutExpo',
-                                        complete: function () {
-                                            carouselAnimation = false;
-                                        }
-                                    });
+                                    duration: 750,
+                                    easing: 'easeOutExpo',
+                                    complete: function () {
+                                        carouselAnimation = false;
+                                    }
+                                });
                                 var controlsIndex = activeItemIndex;
                                 if (controlsIndex == carouselItemCount - 2) {
                                     controlsIndex = 0;
@@ -3043,18 +3085,18 @@
                                 $('#main-carousel .carousel-container').stop().animate({
                                     scrollLeft: fullScroll * Math.round((carouselScrollLeft - scrollRemaining) / fullScroll)
                                 }, {
-                                        duration: 750,
-                                        easing: 'easeOutExpo',
-                                        complete: function () {
-                                            carouselAnimation = false;
-                                        }
-                                    });
+                                    duration: 750,
+                                    easing: 'easeOutExpo',
+                                    complete: function () {
+                                        carouselAnimation = false;
+                                    }
+                                });
                                 carouselItemTarget.find('.carousel-data').stop().animate({
                                     left: (fullScroll * 3) / 4
                                 }, {
-                                        duration: 750,
-                                        easing: 'easeOutExpo'
-                                    });
+                                    duration: 750,
+                                    easing: 'easeOutExpo'
+                                });
                                 activeItemIndex = carouselItemTarget.index() + 1;
                                 var controlsIndex = activeItemIndex - 1;
                                 if (controlsIndex == 1) {
@@ -3069,10 +3111,10 @@
                             $('#main-carousel .carousel-container').stop().animate({
                                 scrollLeft: fullScroll * Math.round((carouselScrollLeft - carouselPosDiff) / fullScroll)
                             }, {
-                                    easing: 'easeOutExpo'
-                                }, function () {
-                                    carouselAnimation = false;
-                                });
+                                easing: 'easeOutExpo'
+                            }, function () {
+                                carouselAnimation = false;
+                            });
                         }
                         carouselPosDiff = undefined;
                         entered = false;
@@ -3080,11 +3122,11 @@
                         $('#main-carousel .carousel-data').stop().animate({
                             left: 0
                         }, {
-                                duration: 1000,
-                                easing: 'easeOutExpo'
-                            }, function () {
-                                carouselAnimation = false;
-                            });
+                            duration: 1000,
+                            easing: 'easeOutExpo'
+                        }, function () {
+                            carouselAnimation = false;
+                        });
                     }
                 }
                 //End of Carousel Autocomplete
@@ -3172,7 +3214,7 @@
                     ToggleMainNav();
                 }
             } else if (e.keyCode == 13) { //Enter button
-                if ($('#popup-base .search-input input').hasClass('field-focus')) { }
+                if ($('#popup-base .search-input input').hasClass('field-focus')) {}
             } else if (e.keyCode == 9) {
                 if ($('#popup-base').hasClass('popup-active')) {
                     $('#popup-base .search-input input').focus();

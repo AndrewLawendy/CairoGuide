@@ -2399,7 +2399,7 @@ iframe:not([data-src]) {
                         .bold {
                             color: #000;
                         }
-                        &:hover {
+                        &.active {
                             color: #fff;
                             background-color: #131313;
                             .bold {

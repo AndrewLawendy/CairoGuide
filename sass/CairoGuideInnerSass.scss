@@ -78,7 +78,7 @@ Contains all styles of inner pages
                 .item-rating-details-container {
                     .rating-owl-wrp {
                         span {
-                            background-color: nth($i, 2);
+                            color: nth($i, 2);
                         }
                     }
                 }
@@ -99,8 +99,20 @@ Contains all styles of inner pages
                 }
             }
             .comment-section-container {
-                .review-item {
-                    color: nth($i, 2);
+                // .review-item {
+                //     color: nth($i, 2);
+                // }
+                .slider{
+                    border-color:nth($i, 2)!important;
+                    .slider-value-container{
+                        background-color: nth($i, 2);
+                        .slider-index{
+                            border-color:nth($i, 2)!important;
+                            .slider-index-value{
+                                border-color:nth($i, 2)!important;
+                            }
+                        }
+                    }
                 }
             }
             .items-list-info {
@@ -546,6 +558,8 @@ Contains all styles of inner pages
             }
             @include media("(max-width: 768px)") {
                 height: 275px;
+                background-attachment: fixed;
+                background-position: top center!important;
             }
             /*@include media("(max-width: 640px)") {
             height: 125px;
@@ -1818,18 +1832,18 @@ Contains all styles of inner pages
                             img {
                                 width: 48px;
                                 height: auto;
+                                display: block;
                                 @include media("(min-width: 1200px)") {
                                     width: get-vw(48px);
                                 }
                             }
                             span {
-                                display: inline-block;
-                                width: 100%;
                                 line-height: 20px;
-                                border-radius: 10px;
-                                color: #fff;
+                                padding-top: 10px;
+                                @extend %inline-block;
                                 @include media("(min-width: 1200px)") {
                                     line-height: get-vw(20px);
+                                    padding-top: get-vw(10px);
                                 }
                             }
                         }
@@ -2077,9 +2091,60 @@ Contains all styles of inner pages
                         }
                         .review-satisfaction-wrp {
                             float: right;
-                            .icon-review {
-                                cursor: pointer;
-                                font-weight: bold;
+                            height: 10px;
+                            padding: 7px 0 5px;
+                            // .icon-review {
+                            //     cursor: pointer;
+                            //     font-weight: bold;
+                            // }
+                            .slider{
+                                width: 120px;
+                                height: 3px;
+                                background-color: #fff;
+                                border:1px solid ;
+                                border-radius: 4px;
+                                .slider-value-container{
+                                    position: relative;
+                                    height: 100%;
+                                    width: 0;
+                                    .slider-index{
+                                        width: 4px;
+                                        height: 10px;
+                                        position: absolute;
+                                        top: -4px;
+                                        right: -2px;
+                                        border: 1px solid;
+                                        border-radius: 3px;
+                                        background-color: #fff;
+                                        cursor: pointer;
+                                        .slider-index-value{
+                                            font-size: .6rem;
+                                            width: 20px;
+                                            height: 20px;
+                                            text-align: center;
+                                            border: 1px solid;
+                                            border-radius: 50%;
+                                            line-height: 20px;
+                                            background: #fff;
+                                            padding: 2px;
+                                            position: absolute;
+                                            bottom: 15px;
+                                            left: -11px;
+                                            @include transform-origin(bottom);
+                                            @include transform(scale(0));
+                                            @include transition(all .2s $bounce)
+                                        }
+                                    }
+                                }
+                            }
+                            &.moving{
+                                .slider{
+                                    .slider-index{
+                                        .slider-index-value{
+                                            @include transform(scale(1));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -4479,6 +4544,9 @@ Contains all styles of inner pages
             }
         } //Pagination
         .pagination-container {
+            @include media("(max-width: 768px)") {
+                display: none;
+            }
             text-align: center;
             .pagination-body {
                 position: relative;
@@ -4514,6 +4582,16 @@ Contains all styles of inner pages
                     background-color: #131313;
                     @include transition(left .3s);
                 }
+            }
+        }
+        .pagination-more{
+            display: none;
+            text-align: center;
+            @include media("(max-width: 768px)") {
+                display: block;
+            }
+            button.control-btn{
+                float: none;
             }
         }
     }
