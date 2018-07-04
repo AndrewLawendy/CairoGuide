@@ -1716,7 +1716,6 @@
         if($('#image-upload-preview').length){
             UploadedFiles.splice(index,1);
             $('#image-upload-preview .image-uploaded').eq(index).remove();
-            console.log(UploadedFiles);
     }
     }
 
@@ -2162,7 +2161,6 @@
             UploadedFiles = Array.from(this.files);
             var fakepath = 'C:\\fakepath\\';
             var images = '';
-            console.log($(UploadedFiles));
             $(UploadedFiles).each(function (index, file) {
                 images += '<div class="image-uploaded"><a href="javascript:void(0);" title="Remove image" class="remove-image-btn"></a><img src="' + URL.createObjectURL(file) + '" /></div>';
             });
@@ -2179,6 +2177,9 @@
             $('#popup-base').find('.popup-body-container').fadeOut(0);
             if ($('.search-input-filter-wrp').length) {
                 $('.search-input-filter-wrp').removeClass('active');
+            }
+            if ($('#comment-file-uploader textarea').val() != '') {
+                $('#comment-file-uploader textarea').val('');
             }
             if($('#image-upload-preview .image-uploaded').length){
                 UploadedFiles.length = 0;
