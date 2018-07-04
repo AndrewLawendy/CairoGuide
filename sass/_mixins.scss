@@ -153,13 +153,25 @@
 @mixin active-popup($prefix) {
     &.#{$prefix}-popup-active {
         .popup-body {
+            height:100%;
+            overflow:hidden;
+            &:before{
+                content: '';
+                height: 100%;
+                width: 0;
+                display: inline-block;
+                vertical-align: middle;
+            }
             .popup-body-container.#{$prefix}-container {
-                margin: 21vh 0 0 140px;
+                margin-left:0;
                 opacity: 1;
+                float: none;
+    vertical-align: middle;
+    //display: inline-block!important;
                 @include transition(all 0.3s ease 1.1s);
-                @include media("(min-width: 1200px)") {
-                    margin: 21vh 0 0 get-vw(140px);
-                }
+                // @include media("(min-width: 1200px)") {
+                //     margin: 21vh 0 0 get-vw(140px);
+                // }
                 @content;
             }
         }

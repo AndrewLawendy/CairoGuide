@@ -33,7 +33,6 @@
         </div>
         <div class="popup-body">
             <div class="search-container popup-body-container">
-
                 <div class="search-input-filter-wrp float-left">
                     <div class="search-filter-display">
                         <span>Choose category...</span>
@@ -94,6 +93,20 @@
             </div>
             <div class="register-container popup-body-container">
                 <a href="#" title="#">Register with facebook</a>
+            </div>
+            <div class="comment-container popup-body-container">
+                <div class="comment-submit-wrp">
+                    <div id="comment-file-uploader">
+                        <input type="file" id="comment-images" name="comment-images" multiple="multiple" accept="image/png, image/jpeg" />
+                        <textarea class="multilanguage"></textarea>
+                        <label>Add a comment ...</label>
+                    </div>
+                    <div class="controls-btn-container marg-t20">
+                        <button class="control-btn ripple pos black" value="Submit Review">Submit Review</button>
+                        <button class="control-btn ripple pos black upload-photo-btn" value="Upload Photo">Upload Photo</button>
+                    </div>
+                    <div id="image-upload-preview" class="marg-t20"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1389,9 +1402,6 @@
                 <div class="hundred-width">
                     <div class="interaction-section-container seventy-width responsive">
                         <div class="comment-submit-wrp">
-                            <div class="ripple pos black">
-                                <textarea class="multilanguage" placeholder="Write you comment here..."></textarea>
-                            </div>
                             <div class="review-submit-wrp">
                                 <div class="review-item wrp third-width">
                                     <div class="review-satisfaction-wrp">
@@ -1445,8 +1455,7 @@
                                 </div>
                             </div>
                             <div class="controls-btn-container marg-t20">
-                                <button class="control-btn ripple pos black" value="Submit Review">Submit Review</button>
-                                <button class="control-btn ripple pos black" value="Upload Photo">Upload Photo</button>
+                                <button class="control-btn ripple pos black add-comment-btn" value="Add Review">Add Review</button>
                             </div>
                         </div>
 

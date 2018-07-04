@@ -1737,7 +1737,7 @@ Contains all styles of inner pages
                             width: calc((100% / 5) - 3px);
                             padding: 10px 8px 10px 0;
                             box-sizing: border-box;
-                            vertical-align:top;
+                            vertical-align: top;
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(10px) get-vw(8px) get-vw(10px) 0;
                                 width: calc((100% / 5) - .25vw);
@@ -2058,60 +2058,28 @@ Contains all styles of inner pages
                 margin-top: get-vw(30px);
             }
             .interaction-section-container {
-                .comment-submit-wrp {
-                    >.ripple {
-                        width: 100%;
-                        height: 95px;
-                        border-radius: 5px;
-                        @include media("(min-width: 1200px)") {
-                            height: get-vw(95px);
-                        }
-                        .circle {
-                            background-color: rgba(0, 0, 0, .05);
-                        }
+                .review-submit-wrp {
+                    margin: 20px -10px 0;
+                    @include media("(min-width: 1200px)") {
+                        margin: get-vw(20px) get-vw(-10px) 0;
                     }
-                    textarea {
+                    .review-item {
                         box-sizing: border-box;
-                        font-weight: normal;
-                        width: 100%;
-                        height: 95px;
-                        resize: none;
-                        border: 0;
-                        border-radius: 5px;
-                        padding: 20px;
-                        background-color: #eee;
-                        font-size: 1rem;
+                        padding: 0 10px;
+                        margin-bottom: 10px;
                         @include media("(min-width: 1200px)") {
-                            height: get-vw(95px);
-                            padding: get-vw(20px);
+                            padding: 0 get-vw(10px);
+                            margin-bottom: get-vw(10px);
                         }
-                        &:focus {
-                            outline: 0;
+                        p {
+                            font-size: 1rem; //float: left;
+                            font-weight: normal;
                         }
-                    }
-                    .review-submit-wrp {
-                        margin: 20px -10px 0;
-                        @include media("(min-width: 1200px)") {
-                            margin: get-vw(20px) get-vw(-10px) 0;
-                        }
-                        .review-item {
-                            box-sizing: border-box;
-                            padding: 0 10px;
-                            margin-bottom: 10px;
-                            @include media("(min-width: 1200px)") {
-                                padding: 0 get-vw(10px);
-                                margin-bottom: get-vw(10px);
-                            }
-                            p {
-                                font-size: 1rem; //float: left;
-                                font-weight: normal;
-                            }
-                            .review-satisfaction-wrp {
-                                float: right;
-                                .icon-review {
-                                    cursor: pointer;
-                                    font-weight: bold;
-                                }
+                        .review-satisfaction-wrp {
+                            float: right;
+                            .icon-review {
+                                cursor: pointer;
+                                font-weight: bold;
                             }
                         }
                     }
@@ -4598,3 +4566,132 @@ Contains all styles of inner pages
             }
         }
     }
+
+    .comment-submit-wrp {
+        >.ripple {
+            width: 100%;
+            height: 95px;
+            border-radius: 5px;
+            @include media("(min-width: 1200px)") {
+                height: get-vw(95px);
+            }
+            .circle {
+                background-color: rgba(0, 0, 0, .05);
+            }
+        }
+        input[type="file"] {
+            display: none;
+        }
+        textarea {
+            //box-sizing: border-box;
+            font-weight: normal;
+            width: 100%;
+            height: 95px;
+            resize: none;
+            border: 0;
+            border-bottom: 2px solid #131313; //padding: 20px;
+            background-color: transparent;
+            font-size: 1rem;
+            position: relative;
+            z-index: 100;
+            @include media("(min-width: 1200px)") {
+                height: get-vw(95px); //padding: get-vw(20px);
+                border-bottom-width: get-vw(2px);
+            }
+            &:focus {
+                outline: 0;
+            }
+        }
+        label {
+            font-size: 1.3rem;
+            font-weight: lighter;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: absolute;
+            top: 12px;
+            @include transition(all 0.3s ease);
+            @include media("(min-width: 1200px)") {
+                letter-spacing: get-vw(5px);
+                top: get-vw(12px);
+            }
+            @include media("(max-width: 768px)") {
+                font-size: 1rem;
+                font-weight: normal;
+                text-transform: none;
+                letter-spacing: initial;
+            }
+        }
+        textarea.field-focus+label {
+            top: -22px;
+            font-size: 1rem;
+            font-weight: lighter;
+            @include transition(all 0.3s ease);
+            @include media("(min-width: 1200px)") {
+                top: get-vw(-22px);
+            }
+        }
+        #image-upload-preview {
+            display: inline-block;
+            width: 100%;
+            overflow: auto;
+            max-height: 40vh;
+            .image-uploaded {
+                float: left; //padding: 10px;
+                box-sizing: border-box;
+                width: calc(100% / 5);
+                padding-bottom: calc(100% / 5);
+                position: relative;
+                .remove-image-btn {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: #fff;
+                    z-index: 100;
+                    border-radius: 100%;
+                    border: 1px solid #131313;
+                    &:before,
+                    &:after {
+                        content: '';
+                        background: #131313;
+                        height: 1px;
+                        width: 70%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        right: 50%;
+                        margin: 0 auto;
+                        @include transform(translate(-50%) rotate(45deg));
+                    }
+                    &:after {
+                        @include transform(translate(-50%) rotate(-45deg));
+                    }
+                    @include media("(min-width: 1200px)") {
+                        width: get-vw(20px);
+                        height: get-vw(20px);
+                        border-width: get-vw(1px);
+                        &:before,
+                        &:after {
+                            height: get-vw(1px);
+                        }
+                    }
+                }
+                img {
+                    @extend %object-fit-img;
+                    object-position: center;
+                    position: absolute;
+                    width: 90%;
+                    height: 90%;
+                    top: 10px;
+                    left: 10px;
+                    @include media("(min-width: 1200px)") {
+                        top: get-vw(10px);
+                        left: get-vw(10px);
+                    }
+                }
+            }
+        }
+    }
+
+    @include active-popup(comment) {}

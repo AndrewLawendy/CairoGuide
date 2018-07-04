@@ -2059,6 +2059,7 @@ iframe:not([data-src]) {
         height: 80vh;
         float: left;
         margin-left: 150px;
+        margin-right: 130px;
         border-right: 2px solid #000;
         position: relative;
         margin-top: -50px;
@@ -2067,6 +2068,7 @@ iframe:not([data-src]) {
         opacity 0.3s ease);
         @include media("(min-width: 1200px)") {
             margin-left: get-vw(150px);
+            margin-right: get-vw(130px);
             border-right-width: get-vw(2px);
             margin-top: get-vw(-50px);
         }
@@ -2221,14 +2223,14 @@ iframe:not([data-src]) {
     }
     .popup-body-container {
         float: left;
-        margin: 21vh 0 0 190px;
+        margin-left: 50px;
         opacity: 0;
         position: relative;
         z-index: 200;
         display: none;
         @include transition(all 0.3s ease);
         @include media("(min-width: 1200px)") {
-            margin: 21vh 0 0 get-vw(190px);
+            margin-left: get-vw(50px);
         }
         @include media("(max-width: 1024px)") {
             margin: 40px 0 0 !important;
@@ -2264,8 +2266,10 @@ iframe:not([data-src]) {
         }
     }*/
     .popup-body {
-        .search-container {
+        .search-container,.comment-container {
             width: 60vw;
+        }
+        .search-container {
             .search-input-wrp {
                 width: 70%;
                 padding-left: 20px;
