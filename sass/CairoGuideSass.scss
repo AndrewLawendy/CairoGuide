@@ -77,7 +77,6 @@ main {
                         left: 0;
                         width: 100%;
                         height: 60%;
-                        opacity: .7;
                         @include linear-gradient(top, #fff, 0, 0, #131313, 50, 100);
                         @include media("(max-width: 768px)") {
                             display: none;
@@ -86,7 +85,7 @@ main {
                     .carousel-data {
                         position: absolute;
                         left: 0;
-                        top: 60%;
+                        top: 65%;
                         width: 100%;
                         padding-left: 30px;
                         padding-right: 25%;
@@ -105,12 +104,8 @@ main {
                             @include transform(translate3d(0, 0, 0));
                         }
                         .section-title {
-                            margin-bottom: 10px;
                             padding-bottom: 0;
                             @include user-select(none);
-                            @include media("(min-width: 1200px)") {
-                                margin-bottom: get-vw(10px);
-                            }
                             @include media("(max-width: 768px)") {
                                 width: auto;
                                 display: inline-block;
@@ -136,7 +131,8 @@ main {
                             width: 100%;
                             padding: 5px 0;
                             text-align: justify;
-                            font-size: 1em;
+                            font-size: 1.2rem;
+                            line-height: 1.5rem;
                             font-weight: normal;
                             @include media("(min-width: 1200px)") {
                                 padding: get-vw(5px) 0;

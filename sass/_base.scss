@@ -2689,9 +2689,9 @@ iframe:not([data-src]) {
             padding: 0 30px;
             box-sizing: border-box;
             text-align: center;
-            &:nth-child(1n+2) {
-                margin-top: 15%;
-            }
+            // &:nth-child(1n+2) {
+            //     margin-top: 15%;
+            // }
             &::before {
                 content: '';
                 display: inline-block;

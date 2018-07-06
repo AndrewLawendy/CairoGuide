@@ -633,7 +633,6 @@ Contains all styles of inner pages
                 }
             }
             .advanced-search-filters {
-                cursor: pointer;
                 @include media("(max-width: 768px)") {
                     margin-bottom: 15px;
                 }
@@ -998,7 +997,6 @@ Contains all styles of inner pages
                 }
             }
             .collapsable-filter-wrp {
-                display: none;
                 margin: 0 -10px;
                 @include media("(min-width: 1200px)") {
                     margin: 0 get-vw(-10px);
