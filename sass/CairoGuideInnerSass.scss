@@ -606,10 +606,9 @@ Contains all styles of inner pages
             padding: 10px;
             margin-bottom: 30px;
             position: relative;
-            z-index: 1;
+            z-index: 51;
             box-sizing: border-box;
             border-radius: 7px;
-            position: relative;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -835,12 +834,15 @@ Contains all styles of inner pages
                     top: calc(100% + 1px);
                     border-bottom: 2px solid;
                     z-index: 2;
+                    max-height: 350px;
+                    overflow-y: auto;
                     @include transform(translate3d(0,
                     20px,
                     0));
                     @include transition(all .5s);
                     @include media("(min-width: 1200px)") {
                         border-bottom: get-vw(2px) solid;
+                        max-height: get-vw(350px);
                     }
                     li {
                         background-color: #fff;
