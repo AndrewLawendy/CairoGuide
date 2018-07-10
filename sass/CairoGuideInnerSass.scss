@@ -3466,6 +3466,9 @@ Contains all styles of inner pages
                                 font-size: 1.1rem;
                                 font-weight: bolder;
                                 line-height: inherit;
+                                &.has-event{
+                                    color: $calendar-color;
+                                }
                             }
                         }
                     }
