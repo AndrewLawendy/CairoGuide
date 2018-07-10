@@ -1701,40 +1701,49 @@ iframe:not([data-src]) {
     }
 }
 
-.logo-pink-title:not(.section-title) {
+.logo-pink-title:not(.section-title),.logo-pink-title.section-title::before {
     @include apply-color(background-color,
     $logo-pink);
 }
 
-.logo-pink-title.section-title {
-    &::before {
-        @include apply-color(background-color,
-        $logo-pink);
-    }
-}
-
-.logo-yellow-title:not(.section-title) {
+.logo-yellow-title:not(.section-title),.logo-yellow-title.section-title::before {
     @include apply-color(background-color,
     $logo-yellow);
 }
 
-.logo-yellow-title.section-title {
-    &::before {
-        @include apply-color(background-color,
-        $logo-yellow);
-    }
-}
-
-.logo-green-title:not(.section-title) {
+.logo-green-title:not(.section-title),.logo-green-title.section-title::before {
     @include apply-color(background-color,
     $logo-green);
 }
 
-.logo-green-title.section-title {
-    &::before {
-        @include apply-color(background-color,
-        $logo-green);
-    }
+.trending-title:not(.section-title),.trending-title.section-title::before {
+    @include apply-color(background-color,
+    $trending);
+}
+
+.wtd-title:not(.section-title),.wtd-title.section-title::before {
+    @include apply-color(background-color,
+    $wtd);
+}
+
+.highlights-title:not(.section-title),.highlights-title.section-title::before {
+    @include apply-color(background-color,
+    $highlights);
+}
+
+.latest-news-title:not(.section-title),.latest-news-title.section-title::before {
+    @include apply-color(background-color,
+    $latest-news);
+}
+
+.best-spots-title:not(.section-title),.best-spots-title.section-title::before {
+    @include apply-color(background-color,
+    $best-spots);
+}
+
+.attractions-title:not(.section-title),.attractions-title.section-title::before {
+    @include apply-color(background-color,
+    $attractions);
 }
 
 [data-typewriter] {
