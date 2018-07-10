@@ -736,10 +736,6 @@ Contains all styles of inner pages
                     display: inline;
                     padding: 0 15px;
                     border-right: 1px solid #fff;
-                    @include media("(min-width: 1200px)") {
-                        padding: 0 get-vw(15px);
-                        border-right: get-vw(1px) solid #fff;
-                    }
                     &:first-child {
                         padding-left: 0
                     }
@@ -748,6 +744,18 @@ Contains all styles of inner pages
                     }
                     &:last-child {
                         border: none;
+                    }
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(15px);
+                        border-right: get-vw(1px) solid #fff;
+                    }
+                    @include media("(max-width: 768px)") {
+                        display: block;
+                        padding: 0;
+                        border: none;
+                        &+.filter-result-item{
+                            margin-top: 10px;
+                        }
                     }
                 }
             }
