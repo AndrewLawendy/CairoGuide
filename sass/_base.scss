@@ -2932,7 +2932,7 @@ header {
                 padding: 15px 30px 30px;
                 box-sizing: border-box;
                 li {
-                    float: none !important;
+                    //float: none !important;
                     a,
                     a:visited {
                         color: #131313;
@@ -2996,6 +2996,7 @@ header {
                                 position: relative;
                                 &::after {
                                     content: attr(title);
+                                    width:100%;
                                     position: absolute;
                                     top: -5px;
                                     left: -5px;

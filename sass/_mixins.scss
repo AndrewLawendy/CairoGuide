@@ -155,12 +155,18 @@
         .popup-body {
             height:100%;
             overflow:hidden;
-            &:before{
+            &::before{
                 content: '';
                 height: 100%;
                 width: 0;
                 display: inline-block;
                 vertical-align: middle;
+            }
+            @include media("(max-width: 1024px)") {
+                width:100%;
+                &::before{
+                    display:none;
+                }
             }
             .popup-body-container.#{$prefix}-container {
                 margin-left:0;
@@ -183,27 +189,27 @@
     @if $isPosRel==true {
         position: relative;
     }
-    &:before {
-        content: 'Advertisement area';
-        color: #aaa;
-        text-transform: capitalize;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        top: 50%;
-        padding: 5px 30px;
-        box-sizing: border-box;
-        display: block;
-        font-size: 1.2rem;
-        /*border-top: 1px solid #ccc;
-        border-bottom: 3px solid #ccc;*/
-        @include transform(translate3d(0, -50%, 0));
-        @include media("(min-width: 1200px)") {
-            padding: get-vw(5px) get-vw(30px);
-            /*border-top-width: get-vw(1px);
-        border-bottom-width: get-vw(3px);*/
-        }
-    }
+    // &:before {
+    //     content: 'Advertisement area';
+    //     color: #aaa;
+    //     text-transform: capitalize;
+    //     position: absolute;
+    //     text-align: center;
+    //     width: 100%;
+    //     top: 50%;
+    //     padding: 5px 30px;
+    //     box-sizing: border-box;
+    //     display: block;
+    //     font-size: 1.2rem;
+    //     /*border-top: 1px solid #ccc;
+    //     border-bottom: 3px solid #ccc;*/
+    //     @include transform(translate3d(0, -50%, 0));
+    //     @include media("(min-width: 1200px)") {
+    //         padding: get-vw(5px) get-vw(30px);
+    //         /*border-top-width: get-vw(1px);
+    //     border-bottom-width: get-vw(3px);*/
+    //     }
+    // }
     img {
         position: relative;
         z-index: 10;

@@ -1,4 +1,4 @@
-    /*----------------------------
+/*----------------------------
 Inner Pages Styles File
 Contains all styles of inner pages
 ----------------------------*/
@@ -408,6 +408,8 @@ Contains all styles of inner pages
                             box-sizing: border-box;
                             float: left;
                             background-color: #000;
+                            position:relative;
+                            cursor:pointer;
                             @include media("(min-width: 1200px)") {
                                 padding: 0 get-vw(3px);
                             }
@@ -425,20 +427,36 @@ Contains all styles of inner pages
                                     margin-bottom: 0;
                                 }
                             }
-                            img {
+                                &::before{
+                                    content:'';
+                                    position:absolute;
+                                    width:100%;
+                                    height:100%;
+                                    top:0;
+                                    left:0;
+                                    z-index:10;
+                                }
+                            img,iframe {
                                 display: block;
                                 cursor: pointer;
                                 background-color: rgba(0, 0, 0, 0.8);
                                 opacity: 0.4;
-                                @extend %object-fit-img;
                                 @include transition(all 0.3s ease);
                                 @include media("(max-width: 768px)") {
                                     opacity: 1;
                                 }
                             }
+                            img{
+                                @extend %object-fit-img;
+                            }
+                            iframe{
+                                @include media("(max-width: 768px)") {
+                                    height:50vh;
+                                }
+                            }
                             &:hover,
                             &.active {
-                                img {
+                                img,iframe {
                                     opacity: 1;
                                     @include transition(all 0.3s ease);
                                 }
@@ -571,7 +589,8 @@ Contains all styles of inner pages
                 display: inline-block;
                 vertical-align: middle;
                 text-align: center;
-                line-height: 335px;
+                //line-height: 335px;
+                line-height: 3.5rem;
                 font-size: 3.5rem;
                 font-weight: bolder;
                 color: #fff;
@@ -579,17 +598,19 @@ Contains all styles of inner pages
                 position: relative;
                 z-index: 10;
                 @include media("(min-width: 1200px)") {
-                    line-height: get-vw(335px);
+                    //line-height: get-vw(335px);
                 }
                 @include media("(max-width: 640px)") {
                     width: 90%;
                     overflow: hidden;
+                    font-size:9vw;
+                    line-height: 9vw;
                 }
             }
         }
         .ad-below-banner-wrp {
             width: 100%;
-            height: 200px;
+            //height: 200px;
             margin-bottom: 30px;
             @include default-no-ad();
             @include media("(min-width: 1200px)") {
@@ -4416,10 +4437,10 @@ Contains all styles of inner pages
         .gallery-events-wrp {
             //background-color: #fafafa;
             margin: 0 -3px;
-            padding: 3px;
+            padding: 6px 3px 3px;
             @include media("(min-width: 1200px)") {
                 margin: 0 get-vw(-3px);
-                padding: get-vw(3px);
+                padding: get-vw(6px) get-vw(3px) get-vw(3px);
             }
             .mark {
                 color: $calendar-color;
@@ -4434,21 +4455,32 @@ Contains all styles of inner pages
                 @include media("(min-width: 1200px)") {
                     padding: get-vw(3px);
                 }
+                @include media("(max-width: 768px)") {
+                    width: calc(100% / 3);
+                }
+                @include media("(max-width: 640px)") {
+                    width: calc(100% / 2);
+                }
+                @include media("(max-width: 480px)") {
+                    width: calc(100%);
+                }
                 .gallery-events-item-content {
                     position: relative;
-                    @each $i in $colorList {
-                        @if nth($i,
-                        1)=="more" {
-                            background-color: nth($i, 2);
-                        }
-                    }
+                    // @each $i in $colorList {
+                    //     @if nth($i,
+                    //     1)=="more" {
+                    //         background-color: nth($i, 2);
+                    //     }
+                    // }
                     &:after {
                         content: '';
                         padding-bottom: 100%;
                         display: block;
                     }
-                    img {
+                    img, iframe {
                         position: absolute;
+                    }
+                    img{
                         object-position: top;
                         @extend %object-fit-img;
                     }
@@ -4466,6 +4498,10 @@ Contains all styles of inner pages
                         width 0.25s ease 0.25s);
                         @include media("(min-width: 1200px)") {
                             padding: get-vw(10px); //left: get-vw(15px);
+                        }
+                        @include media("(max-width: 1024px)") {
+                            width:96%;
+                            @include transition(height 0.25s ease);
                         }
                         h3,
                         div {
@@ -4520,6 +4556,38 @@ Contains all styles of inner pages
                             margin-bottom: 0;
                         }
                     }
+                    .gallery-events-video-overlay{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 100;
+                        top: 0;
+                        left: 0;
+                        // &::before,&::after{
+                        //     content: '';
+                        //     position: absolute;
+                        //     top: 50%;
+                        //     left: 0;
+                        //     right: 0;
+                        //     margin: 0 auto;
+                        //     @include transform(translateY(-50%));
+                        // }
+                        // &::before{
+                        //     width: 90px;
+                        //     height: 90px;
+                        //     background: #000;
+                        //     border-radius: 100%;
+                        //     z-index:10;
+                        // }
+                        // &::after{
+                        //     width: 0;
+                        //     height: 0;
+                        //     border-top: 20px solid transparent;
+                        //     border-bottom: 20px solid transparent;
+                        //     border-left: 20px solid #eee;
+                        //     z-index:20;
+                        // }
+                    }
                 }
                 &:hover {
                     .gallery-events-item-content {
@@ -4530,6 +4598,9 @@ Contains all styles of inner pages
                             height: 66%;
                             @include transition(height 0.25s ease 0.25s,
                             width 0.25s ease);
+                            @include media("(max-width: 1024px)") {
+                                @include transition(height 0.25s ease);
+                            }
                             p {
                                 height: 1.2rem * 3;
                                 margin-bottom: 10px;
