@@ -315,11 +315,11 @@ body {
 
 @font-face {
     font-family: 'icomoon';
-    src:  url('fonts/icomoon.eot?io77k2');
-    src:  url('fonts/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
-      url('fonts/icomoon.ttf?io77k2') format('truetype'),
-      url('fonts/icomoon.woff?io77k2') format('woff'),
-      url('fonts/icomoon.svg?io77k2#icomoon') format('svg');
+    src:  url('/fonts/IcoMoon/icomoon.eot?io77k2');
+    src:  url('/fonts/IcoMoon/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
+      url('/fonts/IcoMoon/icomoon.ttf?io77k2') format('truetype'),
+      url('/fonts/IcoMoon/icomoon.woff?io77k2') format('woff'),
+      url('/fonts/IcoMoon/icomoon.svg?io77k2#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -405,16 +405,16 @@ body {
   .icon-offer:before {
     content: "\e915";
   }
-  .icon-opening-hours.svg:before {
+  .icon-opening-hours:before {
     content: "\e916";
   }
   .icon-opening-hours.opened:before {
-        color: $success;
-    }
-    
-    .icon-opening-hours.closed:before {
-        color: $danger;
-    }
+      color: $success;
+  }
+  
+  .icon-opening-hours.closed:before {
+      color: $danger;
+  }
   .icon-owl:before {
     content: "\e917";
   }
