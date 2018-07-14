@@ -1746,6 +1746,11 @@ iframe:not([data-src]) {
     $attractions);
 }
 
+.more-title:not(.section-title),.more-title.section-title::before {
+    @include apply-color(background-color,
+    #{map-get($colorList, 'more')});
+}
+
 [data-typewriter] {
     &::after {
         content: '|';

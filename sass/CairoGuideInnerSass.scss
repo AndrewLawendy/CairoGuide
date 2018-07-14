@@ -4512,7 +4512,10 @@ Contains all styles of inner pages
                         }
                         @include media("(max-width: 1024px)") {
                             width:96%;
-                            @include transition(height 0.25s ease);
+                            @include transition();
+                        }
+                        @include media("(max-width: 480px)") {
+                            height:auto;
                         }
                         h3,
                         div {
@@ -4610,7 +4613,11 @@ Contains all styles of inner pages
                             @include transition(height 0.25s ease 0.25s,
                             width 0.25s ease);
                             @include media("(max-width: 1024px)") {
-                                @include transition(height 0.25s ease);
+                                height:50%;
+                                @include transition();
+                            }
+                            @include media("(max-width: 480px)") {
+                                height:auto;
                             }
                             p {
                                 height: 1.2rem * 3;
@@ -4618,6 +4625,9 @@ Contains all styles of inner pages
                                 @include transition(all 0.25s ease 0.25s);
                                 @include media("(min-width: 1200px)") {
                                     margin-bottom: get-vw(10px);
+                                }
+                                @include media("(max-width: 1024px)") {
+                                    display:none;
                                 }
                             }
                         }

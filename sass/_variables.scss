@@ -40,13 +40,13 @@ $attractions:#587ABB;
 "entertainment" desaturate(lighten(#7f3f98, 10%), 30%),
 "more" desaturate(lighten(#9a1c52, 10%), 30%);*/
 
-$colorList: "accommodation" #046947,
-"dining" #E21B23,
-"nightlife" #7F3F97,
-"beauty" #154A93,
-"shopping" #EB008B,
-"entertainment" #7f3f98,
-"fitness" #0C81B7,
-//"tourism" #00A69C,
-"services" #F47F2A,
-"more" #9A1C53;
+$colorList: ("accommodation": #046947,
+"dining": #E21B23,
+"nightlife": #7F3F97,
+"beauty": #154A93,
+"shopping": #EB008B,
+"entertainment": #7f3f98,
+"fitness": #0C81B7,
+//"tourism": #00A69C,
+"services": #F47F2A,
+"more": #9A1C53);
