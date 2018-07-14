@@ -99,21 +99,21 @@ Contains all styles of inner pages
             }
         }
         .comment-section-container {
-            // .review-item {
-            //     color: nth($i, 2);
-            // }
-            .slider {
-                border-color: nth($i, 2) !important;
-                .slider-value-container {
-                    background-color: nth($i, 2);
-                    .slider-index {
-                        border-color: nth($i, 2) !important;
-                        .slider-index-value {
-                            border-color: nth($i, 2) !important;
-                        }
-                    }
-                }
+            .review-item {
+                color: nth($i, 2);
             }
+            // .slider {
+            //     border-color: nth($i, 2) !important;
+            //     .slider-value-container {
+            //         background-color: nth($i, 2);
+            //         .slider-index {
+            //             border-color: nth($i, 2) !important;
+            //             .slider-index-value {
+            //                 border-color: nth($i, 2) !important;
+            //             }
+            //         }
+            //     }
+            // }
         }
         .items-list-info {
             color: nth($i, 2);
@@ -2121,59 +2121,70 @@ main {
                     .review-satisfaction-wrp {
                         float: right;
                         height: 10px;
-                        padding: 7px 0 5px; // .icon-review {
-                        //     cursor: pointer;
-                        //     font-weight: bold;
+                        padding: 7px 0 5px; 
+                        .icon-heart {
+                            cursor: pointer;
+                            font-weight: bold;
+                            float: right;
+                            padding: 0 2px;
+                            &:hover,&.icon-full-heart,&.icon-half-heart{
+                                &~.icon-heart{
+                                    &::before{
+                                        content: "\e910";
+                                    }
+                                }
+                            }
+
+                        }
+                        // .slider {
+                        //     width: 120px;
+                        //     height: 3px;
+                        //     background-color: #fff;
+                        //     border: 1px solid;
+                        //     border-radius: 4px;
+                        //     .slider-value-container {
+                        //         position: relative;
+                        //         height: 100%;
+                        //         width: 0;
+                        //         .slider-index {
+                        //             width: 4px;
+                        //             height: 10px;
+                        //             position: absolute;
+                        //             top: -4px;
+                        //             right: -2px;
+                        //             border: 1px solid;
+                        //             border-radius: 3px;
+                        //             background-color: #fff;
+                        //             cursor: pointer;
+                        //             .slider-index-value {
+                        //                 font-size: .6rem;
+                        //                 width: 20px;
+                        //                 height: 20px;
+                        //                 text-align: center;
+                        //                 border: 1px solid;
+                        //                 border-radius: 50%;
+                        //                 line-height: 20px;
+                        //                 background: #fff;
+                        //                 padding: 2px;
+                        //                 position: absolute;
+                        //                 bottom: 15px;
+                        //                 left: -11px;
+                        //                 @include transform-origin(bottom);
+                        //                 @include transform(scale(0));
+                        //                 @include transition(all .2s $bounce)
+                        //             }
+                        //         }
+                        //     }
                         // }
-                        .slider {
-                            width: 120px;
-                            height: 3px;
-                            background-color: #fff;
-                            border: 1px solid;
-                            border-radius: 4px;
-                            .slider-value-container {
-                                position: relative;
-                                height: 100%;
-                                width: 0;
-                                .slider-index {
-                                    width: 4px;
-                                    height: 10px;
-                                    position: absolute;
-                                    top: -4px;
-                                    right: -2px;
-                                    border: 1px solid;
-                                    border-radius: 3px;
-                                    background-color: #fff;
-                                    cursor: pointer;
-                                    .slider-index-value {
-                                        font-size: .6rem;
-                                        width: 20px;
-                                        height: 20px;
-                                        text-align: center;
-                                        border: 1px solid;
-                                        border-radius: 50%;
-                                        line-height: 20px;
-                                        background: #fff;
-                                        padding: 2px;
-                                        position: absolute;
-                                        bottom: 15px;
-                                        left: -11px;
-                                        @include transform-origin(bottom);
-                                        @include transform(scale(0));
-                                        @include transition(all .2s $bounce)
-                                    }
-                                }
-                            }
-                        }
-                        &.moving {
-                            .slider {
-                                .slider-index {
-                                    .slider-index-value {
-                                        @include transform(scale(1));
-                                    }
-                                }
-                            }
-                        }
+                        // &.moving {
+                        //     .slider {
+                        //         .slider-index {
+                        //             .slider-index-value {
+                        //                 @include transform(scale(1));
+                        //             }
+                        //         }
+                        //     }
+                        // }
                     }
                 }
             }

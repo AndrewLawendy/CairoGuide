@@ -313,177 +313,157 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-first:before {
-    content: "\e925";
-}
-
-.icon-prev:before {
-    content: "\e926";
-}
-
-.icon-next:before {
-    content: "\e927";
-}
-
-.icon-last:before {
-    content: "\e928";
-}
-
-.icon-social-facebook:before {
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?io77k2');
+    src:  url('fonts/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
+      url('fonts/icomoon.ttf?io77k2') format('truetype'),
+      url('fonts/icomoon.woff?io77k2') format('woff'),
+      url('fonts/icomoon.svg?io77k2#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-back-to-top:before {
     content: "\e900";
-}
-
-.icon-social-instagram:before {
+  }
+  .icon-best-spots-next:before {
     content: "\e901";
-}
-
-.icon-social-twitter:before {
+  }
+  .icon-best-spots-prev:before {
     content: "\e902";
-}
-
-.icon-search:before {
+  }
+  .icon-calendar:before {
     content: "\e903";
-}
-
-.icon-best-spots-prev:before {
+  }
+  .icon-category:before {
     content: "\e904";
-}
-
-.icon-best-spots-next:before {
+  }
+  .icon-comment:before {
     content: "\e905";
-}
-
-.icon-left-arrow:before {
+  }
+  .icon-down-chevron:before {
     content: "\e906";
-}
-
-.icon-right-arrow:before {
+  }
+  .icon-facility-alcohol:before {
     content: "\e907";
-}
-
-.icon-down-chevron:before {
+  }
+  .icon-facility-catering:before {
     content: "\e908";
-}
-
-.icon-left-chevron:before {
+  }
+  .icon-facility-credit-cards:before {
     content: "\e909";
-}
-
-.icon-right-chevron:before {
+  }
+  .icon-facility-dancing:before {
     content: "\e90a";
-}
-
-.icon-up-chevron:before {
+  }
+  .icon-facility-shisha:before {
     content: "\e90b";
-}
-
-.icon-back-to-top:before {
+  }
+  .icon-filter-sort:before {
     content: "\e90c";
-}
-
-.icon-map-location:before {
+  }
+  .icon-first:before {
     content: "\e90d";
-}
-
-.icon-filter-sort:before {
+  }
+  .icon-globe:before {
     content: "\e90e";
-}
-
-.icon-triangular-arrow:before {
+  }
+  .icon-half-heart:before {
     content: "\e90f";
-}
-
-.icon-review.selected:before {
+  }
+  .icon-home:before {
     content: "\e910";
-}
-
-.icon-review:before {
+  }
+  .icon-last:before {
     content: "\e911";
-}
-
-.icon-category:before {
-    content: "\e913";
-}
-
-.icon-phone:before {
+  }
+  .icon-left-chevron:before {
     content: "\e912";
-}
-
-.icon-globe:before {
+  }
+  .icon-map-location:before {
+    content: "\e913";
+  }
+  .icon-next:before {
     content: "\e914";
-}
-
-.icon-phone-receiver:before {
+  }
+  .icon-offer:before {
     content: "\e915";
-}
-
-.icon-opening-hours:before {
+  }
+  .icon-opening-hours.svg:before {
     content: "\e916";
-}
-
-.icon-opening-hours.opened:before {
-    color: $success;
-}
-
-.icon-opening-hours.closed:before {
-    color: $danger;
-}
-
-.icon-home:before {
+  }
+  .icon-opening-hours.opened:before {
+        color: $success;
+    }
+    
+    .icon-opening-hours.closed:before {
+        color: $danger;
+    }
+  .icon-owl:before {
     content: "\e917";
-}
-
-.icon-offer:before {
+  }
+  .icon-pen:before {
     content: "\e918";
-}
-
-.icon-owl:before {
+  }
+  .icon-phone:before {
     content: "\e919";
-}
-
-.icon-search-results:before {
+  }
+  .icon-phone-receiver:before {
     content: "\e91a";
-}
-
-.icon-comment:before {
+  }
+  .icon-play-button:before {
     content: "\e91b";
-}
-
-.icon-pen:before {
+  }
+  .icon-prev:before {
     content: "\e91c";
-}
-
-.icon-smartphone:before {
+  }
+  .icon-review.selected:before {
     content: "\e91d";
-}
-
-.icon-phone-call:before {
+  }
+  .icon-right-chevron:before {
     content: "\e91e";
-}
-
-.icon-message:before {
+  }
+  .icon-search-results:before {
     content: "\e91f";
-}
-
-.icon-fax:before {
+  }
+  .icon-social-facebook:before {
     content: "\e920";
-}
-
-.icon-smartphone-filled:before {
+  }
+  .icon-social-instagram:before {
     content: "\e921";
-}
-
-.icon-user:before {
+  }
+  .icon-social-twitter:before {
     content: "\e922";
-}
-
-.icon-star:before {
+  }
+  .icon-star:before {
     content: "\e923";
-}
-
-.icon-calendar:before {
+  }
+  .icon-triangular-arrow:before {
     content: "\e924";
-}
+  }
+  .icon-up-chevron:before {
+    content: "\e925";
+  }
+  .icon-user:before {
+    content: "\e926";
+  }
+  
 
 /*General Declarations*/
 
