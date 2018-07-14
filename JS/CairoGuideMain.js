@@ -789,8 +789,7 @@
             }, {
                     duration: 150,
                     complete: function () {
-                        $('.calendar-controls-wrp .calendar-today .calendar-month-year').text(year);
-                        $('.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
+                        $('.calendar-controls-wrp .calendar-today .calendar-month-year,.calendar-controls-wrp .calendar-today .calendar-year-range').text(year);
                         $('#calendar-wrp .calendar-today>span').stop().animate({
                             opacity: 1
                         }, {
@@ -938,8 +937,13 @@
             var currentMonth = $('.current-month'),
                 currentMonthData = currentMonth.data();
             $('#calendar-wrp').data('currentDate', [currentMonthData.day, currentMonthData.month, currentMonthData.year]);
-            // if($('calendar-controls-wrp calendar-view').hasClass('.months-view')) $('.month.this-month').click();
-            // if($('calendar-controls-wrp calendar-view').hasClass('.years-view')) $('.year.this-year,.month.this-month').click();
+            if($('.calendar-controls-wrp.calendar-view').hasClass('months-view') || $('.calendar-controls-wrp.calendar-view').hasClass('years-view')) {
+                $('.calendar-controls-wrp.calendar-view').removeClass('months-view years-view');
+                $('.calendar-today .calendar-year-range').text('');
+                $('.calendar-today .calendar-month-name,.calendar-today .calendar-month-year').delay(500).fadeIn();
+                $('.calendar-months-view-wrp,.calendar-years-view-wrp').removeClass('entering leaving').fadeOut();
+                $('.calendar-head-body').removeClass('leaving');
+            }
             $('.day.today').click();
             scrollToMonth(currentMonth);
             updateDay(currentMonthData.monthName, currentMonthData.day, currentMonthData.year);

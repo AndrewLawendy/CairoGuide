@@ -115,11 +115,16 @@
     }
 }
 
-@mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
-    background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
-    background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
-    background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
-}
+// @mixin linear-gradient($direction, $first-color, $first-opacity, $start-position, $last-color, $last-opacity, $end-position) {
+//     background: -moz-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+//     background: -webkit-linear-gradient($direction, rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+//     background: linear-gradient(to opposite-direction($direction), rgba($first-color, $first-opacity) ($start-position*1%), rgba($last-color, $last-opacity) ($end-position*1%));
+// }
+// @mixin linear-gradient($direction, $color-pos-value...) {
+//     background: -moz-linear-gradient($direction, $color-pos-value);
+//     background: -webkit-linear-gradient($direction, $color-pos-value);
+//     background: linear-gradient(opposite-direction($direction), $color-pos-value);
+// }
 
 @mixin theme-link-color($category-color) {
     & {
@@ -234,4 +239,30 @@
     position: $position;
     top:0;
     left: 0;
+}
+
+@mixin max-lines($lines, $color:#fff, $line-height:1.42rem) {
+    position: relative;
+    line-height: $line-height;
+    overflow: hidden;
+    max-height: $lines * $line-height;
+    display: block;
+    &::before,
+    &::after {
+        position: absolute;
+        right: 5px;
+        height: $line-height;
+    }
+    &::before {
+        content: '...';
+        bottom: 0;
+        text-align: right;
+        padding-left: 5px;
+        background:linear-gradient(to right, rgba(255, 255, 255, 0) 0%, $color 25%);
+    }
+    &::after {
+        content: '';
+        width: $line-height;
+        background-color: $color;
+    }
 }
