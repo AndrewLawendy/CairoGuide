@@ -2967,23 +2967,23 @@
             //         title: 'Wow'
             //     }
             // ]
-            $('.review-satisfaction-wrp .slider-index').on('mousedown touchstart', function () {
-                var parentSlider = $(this).closest('.review-satisfaction-wrp'),
-                    parentSliderContainer = $(this).closest('.slider-value-container'),
-                    slideStart = parentSlider.offset().left,
-                    sliderIndexValue = $(this).find('.slider-index-value');
-                parentSlider.addClass('moving');
-                parentSlider.on('mousemove touchmove', function (e) {
-                    var indexPos = e.clientX || e.originalEvent.changedTouches[0].pageX,
-                        slideDiff = roundToNearestValue(10, (indexPos - slideStart) / parentSlider.width() * 100);
-                    parentSliderContainer.css('width', slideDiff + '%');
-                    if (slideDiff != sliderIndexValue) sliderIndexValue.text(slideDiff);
-                });
-                parentSlider.on('mouseup touchend', function () {
-                    parentSlider.off('mousemove touchmove');
-                    parentSlider.removeClass('moving');
-                });
-            });
+            // $('.review-satisfaction-wrp .slider-index').on('mousedown touchstart', function () {
+            //     var parentSlider = $(this).closest('.review-satisfaction-wrp'),
+            //         parentSliderContainer = $(this).closest('.slider-value-container'),
+            //         slideStart = parentSlider.offset().left,
+            //         sliderIndexValue = $(this).find('.slider-index-value');
+            //     parentSlider.addClass('moving');
+            //     parentSlider.on('mousemove touchmove', function (e) {
+            //         var indexPos = e.clientX || e.originalEvent.changedTouches[0].pageX,
+            //             slideDiff = roundToNearestValue(10, (indexPos - slideStart) / parentSlider.width() * 100);
+            //         parentSliderContainer.css('width', slideDiff + '%');
+            //         if (slideDiff != sliderIndexValue) sliderIndexValue.text(slideDiff);
+            //     });
+            //     parentSlider.on('mouseup touchend', function () {
+            //         parentSlider.off('mousemove touchmove');
+            //         parentSlider.removeClass('moving');
+            //     });
+            // });
 
             // $('.review-satisfaction-wrp i').on('mouseenter', function () {
             //     $(this).addClass('selected');
@@ -3015,6 +3015,25 @@
             //     })
             //     $(this).find('span').text(owlRatings[ratingValue].title);
             // })
+//|| e.originalEvent.changedTouches[0].pageX || e.originalEvent.touches[0].pageX
+            function heartRating (e){
+                var _this = $(e.currentTarget),
+                parentReview = _this.parent(),
+                iconWidth = parseInt(_this.width()/2,10),
+                iconPos = _this.position().left,
+                mousePos = e.clientX ,
+                heartType = mousePos-iconPos>iconWidth?'icon-full-heart':'icon-half-heart';
+                parentReview.children().removeClass('icon-full-heart icon-half-heart');
+                _this.addClass(heartType);
+            }
+
+            $('.review-satisfaction-wrp i').on('mouseenter mousedown touchstart',function(e){
+                heartRating(e);
+                $('.review-satisfaction-wrp i').on('mousemove touchmove',heartRating);
+                $('.review-satisfaction-wrp i').on('mouseup touchend',function(){
+                    $('.review-satisfaction-wrp i').off('mousemove touchmove');
+                })
+            });
 
             $('.multilanguage').on('keyup paste', function () {
                 var val = $(this).val();
