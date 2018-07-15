@@ -3020,7 +3020,7 @@
                 var _this = $(e.currentTarget),
                 parentReview = _this.parent(),
                 iconWidth = parseInt(_this.width()/2,10),
-                iconPos = _this.position().left,
+                iconPos = _this.offset().left,
                 mousePos = e.clientX ,
                 heartType = mousePos-iconPos>iconWidth?'icon-full-heart':'icon-half-heart';
                 parentReview.children().removeClass('icon-full-heart icon-half-heart');
