@@ -315,11 +315,11 @@ body {
 
 @font-face {
     font-family: 'icomoon';
-    src:  url('/fonts/IcoMoon/icomoon.eot?io77k2');
-    src:  url('/fonts/IcoMoon/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
-      url('/fonts/IcoMoon/icomoon.ttf?io77k2') format('truetype'),
-      url('/fonts/IcoMoon/icomoon.woff?io77k2') format('woff'),
-      url('/fonts/IcoMoon/icomoon.svg?io77k2#icomoon') format('svg');
+    src:  url('../fonts/IcoMoon/icomoon.eot?io77k2');
+    src:  url('../fonts/IcoMoon/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
+      url('../fonts/IcoMoon/icomoon.ttf?io77k2') format('truetype'),
+      url('../fonts/IcoMoon/icomoon.woff?io77k2') format('woff'),
+      url('../fonts/IcoMoon/icomoon.svg?io77k2#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
