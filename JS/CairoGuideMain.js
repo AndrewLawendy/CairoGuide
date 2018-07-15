@@ -3015,25 +3015,45 @@
             //     })
             //     $(this).find('span').text(owlRatings[ratingValue].title);
             // })
-//|| e.originalEvent.changedTouches[0].pageX || e.originalEvent.touches[0].pageX
             function heartRating (e){
                 var _this = $(e.currentTarget),
                 parentReview = _this.parent(),
                 iconWidth = parseInt(_this.width()/2,10),
                 iconPos = _this.offset().left,
-                mousePos = e.clientX ,
+                mousePos = e.clientX || e.originalEvent.changedTouches[0].pageX || e.originalEvent.touches[0].pageX,
                 heartType = mousePos-iconPos>iconWidth?'icon-full-heart':'icon-half-heart';
                 parentReview.children().removeClass('icon-full-heart icon-half-heart');
                 _this.addClass(heartType);
             }
 
-            $('.review-satisfaction-wrp i').on('mouseenter mousedown touchstart',function(e){
+            function resetRating() {
+                var serviceValue = $(this).data('rate-number');
+                if (!serviceValue || serviceValue == ''){
+                    $(this).children().removeClass('icon-full-heart icon-half-heart');
+                    return;
+                };
+                var remaining = serviceValue % 20,
+                    heartIndex = (remaining?4:5) - Math.floor(serviceValue / 20),
+                    remainingClass = remaining ? 'icon-half-heart' : 'icon-full-heart';
+                $(this).children().removeClass('icon-full-heart icon-half-heart').eq(heartIndex).addClass(remainingClass);
+            }
+
+            $('.review-satisfaction-wrp i').on('mouseenter touchstart',function(e){
                 heartRating(e);
                 $('.review-satisfaction-wrp i').on('mousemove touchmove',heartRating);
                 $('.review-satisfaction-wrp i').on('mouseup touchend',function(){
                     $('.review-satisfaction-wrp i').off('mousemove touchmove');
                 })
             });
+
+            $('.review-satisfaction-wrp i').on('click', function () {
+                var parentReview = $(this).parent(),
+                thisValue = $(this).hasClass('icon-half-heart')?10:20,
+                prevValue = (4-$(this).index()) * 20;
+                parentReview.data('rate-number',prevValue+thisValue);
+            });
+
+            $('.review-satisfaction-wrp').on('mouseleave',resetRating);
 
             $('.multilanguage').on('keyup paste', function () {
                 var val = $(this).val();
