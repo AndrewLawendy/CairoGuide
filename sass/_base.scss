@@ -70,14 +70,6 @@
     src: url('../Fonts/Adobe-Arabic/Adobe-Arabic.eot?#iefix') format('embedded-opentype'), url('../Fonts/Adobe-Arabic/Adobe-Arabic.woff') format('woff'), url('../Fonts/Adobe-Arabic/Adobe-Arabic.ttf') format('truetype')
 }
 
-@font-face {
-    font-family: 'icomoon';
-    src: url('../Fonts/IcoMoon/icomoon.eot');
-    src: url('../Fonts/IcoMoon/icomoon.eot') format('embedded-opentype'), url('../Fonts/IcoMoon/icomoon.ttf') format('truetype'), url('../Fonts/IcoMoon/icomoon.woff') format('woff'), url('../Fonts/IcoMoon/icomoon.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 html,
 body {
     overflow-x: hidden;
@@ -315,11 +307,11 @@ body {
 
 @font-face {
     font-family: 'icomoon';
-    src:  url('../fonts/IcoMoon/icomoon.eot?io77k2');
-    src:  url('../fonts/IcoMoon/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
-      url('../fonts/IcoMoon/icomoon.ttf?io77k2') format('truetype'),
-      url('../fonts/IcoMoon/icomoon.woff?io77k2') format('woff'),
-      url('../fonts/IcoMoon/icomoon.svg?io77k2#icomoon') format('svg');
+    src:  url('../Fonts/IcoMoon/icomoon.eot?io77k2');
+    src:  url('../Fonts/IcoMoon/icomoon.eot?io77k2#iefix') format('embedded-opentype'),
+      url('../Fonts/IcoMoon/icomoon.ttf?io77k2') format('truetype'),
+      url('../Fonts/IcoMoon/icomoon.woff?io77k2') format('woff'),
+      url('../Fonts/IcoMoon/icomoon.svg?io77k2#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }

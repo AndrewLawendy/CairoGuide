@@ -26,7 +26,7 @@
         $(document).scroll();
 
         function lazyGet() {
-            //var error = '../Content/Images/blank-src.gif';
+            //var error = '../Content/Images/blank-src.png';
             $('[data-src]').each(function () {
                 var windowHeight = $(window).height() * 2,
                     thisPos = $(this).offset().top - $(document).scrollTop();
