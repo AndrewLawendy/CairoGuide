@@ -2185,7 +2185,7 @@
         $('[data-src]').length && lazyLoading();
 
         //Details Carousel
-        if ($('.details-carousel').length) detailsCarousel();
+        if ($('.details-carousel').length && $('.details-carousel').children().length>1) detailsCarousel();
 
         //Header
         var header = $('header'),
