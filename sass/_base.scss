@@ -1801,6 +1801,9 @@ iframe:not([data-src]) {
                 left: -25%;
             }
         }
+        &:only-of-type{
+            display: block;
+        }
     }
     .details-carousel-nav {
         z-index: 10;
