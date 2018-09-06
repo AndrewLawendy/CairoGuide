@@ -2399,7 +2399,7 @@
                 fullScroll = $('#main-carousel .carousel-item:first-child').width();
                 $('#main-carousel .carousel-container').scrollLeft(fullScroll);
                 for (var i = 0; i < carouselItemCount - 2; i++) {
-                    $('#main-carousel .carousel-indexes').append('<div>' + (i + 1) + '</div>');
+                    $('#main-carousel .carousel-indexes').append('<div><span></span></div>');
                 }
                 $('#main-carousel .carousel-indexes div:first').addClass('selected');
                 $('#main-carousel .carousel-container').on('mousedown touchstart', function (e) {

@@ -85,7 +85,7 @@ main {
                     .carousel-data {
                         position: absolute;
                         left: 0;
-                        top: 65%;
+                        top: 75%;
                         width: 100%;
                         padding-left: 30px;
                         padding-right: 25%;
@@ -204,38 +204,38 @@ main {
             .carousel-indexes {
                 display: inline-block;
                 vertical-align: middle;
-                div {
+                >div {
                     margin: 7px;
                     width: 15px;
                     height: 15px;
-                    border-bottom: 1px solid #fff;
+                    padding: 2px;
                     cursor: pointer;
                     position: relative;
-                    color: #fff;
-                    padding: 6px 0 11px;
                     opacity: .5;
-                    @include transition(all .3s);
-                    @include transform(scale(1));
+                    box-sizing: border-box;
+                    @include transition(all .15s);
                     @include media("(min-width: 1200px)") {
                         margin: get-vw(7px);
+                        padding: get-vw(2px);
                         width: get-vw(15px);
                         height: get-vw(15px);
-                        padding: get-vw(6px) 0 get-vw(11px);
-                    }
-                    @include media("(max-width: 768px)") {
-                        display: inline-block;
-                        padding: 0;
-                        color: #000;
-                        border: 0;
                     }
                     &.selected,
                     &:hover {
                         opacity: 1;
-                        @include transform(scale(1.3));
-                        @include transition(all .3s);
                     }
-                    &:last-child {
-                        border: none;
+                    span{
+                        display: block;
+                        width:100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        background-color: #fff;
+                    }
+                    @include media("(max-width: 768px)") {
+                        display: inline-block;
+                        span{
+                            background-color: #000;
+                        }
                     }
                 }
             }
