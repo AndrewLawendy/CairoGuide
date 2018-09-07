@@ -1524,6 +1524,7 @@
         $('html,body').addClass('popup-in-motion');
         $('#lightbox-popup').find('.default-close-btn').off().on('click', function () {
             $('#lightbox-popup').removeClass('active');
+            $('#lightbox-popup iframe').length && $('#lightbox-popup iframe')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
             setTimeout(function () {
                 $('#lightbox-popup').removeAttr('class');
                 DestroyPopupGallery();
@@ -2279,6 +2280,7 @@
         if ($('#lightbox-popup').length) {
             $('#lightbox-popup .default-close-btn').off().on('click', function () {
                 $('#lightbox-popup').removeClass('active');
+                $('#lightbox-popup iframe').length && $('#lightbox-popup iframe')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
                 setTimeout(function () {
                     $('#lightbox-popup').removeAttr('class');
                 }, 300);
@@ -3322,6 +3324,7 @@
                 if (newScreenSize == 1) {
                     if ($('#lightbox-popup').length && $('#lightbox-popup').hasClass('active')) {
                         $('#lightbox-popup').removeClass('active');
+                        $('#lightbox-popup iframe').length && $('#lightbox-popup iframe')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
                         setTimeout(function () {
                             $('#lightbox-popup').removeAttr('class');
                             DestroyPopupGallery();
@@ -3372,6 +3375,7 @@
                 imageSliderWrp = $('#lightbox-popup,.slider-main-slide-wrp');
                 if (imageSliderWrp.is(e.target)) {
                     $('#lightbox-popup').removeClass('active');
+                    $('#lightbox-popup iframe').length && $('#lightbox-popup iframe')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
                     setTimeout(function () {
                         $('#lightbox-popup').removeAttr('class');
                         DestroyPopupGallery();
