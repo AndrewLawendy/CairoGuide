@@ -1233,11 +1233,6 @@ main {
                             height: 100%;
                             opacity: 1;
                             @include transition(all .5s);
-                            @each $i in $colorList {
-                                &.best-#{nth($i,1)} {
-                                    background-color: nth($i, 2);
-                                }
-                            }
                             @include media("(max-width: 768px)") {
                                 display: none;
                             }
@@ -1339,20 +1334,43 @@ main {
                             @include transform(none);
                         }
                     }
+                    a{
+                        position: absolute;
+                        left: 0;
+                        bottom: 120px;
+                        opacity: 0;
+                        @include transition(all .3s);
+                        @include transform(translate3d(50%,0,0));
+                        z-index: 1;
+                        @include media("(min-width: 1200px)") {
+                            bottom: get-vw(120px);
+                        }
+                        .clear-btn{
+                            transition: all .3s;
+                        }
+                    }
                     &.active {
                         .item-bg {
                             opacity: 0;
                             @include transition(all .15s);
                         }
                         h2 {
-                            @include transform(translate3d(0,0,0));
                             opacity: .1;
+                            z-index: 2;
+                            @include transform(translate3d(0,0,0));
                             @include transition(all .5s);
                         }
                         h6 {
                             opacity: 1;
+                            z-index: 2;
                             @include transform(translate3d(0,0,0));
                             @include transition(all .7s ease-out .15s);
+                        }
+                        a{
+                            opacity: 1;
+                            z-index: 2;
+                            @include transform(translate3d(0,0,0));
+                            @include transition(all .7s ease-out .3s);
                         }
                         .best-description-frame {
                             opacity: 1;
@@ -1516,6 +1534,21 @@ main {
                             }
                         }
                     }
+                    @each $i in $colorList {
+                        &.best-#{nth($i,1)} {
+                            .item-bg{
+                                background-color: nth($i, 2);
+                            }
+                            .clear-btn{
+                                color: nth($i, 2);
+                                border-color: nth($i, 2);
+                                &:hover{
+                                    background-color: nth($i, 2);
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
                 }
                 &.leaving {
                     .best-item {
@@ -1551,7 +1584,7 @@ main {
                     }
                     h2,
                     h6,
-                    .best-description-frame {
+                    .best-description-frame,a {
                         opacity: 0 !important;
                         @include transform(translate3d(-150%,0,0) !important);
                         @include transition(all 1.5s !important);

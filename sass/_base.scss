@@ -1652,6 +1652,20 @@ iframe:not([data-src]) {
     margin-bottom: 30px;
 }
 
+.ad-below-banner-wrp {
+    width: 100%; //height: 200px;
+    margin-bottom: 30px;
+    @include default-no-ad();
+    @include media("(min-width: 1200px)") {
+        height: get-vw(200px);
+        margin-bottom: get-vw(30px);
+    }
+    img {
+        @extend %object-fit-img;
+        object-position: center;
+    }
+}
+
 .article-with-bg {
     overflow: hidden;
     position: relative;
