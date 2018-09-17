@@ -578,7 +578,7 @@ main {
         }
         @include media("(max-width: 768px)") {
             height: 275px;
-            background-attachment: fixed;
+            //background-attachment: fixed;
             background-position: top center !important;
         }
         /*@include media("(max-width: 640px)") {
