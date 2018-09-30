@@ -127,6 +127,12 @@
         return reference * Math.floor((newVal) / reference);
     };
 
+    //Anchor Sibling
+    var clickAnchorSibling = function(){
+        let loc = $(this).siblings('a').attr('href');
+        window.location.assign(loc);
+    }
+
     //getQueryString
     var getQueryString = function (field) {
         var href = window.location.href,
@@ -2183,6 +2189,8 @@
             $('.items-list-wrp').css('min-height', $('.ads-wrp').height());
         }
 
+        $('.anchor-sibling').on('click',clickAnchorSibling);
+
         $('[data-src]').length && lazyLoading();
 
         //Details Carousel
@@ -3170,6 +3178,28 @@
             InitEventDetailsGallerySlider();
         }
         //End of Events Gallery
+
+        //Start of About Section
+        if($('.about-boc-team .members-photos').length){
+            $('.members-details .member-details:first').addClass('active');
+            $('.about-boc-team .members-photos').slick({
+                slidesToShow:1,
+                slidesToScroll:1,
+                infinite: true,
+                autoplay:true,
+                arrows:false
+            }).on('beforeChange',function(e,slick, currentSlide,nextSlide){
+                let index = nextSlide;
+                $('.members-details .member-details').removeClass('active').eq(index).addClass('active');
+            });
+            $('.members-details .member-details').on('mouseenter',function(){
+                $('.about-boc-team .members-photos').slick('slickPause');
+            });
+            $('.members-details .member-details').on('mouseleave',function(){
+                $('.about-boc-team .members-photos').slick('slickPlay');
+            });
+        }
+        //End of About Section
 
         $(document).on('mousedown touchstart', function (e) {
             if (newScreenSize == 1) {

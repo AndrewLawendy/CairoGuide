@@ -2574,83 +2574,45 @@ main {
         min-height: 80vh;
     }
     .about-boc-team {
-        .boc-team-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 0 -15px;
-            @include media("(min-width: 1200px)") {
-                margin: 0 get-vw(-15px);
-            }
-            .team-member {
-                box-sizing: border-box;
-                @include flex(0 0 50%);
-                .member-details {
-                    display: none;
-                }
-                .member-details-wrp {
-                    width: 55%;
-                }
-                &:nth-child(3n+1) {
-                    .member-details-wrp {
-                        width: 70%;
-                    }
-                }
-                &:nth-child(odd) {
-                    .member-details-wrp {
-                        float: right;
-                    }
-                    @include transform(translate3d(-50%,
-                    -10%,
-                    0));
-                    &.active {
-                        @include transform(translate3d(7%,
-                        0,
-                        0));
-                    }
-                }
-                &:nth-child(even) {
-                    .member-details-wrp {
-                        float: left;
-                    }
-                    @include transform(translate3d(50%,
-                    -10%,
-                    0));
-                    &.active {
-                        @include transform(translate3d(-7%,
-                        5%,
-                        0));
-                    }
-                }
-                @include media("(min-width: 1200px)") {
-                    border-width: get-vw(15px);
-                }
-                .image-holder {
-                    position: relative;
-                    width: 100%;
-                    height: 0;
-                    padding-bottom: 100%;
-                    img {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        @extend %object-fit-img;
-                    }
-                }
-                .member-details {
-                    background-color: #131313;
-                    color: #fff;
-                    text-align: center;
-                    padding: 10px;
+        height: calc(100vh - 80px);
+        overflow: hidden;
+        .members-details{
+            float: left;
+            width: 60%;
+            height: 100%;
+            box-sizing: border-box;
+            padding-right: 15px;
+            position: relative;
+            .member-details{
+                position: absolute;
+                opacity: 0;
+                transition: opacity 0.15s ease;
+                h4{
+                    font-size: 1.3rem;
+                    color: #999;
+                    margin: 10px auto;
                     @include media("(min-width: 1200px)") {
-                        padding: get-vw(10px);
+                        margin: get-vw(10px) auto;
                     }
-                    p {
-                        color: #ccc;
-                        &:last-of-type {
-                            margin-bottom: 0;
-                        }
-                    }
+                }
+                &.active{
+                    opacity: 1;
+                    transition: opacity 0.15s .15s ease;
+                }
+            }
+        }
+        .members-photos{
+            float: left;
+            width: 40%;
+            height: 100%;
+            box-sizing: border-box;
+            padding-left: 15px;
+            .member{
+                img{
+                    @extend %object-fit-img;
+                }
+                .member-details{
+                    display: none;
                 }
             }
         }

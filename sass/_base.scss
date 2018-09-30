@@ -2,6 +2,7 @@
 @import 'functions';
 @import 'mixins';
 @import 'placeholders';
+@import 'slick';
 @each $i in $colorList {
     .#{nth($i,1)}-text {
         color: nth($i, 2);
@@ -1005,6 +1006,11 @@ p span {
     height: 0;
     visibility: hidden;
     clear: both;
+}
+
+.flex-wrp{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 //Forms
@@ -3762,6 +3768,12 @@ footer {
                 @include media("(min-width: 1200px)") {
                     margin: get-vw(7px) 0;
                     padding-right: get-vw(10px);
+                }
+                @include media("(max-width: 768px)") {
+                    flex-basis: 50%;
+                }
+                @include media("(max-width: 640px)") {
+                    flex-basis: 100%;
                 }
                 a,
                 a:visited {
