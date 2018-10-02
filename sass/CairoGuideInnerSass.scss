@@ -2585,8 +2585,6 @@ main {
             position: relative;
             .member-details{
                 position: absolute;
-                opacity: 0;
-                transition: opacity 0.15s ease;
                 h4{
                     font-size: 1.3rem;
                     color: #999;
@@ -2595,10 +2593,9 @@ main {
                         margin: get-vw(10px) auto;
                     }
                 }
-                &.active{
-                    opacity: 1;
-                    transition: opacity 0.15s .15s ease;
-                }
+            }
+            @include media("(max-width: 768px)") {
+                display: none;
             }
         }
         .members-photos{
@@ -2607,12 +2604,33 @@ main {
             height: 100%;
             box-sizing: border-box;
             padding-left: 15px;
-            .member{
-                img{
-                    @extend %object-fit-img;
+            .slick-track{
+                display: flex;
+                .member{
+                    height: auto;
+                    img{
+                        @extend %object-fit-img;
+                    }
+                    .member-details{
+                        display: none;
+                    }
                 }
-                .member-details{
-                    display: none;
+            }
+            @include media("(max-width: 768px)") {
+                float: none;
+                width: 100%;
+                padding: 0;
+                .slick-track{
+                    .member{
+                        img{
+                            height: 45%;
+                            object-position: top center;
+                        }
+                        .member-details {
+                            display: block;
+                            padding: 10px 0;
+                        }
+                    }
                 }
             }
         }

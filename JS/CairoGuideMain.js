@@ -3181,22 +3181,27 @@
 
         //Start of About Section
         if($('.about-boc-team .members-photos').length){
-            $('.members-details .member-details:first').addClass('active');
-            $('.about-boc-team .members-photos').slick({
-                slidesToShow:1,
-                slidesToScroll:1,
-                infinite: true,
-                autoplay:true,
-                arrows:false
-            }).on('beforeChange',function(e,slick, currentSlide,nextSlide){
-                let index = nextSlide;
-                $('.members-details .member-details').removeClass('active').eq(index).addClass('active');
-            });
-            $('.members-details .member-details').on('mouseenter',function(){
-                $('.about-boc-team .members-photos').slick('slickPause');
-            });
-            $('.members-details .member-details').on('mouseleave',function(){
-                $('.about-boc-team .members-photos').slick('slickPlay');
+            $('.about-boc-team .flex-wrp').each(function(){
+                let _this = $(this);
+                _this.find('.members-details').html($('.about-boc-team .members-photos .member:first-of-type .member-details').clone());
+                _this.find('.members-photos').slick({
+                    slidesToShow:1,
+                    slidesToScroll:1,
+                    infinite: true,
+                    autoplay:true,
+                    arrows:false
+                }).on('beforeChange',function(e,slick, currentSlide,nextSlide){
+                    let next = slick.$slides.eq(nextSlide).find('.member-details').clone();
+                    $('.members-details').fadeOut(function(){
+                        $(this).html(next).fadeIn(150);
+                    });
+                });
+                _this.find('.members-details .member-details').on('mouseenter',function(){
+                    _this.find('.members-photos').slick('slickPause');
+                });
+                _this.find('.members-details .member-details').on('mouseleave',function(){
+                    _this.find('.members-photos').slick('slickPlay');
+                });
             });
         }
         //End of About Section
