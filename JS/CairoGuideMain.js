@@ -3183,7 +3183,7 @@
         if($('.about-boc-team .members-photos').length){
             $('.about-boc-team .flex-wrp').each(function(){
                 let _this = $(this);
-                _this.find('.members-details').html($('.about-boc-team .members-photos .member:first-of-type .member-details').clone());
+                _this.find('.members-details').html(_this.find('.members-photos .member:first-of-type .member-details').clone());
                 _this.find('.members-photos').slick({
                     slidesToShow:1,
                     slidesToScroll:1,
@@ -3192,7 +3192,7 @@
                     arrows:false
                 }).on('beforeChange',function(e,slick, currentSlide,nextSlide){
                     let next = slick.$slides.eq(nextSlide).find('.member-details').clone();
-                    $('.members-details').fadeOut(function(){
+                    _this.find('.members-details').fadeOut(function(){
                         $(this).html(next).fadeIn(150);
                     });
                 });

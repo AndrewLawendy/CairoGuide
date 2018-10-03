@@ -2574,8 +2574,10 @@ main {
         min-height: 80vh;
     }
     .about-boc-team {
-        height: calc(100vh - 80px);
-        overflow: hidden;
+        .flex-wrp{
+            overflow: hidden;
+            height: calc(100vh - 150px);
+        }
         .members-details{
             float: left;
             width: 60%;
