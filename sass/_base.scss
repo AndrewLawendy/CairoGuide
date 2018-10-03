@@ -2990,6 +2990,9 @@ header {
             }
             nav {
                 .category-nav {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
                     &>li {
                         @include media("(max-width: 1024px)") {
                             float: none;

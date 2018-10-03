@@ -1078,14 +1078,16 @@
         var totlaImages = wrp.find('.image-wrp').length,
             firsImagePos = wrp.find('.image-wrp:first').position().top;
         wrp.find('.image-wrp .images-exceeds').remove();
-        for (var i = 0; i < totlaImages; i++) {
-            var imagePos = wrp.find('.image-wrp').eq(i).position().top;
-            if (imagePos > firsImagePos) {
-                var remaining = totlaImages - i + 1;
-                wrp.find('.image-wrp').eq(i - 1).append('<div class="images-exceeds">+' + remaining + '</div>');
-                break;
+        $(window).on('load',function(){
+            for (var i = 0; i < totlaImages; i++) {
+                var imagePos = wrp.find('.image-wrp').eq(i).position().top;
+                if (imagePos > firsImagePos) {
+                    var remaining = totlaImages - i + 1;
+                    wrp.find('.image-wrp').eq(i - 1).append('<div class="images-exceeds">+' + remaining + '</div>');
+                    break;
+                }
             }
-        }
+        });
     };
 
     //showOnScroll
