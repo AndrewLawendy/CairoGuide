@@ -389,6 +389,28 @@
         }, 700);
     };
 
+    //Newsletter
+    window.sessionStorage.inviteToSubscription = window.sessionStorage.inviteToSubscription || true;
+    var SubscribeNewsletter = function(scrollPos){
+        if(window.sessionStorage.inviteToSubscription == "false") return;
+        let windowHeight = $(window).height();
+        if(scrollPos >= windowHeight) {
+            $('.newsletter-subscribtion').addClass('opened');
+        }else{
+            $('.newsletter-subscribtion').removeClass('opened');
+        }
+    }
+
+    var closeNewsletterSubscription = function(e,temp){
+        $('.newsletter-subscribtion').removeClass('opened');
+        window.sessionStorage.inviteToSubscription = false;
+        if(temp){
+            setInterval(function(){
+                window.sessionStorage.inviteToSubscription = true;
+            },2400000);
+        }
+    }
+
     //Main Carousel Parallax
     var MainBannerlParallax = function (scrollPos, breakPos) {
         if ($('#main-carousel').length) {
@@ -2161,8 +2183,12 @@
     var windowLoaded = false;
     //document ready
     $(document).ready(function () {
-        //Scroll tot top
+        //Scroll to top
         $('#backToTopBtn').on('click', BackToTop);
+
+        //Newsletter
+        $('.newsletter-subscribtion .not-now').on('click',function(){closeNewsletterSubscription(true)});
+        $('.newsletter-subscribtion .close').on('click',closeNewsletterSubscription);
 
         //Scroll to id
         if (window.location.href.indexOf('scrollto=') > -1) {
@@ -3439,6 +3465,7 @@
             var scrollPos = $(this).scrollTop();
             TransformHeader(scrollPos, breakPos);
             MainBannerlParallax(scrollPos, breakPos);
+            SubscribeNewsletter(scrollPos);
             if ($('.side-ads.thirty-width').length) {
                 $('.side-ads.thirty-width').siblings('.seventy-width').css('min-height', $('.side-ads.thirty-width').height());
                 var adMargin = 30;
