@@ -323,7 +323,6 @@ main {
                 }
                 @include media("(max-width: 640px)") {
                     margin-bottom: 15px;
-                    height: 50vw !important;
                     border: 0;
                 }
             }
@@ -642,10 +641,16 @@ main {
                         }
                     }
                 }
+                @include media("(max-width: 640px)") {
+                    height: 50vw;
+                }
             }
             .ad-item {
                 height: 50%;
                 @include default-no-ad();
+                @include media("(max-width: 640px)") {
+                    height: auto;
+                }
             }
         }
     }
