@@ -2576,7 +2576,7 @@ main {
     .about-boc-team {
         .flex-wrp{
             overflow: hidden;
-            height: calc(100vh - 150px);
+            //height: calc(100vh - 150px);
         }
         .members-details{
             float: left;
@@ -2610,11 +2610,28 @@ main {
                 display: flex;
                 .member{
                     height: auto;
+                    padding: 0 5px;
+                    outline: none;
+                    opacity: .3;
+                    transition: opacity .3s;
+                    @include media("(min-width: 1200px)") {
+                        padding: 0 get-vw(5px);
+                    }
                     img{
                         @extend %object-fit-img;
+                        border-radius: 7px;
+                        transform-origin: bottom center;
+                        transform: scale(.8);
+                        transition: transform .3s;
                     }
                     .member-details{
                         display: none;
+                    }
+                    &.slick-current{
+                        opacity: 1;
+                        img{
+                            transform: scale(1);
+                        }
                     }
                 }
             }
@@ -2625,7 +2642,7 @@ main {
                 .slick-track{
                     .member{
                         img{
-                            height: 45%;
+                            max-height: 50vh;
                             object-position: top center;
                         }
                         .member-details {

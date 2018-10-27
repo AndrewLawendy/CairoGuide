@@ -128,7 +128,7 @@
     };
 
     //Anchor Sibling
-    var clickAnchorSibling = function(){
+    var clickAnchorSibling = function () {
         let loc = $(this).siblings('a').attr('href');
         window.location.assign(loc);
     }
@@ -1078,7 +1078,7 @@
         var totlaImages = wrp.find('.image-wrp').length,
             firsImagePos = wrp.find('.image-wrp:first').position().top;
         wrp.find('.image-wrp .images-exceeds').remove();
-        $(window).on('load',function(){
+        $(window).on('load', function () {
             for (var i = 0; i < totlaImages; i++) {
                 var imagePos = wrp.find('.image-wrp').eq(i).position().top;
                 if (imagePos > firsImagePos) {
@@ -2191,7 +2191,7 @@
             $('.items-list-wrp').css('min-height', $('.ads-wrp').height());
         }
 
-        $('.anchor-sibling').on('click',clickAnchorSibling);
+        $('.anchor-sibling').on('click', clickAnchorSibling);
 
         $('[data-src]').length && lazyLoading();
 
@@ -2749,7 +2749,7 @@
             //End of Mobile Best Controls
             let autoBestMobDir = 'right',
                 autoBest = setInterval(function () {
-                    $('#best-spots .mobile-best-controls .mobile-best-next').hasClass('last')?autoBestMobDir = 'left':$('#best-spots .mobile-best-controls .mobile-best-prev').hasClass('last')?autoBestMobDir = 'right':'';
+                    $('#best-spots .mobile-best-controls .mobile-best-next').hasClass('last') ? autoBestMobDir = 'left' : $('#best-spots .mobile-best-controls .mobile-best-prev').hasClass('last') ? autoBestMobDir = 'right' : '';
                     $('#best-spots .best-controls .best-next').is(':visible') ? bestNext() : autoBestMobDir == 'right' ? bestNextMob() : bestPrevMob();
                 }, 7000);
             $('#best-spots').on('mouseenter touchstart', function () {
@@ -2757,7 +2757,7 @@
             });
             $('#best-spots').on('mouseleave touchend', function () {
                 autoBest = setInterval(function () {
-                    $('#best-spots .mobile-best-controls .mobile-best-next').hasClass('last')?autoBestMobDir = 'left':$('#best-spots .mobile-best-controls .mobile-best-prev').hasClass('last')?autoBestMobDir = 'right':'';
+                    $('#best-spots .mobile-best-controls .mobile-best-next').hasClass('last') ? autoBestMobDir = 'left' : $('#best-spots .mobile-best-controls .mobile-best-prev').hasClass('last') ? autoBestMobDir = 'right' : '';
                     $('#best-spots .best-controls .best-next').is(':visible') ? bestNext() : autoBestMobDir == 'right' ? bestNextMob() : bestPrevMob();
                 }, 7000);
             });
@@ -3182,26 +3182,33 @@
         //End of Events Gallery
 
         //Start of About Section
-        if($('.about-boc-team .members-photos').length){
-            $('.about-boc-team .flex-wrp').each(function(){
+        if ($('.about-boc-team .members-photos').length) {
+            $('.about-boc-team .flex-wrp').each(function () {
                 let _this = $(this);
                 _this.find('.members-details').html(_this.find('.members-photos .member:first-of-type .member-details').clone());
                 _this.find('.members-photos').slick({
-                    slidesToShow:1,
-                    slidesToScroll:1,
+                    centerMode: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
                     infinite: true,
-                    autoplay:true,
-                    arrows:false
-                }).on('beforeChange',function(e,slick, currentSlide,nextSlide){
+                    autoplay: true,
+                    arrows: false,
+                    responsive: [{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }]
+                }).on('beforeChange', function (e, slick, currentSlide, nextSlide) {
                     let next = slick.$slides.eq(nextSlide).find('.member-details').clone();
-                    _this.find('.members-details').fadeOut(function(){
+                    _this.find('.members-details').fadeOut(function () {
                         $(this).html(next).fadeIn(150);
                     });
                 });
-                _this.find('.members-details .member-details').on('mouseenter',function(){
+                _this.find('.members-details .member-details').on('mouseenter', function () {
                     _this.find('.members-photos').slick('slickPause');
                 });
-                _this.find('.members-details .member-details').on('mouseleave',function(){
+                _this.find('.members-details .member-details').on('mouseleave', function () {
                     _this.find('.members-photos').slick('slickPlay');
                 });
             });
