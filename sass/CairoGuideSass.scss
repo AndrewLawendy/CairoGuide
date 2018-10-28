@@ -900,6 +900,7 @@ main {
             //height:75vh;
             overflow: hidden;
             flex-wrap: wrap;
+            margin: 0 get-vw(-10px);
             @extend %flexbox;
             .news-box {
                 height: 25vw;

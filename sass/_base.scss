@@ -3988,6 +3988,15 @@ main {
                 overflow: hidden; //float: left;
                 height: 450px;
 
+                &.boc-carousel-item{
+                    &:first-of-type{
+                        margin-left: -10px;
+                        @include media("(min-width: 1200px)") {
+                            margin-left: get-vw(-10px);
+                        }
+                    }
+                }
+
                 @include media("(min-width: 1200px)") {
                     padding: 0 get-vw(10px);
                     height: get-vw(450px); //width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
