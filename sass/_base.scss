@@ -3402,12 +3402,12 @@ header {
                             }
                         }
 
-                        &:last-child {
+                        /*&:last-child {
                             & ul {
                                 left: auto !important;
                                 right: 0;
                             }
-                        }
+                        }*/
 
                         &>a {
                             span {
@@ -3623,6 +3623,11 @@ header {
                                         right: 100%;
                                     }
                                 }
+                            }
+
+                            &.open-other-dir{
+                                left: auto!important;
+                                right: 0;
                             }
                         }
 

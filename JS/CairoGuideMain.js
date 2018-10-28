@@ -214,7 +214,7 @@
     //Fix header menus position
     var FixHeaderMenusPosition = function () {
         var documentRightOffset = $('body').width();
-        $('header .category-nav li ul li').on('mouseover', function () {
+        $('header .category-nav li').on('mouseover', function () {
             $(this).siblings('li').find('.open-other-dir').removeClass('open-other-dir');
             if ($(this).children('ul').length) {
                 var openedMenuRightOffset = $(this).children('ul').offset().left + $(this).children('ul').width();
