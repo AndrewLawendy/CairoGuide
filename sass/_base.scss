@@ -4441,7 +4441,7 @@ footer {
     .aside-ctrl {
         &.close {
             position: absolute;
-            top: 8px;
+            bottom: 8px;
             right: 8px;
             width: 20px;
             height: 20px;
@@ -4451,7 +4451,7 @@ footer {
         }
 
         &.not-now {
-            bottom: 8px;
+            top: 8px;
             right: 8px;
             padding: 7px;
             font-size: .8rem;
