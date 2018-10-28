@@ -391,6 +391,7 @@
 
     //Newsletter
     window.sessionStorage.inviteToSubscription = window.sessionStorage.inviteToSubscription || true;
+    window.sessionStorage.notNowSince = window.sessionStorage.notNowSince || -1;
     var SubscribeNewsletter = function(scrollPos){
         if(window.sessionStorage.inviteToSubscription == "false") return;
         let windowHeight = $(window).height();
@@ -401,13 +402,24 @@
         }
     }
 
+    var resetNewsLetterTemp = function (){
+        let notNowCounter = setInterval(function(){
+            window.sessionStorage.notNowSince++;
+            if(window.sessionStorage.notNowSince >= 20){
+                clearInterval(notNowCounter);
+                window.sessionStorage.inviteToSubscription = true;
+            }
+        },60000);
+    }
+
+    if (window.sessionStorage.notNowSince != -1) resetNewsLetterTemp();
+
     var closeNewsletterSubscription = function(e,temp){
         $('.newsletter-subscribtion').removeClass('opened');
         window.sessionStorage.inviteToSubscription = false;
         if(temp){
-            setInterval(function(){
-                window.sessionStorage.inviteToSubscription = true;
-            },2400000);
+            window.sessionStorage.notNowSince = -1;
+            resetNewsLetterTemp();
         }
     }
 
