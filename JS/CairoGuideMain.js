@@ -3197,7 +3197,7 @@
 
         //Start of Oli's choice
         $('.olis-choice-items-container .olis-choice-item p').each(function(){
-            ifContinueReading($(this),4);
+            ifContinueReading($(this),3);
         });
         //End of Oli's choice
 
