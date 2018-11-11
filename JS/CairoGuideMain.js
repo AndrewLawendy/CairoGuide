@@ -3195,6 +3195,12 @@
         }
         //End of Comment Section
 
+        //Start of Oli's choice
+        $('.olis-choice-items-container .olis-choice-item p').each(function(){
+            ifContinueReading($(this),4);
+        });
+        //End of Oli's choice
+
         //Sitemap
         if ($('.sitemap-list-wrp').length) ArrangeSitemap(4);
 

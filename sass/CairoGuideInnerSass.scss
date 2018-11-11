@@ -515,6 +515,13 @@ Contains all styles of inner pages
         @include transition(left 0.3s ease,
         opacity 0.3s ease,
         top 0s ease);
+        &~.newsletter-subscribtion{
+            .subscription-invition{
+                width: 0;
+                padding:0;
+                transition: all .15s;
+            }
+        }
     }
 }
 
@@ -1450,6 +1457,11 @@ main {
                     text-decoration: none;
                     color: #fff;
                 }
+                .continue-reading{
+                    color:#888;
+                    line-height: 1.2rem;
+                    font-size: 1rem;
+                }
                 @include media("(max-width: 768px)") {
                     width: 50%;
                     margin-top: 0;
@@ -1481,6 +1493,7 @@ main {
                 .olis-choice-item-info {
                     padding-top: 15px;
                     box-sizing: border-box;
+                    position: relative;
                     @include media("(min-width: 1200px)") {
                         padding-top: get-vw(15px);
                     }
@@ -1497,6 +1510,8 @@ main {
                         font-size: 1rem;
                         font-weight: normal;
                         color: #555;
+                        max-height: 5.8rem;
+                        overflow: hidden;
                     }
                 }
             }
@@ -2258,28 +2273,8 @@ main {
                         @include media("(min-width: 1200px)") {
                             line-height: get-vw(20px);
                         }
-                        &.continue-reading {
-                            display: none;
-                            position: absolute;
-                            right: 0;
-                            bottom: 0;
-                            padding-left: 45px;
-                            color: #888;
-                            cursor: pointer;
+                        &.continue-reading{
                             background: linear-gradient(to left,#f8f8f8 80%, #f8f8f8 100%);
-                            // @include linear-gradient(right,
-                            // #f8f8f8,
-                            // 100,
-                            // 80,
-                            // #f8f8f8,
-                            // 0,
-                            // 100);
-                            @include media("(min-width: 1200px)") {
-                                padding-left: get-vw(45px);
-                            }
-                            &.exceeds {
-                                display: block;
-                            }
                         }
                         &.translate-comment {
                             display: none;
@@ -4107,11 +4102,21 @@ main {
                 margin: 0 auto 30px;
                 color: #fff;
                 font-size: 2.5rem;
+                overflow: hidden;
+                cursor: pointer;
                 @include media("(min-width: 1200px)") {
                     width: get-vw(100px);
                     height: get-vw(100px);
                     line-height: get-vw(100px);
                     margin-bottom: get-vw(30px);
+                }
+                &::before{
+                    display: block;
+                }
+                &:hover{
+                    &::before{
+                        animation: icon-hover 0.5s forwards;
+                    }
                 }
             }
             span {

@@ -85,6 +85,11 @@ body {
 
     &.popup-in-motion {
         overflow-y: hidden;
+        .subscription-invition{
+            transition: all .15s;
+            width: 0;
+            padding: 0;
+        }
     }
 }
 
@@ -1129,6 +1134,30 @@ input[type="radio"] {
 
 textarea {
     font: inherit;
+}
+
+.continue-reading {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-left: 45px;
+    color: #888;
+    cursor: pointer;
+    background: linear-gradient(to left,#fff 80%, #fff 100%);
+    // @include linear-gradient(right,
+    // #f8f8f8,
+    // 100,
+    // 80,
+    // #f8f8f8,
+    // 0,
+    // 100);
+    @include media("(min-width: 1200px)") {
+        padding-left: get-vw(45px);
+    }
+    &.exceeds {
+        display: block;
+    }
 }
 
 //End of forms
@@ -3314,7 +3343,9 @@ header {
 
                     li {
                         width: 50%;
-                        margin-bottom: 15px;
+                        &:nth-last-of-type(1n+2){
+                            margin-bottom: 15px;
+                        }
 
                         @include media("(max-width: 450px)") {
                             width: 100%;
@@ -3845,6 +3876,10 @@ header {
 
             @include media("(min-width: 1200px)") {
                 padding-left: get-vw(25px);
+            }
+
+            @include media("(max-width: 768px)") {
+                padding-left: 0;
             }
 
             &:after {
