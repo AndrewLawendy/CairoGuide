@@ -2108,6 +2108,9 @@ main {
                 @include media("(min-width: 1200px)") {
                     margin: get-vw(20px) get-vw(-10px) 0;
                 }
+                @include media("(max-width: 768px)") {
+                    margin-bottom: 20px;
+                }
                 .review-item {
                     box-sizing: border-box;
                     padding: 0 10px;

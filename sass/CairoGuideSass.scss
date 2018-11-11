@@ -910,6 +910,9 @@ main {
                 @include media("(max-width: 768px)") {
                     min-height: 33vw;
                     @include flex(1 0 calc(100% / 3));
+                    &.ad-content{
+                        height: auto!important;
+                    }
                 }
                 @include media("(max-width: 640px)") {
                     height: 50vw;

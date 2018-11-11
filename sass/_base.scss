@@ -85,7 +85,8 @@ body {
 
     &.popup-in-motion {
         overflow-y: hidden;
-        .subscription-invition{
+
+        .subscription-invition {
             transition: all .15s;
             width: 0;
             padding: 0;
@@ -759,10 +760,6 @@ p span {
         padding-left: get-vw(20px);
     }
 
-    @include media("(max-width: 768px)") {
-        display: none;
-    }
-
     .ads-wrp {
         min-height: 300px;
         @include default-no-ad(false);
@@ -774,6 +771,20 @@ p span {
 
         img {
             width: 100%;
+        }
+    }
+
+    @include media("(max-width: 768px)") {
+        position: static !important;
+        margin-bottom: 30px;
+        padding: 15px;
+        .ads-wrp {
+            position: static !important;
+            width: auto !important;
+
+            img {
+                width: 100% !important;
+            }
         }
     }
 }
@@ -1144,7 +1155,8 @@ textarea {
     padding-left: 45px;
     color: #888;
     cursor: pointer;
-    background: linear-gradient(to left,#fff 80%, #fff 100%);
+    background: linear-gradient(to left, #fff 80%, #fff 100%);
+
     // @include linear-gradient(right,
     // #f8f8f8,
     // 100,
@@ -1155,6 +1167,7 @@ textarea {
     @include media("(min-width: 1200px)") {
         padding-left: get-vw(45px);
     }
+
     &.exceeds {
         display: block;
     }
@@ -3343,7 +3356,8 @@ header {
 
                     li {
                         width: 50%;
-                        &:nth-last-of-type(1n+2){
+
+                        &:nth-last-of-type(1n+2) {
                             margin-bottom: 15px;
                         }
 
@@ -4025,16 +4039,6 @@ main {
                 overflow: hidden; //float: left;
                 height: 450px;
 
-                &.boc-carousel-item {
-                    &:first-of-type {
-                        margin-left: -10px;
-
-                        @include media("(min-width: 1200px)") {
-                            margin-left: get-vw(-10px);
-                        }
-                    }
-                }
-
                 @include media("(min-width: 1200px)") {
                     padding: 0 get-vw(10px);
                     height: get-vw(450px); //width: calc((( 100vw - 5vw) / 5) - 1.866667vw);
@@ -4437,9 +4441,10 @@ footer {
         padding: 35px 45px 35px 65px;
         transform: translate3d(-100%, 0, 0);
         transition: all .5s cubic-bezier(0.68, -0.15, 0.27, 1.35);
+
         &.opened {
             transform: translate3d(-30px, 0, 0);
-    
+
             .subscription-invition {
                 transition: all .15s;
                 width: 0;
